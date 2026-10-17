@@ -1,0 +1,391 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+ * NOIR COFFEE – system wizualny
+ * Ciepła biel i krem, głęboki brąz kawowy, oszczędna czerń, beżowe akcenty.
+ * ------------------------------------------------------------------------- */
+
+@theme {
+  --color-cream: #f5efe6;
+  --color-paper: #fbf8f3;
+  --color-sand: #ebe1d3;
+  --color-oat: #d9c9b3;
+  --color-latte: #a57f55;
+  --color-espresso: #3a2a20;
+  --color-roast: #231812;
+  --color-ink: #14100d;
+  --color-muted: #6b5b4f;
+  --color-line: #e2d6c6;
+  --color-success: #2f5d43;
+  --color-danger: #9b2c22;
+
+  --font-serif: var(--font-fraunces), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --shadow-soft: 0 1px 2px rgb(35 24 18 / 0.04), 0 8px 24px -12px rgb(35 24 18 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(35 24 18 / 0.05), 0 24px 48px -24px rgb(35 24 18 / 0.35);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-espresso);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    color: var(--color-roast);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-espresso);
+    color: var(--color-cream);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-espresso);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Blokada przewijania tła przy otwartym oknie modalnym. */
+  html:has(dialog[open]:modal) {
+    overflow: hidden;
+  }
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 88rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-x {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-latte);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 999px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    transition:
+      background-color 200ms var(--ease-soft),
+      color 200ms var(--ease-soft),
+      border-color 200ms var(--ease-soft),
+      transform 200ms var(--ease-soft);
+    cursor: pointer;
+  }
+  .btn:active {
+    transform: translateY(1px);
+  }
+  .btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+  .btn-primary {
+    background: var(--color-roast);
+    color: var(--color-paper);
+  }
+  .btn-primary:hover:not(:disabled) {
+    background: var(--color-espresso);
+  }
+  .btn-secondary {
+    border: 1px solid color-mix(in oklab, var(--color-roast) 35%, transparent);
+    color: var(--color-roast);
+  }
+  .btn-secondary:hover:not(:disabled) {
+    border-color: var(--color-roast);
+    background: color-mix(in oklab, var(--color-roast) 5%, transparent);
+  }
+  .btn-light {
+    background: var(--color-paper);
+    color: var(--color-roast);
+  }
+  .btn-light:hover:not(:disabled) {
+    background: var(--color-sand);
+  }
+  .btn-sm {
+    min-height: 2.5rem;
+    padding: 0.5rem 1.1rem;
+    font-size: 0.85rem;
+  }
+
+  .link-quiet {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+    text-decoration-color: color-mix(in oklab, currentColor 35%, transparent);
+    transition: text-decoration-color 200ms var(--ease-soft);
+  }
+  .link-quiet:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .field-label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-roast);
+  }
+  .field-input {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--color-oat);
+    border-radius: 0.6rem;
+    background: var(--color-paper);
+    color: var(--color-roast);
+    transition:
+      border-color 200ms var(--ease-soft),
+      box-shadow 200ms var(--ease-soft);
+  }
+  .field-input::placeholder {
+    color: color-mix(in oklab, var(--color-muted) 70%, transparent);
+  }
+  .field-input:focus {
+    outline: none;
+    border-color: var(--color-espresso);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-espresso) 14%, transparent);
+  }
+  .field-input[aria-invalid="true"] {
+    border-color: var(--color-danger);
+  }
+
+  /* Okna modalne (natywny <dialog>) */
+  .sheet {
+    margin: 0;
+    max-width: none;
+    max-height: none;
+    padding: 0;
+    border: 0;
+    background: var(--color-paper);
+    color: var(--color-espresso);
+    opacity: 0;
+    transition:
+      opacity 260ms var(--ease-soft),
+      transform 320ms var(--ease-soft),
+      overlay 320ms allow-discrete,
+      display 320ms allow-discrete;
+  }
+  .sheet[open] {
+    opacity: 1;
+    transform: none;
+  }
+  .sheet::backdrop {
+    background: rgb(20 16 13 / 0);
+    transition:
+      background-color 260ms var(--ease-soft),
+      overlay 320ms allow-discrete,
+      display 320ms allow-discrete;
+  }
+  .sheet[open]::backdrop {
+    background: rgb(20 16 13 / 0.5);
+  }
+  @starting-style {
+    .sheet[open] {
+      opacity: 0;
+    }
+    .sheet[open]::backdrop {
+      background: rgb(20 16 13 / 0);
+    }
+  }
+
+  .sheet-right {
+    inset: 0 0 0 auto;
+    height: 100dvh;
+    width: min(100vw, 30rem);
+    transform: translateX(2rem);
+  }
+  @starting-style {
+    .sheet-right[open] {
+      transform: translateX(2rem);
+    }
+  }
+
+  .sheet-full {
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
+    transform: translateY(-0.75rem);
+  }
+  @starting-style {
+    .sheet-full[open] {
+      transform: translateY(-0.75rem);
+    }
+  }
+
+  .sheet-center {
+    inset: auto 0 0 0;
+    width: 100vw;
+    max-height: 92dvh;
+    border-radius: 1.25rem 1.25rem 0 0;
+    transform: translateY(2rem);
+  }
+  @starting-style {
+    .sheet-center[open] {
+      transform: translateY(2rem);
+    }
+  }
+  @media (min-width: 768px) {
+    .sheet-center {
+      inset: 0;
+      margin: auto;
+      width: min(calc(100vw - 4rem), 60rem);
+      height: min(88dvh, 46rem);
+      max-height: none;
+      border-radius: 1.25rem;
+      transform: translateY(1rem) scale(0.98);
+    }
+    @starting-style {
+      .sheet-center[open] {
+        transform: translateY(1rem) scale(0.98);
+      }
+    }
+  }
+
+  /* Pojawianie się przy przewijaniu – aktywne tylko z JS i bez ograniczenia ruchu */
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 900ms var(--ease-soft),
+      transform 900ms var(--ease-soft);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .js .reveal[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Prosty, czytelny skład dokumentów prawnych */
+  .prose-legal {
+    color: var(--color-espresso);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+  .prose-legal h2 {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+    scroll-margin-top: 6rem;
+  }
+  .prose-legal h3 {
+    margin-top: 2rem;
+    margin-bottom: 0.6rem;
+    font-size: 1.2rem;
+  }
+  .prose-legal p,
+  .prose-legal ul,
+  .prose-legal ol {
+    margin-bottom: 1rem;
+  }
+  .prose-legal ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+  }
+  .prose-legal ol {
+    list-style: decimal;
+    padding-left: 1.4rem;
+  }
+  .prose-legal li {
+    margin-bottom: 0.4rem;
+    padding-left: 0.2rem;
+  }
+  .prose-legal a {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .prose-legal table {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+  .prose-legal th,
+  .prose-legal td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid var(--color-line);
+    text-align: left;
+    vertical-align: top;
+  }
+  .prose-legal th {
+    font-weight: 600;
+    color: var(--color-roast);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
