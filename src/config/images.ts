@@ -46,9 +46,9 @@ export const IMAGES = {
   galleryLatteGlass: { file: "gallery-latte-glass.jpg", alt: "Latte macchiato w wysokiej szklance z warstwami mleka i kawy", aspect: "3:4" },
   galleryColdBrew: { file: "gallery-cold-brew.jpg", alt: "Mleko wlewane do szklanki kawy z lodem na stoliku w ogródku", aspect: "4:5" },
   galleryGroundCoffee: { file: "gallery-ground-coffee.jpg", alt: "Ziarna kawy i świeżo zmielona kawa na drewnianym blacie", aspect: "16:10" },
-  galleryBarista: { file: "gallery-barista.jpg", alt: "Barista spieniający mleko", aspect: "3:4" },
+  galleryBarista: { file: "gallery-barista.jpg", alt: "Filiżanka espresso na marmurowym barze, w tle rogaliki", aspect: "3:4" },
   galleryCoffeeCake: { file: "gallery-coffee-cake.jpg", alt: "Filiżanka czarnej kawy i rogalik na stoliku", aspect: "4:3" },
-  galleryInterior: { file: "cafe-interior.jpg", alt: "Wnętrze kawiarni NOIR COFFEE", aspect: "16:10" },
+  galleryInterior: { file: "cafe-interior.jpg", alt: "Wnętrze kawiarni z barem, drewnianymi stolikami i obrazami na ścianie", aspect: "16:10" },
 
   // Sekcja „Dlaczego NOIR COFFEE?”
   whyBeans: { file: "why-beans.jpg", alt: "Ziarna kawy przesypywane w dłoniach", aspect: "4:5" },
