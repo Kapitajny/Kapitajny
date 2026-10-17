@@ -41,18 +41,18 @@ export const IMAGES = {
   caramelLatte: { file: "caramel-latte.jpg", alt: "Caramel latte z bitą śmietaną i sosem karmelowym", aspect: "4:5" },
 
   // Galeria „Zobacz. Poczuj. Zamów.”
-  galleryEspresso: { file: "gallery-espresso.jpg", alt: "Espresso w filiżance z gęstą cremą", aspect: "3:4" },
+  galleryEspresso: { file: "gallery-espresso.jpg", alt: "Espresso z gęstą cremą w białej filiżance wśród ziaren kawy", aspect: "3:4" },
   galleryLatteArt: { file: "gallery-latte-art.jpg", alt: "Kubek kawy z latte art w kształcie liścia trzymany w dłoniach", aspect: "1:1" },
   galleryLatteGlass: { file: "gallery-latte-glass.jpg", alt: "Latte macchiato w wysokiej szklance z warstwami mleka i kawy", aspect: "3:4" },
-  galleryColdBrew: { file: "gallery-cold-brew.jpg", alt: "Cold brew z lodem w szklance", aspect: "4:5" },
+  galleryColdBrew: { file: "gallery-cold-brew.jpg", alt: "Mleko wlewane do szklanki kawy z lodem na stoliku w ogródku", aspect: "4:5" },
   galleryGroundCoffee: { file: "gallery-ground-coffee.jpg", alt: "Ziarna kawy i świeżo zmielona kawa na drewnianym blacie", aspect: "16:10" },
   galleryBarista: { file: "gallery-barista.jpg", alt: "Barista spieniający mleko", aspect: "3:4" },
-  galleryCoffeeCake: { file: "gallery-coffee-cake.jpg", alt: "Kawa i kawałek ciasta na stoliku", aspect: "4:3" },
+  galleryCoffeeCake: { file: "gallery-coffee-cake.jpg", alt: "Filiżanka czarnej kawy i rogalik na stoliku", aspect: "4:3" },
   galleryInterior: { file: "cafe-interior.jpg", alt: "Wnętrze kawiarni NOIR COFFEE", aspect: "16:10" },
 
   // Sekcja „Dlaczego NOIR COFFEE?”
   whyBeans: { file: "why-beans.jpg", alt: "Ziarna kawy przesypywane w dłoniach", aspect: "4:5" },
-  whyPrecision: { file: "why-precision.jpg", alt: "Precyzyjne ważenie porcji kawy przed parzeniem", aspect: "4:5" },
+  whyPrecision: { file: "why-precision.jpg", alt: "Barista precyzyjnie wlewający mleko i tworzący latte art", aspect: "4:5" },
   whyPickup: { file: "why-pickup.jpg", alt: "Espresso nalewane z ekspresu do kubka na wynos", aspect: "4:5" },
 } satisfies Record<string, ImageDefinition>;
 
