@@ -29,14 +29,14 @@ export const IMAGES = {
   aboutDetail: { file: "coffee-beans.jpg", alt: "Filiżanka kawy otoczona świeżo palonymi ziarnami", aspect: "16:9" },
 
   // Produkty (menu)
-  espresso: { file: "espresso.jpg", alt: "Espresso w małej porcelanowej filiżance", aspect: "4:5" },
+  espresso: { file: "espresso.jpg", alt: "Espresso spływające z ekspresu do czarnej filiżanki", aspect: "4:5" },
   americano: { file: "americano.jpg", alt: "Americano w białej filiżance", aspect: "4:5" },
-  cappuccino: { file: "cappuccino.jpg", alt: "Cappuccino z aksamitną pianką", aspect: "4:5" },
+  cappuccino: { file: "cappuccino.jpg", alt: "Cappuccino posypane kakao w białej filiżance, obok ziarna kawy", aspect: "4:5" },
   caffeLatte: { file: "caffe-latte.jpg", alt: "Mleko wlewane do filiżanki kawy", aspect: "4:5" },
   flatWhite: { file: "flat-white.jpg", alt: "Flat white z gładką mikropianką", aspect: "4:5" },
   mocha: { file: "mocha.jpg", alt: "Mocha z czekoladowym akcentem", aspect: "4:5" },
-  espressoMacchiato: { file: "espresso-macchiato.jpg", alt: "Espresso macchiato z kleksem mlecznej pianki", aspect: "4:5" },
-  icedLatte: { file: "iced-latte.jpg", alt: "Iced latte w wysokiej szklance z lodem", aspect: "4:5" },
+  espressoMacchiato: { file: "espresso-macchiato.jpg", alt: "Espresso macchiato w małej szklance z mleczną pianką", aspect: "4:5" },
+  icedLatte: { file: "iced-latte.jpg", alt: "Iced latte w wysokiej szklance z lodem i słomką", aspect: "4:5" },
   coldBrew: { file: "cold-brew.jpg", alt: "Cold brew z kostkami lodu", aspect: "4:5" },
   caramelLatte: { file: "caramel-latte.jpg", alt: "Caramel latte w szklance", aspect: "4:5" },
 
@@ -53,7 +53,7 @@ export const IMAGES = {
   // Sekcja „Dlaczego NOIR COFFEE?”
   whyBeans: { file: "why-beans.jpg", alt: "Ziarna kawy przesypywane w dłoniach", aspect: "4:5" },
   whyPrecision: { file: "why-precision.jpg", alt: "Precyzyjne ważenie porcji kawy przed parzeniem", aspect: "4:5" },
-  whyPickup: { file: "why-pickup.jpg", alt: "Kubek kawy na wynos gotowy do odbioru przy ladzie", aspect: "4:5" },
+  whyPickup: { file: "why-pickup.jpg", alt: "Espresso nalewane z ekspresu do kubka na wynos", aspect: "4:5" },
 } satisfies Record<string, ImageDefinition>;
 
 export type ImageKey = keyof typeof IMAGES;

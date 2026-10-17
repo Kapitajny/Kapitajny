@@ -22,6 +22,7 @@ zdjęcie jest przycinane przez `object-fit: cover`. Po dodaniu plików w produkc
 | `cafe-interior.jpg` | galeria – wnętrze kawiarni | 16:10 |
 | `why-beans.jpg`, `why-precision.jpg`, `why-pickup.jpg` | sekcja „Dlaczego NOIR COFFEE?” | 4:5 |
 
-Obecnie w katalogu są 3 zdjęcia przekazane przez właściciela (`hero-coffee.jpg`, `coffee-beans.jpg`,
-`caffe-latte.jpg`) – mają ok. 590 px szerokości, więc przed startem warto podmienić je na wersje w wyższej
-rozdzielczości i potwierdzić prawa do ich użycia.
+Obecnie w katalogu są zdjęcia przekazane przez właściciela: `hero-coffee.jpg`, `coffee-beans.jpg`, `caffe-latte.jpg`,
+`espresso.jpg`, `cappuccino.jpg`, `espresso-macchiato.jpg`, `iced-latte.jpg` i `why-pickup.jpg`. Część z nich ma niską
+rozdzielczość (ok. 400–770 px szerokości), więc przed startem warto podmienić je na większe wersje i potwierdzić prawa
+do ich użycia.
