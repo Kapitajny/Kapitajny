@@ -30,7 +30,7 @@ export const IMAGES = {
 
   // Produkty (menu)
   espresso: { file: "espresso.jpg", alt: "Espresso spływające z ekspresu do czarnej filiżanki", aspect: "4:5" },
-  americano: { file: "americano.jpg", alt: "Americano w białej filiżance", aspect: "4:5" },
+  americano: { file: "americano.jpg", alt: "Americano w białej filiżance, obok rogalik i ziarna kawy", aspect: "4:5" },
   cappuccino: { file: "cappuccino.jpg", alt: "Cappuccino posypane kakao w białej filiżance, obok ziarna kawy", aspect: "4:5" },
   caffeLatte: { file: "caffe-latte.jpg", alt: "Mleko wlewane do filiżanki kawy", aspect: "4:5" },
   flatWhite: { file: "flat-white.jpg", alt: "Flat white z latte art w niskiej szklance na drewnianym spodku", aspect: "4:5" },
