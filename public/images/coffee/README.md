@@ -26,6 +26,6 @@ Obecnie w katalogu są zdjęcia przekazane przez właściciela: `hero-coffee.jpg
 `espresso.jpg`, `americano.jpg`, `cappuccino.jpg`, `espresso-macchiato.jpg`, `iced-latte.jpg`, `why-pickup.jpg`, `flat-white.jpg`,
 `mocha.jpg`, `cold-brew.jpg`, `caramel-latte.jpg`, `barista.jpg`, `gallery-latte-art.jpg`,
 `gallery-latte-glass.jpg`, `gallery-ground-coffee.jpg`, `gallery-espresso.jpg`, `gallery-coffee-cake.jpg`,
-`gallery-cold-brew.jpg`, `gallery-barista.jpg`, `cafe-interior.jpg` i `why-precision.jpg`. Część z nich ma niską
+`gallery-cold-brew.jpg`, `gallery-barista.jpg`, `cafe-interior.jpg`, `why-precision.jpg` i `why-beans.jpg`. Część z nich ma niską
 rozdzielczość (ok. 400–770 px szerokości), więc przed startem warto podmienić je na większe wersje i potwierdzić prawa
 do ich użycia.

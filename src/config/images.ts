@@ -51,7 +51,7 @@ export const IMAGES = {
   galleryInterior: { file: "cafe-interior.jpg", alt: "Wnętrze kawiarni z barem, drewnianymi stolikami i obrazami na ścianie", aspect: "16:10" },
 
   // Sekcja „Dlaczego NOIR COFFEE?”
-  whyBeans: { file: "why-beans.jpg", alt: "Ziarna kawy przesypywane w dłoniach", aspect: "4:5" },
+  whyBeans: { file: "why-beans.jpg", alt: "Świeżo mielona kawa sypiąca się z młynka do kolby ekspresu", aspect: "4:5" },
   whyPrecision: { file: "why-precision.jpg", alt: "Barista precyzyjnie wlewający mleko i tworzący latte art", aspect: "4:5" },
   whyPickup: { file: "why-pickup.jpg", alt: "Espresso nalewane z ekspresu do kubka na wynos", aspect: "4:5" },
 } satisfies Record<string, ImageDefinition>;
