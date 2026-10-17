@@ -25,7 +25,7 @@ export interface ImageDefinition {
 export const IMAGES = {
   // Strona główna
   hero: { file: "hero-coffee.jpg", alt: "Cappuccino z sercem z latte art na drewnianym stole, obok ziarna kawy", aspect: "4:5" },
-  aboutMain: { file: "barista.jpg", alt: "Barista przygotowujący espresso w kawiarni NOIR COFFEE", aspect: "4:5" },
+  aboutMain: { file: "barista.jpg", alt: "Barista wlewający mleko i tworzący latte art w filiżance", aspect: "4:5" },
   aboutDetail: { file: "coffee-beans.jpg", alt: "Filiżanka kawy otoczona świeżo palonymi ziarnami", aspect: "16:9" },
 
   // Produkty (menu)
@@ -43,9 +43,9 @@ export const IMAGES = {
   // Galeria „Zobacz. Poczuj. Zamów.”
   galleryEspresso: { file: "gallery-espresso.jpg", alt: "Espresso w filiżance z gęstą cremą", aspect: "3:4" },
   galleryLatteArt: { file: "gallery-latte-art.jpg", alt: "Kubek kawy z latte art w kształcie liścia trzymany w dłoniach", aspect: "1:1" },
-  galleryLatteGlass: { file: "gallery-latte-glass.jpg", alt: "Latte w szklance z widocznymi warstwami", aspect: "3:4" },
+  galleryLatteGlass: { file: "gallery-latte-glass.jpg", alt: "Latte macchiato w wysokiej szklance z warstwami mleka i kawy", aspect: "3:4" },
   galleryColdBrew: { file: "gallery-cold-brew.jpg", alt: "Cold brew z lodem w szklance", aspect: "4:5" },
-  galleryGroundCoffee: { file: "gallery-ground-coffee.jpg", alt: "Świeżo zmielona kawa w kolbie ekspresu", aspect: "16:10" },
+  galleryGroundCoffee: { file: "gallery-ground-coffee.jpg", alt: "Ziarna kawy i świeżo zmielona kawa na drewnianym blacie", aspect: "16:10" },
   galleryBarista: { file: "gallery-barista.jpg", alt: "Barista spieniający mleko", aspect: "3:4" },
   galleryCoffeeCake: { file: "gallery-coffee-cake.jpg", alt: "Kawa i kawałek ciasta na stoliku", aspect: "4:3" },
   galleryInterior: { file: "cafe-interior.jpg", alt: "Wnętrze kawiarni NOIR COFFEE", aspect: "16:10" },

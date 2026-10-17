@@ -24,6 +24,7 @@ zdjęcie jest przycinane przez `object-fit: cover`. Po dodaniu plików w produkc
 
 Obecnie w katalogu są zdjęcia przekazane przez właściciela: `hero-coffee.jpg`, `coffee-beans.jpg`, `caffe-latte.jpg`,
 `espresso.jpg`, `americano.jpg`, `cappuccino.jpg`, `espresso-macchiato.jpg`, `iced-latte.jpg`, `why-pickup.jpg`, `flat-white.jpg`,
-`mocha.jpg`, `cold-brew.jpg`, `caramel-latte.jpg` i `gallery-latte-art.jpg`. Część z nich ma niską
+`mocha.jpg`, `cold-brew.jpg`, `caramel-latte.jpg`, `barista.jpg`, `gallery-latte-art.jpg`,
+`gallery-latte-glass.jpg` i `gallery-ground-coffee.jpg`. Część z nich ma niską
 rozdzielczość (ok. 400–770 px szerokości), więc przed startem warto podmienić je na większe wersje i potwierdzić prawa
 do ich użycia.
