@@ -15,7 +15,18 @@ odbioru, płatności Stripe Checkout potwierdzane webhookiem oraz projekty dokum
 
 Wymagany **Node.js 22.13+** (moduł `node:sqlite`).
 
-## Uruchomienie lokalne
+## Najprostsze uruchomienie (bez terminala)
+
+1. Zainstaluj **Node.js LTS** ze strony https://nodejs.org (jednorazowo).
+2. Rozpakuj paczkę ZIP ze stroną (na GitHubie: zielony przycisk **Code → Download ZIP**).
+3. Kliknij dwukrotnie:
+   - **Windows:** `URUCHOM-WINDOWS.bat`
+   - **Mac:** `URUCHOM-MAC.command` (za pierwszym razem: prawy przycisk → **Otwórz** → **Otwórz**)
+4. Strona otworzy się w przeglądarce pod adresem http://localhost:3000. Aby ją wyłączyć, zamknij okno skryptu.
+
+Pierwsze uruchomienie trwa kilka minut (instalacja pakietów), kolejne – kilkadziesiąt sekund.
+
+## Uruchomienie lokalne (terminal)
 
 ```bash
 npm install
