@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Osobny projekt (strona szkoły tańca) z własną konfiguracją.
+    "szkola-tanca/**",
   ]),
 ]);
 

@@ -6,6 +6,9 @@ odbioru, płatności Stripe Checkout potwierdzane webhookiem oraz projekty dokum
 > **Projekt demonstracyjny.** Adresy lokali, godziny otwarcia, dane sprzedawcy i dokumenty prawne są danymi
 > przykładowymi / wersjami roboczymi i wymagają uzupełnienia przed przyjmowaniem prawdziwych zamówień.
 
+> **W tym repozytorium jest też drugi, niezależny projekt:** strona studia tańca „Swoboda” w katalogu
+> [`szkola-tanca/`](szkola-tanca/README.md) (własne `package.json`, uruchamiana osobno).
+
 ## Stack
 
 - **Next.js 16** (App Router, Turbopack, Cache Components), **React 19**, **TypeScript**

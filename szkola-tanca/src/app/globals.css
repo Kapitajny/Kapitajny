@@ -1,0 +1,432 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+ * SWOBODA – studio tańca: system wizualny
+ *
+ * Paleta jest zamknięta – domyślne kolory Tailwinda są wyłączone, więc w kodzie
+ * da się użyć wyłącznie pięciu barw marki (plus przezroczystość tych barw):
+ *   ivory  #F7F2EE  ciepła biel     – tło strony, jasne sekcje, tekst na ciemnym tle
+ *   blush  #E8CFCF  pudrowy róż     – tła wyróżnionych obszarów (nigdy jako tekst na jasnym tle)
+ *   rose   #A86F79  zgaszony róż    – ikony, linie, detale; tekst tylko ≥ 24 px na ivory
+ *   wine   #743D4B  burgund         – główne CTA, aktywne linki, wybrane nagłówki
+ *   cocoa  #34272A  ciemny brąz     – tekst podstawowy, ciemne sekcje
+ *
+ * Kontrast (WCAG): cocoa/ivory 12.9, cocoa/blush 9.7, wine/ivory 7.5, wine/blush 5.7,
+ * ivory/cocoa 12.9, blush/cocoa 9.7, rose/ivory 3.6 (tylko duży tekst i grafika).
+ * ------------------------------------------------------------------------- */
+
+@theme {
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-ivory: #f7f2ee;
+  --color-blush: #e8cfcf;
+  --color-rose: #a86f79;
+  --color-wine: #743d4b;
+  --color-cocoa: #34272a;
+
+  --font-serif: var(--font-instrument-serif), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-cocoa);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-wine);
+    color: var(--color-ivory);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-wine);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  .on-dark :focus-visible {
+    outline-color: var(--color-blush);
+  }
+
+  /* Blokada przewijania tła przy otwartym oknie modalnym. */
+  html:has(dialog[open]:modal) {
+    overflow: hidden;
+  }
+
+  dialog::backdrop {
+    background: color-mix(in oklab, var(--color-cocoa) 78%, transparent);
+  }
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 84rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-x {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  .section-y {
+    padding-block: clamp(4.5rem, 3rem + 6vw, 8.5rem);
+  }
+
+  .display {
+    font-size: clamp(3rem, 1.9rem + 5.2vw, 6.4rem);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+  }
+  .h2 {
+    font-size: clamp(2.35rem, 1.7rem + 2.7vw, 4rem);
+  }
+  .h3 {
+    font-size: clamp(1.6rem, 1.35rem + 0.9vw, 2.1rem);
+    line-height: 1.1;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 1.75rem;
+    height: 1px;
+    background: var(--color-rose);
+  }
+
+  .lead {
+    font-size: clamp(1.1rem, 1.02rem + 0.35vw, 1.3rem);
+    line-height: 1.6;
+  }
+
+  .prose-measure {
+    max-width: 62ch;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3rem;
+    padding: 0.8rem 1.6rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.2;
+    text-align: center;
+    white-space: nowrap;
+    transition:
+      background-color 200ms var(--ease-soft),
+      color 200ms var(--ease-soft),
+      border-color 200ms var(--ease-soft),
+      transform 200ms var(--ease-soft);
+    cursor: pointer;
+  }
+  .btn:active {
+    transform: translateY(1px);
+  }
+  .btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  .btn-primary {
+    background: var(--color-wine);
+    color: var(--color-ivory);
+  }
+  .btn-primary:hover:not(:disabled) {
+    background: var(--color-cocoa);
+  }
+  .btn-secondary {
+    border-color: color-mix(in oklab, var(--color-cocoa) 40%, transparent);
+    color: var(--color-cocoa);
+  }
+  .btn-secondary:hover:not(:disabled) {
+    border-color: var(--color-cocoa);
+    background: color-mix(in oklab, var(--color-cocoa) 6%, transparent);
+  }
+  .btn-light {
+    background: var(--color-ivory);
+    color: var(--color-wine);
+  }
+  .btn-light:hover:not(:disabled) {
+    background: var(--color-blush);
+  }
+  .btn-outline-light {
+    border-color: color-mix(in oklab, var(--color-ivory) 45%, transparent);
+    color: var(--color-ivory);
+  }
+  .btn-outline-light:hover:not(:disabled) {
+    border-color: var(--color-ivory);
+    background: color-mix(in oklab, var(--color-ivory) 8%, transparent);
+  }
+  .btn-sm {
+    min-height: 2.5rem;
+    padding: 0.5rem 1.1rem;
+    font-size: 0.875rem;
+  }
+
+  .link {
+    color: var(--color-wine);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+    text-decoration-color: color-mix(in oklab, currentColor 40%, transparent);
+    transition: text-decoration-color 200ms var(--ease-soft);
+  }
+  .link:hover {
+    text-decoration-color: currentColor;
+  }
+  .on-dark .link {
+    color: var(--color-blush);
+  }
+
+  /* Strzałka przy linkach tekstowych: „Zobacz terminy →”. */
+  .link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: var(--color-wine);
+    min-height: 2.75rem;
+  }
+  .link-arrow svg {
+    transition: transform 200ms var(--ease-soft);
+  }
+  .link-arrow:hover svg {
+    transform: translateX(3px);
+  }
+
+  .rule {
+    border-color: color-mix(in oklab, var(--color-cocoa) 16%, transparent);
+  }
+  .on-dark .rule {
+    border-color: color-mix(in oklab, var(--color-ivory) 18%, transparent);
+  }
+
+  .field-label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .field-hint {
+    font-size: 0.85rem;
+    color: color-mix(in oklab, var(--color-cocoa) 78%, transparent);
+  }
+  .field-input {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.7rem 1rem;
+    border: 1px solid color-mix(in oklab, var(--color-cocoa) 30%, transparent);
+    border-radius: 0.5rem;
+    background: var(--color-ivory);
+    color: var(--color-cocoa);
+    font: inherit;
+    transition:
+      border-color 200ms var(--ease-soft),
+      box-shadow 200ms var(--ease-soft);
+  }
+  .field-input::placeholder {
+    color: color-mix(in oklab, var(--color-cocoa) 55%, transparent);
+  }
+  .field-input:focus {
+    outline: none;
+    border-color: var(--color-wine);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-wine) 18%, transparent);
+  }
+  .field-input[aria-invalid="true"] {
+    border-color: var(--color-wine);
+    border-width: 2px;
+  }
+  select.field-input {
+    appearance: none;
+    padding-right: 2.75rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%2334272A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.1rem center;
+    cursor: pointer;
+  }
+  textarea.field-input {
+    min-height: 7.5rem;
+    resize: vertical;
+  }
+  .field-error {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+    margin-top: 0.4rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-wine);
+  }
+
+  .checkbox {
+    appearance: none;
+    flex: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-top: 0.2rem;
+    border: 1.5px solid color-mix(in oklab, var(--color-cocoa) 55%, transparent);
+    border-radius: 0.3rem;
+    background: var(--color-ivory);
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+  }
+  .checkbox::after {
+    content: "";
+    width: 0.65rem;
+    height: 0.65rem;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    background: var(--color-ivory);
+    transform: scale(0);
+    transition: transform 150ms var(--ease-soft);
+  }
+  .checkbox:checked {
+    background: var(--color-wine);
+    border-color: var(--color-wine);
+  }
+  .checkbox:checked::after {
+    transform: scale(1);
+  }
+  .checkbox[aria-invalid="true"] {
+    border-color: var(--color-wine);
+    border-width: 2px;
+  }
+
+  /* Filtry (dni tygodnia, wybór zdjęcia). */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+    padding: 0.45rem 1rem;
+    border: 1px solid color-mix(in oklab, var(--color-cocoa) 28%, transparent);
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition:
+      background-color 180ms var(--ease-soft),
+      color 180ms var(--ease-soft),
+      border-color 180ms var(--ease-soft);
+    cursor: pointer;
+  }
+  .chip:hover {
+    border-color: var(--color-cocoa);
+  }
+  .chip[aria-pressed="true"] {
+    background: var(--color-wine);
+    border-color: var(--color-wine);
+    color: var(--color-ivory);
+  }
+
+  .sr-only-focusable:not(:focus) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+/* Delikatny wskaźnik przewijania w hero. */
+@keyframes scroll-cue {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+.scroll-cue-line {
+  animation: scroll-cue 2.6s var(--ease-soft) infinite;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fade-in {
+  animation: fade-in 380ms var(--ease-soft);
+}
+
+dialog[open].dialog-fade {
+  animation: fade-in 220ms var(--ease-soft);
+}
