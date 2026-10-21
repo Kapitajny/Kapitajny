@@ -34,3 +34,6 @@ yarn-error.log*
 .env*
 
 # vercel
+
+# eksport statyczny (npm run export:artifact)
+/artifact/

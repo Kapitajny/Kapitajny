@@ -27,6 +27,17 @@ Kontrole jakości:
 npm run lint && npm run typecheck && npm test && npm run build
 ```
 
+## Wersja statyczna (publikacja jako link)
+
+```bash
+npm run export:artifact   # → katalog artifact/
+```
+
+Skrypt `scripts/export-artifact.mjs` renderuje te same komponenty do statycznego HTML (z zamiennikami
+`next/image`, `next/link` i `next/navigation` z `scripts/artifact/shims`), dołącza skompilowany CSS i skrypt
+hydratacji. Wynik działa bez serwera Next.js, ze ścieżkami względnymi – na dowolnym hostingu plików albo
+jako artefakt na claude.ai. Wszystkie interakcje (filtry, formularze, okna, galeria) działają tak samo.
+
 ## Struktura
 
 ```
