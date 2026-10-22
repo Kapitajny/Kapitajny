@@ -21,7 +21,7 @@
   font-size: var(--t-xs);
   font-stretch: var(--wdth-label);
   font-weight: 600;
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
 }
 
 .chips {
@@ -36,7 +36,7 @@
   border: 1px solid var(--c-line-strong);
   border-radius: var(--r-control);
   background: transparent;
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
   font-size: var(--t-sm);
   font-weight: 500;
   transition:
@@ -46,14 +46,14 @@
 }
 
 .chip:hover {
-  color: var(--c-paper);
-  border-color: var(--c-paper-2);
+  color: var(--c-ink);
+  border-color: var(--c-ink-2);
 }
 
 .chip[aria-pressed="true"] {
-  background: var(--c-paper);
-  border-color: var(--c-paper);
-  color: var(--c-graphite);
+  background: var(--c-brand);
+  border-color: var(--c-brand);
+  color: #ffffff;
 }
 
 .status {
@@ -64,7 +64,7 @@
   gap: var(--s-3);
   min-height: 44px;
   font-size: var(--t-sm);
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 .reset {
@@ -72,7 +72,7 @@
   padding: 0 var(--s-2);
   border: 0;
   background: none;
-  color: var(--c-cobalt-ink);
+  color: var(--c-brand-ink);
   font-size: var(--t-sm);
   font-weight: 600;
   text-decoration: underline;
@@ -81,7 +81,7 @@
 
 .list {
   display: grid;
-  border-top: 2px solid var(--c-paper);
+  border-top: 2px solid var(--c-ink);
 }
 
 .item {
@@ -125,26 +125,26 @@
 }
 
 .titleLink:focus-visible::after {
-  outline: 2px solid var(--c-cobalt-ink);
+  outline: 2px solid var(--c-brand-ink);
   outline-offset: -2px;
 }
 
 .summary {
   max-width: 60ch;
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 .more {
-  color: var(--c-cobalt-ink);
+  color: var(--c-brand-ink);
   font-size: var(--t-sm);
   font-weight: 600;
   text-decoration: underline;
-  text-decoration-color: rgb(154 172 255 / 0.45);
+  text-decoration-color: color-mix(in srgb, var(--c-brand-ink) 40%, transparent);
   text-underline-offset: 0.22em;
 }
 
 .article:hover .title {
-  color: var(--c-cobalt-ink);
+  color: var(--c-brand-ink);
 }
 
 .article:hover .more {
@@ -165,7 +165,7 @@
 
 .emptyText {
   max-width: 56ch;
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 .emptyActions {

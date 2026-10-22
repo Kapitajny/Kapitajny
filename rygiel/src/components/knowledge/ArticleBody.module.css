@@ -3,7 +3,7 @@
   max-width: var(--w-prose);
   font-size: var(--t-lg);
   line-height: 1.65;
-  color: var(--c-paper);
+  color: var(--c-ink);
 }
 
 .prose > section + section {
@@ -40,7 +40,7 @@
 }
 
 .prose li::marker {
-  color: var(--c-cobalt-ink);
+  color: var(--c-brand-ink);
 }
 
 .prose strong {
@@ -51,7 +51,7 @@
   padding: 0.1em 0.35em;
   border: 1px solid var(--c-line);
   border-radius: 3px;
-  background: var(--c-graphite-2);
+  background: var(--c-surface);
   font-family: var(--f-code);
   font-size: 0.86em;
 }
@@ -59,8 +59,8 @@
 .callout {
   margin: var(--s-6) 0;
   padding: var(--s-4) var(--s-5);
-  border-left: 3px solid var(--c-cobalt);
-  background: var(--c-graphite-2);
+  border-left: 3px solid var(--c-brand);
+  background: var(--c-surface);
   font-size: var(--t-md);
 }
 
@@ -75,23 +75,23 @@
 
 .code {
   margin: var(--s-5) 0;
-  border: 1px solid var(--c-line-strong);
+  border: 1px solid var(--c-line);
 }
 
 .code figcaption {
   padding: var(--s-2) var(--s-4);
-  border-bottom: 1px solid var(--c-line-strong);
+  border-bottom: 1px solid var(--c-line);
   font-size: var(--t-xs);
   font-stretch: var(--wdth-label);
   font-weight: 600;
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
 }
 
 .code pre {
   margin: 0;
   padding: var(--s-4);
   overflow-x: auto;
-  background: var(--c-graphite-2);
+  background: var(--c-surface);
   font-family: var(--f-code);
   font-size: var(--t-sm);
   line-height: 1.5;
@@ -113,7 +113,7 @@
   font-size: var(--t-xs);
   font-stretch: var(--wdth-label);
   font-weight: 600;
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
   text-align: left;
 }
 
@@ -126,10 +126,10 @@
 }
 
 .tableWrap thead th {
-  border-bottom: 2px solid var(--c-paper);
+  border-bottom: 2px solid var(--c-ink);
   font-size: var(--t-xs);
   font-stretch: var(--wdth-label);
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
 }
 
 .tableWrap tbody th {
@@ -138,7 +138,7 @@
 }
 
 .tableWrap td {
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 @media (max-width: 40rem) {
@@ -172,14 +172,14 @@
 
   .tableWrap td::before {
     content: attr(data-label) ": ";
-    color: var(--c-paper-3);
+    color: var(--c-ink-3);
     font-weight: 500;
   }
 }
 
 .prose a:not([class]) {
-  color: var(--c-cobalt-ink);
-  text-decoration-color: rgb(154 172 255 / 0.45);
+  color: var(--c-brand-ink);
+  text-decoration-color: color-mix(in srgb, var(--c-brand-ink) 40%, transparent);
 }
 
 .prose a:not([class]):hover {

@@ -10,7 +10,7 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer id="stopka" className={styles.footer}>
+    <footer id="stopka" className={`band-navy ${styles.footer}`}>
       <div className={`container ${styles.grid}`}>
         <div className={styles.brand}>
           <p className={styles.wordmark}>

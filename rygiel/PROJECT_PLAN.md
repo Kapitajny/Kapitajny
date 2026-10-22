@@ -107,6 +107,8 @@ Stopka: wszystkie usługi, strony serwisu, dokumenty, kontakt, informacja o char
 
 ### Kolory
 
+> Pierwotna ciemna paleta poniżej została zastąpiona jasną – zob. sekcję „Rewizja wizualna: jasny motyw” na końcu.
+
 | Token | Wartość | Rola |
 | --- | --- | --- |
 | `--c-graphite` | `#16181C` | Główne tło — bardzo ciemny grafit o chłodnym odcieniu |
@@ -331,3 +333,31 @@ Po uwadze, że strona wygląda na wygenerowaną, usunęliśmy elementy, które r
   kobaltowej płaszczyzny. Kobalt jest używany wyłącznie na przyciskach głównych i aktywnych elementach.
 - **Teksty:** nagłówki wprost, bez konstrukcji „nie X, lecz Y”, pytań retorycznych i dwukropków z „puentą”.
 - **Układ sekcji:** nagłówek i wstęp jeden pod drugim zamiast powtarzanego wzorca „tytuł obok opisu”.
+
+## Rewizja wizualna: jasny motyw (na prośbę właściciela)
+
+Właściciel ocenił ciemną wersję jako nieprofesjonalną: przeszkadzały mu ciemne tło i za mało grafik. Jako wzór wskazał
+strony Wiz i Cyber360. Środowisko, w którym powstał projekt, blokuje ruch do obu domen (polityka sieci). Kierunek
+przyjęto więc na podstawie ogólnej wiedzy o stylu Wiz, bez kopiowania treści, układów ani grafik żadnej z nich.
+
+Ta decyzja zastępuje paletę z sekcji 4:
+
+| Token | Wartość | Rola |
+| --- | --- | --- |
+| `--c-bg` | `#FFFFFF` | Tło stron |
+| `--c-surface` / `--c-surface-2` | `#F5F7FB` / `#EEF2FB` | Sekcje naprzemienne, pola formularzy |
+| `--c-ink` / `--c-ink-2` / `--c-ink-3` | `#0B1B3F` / `#45526E` / `#5F6B85` | Tekst |
+| `--c-brand` | `#1F4FE0` | Przyciski główne, aktywne filtry (biały tekst 6,0:1) |
+| `--c-brand-soft` | `#E8EEFF` | Tła ikon i znaczników kroków |
+| `--c-navy` | `#0A1633` | Pasmo CTA i stopka (klasa `.band-navy` lokalnie odwraca tokeny) |
+
+Zmiany w komponentach:
+
+- karty z ikonami (usługi, etapy, zasady bezpieczeństwa) zastąpiły surowe listy;
+- w hero jest ilustracja z dwiema kartami statusu, opisującymi przykładowe, a nie zmyślone, efekty pracy;
+- znaczniki kroków to zaokrąglone plakietki w kolorze marki;
+- granatowe pasmo CTA i stopka zamykają każdą stronę.
+
+Kontrola: 45 testów jednostkowych i 89 testów E2E przechodzi, w tym axe WCAG 2.0–2.2 A/AA i reflow 320 px.
+
+Statyczny podgląd: router obsługuje teraz adresy z kotwicą (`/uslugi#dodatkowe`). Wcześniej dawały one stronę 404.

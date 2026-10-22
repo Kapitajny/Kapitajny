@@ -4,14 +4,14 @@
 
 .disclaimer {
   padding: var(--s-4) var(--s-5);
-  border: 1px solid var(--c-line-strong);
-  border-left: 3px solid var(--c-cobalt);
-  color: var(--c-paper-2);
+  border: 1px solid var(--c-line);
+  border-left: 3px solid var(--c-brand);
+  color: var(--c-ink-2);
   font-size: var(--t-sm);
 }
 
 .disclaimer strong {
   display: block;
   margin-bottom: var(--s-1);
-  color: var(--c-paper);
+  color: var(--c-ink);
 }

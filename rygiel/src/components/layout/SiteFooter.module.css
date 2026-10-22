@@ -1,8 +1,7 @@
 .footer {
   margin-top: auto;
   padding-top: var(--s-9);
-  border-top: var(--border);
-  background: var(--c-graphite);
+  border-top: 1px solid var(--c-line);
   font-size: var(--t-sm);
 }
 
@@ -32,14 +31,14 @@
 }
 
 .tagline {
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
   max-width: 40ch;
 }
 
 .demo {
   padding: var(--s-3) var(--s-4);
-  border-left: 2px solid var(--c-cobalt);
-  color: var(--c-paper-2);
+  border-left: 2px solid var(--c-brand);
+  color: var(--c-ink-2);
   font-size: var(--t-xs);
   max-width: 44ch;
 }
@@ -57,7 +56,7 @@
   font-size: var(--t-sm);
   font-stretch: var(--wdth-label);
   font-weight: 600;
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
   letter-spacing: 0.01em;
 }
 
@@ -70,19 +69,19 @@
   display: inline-flex;
   align-items: center;
   min-height: 36px;
-  color: var(--c-paper);
+  color: var(--c-ink);
   text-decoration: none;
 }
 
 .list a:hover {
   text-decoration: underline;
-  text-decoration-color: var(--c-cobalt-ink);
+  text-decoration-color: var(--c-brand-ink);
 }
 
 .muted {
   display: block;
   padding-block: var(--s-2);
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
   line-height: 1.6;
 }
 
@@ -93,8 +92,8 @@
   gap: var(--s-2) var(--s-5);
   margin-top: var(--s-9);
   padding-block: var(--s-5);
-  border-top: var(--border);
-  color: var(--c-paper-3);
+  border-top: 1px solid var(--c-line);
+  color: var(--c-ink-3);
   font-size: var(--t-xs);
 }
 

@@ -8,7 +8,7 @@
   position: relative;
   padding: var(--s-4) 0 var(--s-4) var(--s-6);
   border-bottom: var(--border);
-  color: var(--c-paper);
+  color: var(--c-ink);
 }
 
 /* Znacznik usterki: przekreślony kwadrat */
@@ -19,8 +19,8 @@
   top: calc(var(--s-4) + 0.35em);
   width: 0.9em;
   height: 0.9em;
-  border: 1.5px solid var(--c-paper-3);
-  background: linear-gradient(to top right, transparent calc(50% - 0.75px), var(--c-paper-3) calc(50% - 0.75px) calc(50% + 0.75px), transparent calc(50% + 0.75px));
+  border: 1.5px solid var(--c-ink-3);
+  background: linear-gradient(to top right, transparent calc(50% - 0.75px), var(--c-ink-3) calc(50% - 0.75px) calc(50% + 0.75px), transparent calc(50% + 0.75px));
 }
 
 .scope {
@@ -44,7 +44,7 @@
 }
 
 .scopeItem dd {
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
   font-size: var(--t-sm);
 }
 
@@ -65,8 +65,8 @@
   top: 0.3em;
   width: 0.45em;
   height: 0.8em;
-  border-right: 2px solid var(--c-cobalt-ink);
-  border-bottom: 2px solid var(--c-cobalt-ink);
+  border-right: 2px solid var(--c-brand-ink);
+  border-bottom: 2px solid var(--c-brand-ink);
   transform: rotate(45deg);
 }
 
@@ -91,7 +91,7 @@
   left: 1.25rem;
   top: 2.5rem;
   bottom: 0;
-  border-left: 1px solid var(--c-line-strong);
+  border-left: 1px solid var(--c-line);
 }
 
 .stepNumber {
@@ -99,7 +99,10 @@
   place-items: center;
   width: 2.5rem;
   height: 2.5rem;
-  border: 1px solid var(--c-paper-2);
+  border: 1px solid transparent;
+  border-radius: var(--r-control);
+  background: var(--c-brand-soft);
+  color: var(--c-brand-ink);
   font-stretch: var(--wdth-label);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
@@ -112,7 +115,7 @@
 
 .stepText {
   margin-top: var(--s-1);
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
   font-size: var(--t-sm);
   max-width: 56ch;
 }
@@ -124,14 +127,14 @@
   justify-content: space-between;
   gap: var(--s-4) var(--s-6);
   padding: var(--s-5);
-  border: 1px solid var(--c-line-strong);
-  border-left: 3px solid var(--c-cobalt);
-  background: var(--c-graphite-2);
+  border: 1px solid var(--c-line);
+  border-left: 3px solid var(--c-brand);
+  background: var(--c-surface);
 }
 
 .ctaText {
   max-width: 52ch;
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 @media (max-width: 48rem) {

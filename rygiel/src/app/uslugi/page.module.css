@@ -41,14 +41,14 @@
   font-size: var(--t-xs);
   font-stretch: var(--wdth-label);
   font-weight: 600;
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
 }
 
 .indexList {
   display: grid;
   padding: 0;
   list-style: none;
-  border-left: 1px solid var(--c-line-strong);
+  border-left: 1px solid var(--c-line);
 }
 
 .indexList a {
@@ -58,14 +58,14 @@
   padding-left: var(--s-4);
   margin-left: -1px;
   border-left: 2px solid transparent;
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
   text-decoration: none;
   font-size: var(--t-sm);
 }
 
 .indexList a:hover {
-  color: var(--c-paper);
-  border-left-color: var(--c-cobalt-ink);
+  color: var(--c-ink);
+  border-left-color: var(--c-brand-ink);
 }
 
 .content {
@@ -82,13 +82,13 @@
   display: grid;
   gap: var(--s-3);
   padding-top: var(--s-5);
-  border-top: 2px solid var(--c-paper);
+  border-top: 2px solid var(--c-ink);
 }
 
 .english {
   font-size: var(--t-xs);
   font-stretch: var(--wdth-label);
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
 }
 
 .pillarTitle {
@@ -101,7 +101,7 @@
 .summary {
   max-width: 58ch;
   font-size: var(--t-lg);
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 .pillarHeader > a,
@@ -138,7 +138,7 @@
   display: grid;
   gap: var(--s-4);
   padding-top: var(--s-5);
-  border-top: 2px solid var(--c-paper);
+  border-top: 2px solid var(--c-ink);
 }
 
 .extraList {
@@ -159,7 +159,7 @@
 
 .extraList dd {
   margin-top: var(--s-1);
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
   font-size: var(--t-sm);
 }
 

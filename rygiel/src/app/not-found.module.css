@@ -14,7 +14,7 @@
   line-height: 0.85;
   letter-spacing: -0.04em;
   color: transparent;
-  -webkit-text-stroke: 1.5px var(--c-cobalt-ink);
+  -webkit-text-stroke: 1.5px var(--c-brand-ink);
 }
 
 .copy {
@@ -29,7 +29,7 @@
 
 .text {
   max-width: 48ch;
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 .actions {

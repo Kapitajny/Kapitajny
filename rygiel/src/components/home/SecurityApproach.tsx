@@ -1,35 +1,51 @@
 import { securityPrinciples } from "@/content/approach";
-import styles from "./SecurityApproach.module.css";
+import { Icon, type IconName } from "@/components/ui/Icon";
+import { LinkButton } from "@/components/ui/LinkButton";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { typeset } from "@/lib/typography";
+import styles from "./SecurityApproach.module.css";
+
+const principleIcons: IconName[] = ["search", "key", "document", "database", "clipboard"];
 
 export function SecurityApproach() {
   return (
     <section className={styles.section} aria-labelledby="podejscie-title">
-      <div className={`container ${styles.grid}`}>
-        <div className={styles.aside}>
-          <h2 id="podejscie-title" className={styles.title}>
-            Jak podchodzimy do bezpieczeństwa
-          </h2>
-          <p className={styles.intro}>
-            {typeset(
-              "Żadna firma nie może obiecać, że do incydentu nigdy nie dojdzie. Możemy zmniejszyć ryzyko, ograniczyć skutki i przygotować szybki powrót do pracy. W każdym projekcie kierujemy się pięcioma zasadami.",
-            )}
-          </p>
-        </div>
-        <dl className={styles.list}>
-          {securityPrinciples.map((principle) => (
-            <div key={principle.title} className={styles.item}>
-              <dt className={styles.itemTitle}>{principle.title}</dt>
-              <dd className={styles.itemText}>
-                <p>{principle.text}</p>
-                <p className={styles.practice}>
-                  <span className={styles.practiceLabel}>W praktyce</span>
-                  {principle.practice}
-                </p>
-              </dd>
-            </div>
+      <div className="container">
+        <SectionHeading
+          id="podejscie-title"
+          title="Jak podchodzimy do bezpieczeństwa"
+          intro={
+            <p>
+              {typeset(
+                "Żadna firma nie może obiecać, że do incydentu nigdy nie dojdzie. Możemy zmniejszyć ryzyko, ograniczyć skutki i przygotować szybki powrót do pracy. W każdym projekcie kierujemy się pięcioma zasadami.",
+              )}
+            </p>
+          }
+        />
+        <ul role="list" className={styles.grid}>
+          {securityPrinciples.map((principle, index) => (
+            <li key={principle.title} className={styles.card}>
+              <span className={styles.icon}>
+                <Icon name={principleIcons[index] ?? "shield"} size={22} />
+              </span>
+              <h3 className={styles.title}>{principle.title}</h3>
+              <p className={styles.text}>{principle.text}</p>
+              <p className={styles.practice}>
+                <span className={styles.practiceLabel}>W praktyce:</span> {principle.practice}
+              </p>
+            </li>
           ))}
-        </dl>
+          <li className={`${styles.card} ${styles.cta}`}>
+            <span className={styles.icon}>
+              <Icon name="shield" size={22} />
+            </span>
+            <h3 className={styles.title}>Sprawdź, gdzie Twoja firma ma luki</h3>
+            <p className={styles.text}>{typeset("Audyt pokazuje najważniejsze ryzyka i kolejność działań – zrozumiale dla zarządu i osoby od IT.")}</p>
+            <LinkButton href="/uslugi/cyberbezpieczenstwo" variant="inverse" className={styles.ctaButton}>
+              Zobacz, jak wygląda audyt
+            </LinkButton>
+          </li>
+        </ul>
       </div>
     </section>
   );

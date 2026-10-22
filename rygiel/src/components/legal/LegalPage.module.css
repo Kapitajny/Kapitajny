@@ -1,7 +1,7 @@
 .meta {
   font-size: var(--t-sm);
   font-stretch: var(--wdth-label);
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
 }
 
 .layout {
@@ -16,14 +16,14 @@
   top: calc(var(--header-h) + var(--s-6));
   align-self: start;
   padding: var(--s-4) var(--s-5);
-  border: 1px dashed var(--c-cobalt-ink);
+  border: 1px dashed var(--c-brand-ink);
   font-size: var(--t-sm);
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 .warningTitle {
   margin-bottom: var(--s-2);
-  color: var(--c-paper);
+  color: var(--c-ink);
   font-weight: 650;
 }
 

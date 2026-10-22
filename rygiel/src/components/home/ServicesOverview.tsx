@@ -1,8 +1,16 @@
 import Link from "next/link";
-import { additionalServices, services } from "@/content/services";
+import { Icon, type IconName } from "@/components/ui/Icon";
+import { ArrowIcon } from "@/components/ui/LinkButton";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import styles from "./ServicesOverview.module.css";
+import { additionalServices, services, type ServiceSlug } from "@/content/services";
 import { typeset } from "@/lib/typography";
+import styles from "./ServicesOverview.module.css";
+
+const serviceIcons: Record<ServiceSlug, IconName> = {
+  "obsluga-it": "server",
+  cyberbezpieczenstwo: "shield",
+  "chmura-i-infrastruktura": "cloud",
+};
 
 export function ServicesOverview() {
   return (
@@ -20,53 +28,40 @@ export function ServicesOverview() {
           }
         />
 
-        <div className={styles.table}>
-          <div className={styles.head} aria-hidden="true">
-            <span>Usługa</span>
-            <span>Kiedy warto</span>
-            <span>Co obejmuje</span>
-          </div>
-          <ul role="list" className={styles.rows}>
+        <ul role="list" className={styles.cards}>
           {services.map((service) => (
-            <li key={service.slug} className={styles.row}>
-              <div className={styles.name}>
-                <h3 id={`usluga-${service.slug}`} className={styles.title}>
+            <li key={service.slug} className={styles.card}>
+              <span className={styles.icon}>
+                <Icon name={serviceIcons[service.slug]} size={26} />
+              </span>
+              <h3 className={styles.title}>
+                <Link href={service.href} className={styles.titleLink}>
                   {service.name}
-                </h3>
-                <p className={styles.english} lang="en">
-                  {service.englishName}
-                </p>
-                <Link href={service.href} className={`text-link ${styles.more}`}>
-                  Szczegóły usługi<span className="visually-hidden"> {service.name}</span>
                 </Link>
-              </div>
-              <div className={styles.cell}>
-                <p className={styles.cellLabel}>Kiedy warto</p>
-                <ul role="list" className={styles.problems}>
-                  {service.problems.slice(0, 2).map((problem) => (
-                    <li key={problem}>{problem}</li>
-                  ))}
-                </ul>
-              </div>
-              <div className={styles.cell}>
-                <p className={styles.cellLabel}>Co obejmuje</p>
-                <ul role="list" className={styles.scope}>
-                  {service.scope.map((item) => (
-                    <li key={item.title}>{item.title}</li>
-                  ))}
-                </ul>
-              </div>
+              </h3>
+              <p className={styles.summary}>{service.summary}</p>
+              <ul role="list" className={styles.scope}>
+                {service.scope.slice(0, 4).map((item) => (
+                  <li key={item.title}>
+                    <Icon name="check" size={16} className={styles.scopeIcon} />
+                    {item.title}
+                  </li>
+                ))}
+              </ul>
+              <span className={styles.more} aria-hidden="true">
+                Szczegóły usługi <ArrowIcon />
+              </span>
             </li>
           ))}
-          </ul>
-        </div>
+        </ul>
 
         <div className={styles.extra}>
           <p className={styles.extraTitle}>Poza stałą współpracą</p>
           <ul role="list" className={styles.extraList}>
             {additionalServices.map((item) => (
               <li key={item.name}>
-                <strong>{item.name}.</strong> {item.text}
+                <strong>{item.name}</strong>
+                <span>{item.text}</span>
               </li>
             ))}
           </ul>

@@ -10,7 +10,7 @@
 }
 
 .tinted {
-  background: var(--c-graphite-2);
+  background: var(--c-surface);
   border-block: var(--border);
 }
 
@@ -35,14 +35,14 @@
 
 .note {
   max-width: 44ch;
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 .demoNote {
   max-width: 44ch;
   padding-left: var(--s-4);
-  border-left: 2px solid var(--c-cobalt);
-  color: var(--c-paper-2);
+  border-left: 2px solid var(--c-brand);
+  color: var(--c-ink-2);
   font-size: var(--t-sm);
 }
 
@@ -50,7 +50,7 @@
 .areas {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 2px solid var(--c-paper);
+  border-top: 2px solid var(--c-ink);
   border-left: var(--border);
 }
 
@@ -69,7 +69,7 @@
 .checks {
   display: grid;
   gap: var(--s-2);
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
   font-size: var(--t-sm);
 }
 
@@ -85,7 +85,7 @@
   top: 0.4em;
   width: 0.75em;
   height: 0.75em;
-  border: 1px solid var(--c-paper-3);
+  border: 1px solid var(--c-ink-3);
 }
 
 /* Matryca ryzyka */
@@ -111,7 +111,7 @@
   font-size: var(--t-xs);
   font-stretch: var(--wdth-label);
   font-weight: 600;
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
 }
 
 .cells {
@@ -119,8 +119,8 @@
   grid-column: 2;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid var(--c-line-strong);
-  border-left: 1px solid var(--c-line-strong);
+  border-top: 1px solid var(--c-line);
+  border-left: 1px solid var(--c-line);
 }
 
 .cell {
@@ -130,8 +130,8 @@
   justify-content: center;
   gap: var(--s-2);
   aspect-ratio: 16 / 9;
-  border-right: 1px solid var(--c-line-strong);
-  border-bottom: 1px solid var(--c-line-strong);
+  border-right: 1px solid var(--c-line);
+  border-bottom: 1px solid var(--c-line);
 }
 
 .cell[data-score="low"] {
@@ -139,11 +139,11 @@
 }
 
 .cell[data-score="medium"] {
-  background-image: repeating-linear-gradient(135deg, rgb(154 172 255 / 0.18) 0 1px, transparent 1px 8px);
+  background-image: repeating-linear-gradient(135deg, color-mix(in srgb, var(--c-brand) 22%, transparent) 0 1px, transparent 1px 8px);
 }
 
 .cell[data-score="high"] {
-  background: rgb(48 80 255 / 0.4);
+  background: color-mix(in srgb, var(--c-brand) 20%, transparent);
 }
 
 .marker {
@@ -152,8 +152,8 @@
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  background: var(--c-paper);
-  color: var(--c-graphite);
+  background: var(--c-ink);
+  color: var(--c-bg);
   font-weight: 700;
   font-size: var(--t-sm);
 }
@@ -166,7 +166,7 @@
   text-align: center;
   font-size: var(--t-xs);
   font-stretch: var(--wdth-label);
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
 }
 
 .axisXLabel {
@@ -176,7 +176,7 @@
   font-size: var(--t-xs);
   font-stretch: var(--wdth-label);
   font-weight: 600;
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
 }
 
 .legend {
@@ -191,7 +191,7 @@
   font-size: var(--t-xs);
   font-stretch: var(--wdth-label);
   font-weight: 600;
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
 }
 
 .legend ol {
@@ -203,7 +203,7 @@
 .legend li {
   display: flex;
   gap: var(--s-3);
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 .legendLabel {
@@ -213,8 +213,8 @@
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
-  background: var(--c-paper);
-  color: var(--c-graphite);
+  background: var(--c-ink);
+  color: var(--c-bg);
   font-weight: 700;
   font-size: var(--t-xs);
 }
@@ -224,7 +224,7 @@
   display: grid;
   padding: 0;
   list-style: none;
-  border-top: 2px solid var(--c-paper);
+  border-top: 2px solid var(--c-ink);
 }
 
 .clause {
@@ -238,7 +238,7 @@
 .clauseNumber {
   font-stretch: var(--wdth-label);
   font-weight: 600;
-  color: var(--c-cobalt-ink);
+  color: var(--c-brand-ink);
 }
 
 .clauseTitle {
@@ -248,7 +248,7 @@
 
 .clauseText {
   margin-top: var(--s-1);
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
   font-size: var(--t-sm);
 }
 
@@ -256,26 +256,16 @@
 .document {
   position: relative;
   padding: var(--s-6) var(--s-6) var(--s-5);
-  background: var(--c-paper);
-  color: var(--c-graphite);
-  border-radius: 2px;
-}
-
-/* Zagięty róg arkusza */
-.document::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-style: solid;
-  border-width: 0 28px 28px 0;
-  border-color: transparent var(--c-graphite) #c9c5bb transparent;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-panel);
+  background: var(--c-bg);
+  box-shadow: var(--shadow-raised);
 }
 
 .documentTitle {
   margin-bottom: var(--s-4);
   padding-bottom: var(--s-3);
-  border-bottom: 2px solid var(--c-graphite);
+  border-bottom: 2px solid var(--c-ink);
   font-size: var(--t-xl);
   font-weight: 700;
 }
@@ -291,7 +281,7 @@
   grid-template-columns: 2rem minmax(0, 1fr);
   gap: var(--s-2);
   padding-block: var(--s-3);
-  border-bottom: 1px dotted #8a867e;
+  border-bottom: 1px solid var(--c-line);
 }
 
 .toc li:last-child {
@@ -309,7 +299,7 @@
 
 .tocText {
   display: block;
-  color: #46484d;
+  color: var(--c-ink-2);
   font-size: var(--t-sm);
 }
 

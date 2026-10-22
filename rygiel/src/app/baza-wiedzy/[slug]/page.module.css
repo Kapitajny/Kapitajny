@@ -4,7 +4,7 @@
   gap: var(--s-2) var(--s-5);
   font-size: var(--t-sm);
   font-stretch: var(--wdth-label);
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
 }
 
 .layout {
@@ -26,14 +26,14 @@
   font-size: var(--t-xs);
   font-stretch: var(--wdth-label);
   font-weight: 600;
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
 }
 
 .tocList {
   display: grid;
   padding: 0;
   list-style: none;
-  border-left: 1px solid var(--c-line-strong);
+  border-left: 1px solid var(--c-line);
 }
 
 .tocList a {
@@ -41,15 +41,15 @@
   padding: var(--s-2) 0 var(--s-2) var(--s-4);
   margin-left: -1px;
   border-left: 2px solid transparent;
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
   font-size: var(--t-sm);
   line-height: 1.4;
   text-decoration: none;
 }
 
 .tocList a:hover {
-  color: var(--c-paper);
-  border-left-color: var(--c-cobalt-ink);
+  color: var(--c-ink);
+  border-left-color: var(--c-brand-ink);
 }
 
 .article {
@@ -60,7 +60,7 @@
   margin-bottom: var(--s-7) !important;
   font-size: var(--t-xl);
   line-height: 1.5;
-  color: var(--c-paper);
+  color: var(--c-ink);
 }
 
 .aside {
@@ -83,8 +83,8 @@
 .asideBlock a {
   display: inline-block;
   padding-block: var(--s-1);
-  color: var(--c-paper);
-  text-decoration-color: var(--c-cobalt-ink);
+  color: var(--c-ink);
+  text-decoration-color: var(--c-brand-ink);
   line-height: 1.4;
 }
 
@@ -99,14 +99,14 @@
   display: grid;
   gap: var(--s-1);
   padding: var(--s-4) var(--s-5);
-  border: 1px solid var(--c-line-strong);
+  border: 1px solid var(--c-line);
   font-weight: 600;
   text-decoration: none;
   transition: border-color var(--dur-fast) ease;
 }
 
 .pagerLink:hover {
-  border-color: var(--c-cobalt-ink);
+  border-color: var(--c-brand-ink);
 }
 
 .pagerNext {
@@ -118,7 +118,7 @@
   font-size: var(--t-xs);
   font-stretch: var(--wdth-label);
   font-weight: 500;
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
 }
 
 @media (max-width: 75rem) {

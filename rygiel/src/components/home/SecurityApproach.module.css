@@ -4,82 +4,89 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: var(--s-7) var(--s-5);
-  align-items: start;
-}
-
-.aside {
-  grid-column: 1 / span 4;
-  position: sticky;
-  top: calc(var(--header-h) + var(--s-6));
-  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--s-5);
 }
 
-.title {
-  font-size: clamp(2rem, 1.5rem + 1.4vw, 2.5rem);
-  font-weight: 600;
-  letter-spacing: -0.015em;
-}
-
-.intro {
-  color: var(--c-paper-2);
-}
-
-.list {
-  grid-column: 6 / -1;
-  border-top: 1px solid var(--c-paper-2);
-}
-
-.item {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
-  gap: var(--s-3) var(--s-6);
-  padding-block: var(--s-6);
-  border-bottom: var(--border);
-}
-
-.itemTitle {
-  font-size: var(--t-xl);
-  font-weight: 650;
-  line-height: 1.2;
-}
-
-.itemText {
-  display: grid;
+.card {
+  display: flex;
+  flex-direction: column;
   gap: var(--s-3);
-  color: var(--c-paper-2);
+  padding: var(--s-6);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-panel);
+  background: var(--c-bg);
+  box-shadow: var(--shadow-card);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: var(--s-2);
+  border-radius: var(--r-control);
+  background: var(--c-brand-soft);
+  color: var(--c-brand);
+}
+
+.title {
+  font-size: var(--t-lg);
+  font-weight: 700;
+}
+
+.text {
+  color: var(--c-ink-2);
+  font-size: var(--t-sm);
 }
 
 .practice {
-  display: grid;
-  gap: 2px;
-  color: var(--c-paper);
+  margin-top: auto;
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--c-line);
   font-size: var(--t-sm);
 }
 
 .practiceLabel {
-  font-size: var(--t-xs);
-  font-stretch: var(--wdth-label);
   font-weight: 600;
-  color: var(--c-cobalt-ink);
+  color: var(--c-brand-ink);
+}
+
+/* Szósta karta: zaproszenie do audytu na tle w kolorze marki */
+.cta {
+  border-color: var(--c-brand);
+  background:
+    radial-gradient(80% 90% at 100% 0%, color-mix(in srgb, var(--c-violet) 45%, transparent), transparent 70%),
+    var(--c-brand);
+  color: #ffffff;
+}
+
+.cta .icon {
+  background: rgb(255 255 255 / 0.16);
+  color: #ffffff;
+}
+
+.cta .text {
+  color: rgb(255 255 255 / 0.94);
+}
+
+.cta :focus-visible {
+  outline-color: #ffffff;
+}
+
+.ctaButton {
+  align-self: flex-start;
+  margin-top: auto;
 }
 
 @media (max-width: 64rem) {
-  .aside {
-    position: static;
-    grid-column: 1 / -1;
-    max-width: 44rem;
-  }
-
-  .list {
-    grid-column: 1 / -1;
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 40rem) {
-  .item {
+  .grid {
     grid-template-columns: 100%;
   }
 }

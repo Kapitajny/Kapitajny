@@ -16,7 +16,7 @@
   border: 1px solid var(--c-line-strong);
   border-radius: var(--r-control);
   background: transparent;
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
   font-size: var(--t-sm);
   font-weight: 500;
   transition:
@@ -26,14 +26,14 @@
 }
 
 .toggle:hover {
-  color: var(--c-paper);
-  border-color: var(--c-paper-2);
+  color: var(--c-ink);
+  border-color: var(--c-ink-2);
 }
 
 .toggle[aria-pressed="true"] {
-  background: var(--c-paper);
-  border-color: var(--c-paper);
-  color: var(--c-graphite);
+  background: var(--c-brand);
+  border-color: var(--c-brand);
+  color: #ffffff;
 }
 
 .sheet {
@@ -41,7 +41,7 @@
   padding: var(--s-5);
   border: var(--border);
   border-radius: var(--r-panel);
-  background: var(--c-graphite-2);
+  background: var(--c-surface);
 }
 
 .frame {
@@ -94,7 +94,7 @@
   padding: var(--s-3) var(--s-4);
   border: 1px solid var(--c-line);
   border-radius: var(--r-control);
-  background: var(--c-graphite);
+  background: var(--c-bg);
   overflow: hidden;
   transform-origin: left;
   transition:
@@ -106,30 +106,30 @@
   font-size: var(--t-md);
   font-weight: 650;
   line-height: 1.2;
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
   transition: color var(--dur-med) ease;
 }
 
 .layerDetail {
   font-size: var(--t-xs);
   font-stretch: var(--wdth-label);
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
   line-height: 1.35;
   transition: color var(--dur-med) ease;
 }
 
 .layer[data-active] .beam {
   border-color: var(--c-line-strong);
-  box-shadow: inset 3px 0 0 var(--c-cobalt);
-  background: var(--c-graphite-3);
+  box-shadow: inset 3px 0 0 var(--c-brand);
+  background: var(--c-surface-2);
 }
 
 .layer[data-active] .layerName {
-  color: var(--c-paper);
+  color: var(--c-ink);
 }
 
 .layer[data-active] .layerDetail {
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 /* Opis z linią odniesienia od prawego słupka */
@@ -138,7 +138,7 @@
   padding-left: var(--s-6);
   font-size: var(--t-sm);
   line-height: 1.4;
-  color: var(--c-paper);
+  color: var(--c-ink);
 }
 
 .note::before {
@@ -147,7 +147,7 @@
   left: 0;
   top: 0.7em;
   width: calc(var(--s-6) - var(--s-2));
-  border-top: 1px solid var(--c-cobalt-ink);
+  border-top: 1px solid var(--c-brand-ink);
 }
 
 .layer:not([data-active]) .note::before {
@@ -168,7 +168,7 @@
   top: calc(var(--span-start) * 25% + 7px);
   height: calc((var(--span-end) - var(--span-start)) * 25% - 14px);
   width: 28px;
-  border-left: 1px solid var(--c-cobalt-ink);
+  border-left: 1px solid var(--c-brand-ink);
   transition:
     top var(--dur-med) var(--ease-out),
     height var(--dur-med) var(--ease-out);
@@ -180,7 +180,7 @@
   position: absolute;
   left: -6px;
   width: 11px;
-  border-top: 1px solid var(--c-cobalt-ink);
+  border-top: 1px solid var(--c-brand-ink);
 }
 
 .dimension::before {
@@ -201,7 +201,7 @@
   font-size: var(--t-xs);
   font-stretch: var(--wdth-label);
   font-weight: 600;
-  color: var(--c-cobalt-ink);
+  color: var(--c-brand-ink);
 }
 
 /* Podpis jak tabliczka rysunkowa */
@@ -220,13 +220,13 @@
 .captionTitle {
   border-right: var(--border);
   font-stretch: var(--wdth-label);
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
   font-size: var(--t-xs);
   font-weight: 500;
 }
 
 .captionText {
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 /* Jedyna orkiestrowana animacja strony: rysowanie przekroju */

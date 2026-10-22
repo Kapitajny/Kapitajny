@@ -1,6 +1,6 @@
 .section {
   padding-block: var(--section-y);
-  background: var(--c-graphite-2);
+  background: var(--c-surface);
   border-top: var(--border);
 }
 
@@ -22,7 +22,7 @@
 
 .intro {
   margin-top: var(--s-4);
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 .list {

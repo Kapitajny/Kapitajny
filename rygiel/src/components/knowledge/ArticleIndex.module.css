@@ -15,7 +15,7 @@
   border: 1px solid var(--c-line-strong);
   border-radius: var(--r-control);
   background: transparent;
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
   font-size: var(--t-sm);
   font-weight: 500;
   transition:
@@ -25,24 +25,24 @@
 }
 
 .chip:hover {
-  color: var(--c-paper);
-  border-color: var(--c-paper-2);
+  color: var(--c-ink);
+  border-color: var(--c-ink-2);
 }
 
 .chip[aria-pressed="true"] {
-  background: var(--c-paper);
-  border-color: var(--c-paper);
-  color: var(--c-graphite);
+  background: var(--c-brand);
+  border-color: var(--c-brand);
+  color: #ffffff;
 }
 
 .status {
   font-size: var(--t-sm);
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 .list {
   display: grid;
-  border-top: 2px solid var(--c-paper);
+  border-top: 2px solid var(--c-ink);
 }
 
 .item {
@@ -62,11 +62,11 @@
   font-size: var(--t-xs);
   font-stretch: var(--wdth-label);
   font-weight: 600;
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
 }
 
 .meta span:first-child {
-  color: var(--c-cobalt-ink);
+  color: var(--c-brand-ink);
 }
 
 .body {
@@ -95,17 +95,17 @@
 }
 
 .link:focus-visible::after {
-  outline: 2px solid var(--c-cobalt-ink);
+  outline: 2px solid var(--c-brand-ink);
   outline-offset: -2px;
 }
 
 .item:hover .title {
-  color: var(--c-cobalt-ink);
+  color: var(--c-brand-ink);
 }
 
 .description {
   max-width: 64ch;
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 .empty {
@@ -120,7 +120,7 @@
   min-height: 44px;
   border: 0;
   background: none;
-  color: var(--c-cobalt-ink);
+  color: var(--c-brand-ink);
   font-weight: 600;
   text-decoration: underline;
 }

@@ -1,6 +1,6 @@
 .button {
   --btn-bg: transparent;
-  --btn-fg: var(--c-paper);
+  --btn-fg: var(--c-ink);
   --btn-border: var(--c-line-strong);
 
   display: inline-flex;
@@ -36,31 +36,31 @@
 }
 
 .primary {
-  --btn-bg: var(--c-cobalt);
-  --btn-border: var(--c-cobalt);
-  --btn-fg: var(--c-paper);
+  --btn-bg: var(--c-brand);
+  --btn-border: var(--c-brand);
+  --btn-fg: #ffffff;
 }
 
 .primary:hover:not(:disabled) {
-  --btn-bg: var(--c-cobalt-hover);
-  --btn-border: var(--c-cobalt-hover);
+  --btn-bg: var(--c-brand-hover);
+  --btn-border: var(--c-brand-hover);
 }
 
 .secondary:hover:not(:disabled) {
-  --btn-bg: var(--c-graphite-3);
-  --btn-border: var(--c-paper-2);
+  --btn-bg: var(--c-surface-2);
+  --btn-border: var(--c-ink-2);
 }
 
-/* Na płaszczyźnie kobaltowej przycisk główny jest jasny */
+/* Na niebieskiej lub granatowej płaszczyźnie przycisk główny jest biały */
 .inverse {
-  --btn-bg: var(--c-paper);
-  --btn-border: var(--c-paper);
-  --btn-fg: #101a5c;
+  --btn-bg: #ffffff;
+  --btn-border: #ffffff;
+  --btn-fg: var(--c-navy);
 }
 
 .inverse:hover:not(:disabled) {
-  --btn-bg: #ffffff;
-  --btn-border: #ffffff;
+  --btn-bg: var(--c-brand-soft);
+  --btn-border: var(--c-brand-soft);
 }
 
 .large {

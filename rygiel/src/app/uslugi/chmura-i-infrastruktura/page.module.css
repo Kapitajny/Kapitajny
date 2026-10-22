@@ -10,7 +10,7 @@
 }
 
 .tinted {
-  background: var(--c-graphite-2);
+  background: var(--c-surface);
   border-block: var(--border);
 }
 
@@ -35,12 +35,12 @@
 
 .note {
   max-width: 44ch;
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 .more {
   margin-top: var(--s-5);
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 /* Oś czasu RPO / RTO */
@@ -58,8 +58,8 @@
 /* Pasek RPO (ostatnia kopia → awaria) i RTO (awaria → przywrócenie) na osi czasu */
 .track {
   background:
-    linear-gradient(var(--c-paper-2), var(--c-paper-2)) 0 70% / 100% 1px no-repeat,
-    linear-gradient(to right, transparent 18%, rgb(154 172 255 / 0.35) 18% 48%, var(--c-cobalt) 48% 82%, transparent 82%) 0 70% / 100% 14px no-repeat;
+    linear-gradient(var(--c-ink-2), var(--c-ink-2)) 0 70% / 100% 1px no-repeat,
+    linear-gradient(to right, transparent 18%, color-mix(in srgb, var(--c-brand) 30%, transparent) 18% 48%, var(--c-brand) 48% 82%, transparent 82%) 0 70% / 100% 14px no-repeat;
 }
 
 .event {
@@ -79,7 +79,7 @@
   left: 50%;
   top: 1.4rem;
   height: 2.6rem;
-  border-left: 1px solid var(--c-paper);
+  border-left: 1px solid var(--c-ink);
 }
 
 .eventAlert {
@@ -98,13 +98,13 @@
 .rpo {
   grid-column: 2;
   padding-right: var(--s-4);
-  border-top: 2px solid var(--c-cobalt-ink);
+  border-top: 2px solid var(--c-brand-ink);
 }
 
 .rto {
   grid-column: 3;
   padding-left: var(--s-4);
-  border-top: 2px solid var(--c-cobalt);
+  border-top: 2px solid var(--c-brand);
 }
 
 .spans dt {
@@ -114,14 +114,14 @@
 
 .spans dd {
   margin-top: var(--s-1);
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
   font-size: var(--t-sm);
 }
 
 .caption {
   font-size: var(--t-xs);
   font-stretch: var(--wdth-label);
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
 }
 
 /* Etapy migracji */
@@ -145,7 +145,7 @@
   left: 1.25rem;
   top: 2.5rem;
   bottom: 0;
-  border-left: 1px dashed var(--c-line-strong);
+  border-left: 1px dashed var(--c-line);
 }
 
 .stageNumber {
@@ -153,8 +153,9 @@
   place-items: center;
   width: 2.5rem;
   height: 2.5rem;
-  border: 1px solid var(--c-paper-2);
   border-radius: 50%;
+  background: var(--c-brand-soft);
+  color: var(--c-brand-ink);
   font-stretch: var(--wdth-label);
   font-weight: 600;
 }
@@ -167,7 +168,7 @@
 
 .stageText {
   margin-top: var(--s-1);
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
   font-size: var(--t-sm);
   max-width: 56ch;
 }
@@ -180,7 +181,7 @@
   font-size: var(--t-xs);
   font-stretch: var(--wdth-label);
   font-weight: 600;
-  color: var(--c-cobalt-ink);
+  color: var(--c-brand-ink);
 }
 
 .rollback::before {

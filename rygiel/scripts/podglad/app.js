@@ -6,30 +6,56 @@
   const LAYER_ORDER = ["ludzie", "urzadzenia", "siec", "dane"];
 
   // ---------------------------------------------------------------- router
-  function parseHash() {
-    const hash = location.hash;
-    if (!hash.startsWith("#/")) return { path: "/", query: new URLSearchParams() };
-    const [path, query = ""] = hash.slice(1).split("?");
-    return { path: templates.has(path) ? path : "/404", query: new URLSearchParams(query) };
+  // Trasa ma postać "/sciezka?zapytanie#kotwica". Podgląd działa w ramce, która nie zawsze
+  // pozwala zmieniać adres, dlatego bieżąca trasa jest trzymana w zmiennej, a hash służy
+  // tylko do obsługi przycisku „wstecz”, jeśli przeglądarka na to pozwala.
+  function parseRoute(route) {
+    const [beforeAnchor, anchor = ""] = route.split("#");
+    const [rawPath, query = ""] = beforeAnchor.split("?");
+    const path = rawPath.length > 1 ? rawPath.replace(/\/+$/, "") : "/";
+    return { path: templates.has(path) ? path : "/404", query: new URLSearchParams(query), anchor };
   }
 
+  function routeFromLocation() {
+    let hash = "";
+    try {
+      hash = location.hash;
+    } catch {
+      // brak dostępu do adresu – zostaje strona główna
+    }
+    return hash.startsWith("#/") ? hash.slice(1) : "/";
+  }
+
+  let currentRoute = null;
   let firstRender = true;
-  function render() {
-    const { path, query } = parseHash();
-    const template = templates.get(path) ?? templates.get("/404") ?? templates.get("/");
+  function render(route) {
+    const { path, query, anchor } = parseRoute(route);
+    const template = templates.get(path) ?? templates.get("/");
+    currentRoute = route;
     closeMenu(false);
     main.replaceChildren(template.content.cloneNode(true));
     document.title = template.dataset.title || "Rygiel";
     updateNav(path);
     initForm(query);
-    window.scrollTo(0, 0);
+    const target = anchor && document.getElementById(decodeURIComponent(anchor));
+    if (target) target.scrollIntoView();
+    else window.scrollTo(0, 0);
     if (!firstRender) main.focus({ preventScroll: true });
     firstRender = false;
   }
 
+  function navigate(route) {
+    render(route);
+    try {
+      history.pushState(null, "", "#" + route);
+    } catch {
+      // ramka nie pozwala zmienić adresu – nawigacja i tak działa
+    }
+  }
+
   function updateNav(path) {
     document.querySelectorAll('header a[href^="#/"]').forEach((link) => {
-      const href = link.getAttribute("href").slice(1).split("?")[0];
+      const href = parseRoute(link.getAttribute("href").slice(1)).path;
       const isPage = href === path;
       const isSection = href !== "/" && path.startsWith(href + "/");
       if (link.closest("nav")) {
@@ -41,14 +67,26 @@
     });
   }
 
-  window.addEventListener("hashchange", render);
+  const onLocationChange = () => {
+    const route = routeFromLocation();
+    if (route !== currentRoute) render(route);
+  };
+  window.addEventListener("popstate", onLocationChange);
+  window.addEventListener("hashchange", onLocationChange);
 
-  // Kotwice wewnątrz strony (#sekcja) przewijają widok zamiast zmieniać podstronę.
   document.addEventListener("click", (event) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     const link = event.target.closest("a[href^='#']");
-    if (!link || link.getAttribute("href").startsWith("#/")) return;
-    const id = decodeURIComponent(link.getAttribute("href").slice(1));
-    const target = document.getElementById(id);
+    if (!link) return;
+    const href = link.getAttribute("href");
+    // Linki do podstron (#/sciezka) obsługuje router.
+    if (href.startsWith("#/")) {
+      event.preventDefault();
+      navigate(href.slice(1));
+      return;
+    }
+    // Kotwice wewnątrz strony (#sekcja) przewijają widok zamiast zmieniać podstronę.
+    const target = document.getElementById(decodeURIComponent(href.slice(1)));
     if (!target) return;
     event.preventDefault();
     closeMenu(false);
@@ -374,5 +412,5 @@
     });
   }
 
-  render();
+  render(routeFromLocation());
 })();

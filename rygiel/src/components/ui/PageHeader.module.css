@@ -1,6 +1,9 @@
 .header {
   padding-block: var(--s-5) clamp(3rem, 2rem + 4vw, 5.5rem);
-  border-bottom: var(--border);
+  border-bottom: 1px solid var(--c-line);
+  background:
+    radial-gradient(45% 80% at 95% 0%, color-mix(in srgb, var(--c-brand) 11%, transparent), transparent 70%),
+    linear-gradient(180deg, var(--c-surface) 0%, var(--c-bg) 100%);
 }
 
 .grid {
@@ -23,10 +26,12 @@
 .kicker {
   font-size: var(--t-sm);
   font-weight: 500;
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
 }
 
 .title {
+  font-weight: 700;
+  letter-spacing: -0.022em;
   font-size: var(--t-4xl);
   line-height: 1;
 }

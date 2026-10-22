@@ -5,20 +5,27 @@
    ========================================================================== */
 
 :root {
-  /* Kolory */
-  --c-graphite: #16181c;
-  --c-graphite-2: #1e2126;
-  --c-graphite-3: #272a30;
-  --c-line: #3a3e46;
-  --c-line-strong: #565b64;
-  --c-paper: #eeebe3;
-  --c-paper-2: #a3a7ae;
-  --c-paper-3: #878c94;
-  --c-cobalt: #3050ff;
-  --c-cobalt-hover: #2a44e0;
-  --c-cobalt-ink: #9aacff;
-  --c-danger: #ff9b8a;
-  --c-ok: #9fe0b5;
+  /* Kolory – jasny motyw: białe tło, granatowy tekst, jeden mocny niebieski */
+  --c-bg: #ffffff;
+  --c-surface: #f5f7fb;
+  --c-surface-2: #eef2fb;
+  --c-line: #dce2ee;
+  --c-line-strong: #7f8ba5;
+  --c-ink: #0b1b3f;
+  --c-ink-2: #45526e;
+  --c-ink-3: #5f6b85;
+  --c-brand: #1f4fe0;
+  --c-brand-hover: #1a44cc;
+  --c-brand-ink: #1a44cc;
+  --c-brand-soft: #e8eeff;
+  --c-violet: #7b61ff;
+  --c-navy: #0a1633;
+  --c-danger: #b42318;
+  --c-ok: #127a4b;
+
+  /* Cień kart: miękki, o odcieniu granatu */
+  --shadow-card: 0 1px 2px rgb(11 27 63 / 0.06), 0 8px 24px rgb(11 27 63 / 0.06);
+  --shadow-raised: 0 2px 4px rgb(11 27 63 / 0.06), 0 18px 40px rgb(11 27 63 / 0.1);
 
   /* Typografia */
   --f-sans: var(--font-archivo), "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -59,8 +66,8 @@
   --gutter: clamp(1rem, 4vw, 3rem);
 
   /* Kształt */
-  --r-control: 3px;
-  --r-panel: 6px;
+  --r-control: 10px;
+  --r-panel: 16px;
   --border: 1px solid var(--c-line);
   --border-strong: 1px solid var(--c-line-strong);
 
@@ -71,7 +78,7 @@
 
   --header-h: 4.25rem;
 
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 /* --------------------------------------------------------------------------
@@ -102,8 +109,8 @@ html {
 
 body {
   min-height: 100dvh;
-  background: var(--c-graphite);
-  color: var(--c-paper);
+  background: var(--c-bg);
+  color: var(--c-ink);
   font-family: var(--f-sans);
   font-size: var(--t-md);
   font-stretch: var(--wdth-body);
@@ -192,13 +199,13 @@ a {
 }
 
 ::selection {
-  background: var(--c-cobalt);
-  color: var(--c-paper);
+  background: var(--c-brand);
+  color: #ffffff;
 }
 
 /* Fokus: zawsze widoczny przy nawigacji klawiaturą */
 :focus-visible {
-  outline: 2px solid var(--c-cobalt-ink);
+  outline: 2px solid var(--c-brand-ink);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -238,7 +245,7 @@ a {
   font-weight: 500;
   letter-spacing: 0.01em;
   font-variant-numeric: tabular-nums;
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
   line-height: 1.4;
 }
 
@@ -258,16 +265,16 @@ a {
 
 .lede {
   font-size: var(--t-lg);
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
   line-height: 1.55;
   max-width: 56ch;
 }
 
 /* Link tekstowy z animowanym podkreśleniem */
 .text-link {
-  color: var(--c-cobalt-ink);
+  color: var(--c-brand-ink);
   text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, var(--c-cobalt-ink) 45%, transparent);
+  text-decoration-color: color-mix(in srgb, var(--c-brand-ink) 45%, transparent);
   transition: text-decoration-color var(--dur-fast) ease;
 }
 
@@ -283,4 +290,19 @@ a {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
+}
+
+/* Ciemne pasmo (stopka, końcowe wezwanie do działania): te same komponenty na granatowym tle */
+.band-navy {
+  --c-bg: var(--c-navy);
+  --c-surface: #12214a;
+  --c-surface-2: #1a2b58;
+  --c-line: rgb(255 255 255 / 0.14);
+  --c-line-strong: rgb(255 255 255 / 0.45);
+  --c-ink: #ffffff;
+  --c-ink-2: #c3cce2;
+  --c-ink-3: #aab6d3;
+  --c-brand-ink: #8fa8ff;
+  background: var(--c-bg);
+  color: var(--c-ink);
 }

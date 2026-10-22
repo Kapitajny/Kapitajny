@@ -16,14 +16,14 @@
   font-size: var(--t-xs);
   font-stretch: var(--wdth-label);
   font-weight: 600;
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
 }
 
 .tocList {
   display: grid;
   padding: 0;
   list-style: none;
-  border-left: 1px solid var(--c-line-strong);
+  border-left: 1px solid var(--c-line);
 }
 
 .tocList a {
@@ -33,14 +33,14 @@
   padding-left: var(--s-4);
   margin-left: -1px;
   border-left: 2px solid transparent;
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
   text-decoration: none;
   font-size: var(--t-sm);
 }
 
 .tocList a:hover {
-  color: var(--c-paper);
-  border-left-color: var(--c-cobalt-ink);
+  color: var(--c-ink);
+  border-left-color: var(--c-brand-ink);
 }
 
 .article {
@@ -56,7 +56,7 @@
 
 .h2 {
   padding-top: var(--s-4);
-  border-top: 2px solid var(--c-paper);
+  border-top: 2px solid var(--c-ink);
   font-size: var(--t-2xl);
   font-weight: 600;
   letter-spacing: -0.015em;
@@ -70,15 +70,15 @@
 
 .paragraph {
   max-width: var(--w-prose);
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
   font-size: var(--t-lg);
   line-height: 1.6;
 }
 
 .conclusion {
   padding-left: var(--s-4);
-  border-left: 2px solid var(--c-cobalt);
-  color: var(--c-paper);
+  border-left: 2px solid var(--c-brand);
+  color: var(--c-ink);
 }
 
 .assumptions {
@@ -89,7 +89,7 @@
 }
 
 .assumptions li::marker {
-  color: var(--c-cobalt-ink);
+  color: var(--c-brand-ink);
   font-weight: 600;
 }
 
@@ -104,14 +104,14 @@
   align-content: start;
   gap: var(--s-4);
   padding: var(--s-5);
-  border: 1px solid var(--c-line-strong);
-  color: var(--c-paper-2);
+  border: 1px solid var(--c-line);
+  color: var(--c-ink-2);
 }
 
 .option[data-chosen] {
-  border-color: var(--c-cobalt-ink);
-  box-shadow: inset 0 3px 0 var(--c-cobalt);
-  color: var(--c-paper);
+  border-color: var(--c-brand-ink);
+  box-shadow: inset 0 3px 0 var(--c-brand);
+  color: var(--c-ink);
 }
 
 .optionName {
@@ -119,7 +119,7 @@
   gap: var(--s-2);
   font-size: var(--t-md);
   font-weight: 650;
-  color: var(--c-paper);
+  color: var(--c-ink);
 }
 
 .decision {
@@ -129,11 +129,11 @@
   font-size: var(--t-xs);
   font-stretch: var(--wdth-label);
   font-weight: 600;
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
 }
 
 .option[data-chosen] .decision {
-  color: var(--c-cobalt-ink);
+  color: var(--c-brand-ink);
 }
 
 .optionDetails {
@@ -146,7 +146,7 @@
   font-size: var(--t-xs);
   font-stretch: var(--wdth-label);
   font-weight: 600;
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
 }
 
 .stages {
@@ -172,7 +172,7 @@
 .stage ul {
   display: grid;
   gap: var(--s-2);
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 .stage li {
@@ -186,23 +186,23 @@
   left: 0;
   top: 0.75em;
   width: 8px;
-  border-top: 1px solid var(--c-cobalt-ink);
+  border-top: 1px solid var(--c-brand-ink);
 }
 
 .criteria {
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid var(--c-line-strong);
+  border: 1px solid var(--c-line);
 }
 
 .criteria thead th {
   padding: var(--s-3) var(--s-4);
-  background: var(--c-graphite-2);
-  border-bottom: 1px solid var(--c-line-strong);
+  background: var(--c-surface);
+  border-bottom: 1px solid var(--c-line);
   font-size: var(--t-xs);
   font-stretch: var(--wdth-label);
   font-weight: 600;
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
   text-align: left;
 }
 
@@ -217,11 +217,11 @@
 .criteria tbody th {
   width: 50%;
   font-weight: 600;
-  border-right: 1px solid var(--c-line-strong);
+  border-right: 1px solid var(--c-line);
 }
 
 .criteria tbody td {
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 .related {
@@ -230,7 +230,7 @@
   align-items: baseline;
   gap: var(--s-2) var(--s-5);
   padding: var(--s-5);
-  background: var(--c-graphite-2);
+  background: var(--c-surface);
   border: var(--border);
 }
 
@@ -262,14 +262,14 @@
   display: grid;
   gap: var(--s-1);
   padding: var(--s-4) var(--s-5);
-  border: 1px solid var(--c-line-strong);
+  border: 1px solid var(--c-line);
   font-weight: 600;
   text-decoration: none;
   transition: border-color var(--dur-fast) ease;
 }
 
 .pagerLink:hover {
-  border-color: var(--c-cobalt-ink);
+  border-color: var(--c-brand-ink);
 }
 
 .pagerNext {
@@ -281,7 +281,7 @@
   font-size: var(--t-xs);
   font-stretch: var(--wdth-label);
   font-weight: 500;
-  color: var(--c-paper-3);
+  color: var(--c-ink-3);
 }
 
 @media (max-width: 64rem) {

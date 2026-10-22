@@ -12,7 +12,8 @@ export function FeaturedCase() {
 
   return (
     <section className={styles.section} aria-labelledby="realizacja-title">
-      <div className={`container ${styles.grid}`}>
+      <div className="container">
+        <div className={`${styles.card} ${styles.grid}`}>
         <div className={styles.copy}>
           <p className={styles.kicker}>Przykładowy projekt. Firma i&nbsp;dane są fikcyjne.</p>
           <h2 id="realizacja-title" className={styles.title}>
@@ -36,6 +37,7 @@ export function FeaturedCase() {
         </div>
         <div className={styles.meta}>
           <TitleBlock rows={caseTitleBlockRows(study)} label="Metryczka realizacji" />
+        </div>
         </div>
       </div>
     </section>

@@ -16,7 +16,7 @@ export function ClosingCta({
   headingId = "cta-title",
 }: ClosingCtaProps) {
   return (
-    <section className={styles.section} aria-labelledby={headingId}>
+    <section className={`band-navy ${styles.section}`} aria-labelledby={headingId}>
       <div className={`container ${styles.inner}`}>
         <h2 id={headingId} className={styles.title}>
           {typeset(title)}

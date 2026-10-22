@@ -1,6 +1,9 @@
 import { processSteps } from "@/content/approach";
+import { Icon, type IconName } from "@/components/ui/Icon";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import styles from "./ProcessSection.module.css";
+
+const stepIcons: IconName[] = ["chat", "search", "clipboard", "tool", "refresh"];
 
 export function ProcessSection({ headingId = "proces-title" }: { headingId?: string }) {
   return (
@@ -14,13 +17,20 @@ export function ProcessSection({ headingId = "proces-title" }: { headingId?: str
         <ol className={styles.steps}>
           {processSteps.map((step, index) => (
             <li key={step.title} className={styles.step}>
-              <span className={styles.marker} aria-hidden="true">
-                {index + 1}
-              </span>
+              <div className={styles.stepHead}>
+                <span className={styles.icon}>
+                  <Icon name={stepIcons[index] ?? "check"} size={22} />
+                </span>
+                <span className={styles.number}>Krok {index + 1}</span>
+              </div>
               <h3 className={styles.title}>{step.title}</h3>
               <p className={styles.text}>{step.text}</p>
               <p className={styles.deliverable}>
-                <span className={styles.deliverableLabel}>Dostajesz:</span> {step.deliverable}
+                <Icon name="document" size={16} className={styles.deliverableIcon} />
+                <span>
+                  <span className="visually-hidden">Dostajesz: </span>
+                  {step.deliverable}
+                </span>
               </p>
             </li>
           ))}

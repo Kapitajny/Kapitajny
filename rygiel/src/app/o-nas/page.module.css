@@ -3,20 +3,20 @@
 }
 
 .tinted {
-  background: var(--c-graphite-2);
+  background: var(--c-surface);
   border-block: var(--border);
 }
 
 .note {
   padding: var(--s-4) var(--s-5);
-  border: 1px solid var(--c-line-strong);
-  border-left: 3px solid var(--c-cobalt);
-  color: var(--c-paper-2);
+  border: 1px solid var(--c-line);
+  border-left: 3px solid var(--c-brand);
+  color: var(--c-ink-2);
   font-size: var(--t-sm);
 }
 
 .note strong {
-  color: var(--c-paper);
+  color: var(--c-ink);
 }
 
 .split {
@@ -35,7 +35,7 @@
 .intro {
   margin-top: var(--s-4);
   max-width: 40ch;
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 .beliefs {
@@ -46,7 +46,7 @@
 
 .beliefs > div {
   padding-top: var(--s-4);
-  border-top: 2px solid var(--c-paper);
+  border-top: 2px solid var(--c-ink);
 }
 
 .beliefs dt {
@@ -57,7 +57,7 @@
 }
 
 .beliefs dd {
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 .rules {
@@ -78,7 +78,7 @@
 }
 
 .rule dd {
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 .priorities {
@@ -101,14 +101,16 @@
   place-items: center;
   width: 3rem;
   height: 3rem;
-  background: var(--c-cobalt);
+  border-radius: var(--r-control);
+  background: var(--c-brand);
+  color: #ffffff;
   font-size: var(--t-xl);
   font-weight: 700;
 }
 
 .priority:nth-child(n + 2) .priorityIndex {
-  background: transparent;
-  border: 1px solid var(--c-paper-2);
+  background: var(--c-brand-soft);
+  color: var(--c-brand-ink);
 }
 
 .priorityTitle {
@@ -119,13 +121,13 @@
 .priorityText {
   margin-top: var(--s-1);
   max-width: 56ch;
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }
 
 .channels {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  border-top: 2px solid var(--c-paper);
+  border-top: 2px solid var(--c-ink);
 }
 
 .channel {
@@ -143,7 +145,7 @@
 }
 
 .channel dd {
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
   font-size: var(--t-sm);
 }
 

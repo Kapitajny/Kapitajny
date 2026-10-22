@@ -30,7 +30,7 @@
 }
 
 .trigger:hover {
-  color: var(--c-cobalt-ink);
+  color: var(--c-brand-ink);
 }
 
 .question {
@@ -44,7 +44,7 @@
   flex: none;
   width: 28px;
   height: 28px;
-  border: 1px solid var(--c-line-strong);
+  border: 1px solid var(--c-line);
   border-radius: var(--r-control);
 }
 
@@ -70,8 +70,8 @@
 }
 
 .item[data-open] .icon {
-  border-color: var(--c-cobalt-ink);
-  color: var(--c-cobalt-ink);
+  border-color: var(--c-brand-ink);
+  color: var(--c-brand-ink);
 }
 
 .panel {
@@ -98,5 +98,5 @@
 .answer {
   max-width: var(--w-prose);
   padding: 0 calc(28px + var(--s-5)) var(--s-5) 0;
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
 }

@@ -68,9 +68,9 @@
   gap: var(--s-7);
   padding: var(--s-6) var(--gutter) var(--s-7);
   overflow-y: auto;
-  background: var(--c-graphite);
+  background: var(--c-bg);
   border-top: var(--border);
-  box-shadow: 0 24px 48px rgb(0 0 0 / 0.4);
+  box-shadow: var(--shadow-raised);
   animation: panel-in var(--dur-med) var(--ease-out);
 }
 
@@ -101,7 +101,7 @@
 }
 
 .link[data-active] {
-  color: var(--c-cobalt-ink);
+  color: var(--c-brand-ink);
 }
 
 .footer {
@@ -114,7 +114,7 @@
 }
 
 .note {
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
   font-size: var(--t-sm);
   max-width: 44ch;
 }

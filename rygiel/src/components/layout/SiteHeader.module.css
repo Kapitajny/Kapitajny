@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: var(--c-graphite);
+  background: var(--c-bg);
   border-bottom: var(--border);
 }
 
@@ -28,7 +28,7 @@
   align-items: center;
   min-height: 44px;
   padding-inline: var(--s-3);
-  color: var(--c-paper-2);
+  color: var(--c-ink-2);
   font-size: var(--t-sm);
   font-weight: 500;
   text-decoration: none;
@@ -43,14 +43,14 @@
   right: var(--s-3);
   bottom: 6px;
   height: 2px;
-  background: var(--c-cobalt-ink);
+  background: var(--c-brand-ink);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--dur-med) var(--ease-out);
 }
 
 .link:hover {
-  color: var(--c-paper);
+  color: var(--c-ink);
 }
 
 .link:hover::after {
@@ -58,7 +58,7 @@
 }
 
 .link[data-active] {
-  color: var(--c-paper);
+  color: var(--c-ink);
 }
 
 .link[data-active]::after {

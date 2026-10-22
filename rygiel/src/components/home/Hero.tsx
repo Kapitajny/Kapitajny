@@ -1,3 +1,4 @@
+import { Icon, type IconName } from "@/components/ui/Icon";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { NetworkIllustration } from "@/components/ui/NetworkIllustration";
 import { typeset, typesetHeading } from "@/lib/typography";
@@ -7,6 +8,12 @@ const highlights = [
   "Stała administracja komputerów, serwerów i kont",
   "Audyty i testy bezpieczeństwa za pisemną zgodą",
   "Kopie zapasowe sprawdzane testem odtworzenia",
+];
+
+// Przykładowe statusy z przeglądu środowiska – ilustracja tego, co klient widzi w raporcie.
+const statuses: { icon: IconName; title: string; detail: string }[] = [
+  { icon: "shield", title: "Drugi składnik logowania", detail: "Włączony na kontach firmowych" },
+  { icon: "database", title: "Test odtworzenia kopii", detail: "Zaliczony, protokół w dokumentacji" },
 ];
 
 export function Hero() {
@@ -32,12 +39,32 @@ export function Hero() {
           </div>
           <ul role="list" className={styles.highlights}>
             {highlights.map((item) => (
-              <li key={item}>{typeset(item)}</li>
+              <li key={item}>
+                <span className={styles.check}>
+                  <Icon name="check" size={16} />
+                </span>
+                {typeset(item)}
+              </li>
             ))}
           </ul>
         </div>
+
         <div className={styles.media}>
-          <NetworkIllustration priority sizes="(max-width: 60rem) 100vw, 640px" />
+          <NetworkIllustration priority sizes="(max-width: 60rem) 100vw, 620px" />
+          <ul role="list" className={styles.statuses} aria-label="Przykładowe statusy z przeglądu środowiska">
+            {statuses.map((status) => (
+              <li key={status.title} className={styles.status}>
+                <span className={styles.statusIcon}>
+                  <Icon name={status.icon} size={20} />
+                </span>
+                <span className={styles.statusText}>
+                  <strong>{typeset(status.title)}</strong>
+                  <span>{typeset(status.detail)}</span>
+                </span>
+                <span className={styles.statusDot} aria-hidden="true" />
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
