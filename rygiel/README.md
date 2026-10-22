@@ -211,9 +211,16 @@ Znaczniki „do uzupełnienia” (komponent `Pending`) są widoczne w serwisie i
 - okres przechowywania danych, dostawcy hostingu i poczty, podstawa transferu danych poza EOG,
 - adres serwisu, termin reklamacji i data wejścia w życie regulaminu,
 - weryfikacja prawna polityki prywatności, polityki cookies i regulaminu,
-- licencja grafiki `src/assets/ochrona-sieci.jpg` (dostarczona przez właściciela projektu; przed publikacją potwierdź
-  prawo do jej użycia). Plik ma 662×463 px, dlatego jest pokazywany w naturalnym rozmiarze (strona główna – sekcja
-  „Jak podchodzimy do bezpieczeństwa”, nagłówek strony „Cyberbezpieczeństwo”), a nie na całą szerokość ekranu.
+- licencje grafik w `src/assets/` (wszystkie dostarczył właściciel projektu; przed publikacją potwierdź prawo do ich
+  użycia – pliki o szerokości 612 px wyglądają na bezpłatne podglądy z banku zdjęć, które nie obejmują licencji):
+  - `ochrona-sieci.jpg` (662×463): hero strony głównej, karta i nagłówek „Cyberbezpieczeństwo”,
+  - `linie-swiatla.jpg` (596×335): karta i nagłówek „Obsługa IT”,
+  - `tunel-danych.jpg` (612×344): karta i nagłówek „Chmura i infrastruktura”,
+  - `miasto-danych.jpg` (612×344): przyciemnione tło granatowego pasma z zaproszeniem do kontaktu.
+
+  Grafiki są małe, więc poza tłem pasma pokazujemy je najwyżej w naturalnym rozmiarze. Po zakupie licencji warto
+  podmienić je na wersje o szerokości co najmniej 1600 px – nazwy plików i opisy alternatywne są w
+  `src/components/ui/illustrations.ts`.
 
 Usługi zewnętrzne: hosting (dowolny z obsługą Next.js) oraz – opcjonalnie – Resend lub webhook do wysyłki formularza.
 Podczas buildu `next/font` pobiera fonty z Google Fonts (w przeglądarce są serwowane z domeny serwisu).

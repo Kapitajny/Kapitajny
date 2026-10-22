@@ -361,3 +361,17 @@ Zmiany w komponentach:
 Kontrola: 45 testów jednostkowych i 89 testów E2E przechodzi, w tym axe WCAG 2.0–2.2 A/AA i reflow 320 px.
 
 Statyczny podgląd: router obsługuje teraz adresy z kotwicą (`/uslugi#dodatkowe`). Wcześniej dawały one stronę 404.
+
+## Aktualizacja: kolejne grafiki właściciela
+
+Właściciel dostarczył trzy abstrakcyjne grafiki o tematyce przepływu danych. Wszystkie ilustracje są teraz zebrane
+w `src/components/ui/illustrations.ts` (plik, wymiary i opis alternatywny), a komponent `Illustration` zastąpił
+`NetworkIllustration`.
+
+Rozmieszczenie:
+
+- karty usług na stronie głównej: grafika na górze karty (dekoracyjna, `alt=""`, bo treść niesie tytuł), ikona
+  nachodzi na jej dolną krawędź;
+- nagłówki stron „Obsługa IT” i „Chmura i infrastruktura”: grafika z podpisem, jak na stronie „Cyberbezpieczeństwo”;
+- pasmo CTA: `miasto-danych.jpg` jako tło pod granatową warstwą. Przyciemnienie jest mocniejsze po stronie
+  nagłówka, a na wąskich ekranach równomierne (78%), żeby tekst zachował kontrast.

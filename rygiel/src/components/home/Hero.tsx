@@ -1,6 +1,6 @@
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { LinkButton } from "@/components/ui/LinkButton";
-import { NetworkIllustration } from "@/components/ui/NetworkIllustration";
+import { Illustration } from "@/components/ui/Illustration";
 import { typeset, typesetHeading } from "@/lib/typography";
 import styles from "./Hero.module.css";
 
@@ -50,7 +50,7 @@ export function Hero() {
         </div>
 
         <div className={styles.media}>
-          <NetworkIllustration priority sizes="(max-width: 60rem) 100vw, 620px" />
+          <Illustration priority sizes="(max-width: 60rem) 100vw, 620px" />
           <ul role="list" className={styles.statuses} aria-label="Przykładowe statusy z przeglądu środowiska">
             {statuses.map((status) => (
               <li key={status.title} className={styles.status}>

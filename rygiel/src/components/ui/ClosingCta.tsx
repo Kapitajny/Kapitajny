@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { typeset } from "@/lib/typography";
+import { illustrations } from "./illustrations";
 import { LinkButton } from "./LinkButton";
 import styles from "./ClosingCta.module.css";
 
@@ -17,6 +19,8 @@ export function ClosingCta({
 }: ClosingCtaProps) {
   return (
     <section className={`band-navy ${styles.section}`} aria-labelledby={headingId}>
+      {/* Tło dekoracyjne, przyciemnione tak, by tekst zachował kontrast */}
+      <Image src={illustrations["miasto-danych"].src} alt="" fill sizes="100vw" placeholder="blur" className={styles.backdrop} />
       <div className={`container ${styles.inner}`}>
         <h2 id={headingId} className={styles.title}>
           {typeset(title)}

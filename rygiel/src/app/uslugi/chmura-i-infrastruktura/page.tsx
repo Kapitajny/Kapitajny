@@ -4,6 +4,7 @@ import { FlowDiagram } from "@/components/diagrams/FlowDiagram";
 import { BenefitList, ProblemList, ScopeList, ServiceCta } from "@/components/services/ServiceBlocks";
 import { Accordion } from "@/components/ui/Accordion";
 import { ClosingCta } from "@/components/ui/ClosingCta";
+import { Illustration } from "@/components/ui/Illustration";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -53,6 +54,7 @@ export default function CloudPage() {
         ]}
         title="Chmura, kopie zapasowe i ciągłość działania"
         lede="Projektujemy i utrzymujemy środowiska chmurowe i hybrydowe, kopie zapasowe oraz plany ciągłości działania. O tym, czy kopia działa, decyduje test odtworzenia, a nie zielona ikonka w panelu."
+        aside={<Illustration image="tunel-danych" priority caption="Kopie, migracje i chmura to w praktyce przepływ danych – planujemy, dokąd trafiają i jak wracają." />}
       >
         <div className={styles.headerActions}>
           <LinkButton href={`/kontakt?usluga=${service.slug}`} withArrow>

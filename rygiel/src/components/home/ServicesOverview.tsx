@@ -1,5 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Icon, type IconName } from "@/components/ui/Icon";
+import { illustrations, type IllustrationName } from "@/components/ui/illustrations";
 import { ArrowIcon } from "@/components/ui/LinkButton";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { additionalServices, services, type ServiceSlug } from "@/content/services";
@@ -10,6 +12,12 @@ const serviceIcons: Record<ServiceSlug, IconName> = {
   "obsluga-it": "server",
   cyberbezpieczenstwo: "shield",
   "chmura-i-infrastruktura": "cloud",
+};
+
+const serviceImages: Record<ServiceSlug, IllustrationName> = {
+  "obsluga-it": "linie-swiatla",
+  cyberbezpieczenstwo: "ochrona-sieci",
+  "chmura-i-infrastruktura": "tunel-danych",
 };
 
 export function ServicesOverview() {
@@ -31,6 +39,16 @@ export function ServicesOverview() {
         <ul role="list" className={styles.cards}>
           {services.map((service) => (
             <li key={service.slug} className={styles.card}>
+              {/* Grafika jest dekoracyjna – treść karty niesie tytuł i opis */}
+              <div className={styles.media}>
+                <Image
+                  src={illustrations[serviceImages[service.slug]].src}
+                  alt=""
+                  sizes="(max-width: 60rem) 100vw, 400px"
+                  placeholder="blur"
+                  className={styles.mediaImage}
+                />
+              </div>
               <span className={styles.icon}>
                 <Icon name={serviceIcons[service.slug]} size={26} />
               </span>

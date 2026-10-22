@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { BenefitList, DeliverySteps, ProblemList, ScopeList, ServiceCta } from "@/components/services/ServiceBlocks";
 import { Accordion } from "@/components/ui/Accordion";
 import { ClosingCta } from "@/components/ui/ClosingCta";
+import { Illustration } from "@/components/ui/Illustration";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -67,6 +68,7 @@ export default function ManagedItPage() {
         ]}
         title="Stała obsługa IT dla firm"
         lede="Przejmujemy codzienne utrzymanie komputerów, serwerów i kont. Pracujemy według stałego rytmu, a każdą zmianę zapisujemy, więc wiedza o Twoim środowisku nie znika razem z jedną osobą."
+        aside={<Illustration image="linie-swiatla" priority caption="Stała obsługa obejmuje całą sieć firmy: od stanowisk i drukarek po serwery i konta w chmurze." />}
       >
         <div className={styles.headerActions}>
           <LinkButton href={`/kontakt?usluga=${service.slug}`} withArrow>
