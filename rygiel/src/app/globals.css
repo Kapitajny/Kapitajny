@@ -173,6 +173,11 @@ p {
   text-wrap: pretty;
 }
 
+/* Atrybut hidden musi wygrywać z klasami ustawiającymi display (grid, flex). */
+[hidden] {
+  display: none !important;
+}
+
 ul[role="list"],
 ol[role="list"] {
   list-style: none;

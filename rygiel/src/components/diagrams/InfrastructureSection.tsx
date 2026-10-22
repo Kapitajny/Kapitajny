@@ -24,7 +24,8 @@ export function InfrastructureSection({ pillars, layers, initial }: Infrastructu
   const last = activeIndexes[activeIndexes.length - 1] ?? 0;
 
   return (
-    <figure className={styles.figure} aria-labelledby={`${descriptionId}-caption`}>
+    // data-pillars: dane przełącznika dla statycznej wersji strony (bez Reacta).
+    <figure className={styles.figure} aria-labelledby={`${descriptionId}-caption`} data-pillars={JSON.stringify(pillars)}>
       <div className={styles.controls} role="group" aria-label="Pokaż zakres usługi na przekroju">
         {pillars.map((pillar) => (
           <button
@@ -42,11 +43,7 @@ export function InfrastructureSection({ pillars, layers, initial }: Infrastructu
 
       <div className={styles.sheet}>
         <div className={styles.ruler} aria-hidden="true" />
-        <div
-          className={styles.frame}
-          style={{ "--span-start": first, "--span-end": last + 1 } as React.CSSProperties}
-          data-pillar={active.slug}
-        >
+        <div className={styles.frame} style={{ "--span-start": first, "--span-end": last + 1 } as React.CSSProperties} data-pillar={active.slug}>
           <ol role="list" className={styles.layers}>
             {layers.map((layer, index) => {
               const note = active.layers[layer.id];

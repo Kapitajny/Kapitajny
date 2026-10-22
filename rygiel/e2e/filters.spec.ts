@@ -37,7 +37,7 @@ test("filtr bazy wiedzy i nawigacja między artykułami", async ({ page }) => {
   await page.goto("/baza-wiedzy");
   await page.getByRole("button", { name: "Kopie zapasowe" }).click();
   await expect(page.getByRole("status")).toContainText("Kopie zapasowe");
-  await expect(page.locator("main ol h2")).toHaveCount(1);
+  await expect(page.locator("main ol").getByRole("heading", { level: 2 })).toHaveCount(1);
   await page.getByRole("link", { name: /Kopie zapasowe 3-2-1 w praktyce/ }).click();
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Kopie zapasowe 3-2-1");
   await page.getByRole("navigation", { name: "Poprzedni i następny artykuł" }).getByRole("link", { name: /Następny artykuł/ }).click();

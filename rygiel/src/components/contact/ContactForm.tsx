@@ -154,11 +154,27 @@ export function ContactForm({ demoMode }: { demoMode: boolean }) {
   const describedBy = (field: ContactField, extra?: string) => [extra, errorFor(field) ? `${id}-${field}-error` : null].filter(Boolean).join(" ") || undefined;
 
   return (
-    <form ref={formRef} className={styles.form} action={formAction} onSubmit={handleSubmit} noValidate aria-describedby={demoMode ? `${id}-demo` : undefined}>
+    <form
+      ref={formRef}
+      className={styles.form}
+      action={formAction}
+      onSubmit={handleSubmit}
+      noValidate
+      aria-describedby={demoMode ? `${id}-demo` : undefined}
+      // Klasy komunikatów – używa ich statyczna wersja strony, która obsługuje formularz bez Reacta.
+      data-ui={JSON.stringify({
+        error: styles.error,
+        summary: styles.summary,
+        summaryTitle: styles.summaryTitle,
+        result: `${styles.result} ${styles.resultDemo}`,
+        resultTitle: styles.resultTitle,
+        resultActions: styles.resultActions,
+        secondaryButton: buttonClass({ variant: "secondary" }),
+      })}
+    >
       {demoMode ? (
         <p id={`${id}-demo`} className={styles.demoNotice}>
-          <strong>Tryb demonstracyjny.</strong> Wysyłka poczty nie jest skonfigurowana – formularz sprawdzi dane, ale wiadomość nie zostanie nikomu
-          przekazana.
+          <strong>Tryb demonstracyjny.</strong> Wysyłka poczty nie jest skonfigurowana – formularz sprawdzi dane, ale wiadomość nie zostanie nikomu przekazana.
         </p>
       ) : null}
 

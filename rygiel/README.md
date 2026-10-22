@@ -39,6 +39,16 @@ Brak zależności runtime poza `next`, `react`, `react-dom` i `server-only`.
 Pierwsze uruchomienie trwa kilka minut (instalacja pakietów i build), kolejne – kilkadziesiąt sekund. Port 3001 pozwala
 uruchomić równolegle stronę kawiarni z katalogu głównego (port 3000).
 
+## Podgląd online (Artifact)
+
+Wersja do obejrzenia bez instalacji jest opublikowana jako prywatny Artifact na claude.ai:
+https://claude.ai/artifact/P5nsbqsPBYvKdKWtJ4pKKe (dostęp ma właściciel i osoby, którym go udostępni).
+
+To statyczny zrzut wszystkich podstron w jednym pliku: podstrony przełączają się bez przeładowania, a menu, FAQ,
+przekrój infrastruktury, filtry i formularz obsługuje lekki skrypt `scripts/podglad/app.js`. Formularz działa tylko
+w trybie demonstracyjnym. Aby odświeżyć podgląd po zmianach: `npm run build`, `npm run start -- --port 3001`,
+a następnie `node scripts/podglad/build.mjs` – plik powstaje w `.podglad/rygiel-podglad.html`.
+
 ## Instalacja i uruchomienie
 
 ```bash

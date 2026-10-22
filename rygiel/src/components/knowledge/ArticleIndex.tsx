@@ -19,13 +19,13 @@ export function ArticleIndex({ articles }: { articles: ArticleSummary[] }) {
   const categories = Object.entries(articleCategories) as [ArticleCategory, string][];
 
   return (
-    <div className={styles.root}>
-      <div className={styles.filters} role="group" aria-label="Filtr kategorii artykułów">
-        <button type="button" className={styles.chip} aria-pressed={category === "all"} onClick={() => setCategory("all")}>
+    <div className={styles.root} data-article-index="">
+      <div className={styles.filters} role="group" aria-label="Filtr kategorii artykułów" data-filter-key="category">
+        <button type="button" className={styles.chip} aria-pressed={category === "all"} onClick={() => setCategory("all")} data-value="all">
           Wszystkie tematy
         </button>
         {categories.map(([key, label]) => (
-          <button key={key} type="button" className={styles.chip} aria-pressed={category === key} onClick={() => setCategory(key)}>
+          <button key={key} type="button" className={styles.chip} aria-pressed={category === key} onClick={() => setCategory(key)} data-value={key}>
             {label}
           </button>
         ))}
@@ -35,33 +35,31 @@ export function ArticleIndex({ articles }: { articles: ArticleSummary[] }) {
         {category === "all" ? `Wszystkie artykuły: ${articles.length}` : `Artykuły w kategorii „${articleCategories[category]}”: ${visible.length}`}
       </p>
 
-      {visible.length === 0 ? (
-        <div className={styles.empty}>
-          <p>W tej kategorii nie ma jeszcze artykułów.</p>
-          <button type="button" className={styles.reset} onClick={() => setCategory("all")}>
-            Pokaż wszystkie artykuły
-          </button>
-        </div>
-      ) : (
-        <ol role="list" className={styles.list}>
-          {visible.map((article) => (
-            <li key={article.slug} className={styles.item}>
-              <p className={styles.meta}>
-                <span>{articleCategories[article.category]}</span>
-                <span>{article.minutes} min czytania</span>
-              </p>
-              <div className={styles.body}>
-                <h2 className={styles.title}>
-                  <Link href={`/baza-wiedzy/${article.slug}`} className={styles.link}>
-                    {article.title}
-                  </Link>
-                </h2>
-                <p className={styles.description}>{article.description}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      )}
+      <div className={styles.empty} hidden={visible.length > 0} data-filter-empty="">
+        <p>W tej kategorii nie ma jeszcze artykułów.</p>
+        <button type="button" className={styles.reset} onClick={() => setCategory("all")} data-filter-reset="">
+          Pokaż wszystkie artykuły
+        </button>
+      </div>
+
+      <ol role="list" className={styles.list} hidden={visible.length === 0}>
+        {articles.map((article) => (
+          <li key={article.slug} className={styles.item} hidden={!visible.includes(article)} data-category={article.category}>
+            <p className={styles.meta}>
+              <span>{articleCategories[article.category]}</span>
+              <span>{article.minutes} min czytania</span>
+            </p>
+            <div className={styles.body}>
+              <h2 className={styles.title}>
+                <Link href={`/baza-wiedzy/${article.slug}`} className={styles.link}>
+                  {article.title}
+                </Link>
+              </h2>
+              <p className={styles.description}>{article.description}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
     </div>
   );
 }
