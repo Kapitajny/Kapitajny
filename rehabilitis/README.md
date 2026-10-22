@@ -1,0 +1,123 @@
+# REHABILITIS – strona gabinetu rehabilitacji i fizjoterapii
+
+Jednostronicowa strona gabinetu (usługi, pierwsza wizyta, wartości, o gabinecie, cennik, opinie, FAQ, kontakt)
+z formularzem prośby o kontakt, mapą dojazdu wczytywaną po zgodzie oraz dokumentami: polityką prywatności i
+informacją o plikach cookies.
+
+> **Wersja robocza.** Strona nie zawiera wymyślonych danych: telefon, e-mail, adres, godziny, ceny, dane
+> fizjoterapeuty i część odpowiedzi w FAQ są oznaczone „do uzupełnienia”. Dopóki brakuje danych kontaktowych,
+> na górze strony widnieje pasek „Wersja robocza strony”.
+
+## Stack
+
+- **Next.js 16** (App Router, Turbopack, Cache Components), **React 19**, **TypeScript**
+- **Tailwind CSS 4** – tokeny kolorów i typografii w `src/app/globals.css`
+- Kroje: **Newsreader** (nagłówki, szeryfowy) i **Hanken Grotesk** (tekst), ładowane przez `next/font`
+- **Vitest** – testy walidacji formularza i API kontaktowego
+
+Wymagany **Node.js 22.13+**. Projekt jest niezależny od strony NOIR COFFEE z katalogu nadrzędnego – ma własne
+`package.json`, zależności i konfigurację.
+
+## Uruchomienie
+
+Bez terminala: dwuklik `URUCHOM-WINDOWS.bat` (Windows) albo `URUCHOM-MAC.command` (Mac) w tym katalogu.
+
+Z terminala:
+
+```bash
+cd rehabilitis
+npm install
+cp .env.example .env.local     # opcjonalnie: podłączenie formularza, kalendarza, map
+npm run dev                    # http://localhost:3000
+```
+
+Kontrole jakości:
+
+```bash
+npm run lint && npm run typecheck && npm test && npm run build
+```
+
+## Gdzie co edytować (★ = pliki dla właściciela)
+
+```
+src/config/site.ts        ★ nazwa marki, telefon, e-mail, adres, godziny, dane firmy, link do rezerwacji
+src/config/images.ts      ★ zdjęcia: plik → miejsce na stronie, teksty alternatywne, oznaczenie „poglądowe”
+src/data/services.ts      ★ usługi (opis, zakres, zdjęcie/motyw, potwierdzenie przez gabinet)
+src/data/pricing.ts       ★ cennik, czas trwania, formy płatności
+src/data/faq.ts           ★ pytania i odpowiedzi ([[tekst]] = oznaczenie „do uzupełnienia”)
+src/data/team.ts          ★ fizjoterapeuta: imię i nazwisko, wykształcenie, kwalifikacje, doświadczenie
+src/data/testimonials.ts  ★ prawdziwe opinie pacjentów (pusta lista = spokojny pusty stan)
+src/app/                  strona główna, polityka prywatności, cookies, sitemap, robots, obraz OG, API
+  api/contact             przyjmuje formularz i przekazuje go do gabinetu (e-mail lub webhook)
+src/components/home/      sekcje strony głównej
+src/components/layout/    nagłówek, stopka, pasek akcji na telefonach, pasek wersji roboczej
+src/lib/contact.ts        pola i walidacja formularza (wspólna dla przeglądarki i serwera)
+src/lib/server/           wysyłka zgłoszeń, limit żądań
+tests/                    testy Vitest
+public/images/rehab/      zdjęcia (lista w README.md w tym katalogu)
+```
+
+Nazwę marki zmienisz w jednym miejscu: `siteConfig.name` w `src/config/site.ts` (logo, tytuły, stopka, OG).
+
+## Formularz kontaktowy
+
+Formularz zbiera: imię, preferowany sposób kontaktu, telefon **albo** e-mail, preferowany dzień i porę dnia,
+opcjonalnie usługę i krótką wiadomość. Nie prosi o informacje o stanie zdrowia. Przycisk „Zapytaj o wizytę”
+przy usłudze przewija do formularza i podstawia tę usługę.
+
+Komunikat o sukcesie pojawia się **tylko**, gdy serwer przekaże zgłoszenie dalej. Do wyboru (można oba):
+
+1. **E-mail przez [Resend](https://resend.com)** – ustaw `RESEND_API_KEY`, `CONTACT_EMAIL_TO` (skrzynka
+   gabinetu) i `CONTACT_EMAIL_FROM` (nadawca w domenie zweryfikowanej w Resend). Odpowiedź na e-mail trafi
+   do pacjenta, jeśli wybrał kontakt mailowy.
+2. **Webhook** – `CONTACT_WEBHOOK_URL` (+ opcjonalnie `CONTACT_WEBHOOK_SECRET`, wysyłany jako
+   `Authorization: Bearer …`). Endpoint dostaje JSON
+   `{ type: "contact_request", submittedAt, source, request: {...}, summary }`. Nadaje się do Make/Zapier,
+   arkusza, CRM albo systemu rezerwacji.
+
+Bez konfiguracji API zwraca `503 CONTACT_NOT_CONFIGURED`, a formularz informuje, że zgłoszenie **nie zostało
+wysłane**, i podaje telefon/e-mail gabinetu. Wysyłka jest chroniona limitem 5 zgłoszeń / 10 min na adres IP
+(w pamięci procesu – przy wielu instancjach zastąp go np. Redisem) i ukrytym polem-pułapką na boty.
+
+## Rezerwacja online
+
+Strona nie udaje rezerwacji. Bez konfiguracji przyciski „Umów wizytę” prowadzą do formularza prośby o kontakt.
+Po ustawieniu `NEXT_PUBLIC_BOOKING_URL` (link do kalendarza w zewnętrznym systemie rezerwacji) wszystkie
+przyciski „Umów wizytę” otwierają kalendarz w nowej karcie, a nad formularzem pojawia się kafelek
+„Zarezerwuj termin online”. Formularz zostaje jako alternatywa. Głębszą integrację (np. wolne terminy na
+stronie) można dodać przez API wybranego systemu – webhook formularza może też tworzyć wstępne zgłoszenia.
+
+## Mapa i lokalne SEO
+
+- Mapa pojawia się automatycznie po uzupełnieniu adresu w `src/config/site.ts`. Wczytuje się dopiero po
+  kliknięciu „Wczytaj mapę” (Google zapisuje cookies); zgodę można cofnąć na stronie `/cookies`.
+  Z kluczem `NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY` używane jest oficjalne Maps Embed API.
+- Dane strukturalne `schema.org/Physiotherapy` (nazwa, adres, telefon, e-mail) są generowane dopiero, gdy
+  adres i telefon są uzupełnione – bez kwalifikacji, ocen ani opinii.
+- Po wpisaniu miasta w `siteConfig.city` trafia ono do tytułu strony, nagłówka hero, stopki i obrazu OG.
+- Strona ma unikalne tytuły i opisy, kanoniczne adresy, Open Graph (`/opengraph-image`), `sitemap.xml`
+  i `robots.txt`. Indeksowanie jest wyłączone do czasu ustawienia `NEXT_PUBLIC_ALLOW_INDEXING=true`.
+
+## Dostępność i zachowanie
+
+Link „Przejdź do treści”, widoczne stany focus, menu mobilne na natywnym `<dialog>` (Esc, pułapka fokusu),
+FAQ na natywnych `<details>`, formularz z etykietami, komunikatami błędów powiązanymi z polami i fokusem na
+pierwszym błędnym polu. Kontrast kolorów tekstu ≥ 4.5:1. Animacje są subtelne i wyłączają się przy
+`prefers-reduced-motion`. Na telefonach stały pasek z „Zadzwoń” (gdy numer jest uzupełniony) i „Umów wizytę”.
+
+## Przed publikacją
+
+- [ ] `src/config/site.ts`: telefon, e-mail, adres, godziny otwarcia, miasto, dane firmy (nazwa, NIP).
+- [ ] `src/data/services.ts`: potwierdzić usługi (`confirmed: true`) lub usunąć te, których gabinet nie świadczy.
+- [ ] `src/data/pricing.ts`: ceny, czas trwania, formy płatności; usunąć pakiety, jeśli nie są oferowane.
+- [ ] `src/data/team.ts`: imię i nazwisko, potwierdzone wykształcenie, kwalifikacje, doświadczenie;
+      wgrać `public/images/rehab/fizjoterapeuta-portret.jpg` i `gabinet-wnetrze.jpg`.
+- [ ] `src/data/faq.ts`: dopasować odpowiedzi do zasad gabinetu (NFZ, czas wizyt, płatności, odwoływanie).
+- [ ] Zdjęcia: podmienić na wersje w wyższej rozdzielczości, potwierdzić prawa do użycia; dla zdjęć z
+      prawdziwego gabinetu ustawić `illustrative: false` (za zgodą osób na zdjęciach).
+- [ ] Podłączyć formularz (Resend lub webhook) i wysłać zgłoszenie testowe na produkcji.
+- [ ] Opcjonalnie: `NEXT_PUBLIC_BOOKING_URL`, `NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY`.
+- [ ] Polityka prywatności i cookies: uzupełnić dane administratora, dostawców, okres przechowywania –
+      i dać do weryfikacji prawnikowi.
+- [ ] Opinie: dodać tylko prawdziwe, za zgodą autorów.
+- [ ] Ustawić `NEXT_PUBLIC_SITE_URL`, HTTPS, a na końcu `NEXT_PUBLIC_ALLOW_INDEXING=true`.

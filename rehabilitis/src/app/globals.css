@@ -1,0 +1,440 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+ * REHABILITIS – system wizualny
+ * Ciepła biel jako tło, ciemna zieleń dla akcentów i działań, szałwia i beż
+ * do spokojnego podziału sekcji, grafit dla tekstu.
+ * ------------------------------------------------------------------------- */
+
+@theme {
+  /* Paleta marki */
+  --color-forest: #23483d;
+  --color-forest-deep: #1a372f;
+  --color-sage: #dce7de;
+  --color-sage-deep: #c6d6ca;
+  --color-paper: #faf9f6;
+  --color-graphite: #292f2c;
+  --color-sand: #ede5d9;
+
+  /* Kolory pomocnicze (kontrast min. 4.5:1 na jasnych tłach) */
+  --color-ink: #1d2320;
+  --color-muted: #59625d;
+  --color-moss: #3f6355;
+  --color-line: #e2ddd3;
+  --color-success: #2b6a4c;
+  --color-danger: #a0392a;
+
+  --font-serif: var(--font-newsreader), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --shadow-soft: 0 1px 2px rgb(29 35 32 / 0.04), 0 10px 30px -14px rgb(29 35 32 / 0.2);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    interpolate-size: allow-keywords;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-graphite);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    color: var(--color-ink);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-forest);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-forest);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  html:has(dialog[open]:modal) {
+    overflow: hidden;
+  }
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 82rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-x {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  .section-y {
+    padding-block: 5.5rem;
+  }
+  @media (min-width: 1024px) {
+    .section-y {
+      padding-block: 8rem;
+    }
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-moss);
+  }
+
+  .display-1 {
+    font-size: clamp(2.6rem, 1.6rem + 4vw, 5.1rem);
+    line-height: 1.02;
+  }
+  .display-2 {
+    font-size: clamp(2.1rem, 1.5rem + 2.4vw, 3.6rem);
+  }
+  .lead {
+    font-size: clamp(1.08rem, 1rem + 0.35vw, 1.25rem);
+    line-height: 1.6;
+    color: var(--color-muted);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-height: 3rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.005em;
+    white-space: nowrap;
+    transition:
+      background-color 200ms var(--ease-soft),
+      color 200ms var(--ease-soft),
+      border-color 200ms var(--ease-soft),
+      transform 200ms var(--ease-soft);
+    cursor: pointer;
+  }
+  .btn:active {
+    transform: translateY(1px);
+  }
+  .btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  .btn-primary {
+    background: var(--color-forest);
+    color: var(--color-paper);
+  }
+  .btn-primary:hover:not(:disabled) {
+    background: var(--color-forest-deep);
+  }
+  .btn-secondary {
+    border: 1px solid color-mix(in oklab, var(--color-forest) 40%, transparent);
+    color: var(--color-forest);
+  }
+  .btn-secondary:hover:not(:disabled) {
+    border-color: var(--color-forest);
+    background: color-mix(in oklab, var(--color-forest) 6%, transparent);
+  }
+  .btn-light {
+    background: var(--color-paper);
+    color: var(--color-forest);
+  }
+  .btn-light:hover:not(:disabled) {
+    background: var(--color-sage);
+  }
+  .btn-sm {
+    min-height: 2.6rem;
+    padding: 0.5rem 1.1rem;
+    font-size: 0.9rem;
+  }
+
+  /* Link tekstowy ze strzałką – drugorzędne działania (np. „Zapytaj o wizytę”) */
+  .link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    font-weight: 600;
+    color: var(--color-forest);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.35em;
+    text-decoration-color: color-mix(in oklab, currentColor 35%, transparent);
+    transition: text-decoration-color 200ms var(--ease-soft);
+  }
+  .link-arrow:hover {
+    text-decoration-color: currentColor;
+  }
+  .link-arrow svg {
+    transition: transform 250ms var(--ease-soft);
+  }
+  .link-arrow:hover svg {
+    transform: translateX(3px);
+  }
+
+  .link-quiet {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+    text-decoration-color: color-mix(in oklab, currentColor 40%, transparent);
+    transition: text-decoration-color 200ms var(--ease-soft);
+  }
+  .link-quiet:hover {
+    text-decoration-color: currentColor;
+  }
+
+  /* Pola formularza */
+  .field-label {
+    display: block;
+    margin-bottom: 0.45rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  .field-hint {
+    font-weight: 400;
+    color: var(--color-muted);
+  }
+  .field-input {
+    width: 100%;
+    min-height: 3.1rem;
+    padding: 0.7rem 0.95rem;
+    border: 1px solid #c9c4b9;
+    border-radius: 0.5rem;
+    background: #fff;
+    color: var(--color-ink);
+    font-size: 1rem;
+    transition:
+      border-color 200ms var(--ease-soft),
+      box-shadow 200ms var(--ease-soft);
+  }
+  .field-input::placeholder {
+    color: #858c88;
+  }
+  .field-input:focus {
+    outline: none;
+    border-color: var(--color-forest);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-forest) 18%, transparent);
+  }
+  .field-input[aria-invalid="true"] {
+    border-color: var(--color-danger);
+  }
+  .field-error {
+    margin-top: 0.4rem;
+    font-size: 0.88rem;
+    color: var(--color-danger);
+  }
+  select.field-input {
+    appearance: none;
+    padding-right: 2.5rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2323483d' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+  }
+
+  /* Łuk – motyw kadrowania zdjęć (nawiązanie do zakresu ruchu w stawie) */
+  .arch {
+    border-radius: 999px 999px 0.75rem 0.75rem;
+  }
+
+  /* Okna modalne (natywny <dialog>) – menu mobilne */
+  .sheet {
+    margin: 0;
+    max-width: none;
+    max-height: none;
+    padding: 0;
+    border: 0;
+    background: var(--color-paper);
+    color: var(--color-graphite);
+    opacity: 0;
+    transition:
+      opacity 260ms var(--ease-soft),
+      transform 320ms var(--ease-soft),
+      overlay 320ms allow-discrete,
+      display 320ms allow-discrete;
+  }
+  .sheet[open] {
+    opacity: 1;
+    transform: none;
+  }
+  .sheet::backdrop {
+    background: rgb(29 35 32 / 0);
+    transition:
+      background-color 260ms var(--ease-soft),
+      overlay 320ms allow-discrete,
+      display 320ms allow-discrete;
+  }
+  .sheet[open]::backdrop {
+    background: rgb(29 35 32 / 0.45);
+  }
+  @starting-style {
+    .sheet[open] {
+      opacity: 0;
+    }
+    .sheet[open]::backdrop {
+      background: rgb(29 35 32 / 0);
+    }
+  }
+  .sheet-full {
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
+    transform: translateY(-0.75rem);
+  }
+  @starting-style {
+    .sheet-full[open] {
+      transform: translateY(-0.75rem);
+    }
+  }
+
+  /* FAQ – natywne <details> z płynnym rozwijaniem tam, gdzie przeglądarka to wspiera */
+  .faq-item::details-content {
+    block-size: 0;
+    overflow-y: clip;
+    transition:
+      block-size 350ms var(--ease-soft),
+      content-visibility 350ms allow-discrete;
+  }
+  .faq-item[open]::details-content {
+    block-size: auto;
+  }
+  .faq-item summary {
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item .faq-icon {
+    transition: transform 300ms var(--ease-soft);
+  }
+  .faq-item[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  /* Wejście sekcji hero */
+  .rise {
+    animation: rise 900ms var(--ease-soft) both;
+    animation-delay: var(--rise-delay, 0ms);
+  }
+
+  /* Pojawianie się przy przewijaniu – aktywne tylko z JS i bez ograniczenia ruchu */
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 800ms var(--ease-soft),
+      transform 800ms var(--ease-soft);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .js .reveal[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Dokumenty (polityka prywatności, cookies) */
+  .prose-legal {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+  .prose-legal h2 {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+    scroll-margin-top: 6rem;
+  }
+  .prose-legal p,
+  .prose-legal ul {
+    margin-bottom: 1rem;
+  }
+  .prose-legal ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+  }
+  .prose-legal li {
+    margin-bottom: 0.4rem;
+  }
+  .prose-legal a {
+    color: var(--color-forest);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .prose-legal table {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    border-collapse: collapse;
+    font-size: 0.94rem;
+  }
+  .prose-legal th,
+  .prose-legal td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid var(--color-line);
+    text-align: left;
+    vertical-align: top;
+  }
+  .prose-legal th {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
