@@ -16,7 +16,7 @@ export function MapConsentControl() {
           : "Mapa Google nie wczyta się automatycznie – w tej przeglądarce nie ma zapisanej zgody."}
       </p>
       {consent && (
-        <button type="button" className="btn btn-secondary btn-sm" onClick={() => setConsent(false)}>
+        <button type="button" className="btn btn-outline btn-sm" onClick={() => setConsent(false)}>
           Cofnij zgodę na mapę
         </button>
       )}

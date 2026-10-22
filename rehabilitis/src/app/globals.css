@@ -2,33 +2,30 @@
 
 /* ---------------------------------------------------------------------------
  * REHABILITIS – system wizualny
- * Ciepła biel jako tło, ciemna zieleń dla akcentów i działań, szałwia i beż
- * do spokojnego podziału sekcji, grafit dla tekstu.
+ * Praktyczny, spokojny wygląd lokalnego gabinetu: ciepła biel jako tło,
+ * ciemna zieleń dla działań i stałych elementów (górny pasek, stopka),
+ * szałwia dla paneli informacyjnych, beż dla wyróżnionych bloków.
  * ------------------------------------------------------------------------- */
 
 @theme {
-  /* Paleta marki */
   --color-forest: #23483d;
   --color-forest-deep: #1a372f;
   --color-sage: #dce7de;
-  --color-sage-deep: #c6d6ca;
   --color-paper: #faf9f6;
   --color-graphite: #292f2c;
   --color-sand: #ede5d9;
 
-  /* Kolory pomocnicze (kontrast min. 4.5:1 na jasnych tłach) */
   --color-ink: #1d2320;
   --color-muted: #59625d;
   --color-moss: #3f6355;
-  --color-line: #e2ddd3;
+  --color-line: #dcdcd4;
   --color-success: #2b6a4c;
   --color-danger: #a0392a;
 
-  --font-serif: var(--font-newsreader), "Iowan Old Style", Georgia, serif;
-  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-source-serif), Georgia, serif;
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
 
   --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
-  --shadow-soft: 0 1px 2px rgb(29 35 32 / 0.04), 0 10px 30px -14px rgb(29 35 32 / 0.2);
 }
 
 @layer base {
@@ -39,7 +36,7 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5.5rem;
+    scroll-padding-top: 5rem;
     -webkit-text-size-adjust: 100%;
   }
 
@@ -48,20 +45,25 @@
     color: var(--color-graphite);
     font-family: var(--font-sans);
     font-size: 1.0625rem;
-    line-height: 1.65;
-    text-rendering: optimizeLegibility;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
 
   h1,
-  h2,
-  h3 {
+  h2 {
     font-family: var(--font-serif);
+    font-weight: 600;
     color: var(--color-ink);
-    font-weight: 400;
-    line-height: 1.08;
-    letter-spacing: -0.02em;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
     text-wrap: balance;
+  }
+
+  h3 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: var(--color-ink);
+    line-height: 1.3;
   }
 
   p {
@@ -75,8 +77,8 @@
 
   :focus-visible {
     outline: 2px solid var(--color-forest);
-    outline-offset: 3px;
-    border-radius: 3px;
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 
   html:has(dialog[open]:modal) {
@@ -87,44 +89,36 @@
 @layer components {
   .container-x {
     width: 100%;
-    max-width: 82rem;
+    max-width: 76rem;
     margin-inline: auto;
     padding-inline: 1.25rem;
   }
   @media (min-width: 768px) {
     .container-x {
-      padding-inline: 2.5rem;
+      padding-inline: 2rem;
     }
   }
 
   .section-y {
-    padding-block: 5.5rem;
+    padding-block: 4.5rem;
   }
   @media (min-width: 1024px) {
     .section-y {
-      padding-block: 8rem;
+      padding-block: 6.5rem;
     }
   }
 
-  .eyebrow {
-    font-family: var(--font-sans);
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--color-moss);
+  /* Skala typograficzna (stosunek ok. 1.25) */
+  .h1 {
+    font-size: clamp(2.25rem, 1.6rem + 2.6vw, 3.6rem);
   }
-
-  .display-1 {
-    font-size: clamp(2.6rem, 1.6rem + 4vw, 5.1rem);
-    line-height: 1.02;
+  .h2 {
+    font-size: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
   }
-  .display-2 {
-    font-size: clamp(2.1rem, 1.5rem + 2.4vw, 3.6rem);
-  }
-  .lead {
-    font-size: clamp(1.08rem, 1rem + 0.35vw, 1.25rem);
-    line-height: 1.6;
+  .section-intro {
+    margin-top: 1rem;
+    max-width: 40rem;
+    font-size: 1.125rem;
     color: var(--color-muted);
   }
 
@@ -132,23 +126,18 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.55rem;
+    gap: 0.5rem;
     min-height: 3rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    font-size: 0.95rem;
+    padding: 0.7rem 1.4rem;
+    border-radius: 6px;
+    font-size: 1rem;
     font-weight: 600;
-    letter-spacing: 0.005em;
     white-space: nowrap;
     transition:
-      background-color 200ms var(--ease-soft),
-      color 200ms var(--ease-soft),
-      border-color 200ms var(--ease-soft),
-      transform 200ms var(--ease-soft);
+      background-color 150ms var(--ease-soft),
+      border-color 150ms var(--ease-soft),
+      color 150ms var(--ease-soft);
     cursor: pointer;
-  }
-  .btn:active {
-    transform: translateY(1px);
   }
   .btn:disabled {
     cursor: not-allowed;
@@ -156,72 +145,41 @@
   }
   .btn-primary {
     background: var(--color-forest);
-    color: var(--color-paper);
+    color: #fff;
   }
   .btn-primary:hover:not(:disabled) {
     background: var(--color-forest-deep);
   }
-  .btn-secondary {
-    border: 1px solid color-mix(in oklab, var(--color-forest) 40%, transparent);
+  .btn-outline {
+    border: 1.5px solid var(--color-forest);
     color: var(--color-forest);
+    background: transparent;
   }
-  .btn-secondary:hover:not(:disabled) {
-    border-color: var(--color-forest);
-    background: color-mix(in oklab, var(--color-forest) 6%, transparent);
-  }
-  .btn-light {
-    background: var(--color-paper);
-    color: var(--color-forest);
-  }
-  .btn-light:hover:not(:disabled) {
+  .btn-outline:hover:not(:disabled) {
     background: var(--color-sage);
   }
   .btn-sm {
-    min-height: 2.6rem;
-    padding: 0.5rem 1.1rem;
-    font-size: 0.9rem;
+    min-height: 2.5rem;
+    padding: 0.45rem 1rem;
+    font-size: 0.95rem;
   }
 
-  /* Link tekstowy ze strzałką – drugorzędne działania (np. „Zapytaj o wizytę”) */
-  .link-arrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    min-height: 2.75rem;
-    font-weight: 600;
+  .link {
     color: var(--color-forest);
+    font-weight: 600;
     text-decoration: underline;
     text-decoration-thickness: 1px;
-    text-underline-offset: 0.35em;
-    text-decoration-color: color-mix(in oklab, currentColor 35%, transparent);
-    transition: text-decoration-color 200ms var(--ease-soft);
+    text-underline-offset: 0.2em;
   }
-  .link-arrow:hover {
-    text-decoration-color: currentColor;
-  }
-  .link-arrow svg {
-    transition: transform 250ms var(--ease-soft);
-  }
-  .link-arrow:hover svg {
-    transform: translateX(3px);
-  }
-
-  .link-quiet {
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.25em;
-    text-decoration-color: color-mix(in oklab, currentColor 40%, transparent);
-    transition: text-decoration-color 200ms var(--ease-soft);
-  }
-  .link-quiet:hover {
-    text-decoration-color: currentColor;
+  .link:hover {
+    text-decoration-thickness: 2px;
   }
 
   /* Pola formularza */
   .field-label {
     display: block;
-    margin-bottom: 0.45rem;
-    font-size: 0.92rem;
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: var(--color-ink);
   }
@@ -231,103 +189,72 @@
   }
   .field-input {
     width: 100%;
-    min-height: 3.1rem;
-    padding: 0.7rem 0.95rem;
-    border: 1px solid #c9c4b9;
-    border-radius: 0.5rem;
+    min-height: 3rem;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid #bfc3bb;
+    border-radius: 6px;
     background: #fff;
     color: var(--color-ink);
     font-size: 1rem;
-    transition:
-      border-color 200ms var(--ease-soft),
-      box-shadow 200ms var(--ease-soft);
   }
   .field-input::placeholder {
-    color: #858c88;
+    color: #7d8580;
   }
   .field-input:focus {
     outline: none;
     border-color: var(--color-forest);
-    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-forest) 18%, transparent);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-forest) 20%, transparent);
   }
   .field-input[aria-invalid="true"] {
     border-color: var(--color-danger);
   }
   .field-error {
-    margin-top: 0.4rem;
-    font-size: 0.88rem;
+    margin-top: 0.35rem;
+    font-size: 0.9rem;
     color: var(--color-danger);
   }
   select.field-input {
     appearance: none;
     padding-right: 2.5rem;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2323483d' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2323483d' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 0.9rem center;
+    background-position: right 0.85rem center;
   }
 
-  /* Łuk – motyw kadrowania zdjęć (nawiązanie do zakresu ruchu w stawie) */
-  .arch {
-    border-radius: 999px 999px 0.75rem 0.75rem;
-  }
-
-  /* Okna modalne (natywny <dialog>) – menu mobilne */
+  /* Menu mobilne (natywny <dialog>) */
   .sheet {
     margin: 0;
     max-width: none;
     max-height: none;
     padding: 0;
     border: 0;
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
     background: var(--color-paper);
     color: var(--color-graphite);
     opacity: 0;
     transition:
-      opacity 260ms var(--ease-soft),
-      transform 320ms var(--ease-soft),
-      overlay 320ms allow-discrete,
-      display 320ms allow-discrete;
+      opacity 200ms var(--ease-soft),
+      overlay 200ms allow-discrete,
+      display 200ms allow-discrete;
   }
   .sheet[open] {
     opacity: 1;
-    transform: none;
-  }
-  .sheet::backdrop {
-    background: rgb(29 35 32 / 0);
-    transition:
-      background-color 260ms var(--ease-soft),
-      overlay 320ms allow-discrete,
-      display 320ms allow-discrete;
-  }
-  .sheet[open]::backdrop {
-    background: rgb(29 35 32 / 0.45);
   }
   @starting-style {
     .sheet[open] {
       opacity: 0;
     }
-    .sheet[open]::backdrop {
-      background: rgb(29 35 32 / 0);
-    }
-  }
-  .sheet-full {
-    inset: 0;
-    width: 100vw;
-    height: 100dvh;
-    transform: translateY(-0.75rem);
-  }
-  @starting-style {
-    .sheet-full[open] {
-      transform: translateY(-0.75rem);
-    }
   }
 
-  /* FAQ – natywne <details> z płynnym rozwijaniem tam, gdzie przeglądarka to wspiera */
+  /* FAQ – natywne <details> z płynnym rozwijaniem */
   .faq-item::details-content {
     block-size: 0;
     overflow-y: clip;
     transition:
-      block-size 350ms var(--ease-soft),
-      content-visibility 350ms allow-discrete;
+      block-size 280ms var(--ease-soft),
+      content-visibility 280ms allow-discrete;
   }
   .faq-item[open]::details-content {
     block-size: auto;
@@ -339,30 +266,15 @@
     display: none;
   }
   .faq-item .faq-icon {
-    transition: transform 300ms var(--ease-soft);
+    transition: transform 250ms var(--ease-soft);
   }
   .faq-item[open] .faq-icon {
     transform: rotate(45deg);
   }
 
-  /* Wejście sekcji hero */
-  .rise {
-    animation: rise 900ms var(--ease-soft) both;
-    animation-delay: var(--rise-delay, 0ms);
-  }
-
-  /* Pojawianie się przy przewijaniu – aktywne tylko z JS i bez ograniczenia ruchu */
-  .js .reveal {
-    opacity: 0;
-    transform: translateY(16px);
-    transition:
-      opacity 800ms var(--ease-soft),
-      transform 800ms var(--ease-soft);
-    transition-delay: var(--reveal-delay, 0ms);
-  }
-  .js .reveal[data-visible="true"] {
-    opacity: 1;
-    transform: none;
+  /* Panel zakładek „Z czym możesz przyjść” – krótkie pojawienie się po zmianie */
+  .tab-panel-enter {
+    animation: panel-in 260ms var(--ease-soft);
   }
 
   /* Dokumenty (polityka prywatności, cookies) */
@@ -371,9 +283,9 @@
     line-height: 1.75;
   }
   .prose-legal h2 {
-    margin-top: 3rem;
-    margin-bottom: 1rem;
-    font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+    margin-top: 2.75rem;
+    margin-bottom: 0.9rem;
+    font-size: 1.6rem;
     scroll-margin-top: 6rem;
   }
   .prose-legal p,
@@ -392,33 +304,14 @@
     text-decoration: underline;
     text-underline-offset: 0.2em;
   }
-  .prose-legal table {
-    width: 100%;
-    margin-bottom: 1.5rem;
-    border-collapse: collapse;
-    font-size: 0.94rem;
-  }
-  .prose-legal th,
-  .prose-legal td {
-    padding: 0.7rem 0.8rem;
-    border-bottom: 1px solid var(--color-line);
-    text-align: left;
-    vertical-align: top;
-  }
-  .prose-legal th {
-    font-weight: 600;
-    color: var(--color-ink);
-  }
 }
 
-@keyframes rise {
+@keyframes panel-in {
   from {
     opacity: 0;
-    transform: translateY(14px);
   }
   to {
     opacity: 1;
-    transform: none;
   }
 }
 
@@ -432,9 +325,5 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-  .js .reveal {
-    opacity: 1;
-    transform: none;
   }
 }

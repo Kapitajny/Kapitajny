@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { legalNav, siteConfig } from "@/config/site";
+import { legalNav } from "@/config/site";
 import { AlertIcon, ArrowLeftIcon } from "@/components/ui/Icons";
 
 export interface LegalSection {
@@ -21,8 +21,7 @@ export function LegalPage({ title, intro, path, sections }: { title: string; int
       </Link>
 
       <header className="mt-10 max-w-3xl">
-        <p className="eyebrow">Dokumenty {siteConfig.name}</p>
-        <h1 className="display-1 mt-5">{title}</h1>
+        <h1 className="h1">{title}</h1>
         <div className="mt-6 text-lg leading-relaxed text-muted">{intro}</div>
       </header>
 
@@ -41,7 +40,7 @@ export function LegalPage({ title, intro, path, sections }: { title: string; int
         <aside className="lg:col-span-4 xl:col-span-3">
           <div className="lg:sticky lg:top-24">
             <nav aria-label="Spis treści">
-              <h2 className="eyebrow mb-4">Spis treści</h2>
+              <h2 className="mb-3 font-sans text-base font-semibold">Spis treści</h2>
               <ol className="space-y-2 border-l border-line text-sm">
                 {sections.map((section, i) => (
                   <li key={section.id}>
@@ -62,7 +61,7 @@ export function LegalPage({ title, intro, path, sections }: { title: string; int
           {sections.map((section, i) => (
             <section key={section.id} aria-labelledby={section.id}>
               <h2 id={section.id}>
-                <span className="mr-2 text-moss tabular-nums">{i + 1}.</span>
+                <span className="mr-2 tabular-nums">{i + 1}.</span>
                 {section.title}
               </h2>
               {section.content}
@@ -80,7 +79,7 @@ export function LegalPage({ title, intro, path, sections }: { title: string; int
                   </li>
                 ))}
             </ul>
-            <Link href="/" className="btn btn-secondary mt-6 !no-underline">
+            <Link href="/" className="btn btn-outline mt-6 !no-underline">
               <ArrowLeftIcon size={18} /> Wróć na stronę główną
             </Link>
           </nav>

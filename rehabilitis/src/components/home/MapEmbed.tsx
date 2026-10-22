@@ -37,10 +37,10 @@ export function MapEmbed({ address }: { address: string }) {
       ) : (
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
           <PinIcon size={28} className="text-forest" />
-          <p className="mt-3 font-serif text-xl text-ink">Mapa dojazdu</p>
+          <p className="mt-3 text-lg font-semibold text-ink">Mapa dojazdu</p>
           <p className="mt-2 max-w-xs text-sm leading-relaxed text-graphite">
             Po wczytaniu mapy Google może zapisywać pliki cookie i otrzyma Twój adres IP.{" "}
-            <Link href="/cookies" className="link-quiet text-forest">
+            <Link href="/cookies" className="link">
               Więcej informacji
             </Link>
           </p>
@@ -51,7 +51,7 @@ export function MapEmbed({ address }: { address: string }) {
             href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="link-quiet mt-3 text-sm text-forest"
+            className="link mt-3 text-sm"
           >
             Otwórz w Mapach Google<span className="sr-only"> (nowa karta)</span>
           </a>

@@ -37,7 +37,7 @@ export function Modal({
     <dialog
       ref={ref}
       aria-labelledby={labelledBy}
-      className={`sheet ${className}`}
+      className={`sheet ${className}`.trim()}
       onCancel={(event) => {
         event.preventDefault();
         onCloseRef.current();

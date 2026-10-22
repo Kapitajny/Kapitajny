@@ -18,12 +18,12 @@ export default async function OpengraphImage() {
     (
       <div style={{ display: "flex", width: "100%", height: "100%", background: "#faf9f6" }}>
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: photo ? 700 : 1200, padding: 72, background: "#23483d" }}>
-          <div style={{ display: "flex", fontSize: 30, letterSpacing: 6, color: "#dce7de" }}>{siteConfig.name}</div>
+          <div style={{ display: "flex", fontSize: 34, fontWeight: 700, color: "#ffffff" }}>{siteConfig.name}</div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ fontSize: 64, lineHeight: 1.1, color: "#faf9f6" }}>Odzyskaj swobodę ruchu.</div>
             <div style={{ fontSize: 64, lineHeight: 1.1, color: "#dce7de" }}>Zadbaj o siebie.</div>
           </div>
-          <div style={{ display: "flex", fontSize: 26, color: "#dce7de" }}>Rehabilitacja · Fizjoterapia{siteConfig.city ? ` · ${siteConfig.city}` : ""}</div>
+          <div style={{ display: "flex", fontSize: 28, color: "#dce7de" }}>Gabinet fizjoterapii i rehabilitacji{siteConfig.city ? ` w ${siteConfig.city}` : ""}</div>
         </div>
         {photo && (
           <img src={photo} alt="" width={500} height={630} style={{ objectFit: "cover", width: 500, height: 630 }} />

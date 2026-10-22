@@ -8,10 +8,8 @@ import type { ImageKey } from "@/config/images";
  * dopóki choć jedna usługa ma `false`, nad listą widnieje informacja, że zakres oferty jest
  * do potwierdzenia. Po weryfikacji ustaw `confirmed: true` (albo usuń usługę).
  *
- * Wizualizacja: `image` (klucz z config/images.ts) albo `motif` – spokojny detal graficzny.
+ * Zdjęcie: `image` (klucz z config/images.ts). Usługa bez zdjęcia ma jednolity, szałwiowy kafel.
  */
-
-export type ServiceMotif = "assessment" | "massage" | "recovery";
 
 export interface Service {
   slug: string;
@@ -20,20 +18,10 @@ export interface Service {
   /** Krótkie elementy usługi wyświetlane pod opisem. */
   includes: string[];
   image?: ImageKey;
-  motif?: ServiceMotif;
   confirmed: boolean;
 }
 
 export const SERVICES: Service[] = [
-  {
-    slug: "fizjoterapia-indywidualna",
-    title: "Fizjoterapia indywidualna",
-    summary:
-      "Spotkanie jeden na jeden z fizjoterapeutą. Zaczynamy od konsultacji i oceny funkcjonalnej, a na jej podstawie planujemy terapię odpowiednio do Twoich potrzeb i możliwości.",
-    includes: ["Konsultacja", "Ocena funkcjonalna", "Plan terapii"],
-    motif: "assessment",
-    confirmed: false,
-  },
   {
     slug: "rehabilitacja-ortopedyczna",
     title: "Rehabilitacja ortopedyczna",
@@ -41,6 +29,14 @@ export const SERVICES: Service[] = [
       "Wsparcie w odzyskiwaniu sprawności po urazach i zabiegach – prowadzone zgodnie z zaleceniami medycznymi oraz z uwzględnieniem tego, na co w danym momencie pozwala Twój organizm.",
     includes: ["Rehabilitacja po urazach", "Praca nad zakresem ruchu", "Stopniowanie obciążeń"],
     image: "serviceOrthopedic",
+    confirmed: false,
+  },
+  {
+    slug: "fizjoterapia-indywidualna",
+    title: "Fizjoterapia indywidualna",
+    summary:
+      "Spotkanie jeden na jeden z fizjoterapeutą. Zaczynamy od konsultacji i oceny funkcjonalnej, a na jej podstawie planujemy terapię odpowiednio do Twoich potrzeb i możliwości.",
+    includes: ["Konsultacja", "Ocena funkcjonalna", "Plan terapii"],
     confirmed: false,
   },
   {
@@ -58,16 +54,6 @@ export const SERVICES: Service[] = [
     summary:
       "Masaż dobierany do potrzeb pacjenta – zawsze po rozmowie i uwzględnieniu wskazań oraz przeciwwskazań. Jeśli masaż nie jest w danej sytuacji wskazany, zaproponujemy inną formę pracy.",
     includes: ["Wywiad przed zabiegiem", "Dobór techniki", "Wskazania i przeciwwskazania"],
-    motif: "massage",
-    confirmed: false,
-  },
-  {
-    slug: "rehabilitacja-pooperacyjna",
-    title: "Rehabilitacja pooperacyjna",
-    summary:
-      "Wsparcie procesu powrotu do sprawności po operacji – według zaleceń lekarza prowadzącego i indywidualnego planu rehabilitacji, z tempem dopasowanym do etapu gojenia.",
-    includes: ["Zgodnie z zaleceniami lekarza", "Indywidualny plan", "Kontrola postępów"],
-    motif: "recovery",
     confirmed: false,
   },
   {
@@ -77,6 +63,14 @@ export const SERVICES: Service[] = [
       "Ćwiczenia ukierunkowane na poprawę ruchomości, siły, równowagi i swobody w codziennych czynnościach – od wstawania z krzesła po wchodzenie po schodach.",
     includes: ["Ruchomość i siła", "Równowaga", "Codzienne czynności"],
     image: "serviceExercise",
+    confirmed: false,
+  },
+  {
+    slug: "rehabilitacja-pooperacyjna",
+    title: "Rehabilitacja pooperacyjna",
+    summary:
+      "Wsparcie procesu powrotu do sprawności po operacji – według zaleceń lekarza prowadzącego i indywidualnego planu rehabilitacji, z tempem dopasowanym do etapu gojenia.",
+    includes: ["Zgodnie z zaleceniami lekarza", "Indywidualny plan", "Kontrola postępów"],
     confirmed: false,
   },
 ];

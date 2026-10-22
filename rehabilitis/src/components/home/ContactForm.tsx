@@ -130,16 +130,16 @@ export function ContactForm({ fallbackContact }: { fallbackContact: string | nul
 
   if (status.kind === "success") {
     return (
-      <div ref={statusRef} tabIndex={-1} role="status" className="rounded-lg border border-success/30 bg-paper p-8 outline-none">
+      <div ref={statusRef} tabIndex={-1} role="status" className="rounded-lg border border-success/40 bg-white p-8 outline-none">
         <span className="flex h-12 w-12 items-center justify-center rounded-full bg-sage text-success">
           <CheckIcon size={24} />
         </span>
-        <h3 className="mt-6 text-[1.9rem]">Dziękujemy, zgłoszenie dotarło do gabinetu.</h3>
+        <h3 className="mt-5 text-2xl">Dziękujemy, zgłoszenie dotarło do gabinetu.</h3>
         <p className="mt-3 max-w-lg text-graphite">
           Skontaktujemy się z Tobą wybraną drogą, aby ustalić dogodny termin. Pamiętaj, że to jeszcze nie jest rezerwacja – termin zostanie potwierdzony
           podczas kontaktu.
         </p>
-        <button type="button" className="btn btn-secondary mt-8" onClick={() => setStatus({ kind: "idle" })}>
+        <button type="button" className="btn btn-outline mt-8" onClick={() => setStatus({ kind: "idle" })}>
           Wyślij kolejne zgłoszenie
         </button>
       </div>
@@ -150,7 +150,7 @@ export function ContactForm({ fallbackContact }: { fallbackContact: string | nul
   const messageLength = form.message.trim().length;
 
   return (
-    <form ref={formRef} onSubmit={submit} noValidate aria-describedby={id("intro")} className="relative rounded-lg bg-paper p-6 shadow-[var(--shadow-soft)] sm:p-8">
+    <form ref={formRef} onSubmit={submit} noValidate aria-describedby={id("intro")} className="relative rounded-lg border border-line bg-white p-6 sm:p-8">
       <p id={id("intro")} className="text-[0.95rem] text-muted">
         Formularz to prośba o kontakt – nie rezerwuje terminu. Odezwiemy się, aby wspólnie go ustalić. Pola oznaczone * są wymagane.
       </p>
@@ -184,7 +184,7 @@ export function ContactForm({ fallbackContact }: { fallbackContact: string | nul
               <label
                 key={method}
                 className={`flex min-h-12 cursor-pointer items-center gap-3 rounded-md border px-4 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-forest/40 ${
-                  form.contactMethod === method ? "border-forest bg-sage/60" : errors.contactMethod ? "border-danger" : "border-[#c9c4b9] bg-white"
+                  form.contactMethod === method ? "border-forest bg-sage/60" : errors.contactMethod ? "border-danger" : "border-[#bfc3bb] bg-white"
                 }`}
               >
                 <input
@@ -352,7 +352,7 @@ export function ContactForm({ fallbackContact }: { fallbackContact: string | nul
         </button>
         <p className="text-sm leading-relaxed text-muted">
           Dane wykorzystamy wyłącznie do odpowiedzi na zgłoszenie.{" "}
-          <Link href="/polityka-prywatnosci" className="link-quiet text-forest">
+          <Link href="/polityka-prywatnosci" className="link">
             Polityka prywatności
           </Link>
         </p>

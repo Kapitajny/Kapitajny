@@ -1,6 +1,7 @@
 # REHABILITIS – strona gabinetu rehabilitacji i fizjoterapii
 
-Jednostronicowa strona gabinetu (usługi, pierwsza wizyta, wartości, o gabinecie, cennik, opinie, FAQ, kontakt)
+Jednostronicowa strona gabinetu (dolegliwości według okolic ciała, usługi, pierwsza wizyta, wartości, o gabinecie
+i zespół, cennik, opinie, FAQ, kontakt)
 z formularzem prośby o kontakt, mapą dojazdu wczytywaną po zgodzie oraz dokumentami: polityką prywatności i
 informacją o plikach cookies.
 
@@ -12,7 +13,15 @@ informacją o plikach cookies.
 
 - **Next.js 16** (App Router, Turbopack, Cache Components), **React 19**, **TypeScript**
 - **Tailwind CSS 4** – tokeny kolorów i typografii w `src/app/globals.css`
-- Kroje: **Newsreader** (nagłówki, szeryfowy) i **Hanken Grotesk** (tekst), ładowane przez `next/font`
+- Kroje: **Source Serif 4** (nagłówki H1/H2) i **Figtree** (tekst, nagłówki H3), ładowane przez `next/font`
+
+### Kierunek wizualny
+
+Wygląd wzoruje się na praktycznych stronach lokalnych gabinetów fizjoterapii: górny pasek z adresem, godzinami
+i telefonem, wyraźny przycisk „Umów wizytę”, pasek najważniejszych informacji o pierwszej wizycie (czas, cena,
+skierowanie, zapisy), sekcja „Z czym możesz przyjść?” z wyborem okolicy ciała, karty zespołu z numerem PWZFz
+i cennik w tabeli. Świadomie bez ozdobników typowych dla generowanych szablonów (etykiety wersalikami nad
+każdą sekcją, kursywne akcenty w nagłówkach, numeracja usług, animacje przy przewijaniu).
 - **Vitest** – testy walidacji formularza i API kontaktowego
 
 Wymagany **Node.js 22.13+**. Projekt jest niezależny od strony NOIR COFFEE z katalogu nadrzędnego – ma własne
@@ -42,7 +51,8 @@ npm run lint && npm run typecheck && npm test && npm run build
 ```
 src/config/site.ts        ★ nazwa marki, telefon, e-mail, adres, godziny, dane firmy, link do rezerwacji
 src/config/images.ts      ★ zdjęcia: plik → miejsce na stronie, teksty alternatywne, oznaczenie „poglądowe”
-src/data/services.ts      ★ usługi (opis, zakres, zdjęcie/motyw, potwierdzenie przez gabinet)
+src/data/conditions.ts    ★ „Z czym możesz przyjść?” – dolegliwości według okolic ciała
+src/data/services.ts      ★ usługi (opis, zakres, zdjęcie, potwierdzenie przez gabinet)
 src/data/pricing.ts       ★ cennik, czas trwania, formy płatności
 src/data/faq.ts           ★ pytania i odpowiedzi ([[tekst]] = oznaczenie „do uzupełnienia”)
 src/data/team.ts          ★ fizjoterapeuta: imię i nazwisko, wykształcenie, kwalifikacje, doświadczenie
@@ -102,7 +112,8 @@ stronie) można dodać przez API wybranego systemu – webhook formularza może 
 
 Link „Przejdź do treści”, widoczne stany focus, menu mobilne na natywnym `<dialog>` (Esc, pułapka fokusu),
 FAQ na natywnych `<details>`, formularz z etykietami, komunikatami błędów powiązanymi z polami i fokusem na
-pierwszym błędnym polu. Kontrast kolorów tekstu ≥ 4.5:1. Animacje są subtelne i wyłączają się przy
+pierwszym błędnym polu, zakładki dolegliwości obsługiwane strzałkami (wzorzec ARIA Tabs). Kontrast kolorów
+tekstu ≥ 4.5:1. Ruch pojawia się tylko w odpowiedzi na działanie (menu, FAQ, zakładki) i wyłącza się przy
 `prefers-reduced-motion`. Na telefonach stały pasek z „Zadzwoń” (gdy numer jest uzupełniony) i „Umów wizytę”.
 
 ## Przed publikacją
@@ -112,6 +123,7 @@ pierwszym błędnym polu. Kontrast kolorów tekstu ≥ 4.5:1. Animacje są subte
 - [ ] `src/data/pricing.ts`: ceny, czas trwania, formy płatności; usunąć pakiety, jeśli nie są oferowane.
 - [ ] `src/data/team.ts`: imię i nazwisko, potwierdzone wykształcenie, kwalifikacje, doświadczenie;
       wgrać `public/images/rehab/fizjoterapeuta-portret.jpg` i `gabinet-wnetrze.jpg`.
+- [ ] `src/data/conditions.ts`: usunąć okolice/dolegliwości, z którymi gabinet nie pracuje.
 - [ ] `src/data/faq.ts`: dopasować odpowiedzi do zasad gabinetu (NFZ, czas wizyt, płatności, odwoływanie).
 - [ ] Zdjęcia: podmienić na wersje w wyższej rozdzielczości, potwierdzić prawa do użycia; dla zdjęć z
       prawdziwego gabinetu ustawić `illustrative: false` (za zgodą osób na zdjęciach).

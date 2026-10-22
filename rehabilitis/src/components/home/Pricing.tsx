@@ -1,50 +1,50 @@
 import { PAYMENT_METHODS, PRICE_LIST } from "@/data/pricing";
-import { BookingLink } from "@/components/ui/BookingLink";
-import { Pending, PendingValue } from "@/components/ui/Pending";
-import { SectionHeading } from "./SectionHeading";
+import { PendingValue } from "@/components/ui/Pending";
 
 export function Pricing() {
   return (
-    <section id="cennik" aria-labelledby="cennik-title" className="section-y border-t border-line">
-      <div className="container-x grid gap-14 lg:grid-cols-12">
-        <div className="lg:col-span-4">
-          <SectionHeading id="cennik-title" eyebrow="Cennik">
-            Przejrzyste <em className="italic text-forest">zasady i ceny</em>
-          </SectionHeading>
-          <div className="mt-8 rounded-lg bg-sage p-6">
-            <p className="font-serif text-xl leading-snug text-ink">Zakres oraz czas terapii ustalane są indywidualnie.</p>
-            <p className="mt-3 text-[0.95rem] leading-relaxed text-graphite">
-              Liczbę i częstotliwość wizyt omawiamy po pierwszym spotkaniu, gdy wiemy już, jaka forma pracy będzie dla Ciebie odpowiednia.
-            </p>
-          </div>
-          <p className="mt-6 text-sm text-muted">
-            Formy płatności: {PAYMENT_METHODS?.length ? PAYMENT_METHODS.join(", ") : <Pending>akceptowane formy płatności</Pending>}
+    <section id="cennik" aria-labelledby="cennik-title" className="section-y border-t border-line bg-white">
+      <div className="container-x grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
+        <div>
+          <h2 id="cennik-title" className="h2">
+            Cennik
+          </h2>
+          <p className="section-intro">Zakres oraz czas terapii ustalane są indywidualnie – liczbę i częstotliwość wizyt omawiamy po pierwszym spotkaniu.</p>
+          <p className="mt-6 text-[0.95rem] text-muted">
+            Formy płatności: {PAYMENT_METHODS?.length ? <span className="text-ink">{PAYMENT_METHODS.join(", ")}</span> : <PendingValue />}
           </p>
         </div>
 
-        <div className="lg:col-span-7 lg:col-start-6">
-          <ul aria-label="Cennik usług" className="border-t border-line">
-            {PRICE_LIST.map((item) => (
-              <li key={item.title} className="grid grid-cols-[1fr_auto] gap-x-6 gap-y-2 border-b border-line py-6 sm:grid-cols-[1fr_auto_auto] sm:gap-x-8 sm:items-baseline">
-                <div className="col-span-2 sm:col-span-1">
-                  <h3 className="text-[1.45rem] leading-tight">{item.title}</h3>
-                  {item.note && <p className="mt-1.5 text-[0.92rem] text-muted">{item.note}</p>}
-                </div>
-                <p className="text-[0.95rem] text-muted sm:text-right">
-                  <span className="sr-only">Czas trwania: </span>
-                  {item.duration ?? <PendingValue label="Czas" />}
-                </p>
-                <p className="text-right font-serif text-xl text-forest">
-                  <span className="sr-only">Cena: </span>
-                  {item.price ?? <PendingValue label="Cena" />}
-                </p>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <p className="max-w-md text-[0.95rem] text-muted">Masz pytanie o koszt terapii w Twojej sytuacji? Zapytaj – chętnie wyjaśnimy przed wizytą.</p>
-            <BookingLink className="btn btn-secondary" />
-          </div>
+        <div>
+          <table className="w-full border-collapse text-left">
+            <caption className="sr-only">Cennik usług gabinetu</caption>
+            <thead>
+              <tr className="border-b-2 border-forest text-sm text-muted">
+                <th scope="col" className="py-3 pr-4 font-semibold">
+                  Usługa
+                </th>
+                <th scope="col" className="hidden w-32 py-3 pr-4 font-semibold sm:table-cell">
+                  Czas
+                </th>
+                <th scope="col" className="w-28 py-3 text-right font-semibold sm:w-36">
+                  Cena
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {PRICE_LIST.map((item) => (
+                <tr key={item.title} className="border-b border-line align-top">
+                  <th scope="row" className="py-4 pr-4 font-normal">
+                    <span className="block font-semibold text-ink">{item.title}</span>
+                    {item.note && <span className="mt-0.5 block text-[0.92rem] text-muted">{item.note}</span>}
+                    <span className="mt-1 block text-[0.92rem] sm:hidden">Czas: {item.duration ?? <PendingValue />}</span>
+                  </th>
+                  <td className="hidden py-4 pr-4 sm:table-cell">{item.duration ?? <PendingValue />}</td>
+                  <td className="py-4 text-right font-semibold text-forest">{item.price ?? <PendingValue />}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </section>

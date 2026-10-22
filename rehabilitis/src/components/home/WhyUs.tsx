@@ -1,60 +1,40 @@
-import { Reveal } from "@/components/ui/Reveal";
-import { SectionHeading } from "./SectionHeading";
-
 const VALUES = [
   {
-    title: "Indywidualne podejście do pacjenta",
-    text: "Nie ma dwóch takich samych historii. Terapię układamy wokół Twoich potrzeb, możliwości i codziennych aktywności.",
+    title: "Indywidualne podejście",
+    text: "Terapię układamy wokół Twoich potrzeb, możliwości i codziennych aktywności – nie według gotowego schematu.",
   },
   {
-    title: "Zrozumiałe wyjaśnianie kolejnych etapów",
-    text: "Mówimy prostym językiem, co robimy i dlaczego. Pytania są mile widziane na każdym etapie terapii.",
+    title: "Zrozumiałe wyjaśnienia",
+    text: "Mówimy prostym językiem, co robimy i dlaczego. Na każdym etapie możesz zadać pytanie.",
   },
   {
-    title: "Komfort i poczucie bezpieczeństwa",
+    title: "Komfort i bezpieczeństwo",
     text: "Pracujemy w tempie, które jest dla Ciebie akceptowalne, i reagujemy na to, jak się czujesz podczas wizyty.",
   },
   {
-    title: "Rehabilitacja planowana z myślą o Tobie",
-    text: "Plan uwzględnia Twoje cele – powrót do pracy, sportu czy swobodnego spaceru – i jest aktualizowany wraz z postępami.",
+    title: "Plan, który ma cel",
+    text: "Plan uwzględnia to, do czego chcesz wrócić – pracy, sportu czy swobodnego spaceru – i zmienia się wraz z postępami.",
   },
 ];
 
 export function WhyUs() {
   return (
-    <section aria-labelledby="dlaczego-title" className="section-y relative overflow-hidden bg-forest text-paper">
-      {/* Dyskretny łuk w tle – motyw zakresu ruchu */}
-      <svg aria-hidden="true" viewBox="0 0 600 600" className="pointer-events-none absolute -right-40 -top-40 w-[38rem] text-paper/[0.07] lg:-right-24">
-        <circle cx="300" cy="300" r="280" fill="none" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="300" cy="300" r="200" fill="none" stroke="currentColor" strokeWidth="1.5" />
-      </svg>
-
-      <div className="container-x relative grid gap-14 lg:grid-cols-12">
-        <div className="lg:col-span-5">
-          <SectionHeading id="dlaczego-title" eyebrow="Dlaczego warto" tone="light">
-            Dlaczego warto wybrać <em className="italic text-sage">nasz gabinet?</em>
-          </SectionHeading>
-          <blockquote className="mt-10 border-l border-sage/40 pl-6 font-serif text-[clamp(1.35rem,1.15rem+0.8vw,1.75rem)] italic leading-snug text-sage">
-            Dobra terapia to taka, w której wiesz, co się dzieje, czujesz się bezpiecznie i masz wpływ na kolejne kroki.
-          </blockquote>
+    <section aria-labelledby="dlaczego-title" className="section-y bg-forest text-white">
+      <div className="container-x grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
+        <div>
+          <h2 id="dlaczego-title" className="h2 !text-white">
+            Dlaczego warto wybrać nasz gabinet?
+          </h2>
+          <p className="mt-4 max-w-md text-lg text-white/80">Dobra terapia to taka, w której wiesz, co się dzieje, czujesz się bezpiecznie i masz wpływ na kolejne kroki.</p>
         </div>
-
-        <ul className="grid gap-x-10 sm:grid-cols-2 sm:pb-16 lg:col-span-7">
-          {VALUES.map((value, i) => (
-            <Reveal
-              as="li"
-              key={value.title}
-              delay={(i % 2) * 120}
-              className={`border-t border-paper/20 py-8 ${i % 2 === 1 ? "sm:translate-y-16" : ""}`}
-            >
-              <span aria-hidden="true" className="font-serif text-5xl italic leading-none text-sage/70">
-                {["i", "ii", "iii", "iv"][i]}
-              </span>
-              <h3 className="mt-5 text-[1.6rem] !text-paper">{value.title}</h3>
-              <p className="mt-3 leading-relaxed text-paper/80">{value.text}</p>
-            </Reveal>
+        <dl className="divide-y divide-white/20 border-y border-white/20">
+          {VALUES.map((value) => (
+            <div key={value.title} className="grid gap-2 py-6 sm:grid-cols-[13rem_1fr] sm:gap-8">
+              <dt className="text-lg font-semibold text-white">{value.title}</dt>
+              <dd className="text-white/85">{value.text}</dd>
+            </div>
           ))}
-        </ul>
+        </dl>
       </div>
     </section>
   );

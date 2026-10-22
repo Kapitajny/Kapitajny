@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getLocalBusinessJsonLd, serializeJsonLd } from "@/lib/structured-data";
 import { About } from "@/components/home/About";
+import { Conditions } from "@/components/home/Conditions";
 import { Contact } from "@/components/home/Contact";
 import { Faq } from "@/components/home/Faq";
 import { FirstVisit } from "@/components/home/FirstVisit";
@@ -20,6 +21,7 @@ export default function HomePage() {
     <>
       {jsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />}
       <Hero />
+      <Conditions />
       <Services />
       <FirstVisit />
       <WhyUs />

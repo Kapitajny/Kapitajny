@@ -16,7 +16,7 @@ export const siteConfig = {
   /** Nazwa marki – zmiana tutaj aktualizuje logo, tytuły stron, stopkę i metadane. */
   name: "REHABILITIS",
   /** Krótki opis pod logo. */
-  descriptor: "Rehabilitacja · Fizjoterapia",
+  descriptor: "Gabinet fizjoterapii i rehabilitacji",
   /** Miasto do lokalnego SEO i nagłówków, np. "Gdańsk". `null` = nie pokazujemy. */
   city: null as string | null,
   description:

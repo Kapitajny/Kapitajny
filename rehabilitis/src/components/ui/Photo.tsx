@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import type { ImageKey } from "@/config/images";
-import { Motif } from "./Motifs";
 import { useImage } from "./ImagesProvider";
 
 interface PhotoProps {
@@ -12,28 +11,24 @@ interface PhotoProps {
   className?: string;
   /** Zdjęcie widoczne od razu po wejściu (hero) – ładowane priorytetowo. */
   preload?: boolean;
-  /** Podpis w placeholderze, np. „Miejsce na zdjęcie fizjoterapeuty”. */
+  /** Tekst w miejscu brakującego zdjęcia, np. „Zdjęcie fizjoterapeuty”. */
   placeholderLabel?: string;
-  /** Czy pokazać podpis „Zdjęcie poglądowe” dla zdjęć oznaczonych `illustrative` (domyślnie tak). */
-  showIllustrativeNote?: boolean;
 }
 
 /**
  * Zdjęcie z centralnej mapy `config/images.ts`.
  * Kontener rodzica musi mieć wymiary i `position: relative` – obraz wypełnia go z `object-fit: cover`.
- * Jeśli pliku nie ma, renderowany jest spokojny placeholder w kolorach marki.
+ * Zdjęcia oznaczone `illustrative` dostają podpis „Zdjęcie poglądowe”. Brak pliku = spokojny placeholder.
  */
-export function Photo({ image, sizes, className = "", preload, placeholderLabel, showIllustrativeNote = true }: PhotoProps) {
+export function Photo({ image, sizes, className = "", preload, placeholderLabel }: PhotoProps) {
   const resolved = useImage(image);
 
   if (resolved.src) {
     return (
       <>
         <Image src={resolved.src} alt={resolved.alt} fill sizes={sizes} preload={preload} quality={85} className={`object-cover ${className}`} />
-        {resolved.illustrative && showIllustrativeNote && (
-          <span className="pointer-events-none absolute bottom-2 right-2 rounded-sm bg-paper/85 px-1.5 py-0.5 text-[0.68rem] font-medium tracking-wide text-graphite/80">
-            Zdjęcie poglądowe
-          </span>
+        {resolved.illustrative && (
+          <span className="pointer-events-none absolute bottom-2 left-2 rounded bg-white/85 px-1.5 py-0.5 text-xs text-graphite">Zdjęcie poglądowe</span>
         )}
       </>
     );
@@ -45,15 +40,15 @@ export function Photo({ image, sizes, className = "", preload, placeholderLabel,
       role="img"
       aria-label={placeholderLabel ?? resolved.alt}
       data-missing-image={resolved.expectedPath}
-      className={`absolute inset-0 flex flex-col items-center justify-center gap-3 bg-sage px-6 text-center text-forest ${className}`}
+      className={`absolute inset-0 flex flex-col items-center justify-center gap-2 bg-sage px-6 text-center ${className}`}
     >
-      <Motif motif="joint" className="w-28 opacity-70" />
-      {placeholderLabel && <span className="font-serif text-lg italic text-forest/80">{placeholderLabel}</span>}
-      {process.env.NODE_ENV === "development" && (
-        <span className="absolute left-2 top-2 max-w-[90%] truncate rounded bg-paper/85 px-2 py-1 font-mono text-[10px] text-graphite/70">
-          brak pliku: {resolved.expectedPath}
-        </span>
-      )}
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-moss" aria-hidden="true">
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <circle cx="9" cy="10" r="2" />
+        <path d="m21 16-5-5-8 8" />
+      </svg>
+      {placeholderLabel && <span className="text-[0.95rem] font-medium text-moss">{placeholderLabel}</span>}
+      {process.env.NODE_ENV === "development" && <span className="font-mono text-[10px] text-graphite/60">{resolved.expectedPath}</span>}
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { siteConfig } from "@/config/site";
-import { ExternalIcon } from "./Icons";
 
 /**
  * Przycisk „Umów wizytę”.
@@ -13,8 +12,7 @@ export function BookingLink({ className = "btn btn-primary", children = "Umów w
     return (
       <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer" className={className} onClick={onClick}>
         {children}
-        <ExternalIcon size={16} />
-        <span className="sr-only">(system rezerwacji otworzy się w nowej karcie)</span>
+        <span className="sr-only"> (system rezerwacji otworzy się w nowej karcie)</span>
       </a>
     );
   }
