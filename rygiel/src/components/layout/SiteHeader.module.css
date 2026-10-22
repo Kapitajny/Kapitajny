@@ -1,0 +1,77 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--c-graphite);
+  border-bottom: var(--border);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: var(--s-6);
+  height: var(--header-h);
+}
+
+.desktopNav {
+  margin-left: auto;
+}
+
+.list {
+  display: flex;
+  gap: var(--s-1);
+}
+
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: var(--s-3);
+  color: var(--c-paper-2);
+  font-size: var(--t-sm);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--dur-fast) ease;
+}
+
+/* Linia pod aktywną pozycją – jak znacznik na rysunku */
+.link::after {
+  content: "";
+  position: absolute;
+  left: var(--s-3);
+  right: var(--s-3);
+  bottom: 6px;
+  height: 2px;
+  background: var(--c-cobalt-ink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-med) var(--ease-out);
+}
+
+.link:hover {
+  color: var(--c-paper);
+}
+
+.link:hover::after {
+  transform: scaleX(0.35);
+}
+
+.link[data-active] {
+  color: var(--c-paper);
+}
+
+.link[data-active]::after {
+  transform: scaleX(1);
+}
+
+.cta {
+  flex: none;
+}
+
+@media (max-width: 60rem) {
+  .desktopNav,
+  .cta {
+    display: none;
+  }
+}

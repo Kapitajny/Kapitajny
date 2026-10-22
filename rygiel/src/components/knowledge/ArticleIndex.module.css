@@ -1,0 +1,140 @@
+.root {
+  display: grid;
+  gap: var(--s-5);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+.chip {
+  min-height: 44px;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--c-line-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--c-paper-2);
+  font-size: var(--t-sm);
+  font-weight: 500;
+  transition:
+    background-color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    color var(--dur-fast) ease;
+}
+
+.chip:hover {
+  color: var(--c-paper);
+  border-color: var(--c-paper-2);
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--c-paper);
+  border-color: var(--c-paper);
+  color: var(--c-graphite);
+}
+
+.status {
+  font-size: var(--t-sm);
+  color: var(--c-paper-2);
+}
+
+.list {
+  display: grid;
+  border-top: 2px solid var(--c-paper);
+}
+
+.item {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+  gap: var(--s-2) var(--s-5);
+  padding-block: var(--s-6);
+  border-bottom: var(--border);
+}
+
+.meta {
+  display: grid;
+  align-content: start;
+  gap: var(--s-1);
+  padding-top: 0.35rem;
+  font-size: var(--t-xs);
+  font-stretch: var(--wdth-label);
+  font-weight: 600;
+  color: var(--c-paper-3);
+}
+
+.meta span:first-child {
+  color: var(--c-cobalt-ink);
+}
+
+.body {
+  display: grid;
+  gap: var(--s-3);
+}
+
+.title {
+  font-size: var(--t-xl);
+  font-stretch: 108%;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.link:focus-visible {
+  outline: none;
+}
+
+.link:focus-visible::after {
+  outline: 2px solid var(--c-cobalt-ink);
+  outline-offset: -2px;
+}
+
+.item:hover .title {
+  color: var(--c-cobalt-ink);
+}
+
+.description {
+  max-width: 64ch;
+  color: var(--c-paper-2);
+}
+
+.empty {
+  display: grid;
+  gap: var(--s-2);
+  padding: var(--s-6) var(--s-5);
+  border: 1px dashed var(--c-line-strong);
+}
+
+.reset {
+  justify-self: start;
+  min-height: 44px;
+  border: 0;
+  background: none;
+  color: var(--c-cobalt-ink);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+@media (max-width: 48rem) {
+  .item {
+    grid-template-columns: 100%;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-4);
+    padding-top: 0;
+  }
+}

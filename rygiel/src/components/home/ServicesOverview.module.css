@@ -1,0 +1,154 @@
+.section {
+  padding-block: var(--section-y);
+}
+
+.table,
+.rows {
+  display: grid;
+}
+
+.head,
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 4.5fr) minmax(0, 3.5fr);
+  gap: var(--s-6);
+}
+
+.head {
+  padding-bottom: var(--s-3);
+  border-bottom: 1px solid var(--c-paper-2);
+  font-size: var(--t-xs);
+  font-stretch: var(--wdth-label);
+  font-weight: 600;
+  color: var(--c-paper-3);
+}
+
+.row {
+  padding-block: var(--s-6);
+  border-bottom: var(--border);
+}
+
+.name {
+  display: grid;
+  align-content: start;
+  gap: var(--s-2);
+}
+
+.title {
+  font-size: var(--t-2xl);
+  font-stretch: 118%;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.english {
+  font-size: var(--t-xs);
+  font-stretch: var(--wdth-label);
+  color: var(--c-paper-3);
+}
+
+.more {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: var(--s-2);
+  font-size: var(--t-sm);
+  font-weight: 600;
+}
+
+.cellLabel {
+  display: none;
+  margin-bottom: var(--s-2);
+  font-size: var(--t-xs);
+  font-stretch: var(--wdth-label);
+  font-weight: 600;
+  color: var(--c-paper-3);
+}
+
+.problems {
+  display: grid;
+  gap: var(--s-3);
+  color: var(--c-paper-2);
+}
+
+.problems li {
+  position: relative;
+  padding-left: var(--s-5);
+}
+
+.problems li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.8em;
+  width: 12px;
+  border-top: 1px solid var(--c-line-strong);
+}
+
+.scope {
+  display: grid;
+  gap: var(--s-1);
+  font-size: var(--t-sm);
+}
+
+.scope li {
+  padding-block: 2px;
+}
+
+.extra {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  gap: var(--s-3) var(--s-6);
+  margin-top: var(--s-7);
+  font-size: var(--t-sm);
+}
+
+.extraTitle {
+  font-weight: 600;
+}
+
+.extraList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-5);
+  color: var(--c-paper-2);
+}
+
+.extraList strong {
+  color: var(--c-paper);
+  font-weight: 600;
+}
+
+.extra > a {
+  grid-column: 2;
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 600;
+}
+
+@media (max-width: 60rem) {
+  .head {
+    display: none;
+  }
+
+  .row {
+    grid-template-columns: 100%;
+    gap: var(--s-5);
+  }
+
+  .cellLabel {
+    display: block;
+  }
+
+  .extra,
+  .extraList {
+    grid-template-columns: 100%;
+  }
+
+  .extra > a {
+    grid-column: 1;
+  }
+}

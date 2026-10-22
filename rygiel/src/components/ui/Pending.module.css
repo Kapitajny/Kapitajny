@@ -1,0 +1,11 @@
+.pending {
+  padding: 0.05em 0.35em;
+  border: 1px dashed var(--c-cobalt-ink);
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--c-cobalt) 14%, transparent);
+  color: var(--c-paper);
+  font-stretch: var(--wdth-label);
+  font-weight: 500;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}

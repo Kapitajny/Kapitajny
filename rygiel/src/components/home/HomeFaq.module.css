@@ -1,0 +1,38 @@
+.section {
+  padding-block: var(--section-y);
+  background: var(--c-graphite-2);
+  border-top: var(--border);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--s-6) var(--s-5);
+}
+
+.grid > :first-child {
+  grid-column: 1 / span 4;
+}
+
+.title {
+  font-size: var(--t-3xl);
+  font-stretch: 112%;
+  font-weight: 680;
+  letter-spacing: -0.015em;
+}
+
+.intro {
+  margin-top: var(--s-4);
+  color: var(--c-paper-2);
+}
+
+.list {
+  grid-column: 5 / -1;
+}
+
+@media (max-width: 60rem) {
+  .grid > :first-child,
+  .list {
+    grid-column: 1 / -1;
+  }
+}

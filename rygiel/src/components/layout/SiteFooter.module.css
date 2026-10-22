@@ -1,0 +1,121 @@
+.footer {
+  margin-top: auto;
+  padding-top: var(--s-9);
+  border-top: var(--border);
+  background: var(--c-graphite);
+  font-size: var(--t-sm);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--s-7) var(--s-5);
+}
+
+.brand {
+  grid-column: span 4;
+  display: grid;
+  align-content: start;
+  gap: var(--s-4);
+  padding-right: var(--s-5);
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.375rem;
+  font-weight: 760;
+  font-stretch: 125%;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.tagline {
+  color: var(--c-paper-2);
+  max-width: 40ch;
+}
+
+.demo {
+  padding: var(--s-3) var(--s-4);
+  border-left: 2px solid var(--c-cobalt);
+  color: var(--c-paper-2);
+  font-size: var(--t-xs);
+  max-width: 44ch;
+}
+
+.column {
+  grid-column: span 2;
+}
+
+.column:last-child {
+  grid-column: span 2;
+}
+
+.heading {
+  margin-bottom: var(--s-4);
+  font-size: var(--t-sm);
+  font-stretch: var(--wdth-label);
+  font-weight: 600;
+  color: var(--c-paper-3);
+  letter-spacing: 0.01em;
+}
+
+.list {
+  display: grid;
+  gap: var(--s-1);
+}
+
+.list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  color: var(--c-paper);
+  text-decoration: none;
+}
+
+.list a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--c-cobalt-ink);
+}
+
+.muted {
+  display: block;
+  padding-block: var(--s-2);
+  color: var(--c-paper-2);
+  line-height: 1.6;
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--s-2) var(--s-5);
+  margin-top: var(--s-9);
+  padding-block: var(--s-5);
+  border-top: var(--border);
+  color: var(--c-paper-3);
+  font-size: var(--t-xs);
+}
+
+@media (max-width: 64rem) {
+  .brand {
+    grid-column: 1 / -1;
+  }
+
+  .column,
+  .column:last-child {
+    grid-column: span 3;
+  }
+}
+
+@media (max-width: 40rem) {
+  .column,
+  .column:last-child {
+    grid-column: span 6;
+  }
+
+  .column:last-child {
+    grid-column: 1 / -1;
+  }
+}

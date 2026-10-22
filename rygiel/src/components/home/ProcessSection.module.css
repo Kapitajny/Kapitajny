@@ -1,0 +1,115 @@
+.section {
+  padding-block: var(--section-y);
+  background: var(--c-graphite-2);
+  border-block: var(--border);
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--s-5);
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+
+.step {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: var(--s-3);
+  padding-top: var(--s-6);
+}
+
+/* Oś procesu: linia przez znaczniki etapów */
+.step::before {
+  content: "";
+  position: absolute;
+  top: 1.05rem;
+  left: 0;
+  right: calc(-1 * var(--s-5));
+  border-top: 1px solid var(--c-line-strong);
+}
+
+.step:last-child::before {
+  right: 0;
+}
+
+.marker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.75rem;
+  height: 2.1rem;
+  padding-inline: var(--s-2);
+  background: var(--c-graphite-2);
+  border: 1px solid var(--c-paper-2);
+  font-size: var(--t-sm);
+  font-stretch: var(--wdth-label);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.step:first-child .marker {
+  background: var(--c-cobalt);
+  border-color: var(--c-cobalt);
+}
+
+.title {
+  margin-top: var(--s-5);
+  font-size: var(--t-lg);
+  font-stretch: 108%;
+  font-weight: 650;
+}
+
+.text {
+  color: var(--c-paper-2);
+  font-size: var(--t-sm);
+}
+
+.deliverable {
+  padding-top: var(--s-3);
+  border-top: 1px dashed var(--c-line-strong);
+  font-size: var(--t-sm);
+}
+
+.deliverableLabel {
+  color: var(--c-cobalt-ink);
+  font-weight: 600;
+}
+
+@media (max-width: 64rem) {
+  .steps {
+    grid-template-columns: 100%;
+    gap: 0;
+  }
+
+  .step {
+    grid-template-rows: none;
+    padding: 0 0 var(--s-6) calc(2.75rem + var(--s-5));
+  }
+
+  .step::before {
+    top: 2.1rem;
+    bottom: 0;
+    left: 1.375rem;
+    right: auto;
+    border-top: 0;
+    border-left: 1px solid var(--c-line-strong);
+  }
+
+  .step:last-child::before {
+    display: none;
+  }
+
+  .title {
+    margin-top: 0.2rem;
+  }
+
+  .text,
+  .deliverable {
+    max-width: 56ch;
+  }
+}

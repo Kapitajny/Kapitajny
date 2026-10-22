@@ -1,0 +1,59 @@
+.wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--s-6) var(--s-8);
+  align-items: center;
+  padding-block: var(--section-y);
+  min-height: 60vh;
+}
+
+/* Numer błędu narysowany konturem – jak wymiar na rysunku */
+.code {
+  font-size: clamp(6rem, 3rem + 14vw, 16rem);
+  font-stretch: 125%;
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--c-cobalt-ink);
+}
+
+.copy {
+  display: grid;
+  gap: var(--s-5);
+}
+
+.title {
+  font-size: var(--t-3xl);
+  font-stretch: 112%;
+  font-weight: 700;
+}
+
+.text {
+  max-width: 48ch;
+  color: var(--c-paper-2);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-5);
+}
+
+.links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+@media (max-width: 52rem) {
+  .wrap {
+    grid-template-columns: 100%;
+  }
+}

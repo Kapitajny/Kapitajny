@@ -1,0 +1,87 @@
+.section {
+  padding-block: var(--section-y);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--s-7) var(--s-5);
+  align-items: start;
+}
+
+.aside {
+  grid-column: 1 / span 4;
+  position: sticky;
+  top: calc(var(--header-h) + var(--s-6));
+  display: grid;
+  gap: var(--s-5);
+}
+
+.title {
+  font-size: clamp(2rem, 1.5rem + 1.4vw, 2.5rem);
+  font-stretch: 112%;
+  font-weight: 680;
+  letter-spacing: -0.015em;
+}
+
+.intro {
+  color: var(--c-paper-2);
+}
+
+.list {
+  grid-column: 6 / -1;
+  border-top: 1px solid var(--c-paper-2);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  gap: var(--s-3) var(--s-6);
+  padding-block: var(--s-6);
+  border-bottom: var(--border);
+}
+
+.itemTitle {
+  font-size: var(--t-xl);
+  font-stretch: 108%;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.itemText {
+  display: grid;
+  gap: var(--s-3);
+  color: var(--c-paper-2);
+}
+
+.practice {
+  display: grid;
+  gap: 2px;
+  color: var(--c-paper);
+  font-size: var(--t-sm);
+}
+
+.practiceLabel {
+  font-size: var(--t-xs);
+  font-stretch: var(--wdth-label);
+  font-weight: 600;
+  color: var(--c-cobalt-ink);
+}
+
+@media (max-width: 64rem) {
+  .aside {
+    position: static;
+    grid-column: 1 / -1;
+    max-width: 44rem;
+  }
+
+  .list {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 40rem) {
+  .item {
+    grid-template-columns: 100%;
+  }
+}

@@ -1,0 +1,113 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: var(--s-8) var(--s-9);
+  padding-block: var(--s-8) var(--section-y);
+}
+
+.aside {
+  display: grid;
+  align-content: start;
+  gap: var(--s-7);
+}
+
+.h2 {
+  margin-bottom: var(--s-5);
+  font-size: var(--t-xl);
+  font-stretch: 110%;
+  font-weight: 680;
+}
+
+.h3 {
+  margin-bottom: var(--s-3);
+  font-size: var(--t-md);
+  font-weight: 650;
+}
+
+.steps {
+  display: grid;
+  gap: var(--s-4);
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.steps li {
+  position: relative;
+  padding-left: var(--s-7);
+  counter-increment: step;
+}
+
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--c-paper-2);
+  font-size: var(--t-sm);
+  font-stretch: var(--wdth-label);
+  font-weight: 600;
+}
+
+.stepTitle {
+  font-weight: 650;
+}
+
+.stepText {
+  color: var(--c-paper-2);
+  font-size: var(--t-sm);
+}
+
+.incident {
+  padding: var(--s-4) var(--s-5);
+  border-left: 3px solid var(--c-danger);
+  background: var(--c-graphite-2);
+  font-size: var(--t-sm);
+  color: var(--c-paper-2);
+}
+
+.contactList {
+  display: grid;
+  gap: var(--s-3);
+  font-size: var(--t-sm);
+}
+
+.contactList dt {
+  font-size: var(--t-xs);
+  font-stretch: var(--wdth-label);
+  font-weight: 600;
+  color: var(--c-paper-3);
+}
+
+.privacy {
+  margin-top: var(--s-4);
+  font-size: var(--t-sm);
+  color: var(--c-paper-2);
+}
+
+.formColumn {
+  padding: var(--s-6);
+  border: 1px solid var(--c-line-strong);
+  background: var(--c-graphite);
+}
+
+@media (max-width: 64rem) {
+  .layout {
+    grid-template-columns: 100%;
+  }
+
+  .formColumn {
+    order: -1;
+  }
+}
+
+@media (max-width: 40rem) {
+  .formColumn {
+    padding: var(--s-5) var(--s-4);
+    margin-inline: calc(-1 * var(--s-2));
+  }
+}

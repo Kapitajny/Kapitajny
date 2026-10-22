@@ -1,0 +1,141 @@
+.problems {
+  display: grid;
+  gap: 0;
+  border-top: var(--border);
+}
+
+.problems li {
+  position: relative;
+  padding: var(--s-4) 0 var(--s-4) var(--s-6);
+  border-bottom: var(--border);
+  color: var(--c-paper);
+}
+
+/* Znacznik usterki: przekreślony kwadrat */
+.problems li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(var(--s-4) + 0.35em);
+  width: 0.9em;
+  height: 0.9em;
+  border: 1.5px solid var(--c-paper-3);
+  background: linear-gradient(to top right, transparent calc(50% - 0.75px), var(--c-paper-3) calc(50% - 0.75px) calc(50% + 0.75px), transparent calc(50% + 0.75px));
+}
+
+.scope {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 var(--s-6);
+}
+
+.scopeSingle {
+  grid-template-columns: 100%;
+}
+
+.scopeItem {
+  padding-block: var(--s-4);
+  border-top: var(--border);
+}
+
+.scopeItem dt {
+  font-weight: 650;
+  margin-bottom: var(--s-1);
+}
+
+.scopeItem dd {
+  color: var(--c-paper-2);
+  font-size: var(--t-sm);
+}
+
+.benefits {
+  display: grid;
+  gap: var(--s-3);
+}
+
+.benefits li {
+  position: relative;
+  padding-left: var(--s-6);
+}
+
+.benefits li::before {
+  content: "";
+  position: absolute;
+  left: 0.15em;
+  top: 0.3em;
+  width: 0.45em;
+  height: 0.8em;
+  border-right: 2px solid var(--c-cobalt-ink);
+  border-bottom: 2px solid var(--c-cobalt-ink);
+  transform: rotate(45deg);
+}
+
+.steps {
+  display: grid;
+  gap: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: var(--s-4);
+  padding-bottom: var(--s-5);
+}
+
+.step:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 1.25rem;
+  top: 2.5rem;
+  bottom: 0;
+  border-left: 1px solid var(--c-line-strong);
+}
+
+.stepNumber {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--c-paper-2);
+  font-stretch: var(--wdth-label);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.stepTitle {
+  padding-top: 0.45rem;
+  font-weight: 650;
+}
+
+.stepText {
+  margin-top: var(--s-1);
+  color: var(--c-paper-2);
+  font-size: var(--t-sm);
+  max-width: 56ch;
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4) var(--s-6);
+  padding: var(--s-5);
+  border: 1px solid var(--c-line-strong);
+  border-left: 3px solid var(--c-cobalt);
+  background: var(--c-graphite-2);
+}
+
+.ctaText {
+  max-width: 52ch;
+  color: var(--c-paper-2);
+}
+
+@media (max-width: 48rem) {
+  .scope {
+    grid-template-columns: 100%;
+  }
+}
