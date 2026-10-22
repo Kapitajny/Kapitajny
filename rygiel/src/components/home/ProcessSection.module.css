@@ -1,0 +1,99 @@
+.section {
+  padding-block: var(--section-y);
+  background: var(--c-surface);
+  border-block: 1px solid var(--c-line);
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--s-4);
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-5);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-panel);
+  background: var(--c-bg);
+  box-shadow: var(--shadow-card);
+}
+
+.stepHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  margin-bottom: var(--s-2);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--r-control);
+  background: var(--c-brand-soft);
+  color: var(--c-brand);
+}
+
+.number {
+  font-size: var(--t-xs);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--c-ink-3);
+}
+
+.title {
+  font-size: var(--t-lg);
+  font-weight: 700;
+}
+
+.text {
+  color: var(--c-ink-2);
+  font-size: var(--t-sm);
+}
+
+.deliverable {
+  display: flex;
+  gap: var(--s-2);
+  margin-top: auto;
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--c-line);
+  font-size: var(--t-sm);
+  font-weight: 500;
+}
+
+.deliverableIcon {
+  flex: none;
+  margin-top: 0.15em;
+  color: var(--c-brand);
+}
+
+/* Pięć kroków nie dzieli się równo na 2 lub 3 kolumny – poniżej szerokiego ekranu układamy je w listę */
+@media (max-width: 75rem) {
+  .steps {
+    grid-template-columns: 100%;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: var(--s-5);
+  }
+
+  .stepHead {
+    grid-row: 1 / span 4;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 0;
+  }
+
+  .deliverable {
+    margin-top: var(--s-2);
+  }
+}

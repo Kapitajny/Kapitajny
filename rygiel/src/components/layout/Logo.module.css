@@ -1,0 +1,22 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 44px;
+  color: var(--c-ink);
+  text-decoration: none;
+}
+
+.mark {
+  flex: none;
+}
+
+.word {
+  font-size: 1.375rem;
+  font-weight: 760;
+  font-stretch: 125%;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  /* Optyczne wyrównanie do linii bazowej znaku */
+  transform: translateY(-1px);
+}

@@ -1,0 +1,255 @@
+.headerActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  padding-top: var(--s-2);
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+.tinted {
+  background: var(--c-surface);
+  border-block: var(--border);
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: var(--s-6) var(--s-9);
+  align-items: start;
+}
+
+.h2 {
+  font-size: var(--t-3xl);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.note {
+  margin-top: var(--s-4);
+  max-width: 40ch;
+  color: var(--c-ink-2);
+}
+
+.stack {
+  display: grid;
+  gap: var(--s-6);
+  align-content: start;
+}
+
+/* Rytm pracy: pasek kalendarza o rosnącej skali */
+.rhythm {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 2px solid var(--c-ink);
+}
+
+.rhythmColumn {
+  display: grid;
+  align-content: start;
+  gap: var(--s-4);
+  padding: var(--s-5) var(--s-5) var(--s-5) 0;
+}
+
+.rhythmColumn + .rhythmColumn {
+  padding-left: var(--s-5);
+  border-left: var(--border);
+}
+
+.rhythmTitle {
+  font-size: var(--t-xl);
+  font-weight: 600;
+}
+
+/* Skala częstotliwości: im rzadziej, tym dłuższy znacznik */
+.rhythmTitle::before {
+  content: "";
+  display: block;
+  height: 6px;
+  margin-bottom: var(--s-4);
+  background: repeating-linear-gradient(to right, var(--c-brand-ink) 0 3px, transparent 3px var(--tick, 6px));
+}
+
+.rhythmColumn:nth-child(2) .rhythmTitle::before {
+  --tick: 18px;
+}
+
+.rhythmColumn:nth-child(3) .rhythmTitle::before {
+  --tick: 54px;
+}
+
+.rhythmColumn:nth-child(4) .rhythmTitle::before {
+  --tick: 160px;
+}
+
+.rhythmColumn ul {
+  display: grid;
+  gap: var(--s-3);
+  color: var(--c-ink-2);
+  font-size: var(--t-sm);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: var(--s-4);
+  border-bottom: var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.table thead th {
+  border-bottom: 2px solid var(--c-ink);
+  font-size: var(--t-xs);
+  font-stretch: var(--wdth-label);
+  font-weight: 600;
+  color: var(--c-ink-3);
+}
+
+.table tbody th {
+  padding-left: 0;
+  font-weight: 500;
+}
+
+.table td {
+  width: 22%;
+  font-size: var(--t-sm);
+  font-stretch: var(--wdth-label);
+  font-weight: 600;
+}
+
+.table td[data-party="realizuje"] {
+  color: var(--c-brand-ink);
+}
+
+.table td[data-party="—"] {
+  color: var(--c-ink-3);
+}
+
+.priorities {
+  display: grid;
+  border-top: var(--border);
+}
+
+.priority {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 1fr);
+  gap: var(--s-4);
+  padding-block: var(--s-4);
+  border-bottom: var(--border);
+}
+
+.priority dt {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-weight: 650;
+}
+
+/* Pasek poziomu priorytetu */
+.priority dt::before {
+  content: "";
+  flex: none;
+  width: 28px;
+  height: 10px;
+  border: 1px solid var(--c-brand-ink);
+  background: linear-gradient(to right, var(--c-brand-ink) var(--fill), transparent var(--fill));
+}
+
+.priority[data-level="0"] {
+  --fill: 100%;
+}
+
+.priority[data-level="1"] {
+  --fill: 70%;
+}
+
+.priority[data-level="2"] {
+  --fill: 40%;
+}
+
+.priority[data-level="3"] {
+  --fill: 12%;
+}
+
+.priority dd {
+  color: var(--c-ink-2);
+}
+
+@media (max-width: 64rem) {
+  .split {
+    grid-template-columns: 100%;
+  }
+
+  .rhythm {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rhythmColumn:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .rhythmColumn:nth-child(n + 3) {
+    border-top: var(--border);
+  }
+}
+
+@media (max-width: 40rem) {
+  .table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .table,
+  .table tbody,
+  .table tr,
+  .table th,
+  .table td {
+    display: block;
+    width: 100%;
+  }
+
+  .table tr {
+    padding-block: var(--s-3);
+    border-bottom: var(--border);
+  }
+
+  .table tbody th,
+  .table td {
+    padding: var(--s-1) 0;
+    border: 0;
+  }
+
+  .table td::before {
+    content: attr(data-label) ": ";
+    font-weight: 500;
+    color: var(--c-ink-3);
+  }
+}
+
+@media (max-width: 36rem) {
+  .rhythm {
+    grid-template-columns: 100%;
+  }
+
+  .rhythmColumn + .rhythmColumn {
+    padding-left: 0;
+    border-left: 0;
+    border-top: var(--border);
+  }
+
+  .priority {
+    grid-template-columns: 100%;
+    gap: var(--s-1);
+  }
+}

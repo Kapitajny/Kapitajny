@@ -1,0 +1,20 @@
+.figure {
+  display: grid;
+  gap: var(--s-3);
+  max-width: 662px;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: var(--border);
+  border-radius: var(--r-panel);
+  /* Wyciszenie czerwieni zdjęcia, żeby nie konkurowały z kolorem marki */
+  filter: saturate(0.8);
+}
+
+.caption {
+  font-size: var(--t-sm);
+  color: var(--c-ink-3);
+}

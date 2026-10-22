@@ -1,0 +1,306 @@
+.figure {
+  display: grid;
+  gap: var(--s-4);
+}
+
+/* Przełącznik filarów */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+.toggle {
+  min-height: 44px;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--c-line-strong);
+  border-radius: var(--r-control);
+  background: transparent;
+  color: var(--c-ink-2);
+  font-size: var(--t-sm);
+  font-weight: 500;
+  transition:
+    background-color var(--dur-fast) ease,
+    color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease;
+}
+
+.toggle:hover {
+  color: var(--c-ink);
+  border-color: var(--c-ink-2);
+}
+
+.toggle[aria-pressed="true"] {
+  background: var(--c-brand);
+  border-color: var(--c-brand);
+  color: #ffffff;
+}
+
+.sheet {
+  position: relative;
+  padding: var(--s-5);
+  border: var(--border);
+  border-radius: var(--r-panel);
+  background: var(--c-surface);
+}
+
+.frame {
+  --post: 4px;
+  --beam-col: 56%;
+  position: relative;
+  padding-right: 44px;
+}
+
+.layers {
+  position: relative;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+}
+
+/* Słupki ramy: lewy i prawy, między nimi rygle-warstwy */
+.layers::before,
+.layers::after {
+  content: "";
+  position: absolute;
+  top: -14px;
+  bottom: -14px;
+  width: var(--post);
+  background: var(--c-line-strong);
+  transform-origin: top;
+}
+
+.layers::before {
+  left: 0;
+}
+
+.layers::after {
+  left: calc(var(--beam-col) - var(--post));
+}
+
+.layer {
+  display: grid;
+  grid-template-columns: var(--beam-col) minmax(0, 1fr);
+  align-items: center;
+  padding-block: 7px;
+}
+
+.beam {
+  position: relative;
+  display: grid;
+  align-content: center;
+  gap: 2px;
+  min-height: 74px;
+  margin-inline: var(--post);
+  padding: var(--s-3) var(--s-4);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-control);
+  background: var(--c-bg);
+  overflow: hidden;
+  transform-origin: left;
+  transition:
+    background-color var(--dur-med) ease,
+    border-color var(--dur-med) ease;
+}
+
+.layerName {
+  font-size: var(--t-md);
+  font-weight: 650;
+  line-height: 1.2;
+  color: var(--c-ink-2);
+  transition: color var(--dur-med) ease;
+}
+
+.layerDetail {
+  font-size: var(--t-xs);
+  font-stretch: var(--wdth-label);
+  color: var(--c-ink-3);
+  line-height: 1.35;
+  transition: color var(--dur-med) ease;
+}
+
+.layer[data-active] .beam {
+  border-color: var(--c-line-strong);
+  box-shadow: inset 3px 0 0 var(--c-brand);
+  background: var(--c-surface-2);
+}
+
+.layer[data-active] .layerName {
+  color: var(--c-ink);
+}
+
+.layer[data-active] .layerDetail {
+  color: var(--c-ink-2);
+}
+
+/* Opis z linią odniesienia od prawego słupka */
+.note {
+  position: relative;
+  padding-left: var(--s-6);
+  font-size: var(--t-sm);
+  line-height: 1.4;
+  color: var(--c-ink);
+}
+
+.note::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: calc(var(--s-6) - var(--s-2));
+  border-top: 1px solid var(--c-brand-ink);
+}
+
+.layer:not([data-active]) .note::before {
+  border-top-style: dashed;
+  border-top-color: var(--c-line-strong);
+  width: var(--s-4);
+}
+
+.noteEmpty {
+  display: block;
+  min-height: 1em;
+}
+
+/* Linia wymiarowa obejmująca zakres usługi */
+.dimension {
+  position: absolute;
+  right: 0;
+  top: calc(var(--span-start) * 25% + 7px);
+  height: calc((var(--span-end) - var(--span-start)) * 25% - 14px);
+  width: 28px;
+  border-left: 1px solid var(--c-brand-ink);
+  transition:
+    top var(--dur-med) var(--ease-out),
+    height var(--dur-med) var(--ease-out);
+}
+
+.dimension::before,
+.dimension::after {
+  content: "";
+  position: absolute;
+  left: -6px;
+  width: 11px;
+  border-top: 1px solid var(--c-brand-ink);
+}
+
+.dimension::before {
+  top: 0;
+}
+
+.dimension::after {
+  bottom: 0;
+}
+
+.dimensionLabel {
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  transform: translateY(-50%) rotate(180deg);
+  writing-mode: vertical-rl;
+  white-space: nowrap;
+  font-size: var(--t-xs);
+  font-stretch: var(--wdth-label);
+  font-weight: 600;
+  color: var(--c-brand-ink);
+}
+
+/* Podpis jak tabliczka rysunkowa */
+.caption {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr);
+  border: var(--border);
+  font-size: var(--t-sm);
+}
+
+.captionTitle,
+.captionText {
+  padding: var(--s-3) var(--s-4);
+}
+
+.captionTitle {
+  border-right: var(--border);
+  font-stretch: var(--wdth-label);
+  color: var(--c-ink-3);
+  font-size: var(--t-xs);
+  font-weight: 500;
+}
+
+.captionText {
+  color: var(--c-ink-2);
+}
+
+/* Jedyna orkiestrowana animacja strony: rysowanie przekroju */
+@media (prefers-reduced-motion: no-preference) {
+  .layers::before,
+  .layers::after {
+    animation: post-in 520ms var(--ease-out) both;
+  }
+
+  .beam {
+    animation: beam-in 620ms var(--ease-out) both;
+    animation-delay: calc(240ms + var(--i) * 110ms);
+  }
+
+  .note,
+  .dimension {
+    animation: fade-in 420ms ease both;
+    animation-delay: 820ms;
+  }
+}
+
+@keyframes post-in {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes beam-in {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 40rem) {
+  .sheet {
+    padding: var(--s-5) var(--s-3) var(--s-4);
+  }
+
+  .frame {
+    --beam-col: 100%;
+    padding-right: 34px;
+  }
+
+  .layer {
+    grid-template-columns: 100%;
+    gap: var(--s-2);
+  }
+
+  .beam {
+    min-height: 64px;
+  }
+
+  .note {
+    margin-inline: calc(var(--post) + var(--s-2));
+    padding-left: var(--s-5);
+    font-size: var(--t-xs);
+  }
+
+  .note::before {
+    width: var(--s-4);
+  }
+
+  .caption {
+    grid-template-columns: 100%;
+  }
+
+  .captionTitle {
+    border-right: 0;
+    border-bottom: var(--border);
+  }
+}

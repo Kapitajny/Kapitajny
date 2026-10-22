@@ -1,0 +1,66 @@
+.section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: var(--section-y);
+  background: var(--c-navy);
+}
+
+.backdrop {
+  z-index: -2;
+  object-fit: cover;
+  object-position: center 70%;
+}
+
+/* Granatowa warstwa: mocniejsza po stronie tekstu, lżejsza po prawej, gdzie grafika ma oddychać */
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgb(10 22 51 / 0.9) 0%, rgb(10 22 51 / 0.72) 50%, rgb(10 22 51 / 0.66) 100%),
+    radial-gradient(50% 120% at 100% 0%, color-mix(in srgb, var(--c-brand) 30%, transparent), transparent 70%);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--s-6) var(--s-8);
+  align-items: center;
+}
+
+.title {
+  font-size: var(--t-4xl);
+  font-weight: 700;
+  letter-spacing: -0.012em;
+  line-height: 1.02;
+}
+
+.side {
+  display: grid;
+  gap: var(--s-5);
+}
+
+.text {
+  color: var(--c-ink);
+  font-size: var(--t-lg);
+  max-width: 44ch;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+}
+
+@media (max-width: 60rem) {
+  .inner {
+    grid-template-columns: 100%;
+  }
+
+  /* Na wąskim ekranie tekst zajmuje całą szerokość, więc przyciemnienie jest równomierne */
+  .section::before {
+    background: rgb(10 22 51 / 0.78);
+  }
+}

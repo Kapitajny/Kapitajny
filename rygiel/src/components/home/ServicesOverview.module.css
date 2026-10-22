@@ -1,0 +1,198 @@
+.section {
+  padding-block: var(--section-y);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-5);
+}
+
+/* Cała karta jest klikalna przez rozciągnięty link w tytule */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  padding: var(--s-6);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-panel);
+  background: var(--c-bg);
+  box-shadow: var(--shadow-card);
+  transition:
+    box-shadow var(--dur-med) ease,
+    border-color var(--dur-med) ease,
+    transform var(--dur-med) var(--ease-out);
+}
+
+.card:hover {
+  border-color: color-mix(in srgb, var(--c-brand) 35%, var(--c-line));
+  box-shadow: var(--shadow-raised);
+  transform: translateY(-2px);
+}
+
+.media {
+  margin: calc(-1 * var(--s-6)) calc(-1 * var(--s-6)) 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: calc(var(--r-panel) - 1px) calc(var(--r-panel) - 1px) 0 0;
+  background: var(--c-navy);
+}
+
+.mediaImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.85);
+  transition: transform var(--dur-med) var(--ease-out);
+}
+
+.card:hover .mediaImage {
+  transform: scale(1.03);
+}
+
+/* Ikona nachodzi na dolną krawędź grafiki */
+.icon {
+  position: relative;
+  margin-top: calc(-1 * var(--s-4) - 1.625rem);
+  border: 3px solid var(--c-bg);
+  box-sizing: content-box;
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: var(--r-control);
+  background: var(--c-brand-soft);
+  color: var(--c-brand);
+}
+
+.title {
+  font-size: var(--t-xl);
+  font-weight: 700;
+}
+
+.titleLink {
+  text-decoration: none;
+}
+
+.titleLink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-panel);
+}
+
+.titleLink:focus-visible {
+  outline: none;
+}
+
+.titleLink:focus-visible::after {
+  outline: 2px solid var(--c-brand-ink);
+  outline-offset: 2px;
+}
+
+.summary {
+  color: var(--c-ink-2);
+  font-size: var(--t-sm);
+}
+
+.scope {
+  display: grid;
+  gap: var(--s-2);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--c-line);
+  font-size: var(--t-sm);
+}
+
+.scope li {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.scopeIcon {
+  flex: none;
+  color: var(--c-brand);
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-top: auto;
+  padding-top: var(--s-2);
+  color: var(--c-brand-ink);
+  font-size: var(--t-sm);
+  font-weight: 600;
+}
+
+.card:hover .more svg {
+  transform: translateX(3px);
+}
+
+.more svg {
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.extra {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+  gap: var(--s-4) var(--s-6);
+  margin-top: var(--s-7);
+  padding: var(--s-5) var(--s-6);
+  border-radius: var(--r-panel);
+  background: var(--c-surface);
+  font-size: var(--t-sm);
+}
+
+.extraTitle {
+  font-weight: 700;
+}
+
+.extraList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-5);
+  color: var(--c-ink-2);
+}
+
+.extraList li {
+  display: grid;
+  gap: var(--s-1);
+}
+
+.extraList strong {
+  color: var(--c-ink);
+  font-weight: 600;
+}
+
+.extra > a {
+  grid-column: 2;
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 600;
+}
+
+@media (max-width: 64rem) {
+  .cards {
+    grid-template-columns: 100%;
+  }
+
+  .extra,
+  .extraList {
+    grid-template-columns: 100%;
+  }
+
+  .extra > a {
+    grid-column: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,228 @@
+.headerActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  padding-top: var(--s-2);
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+.tinted {
+  background: var(--c-surface);
+  border-block: var(--border);
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: var(--s-6) var(--s-9);
+  align-items: start;
+}
+
+.h2 {
+  font-size: var(--t-3xl);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.stack {
+  display: grid;
+  gap: var(--s-5);
+  align-content: start;
+}
+
+.note {
+  max-width: 44ch;
+  color: var(--c-ink-2);
+}
+
+.more {
+  margin-top: var(--s-5);
+  color: var(--c-ink-2);
+}
+
+/* Oś czasu RPO / RTO */
+.timeline {
+  display: grid;
+  gap: var(--s-5);
+}
+
+.track {
+  position: relative;
+  height: 5.5rem;
+  margin-inline: var(--s-2);
+}
+
+/* Pasek RPO (ostatnia kopia → awaria) i RTO (awaria → przywrócenie) na osi czasu */
+.track {
+  background:
+    linear-gradient(var(--c-ink-2), var(--c-ink-2)) 0 70% / 100% 1px no-repeat,
+    linear-gradient(to right, transparent 18%, color-mix(in srgb, var(--c-brand) 30%, transparent) 18% 48%, var(--c-brand) 48% 82%, transparent 82%) 0 70% / 100% 14px no-repeat;
+}
+
+.event {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  padding-bottom: 1.6rem;
+  font-size: var(--t-xs);
+  font-stretch: var(--wdth-label);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.event::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 1.4rem;
+  height: 2.6rem;
+  border-left: 1px solid var(--c-ink);
+}
+
+.eventAlert {
+  color: var(--c-danger);
+}
+
+.eventAlert::after {
+  border-left: 2px solid var(--c-danger);
+}
+
+.spans {
+  display: grid;
+  grid-template-columns: 18fr 30fr 34fr 18fr;
+}
+
+.rpo {
+  grid-column: 2;
+  padding-right: var(--s-4);
+  border-top: 2px solid var(--c-brand-ink);
+}
+
+.rto {
+  grid-column: 3;
+  padding-left: var(--s-4);
+  border-top: 2px solid var(--c-brand);
+}
+
+.spans dt {
+  padding-top: var(--s-3);
+  font-weight: 650;
+}
+
+.spans dd {
+  margin-top: var(--s-1);
+  color: var(--c-ink-2);
+  font-size: var(--t-sm);
+}
+
+.caption {
+  font-size: var(--t-xs);
+  font-stretch: var(--wdth-label);
+  color: var(--c-ink-3);
+}
+
+/* Etapy migracji */
+.migration {
+  display: grid;
+  padding: 0;
+  list-style: none;
+}
+
+.stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: var(--s-4);
+  padding-bottom: var(--s-5);
+}
+
+.stage:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 1.25rem;
+  top: 2.5rem;
+  bottom: 0;
+  border-left: 1px dashed var(--c-line);
+}
+
+.stageNumber {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--c-brand-soft);
+  color: var(--c-brand-ink);
+  font-stretch: var(--wdth-label);
+  font-weight: 600;
+}
+
+.stageTitle {
+  padding-top: 0.45rem;
+  font-size: var(--t-md);
+  font-weight: 650;
+}
+
+.stageText {
+  margin-top: var(--s-1);
+  color: var(--c-ink-2);
+  font-size: var(--t-sm);
+  max-width: 56ch;
+}
+
+.rollback {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-top: var(--s-2);
+  font-size: var(--t-xs);
+  font-stretch: var(--wdth-label);
+  font-weight: 600;
+  color: var(--c-brand-ink);
+}
+
+.rollback::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid currentColor;
+  transform: rotate(45deg);
+}
+
+@media (max-width: 64rem) {
+  .split {
+    grid-template-columns: 100%;
+  }
+}
+
+@media (max-width: 44rem) {
+  .event {
+    white-space: normal;
+    width: 6.5rem;
+    text-align: center;
+  }
+
+  .track {
+    height: 6.5rem;
+  }
+
+  .event::after {
+    top: auto;
+    bottom: 0;
+    height: 1.2rem;
+  }
+
+  .spans {
+    grid-template-columns: 100%;
+    gap: var(--s-5);
+  }
+
+  .rpo,
+  .rto {
+    grid-column: 1;
+    padding-inline: 0;
+  }
+}
