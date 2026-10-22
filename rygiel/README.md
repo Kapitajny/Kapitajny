@@ -27,6 +27,18 @@ Brak zależności runtime poza `next`, `react`, `react-dom` i `server-only`.
 - Node.js 22 LTS (lub nowszy) i npm 10+
 - Do testów E2E: przeglądarka Chromium dla Playwright (`npx playwright install chromium`, jeśli nie jest zainstalowana)
 
+## Najprostsze uruchomienie (bez terminala)
+
+1. Zainstaluj **Node.js LTS** (wersja 22 lub nowsza) ze strony https://nodejs.org – jednorazowo.
+2. Pobierz repozytorium (na GitHubie: **Code → Download ZIP**) i rozpakuj je.
+3. Otwórz folder `rygiel` i kliknij dwukrotnie:
+   - **Windows:** `URUCHOM-WINDOWS.bat`
+   - **Mac:** `URUCHOM-MAC.command` (za pierwszym razem: prawy przycisk → **Otwórz** → **Otwórz**)
+4. Strona otworzy się w przeglądarce pod adresem http://localhost:3001. Aby ją wyłączyć, zamknij okno skryptu.
+
+Pierwsze uruchomienie trwa kilka minut (instalacja pakietów i build), kolejne – kilkadziesiąt sekund. Port 3001 pozwala
+uruchomić równolegle stronę kawiarni z katalogu głównego (port 3000).
+
 ## Instalacja i uruchomienie
 
 ```bash

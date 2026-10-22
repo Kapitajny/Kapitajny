@@ -1,4 +1,9 @@
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import type { NextConfig } from "next";
+
+// Projekt leży w podkatalogu repozytorium z własnym package-lock.json – wskazujemy go jako katalog główny.
+const projectRoot = dirname(fileURLToPath(import.meta.url));
 
 const isDev = process.env.NODE_ENV === "development";
 
@@ -32,6 +37,8 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  turbopack: { root: projectRoot },
+  outputFileTracingRoot: projectRoot,
   reactStrictMode: true,
   experimental: {
     serverActions: {
