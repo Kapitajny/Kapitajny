@@ -317,3 +317,17 @@ instancji, formularz wymaga JavaScriptu, dokumenty prawne i dane firmy jako wers
 - Audyt dostępności: wykryte przewijanie w poziomie przy 320 px na 8 stronach (WCAG 1.4.10) – poprawione mniejszym
   minimalnym rozmiarem nagłówków, węższym krojem na bardzo wąskich ekranach i miękkim dzieleniem „cyber-bezpieczeństwo”.
   Nowy test E2E pilnuje tego na wszystkich trasach.
+
+### Rewizja wizualna: mniej „konceptu”, więcej rzeczowości
+
+Po uwadze, że strona wygląda na wygenerowaną, usunęliśmy elementy, które razem dawały ten efekt:
+
+- **Typografia:** nagłówki w normalnej szerokości kroju (szeroki krój został tylko w logo), mniejsza skala
+  i grubość 600. Miękkie dzielenie długich słów działa wyłącznie na ekranach węższych niż 480 px.
+- **Hero:** rzeczowy nagłówek („Obsługa IT i cyberbezpieczeństwo dla małych i średnich firm”), grafika właściciela
+  zamiast diagramu, trzy konkretne punkty pod przyciskami. Interaktywny przekrój infrastruktury przeniesiony na stronę
+  „Usługi” i uspokojony (bez siatki, linijki i kreskowania, aktywna warstwa oznaczona paskiem akcentu).
+- **Ozdobniki:** bez podpisów „Rys. N.”, „§”, kolorowych etykiet nad nagłówkami, siatki na schematach i pełnej
+  kobaltowej płaszczyzny. Kobalt jest używany wyłącznie na przyciskach głównych i aktywnych elementach.
+- **Teksty:** nagłówki wprost, bez konstrukcji „nie X, lecz Y”, pytań retorycznych i dwukropków z „puentą”.
+- **Układ sekcji:** nagłówek i wstęp jeden pod drugim zamiast powtarzanego wzorca „tytuł obok opisu”.

@@ -58,8 +58,7 @@
   padding-top: var(--s-4);
   border-top: 2px solid var(--c-paper);
   font-size: var(--t-2xl);
-  font-stretch: 112%;
-  font-weight: 680;
+  font-weight: 600;
   letter-spacing: -0.015em;
 }
 

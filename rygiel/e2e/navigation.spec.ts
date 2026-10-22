@@ -21,12 +21,12 @@ test("link „Przejdź do treści” przenosi fokus do treści", async ({ page }
 });
 
 test("przełącznik filarów w przekroju infrastruktury", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/uslugi");
   const group = page.getByRole("group", { name: "Pokaż zakres usługi na przekroju" });
   const cloud = group.getByRole("button", { name: "Chmura i infrastruktura" });
   await cloud.click();
   await expect(cloud).toHaveAttribute("aria-pressed", "true");
-  await expect(group.getByRole("button", { name: "Cyberbezpieczeństwo" })).toHaveAttribute("aria-pressed", "false");
+  await expect(group.getByRole("button", { name: "Obsługa IT" })).toHaveAttribute("aria-pressed", "false");
   await expect(page.getByRole("link", { name: "Szczegóły: Chmura i infrastruktura" })).toHaveAttribute("href", "/uslugi/chmura-i-infrastruktura");
 });
 

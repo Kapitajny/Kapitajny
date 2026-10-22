@@ -10,8 +10,7 @@ export function ServicesOverview() {
       <div className="container">
         <SectionHeading
           id="uslugi-title"
-          layout="split"
-          title="Trzy obszary, za które bierzemy odpowiedzialność"
+          title="Usługi"
           intro={
             <p>
               {typeset(

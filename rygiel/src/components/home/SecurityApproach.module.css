@@ -19,8 +19,7 @@
 
 .title {
   font-size: clamp(2rem, 1.5rem + 1.4vw, 2.5rem);
-  font-stretch: 112%;
-  font-weight: 680;
+  font-weight: 600;
   letter-spacing: -0.015em;
 }
 
@@ -43,7 +42,6 @@
 
 .itemTitle {
   font-size: var(--t-xl);
-  font-stretch: 108%;
   font-weight: 650;
   line-height: 1.2;
 }

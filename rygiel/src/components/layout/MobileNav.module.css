@@ -96,7 +96,6 @@
   border-bottom: var(--border);
   font-size: var(--t-2xl);
   font-weight: 650;
-  font-stretch: 112%;
   letter-spacing: -0.015em;
   text-decoration: none;
 }

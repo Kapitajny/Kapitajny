@@ -8,14 +8,14 @@ export function ProcessSection({ headingId = "proces-title" }: { headingId?: str
       <div className="container">
         <SectionHeading
           id={headingId}
-          title="Jak zaczynamy współpracę"
-          intro={<p>Pięć etapów, a&nbsp;po każdym dostajesz coś, co zostaje w&nbsp;firmie – nawet jeśli na nim skończymy.</p>}
+          title="Jak wygląda współpraca"
+          intro={<p>Po każdym etapie dostajesz dokument, który zostaje w&nbsp;firmie – także wtedy, gdy na tym etapie zakończymy współpracę.</p>}
         />
         <ol className={styles.steps}>
           {processSteps.map((step, index) => (
             <li key={step.title} className={styles.step}>
               <span className={styles.marker} aria-hidden="true">
-                {String(index + 1).padStart(2, "0")}
+                {index + 1}
               </span>
               <h3 className={styles.title}>{step.title}</h3>
               <p className={styles.text}>{step.text}</p>

@@ -59,7 +59,7 @@ export default function AboutPage() {
     <>
       <PageHeader
         breadcrumbs={[{ href: "/o-nas", label: "O nas" }]}
-        title="Pracujemy jak inżynierowie: najpierw sprawdzamy, potem zmieniamy, na końcu dokumentujemy"
+        title="O nas"
         lede="Naszą misją jest, żeby małe i średnie firmy miały IT, które działa przewidywalnie, jest zabezpieczone adekwatnie do ryzyka i nie zależy od wiedzy jednej osoby."
         aside={
           <p className={styles.note}>
@@ -71,7 +71,7 @@ export default function AboutPage() {
 
       <section className={styles.section} aria-labelledby="podejscie">
         <div className="container">
-          <SectionHeading id="podejscie" layout="split" title="Podejście do technologii" intro={<p>Trzy przekonania, którymi kierujemy się przy każdej rekomendacji.</p>} />
+          <SectionHeading id="podejscie" title="Podejście do technologii" intro={<p>Trzy przekonania, którymi kierujemy się przy każdej rekomendacji.</p>} />
           <dl className={styles.beliefs}>
             {beliefs.map((item) => (
               <div key={item.title}>
@@ -129,8 +129,7 @@ export default function AboutPage() {
         <div className="container">
           <SectionHeading
             id="komunikacja"
-            layout="split"
-            title="Jak się komunikujemy"
+              title="Jak się komunikujemy"
             intro={<p>Każda informacja ma swoje miejsce i&nbsp;rytm. Dzięki temu wiesz, czego i&nbsp;kiedy się spodziewać, a&nbsp;pilne sprawy nie giną w&nbsp;zwykłej korespondencji.</p>}
           />
           <dl className={styles.channels}>

@@ -31,7 +31,7 @@ export const processSteps: { title: string; text: string; deliverable: string }[
 
 export const securityPrinciples: { title: string; text: string; practice: string }[] = typesetDeep([
   {
-    title: "Najpierw wiedza, potem narzędzia",
+    title: "Inwentaryzacja przed zakupem narzędzi",
     text: "Nie da się chronić czegoś, o czym nie wiadomo. Zanim zaproponujemy jakiekolwiek oprogramowanie, spisujemy konta, urządzenia, dane i dostawców.",
     practice: "Inwentaryzacja jest pierwszym produktem każdej współpracy.",
   },
@@ -46,12 +46,12 @@ export const securityPrinciples: { title: string; text: string; practice: string
     practice: "Dokument zasad testu podpisany przed jego rozpoczęciem.",
   },
   {
-    title: "Kopia istnieje dopiero po teście odtworzenia",
+    title: "Kopie sprawdzane testem odtworzenia",
     text: "Zadanie kopii zakończone sukcesem nie oznacza jeszcze, że dane da się odzyskać. Sprawdzamy to, odtwarzając je.",
     practice: "Protokół testu z zakresem, datą i czasem odtworzenia.",
   },
   {
-    title: "Każda zmiana zostawia ślad",
+    title: "Rejestr każdej zmiany",
     text: "Pracujemy na imiennych kontach, a każdą zmianę zapisujemy w dzienniku. Wiesz, kto, kiedy i dlaczego zmienił konfigurację.",
     practice: "Nasze dostępy możesz w każdej chwili przejrzeć i wyłączyć.",
   },

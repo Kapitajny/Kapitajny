@@ -1,3 +1,28 @@
+.overview {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: var(--s-6) var(--s-8);
+  align-items: start;
+  padding-block: var(--s-8);
+  border-bottom: var(--border);
+}
+
+.overviewCopy {
+  display: grid;
+  gap: var(--s-4);
+}
+
+.overviewTitle {
+  font-size: var(--t-2xl);
+  font-weight: 600;
+}
+
+@media (max-width: 64rem) {
+  .overview {
+    grid-template-columns: 100%;
+  }
+}
+
 .layout {
   display: grid;
   grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
@@ -68,9 +93,8 @@
 
 .pillarTitle {
   font-size: var(--t-4xl);
-  font-stretch: 120%;
-  font-weight: 720;
-  letter-spacing: -0.025em;
+  font-weight: 600;
+  letter-spacing: -0.012em;
   line-height: 1;
 }
 
@@ -143,7 +167,6 @@
   /* Długie polskie słowa (np. „Cyberbezpieczeństwo”) w szerokim kroju nie mieszczą się na telefonie */
   .pillarTitle {
     font-size: var(--t-2xl);
-    font-stretch: 110%;
   }
 }
 

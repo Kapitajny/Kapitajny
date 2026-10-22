@@ -23,8 +23,7 @@
 
 .h2 {
   font-size: var(--t-3xl);
-  font-stretch: 112%;
-  font-weight: 680;
+  font-weight: 600;
   letter-spacing: -0.015em;
 }
 
@@ -278,7 +277,6 @@
   padding-bottom: var(--s-3);
   border-bottom: 2px solid var(--c-graphite);
   font-size: var(--t-xl);
-  font-stretch: 112%;
   font-weight: 700;
 }
 

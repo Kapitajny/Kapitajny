@@ -28,8 +28,7 @@
 
 .h2 {
   font-size: var(--t-3xl);
-  font-stretch: 112%;
-  font-weight: 680;
+  font-weight: 600;
   letter-spacing: -0.015em;
 }
 
@@ -53,7 +52,6 @@
 .beliefs dt {
   margin-bottom: var(--s-3);
   font-size: var(--t-xl);
-  font-stretch: 108%;
   font-weight: 650;
   line-height: 1.2;
 }
@@ -105,7 +103,6 @@
   height: 3rem;
   background: var(--c-cobalt);
   font-size: var(--t-xl);
-  font-stretch: 118%;
   font-weight: 700;
 }
 

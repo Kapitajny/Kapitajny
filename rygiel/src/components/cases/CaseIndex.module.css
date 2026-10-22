@@ -104,8 +104,7 @@
 
 .title {
   font-size: var(--t-2xl);
-  font-stretch: 112%;
-  font-weight: 680;
+  font-weight: 600;
   letter-spacing: -0.015em;
   line-height: 1.1;
 }

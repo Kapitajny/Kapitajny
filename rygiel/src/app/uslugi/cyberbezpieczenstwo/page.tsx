@@ -66,10 +66,9 @@ export default function CybersecurityPage() {
           { href: "/uslugi", label: "Usługi" },
           { href: service.href, label: service.name },
         ]}
-        kicker={service.englishName}
-        title="Bezpieczeństwo oparte na faktach, a nie na poczuciu zagrożenia"
+        title="Audyt bezpieczeństwa i ochrona systemów"
         lede="Sprawdzamy, jak naprawdę skonfigurowane są Twoje systemy, oceniamy ryzyko i wdrażamy poprawki. Testy bezpieczeństwa wykonujemy wyłącznie w uzgodnionym zakresie i za pisemną zgodą właściciela systemu."
-        aside={<NetworkIllustration priority caption="Rys. 1. Audyt zaczyna się od mapy: urządzeń, kont, usług i połączeń między nimi." />}
+        aside={<NetworkIllustration priority caption="Audyt zaczyna się od mapy urządzeń, kont, usług i połączeń między nimi." />}
       >
         <div className={styles.headerActions}>
           <LinkButton href={`/kontakt?usluga=${service.slug}`} withArrow>
@@ -84,7 +83,7 @@ export default function CybersecurityPage() {
       <section className={styles.section} aria-labelledby="problemy">
         <div className={`container ${styles.split}`}>
           <h2 id="problemy" className={styles.h2}>
-            Sygnały, że czas na audyt
+            Kiedy warto zrobić audyt
           </h2>
           <ProblemList items={service.problems} />
         </div>
@@ -94,8 +93,7 @@ export default function CybersecurityPage() {
         <div className="container">
           <SectionHeading
             id="obszary-title"
-            layout="split"
-            title="Co sprawdzamy podczas audytu"
+              title="Co sprawdzamy podczas audytu"
             intro={<p>Zakres dopasowujemy do firmy. Poniżej obszary, które przeglądamy najczęściej, i&nbsp;przykładowe punkty kontrolne.</p>}
           />
           <ul role="list" className={styles.areas}>
@@ -157,7 +155,7 @@ export default function CybersecurityPage() {
               </span>
             </div>
             <figcaption id="matryca-opis" className={styles.legend}>
-              <span className={styles.legendTitle}>Rys. 2. Przykładowa matryca ryzyka</span>
+              <span className={styles.legendTitle}>Przykładowa matryca ryzyka</span>
               <ol role="list">
                 {sampleFindings.map((item) => (
                   <li key={item.label}>
@@ -194,7 +192,7 @@ export default function CybersecurityPage() {
             {rulesOfEngagement.map((rule, index) => (
               <li key={rule.title} className={styles.clause}>
                 <span className={styles.clauseNumber} aria-hidden="true">
-                  §{index + 1}
+                  {index + 1}.
                 </span>
                 <div>
                   <h3 className={styles.clauseTitle}>{rule.title}</h3>
@@ -275,7 +273,7 @@ export default function CybersecurityPage() {
 
       <ClosingCta
         headingId="bezpieczenstwo-cta"
-        title="Zacznij od rozmowy o tym, czego się obawiasz."
+        title="Zamów audyt bezpieczeństwa"
         text="Na tej podstawie zaproponujemy zakres audytu i powiemy, czego będziemy potrzebować od Twojej firmy."
         secondary={{ href: "/realizacje/dostepy-i-poczta-biura-rachunkowego", label: "Zobacz przykładową realizację" }}
       />

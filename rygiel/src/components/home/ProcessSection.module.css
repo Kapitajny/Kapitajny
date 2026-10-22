@@ -39,28 +39,18 @@
   position: absolute;
   top: 0;
   left: 0;
-  display: inline-grid;
-  place-items: center;
-  min-width: 2.75rem;
-  height: 2.1rem;
-  padding-inline: var(--s-2);
+  padding-right: var(--s-3);
   background: var(--c-graphite-2);
-  border: 1px solid var(--c-paper-2);
   font-size: var(--t-sm);
-  font-stretch: var(--wdth-label);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-}
-
-.step:first-child .marker {
-  background: var(--c-cobalt);
-  border-color: var(--c-cobalt);
+  color: var(--c-cobalt-ink);
+  line-height: 2.1rem;
 }
 
 .title {
   margin-top: var(--s-5);
   font-size: var(--t-lg);
-  font-stretch: 108%;
   font-weight: 650;
 }
 
@@ -88,13 +78,13 @@
 
   .step {
     grid-template-rows: none;
-    padding: 0 0 var(--s-6) calc(2.75rem + var(--s-5));
+    padding: 0 0 var(--s-6) calc(1.25rem + var(--s-5));
   }
 
   .step::before {
     top: 2.1rem;
     bottom: 0;
-    left: 1.375rem;
+    left: 0.6rem;
     right: auto;
     border-top: 0;
     border-left: 1px solid var(--c-line-strong);

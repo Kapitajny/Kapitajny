@@ -42,7 +42,6 @@ export function InfrastructureSection({ pillars, layers, initial }: Infrastructu
       </div>
 
       <div className={styles.sheet}>
-        <div className={styles.ruler} aria-hidden="true" />
         <div className={styles.frame} style={{ "--span-start": first, "--span-end": last + 1 } as React.CSSProperties} data-pillar={active.slug}>
           <ol role="list" className={styles.layers}>
             {layers.map((layer, index) => {
@@ -76,7 +75,7 @@ export function InfrastructureSection({ pillars, layers, initial }: Infrastructu
       </div>
 
       <figcaption id={`${descriptionId}-caption`} className={styles.caption}>
-        <span className={styles.captionTitle}>Rys. 1. Przekrój infrastruktury firmy i&nbsp;zakres usługi</span>
+        <span className={styles.captionTitle}>Warstwy infrastruktury firmy i&nbsp;zakres wybranej usługi</span>
         <span id={descriptionId} className={styles.captionText} aria-live="polite">
           {active.summary}{" "}
           <Link href={active.href} className="text-link">

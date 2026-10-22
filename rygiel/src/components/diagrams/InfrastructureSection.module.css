@@ -36,40 +36,16 @@
   color: var(--c-graphite);
 }
 
-/* Arkusz rysunku z delikatną siatką */
 .sheet {
   position: relative;
-  padding: var(--s-6) var(--s-5) var(--s-5);
+  padding: var(--s-5);
   border: var(--border);
-  background-color: var(--c-graphite);
-  background-image:
-    linear-gradient(to right, rgb(238 235 227 / 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(238 235 227 / 0.035) 1px, transparent 1px);
-  background-size: 24px 24px;
-  background-position: -1px -1px;
-}
-
-.ruler {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 10px;
-  border-bottom: var(--border);
-  background-image:
-    repeating-linear-gradient(to right, var(--c-line-strong) 0 1px, transparent 1px 48px),
-    repeating-linear-gradient(to right, var(--c-line) 0 1px, transparent 1px 12px);
-  background-size:
-    100% 10px,
-    100% 5px;
-  background-repeat: no-repeat;
-  background-position:
-    0 0,
-    0 5px;
+  border-radius: var(--r-panel);
+  background: var(--c-graphite-2);
 }
 
 .frame {
-  --post: 12px;
+  --post: 4px;
   --beam-col: 56%;
   position: relative;
   padding-right: 44px;
@@ -89,7 +65,7 @@
   top: -14px;
   bottom: -14px;
   width: var(--post);
-  background: var(--c-paper);
+  background: var(--c-line-strong);
   transform-origin: top;
 }
 
@@ -115,9 +91,10 @@
   gap: 2px;
   min-height: 74px;
   margin-inline: var(--post);
-  padding: var(--s-3) 26% var(--s-3) var(--s-4);
-  border: 1px solid var(--c-line-strong);
-  background: var(--c-graphite-2);
+  padding: var(--s-3) var(--s-4);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-control);
+  background: var(--c-graphite);
   overflow: hidden;
   transform-origin: left;
   transition:
@@ -125,25 +102,9 @@
     border-color var(--dur-med) ease;
 }
 
-/* Kreskowanie przekroju na końcu belki */
-.beam::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 22%;
-  border-left: 1px solid var(--c-line-strong);
-  background-image: repeating-linear-gradient(135deg, var(--c-line-strong) 0 1px, transparent 1px 7px);
-  transition:
-    border-color var(--dur-med) ease,
-    opacity var(--dur-med) ease;
-}
-
 .layerName {
   font-size: var(--t-md);
   font-weight: 650;
-  font-stretch: 108%;
   line-height: 1.2;
   color: var(--c-paper-2);
   transition: color var(--dur-med) ease;
@@ -158,13 +119,9 @@
 }
 
 .layer[data-active] .beam {
-  background: var(--c-cobalt);
-  border-color: var(--c-cobalt);
-}
-
-.layer[data-active] .beam::after {
-  border-color: rgb(238 235 227 / 0.45);
-  background-image: repeating-linear-gradient(135deg, rgb(238 235 227 / 0.5) 0 1px, transparent 1px 7px);
+  border-color: var(--c-line-strong);
+  box-shadow: inset 3px 0 0 var(--c-cobalt);
+  background: var(--c-graphite-3);
 }
 
 .layer[data-active] .layerName {
@@ -172,7 +129,7 @@
 }
 
 .layer[data-active] .layerDetail {
-  color: var(--c-paper);
+  color: var(--c-paper-2);
 }
 
 /* Opis z linią odniesienia od prawego słupka */
@@ -326,7 +283,6 @@
 
   .beam {
     min-height: 64px;
-    padding-right: 24%;
   }
 
   .note {

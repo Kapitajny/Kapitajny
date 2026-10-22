@@ -1,50 +1,20 @@
 .figure {
   display: grid;
-  gap: var(--s-2);
+  gap: var(--s-3);
   max-width: 662px;
-}
-
-/* Ramka arkusza: linia, a w narożnikach znaczniki w kolorze akcentu */
-.frame {
-  position: relative;
-  padding: 6px;
-  border: var(--border);
-  background: var(--c-graphite);
-}
-
-.frame::before,
-.frame::after {
-  content: "";
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border-color: var(--c-cobalt-ink);
-  border-style: solid;
-  pointer-events: none;
-}
-
-.frame::before {
-  top: -1px;
-  left: -1px;
-  border-width: 2px 0 0 2px;
-}
-
-.frame::after {
-  right: -1px;
-  bottom: -1px;
-  border-width: 0 2px 2px 0;
 }
 
 .image {
   display: block;
   width: 100%;
   height: auto;
-  /* Lekkie wyciszenie barw, żeby czerwienie zdjęcia nie konkurowały z kobaltowym akcentem marki */
-  filter: saturate(0.85) contrast(1.05);
+  border: var(--border);
+  border-radius: var(--r-panel);
+  /* Wyciszenie czerwieni zdjęcia, żeby nie konkurowały z kolorem marki */
+  filter: saturate(0.8);
 }
 
 .caption {
-  font-size: var(--t-xs);
-  font-stretch: var(--wdth-label);
+  font-size: var(--t-sm);
   color: var(--c-paper-3);
 }

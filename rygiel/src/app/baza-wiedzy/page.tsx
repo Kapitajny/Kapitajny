@@ -35,7 +35,7 @@ export default function KnowledgeBasePage() {
       </section>
       <ClosingCta
         headingId="baza-cta"
-        title="Wolisz, żeby ktoś sprawdził to za Ciebie?"
+        title="Chcesz, żebyśmy sprawdzili to w Twojej firmie?"
         text="Artykuły pomogą Ci zacząć. Jeśli chcesz mieć pewność, że wszystko jest ustawione poprawnie, zacznijmy od przeglądu środowiska."
         secondary={{ href: "/uslugi", label: "Zobacz zakres usług" }}
       />

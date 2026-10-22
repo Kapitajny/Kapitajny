@@ -132,7 +132,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/realizacje/[
             <h2 id="architektura-title" className={styles.h2}>
               Schemat rozwiązania
             </h2>
-            <FlowDiagram diagram={study.diagram} figureNumber={1} />
+            <FlowDiagram diagram={study.diagram} />
           </section>
 
           <section id="zakres" aria-labelledby="zakres-title" className={styles.section}>

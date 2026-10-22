@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { InfrastructureSection } from "@/components/diagrams/InfrastructureSection";
 import { BenefitList, DeliverySteps, ProblemList, ScopeList, ServiceCta } from "@/components/services/ServiceBlocks";
 import { Accordion } from "@/components/ui/Accordion";
 import { ClosingCta } from "@/components/ui/ClosingCta";
 import { PageHeader } from "@/components/ui/PageHeader";
-import { additionalServices, services } from "@/content/services";
+import { additionalServices, infrastructureLayers, services } from "@/content/services";
 import { pageMetadata } from "@/lib/seo";
 import styles from "./page.module.css";
 
@@ -20,9 +21,26 @@ export default function ServicesPage() {
     <>
       <PageHeader
         breadcrumbs={[{ href: "/uslugi", label: "Usługi" }]}
-        title="Usługi dla firm, które chcą mieć IT pod kontrolą"
+        title="Usługi IT i bezpieczeństwa dla firm"
         lede="Trzy obszary, które się przenikają: codzienne utrzymanie, bezpieczeństwo oraz infrastruktura z kopiami zapasowymi. Możesz zacząć od jednego z nich – zakres opisujemy tak, żeby było jasne, za co odpowiadamy my, a za co Twoja firma."
       />
+
+      <section className={`container ${styles.overview}`} aria-labelledby="warstwy-title">
+        <div className={styles.overviewCopy}>
+          <h2 id="warstwy-title" className={styles.overviewTitle}>
+            Czego dotyczy każda usługa
+          </h2>
+          <p className={styles.summary}>
+            Infrastruktura firmy ma cztery warstwy: ludzi i konta, urządzenia, sieć z serwerami oraz dane. Wybierz usługę, aby zobaczyć, za które warstwy
+            odpowiada.
+          </p>
+        </div>
+        <InfrastructureSection
+          pillars={services.map(({ slug, name, href, summary, layers }) => ({ slug, name, href, summary, layers }))}
+          layers={infrastructureLayers}
+          initial="obsluga-it"
+        />
+      </section>
 
       <div className={`container ${styles.layout}`}>
         <nav className={styles.index} aria-labelledby="spis-uslug">

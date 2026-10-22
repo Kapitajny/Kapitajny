@@ -30,11 +30,11 @@
   --t-lg: clamp(1.125rem, 1.05rem + 0.3vw, 1.25rem); /* 18–20 */
   --t-xl: clamp(1.3125rem, 1.15rem + 0.6vw, 1.5625rem); /* 21–25 */
   --t-2xl: clamp(1.625rem, 1.3rem + 1.2vw, 2rem); /* 26–32 */
-  --t-3xl: clamp(2rem, 1.5rem + 2vw, 2.75rem); /* 32–44 */
-  --t-4xl: clamp(1.875rem, 1.2rem + 3.6vw, 3.75rem); /* 30–60 */
-  --t-5xl: clamp(2rem, 1.1rem + 5vw, 5.25rem); /* 32–84 */
+  --t-3xl: clamp(1.75rem, 1.45rem + 1.3vw, 2.375rem); /* 28–38 */
+  --t-4xl: clamp(1.875rem, 1.4rem + 2.1vw, 2.875rem); /* 30–46 */
+  --t-5xl: clamp(2.125rem, 1.5rem + 2.8vw, 3.5rem); /* 34–56 */
 
-  --wdth-display: 122%;
+  --wdth-display: 100%;
   --wdth-body: 100%;
   --wdth-label: 76%;
 
@@ -164,8 +164,7 @@ h1,
 h2,
 h3,
 h4 {
-  /* Ostatnia deska ratunku przy powiększeniu 400%: długie słowo łamie się zamiast poszerzać stronę */
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
   font-weight: 650;
   line-height: 1.08;
   text-wrap: balance;
@@ -243,11 +242,18 @@ a {
   line-height: 1.4;
 }
 
+/* Miękkie łączniki w nagłówkach działają tylko na wąskich ekranach – na szerszych słowa nie są dzielone */
 .display {
   font-stretch: var(--wdth-display);
-  hyphens: manual;
-  font-weight: 720;
-  letter-spacing: -0.02em;
+  hyphens: none;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+}
+
+@media (max-width: 30rem) {
+  .display {
+    hyphens: manual;
+  }
 }
 
 .lede {
@@ -267,13 +273,6 @@ a {
 
 .text-link:hover {
   text-decoration-color: currentColor;
-}
-
-/* Bardzo wąskie ekrany (320 px, powiększenie 400%): węższy krój nagłówków ekspozycyjnych */
-@media (max-width: 24rem) {
-  :root {
-    --wdth-display: 106%;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

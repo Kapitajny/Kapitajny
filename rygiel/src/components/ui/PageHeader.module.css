@@ -22,9 +22,8 @@
 
 .kicker {
   font-size: var(--t-sm);
-  font-stretch: var(--wdth-label);
-  font-weight: 600;
-  color: var(--c-cobalt-ink);
+  font-weight: 500;
+  color: var(--c-paper-3);
 }
 
 .title {

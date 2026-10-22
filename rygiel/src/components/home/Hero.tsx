@@ -1,41 +1,43 @@
-import { InfrastructureSection } from "@/components/diagrams/InfrastructureSection";
-import { infrastructureLayers, services } from "@/content/services";
 import { LinkButton } from "@/components/ui/LinkButton";
-import { typeset } from "@/lib/typography";
+import { NetworkIllustration } from "@/components/ui/NetworkIllustration";
+import { typeset, typesetHeading } from "@/lib/typography";
 import styles from "./Hero.module.css";
+
+const highlights = [
+  "Stała administracja komputerów, serwerów i kont",
+  "Audyty i testy bezpieczeństwa za pisemną zgodą",
+  "Kopie zapasowe sprawdzane testem odtworzenia",
+];
 
 export function Hero() {
   return (
     <section className={styles.hero} aria-labelledby="hero-title">
       <div className={`container ${styles.grid}`}>
         <div className={styles.copy}>
-          <p className={styles.kicker}>Obsługa IT, cyberbezpieczeństwo, chmura i&nbsp;kopie zapasowe</p>
           <h1 id="hero-title" className={`display ${styles.title}`}>
-            Administrujemy, zabezpieczamy i&nbsp;odtwarzamy IT małych i&nbsp;średnich firm.
+            {typesetHeading("Obsługa IT i cyberbezpieczeństwo dla małych i średnich firm")}
           </h1>
           <p className={`lede ${styles.lede}`}>
             {typeset(
-              "Jeden zespół od codziennego wsparcia pracowników, audytu bezpieczeństwa i kopii zapasowych sprawdzonych testem odtworzenia. Pracujemy z biurami, firmami usługowymi i sklepami internetowymi, które przetwarzają dane klientów.",
+              "Administrujemy infrastrukturą, zabezpieczamy dane i pomagamy pracownikom na co dzień. Pracujemy z biurami, firmami usługowymi i sklepami internetowymi, które przetwarzają dane klientów.",
             )}
           </p>
           <div className={styles.actions}>
-            <LinkButton href="/kontakt" size="large" withArrow>
+            <LinkButton href="/kontakt" size="large">
               Umów konsultację
             </LinkButton>
             <LinkButton href="/uslugi" variant="secondary" size="large">
-              Zobacz zakres usług
+              Zakres usług
             </LinkButton>
           </div>
-          <p className={styles.reassure}>
-            {typeset("Pierwsza rozmowa nie zobowiązuje do współpracy. Po niej wiesz, od czego warto zacząć.")}
-          </p>
+          <ul role="list" className={styles.highlights}>
+            {highlights.map((item) => (
+              <li key={item}>{typeset(item)}</li>
+            ))}
+          </ul>
         </div>
-        <div className={styles.drawing}>
-          <InfrastructureSection
-            pillars={services.map(({ slug, name, href, summary, layers }) => ({ slug, name, href, summary, layers }))}
-            layers={infrastructureLayers}
-            initial="cyberbezpieczenstwo"
-          />
+        <div className={styles.media}>
+          <NetworkIllustration priority sizes="(max-width: 60rem) 100vw, 640px" />
         </div>
       </div>
     </section>

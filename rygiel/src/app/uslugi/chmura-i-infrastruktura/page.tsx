@@ -51,8 +51,7 @@ export default function CloudPage() {
           { href: "/uslugi", label: "Usługi" },
           { href: service.href, label: service.name },
         ]}
-        kicker={service.englishName}
-        title="Infrastruktura, którą można odtworzyć, zanim będzie trzeba"
+        title="Chmura, kopie zapasowe i ciągłość działania"
         lede="Projektujemy i utrzymujemy środowiska chmurowe i hybrydowe, kopie zapasowe oraz plany ciągłości działania. O tym, czy kopia działa, decyduje test odtworzenia, a nie zielona ikonka w panelu."
       >
         <div className={styles.headerActions}>
@@ -78,8 +77,7 @@ export default function CloudPage() {
         <div className="container">
           <SectionHeading
             id="kopie-title"
-            layout="split"
-            title="Kopie zapasowe, które przetrwają awarię i atak"
+              title="Kopie zapasowe w modelu 3-2-1"
             intro={
               <p>
                 Zasada 3-2-1: trzy kopie danych, na dwóch różnych nośnikach, z&nbsp;czego jedna poza firmą. Dokładamy do niej czwarty element – regularny
@@ -87,7 +85,7 @@ export default function CloudPage() {
               </p>
             }
           />
-          <FlowDiagram diagram={backupDiagram} figureNumber={1} />
+          <FlowDiagram diagram={backupDiagram} />
           <p className={styles.more}>
             Więcej o planowaniu kopii przeczytasz w artykule{" "}
             <Link href="/baza-wiedzy/kopie-zapasowe-3-2-1-w-praktyce" className="text-link">
@@ -102,8 +100,7 @@ export default function CloudPage() {
         <div className="container">
           <SectionHeading
             id="rpo-title"
-            layout="split"
-            title="Dwie liczby, które ustalamy na początku"
+              title="Cele odtwarzania: RPO i RTO"
             intro={
               <p>
                 Ile danych możesz stracić i&nbsp;jak długo możesz czekać na powrót do pracy. Wartości ustalamy z&nbsp;Tobą osobno dla każdego systemu – od nich
@@ -134,7 +131,7 @@ export default function CloudPage() {
               </div>
             </dl>
             <figcaption className={styles.caption}>
-              Rys. 2. RPO i&nbsp;RTO na osi czasu: ostatnia kopia, awaria i&nbsp;przywrócenie pracy.
+              RPO i&nbsp;RTO na osi czasu: ostatnia kopia, awaria i&nbsp;przywrócenie pracy.
             </figcaption>
           </figure>
         </div>
@@ -144,7 +141,7 @@ export default function CloudPage() {
         <div className={`container ${styles.split}`}>
           <div className={styles.stack}>
             <h2 id="migracja-title" className={styles.h2}>
-              Migracja etapami, z&nbsp;punktem powrotu
+              Migracja etapami
             </h2>
             <p className={styles.note}>
               Unikamy przełączania wszystkiego jednej nocy. Po każdym etapie sprawdzamy wynik, a&nbsp;do czasu odbioru stare środowisko pozostaje gotowe do
@@ -194,8 +191,8 @@ export default function CloudPage() {
 
       <ClosingCta
         headingId="chmura-cta"
-        title="Kiedy ostatnio ktoś odtworzył Twoje dane z kopii?"
-        text="Jeśli nie znasz odpowiedzi, zacznijmy od testu odtworzenia. To najszybszy sposób, żeby dowiedzieć się, czy kopie działają."
+        title="Sprawdźmy Twoje kopie zapasowe"
+        text="Zacznijmy od testu odtworzenia wybranych danych. To najszybszy sposób, żeby sprawdzić, czy kopie działają."
         secondary={{ href: "/realizacje/kopie-zapasowe-pracowni-projektowej", label: "Zobacz przykładową realizację" }}
       />
     </>

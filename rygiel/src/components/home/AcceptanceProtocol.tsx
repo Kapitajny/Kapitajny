@@ -9,12 +9,11 @@ export function AcceptanceProtocol() {
       <div className="container">
         <SectionHeading
           id="rezultaty-title"
-          layout="split"
-          title="Co masz po pierwszych tygodniach współpracy"
+          title="Efekty pierwszych tygodni współpracy"
           intro={
             <p>
               {typeset(
-                "Zamiast obiecywać procenty, pokazujemy rezultaty, które możesz sprawdzić samodzielnie. Traktujemy je jak protokół odbioru: każda pozycja ma dowód.",
+                "Każdy z tych efektów możesz sprawdzić samodzielnie. W drugiej kolumnie opisujemy, jak to zrobić.",
               )}
             </p>
           }

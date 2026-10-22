@@ -65,8 +65,7 @@ export default function ManagedItPage() {
           { href: "/uslugi", label: "Usługi" },
           { href: service.href, label: service.name },
         ]}
-        kicker={service.englishName}
-        title="Obsługa IT, w której wiesz, kto i kiedy zajmie się problemem"
+        title="Stała obsługa IT dla firm"
         lede="Przejmujemy codzienne utrzymanie komputerów, serwerów i kont. Pracujemy według stałego rytmu, a każdą zmianę zapisujemy, więc wiedza o Twoim środowisku nie znika razem z jedną osobą."
       >
         <div className={styles.headerActions}>
@@ -92,8 +91,7 @@ export default function ManagedItPage() {
         <div className="container">
           <SectionHeading
             id="rytm-title"
-            layout="split"
-            title="Rytm pracy"
+              title="Co robimy w ramach stałej obsługi"
             intro={<p>Utrzymanie to powtarzalne czynności, a&nbsp;nie tylko gaszenie pożarów. Tak wygląda plan, który dopasowujemy do Twojej firmy.</p>}
           />
           <ol role="list" className={styles.rhythm}>
@@ -127,8 +125,7 @@ export default function ManagedItPage() {
         <div className="container">
           <SectionHeading
             id="podzial-title"
-            layout="split"
-            title="Kto za co odpowiada"
+              title="Kto za co odpowiada"
             intro={
               <p>
                 Najwięcej nieporozumień bierze się z&nbsp;niejasnego podziału obowiązków. Przykładowy podział ustalamy na starcie i&nbsp;zapisujemy w&nbsp;umowie.

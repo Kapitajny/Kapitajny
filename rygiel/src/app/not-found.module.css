@@ -10,7 +10,6 @@
 /* Numer błędu narysowany konturem – jak wymiar na rysunku */
 .code {
   font-size: clamp(6rem, 3rem + 14vw, 16rem);
-  font-stretch: 125%;
   font-weight: 800;
   line-height: 0.85;
   letter-spacing: -0.04em;
@@ -25,7 +24,6 @@
 
 .title {
   font-size: var(--t-3xl);
-  font-stretch: 112%;
   font-weight: 700;
 }
 

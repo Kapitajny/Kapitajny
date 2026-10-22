@@ -233,8 +233,7 @@
 
 .resultTitle {
   font-size: var(--t-2xl);
-  font-stretch: 110%;
-  font-weight: 680;
+  font-weight: 600;
   line-height: 1.15;
 }
 

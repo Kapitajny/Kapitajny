@@ -14,8 +14,7 @@
 .h2 {
   margin-bottom: var(--s-5);
   font-size: var(--t-xl);
-  font-stretch: 110%;
-  font-weight: 680;
+  font-weight: 600;
 }
 
 .h3 {

@@ -10,8 +10,8 @@ type ClosingCtaProps = {
 };
 
 export function ClosingCta({
-  title = "Opowiedz nam, co nie działa albo co Cię niepokoi.",
-  text = "Po pierwszej rozmowie wiesz, od czego zacząć i czy jesteśmy właściwym partnerem. Jeśli nie, powiemy to wprost.",
+  title = "Porozmawiajmy o IT w Twojej firmie",
+  text = "Podczas pierwszej rozmowy ustalimy, od czego zacząć. Jeśli nie będziemy właściwym partnerem, powiemy o tym od razu.",
   secondary = { href: "/baza-wiedzy", label: "Najpierw poczytaj w bazie wiedzy" },
   headingId = "cta-title",
 }: ClosingCtaProps) {

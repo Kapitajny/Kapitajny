@@ -3,7 +3,7 @@ import type { FlowDiagram as FlowDiagramData } from "@/content/cases";
 import styles from "./FlowDiagram.module.css";
 
 /** Schemat przepływu w języku rysunku technicznego. Tekst pozostaje tekstem – czytelny na każdym ekranie i dla czytników. */
-export function FlowDiagram({ diagram, figureNumber }: { diagram: FlowDiagramData; figureNumber?: number }) {
+export function FlowDiagram({ diagram }: { diagram: FlowDiagramData }) {
   return (
     <figure className={styles.figure}>
       <div className={styles.canvas}>
@@ -34,7 +34,6 @@ export function FlowDiagram({ diagram, figureNumber }: { diagram: FlowDiagramDat
       </div>
       <figcaption className={styles.caption}>
         <span className={styles.captionTitle}>
-          {figureNumber ? `Rys. ${figureNumber}. ` : null}
           {diagram.title}
         </span>
         <span className={styles.captionText}>{diagram.description}</span>
