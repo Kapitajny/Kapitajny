@@ -1,0 +1,478 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+ * SWOBODA – studio tańca: system wizualny (wersja 2)
+ *
+ * Paleta jest zamknięta – domyślne kolory Tailwinda są wyłączone, więc w kodzie
+ * da się użyć wyłącznie pięciu barw marki (plus przezroczystość tych barw):
+ *   ivory  #F7F2EE  ciepła biel     – tło strony, jasne sekcje, tekst na ciemnym tle
+ *   blush  #E8CFCF  pudrowy róż     – miękkie panele (nigdy jako tekst na jasnym tle)
+ *   rose   #A86F79  zgaszony róż    – odliczanie w hero, znaczniki, detale; tekst tylko ≥ 24 px
+ *   wine   #743D4B  burgund         – główne CTA, aktywne linki, wybrane nagłówki
+ *   cocoa  #34272A  ciemny brąz     – tekst podstawowy, ciemne panele
+ *
+ * Kontrast (WCAG): cocoa/ivory 12.9, cocoa/blush 9.7, wine/ivory 7.5, wine/blush 5.7,
+ * ivory/cocoa 12.9, blush/cocoa 9.7, rose/ivory 3.6 (tylko duży tekst i grafika).
+ *
+ * Typografia: jedna rodzina – Bricolage Grotesque. Nagłówki zwężone (oś wdth ≈ 78%)
+ * i ciasno składane, tekst w pełnej szerokości. Rozmiar optyczny dobiera przeglądarka.
+ *
+ * Kompozycja: strona to „parkiet” w ciepłej bieli, na którym leżą zaokrąglone panele
+ * (klasa `.band`). Zamiast cienkich linii i etykiet nad nagłówkami – przestrzeń i skala.
+ * ------------------------------------------------------------------------- */
+
+@theme {
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-ivory: #f7f2ee;
+  --color-blush: #e8cfcf;
+  --color-rose: #a86f79;
+  --color-wine: #743d4b;
+  --color-cocoa: #34272a;
+
+  --font-sans: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-cocoa);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-sans);
+    font-weight: 650;
+    font-stretch: 80%;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-wine);
+    color: var(--color-ivory);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-wine);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  .on-dark :focus-visible {
+    outline-color: var(--color-blush);
+  }
+
+  /* Blokada przewijania tła przy otwartym oknie modalnym. */
+  html:has(dialog[open]:modal) {
+    overflow: hidden;
+  }
+
+  dialog::backdrop {
+    background: color-mix(in oklab, var(--color-cocoa) 78%, transparent);
+  }
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 82rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-x {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  .section-y {
+    padding-block: clamp(4rem, 2.5rem + 6vw, 8rem);
+  }
+
+  /* Zaokrąglony panel odsunięty od krawędzi ekranu – „mata” leżąca na parkiecie strony. */
+  .band {
+    margin-inline: clamp(0.5rem, 1.6vw, 1.5rem);
+    border-radius: clamp(1.5rem, 3vw, 2.75rem);
+  }
+
+  .display {
+    font-size: clamp(3.4rem, 1.4rem + 8vw, 9rem);
+    font-weight: 700;
+    font-stretch: 75%;
+    line-height: 0.9;
+    letter-spacing: -0.035em;
+  }
+  .h2 {
+    font-size: clamp(2.5rem, 1.5rem + 3.8vw, 5rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+  }
+  .h3 {
+    font-size: clamp(1.45rem, 1.25rem + 0.8vw, 1.95rem);
+    font-weight: 600;
+    font-stretch: 85%;
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+  }
+
+  .lead {
+    font-size: clamp(1.1rem, 1.02rem + 0.4vw, 1.32rem);
+    line-height: 1.55;
+  }
+
+  .prose-measure {
+    max-width: 60ch;
+  }
+
+  /* Krótki opis kategorii (zamiast etykiet wersalikami). */
+  .label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3.1rem;
+    padding: 0.8rem 1.6rem;
+    border: 1.5px solid transparent;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    white-space: nowrap;
+    transition:
+      background-color 200ms var(--ease-soft),
+      color 200ms var(--ease-soft),
+      border-color 200ms var(--ease-soft),
+      transform 200ms var(--ease-soft);
+    cursor: pointer;
+  }
+  .btn:active {
+    transform: translateY(1px);
+  }
+  .btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+  .btn-primary {
+    background: var(--color-wine);
+    color: var(--color-ivory);
+  }
+  .btn-primary:hover:not(:disabled) {
+    background: var(--color-cocoa);
+  }
+  .btn-secondary {
+    border-color: var(--color-cocoa);
+    color: var(--color-cocoa);
+  }
+  .btn-secondary:hover:not(:disabled) {
+    background: var(--color-cocoa);
+    color: var(--color-ivory);
+  }
+  .btn-light {
+    background: var(--color-ivory);
+    color: var(--color-wine);
+  }
+  .btn-light:hover:not(:disabled) {
+    background: var(--color-blush);
+  }
+  .btn-outline-light {
+    border-color: color-mix(in oklab, var(--color-ivory) 55%, transparent);
+    color: var(--color-ivory);
+  }
+  .btn-outline-light:hover:not(:disabled) {
+    border-color: var(--color-ivory);
+    background: color-mix(in oklab, var(--color-ivory) 10%, transparent);
+  }
+  .btn-sm {
+    min-height: 2.75rem;
+    padding: 0.5rem 1.15rem;
+    font-size: 0.9rem;
+  }
+
+  .link {
+    color: var(--color-wine);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.22em;
+    text-decoration-color: color-mix(in oklab, currentColor 40%, transparent);
+    transition: text-decoration-color 200ms var(--ease-soft);
+  }
+  .link:hover {
+    text-decoration-color: currentColor;
+  }
+  .on-dark .link {
+    color: var(--color-blush);
+  }
+
+  /* Akcja tekstowa (np. „Zapisz się na próbę”) – podkreślenie zamiast strzałki. */
+  .text-action {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    font-weight: 600;
+    color: var(--color-wine);
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.3em;
+    text-decoration-color: color-mix(in oklab, currentColor 35%, transparent);
+    cursor: pointer;
+  }
+  .text-action:hover {
+    text-decoration-color: currentColor;
+  }
+  .on-dark .text-action {
+    color: var(--color-blush);
+  }
+
+  .rule {
+    border-color: color-mix(in oklab, var(--color-cocoa) 14%, transparent);
+  }
+  .on-dark .rule {
+    border-color: color-mix(in oklab, var(--color-ivory) 18%, transparent);
+  }
+
+  .field-label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .field-hint {
+    font-size: 0.875rem;
+    color: color-mix(in oklab, var(--color-cocoa) 80%, transparent);
+  }
+  .field-input {
+    width: 100%;
+    min-height: 3.1rem;
+    padding: 0.7rem 1.1rem;
+    border: 1.5px solid color-mix(in oklab, var(--color-cocoa) 22%, transparent);
+    border-radius: 0.9rem;
+    background: var(--color-ivory);
+    color: var(--color-cocoa);
+    font: inherit;
+    transition:
+      border-color 200ms var(--ease-soft),
+      box-shadow 200ms var(--ease-soft);
+  }
+  .field-input::placeholder {
+    color: color-mix(in oklab, var(--color-cocoa) 55%, transparent);
+  }
+  .field-input:focus {
+    outline: none;
+    border-color: var(--color-wine);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-wine) 18%, transparent);
+  }
+  .field-input[aria-invalid="true"] {
+    border-color: var(--color-wine);
+    border-width: 2px;
+  }
+  select.field-input {
+    appearance: none;
+    padding-right: 2.75rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%2334272A' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.1rem center;
+    cursor: pointer;
+  }
+  textarea.field-input {
+    min-height: 7.5rem;
+    resize: vertical;
+  }
+  .field-error {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+    margin-top: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-wine);
+  }
+
+  .checkbox {
+    appearance: none;
+    flex: none;
+    width: 1.3rem;
+    height: 1.3rem;
+    margin-top: 0.15rem;
+    border: 1.5px solid color-mix(in oklab, var(--color-cocoa) 55%, transparent);
+    border-radius: 0.4rem;
+    background: var(--color-ivory);
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+  }
+  .checkbox::after {
+    content: "";
+    width: 0.65rem;
+    height: 0.65rem;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    background: var(--color-ivory);
+    transform: scale(0);
+    transition: transform 150ms var(--ease-soft);
+  }
+  .checkbox:checked {
+    background: var(--color-wine);
+    border-color: var(--color-wine);
+  }
+  .checkbox:checked::after {
+    transform: scale(1);
+  }
+  .checkbox[aria-invalid="true"] {
+    border-color: var(--color-wine);
+    border-width: 2px;
+  }
+
+  /* Przełączniki (dni tygodnia, style, „gdzie jesteś”). */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+    padding: 0.45rem 1.1rem;
+    border: 1.5px solid color-mix(in oklab, var(--color-cocoa) 25%, transparent);
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition:
+      background-color 180ms var(--ease-soft),
+      color 180ms var(--ease-soft),
+      border-color 180ms var(--ease-soft);
+    cursor: pointer;
+  }
+  .chip:hover {
+    border-color: var(--color-cocoa);
+  }
+  .chip[aria-pressed="true"],
+  .chip[aria-selected="true"] {
+    background: var(--color-wine);
+    border-color: var(--color-wine);
+    color: var(--color-ivory);
+  }
+  .on-dark .chip {
+    border-color: color-mix(in oklab, var(--color-ivory) 35%, transparent);
+  }
+  .on-dark .chip:hover {
+    border-color: var(--color-ivory);
+  }
+  .on-dark .chip[aria-pressed="true"],
+  .on-dark .chip[aria-selected="true"] {
+    background: var(--color-blush);
+    border-color: var(--color-blush);
+    color: var(--color-cocoa);
+  }
+
+  .sr-only-focusable:not(:focus) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+/* Odliczanie „5, 6, 7, 8” w hero: każda cyfra „wybija” swój takt (ok. 120 BPM), raz po wczytaniu.
+   Cyfry są widoczne od początku – animacja tylko je akcentuje. */
+@keyframes count-beat {
+  0%,
+  100% {
+    color: var(--color-rose);
+    transform: translateY(0);
+  }
+  35% {
+    color: var(--color-wine);
+    transform: translateY(-0.06em);
+  }
+}
+.count-beat {
+  display: inline-block;
+  color: var(--color-rose);
+  animation: count-beat 500ms var(--ease-soft) both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fade-in {
+  animation: fade-in 380ms var(--ease-soft);
+}
+
+dialog[open].dialog-fade {
+  animation: fade-in 220ms var(--ease-soft);
+}
+
+/* Wskaźnik przewijania w hero. */
+@keyframes scroll-dot {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+  60% {
+    transform: translate(-50%, 0.7rem);
+    opacity: 0.2;
+  }
+}
+.scroll-dot {
+  animation: scroll-dot 2.2s var(--ease-soft) infinite;
+}
+
+/* Karnet: półokrągłe wcięcia po bokach, jak na bilecie. */
+.ticket {
+  --notch: 0.85rem;
+  mask:
+    radial-gradient(circle var(--notch) at 0 50%, transparent 98%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle var(--notch) at 100% 50%, transparent 98%, #000) right / 51% 100% no-repeat;
+}
