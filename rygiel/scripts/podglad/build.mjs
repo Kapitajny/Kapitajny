@@ -35,6 +35,26 @@ css += `
 header:first-of-type { top: env(safe-area-inset-top, 0px); }
 `;
 
+// Obrazy next/image: jeden wariant WebP osadzony jako data URI (podgląd nie może pobierać plików z serwera)
+const imageCache = new Map();
+async function inlineImages(html) {
+  for (const match of html.matchAll(/<img\b[^>]*>/g)) {
+    const tag = match[0];
+    const src = tag.match(/\ssrc="([^"]+)"/)?.[1]?.replace(/&amp;/g, "&");
+    if (!src || !src.startsWith("/_next/image")) continue;
+    if (!imageCache.has(src)) {
+      const res = await fetch(BASE + src, { headers: { Accept: "image/webp" } });
+      const type = res.headers.get("content-type") ?? "image/webp";
+      imageCache.set(src, `data:${type};base64,${Buffer.from(await res.arrayBuffer()).toString("base64")}`);
+    }
+    const inlined = tag
+      .replace(/\s(?:srcset|srcSet|sizes)="[^"]*"/g, "")
+      .replace(/\ssrc="[^"]+"/, ` src="${imageCache.get(src)}"`);
+    html = html.replace(tag, inlined);
+  }
+  return html;
+}
+
 const stripScripts = (html) => html.replace(/<script\b[\s\S]*?<\/script>/g, "").replace(/<link\b[^>]*>/g, "");
 const rewriteLinks = (html) =>
   html
@@ -55,7 +75,7 @@ for (const [route, html] of pages) {
   const inner = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];
   const title = (html.match(/<title>([^<]*)<\/title>/)?.[1] ?? "Rygiel").replace(/"/g, "&quot;");
   const key = route === "/404-nie-istnieje" ? "/404" : route;
-  templates.push(`<template data-route="${key}" data-title="${title}">${fixRootLink(rewriteLinks(stripScripts(inner)))}</template>`);
+  templates.push(`<template data-route="${key}" data-title="${title}">${fixRootLink(rewriteLinks(stripScripts(await inlineImages(inner))))}</template>`);
 }
 
 const app = await readFile(new URL("./app.js", import.meta.url), "utf8");

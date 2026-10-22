@@ -308,3 +308,12 @@ Problemy wykryte w trakcie QA i naprawione:
 
 Świadome ograniczenia: CSP z `'unsafe-inline'` dla skryptów (strony statyczne), limit żądań formularza w pamięci jednej
 instancji, formularz wymaga JavaScriptu, dokumenty prawne i dane firmy jako wersje robocze – szczegóły w README.
+
+### Aktualizacja: grafika i przegląd dostępności
+
+- Dodana grafika właściciela (`src/assets/ochrona-sieci.jpg`, 662×463 px) – przez `next/image` (AVIF/WebP, rozmycie
+  przy ładowaniu), w ramce arkusza z podpisem, w dwóch miejscach dopasowanych do jej rozdzielczości.
+- Przegląd projektu: ujednolicony kształt filtrów (ostre narożniki jak pozostałe kontrolki).
+- Audyt dostępności: wykryte przewijanie w poziomie przy 320 px na 8 stronach (WCAG 1.4.10) – poprawione mniejszym
+  minimalnym rozmiarem nagłówków, węższym krojem na bardzo wąskich ekranach i miękkim dzieleniem „cyber-bezpieczeństwo”.
+  Nowy test E2E pilnuje tego na wszystkich trasach.

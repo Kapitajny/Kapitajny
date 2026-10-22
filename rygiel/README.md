@@ -74,7 +74,7 @@ Dynamicznie działa tylko Server Action formularza kontaktowego.
 npm run lint          # ESLint (konfiguracja eslint-config-next)
 npm run typecheck     # tsc --noEmit
 npm test              # Vitest – 45 testów logiki i spójności treści
-npm run build && npm run test:e2e   # Playwright – 88 testów na buildzie produkcyjnym
+npm run build && npm run test:e2e   # Playwright – 89 testów na buildzie produkcyjnym
 ```
 
 Co sprawdzają testy:
@@ -86,7 +86,7 @@ Co sprawdzają testy:
 - **Playwright** (`e2e/`): każda trasa (status 200, jedno H1, tytuł, opis, adres kanoniczny, Open Graph), unikalność
   tytułów i opisów, wszystkie linki wewnętrzne i kotwice, sitemap i robots, strona 404, nagłówki bezpieczeństwa, brak
   cookies i danych w pamięci przeglądarki, brak błędów konsoli, nawigacja i skip link, menu mobilne (Esc, `inert`,
-  powrót fokusu), akordeon z klawiatury, przekrój infrastruktury, filtry realizacji (w tym stan pusty) i bazy
+  powrót fokusu), brak przewijania w poziomie przy 320 px (powiększenie 400%), akordeon z klawiatury, przekrój infrastruktury, filtry realizacji (w tym stan pusty) i bazy
   wiedzy, formularz (walidacja, tryb demo, pułapka czasowa, pole-pułapka, wstępny wybór usługi), brak przewijania w
   poziomie na telefonie oraz **axe-core** (WCAG 2.0/2.1/2.2 A i AA) na 12 kluczowych stronach i na formularzu z błędami.
 
@@ -210,7 +210,10 @@ Znaczniki „do uzupełnienia” (komponent `Pending`) są widoczne w serwisie i
 - adres kontaktowy (`NEXT_PUBLIC_CONTACT_EMAIL`),
 - okres przechowywania danych, dostawcy hostingu i poczty, podstawa transferu danych poza EOG,
 - adres serwisu, termin reklamacji i data wejścia w życie regulaminu,
-- weryfikacja prawna polityki prywatności, polityki cookies i regulaminu.
+- weryfikacja prawna polityki prywatności, polityki cookies i regulaminu,
+- licencja grafiki `src/assets/ochrona-sieci.jpg` (dostarczona przez właściciela projektu; przed publikacją potwierdź
+  prawo do jej użycia). Plik ma 662×463 px, dlatego jest pokazywany w naturalnym rozmiarze (strona główna – sekcja
+  „Jak podchodzimy do bezpieczeństwa”, nagłówek strony „Cyberbezpieczeństwo”), a nie na całą szerokość ekranu.
 
 Usługi zewnętrzne: hosting (dowolny z obsługą Next.js) oraz – opcjonalnie – Resend lub webhook do wysyłki formularza.
 Podczas buildu `next/font` pobiera fonty z Google Fonts (w przeglądarce są serwowane z domeny serwisu).

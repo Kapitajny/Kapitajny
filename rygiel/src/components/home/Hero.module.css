@@ -25,7 +25,7 @@
 }
 
 .title {
-  font-size: clamp(2.375rem, 1.1rem + 3.4vw, 4.125rem);
+  font-size: clamp(1.875rem, 0.95rem + 3.8vw, 4.125rem);
   line-height: 0.98;
 }
 

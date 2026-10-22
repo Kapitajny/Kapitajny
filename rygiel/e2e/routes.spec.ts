@@ -58,6 +58,17 @@ test.describe("routing i metadane", () => {
     expect(await robots.text()).toContain("Sitemap:");
   });
 
+  test("strony mieszczą się na ekranie 320 px – powiększenie 400% (WCAG 1.4.10)", async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 640 });
+    const overflowing: string[] = [];
+    for (const route of routes) {
+      await page.goto(route);
+      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+      if (overflow > 0) overflowing.push(`${route} (+${overflow}px)`);
+    }
+    expect(overflowing).toEqual([]);
+  });
+
   test("nieistniejąca strona zwraca 404 z nawigacją", async ({ page }) => {
     const response = await page.goto("/nie-ma-takiej-strony");
     expect(response?.status()).toBe(404);

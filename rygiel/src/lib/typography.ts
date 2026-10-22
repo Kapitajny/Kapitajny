@@ -19,3 +19,11 @@ export function typesetDeep<T>(value: T): T {
   }
   return value;
 }
+
+// Miękkie łączniki w długich słowach – nagłówki w szerokim kroju muszą mieścić się na ekranie 320 px (WCAG 1.4.10).
+// Stosowane tylko w nagłówkach stron, żeby nie zmieniać nazw dostępnych przycisków i opcji.
+const SOFT_HYPHENS: [RegExp, string][] = [[/([Cc]yber)(bezpieczeństw)/g, "$1\u00AD$2"]];
+
+export function typesetHeading(text: string): string {
+  return SOFT_HYPHENS.reduce((result, [pattern, replacement]) => result.replace(pattern, replacement), typeset(text));
+}

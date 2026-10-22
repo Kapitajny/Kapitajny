@@ -4,6 +4,7 @@ import { BenefitList, DeliverySteps, ProblemList, ServiceCta } from "@/component
 import { Accordion } from "@/components/ui/Accordion";
 import { ClosingCta } from "@/components/ui/ClosingCta";
 import { LinkButton } from "@/components/ui/LinkButton";
+import { NetworkIllustration } from "@/components/ui/NetworkIllustration";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getService } from "@/content/services";
@@ -68,6 +69,7 @@ export default function CybersecurityPage() {
         kicker={service.englishName}
         title="Bezpieczeństwo oparte na faktach, a nie na poczuciu zagrożenia"
         lede="Sprawdzamy, jak naprawdę skonfigurowane są Twoje systemy, oceniamy ryzyko i wdrażamy poprawki. Testy bezpieczeństwa wykonujemy wyłącznie w uzgodnionym zakresie i za pisemną zgodą właściciela systemu."
+        aside={<NetworkIllustration priority caption="Rys. 1. Audyt zaczyna się od mapy: urządzeń, kont, usług i połączeń między nimi." />}
       >
         <div className={styles.headerActions}>
           <LinkButton href={`/kontakt?usluga=${service.slug}`} withArrow>

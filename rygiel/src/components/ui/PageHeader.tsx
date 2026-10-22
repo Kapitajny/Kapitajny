@@ -1,4 +1,4 @@
-import { typeset } from "@/lib/typography";
+import { typeset, typesetHeading } from "@/lib/typography";
 import { Breadcrumbs, type Crumb } from "./Breadcrumbs";
 import styles from "./PageHeader.module.css";
 
@@ -21,7 +21,7 @@ export function PageHeader({ title, lede, breadcrumbs, kicker, aside, children, 
         <div className={`${styles.grid} ${aside ? styles.withAside : ""}`}>
           <div className={styles.main}>
             {kicker ? <p className={styles.kicker}>{kicker}</p> : null}
-            <h1 className={`display ${styles.title} ${size === "large" ? styles.large : ""}`}>{typeset(title)}</h1>
+            <h1 className={`display ${styles.title} ${size === "large" ? styles.large : ""}`}>{typesetHeading(title)}</h1>
             {lede ? <p className={`lede ${styles.lede}`}>{typeset(lede)}</p> : null}
             {children}
           </div>

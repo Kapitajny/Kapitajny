@@ -1,4 +1,5 @@
 import { securityPrinciples } from "@/content/approach";
+import { NetworkIllustration } from "@/components/ui/NetworkIllustration";
 import styles from "./SecurityApproach.module.css";
 import { typeset } from "@/lib/typography";
 
@@ -15,6 +16,7 @@ export function SecurityApproach() {
               "Nikt uczciwy nie zagwarantuje, że do incydentu nigdy nie dojdzie. Możemy zmniejszyć jego prawdopodobieństwo, ograniczyć skutki i przygotować firmę na szybki powrót do pracy. Tych pięciu zasad trzymamy się w każdym projekcie.",
             )}
           </p>
+          <NetworkIllustration caption="Rys. 2. Każdy węzeł sieci to miejsce, w którym trzeba zdecydować, kto ma dostęp i co się stanie po awarii." />
         </div>
         <dl className={styles.list}>
           {securityPrinciples.map((principle) => (
