@@ -8,6 +8,8 @@ export interface PricingPlan {
   unit: string;
   summary: string;
   details: string[];
+  /** Liczba wejść na karnecie (dziurki do skasowania); `null` – bez limitu. */
+  entries: number | null;
   /** Wyróżniony pakiet (jeden). */
   featured?: boolean;
 }
@@ -20,6 +22,7 @@ export const PRICING: PricingPlan[] = [
     unit: "jednorazowo",
     summary: "Pierwsze zajęcia w wybranym stylu – sprawdź, czy to dla Ciebie.",
     details: ["Dowolna grupa na poziomie „Od zera” lub „Podstawowy”", "Rozmowa z instruktorem po zajęciach"],
+    entries: 1,
   },
   {
     id: "wejscie",
@@ -28,6 +31,7 @@ export const PRICING: PricingPlan[] = [
     unit: "za zajęcia",
     summary: "Gdy chcesz przyjść raz na jakiś czas, bez zobowiązań.",
     details: ["Dowolne zajęcia z grafiku", "Ważne w dniu zakupu"],
+    entries: 1,
   },
   {
     id: "pakiet-4",
@@ -36,6 +40,7 @@ export const PRICING: PricingPlan[] = [
     unit: "za pakiet",
     summary: "Raz w tygodniu przez miesiąc – dobry rytm na początek.",
     details: ["45 zł za zajęcia", "Ważny 30 dni od pierwszych zajęć", "Dowolne style i grupy na Twoim poziomie"],
+    entries: 4,
   },
   {
     id: "pakiet-8",
@@ -44,6 +49,7 @@ export const PRICING: PricingPlan[] = [
     unit: "za pakiet",
     summary: "Dwa razy w tygodniu – tempo, w którym najszybciej widać postępy.",
     details: ["40 zł za zajęcia", "Ważny 45 dni od pierwszych zajęć", "Dowolne style i grupy na Twoim poziomie"],
+    entries: 8,
     featured: true,
   },
   {
@@ -53,6 +59,7 @@ export const PRICING: PricingPlan[] = [
     unit: "za 30 dni",
     summary: "Dla osób, które chcą tańczyć często i w kilku stylach.",
     details: ["Bez limitu wejść przez 30 dni", "Wszystkie grupy na Twoim poziomie"],
+    entries: null,
   },
 ];
 

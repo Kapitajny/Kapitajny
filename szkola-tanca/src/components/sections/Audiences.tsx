@@ -1,64 +1,60 @@
 "use client";
 
+import { useState } from "react";
 import { useStudio } from "@/components/schedule/StudioProvider";
-import { ArrowRight } from "@/components/ui/Icons";
 import { AUDIENCES } from "@/data/audiences";
 
+/** „Dla kogo są nasze zajęcia?” jako krótki wybór: zaznacz, co do Ciebie pasuje, a zobaczysz podpowiedź. */
 export function Audiences() {
   const { showSchedule, requestTrial } = useStudio();
+  const [selectedId, setSelectedId] = useState(AUDIENCES[0].id);
+  const audience = AUDIENCES.find((item) => item.id === selectedId) ?? AUDIENCES[0];
+
+  const action = () => {
+    if (audience.filter) showSchedule(audience.filter);
+    else if (audience.id === "mlodziez")
+      requestTrial({ style: "nie-wiem", message: "Szukam zajęć dla dziecka / nastolatka. Proszę o informację, gdy pojawi się taka grupa." });
+    else showSchedule({});
+  };
+  const actionLabel = audience.filter ? "Pokaż pasujące terminy" : audience.id === "mlodziez" ? "Zostaw kontakt" : "Zobacz cały grafik";
 
   return (
-    <section id="dla-kogo" aria-labelledby="dla-kogo-title" className="on-dark section-y bg-cocoa text-ivory">
-      <div className="container-x">
-        <div className="grid gap-6 lg:grid-cols-12">
-          <div className="lg:col-span-6">
-            <p className="eyebrow text-blush">Dla kogo są nasze zajęcia?</p>
-            <h2 id="dla-kogo-title" className="h2 mt-5">
-              Znajdź grupę, w której poczujesz się <em className="text-blush">na miejscu</em>
-            </h2>
+    <section id="dla-kogo" aria-labelledby="dla-kogo-title" className="band section-y bg-blush">
+      <div className="container-x grid gap-10 lg:grid-cols-12 lg:gap-12">
+        <div className="lg:col-span-6">
+          <h2 id="dla-kogo-title" className="h2 text-wine">
+            Dla kogo są nasze zajęcia?
+          </h2>
+          <p className="lead mt-6 max-w-[40ch]">Zaznacz, co najlepiej opisuje Twoją sytuację. Podpowiemy, od czego zacząć.</p>
+          <div role="group" aria-label="Twoja sytuacja" className="mt-8 flex flex-wrap gap-2">
+            {AUDIENCES.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                className="chip sm:min-h-12 sm:px-5 sm:text-base"
+                aria-pressed={item.id === selectedId}
+                aria-controls="dla-kogo-podpowiedz"
+                onClick={() => setSelectedId(item.id)}
+              >
+                {item.title}
+              </button>
+            ))}
           </div>
-          <p className="lead prose-measure text-ivory/90 lg:col-span-5 lg:col-start-8 lg:self-end">
-            Nie wiesz, od czego zacząć? Wybierz opis, który najbardziej do Ciebie pasuje – pokażemy pasujące terminy w grafiku.
-          </p>
         </div>
 
-        <ul className="mt-14 border-b rule lg:mt-20">
-          {AUDIENCES.map((audience, index) => (
-            <li key={audience.id} className="grid gap-4 border-t rule py-8 md:grid-cols-12 md:gap-8 md:py-10">
-              <span className="font-serif text-xl text-rose md:col-span-1" aria-hidden="true">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <h3 className="font-serif text-3xl leading-tight md:col-span-4 lg:text-4xl">{audience.title}</h3>
-              <div className="md:col-span-7 lg:col-span-5">
-                <p className="text-ivory/90">{audience.description}</p>
-                <p className="mt-4 text-sm">
-                  <span className="font-semibold text-blush">Polecamy: </span>
-                  {audience.recommendation}
-                </p>
-                {audience.demoNote && <p className="mt-2 text-sm italic text-ivory/80">{audience.demoNote}</p>}
-              </div>
-              <div className="md:col-span-12 md:col-start-6 lg:col-span-2 lg:col-start-auto lg:text-right">
-                {audience.filter ? (
-                  <button type="button" onClick={() => showSchedule(audience.filter ?? {})} className="link-arrow text-blush">
-                    Pokaż terminy <ArrowRight size={18} />
-                  </button>
-                ) : audience.id === "mlodziez" ? (
-                  <button
-                    type="button"
-                    onClick={() => requestTrial({ style: "nie-wiem", message: "Szukam zajęć dla dziecka / nastolatka. Proszę o informację, gdy pojawi się taka grupa." })}
-                    className="link-arrow text-blush"
-                  >
-                    Zostaw kontakt <ArrowRight size={18} />
-                  </button>
-                ) : (
-                  <button type="button" onClick={() => showSchedule({})} className="link-arrow text-blush">
-                    Cały grafik <ArrowRight size={18} />
-                  </button>
-                )}
-              </div>
-            </li>
-          ))}
-        </ul>
+        <div id="dla-kogo-podpowiedz" aria-live="polite" className="flex flex-col rounded-[1.75rem] bg-ivory p-7 sm:p-10 lg:col-span-6">
+          <p className="label text-wine">Podpowiedź</p>
+          <h3 className="h3 mt-2">{audience.title}</h3>
+          <p className="mt-4">{audience.description}</p>
+          <p className="mt-6 rounded-2xl bg-blush px-5 py-4">
+            <span className="font-semibold">Polecamy na start: </span>
+            {audience.recommendation}
+          </p>
+          {audience.demoNote && <p className="mt-3 text-sm italic">{audience.demoNote}</p>}
+          <button type="button" onClick={action} className="btn btn-primary mt-8 self-start">
+            {actionLabel}
+          </button>
+        </div>
       </div>
     </section>
   );

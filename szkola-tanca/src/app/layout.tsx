@@ -1,22 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Figtree, Instrument_Serif } from "next/font/google";
+import { Bricolage_Grotesque } from "next/font/google";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { PHOTOS } from "@/config/photos";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
+/** Jedna rodzina w dwóch rolach: zwężone nagłówki (oś wdth) i tekst w optycznym rozmiarze dla małych stopni. */
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
   subsets: ["latin", "latin-ext"],
-  weight: "400",
-  style: ["normal", "italic"],
-  display: "swap",
-});
-
-const figtree = Figtree({
-  variable: "--font-figtree",
-  subsets: ["latin", "latin-ext"],
+  axes: ["opsz", "wdth"],
   display: "swap",
 });
 
@@ -48,7 +42,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pl" className={`${instrumentSerif.variable} ${figtree.variable}`}>
+    <html lang="pl" className={bricolage.variable}>
       <body className="flex min-h-dvh flex-col">
         <SiteHeader />
         <main id="tresc" tabIndex={-1} className="flex-1 focus:outline-none">

@@ -1,18 +1,32 @@
 import Link from "next/link";
 import { Photo } from "@/components/ui/Photo";
 
+/** Odliczanie, którym instruktor zaczyna każdy układ. Każda cyfra stoi o stopień wyżej – jak kroki. */
+const COUNT = ["5", "6", "7", "8"];
+
 export function Hero() {
   return (
-    <section aria-labelledby="hero-title" className="relative overflow-hidden">
-      <div className="container-x grid items-center gap-12 pb-16 pt-8 md:pt-12 lg:min-h-[calc(100svh-4.5rem)] lg:grid-cols-12 lg:gap-8 lg:pb-20">
-        <div className="lg:col-span-6 xl:col-span-6">
-          <p className="eyebrow">Studio tańca dla dorosłych</p>
-          <h1 id="hero-title" className="display mt-6">
-            Nie musisz umieć tańczyć, <em className="text-wine">żeby zacząć.</em>
+    <section aria-labelledby="hero-title" className="relative">
+      <div className="container-x grid items-end gap-10 pb-14 pt-6 md:pt-10 lg:grid-cols-12 lg:gap-8 lg:pb-20">
+        <div className="lg:col-span-7">
+          <h1 id="hero-title" className="display">
+            <span className="sr-only">5, 6, 7, 8 </span>
+            <span className="flex items-end gap-[0.18em]" aria-hidden="true">
+              {COUNT.map((digit, index) => (
+                <span
+                  key={digit}
+                  className="count-beat"
+                  style={{ marginBottom: `${index * 0.14}em`, animationDelay: `${400 + index * 500}ms` }}
+                >
+                  {digit}
+                </span>
+              ))}
+            </span>
+            <span className="mt-[0.12em] block">i zaczynasz tańczyć.</span>
           </h1>
-          <p className="lead prose-measure mt-7 max-w-[46ch]">
-            Swoboda to miejsce, w którym ruch zaczyna się od oddechu, a nie od oceny. Uczymy w małych grupach, cierpliwie i we własnym tempie każdej
-            osoby – od pierwszego kroku po własną choreografię.
+          <p className="lead prose-measure mt-8 max-w-[44ch]">
+            Tak instruktor odlicza przed każdym układem. U nas odliczamy cierpliwie: w małych grupach, od pierwszego kroku, bez oceniania i we
+            własnym tempie każdej osoby.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link href="#zapis" className="btn btn-primary">
@@ -22,40 +36,31 @@ export function Hero() {
               Poznaj nasze zajęcia
             </Link>
           </div>
-          <dl className="mt-12 grid max-w-lg grid-cols-3 gap-4 border-t rule pt-6">
-            {[
-              ["5", "stylów tańca"],
-              ["4", "poziomy, od zera"],
-              ["25 zł", "lekcja próbna*"],
-            ].map(([value, label]) => (
-              <div key={label}>
-                <dt className="sr-only">{label}</dt>
-                <dd className="font-serif text-3xl text-wine sm:text-4xl">{value}</dd>
-                <dd className="mt-1 text-sm leading-snug">{label}</dd>
-              </div>
-            ))}
-          </dl>
-          <p className="mt-3 text-xs">*cena przykładowa</p>
         </div>
 
-        <div className="relative lg:col-span-6 xl:col-span-5 xl:col-start-8">
-          <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-t-full bg-blush sm:max-w-lg lg:max-w-none">
-            <Photo photo="classJoy" sizes="(min-width: 1280px) 34rem, (min-width: 1024px) 46vw, (min-width: 640px) 32rem, 92vw" position="52% 50%" preload />
+        <div className="relative lg:col-span-5">
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] bg-blush sm:aspect-[5/4] lg:aspect-[4/5]">
+            <Photo
+              photo="classJoy"
+              sizes="(min-width: 1312px) 30rem, (min-width: 1024px) 38vw, 92vw"
+              position="55% 45%"
+              preload
+            />
           </div>
-          <p className="relative mx-auto -mt-10 w-[86%] max-w-sm bg-blush px-6 py-5 font-serif text-xl leading-snug text-cocoa sm:text-2xl lg:-ml-10 lg:mr-auto">
-            Pierwszy krok jest najtrudniejszy. <span className="text-wine">Zrobimy go razem.</span>
+          <p className="absolute -bottom-5 left-5 right-5 rounded-2xl bg-cocoa px-5 py-4 text-[0.95rem] text-ivory sm:left-auto sm:max-w-xs">
+            Pierwsza lekcja próbna kosztuje 25 zł i nie wymaga żadnego doświadczenia. <span className="text-blush">Cena przykładowa.</span>
           </p>
         </div>
       </div>
 
       <a
         href="#o-nas"
-        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-xs font-semibold uppercase tracking-[0.24em] lg:flex"
+        className="mx-auto mb-4 mt-6 hidden w-fit items-center gap-3 rounded-full px-4 py-2 text-sm font-semibold transition-colors hover:text-wine lg:flex"
       >
-        <span>Przewiń</span>
-        <span className="relative h-10 w-px overflow-hidden bg-cocoa/15" aria-hidden="true">
-          <span className="scroll-cue-line absolute inset-0 bg-wine" />
+        <span className="relative block h-8 w-5 rounded-full border-[1.5px] border-current" aria-hidden="true">
+          <span className="scroll-dot absolute left-1/2 top-1.5 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-current" />
         </span>
+        Przewiń, żeby poznać studio
       </a>
     </section>
   );

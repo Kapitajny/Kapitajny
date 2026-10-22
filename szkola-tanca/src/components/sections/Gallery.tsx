@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, Close, Expand } from "@/components/ui/Icons";
+import { Close, Expand } from "@/components/ui/Icons";
 import { Photo } from "@/components/ui/Photo";
 import { PHOTOS, type PhotoKey } from "@/config/photos";
 
@@ -33,21 +33,18 @@ export function Gallery() {
   const item = ITEMS[current];
 
   return (
-    <section id="galeria" aria-labelledby="galeria-title" className="on-dark section-y bg-cocoa text-ivory">
+    <section id="galeria" aria-labelledby="galeria-title" className="section-y">
       <div className="container-x">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="eyebrow text-blush">Galeria</p>
-            <h2 id="galeria-title" className="h2 mt-5">
-              Chwile z sali
-            </h2>
-          </div>
-          <p className="max-w-[40ch] text-ivory/85">Kliknij zdjęcie, aby je powiększyć. Galerię będziemy uzupełniać zdjęciami z kolejnych zajęć i wydarzeń.</p>
+          <h2 id="galeria-title" className="h2 text-wine">
+            Chwile z sali
+          </h2>
+          <p className="max-w-[40ch]">Kliknij zdjęcie, aby je powiększyć. Galerię będziemy uzupełniać zdjęciami z kolejnych zajęć i wydarzeń.</p>
         </div>
 
         <ul className="mt-12 grid gap-4 md:grid-cols-[1.1fr_1fr] md:gap-5">
           {ITEMS.map((galleryItem, index) => (
-            <li key={galleryItem.photo} className={`relative overflow-hidden rounded-sm ${galleryItem.tile}`}>
+            <li key={galleryItem.photo} className={`relative overflow-hidden rounded-[1.75rem] ${galleryItem.tile}`}>
               <button type="button" onClick={() => open(index)} className="group absolute inset-0 block h-full w-full cursor-zoom-in" aria-haspopup="dialog">
                 <Photo
                   photo={galleryItem.photo}
@@ -80,7 +77,7 @@ export function Gallery() {
           if (event.target === event.currentTarget) dialogRef.current?.close();
         }}
       >
-        <figure className="relative bg-cocoa">
+        <figure className="relative overflow-hidden rounded-[1.5rem] bg-cocoa">
           <div className="relative aspect-square max-h-[78dvh] w-full">
             <Image key={item.photo} src={PHOTOS[item.photo].src} alt={PHOTOS[item.photo].alt} fill sizes="(min-width: 768px) 62rem, 100vw" className="fade-in object-contain" />
           </div>
@@ -93,10 +90,10 @@ export function Gallery() {
         </figure>
         <div className="mt-3 flex items-center justify-center gap-3 pb-4">
           <button type="button" onClick={() => step(-1)} className="btn btn-outline-light btn-sm">
-            <ArrowLeft size={16} /> Poprzednie
+            Poprzednie
           </button>
           <button type="button" onClick={() => step(1)} className="btn btn-outline-light btn-sm">
-            Następne <ArrowRight size={16} />
+            Następne
           </button>
           <button type="button" onClick={() => dialogRef.current?.close()} className="btn btn-light btn-sm" autoFocus>
             <Close size={16} /> Zamknij

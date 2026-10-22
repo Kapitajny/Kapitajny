@@ -18,7 +18,7 @@ export function LegalPage({ title, updated, children }: LegalPageProps) {
         </Link>
         <h1 className="h2 mt-8 text-wine">{title}</h1>
         <p className="mt-4 text-sm">Wersja robocza z dnia {updated}</p>
-        <div className="mt-8 flex gap-3 border-l-2 border-wine bg-blush p-5">
+        <div className="mt-8 flex gap-3 rounded-[1.5rem] bg-blush p-5">
           <Info size={20} className="mt-0.5 shrink-0 text-wine" />
           <p>
             <strong>Dokument przykładowy.</strong> Treść opisuje działanie tej strony demonstracyjnej i nie jest gotowa do publikacji. Przed
@@ -34,7 +34,7 @@ export function LegalPage({ title, updated, children }: LegalPageProps) {
 export function LegalSection({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section className="space-y-4">
-      <h2 className="font-serif text-3xl leading-tight">{title}</h2>
+      <h2 className="h3">{title}</h2>
       {children}
     </section>
   );

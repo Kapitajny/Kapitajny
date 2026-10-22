@@ -9,7 +9,7 @@ function DemoMap() {
   const minorX = [20, 110, 160, 265, 300, 385];
   const minorY = [40, 140, 190, 300, 350, 460];
   return (
-    <div className="relative aspect-[4/3] overflow-hidden bg-blush lg:aspect-[4/5]">
+    <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] bg-blush lg:aspect-[4/5]">
       <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 h-full w-full" role="img" aria-label="Schematyczna mapa z zaznaczoną lokalizacją demonstracyjną studia">
         <g fill="none" stroke="#F7F2EE" strokeLinecap="square">
           {minorX.map((x) => (
@@ -35,9 +35,9 @@ function DemoMap() {
           <circle cy="-16" r="5" fill="#F7F2EE" />
         </g>
       </svg>
-      <p className="absolute bottom-4 left-4 right-4 bg-ivory px-4 py-3 text-sm sm:right-auto">
+      <p className="absolute bottom-4 left-4 right-4 rounded-2xl bg-ivory px-4 py-3 text-sm sm:right-auto">
         <span className="font-semibold">Swoboda – studio tańca</span>
-        <span className="block">Lokalizacja demonstracyjna – mapa poglądowa</span>
+        <span className="block">Lokalizacja demonstracyjna, mapa poglądowa</span>
       </p>
     </div>
   );
@@ -49,8 +49,7 @@ export function Contact() {
     <section id="kontakt" aria-labelledby="kontakt-title" className="section-y">
       <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-5">
-          <p className="eyebrow">Kontakt i lokalizacja</p>
-          <h2 id="kontakt-title" className="h2 mt-5 text-wine">
+          <h2 id="kontakt-title" className="h2 text-wine">
             Porozmawiajmy o Twoim pierwszym kroku
           </h2>
           <p className="mt-6 prose-measure">Masz pytanie o grupę, poziom albo karnet? Zadzwoń lub napisz – odpowiadamy w godzinach kontaktu.</p>

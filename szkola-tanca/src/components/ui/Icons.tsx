@@ -22,24 +22,6 @@ function Svg({ size = 20, children, ...props }: IconProps) {
   );
 }
 
-export const ArrowRight = (props: IconProps) => (
-  <Svg {...props}>
-    <path d="M4 12h15M13 6l6 6-6 6" />
-  </Svg>
-);
-
-export const ArrowLeft = (props: IconProps) => (
-  <Svg {...props}>
-    <path d="M20 12H5M11 6l-6 6 6 6" />
-  </Svg>
-);
-
-export const ArrowDown = (props: IconProps) => (
-  <Svg {...props}>
-    <path d="M12 4v15M6 13l6 6 6-6" />
-  </Svg>
-);
-
 export const Close = (props: IconProps) => (
   <Svg {...props}>
     <path d="M6 6l12 12M18 6 6 18" />

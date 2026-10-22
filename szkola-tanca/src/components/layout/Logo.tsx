@@ -26,11 +26,11 @@ interface LogoProps {
 export function Logo({ tone = "dark", className = "" }: LogoProps) {
   const light = tone === "light";
   return (
-    <Link href="/" className={`group inline-flex items-center gap-2.5 ${className}`} aria-label={`${siteConfig.fullName} – strona główna`}>
+    <Link href="/" className={`group inline-flex min-h-11 items-center gap-2.5 ${className}`} aria-label={`${siteConfig.fullName} – strona główna`}>
       <LogoMark className={`h-9 w-9 shrink-0 ${light ? "text-blush" : "text-wine"}`} />
       <span className="flex flex-col leading-none">
-        <span className={`font-serif text-[1.7rem] leading-none ${light ? "text-ivory" : "text-cocoa"}`}>{siteConfig.name}</span>
-        <span className={`mt-1 text-[0.62rem] font-semibold uppercase tracking-[0.28em] ${light ? "text-blush" : "text-cocoa"}`}>studio tańca</span>
+        <span className={`text-[1.65rem] font-bold leading-none tracking-[-0.03em] [font-stretch:75%] ${light ? "text-ivory" : "text-cocoa"}`}>{siteConfig.name}</span>
+        <span className={`mt-0.5 text-[0.8rem] font-medium leading-none ${light ? "text-blush" : "text-cocoa"}`}>studio tańca</span>
       </span>
     </Link>
   );

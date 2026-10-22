@@ -21,11 +21,11 @@ const STUDIO_LINKS = [
 function FooterLinks({ title, links }: { title: string; links: { href: string; label: string }[] }) {
   return (
     <nav aria-label={title}>
-      <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-blush">{title}</h2>
+      <h2 className="label text-blush">{title}</h2>
       <ul className="mt-5 space-y-1">
         {links.map((link) => (
           <li key={link.href}>
-            <Link href={link.href} className="inline-flex min-h-10 items-center transition-colors hover:text-blush">
+            <Link href={link.href} className="inline-flex min-h-11 items-center transition-colors hover:text-blush">
               {link.label}
             </Link>
           </li>
@@ -38,7 +38,7 @@ function FooterLinks({ title, links }: { title: string; links: { href: string; l
 export function SiteFooter() {
   const { contact, social } = siteConfig;
   return (
-    <footer className="on-dark bg-cocoa text-ivory">
+    <footer className="on-dark band mb-[clamp(0.5rem,1.6vw,1.5rem)] bg-cocoa text-ivory">
       <div className="container-x grid gap-12 py-16 md:grid-cols-2 md:py-20 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <Logo tone="light" />
@@ -62,19 +62,19 @@ export function SiteFooter() {
         <FooterLinks title="Studio" links={STUDIO_LINKS} />
 
         <div>
-          <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-blush">Kontakt</h2>
+          <h2 className="label text-blush">Kontakt</h2>
           <address className="mt-5 space-y-2 not-italic">
             <p>
               {contact.street}, {contact.city}
               <span className="block text-sm text-ivory/75">adres demonstracyjny</span>
             </p>
             <p>
-              <a href={contact.phoneHref} className="inline-flex min-h-10 items-center hover:text-blush">
+              <a href={contact.phoneHref} className="inline-flex min-h-11 items-center hover:text-blush">
                 {contact.phoneDisplay}
               </a>
             </p>
             <p>
-              <a href={`mailto:${contact.email}`} className="inline-flex min-h-10 items-center break-all hover:text-blush">
+              <a href={`mailto:${contact.email}`} className="inline-flex min-h-11 items-center break-all hover:text-blush">
                 {contact.email}
               </a>
             </p>
@@ -85,12 +85,12 @@ export function SiteFooter() {
       <div className="border-t rule">
         <div className="container-x flex flex-col gap-4 py-6 text-sm text-ivory/80 md:flex-row md:items-center md:justify-between">
           <p>
-            © {new Date().getFullYear()} {siteConfig.fullName}. Projekt demonstracyjny – dane, ceny i terminy są przykładowe.
+            © {new Date().getFullYear()} {siteConfig.fullName}. Projekt demonstracyjny: dane, ceny i terminy są przykładowe.
           </p>
           <ul className="flex flex-wrap gap-x-6 gap-y-1">
             {siteConfig.legal.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="inline-flex min-h-10 items-center underline decoration-ivory/40 underline-offset-4 hover:decoration-ivory">
+                <Link href={item.href} className="inline-flex min-h-11 items-center underline decoration-ivory/40 underline-offset-4 hover:decoration-ivory">
                   {item.label}
                 </Link>
               </li>

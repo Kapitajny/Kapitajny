@@ -28,7 +28,7 @@ const out = join(root, "artifact");
 const tmp = join(out, ".tmp");
 const shims = join(root, "scripts/artifact/shims");
 
-const FONTS_URL = "https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Instrument+Serif:ital@0;1&display=swap";
+const FONTS_URL = "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap";
 
 const PAGES = {
   home: { file: "index.html", title: "Studio Tańca Swoboda" },
@@ -86,7 +86,7 @@ execFileSync(join(root, "node_modules/.bin/tailwindcss"), ["-i", "src/app/global
   stdio: "inherit",
 });
 // Host artefaktu dodaje własny reset bez warstw (np. font 14 px na <body>), który wygrałby z warstwą `base` Tailwinda.
-const extraCss = `:root{--font-instrument-serif:"Instrument Serif";--font-figtree:"Figtree"}
+const extraCss = `:root{--font-bricolage:"Bricolage Grotesque"}
 body{margin:0;background:var(--color-ivory);color:var(--color-cocoa);font-family:var(--font-sans);font-size:1.0625rem;line-height:1.65}
 header.sticky{top:env(safe-area-inset-top,0px)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:50;background:var(--color-ivory)}`;

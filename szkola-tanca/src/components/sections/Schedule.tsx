@@ -21,24 +21,21 @@ export function Schedule() {
   const active = hasActiveFilters(filters);
 
   return (
-    <section id="grafik" aria-labelledby="grafik-title" className="section-y bg-blush">
+    <section id="grafik" aria-labelledby="grafik-title" className="section-y">
       <div className="container-x">
         <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-7">
-            <p className="eyebrow">Grafik zajęć</p>
-            <h2 id="grafik-title" className="h2 mt-5 text-wine" tabIndex={-1} data-section-focus>
-              Wybierz termin, który pasuje do Twojego tygodnia
-            </h2>
-          </div>
+          <h2 id="grafik-title" className="h2 text-wine lg:col-span-7" tabIndex={-1} data-section-focus>
+            Tydzień w studiu
+          </h2>
           <div className="lg:col-span-5">
             <p className="prose-measure">
               Filtruj zajęcia według dnia, stylu, poziomu lub instruktora. Przy każdym terminie możesz od razu zapisać się na lekcję próbną.
             </p>
-            <DemoBadge className="mt-5">Terminy przykładowe – grafik demonstracyjny</DemoBadge>
+            <DemoBadge className="mt-5">Terminy przykładowe, grafik demonstracyjny</DemoBadge>
           </div>
         </div>
 
-        <div className="mt-12 border-y border-cocoa/20 py-6">
+        <div className="mt-10 rounded-[1.75rem] bg-blush p-5 sm:p-7">
           <div role="group" aria-label="Dzień tygodnia" className="flex flex-wrap gap-2">
             <button type="button" className="chip" aria-pressed={filters.day === null} onClick={() => setFilters({ ...filters, day: null })}>
               Wszystkie dni
@@ -118,53 +115,51 @@ export function Schedule() {
           </div>
         </div>
 
-        <p className="mt-6 text-sm font-semibold" role="status" aria-live="polite">
+        <p className="mt-6 font-semibold" role="status" aria-live="polite">
           {results.length === 0 ? "Brak zajęć dla wybranych filtrów." : active ? `Pasujące do filtrów: ${pluralizeSlots(results.length)}.` : `Cały tydzień: ${pluralizeSlots(results.length)}.`}
         </p>
 
         {groups.length === 0 ? (
-          <div className="mt-6 border border-dashed border-cocoa/30 px-6 py-12 text-center">
-            <p className="font-serif text-3xl">Nic tu jeszcze nie ma</p>
+          <div className="mt-6 rounded-[1.75rem] border-2 border-dashed border-cocoa/25 px-6 py-12 text-center">
+            <p className="h3">Żadne zajęcia nie pasują do tych filtrów</p>
             <p className="mx-auto mt-3 max-w-[46ch]">Spróbuj zmienić dzień lub poziom albo napisz do nas – pomożemy znaleźć grupę, która pasuje do Twojego planu.</p>
             <button type="button" className="btn btn-primary mt-6" onClick={() => setFilters(EMPTY_FILTERS)}>
               Pokaż cały grafik
             </button>
           </div>
         ) : (
-          <div className="mt-4 space-y-10">
+          <div
+            className="mt-5 grid gap-x-3 gap-y-8 lg:[grid-template-columns:repeat(var(--days),minmax(0,1fr))]"
+            style={{ "--days": groups.length } as React.CSSProperties}
+          >
             {groups.map(({ day, entries }) => (
-              <div key={day.id} className="grid gap-3 lg:grid-cols-[11rem_1fr] lg:gap-8">
-                <h3 className="font-serif text-3xl lg:pt-5">{day.name}</h3>
-                <ul className="divide-y divide-cocoa/15 border-y border-cocoa/15">
+              <div key={day.id}>
+                <h3 className="h3 border-b-2 border-cocoa pb-2">{day.name}</h3>
+                <ul className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
                   {entries.map((entry) => {
                     const style = getStyle(entry.styleId);
                     const instructor = getInstructor(entry.instructorId);
                     return (
-                      <li
-                        key={entry.id}
-                        className="grid grid-cols-[5.5rem_1fr] gap-x-4 gap-y-2 py-5 md:grid-cols-[6.5rem_minmax(0,1.4fr)_minmax(0,1fr)_auto] md:items-center md:gap-x-6"
-                      >
-                        <p className="font-serif text-2xl leading-none md:text-[1.7rem]">
+                      <li key={entry.id} className="flex flex-col rounded-[1.25rem] bg-blush p-4">
+                        <p className="text-2xl font-bold leading-none [font-stretch:80%]">
                           <time>{entry.start}</time>
-                          <span className="mt-1 block font-sans text-xs font-medium">do {endTime(entry.start, entry.duration)}</span>
+                          <span className="ml-1.5 text-sm font-medium">do {endTime(entry.start, entry.duration)}</span>
                         </p>
-                        <div>
-                          <p className="text-lg font-semibold leading-snug">{style?.name}</p>
-                          <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
-                            <span className="rounded-full bg-ivory px-2.5 py-0.5 font-semibold">{LEVELS[entry.level].label}</span>
-                            <span className="inline-flex items-center gap-1">
-                              <Clock size={14} className="text-wine" />
-                              {entry.duration} min
-                            </span>
-                          </p>
-                        </div>
-                        <p className="col-start-2 text-sm md:col-start-auto md:text-base">
+                        <p className="mt-2 text-lg font-semibold leading-snug">{style?.name}</p>
+                        <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
+                          <span className="rounded-full bg-ivory px-2.5 py-0.5 font-semibold">{LEVELS[entry.level].label}</span>
+                          <span className="inline-flex items-center gap-1">
+                            <Clock size={14} className="text-wine" />
+                            {entry.duration} min
+                          </span>
+                        </p>
+                        <p className="mt-2 text-sm">
                           <span className="sr-only">Prowadzi: </span>
                           {instructor?.name}
                         </p>
                         <button
                           type="button"
-                          className="btn btn-sm btn-secondary col-start-2 justify-self-start md:col-start-auto"
+                          className="btn btn-sm btn-secondary mt-4 self-start"
                           onClick={() => requestTrial({ style: entry.styleId, level: entry.level, day: String(entry.day) })}
                         >
                           Zapisz się<span className="sr-only">: {style?.name}, {day.name.toLowerCase()} {entry.start}</span>

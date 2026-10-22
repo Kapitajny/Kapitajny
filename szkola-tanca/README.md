@@ -59,7 +59,12 @@ src/
 Paleta jest zamknięta – w `globals.css` wyłączono domyślne kolory Tailwinda, więc dostępne są tylko klasy
 `ivory` (#F7F2EE), `blush` (#E8CFCF), `rose` (#A86F79), `wine` (#743D4B) i `cocoa` (#34272A).
 Zgaszony róż służy wyłącznie do detali i dużego tekstu (kontrast 3,6:1 na ciepłej bieli), pudrowy róż – tylko
-jako tło. Fonty: **Instrument Serif** (nagłówki) i **Figtree** (tekst), serwowane lokalnie przez `next/font`.
+jako tło. Typografia to jedna rodzina, **Bricolage Grotesque** (serwowana lokalnie przez `next/font`):
+zwężone, ciasno składane nagłówki i tekst w pełnej szerokości.
+
+Motywy specyficzne dla tańca: odliczanie „5, 6, 7, 8” w hero (jednorazowe „wybicie” cyfr w rytmie ok. 120 BPM),
+znaczniki z taśmy na parkiecie przy zasadach filozofii, karnety z dziurkami (liczba dziurek = liczba wejść)
+i grafik jako tygodniowa siatka. Sekcje to zaokrąglone panele (`.band`) zamiast cienkich linii.
 
 ## Zdjęcia
 

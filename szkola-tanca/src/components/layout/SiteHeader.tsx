@@ -128,7 +128,7 @@ export function SiteHeader() {
           <ul className="border-t rule">
             {siteConfig.nav.map((item) => (
               <li key={item.href} className="border-b rule">
-                <Link href={item.href} className="flex min-h-14 items-center justify-between py-3 font-serif text-3xl transition-colors hover:text-wine">
+                <Link href={item.href} className="flex min-h-14 items-center justify-between py-3 text-3xl font-semibold [font-stretch:80%] transition-colors hover:text-wine">
                   {item.label}
                 </Link>
               </li>

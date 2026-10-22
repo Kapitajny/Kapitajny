@@ -80,11 +80,10 @@ export function TrialForm() {
     ) : null;
 
   return (
-    <section id="zapis" aria-labelledby="zapis-title" className="section-y bg-blush">
+    <section id="zapis" aria-labelledby="zapis-title" className="band section-y bg-blush">
       <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-5">
-          <p className="eyebrow">Lekcja próbna</p>
-          <h2 id="zapis-title" className="h2 mt-5 text-wine" tabIndex={-1} data-section-focus>
+          <h2 id="zapis-title" className="h2 text-wine" tabIndex={-1} data-section-focus>
             Zapisz się na pierwsze zajęcia
           </h2>
           <p className="lead prose-measure mt-6">Zostaw kilka informacji – odezwiemy się z propozycją terminu i odpowiemy na pytania.</p>
@@ -96,7 +95,7 @@ export function TrialForm() {
               </li>
             ))}
           </ul>
-          <div className="mt-10 flex gap-3 border-l-2 border-wine bg-ivory/60 p-5 text-[0.95rem]">
+          <div className="mt-10 flex gap-3 rounded-2xl bg-ivory/70 p-5 text-[0.95rem]">
             <Info size={20} className="mt-0.5 shrink-0 text-wine" />
             <p>
               <strong>Formularz demonstracyjny.</strong> Strona nie jest połączona z systemem zapisów – dane nie są nigdzie wysyłane ani zapisywane, a
@@ -107,11 +106,11 @@ export function TrialForm() {
 
         <div className="lg:col-span-7">
           {sentName !== null ? (
-            <div ref={successRef} tabIndex={-1} role="status" className="bg-ivory p-8 sm:p-12">
+            <div ref={successRef} tabIndex={-1} role="status" className="rounded-[1.75rem] bg-ivory p-8 sm:p-12">
               <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-wine text-ivory">
                 <Check size={24} />
               </span>
-              <h3 className="mt-6 font-serif text-4xl leading-tight">Dziękujemy, {sentName}!</h3>
+              <h3 className="h2 mt-6 text-[2.6rem]">Dziękujemy, {sentName}!</h3>
               <p className="mt-4 max-w-[52ch]">
                 Formularz został poprawnie wypełniony. Ponieważ to wersja demonstracyjna, <strong>zgłoszenie nie zostało wysłane</strong> i nie
                 utworzyliśmy rezerwacji. Po podłączeniu formularza do systemu zapisów w tym miejscu pojawi się potwierdzenie z dalszymi krokami.
@@ -127,9 +126,9 @@ export function TrialForm() {
               </div>
             </div>
           ) : (
-            <form ref={formRef} noValidate onSubmit={onSubmit} className="bg-ivory p-6 sm:p-10" aria-describedby={`${ids}-required`}>
+            <form ref={formRef} noValidate onSubmit={onSubmit} className="rounded-[1.75rem] bg-ivory p-6 sm:p-10" aria-describedby={`${ids}-required`}>
               {showSummary && errorList.length > 0 && (
-                <div ref={summaryRef} tabIndex={-1} role="alert" className="mb-8 border-l-2 border-wine bg-blush/60 p-5">
+                <div ref={summaryRef} tabIndex={-1} role="alert" className="mb-8 rounded-2xl border-2 border-wine p-5">
                   <p className="flex items-center gap-2 font-semibold text-wine">
                     <Alert size={18} /> Popraw {errorList.length === 1 ? "jedno pole" : `${errorList.length} ${errorList.length < 5 ? "pola" : "pól"}`}, aby wysłać formularz:
                   </p>

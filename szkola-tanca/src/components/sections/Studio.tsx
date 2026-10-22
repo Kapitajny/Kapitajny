@@ -15,32 +15,29 @@ export function Studio() {
     <section id="studio" aria-labelledby="studio-title" className="section-y">
       <div className="container-x">
         <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-6">
-            <p className="eyebrow">Nasze studio</p>
-            <h2 id="studio-title" className="h2 mt-5 text-wine">
-              Jasna sala, w której łatwo się oddycha
-            </h2>
-          </div>
+          <h2 id="studio-title" className="h2 text-wine lg:col-span-6">
+            Jasna sala, w której łatwo się oddycha
+          </h2>
           <p className="lead prose-measure lg:col-span-5 lg:col-start-8">
             Przestrzeń jest celowo prosta: dużo światła, miejsce na ruch i nic, co rozprasza. Tak wygląda sala, w której odbywają się zajęcia.
           </p>
         </div>
 
-        <div className="relative mt-12 aspect-[4/3] overflow-hidden rounded-sm sm:aspect-[16/9] lg:mt-16 lg:aspect-[21/9]">
+        <div className="relative mt-12 aspect-[4/3] overflow-hidden rounded-[2rem] sm:aspect-[16/9] lg:mt-16 lg:aspect-[21/9]">
           <Photo photo="studioHall" sizes="(min-width: 1344px) 79rem, 100vw" position="50% 58%" />
         </div>
 
         <div className="mt-12 grid gap-12 lg:grid-cols-12">
           <dl className="grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:col-span-8">
             {VISIBLE_FEATURES.map((feature) => (
-              <div key={feature.title} className="border-t rule pt-5">
-                <dt className="font-serif text-2xl">{feature.title}</dt>
+              <div key={feature.title}>
+                <dt className="h3">{feature.title}</dt>
                 <dd className="mt-2">{feature.text}</dd>
               </div>
             ))}
           </dl>
-          <div className="bg-blush p-7 lg:col-span-4">
-            <h3 className="font-serif text-2xl">Lokalizacja i dostępność</h3>
+          <div className="rounded-[1.75rem] bg-blush p-7 lg:col-span-4">
+            <h3 className="h3">Lokalizacja i dostępność</h3>
             <p className="mt-3">
               {contact.street}, {contact.city} <span className="text-sm">(adres demonstracyjny)</span>
             </p>
@@ -48,7 +45,7 @@ export function Studio() {
               Informacje o dojeździe, parkingu i dostępności budynku dla osób z niepełnosprawnościami uzupełnimy po potwierdzeniu. Jeśli to dla
               Ciebie ważne, zapytaj nas przed wizytą.
             </p>
-            <a href="#kontakt" className="link mt-4 inline-block font-semibold">
+            <a href="#kontakt" className="text-action mt-2">
               Przejdź do kontaktu
             </a>
           </div>

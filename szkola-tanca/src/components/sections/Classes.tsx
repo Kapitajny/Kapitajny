@@ -2,7 +2,6 @@
 
 import { useRef, useState, type KeyboardEvent } from "react";
 import { useStudio } from "@/components/schedule/StudioProvider";
-import { ArrowRight } from "@/components/ui/Icons";
 import { Photo, PhotoPlaceholder } from "@/components/ui/Photo";
 import { LEVELS } from "@/data/levels";
 import { STYLES } from "@/data/styles";
@@ -35,106 +34,91 @@ export function Classes() {
     <section id="zajecia" aria-labelledby="zajecia-title" className="section-y">
       <div className="container-x">
         <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-7">
-            <p className="eyebrow">Nasze zajęcia</p>
-            <h2 id="zajecia-title" className="h2 mt-5 text-wine">
-              Pięć stylów, jeden spokojny start
-            </h2>
-          </div>
+          <h2 id="zajecia-title" className="h2 text-wine lg:col-span-7">
+            Pięć stylów, jeden spokojny start
+          </h2>
           <p className="lead prose-measure lg:col-span-5">
-            Każdy styl prowadzimy na kilku poziomach. Wybierz ten, który Cię ciekawi – szczegóły i terminy znajdziesz obok.
+            Każdy styl prowadzimy na kilku poziomach. Wybierz ten, który Cię ciekawi, a pokażemy, czego się spodziewać.
           </p>
         </div>
 
-        <div className="mt-12 grid gap-10 lg:mt-16 lg:grid-cols-12 lg:gap-12">
-          <div role="tablist" aria-label="Style tańca" aria-orientation="vertical" className="grid grid-cols-2 gap-x-4 lg:col-span-5 lg:block">
-            {STYLES.map((item, index) => {
-              const selected = index === activeIndex;
-              return (
-                <button
-                  key={item.id}
-                  ref={(el) => {
-                    tabRefs.current[index] = el;
-                  }}
-                  id={`tab-${item.id}`}
-                  type="button"
-                  role="tab"
-                  aria-selected={selected}
-                  aria-controls={`panel-${item.id}`}
-                  tabIndex={selected ? 0 : -1}
-                  onClick={() => setActiveIndex(index)}
-                  onKeyDown={onKeyDown}
-                  className={`group flex w-full items-baseline gap-3 border-t py-3.5 text-left transition-colors sm:gap-4 lg:py-6 ${
-                    selected ? "border-wine" : "rule hover:border-cocoa/40"
-                  }`}
-                >
-                  <span className={`font-serif text-lg ${selected ? "text-wine" : "text-rose"}`} aria-hidden="true">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span className="flex-1">
-                    <span className={`block font-serif text-[1.35rem] leading-tight transition-colors sm:text-3xl lg:text-[2.1rem] ${selected ? "text-wine" : "group-hover:text-wine"}`}>
-                      {item.name}
-                    </span>
-                    <span className="mt-1 hidden text-sm lg:block">{item.tagline}</span>
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+        <div role="tablist" aria-label="Style tańca" className="mt-10 flex flex-wrap gap-2 lg:mt-14">
+          {STYLES.map((item, index) => {
+            const selected = index === activeIndex;
+            return (
+              <button
+                key={item.id}
+                ref={(el) => {
+                  tabRefs.current[index] = el;
+                }}
+                id={`tab-${item.id}`}
+                type="button"
+                role="tab"
+                aria-selected={selected}
+                aria-controls={`panel-${item.id}`}
+                tabIndex={selected ? 0 : -1}
+                onClick={() => setActiveIndex(index)}
+                onKeyDown={onKeyDown}
+                className="chip sm:min-h-12 sm:px-5 sm:text-base"
+              >
+                {item.name}
+              </button>
+            );
+          })}
+        </div>
 
-          <div
-            key={style.id}
-            id={`panel-${style.id}`}
-            role="tabpanel"
-            aria-labelledby={`tab-${style.id}`}
-            tabIndex={0}
-            className="fade-in grid gap-8 md:grid-cols-2 lg:col-span-7 lg:gap-10"
-          >
-            <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-blush">
-              {style.photo ? (
-                <Photo
-                  photo={style.photo.key}
-                  position={style.photo.position}
-                  zoom={style.photo.zoom}
-                  sizes="(min-width: 1024px) 26vw, (min-width: 768px) 46vw, 92vw"
-                  alt=""
-                />
-              ) : (
-                <PhotoPlaceholder label="High heels" note="Zdjęcie z zajęć high heels – do uzupełnienia" />
-              )}
-            </div>
-            <div className="flex flex-col">
-              <h3 className="h3 text-wine">{style.name}</h3>
-              <p className="mt-2 font-semibold">{style.tagline}</p>
-              <p className="mt-4">{style.description}</p>
-              <dl className="mt-6 space-y-4 border-t rule pt-6 text-[0.95rem]">
-                <div>
-                  <dt className="text-xs font-semibold uppercase tracking-[0.18em]">Poziomy</dt>
-                  <dd className="mt-2 flex flex-wrap gap-2">
-                    {style.levels.map((level) => (
-                      <span key={level} className="rounded-full bg-blush px-3 py-1 text-sm font-semibold">
-                        {LEVELS[level].label}
-                      </span>
-                    ))}
-                  </dd>
-                </div>
-                <div>
-                  <dt className="text-xs font-semibold uppercase tracking-[0.18em]">Czas zajęć</dt>
-                  <dd className="mt-1">{style.duration}</dd>
-                </div>
-                <div>
-                  <dt className="text-xs font-semibold uppercase tracking-[0.18em]">Co zabrać</dt>
-                  <dd className="mt-1">{style.bring}</dd>
-                </div>
-              </dl>
-              <div className="mt-8 flex flex-col items-stretch gap-2 sm:items-start">
-                <button type="button" className="btn btn-primary" onClick={() => showSchedule({ styleId: style.id })}>
-                  Zobacz terminy
-                </button>
-                <button type="button" className="link-arrow justify-center sm:justify-start" onClick={() => requestTrial({ style: style.id })}>
-                  Zapisz się na próbę <ArrowRight size={18} />
-                </button>
+        <div
+          key={style.id}
+          id={`panel-${style.id}`}
+          role="tabpanel"
+          aria-labelledby={`tab-${style.id}`}
+          tabIndex={0}
+          className="fade-in mt-6 grid overflow-hidden rounded-[2rem] bg-blush md:grid-cols-2"
+        >
+          <div className="relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[32rem]">
+            {style.photo ? (
+              <Photo
+                photo={style.photo.key}
+                position={style.photo.position}
+                zoom={style.photo.zoom}
+                sizes="(min-width: 1312px) 38rem, (min-width: 768px) 48vw, 96vw"
+                alt=""
+              />
+            ) : (
+              <PhotoPlaceholder label="High heels" note="Zdjęcie z zajęć high heels do uzupełnienia" />
+            )}
+          </div>
+          <div className="flex flex-col p-7 sm:p-10 lg:p-14">
+            <h3 className="h2 text-wine">{style.name}</h3>
+            <p className="lead mt-4 font-semibold">{style.tagline}</p>
+            <p className="mt-4 max-w-[52ch]">{style.description}</p>
+            <dl className="mt-8 grid gap-5 sm:grid-cols-2">
+              <div className="sm:col-span-2">
+                <dt className="label">Poziomy</dt>
+                <dd className="mt-2 flex flex-wrap gap-2">
+                  {style.levels.map((level) => (
+                    <span key={level} className="rounded-full bg-ivory px-3 py-1 text-sm font-semibold">
+                      {LEVELS[level].label}
+                    </span>
+                  ))}
+                </dd>
               </div>
+              <div>
+                <dt className="label">Czas zajęć</dt>
+                <dd className="mt-1">{style.duration}</dd>
+              </div>
+              <div>
+                <dt className="label">Co zabrać</dt>
+                <dd className="mt-1">{style.bring}</dd>
+              </div>
+            </dl>
+            <div className="mt-auto flex flex-col gap-3 pt-10 sm:flex-row sm:items-center sm:gap-6">
+              <button type="button" className="btn btn-primary" onClick={() => showSchedule({ styleId: style.id })}>
+                Zobacz terminy
+              </button>
+              <button type="button" className="text-action justify-center" onClick={() => requestTrial({ style: style.id })}>
+                Zapisz się na próbę
+              </button>
             </div>
           </div>
         </div>

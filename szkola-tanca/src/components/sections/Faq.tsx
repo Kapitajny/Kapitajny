@@ -6,8 +6,7 @@ export function Faq() {
     <section id="faq" aria-labelledby="faq-title" className="section-y">
       <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-4">
-          <p className="eyebrow">FAQ</p>
-          <h2 id="faq-title" className="h2 mt-5 text-wine">
+          <h2 id="faq-title" className="h2 text-wine">
             Najczęściej zadawane pytania
           </h2>
           <p className="mt-6 prose-measure">
@@ -18,10 +17,10 @@ export function Faq() {
             – chętnie odpowiemy.
           </p>
         </div>
-        <div className="border-b rule lg:col-span-8">
+        <div className="border-b-2 border-cocoa/15 lg:col-span-8">
           {FAQ.map((item) => (
-            <details key={item.question} className="group border-t rule">
-              <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-6 py-5 font-serif text-[1.55rem] leading-snug transition-colors hover:text-wine [&::-webkit-details-marker]:hidden">
+            <details key={item.question} className="group border-t-2 border-cocoa/15">
+              <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-6 py-5 text-[1.3rem] font-semibold leading-snug [font-stretch:88%] transition-colors hover:text-wine [&::-webkit-details-marker]:hidden">
                 {item.question}
                 <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cocoa/25 transition-transform duration-300 group-open:rotate-45 group-open:border-wine group-open:text-wine">
                   <Plus size={18} />

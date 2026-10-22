@@ -25,10 +25,10 @@ export function Newsletter() {
   };
 
   return (
-    <section aria-labelledby="newsletter-title" className="border-t rule py-16 md:py-20">
+    <section aria-labelledby="newsletter-title" className="py-16 md:py-20">
       <div className="container-x grid gap-8 lg:grid-cols-12 lg:items-start lg:gap-10">
         <div className="lg:col-span-5">
-          <h2 id="newsletter-title" className="font-serif text-4xl leading-tight text-wine">
+          <h2 id="newsletter-title" className="h3 text-[2.2rem] text-wine">
             Wiadomości ze studia
           </h2>
           <p className="mt-3 prose-measure">Raz w miesiącu: nowe grupy, warsztaty i wydarzenia. Bez spamu – wypisać się można w każdej chwili.</p>
@@ -36,7 +36,7 @@ export function Newsletter() {
 
         <div className="lg:col-span-7" aria-live="polite">
           {done ? (
-            <div className="flex items-start gap-4 bg-blush p-6">
+            <div className="flex items-start gap-4 rounded-[1.5rem] bg-blush p-6">
               <Check size={22} className="mt-0.5 shrink-0 text-wine" />
               <div>
                 <p className="font-semibold">Adres jest poprawny – dziękujemy!</p>

@@ -44,7 +44,7 @@ export function PhotoPlaceholder({ label, note }: { label: string; note: string 
         <circle cx="66" cy="24" r="7" fill="none" stroke="currentColor" strokeWidth="1.6" />
         <path d="M30 100h60" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
       </svg>
-      <span className="font-serif text-4xl text-wine">{label}</span>
+      <span className="h2 text-wine">{label}</span>
       <span className="max-w-[24ch] text-sm">{note}</span>
     </div>
   );
