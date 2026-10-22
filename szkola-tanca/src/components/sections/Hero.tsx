@@ -11,18 +11,18 @@ export function Hero() {
         <div className="lg:col-span-7">
           <h1 id="hero-title" className="display">
             <span className="sr-only">5, 6, 7, 8 </span>
-            <span className="flex items-end gap-[0.18em]" aria-hidden="true">
+            <span className="flex items-end gap-[0.16em] text-[1.4em] leading-[0.8]" aria-hidden="true">
               {COUNT.map((digit, index) => (
                 <span
                   key={digit}
                   className="count-beat"
-                  style={{ marginBottom: `${index * 0.14}em`, animationDelay: `${400 + index * 500}ms` }}
+                  style={{ marginBottom: `${index * 0.1}em`, animationDelay: `${400 + index * 500}ms` }}
                 >
                   {digit}
                 </span>
               ))}
             </span>
-            <span className="mt-[0.12em] block">i zaczynasz tańczyć.</span>
+            <span className="mt-[0.18em] block">i zaczynasz tańczyć.</span>
           </h1>
           <p className="lead prose-measure mt-8 max-w-[44ch]">
             Tak instruktor odlicza przed każdym układem. U nas odliczamy cierpliwie: w małych grupach, od pierwszego kroku, bez oceniania i we

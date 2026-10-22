@@ -49,9 +49,9 @@ export function About() {
           </div>
         </div>
 
-        <ul className="mt-16 grid gap-4 md:grid-cols-3 lg:mt-20">
+        <ul className="mt-16 grid gap-8 rounded-[2rem] bg-blush p-7 sm:p-10 md:grid-cols-3 md:gap-0 md:divide-x md:divide-cocoa/15 lg:mt-20 lg:p-12">
           {PILLARS.map((pillar) => (
-            <li key={pillar.title} className="rounded-[1.5rem] bg-blush p-7 md:p-8">
+            <li key={pillar.title} className="md:px-8 md:first:pl-0 md:last:pr-0">
               <h3 className="h3">{pillar.title}</h3>
               <p className="mt-3">{pillar.text}</p>
             </li>

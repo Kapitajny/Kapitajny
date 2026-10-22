@@ -6,7 +6,7 @@ export function Testimonials() {
   return (
     <section id="opinie" aria-labelledby="opinie-title" className="section-y">
       <div className="container-x">
-        <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+        <div className="flex flex-col items-start gap-5">
           <h2 id="opinie-title" className="h2 text-wine">
             Jak wspominają pierwsze tygodnie
           </h2>
