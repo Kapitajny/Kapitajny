@@ -15,15 +15,15 @@ export function LegalPage({ title, path, lede, updated, children }: LegalPagePro
     <>
       <PageHeader breadcrumbs={[{ href: path, label: title }]} title={title} lede={lede}>
         <p className={styles.meta}>
-          Wersja robocza z dnia <time dateTime={updated}>{new Intl.DateTimeFormat("pl-PL", { dateStyle: "long" }).format(new Date(updated))}</time>
+          Wersja robocza z&nbsp;dnia <time dateTime={updated}>{new Intl.DateTimeFormat("pl-PL", { dateStyle: "long" }).format(new Date(updated))}</time>
         </p>
       </PageHeader>
       <div className={`container ${styles.layout}`}>
         <aside className={styles.warning} aria-label="Status dokumentu">
-          <p className={styles.warningTitle}>Dokument wymaga uzupełnienia i weryfikacji prawnej</p>
+          <p className={styles.warningTitle}>Dokument wymaga uzupełnienia i&nbsp;weryfikacji prawnej</p>
           <p>
-            To treść robocza przygotowana dla serwisu demonstracyjnego. Miejsca oznaczone jako „do uzupełnienia” trzeba wypełnić prawdziwymi danymi, a
-            całość – przed publikacją – sprawdzić z prawnikiem.
+            To treść robocza przygotowana dla serwisu demonstracyjnego. Miejsca oznaczone jako „do uzupełnienia” trzeba wypełnić prawdziwymi danymi, a&nbsp;całość
+            – przed publikacją – sprawdzić z&nbsp;prawnikiem.
           </p>
         </aside>
         <div className={`${proseStyles.prose} ${styles.document}`}>{children}</div>

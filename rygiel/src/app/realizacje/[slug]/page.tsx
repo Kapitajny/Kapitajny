@@ -78,7 +78,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/realizacje/[
         <article className={styles.article}>
           <section id="kontekst" aria-labelledby="kontekst-title" className={styles.section}>
             <h2 id="kontekst-title" className={styles.h2}>
-              Kontekst i problem
+              Kontekst i&nbsp;problem
             </h2>
             {study.context.map((paragraph) => (
               <p key={paragraph} className={styles.paragraph}>
@@ -161,7 +161,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/realizacje/[
               Projekt odbieramy według kryteriów ustalonych na początku. Każde ma określony sposób weryfikacji, który klient może powtórzyć samodzielnie.
             </p>
             <table className={styles.criteria}>
-              <caption className="visually-hidden">Kryteria oceny efektu i sposób ich weryfikacji</caption>
+              <caption className="visually-hidden">Kryteria oceny efektu i&nbsp;sposób ich weryfikacji</caption>
               <thead>
                 <tr>
                   <th scope="col">Kryterium</th>
@@ -181,7 +181,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/realizacje/[
 
           <aside className={styles.related} aria-labelledby="powiazane-uslugi">
             <h2 id="powiazane-uslugi" className={styles.relatedTitle}>
-              Usługi wykorzystane w projekcie
+              Usługi wykorzystane w&nbsp;projekcie
             </h2>
             <ul role="list">
               {study.services.map((serviceSlug) => {

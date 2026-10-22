@@ -21,7 +21,7 @@ export default function TermsPage() {
       <section aria-labelledby="postanowienia">
         <h2 id="postanowienia">1. Postanowienia ogólne</h2>
         <p>
-          Regulamin określa zasady korzystania z serwisu dostępnego pod adresem <Pending>adres serwisu</Pending>, zgodnie z ustawą z dnia 18 lipca 2002 r. o
+          Regulamin określa zasady korzystania z&nbsp;serwisu dostępnego pod adresem <Pending>adres serwisu</Pending>, zgodnie z&nbsp;ustawą z&nbsp;dnia 18 lipca 2002 r. o
           świadczeniu usług drogą elektroniczną.
         </p>
         <p>
@@ -30,28 +30,28 @@ export default function TermsPage() {
       </section>
 
       <section aria-labelledby="uslugi">
-        <h2 id="uslugi">2. Rodzaje i zakres usług</h2>
+        <h2 id="uslugi">2. Rodzaje i&nbsp;zakres usług</h2>
         <ul>
-          <li>Udostępnianie treści serwisu, w tym artykułów bazy wiedzy – bezpłatnie i bez rejestracji.</li>
+          <li>Udostępnianie treści serwisu, w&nbsp;tym artykułów bazy wiedzy – bezpłatnie i&nbsp;bez rejestracji.</li>
           <li>Formularz kontaktowy umożliwiający wysłanie zapytania – bezpłatnie, przy każdym wysłaniu formularza.</li>
         </ul>
-        <p>Umowa o świadczenie usługi formularza zostaje zawarta z chwilą wysłania formularza i rozwiązuje się po jego wysłaniu.</p>
+        <p>Umowa o&nbsp;świadczenie usługi formularza zostaje zawarta z&nbsp;chwilą wysłania formularza i&nbsp;rozwiązuje się po jego wysłaniu.</p>
       </section>
 
       <section aria-labelledby="wymagania">
         <h2 id="wymagania">3. Wymagania techniczne</h2>
         <p>
-          Do korzystania z serwisu potrzebne jest urządzenie z dostępem do internetu i aktualną przeglądarką internetową z włączoną obsługą JavaScriptu (wymaganą
+          Do korzystania z&nbsp;serwisu potrzebne jest urządzenie z&nbsp;dostępem do internetu i&nbsp;aktualną przeglądarką internetową z&nbsp;włączoną obsługą JavaScriptu (wymaganą
           przez formularz kontaktowy).
         </p>
       </section>
 
       <section aria-labelledby="zasady">
         <h2 id="zasady">4. Zasady korzystania</h2>
-        <p>Zabronione jest przesyłanie przez formularz treści o charakterze bezprawnym, w tym złośliwego oprogramowania, spamu oraz danych osób trzecich bez podstawy prawnej.</p>
+        <p>Zabronione jest przesyłanie przez formularz treści o&nbsp;charakterze bezprawnym, w&nbsp;tym złośliwego oprogramowania, spamu oraz danych osób trzecich bez podstawy prawnej.</p>
         <p>
-          Artykuły w bazie wiedzy mają charakter edukacyjny i nie stanowią porady dotyczącej konkretnego środowiska. Zmiany w systemach wprowadzaj z
-          rozwagą i z kopią zapasową.
+          Artykuły w&nbsp;bazie wiedzy mają charakter edukacyjny i&nbsp;nie stanowią porady dotyczącej konkretnego środowiska. Zmiany w&nbsp;systemach wprowadzaj z&nbsp;rozwagą
+          i&nbsp;z&nbsp;kopią zapasową.
         </p>
       </section>
 
@@ -74,7 +74,7 @@ export default function TermsPage() {
         <h2 id="koncowe">7. Postanowienia końcowe</h2>
         <p>
           O zmianach regulaminu informujemy w serwisie. W sprawach nieuregulowanych stosuje się przepisy prawa polskiego. Regulamin obowiązuje od{" "}
-          <Pending>data wejścia w życie</Pending>.
+          <Pending>data wejścia w&nbsp;życie</Pending>.
         </p>
       </section>
     </LegalPage>

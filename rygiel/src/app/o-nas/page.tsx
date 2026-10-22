@@ -131,7 +131,7 @@ export default function AboutPage() {
             id="komunikacja"
             layout="split"
             title="Jak się komunikujemy"
-            intro={<p>Każda informacja ma swoje miejsce i rytm. Dzięki temu wiesz, czego i kiedy się spodziewać, a pilne sprawy nie giną w zwykłej korespondencji.</p>}
+            intro={<p>Każda informacja ma swoje miejsce i&nbsp;rytm. Dzięki temu wiesz, czego i&nbsp;kiedy się spodziewać, a&nbsp;pilne sprawy nie giną w&nbsp;zwykłej korespondencji.</p>}
           />
           <dl className={styles.channels}>
             {communication.map((item) => (

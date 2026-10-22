@@ -1,14 +1,7 @@
 import type { ServiceSlug } from "./services";
+import type { ArticleCategory } from "./taxonomy";
 
-export const articleCategories = {
-  podstawy: "Podstawy bezpieczeństwa",
-  kopie: "Kopie zapasowe",
-  poczta: "Bezpieczeństwo poczty",
-  dostepy: "Zarządzanie dostępami",
-  phishing: "Phishing",
-} as const;
-
-export type ArticleCategory = keyof typeof articleCategories;
+export { articleCategories, filterArticles, type ArticleCategory } from "./taxonomy";
 
 /** Bloki treści. Tekst może zawierać [link](/adres), **pogrubienie** i `kod`. */
 export type ArticleBlock =
@@ -715,8 +708,4 @@ export function readingMinutes(article: Article): number {
   ].join(" ");
   const words = text.split(/\s+/).filter(Boolean).length;
   return Math.max(1, Math.round(words / 200));
-}
-
-export function filterArticles(items: Article[], category: ArticleCategory | "all"): Article[] {
-  return category === "all" ? items : items.filter((article) => article.category === category);
 }

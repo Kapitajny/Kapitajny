@@ -19,7 +19,7 @@ export default function NotFound() {
         <h1 id="nie-znaleziono" className={styles.title}>
           Tej strony nie ma pod tym adresem
         </h1>
-        <p className={styles.text}>Adres mógł się zmienić albo zawierać literówkę. Wybierz jedną z głównych sekcji serwisu lub wróć na stronę główną.</p>
+        <p className={styles.text}>Adres mógł się zmienić albo zawierać literówkę. Wybierz jedną z&nbsp;głównych sekcji serwisu lub wróć na stronę główną.</p>
         <div className={styles.actions}>
           <LinkButton href="/">Strona główna</LinkButton>
           <LinkButton href="/kontakt" variant="secondary">

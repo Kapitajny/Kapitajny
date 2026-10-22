@@ -71,7 +71,7 @@ export default function CybersecurityPage() {
       >
         <div className={styles.headerActions}>
           <LinkButton href={`/kontakt?usluga=${service.slug}`} withArrow>
-            Zapytaj o audyt
+            Zapytaj o&nbsp;audyt
           </LinkButton>
           <LinkButton href="#zasady" variant="secondary">
             Zasady testów
@@ -94,7 +94,7 @@ export default function CybersecurityPage() {
             id="obszary-title"
             layout="split"
             title="Co sprawdzamy podczas audytu"
-            intro={<p>Zakres dopasowujemy do firmy. Poniżej obszary, które przeglądamy najczęściej, i przykładowe punkty kontrolne.</p>}
+            intro={<p>Zakres dopasowujemy do firmy. Poniżej obszary, które przeglądamy najczęściej, i&nbsp;przykładowe punkty kontrolne.</p>}
           />
           <ul role="list" className={styles.areas}>
             {auditAreas.map((item) => (
@@ -118,10 +118,10 @@ export default function CybersecurityPage() {
               Jak oceniamy ryzyko
             </h2>
             <p className={styles.note}>
-              Każde ustalenie oceniamy według prawdopodobieństwa i wpływu na firmę. Dzięki temu plan naprawczy zaczyna się od rzeczy, które naprawdę
-              mogą zaszkodzić, a nie od tych, które najłatwiej poprawić.
+              Każde ustalenie oceniamy według prawdopodobieństwa i&nbsp;wpływu na firmę. Dzięki temu plan naprawczy zaczyna się od rzeczy, które naprawdę
+              mogą zaszkodzić, a&nbsp;nie od tych, które najłatwiej poprawić.
             </p>
-            <p className={styles.demoNote}>Ustalenia na matrycy to przykład ilustrujący metodę, a nie wynik rzeczywistego audytu.</p>
+            <p className={styles.demoNote}>Ustalenia na matrycy to przykład ilustrujący metodę, a&nbsp;nie wynik rzeczywistego audytu.</p>
           </div>
           <figure className={styles.matrixFigure}>
             <div className={styles.matrix} role="img" aria-labelledby="matryca-opis">
@@ -184,7 +184,7 @@ export default function CybersecurityPage() {
               Zasady testów bezpieczeństwa
             </h2>
             <p className={styles.note}>
-              Zanim wykonamy jakikolwiek test aktywny, spisujemy z Tobą dokument zasad. Bez podpisanej zgody osoby uprawnionej do dysponowania
+              Zanim wykonamy jakikolwiek test aktywny, spisujemy z&nbsp;Tobą dokument zasad. Bez podpisanej zgody osoby uprawnionej do dysponowania
               systemem nie zaczynamy pracy.
             </p>
           </div>
@@ -211,7 +211,7 @@ export default function CybersecurityPage() {
               Co zawiera raport
             </h2>
             <p className={styles.note}>
-              Jeden dokument dla dwóch odbiorców: zarząd czyta podsumowanie i plan, osoba odpowiedzialna za IT – ustalenia i załącznik techniczny.
+              Jeden dokument dla dwóch odbiorców: zarząd czyta podsumowanie i&nbsp;plan, osoba odpowiedzialna za IT – ustalenia i&nbsp;załącznik techniczny.
             </p>
           </div>
           <div className={styles.document}>
@@ -262,7 +262,7 @@ export default function CybersecurityPage() {
       <section className={styles.section} aria-labelledby="faq-title">
         <div className={`container ${styles.split}`}>
           <h2 id="faq-title" className={styles.h2}>
-            Pytania o bezpieczeństwo
+            Pytania o&nbsp;bezpieczeństwo
           </h2>
           <div className={styles.stack}>
             <Accordion items={service.faq} />

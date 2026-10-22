@@ -2,35 +2,40 @@
 
 import Link from "next/link";
 import { useId, useState } from "react";
-import { infrastructureLayers, services, type ServiceSlug } from "@/content/services";
+import type { LayerId } from "@/content/taxonomy";
 import styles from "./InfrastructureSection.module.css";
 
 /**
  * Przekrój infrastruktury firmy: cztery warstwy jako rygle między słupkami ramy.
  * Przełącznik filarów pokazuje, za które warstwy odpowiada dana usługa – linia wymiarowa obejmuje jej zakres.
  */
-export function InfrastructureSection({ initial = "cyberbezpieczenstwo" }: { initial?: ServiceSlug }) {
-  const [activeSlug, setActiveSlug] = useState<ServiceSlug>(initial);
-  const active = services.find((service) => service.slug === activeSlug) ?? services[0]!;
+export type DiagramPillar = { slug: string; name: string; href: string; summary: string; layers: Partial<Record<LayerId, string>> };
+export type DiagramLayer = { id: LayerId; name: string; detail: string };
+
+type InfrastructureSectionProps = { pillars: DiagramPillar[]; layers: DiagramLayer[]; initial: string };
+
+export function InfrastructureSection({ pillars, layers, initial }: InfrastructureSectionProps) {
+  const [activeSlug, setActiveSlug] = useState(initial);
+  const active = pillars.find((pillar) => pillar.slug === activeSlug) ?? pillars[0]!;
   const descriptionId = useId();
 
-  const activeIndexes = infrastructureLayers.map((layer, index) => (active.layers[layer.id] ? index : -1)).filter((index) => index >= 0);
+  const activeIndexes = layers.map((layer, index) => (active.layers[layer.id] ? index : -1)).filter((index) => index >= 0);
   const first = activeIndexes[0] ?? 0;
   const last = activeIndexes[activeIndexes.length - 1] ?? 0;
 
   return (
     <figure className={styles.figure} aria-labelledby={`${descriptionId}-caption`}>
       <div className={styles.controls} role="group" aria-label="Pokaż zakres usługi na przekroju">
-        {services.map((service) => (
+        {pillars.map((pillar) => (
           <button
-            key={service.slug}
+            key={pillar.slug}
             type="button"
             className={styles.toggle}
-            aria-pressed={service.slug === activeSlug}
-            aria-describedby={service.slug === activeSlug ? descriptionId : undefined}
-            onClick={() => setActiveSlug(service.slug)}
+            aria-pressed={pillar.slug === activeSlug}
+            aria-describedby={pillar.slug === activeSlug ? descriptionId : undefined}
+            onClick={() => setActiveSlug(pillar.slug)}
           >
-            {service.name}
+            {pillar.name}
           </button>
         ))}
       </div>
@@ -43,7 +48,7 @@ export function InfrastructureSection({ initial = "cyberbezpieczenstwo" }: { ini
           data-pillar={active.slug}
         >
           <ol role="list" className={styles.layers}>
-            {infrastructureLayers.map((layer, index) => {
+            {layers.map((layer, index) => {
               const note = active.layers[layer.id];
               return (
                 <li key={layer.id} className={styles.layer} data-active={note ? "" : undefined} style={{ "--i": index } as React.CSSProperties}>
@@ -74,7 +79,7 @@ export function InfrastructureSection({ initial = "cyberbezpieczenstwo" }: { ini
       </div>
 
       <figcaption id={`${descriptionId}-caption`} className={styles.caption}>
-        <span className={styles.captionTitle}>Rys. 1. Przekrój infrastruktury firmy i zakres usługi</span>
+        <span className={styles.captionTitle}>Rys. 1. Przekrój infrastruktury firmy i&nbsp;zakres usługi</span>
         <span id={descriptionId} className={styles.captionText} aria-live="polite">
           {active.summary}{" "}
           <Link href={active.href} className="text-link">

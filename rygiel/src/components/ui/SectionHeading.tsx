@@ -1,3 +1,4 @@
+import { typeset } from "@/lib/typography";
 import styles from "./SectionHeading.module.css";
 
 type SectionHeadingProps = {
@@ -13,7 +14,7 @@ export function SectionHeading({ id, title, intro, layout = "stacked", as: Tag =
   return (
     <div className={`${styles.heading} ${layout === "split" ? styles.split : ""}`}>
       <Tag id={id} className={styles.title}>
-        {title}
+        {typeset(title)}
       </Tag>
       {intro ? <div className={styles.intro}>{intro}</div> : null}
     </div>

@@ -21,19 +21,19 @@ export default function CookiePolicyPage() {
       <section aria-labelledby="czym-sa">
         <h2 id="czym-sa">1. Czym są pliki cookies</h2>
         <p>
-          Pliki cookies to niewielkie pliki tekstowe zapisywane w przeglądarce przez odwiedzane strony. Podobnie działają inne technologie przechowywania
-          danych w przeglądarce, na przykład localStorage.
+          Pliki cookies to niewielkie pliki tekstowe zapisywane w&nbsp;przeglądarce przez odwiedzane strony. Podobnie działają inne technologie przechowywania
+          danych w&nbsp;przeglądarce, na przykład localStorage.
         </p>
       </section>
 
       <section aria-labelledby="w-serwisie">
-        <h2 id="w-serwisie">2. Cookies w tym serwisie</h2>
-        <p>Serwis w obecnej wersji:</p>
+        <h2 id="w-serwisie">2. Cookies w&nbsp;tym serwisie</h2>
+        <p>Serwis w&nbsp;obecnej wersji:</p>
         <ul>
           <li>nie używa cookies analitycznych (np. do statystyk odwiedzin),</li>
           <li>nie używa cookies marketingowych ani reklamowych,</li>
-          <li>nie ładuje skryptów ani zasobów od podmiotów zewnętrznych – czcionki są serwowane z tej samej domeny,</li>
-          <li>nie zapisuje danych w localStorage ani sessionStorage.</li>
+          <li>nie ładuje skryptów ani zasobów od podmiotów zewnętrznych – czcionki są serwowane z&nbsp;tej samej domeny,</li>
+          <li>nie zapisuje danych w&nbsp;localStorage ani sessionStorage.</li>
         </ul>
         <p>
           Dlatego serwis nie wyświetla banera zgody na cookies – nie ma czego włączać ani wyłączać. Dostawca hostingu może stosować techniczne mechanizmy
@@ -44,19 +44,19 @@ export default function CookiePolicyPage() {
       <section aria-labelledby="zmiany">
         <h2 id="zmiany">3. Jeśli to się zmieni</h2>
         <p>
-          Jeżeli w przyszłości dodamy narzędzia analityczne lub marketingowe, zaktualizujemy tę politykę i wdrożymy mechanizm zgody. Opcjonalne narzędzia
-          nie zostaną uruchomione, dopóki nie wyrazisz na nie zgody, a zgodę będzie można w każdej chwili zmienić.
+          Jeżeli w&nbsp;przyszłości dodamy narzędzia analityczne lub marketingowe, zaktualizujemy tę politykę i&nbsp;wdrożymy mechanizm zgody. Opcjonalne narzędzia
+          nie zostaną uruchomione, dopóki nie wyrazisz na nie zgody, a&nbsp;zgodę będzie można w&nbsp;każdej chwili zmienić.
         </p>
       </section>
 
       <section aria-labelledby="ustawienia">
         <h2 id="ustawienia">4. Ustawienia przeglądarki</h2>
         <p>
-          Możesz w każdej chwili usunąć zapisane pliki cookies i zablokować ich zapisywanie w ustawieniach przeglądarki. Nie wpłynie to na działanie tego
+          Możesz w&nbsp;każdej chwili usunąć zapisane pliki cookies i&nbsp;zablokować ich zapisywanie w&nbsp;ustawieniach przeglądarki. Nie wpłynie to na działanie tego
           serwisu.
         </p>
         <p>
-          Więcej o przetwarzaniu danych przeczytasz w <Link href="/polityka-prywatnosci">polityce prywatności</Link>.
+          Więcej o&nbsp;przetwarzaniu danych przeczytasz w&nbsp;<Link href="/polityka-prywatnosci">polityce prywatności</Link>.
         </p>
       </section>
     </LegalPage>

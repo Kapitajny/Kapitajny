@@ -71,7 +71,7 @@ export default function ManagedItPage() {
       >
         <div className={styles.headerActions}>
           <LinkButton href={`/kontakt?usluga=${service.slug}`} withArrow>
-            Zapytaj o obsługę IT
+            Zapytaj o&nbsp;obsługę IT
           </LinkButton>
           <LinkButton href="#rytm" variant="secondary">
             Zobacz, jak wygląda miesiąc współpracy
@@ -94,7 +94,7 @@ export default function ManagedItPage() {
             id="rytm-title"
             layout="split"
             title="Rytm pracy"
-            intro={<p>Utrzymanie to powtarzalne czynności, a nie tylko gaszenie pożarów. Tak wygląda plan, który dopasowujemy do Twojej firmy.</p>}
+            intro={<p>Utrzymanie to powtarzalne czynności, a&nbsp;nie tylko gaszenie pożarów. Tak wygląda plan, który dopasowujemy do Twojej firmy.</p>}
           />
           <ol role="list" className={styles.rhythm}>
             {rhythm.map((column) => (
@@ -117,7 +117,7 @@ export default function ManagedItPage() {
             <h2 id="zakres-title" className={styles.h2}>
               Zakres usługi
             </h2>
-            <p className={styles.note}>Dokładny zakres zapisujemy w umowie po przeglądzie środowiska.</p>
+            <p className={styles.note}>Dokładny zakres zapisujemy w&nbsp;umowie po przeglądzie środowiska.</p>
           </div>
           <ScopeList items={service.scope} />
         </div>
@@ -131,12 +131,12 @@ export default function ManagedItPage() {
             title="Kto za co odpowiada"
             intro={
               <p>
-                Najwięcej nieporozumień bierze się z niejasnego podziału obowiązków. Przykładowy podział ustalamy na starcie i zapisujemy w umowie.
+                Najwięcej nieporozumień bierze się z&nbsp;niejasnego podziału obowiązków. Przykładowy podział ustalamy na starcie i&nbsp;zapisujemy w&nbsp;umowie.
               </p>
             }
           />
                       <table className={styles.table}>
-              <caption className="visually-hidden">Przykładowy podział odpowiedzialności między Rygiel a firmę klienta</caption>
+              <caption className="visually-hidden">Przykładowy podział odpowiedzialności między Rygiel a&nbsp;firmę klienta</caption>
               <thead>
                 <tr>
                   <th scope="col">Zadanie</th>
@@ -164,7 +164,7 @@ export default function ManagedItPage() {
               Jak obsługujemy zgłoszenia
             </h2>
             <p className={styles.note}>
-              Każde zgłoszenie dostaje numer i priorytet. Czasy reakcji dla poszczególnych priorytetów zapisujemy w umowie, dopasowując je do godzin
+              Każde zgłoszenie dostaje numer i&nbsp;priorytet. Czasy reakcji dla poszczególnych priorytetów zapisujemy w&nbsp;umowie, dopasowując je do godzin
               pracy Twojej firmy.
             </p>
           </div>
@@ -197,7 +197,7 @@ export default function ManagedItPage() {
       <section className={styles.section} aria-labelledby="faq-title">
         <div className={`container ${styles.split}`}>
           <h2 id="faq-title" className={styles.h2}>
-            Pytania o obsługę IT
+            Pytania o&nbsp;obsługę IT
           </h2>
           <div className={styles.stack}>
             <Accordion items={service.faq} />

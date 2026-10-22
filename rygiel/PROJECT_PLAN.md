@@ -280,3 +280,31 @@ nie deklarujemy — automaty (axe) i testy ręczne klawiaturą nie zastępują a
 | 5. Design | Przegląd zrzutów ekranu na 3 szerokościach bez nachodzenia, ucięć i przewijania w poziomie |
 | 6. SEO / a11y / security | Metadane na każdej stronie, sitemap/robots, axe bez naruszeń, nagłówki bezpieczeństwa aktywne |
 | 7. QA | Lint, typecheck, Vitest, build i E2E zielone; README kompletne |
+
+---
+
+## 12. Stan realizacji i wyniki kontroli (22.10.2026)
+
+Wszystkie fazy 1–7 zrealizowane. Wyniki na buildzie produkcyjnym:
+
+| Kontrola | Wynik |
+| --- | --- |
+| ESLint, `tsc --noEmit` | bez błędów i ostrzeżeń |
+| Vitest | 45/45 testów |
+| `next build` | 27 tras wygenerowanych statycznie |
+| Playwright (Chromium, desktop 1440 px i Pixel 7) | 88/88 testów, w tym axe-core WCAG 2.2 A/AA na 12 stronach |
+| Lighthouse (mobile) | Performance 91–95, Accessibility 100, Best Practices 100, SEO 100 przy włączonym indeksowaniu |
+| Przegląd wizualny | 375/390, 768, 1280/1440, 1920 px – strona główna, usługi, realizacje, artykuł, kontakt, menu mobilne, stopka, 404 |
+
+Problemy wykryte w trakcie QA i naprawione:
+
+- przewijanie w poziomie na telefonie (długie słowo „Cyberbezpieczeństwo” w szerokim kroju, tabela odpowiedzialności),
+- znacznik czasu formularza resetowany przy ponownym renderowaniu (pole ukryte → `useRef`),
+- brak `og:image` na podstronach (nadpisanie `openGraph` przez metadane strony),
+- kontrast etykiet na płaszczyźnie kobaltowej (4,3:1 → 4,7:1),
+- jednoliterowe spójniki na końcach wierszy (typografia polska – `typeset` i niełamliwe spacje),
+- treść artykułów trafiająca do JavaScriptu klienta (wydzielenie `content/taxonomy.ts`, odchudzone propsy),
+- animacja przepływu na schematach ograniczona do < 5 s (WCAG 2.2.2).
+
+Świadome ograniczenia: CSP z `'unsafe-inline'` dla skryptów (strony statyczne), limit żądań formularza w pamięci jednej
+instancji, formularz wymaga JavaScriptu, dokumenty prawne i dane firmy jako wersje robocze – szczegóły w README.

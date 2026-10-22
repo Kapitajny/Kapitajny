@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useId, useState } from "react";
-import { caseAreas, caseSectors, filterCases, type CaseFilterState, type CaseStudy } from "@/content/cases";
+import { caseAreas, caseSectors, filterCases, type CaseFilterState } from "@/content/taxonomy";
 import { TitleBlock } from "@/components/ui/TitleBlock";
-import { caseTitleBlockRows } from "./case-meta";
+import { caseTitleBlockRows, type CaseSummary } from "./case-meta";
 import styles from "./CaseIndex.module.css";
 
 const INITIAL: CaseFilterState = { area: "all", sector: "all" };
@@ -17,7 +17,7 @@ function resultLabel(count: number): string {
   return `${count} realizacji`;
 }
 
-export function CaseIndex({ cases }: { cases: CaseStudy[] }) {
+export function CaseIndex({ cases }: { cases: CaseSummary[] }) {
   const [filter, setFilter] = useState<CaseFilterState>(INITIAL);
   const statusId = useId();
   const visible = filterCases(cases, filter);
@@ -55,7 +55,7 @@ export function CaseIndex({ cases }: { cases: CaseStudy[] }) {
         <div className={styles.empty}>
           <p className={styles.emptyTitle}>Brak realizacji dla tego połączenia filtrów.</p>
           <p className={styles.emptyText}>
-            To nie znaczy, że nie pracujemy w tej branży – opisaliśmy dotąd tylko kilka przykładów. Zmień filtry albo opisz nam swoją sytuację.
+            To nie znaczy, że nie pracujemy w&nbsp;tej branży – opisaliśmy dotąd tylko kilka przykładów. Zmień filtry albo opisz nam swoją sytuację.
           </p>
           <div className={styles.emptyActions}>
             <button type="button" className={styles.reset} onClick={() => setFilter(INITIAL)}>
@@ -82,7 +82,7 @@ export function CaseIndex({ cases }: { cases: CaseStudy[] }) {
                     Czytaj studium przypadku
                   </p>
                 </div>
-                <TitleBlock rows={caseTitleBlockRows(study).filter((row) => row.label !== "Harmonogram")} label="Metryczka realizacji" />
+                <TitleBlock rows={caseTitleBlockRows(study)} label="Metryczka realizacji" />
               </article>
             </li>
           ))}

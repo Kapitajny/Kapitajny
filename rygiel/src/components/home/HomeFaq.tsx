@@ -10,7 +10,7 @@ export function HomeFaq() {
           <h2 id="faq-title" className={styles.title}>
             Częste pytania
           </h2>
-          <p className={styles.intro}>Pytania o konkretne usługi znajdziesz na ich stronach.</p>
+          <p className={styles.intro}>Pytania o&nbsp;konkretne usługi znajdziesz na ich stronach.</p>
         </div>
         <div className={styles.list}>
           <Accordion items={generalFaq} />

@@ -85,7 +85,7 @@ export function MobileNav() {
           <LinkButton href={primaryCta.href} size="large" className={styles.cta} onClick={close} withArrow>
             {primaryCta.label}
           </LinkButton>
-          <p className={styles.note}>Pierwsza rozmowa służy ustaleniu, czy i jak możemy pomóc. Nie zobowiązuje do współpracy.</p>
+          <p className={styles.note}>Pierwsza rozmowa służy ustaleniu, czy i&nbsp;jak możemy pomóc. Nie zobowiązuje do współpracy.</p>
         </div>
       </div>
     </div>

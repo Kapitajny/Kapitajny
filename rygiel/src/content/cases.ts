@@ -1,21 +1,8 @@
 import { typesetDeep } from "@/lib/typography";
 import type { ServiceSlug } from "./services";
+import type { CaseArea, CaseSector } from "./taxonomy";
 
-export const caseAreas = {
-  bezpieczenstwo: "Bezpieczeństwo",
-  infrastruktura: "Infrastruktura i chmura",
-  kopie: "Kopie i ciągłość działania",
-  "obsluga-it": "Obsługa IT",
-} as const;
-
-export const caseSectors = {
-  uslugi: "Usługi profesjonalne",
-  ecommerce: "Handel internetowy",
-  zdrowie: "Ochrona zdrowia",
-} as const;
-
-export type CaseArea = keyof typeof caseAreas;
-export type CaseSector = keyof typeof caseSectors;
+export { caseAreas, caseSectors, filterCases, type CaseArea, type CaseFilterState, type CaseSector } from "./taxonomy";
 
 /** Schemat przepływu: kolumny etapów połączone opisanymi przejściami. */
 export type FlowDiagram = {
@@ -437,12 +424,4 @@ export const caseStudies: CaseStudy[] = typesetDeep<CaseStudy[]>([
 
 export function getCaseStudy(slug: string): CaseStudy | undefined {
   return caseStudies.find((item) => item.slug === slug);
-}
-
-export type CaseFilterState = { area: CaseArea | "all"; sector: CaseSector | "all" };
-
-export function filterCases(items: CaseStudy[], filter: CaseFilterState): CaseStudy[] {
-  return items.filter(
-    (item) => (filter.area === "all" || item.area === filter.area) && (filter.sector === "all" || item.sector === filter.sector),
-  );
 }

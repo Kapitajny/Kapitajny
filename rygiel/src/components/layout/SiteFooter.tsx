@@ -2,6 +2,7 @@ import Link from "next/link";
 import { legalNav, mainNav, siteConfig } from "@/content/site";
 import { services } from "@/content/services";
 import { Pending } from "@/components/ui/Pending";
+import { typeset } from "@/lib/typography";
 import { LogoMark } from "./Logo";
 import styles from "./SiteFooter.module.css";
 
@@ -16,10 +17,11 @@ export function SiteFooter() {
             <LogoMark /> rygiel
           </p>
           <p className={styles.tagline}>
-            Administrujemy, zabezpieczamy i odtwarzamy infrastrukturę IT małych i średnich firm. Każdą zmianę opisujemy i
-            przekazujemy w dokumentacji.
+            {typeset(
+              "Administrujemy, zabezpieczamy i odtwarzamy infrastrukturę IT małych i średnich firm. Każdą zmianę opisujemy i przekazujemy w dokumentacji.",
+            )}
           </p>
-          <p className={styles.demo}>{siteConfig.portfolio.note}</p>
+          <p className={styles.demo}>{typeset(siteConfig.portfolio.note)}</p>
         </div>
 
         <nav className={styles.column} aria-labelledby="stopka-uslugi">
@@ -80,12 +82,16 @@ export function SiteFooter() {
                 <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
               ) : (
                 <span className={styles.muted}>
-                  E-mail: <Pending>adres kontaktowy</Pending>
+                  E-mail
+                  <br />
+                  <Pending>adres kontaktowy</Pending>
                 </span>
               )}
             </li>
             <li className={styles.muted}>
-              Dane rejestrowe: <Pending>nazwa firmy, adres, NIP</Pending>
+              Dane rejestrowe
+              <br />
+              <Pending>nazwa firmy, adres, NIP</Pending>
             </li>
           </ul>
         </section>

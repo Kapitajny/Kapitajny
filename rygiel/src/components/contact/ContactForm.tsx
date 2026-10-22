@@ -133,7 +133,7 @@ export function ContactForm({ demoMode }: { demoMode: boolean }) {
               Formularz przeszedł walidację po stronie serwera, ale w tym wdrożeniu nie skonfigurowano wysyłki poczty, więc{" "}
               <strong>nikt nie otrzymał Twojej wiadomości</strong>. Twoje dane nie zostały zapisane.
             </p>
-            <p>Aby uruchomić prawdziwą wysyłkę, administrator strony musi skonfigurować dostawcę poczty zgodnie z instrukcją w pliku README.</p>
+            <p>Aby uruchomić prawdziwą wysyłkę, administrator strony musi skonfigurować dostawcę poczty zgodnie z&nbsp;instrukcją w&nbsp;pliku README.</p>
           </>
         ) : (
           <p>Dziękujemy. Odpowiemy na adres {values.email || "podany w formularzu"}. Jeśli odpowiedź nie dotrze, sprawdź folder spamu.</p>
@@ -163,7 +163,7 @@ export function ContactForm({ demoMode }: { demoMode: boolean }) {
       ) : null}
 
       <noscript>
-        <p className={styles.formError}>Formularz wymaga włączonej obsługi JavaScriptu w przeglądarce.</p>
+        <p className={styles.formError}>Formularz wymaga włączonej obsługi JavaScriptu w&nbsp;przeglądarce.</p>
       </noscript>
 
       {summaryErrors.length > 0 ? (
@@ -249,7 +249,7 @@ export function ContactForm({ demoMode }: { demoMode: boolean }) {
             onBlur={() => validateOnBlur("service")}
           >
             <option value="" disabled>
-              Wybierz z listy
+              Wybierz z&nbsp;listy
             </option>
             {serviceOptions.map((option) => (
               <option key={option.value} value={option.value}>
@@ -285,7 +285,7 @@ export function ContactForm({ demoMode }: { demoMode: boolean }) {
         errorId={`${id}-message-error`}
         hint={
           <span id={`${id}-message-hint`} className={styles.hintRow}>
-            <span>Co się dzieje, od kiedy i czego oczekujesz. Nie podawaj haseł ani danych dostępowych.</span>
+            <span>Co się dzieje, od kiedy i&nbsp;czego oczekujesz. Nie podawaj haseł ani danych dostępowych.</span>
             <span className={styles.counter} data-over={values.message.trim().length > LIMITS.message.max || undefined}>
               {values.message.trim().length} / {LIMITS.message.max}
             </span>
@@ -320,9 +320,9 @@ export function ContactForm({ demoMode }: { demoMode: boolean }) {
           Potwierdzam zapoznanie się z{" "}
           <Link href="/polityka-prywatnosci" className="text-link" target="_blank">
             polityką prywatności
-            <span className="visually-hidden"> (otwiera się w nowej karcie)</span>
+            <span className="visually-hidden"> (otwiera się w&nbsp;nowej karcie)</span>
           </Link>{" "}
-          i rozumiem, że dane z formularza posłużą wyłącznie do odpowiedzi na zapytanie. <span className={styles.required}>(wymagane)</span>
+          i rozumiem, że dane z&nbsp;formularza posłużą wyłącznie do odpowiedzi na zapytanie. <span className={styles.required}>(wymagane)</span>
         </label>
         {errorFor("consent") ? (
           <p id={`${id}-consent-error`} className={styles.error}>

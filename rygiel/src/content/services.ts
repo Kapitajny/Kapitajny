@@ -1,6 +1,8 @@
 import { typesetDeep } from "@/lib/typography";
 
-export type LayerId = "ludzie" | "urzadzenia" | "siec" | "dane";
+import type { LayerId } from "./taxonomy";
+
+export type { LayerId } from "./taxonomy";
 
 export const infrastructureLayers: { id: LayerId; name: string; detail: string }[] = typesetDeep([
   { id: "ludzie", name: "Ludzie i konta", detail: "tożsamości, uprawnienia, MFA" },

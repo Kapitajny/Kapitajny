@@ -14,7 +14,7 @@ export function FeaturedCase() {
     <section className={styles.section} aria-labelledby="realizacja-title">
       <div className={`container ${styles.grid}`}>
         <div className={styles.copy}>
-          <p className={styles.kicker}>Realizacja demonstracyjna – firma i dane są fikcyjne</p>
+          <p className={styles.kicker}>Realizacja demonstracyjna – firma i&nbsp;dane są fikcyjne</p>
           <h2 id="realizacja-title" className={styles.title}>
             {study.title}
           </h2>

@@ -56,7 +56,7 @@ export default function ContactPage() {
               Formularz nie jest kanałem alarmowym. Odłącz podejrzane urządzenie od sieci, ale go nie wyłączaj, i zgłoś incydent do CERT Polska przez{" "}
               <a href="https://incydent.cert.pl" className="text-link" rel="noopener noreferrer" target="_blank">
                 incydent.cert.pl
-                <span className="visually-hidden"> (otwiera się w nowej karcie)</span>
+                <span className="visually-hidden"> (otwiera się w&nbsp;nowej karcie)</span>
               </a>
               .
             </p>

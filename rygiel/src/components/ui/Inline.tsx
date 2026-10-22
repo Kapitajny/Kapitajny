@@ -22,7 +22,7 @@ export function Inline({ text }: { text: string }) {
             ) : (
               <a key={index} href={token.href} className="text-link" rel="noopener noreferrer" target="_blank">
                 {typeset(token.value)}
-                <span className="visually-hidden"> (otwiera się w nowej karcie)</span>
+                <span className="visually-hidden"> (otwiera się w&nbsp;nowej karcie)</span>
               </a>
             );
           default:

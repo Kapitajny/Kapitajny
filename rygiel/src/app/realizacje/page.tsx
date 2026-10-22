@@ -22,13 +22,13 @@ export default function CasesPage() {
         lede="Studia przypadku pokazują, jak pracujemy: od opisu problemu, przez założenia i analizę rozwiązań, po kryteria, według których sprawdzamy efekt."
         aside={
           <p className={styles.disclaimer}>
-            <strong>Wszystkie realizacje są demonstracyjne.</strong> Firmy, ich profile i okoliczności są fikcyjne. Nie podajemy wyników liczbowych,
-            bo nie pochodzą z rzeczywistych wdrożeń.
+            <strong>Wszystkie realizacje są demonstracyjne.</strong> Firmy, ich profile i&nbsp;okoliczności są fikcyjne. Nie podajemy wyników liczbowych,
+            bo nie pochodzą z&nbsp;rzeczywistych wdrożeń.
           </p>
         }
       />
       <section className={`container ${styles.section}`} aria-label="Lista realizacji">
-        <CaseIndex cases={caseStudies} />
+        <CaseIndex cases={caseStudies.map(({ slug, title, summary, area, sector, profile }) => ({ slug, title, summary, area, sector, profile }))} />
       </section>
       <ClosingCta
         headingId="realizacje-cta"

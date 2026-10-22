@@ -9,7 +9,7 @@ export function ProcessSection({ headingId = "proces-title" }: { headingId?: str
         <SectionHeading
           id={headingId}
           title="Jak zaczynamy współpracę"
-          intro={<p>Pięć etapów, a po każdym dostajesz coś, co zostaje w firmie – nawet jeśli na nim skończymy.</p>}
+          intro={<p>Pięć etapów, a&nbsp;po każdym dostajesz coś, co zostaje w&nbsp;firmie – nawet jeśli na nim skończymy.</p>}
         />
         <ol className={styles.steps}>
           {processSteps.map((step, index) => (

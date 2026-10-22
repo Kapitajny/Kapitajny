@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { articleCategories, type ArticleCategory } from "@/content/articles";
+import { articleCategories, filterArticles, type ArticleCategory } from "@/content/taxonomy";
 import styles from "./ArticleIndex.module.css";
 
 export type ArticleSummary = {
@@ -15,7 +15,7 @@ export type ArticleSummary = {
 
 export function ArticleIndex({ articles }: { articles: ArticleSummary[] }) {
   const [category, setCategory] = useState<ArticleCategory | "all">("all");
-  const visible = category === "all" ? articles : articles.filter((article) => article.category === category);
+  const visible = filterArticles(articles, category);
   const categories = Object.entries(articleCategories) as [ArticleCategory, string][];
 
   return (

@@ -78,7 +78,7 @@ export default async function ArticlePage({ params }: PageProps<"/baza-wiedzy/[s
       <div className={`container ${styles.layout}`}>
         <nav className={styles.toc} aria-labelledby="spis-tresci">
           <p id="spis-tresci" className={styles.tocTitle}>
-            W tym artykule
+            W&nbsp;tym artykule
           </p>
           <ol className={styles.tocList}>
             {article.sections.map((section) => (

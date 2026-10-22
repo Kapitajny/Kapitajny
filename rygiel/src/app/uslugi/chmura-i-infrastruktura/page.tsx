@@ -57,7 +57,7 @@ export default function CloudPage() {
       >
         <div className={styles.headerActions}>
           <LinkButton href={`/kontakt?usluga=${service.slug}`} withArrow>
-            Zapytaj o kopie lub migrację
+            Zapytaj o&nbsp;kopie lub migrację
           </LinkButton>
           <LinkButton href="#kopie" variant="secondary">
             Jak projektujemy kopie
@@ -82,8 +82,8 @@ export default function CloudPage() {
             title="Kopie zapasowe, które przetrwają awarię i atak"
             intro={
               <p>
-                Zasada 3-2-1: trzy kopie danych, na dwóch różnych nośnikach, z czego jedna poza firmą. Dokładamy do niej czwarty element – regularny
-                test, czy da się z nich odtworzyć pracę firmy.
+                Zasada 3-2-1: trzy kopie danych, na dwóch różnych nośnikach, z&nbsp;czego jedna poza firmą. Dokładamy do niej czwarty element – regularny
+                test, czy da się z&nbsp;nich odtworzyć pracę firmy.
               </p>
             }
           />
@@ -91,7 +91,7 @@ export default function CloudPage() {
           <p className={styles.more}>
             Więcej o planowaniu kopii przeczytasz w artykule{" "}
             <Link href="/baza-wiedzy/kopie-zapasowe-3-2-1-w-praktyce" className="text-link">
-              Kopie zapasowe 3-2-1 w praktyce
+              Kopie zapasowe 3-2-1 w&nbsp;praktyce
             </Link>
             .
           </p>
@@ -106,8 +106,8 @@ export default function CloudPage() {
             title="Dwie liczby, które ustalamy na początku"
             intro={
               <p>
-                Ile danych możesz stracić i jak długo możesz czekać na powrót do pracy. Wartości ustalamy z Tobą osobno dla każdego systemu – od nich
-                zależy architektura i koszt kopii.
+                Ile danych możesz stracić i&nbsp;jak długo możesz czekać na powrót do pracy. Wartości ustalamy z&nbsp;Tobą osobno dla każdego systemu – od nich
+                zależy architektura i&nbsp;koszt kopii.
               </p>
             }
           />
@@ -126,15 +126,15 @@ export default function CloudPage() {
             <dl className={styles.spans}>
               <div className={styles.rpo}>
                 <dt>RPO – akceptowalna utrata danych</dt>
-                <dd>Czas między ostatnią kopią a awarią. Wszystko, co powstało w tym okresie, trzeba odtworzyć ręcznie albo przepadnie.</dd>
+                <dd>Czas między ostatnią kopią a&nbsp;awarią. Wszystko, co powstało w&nbsp;tym okresie, trzeba odtworzyć ręcznie albo przepadnie.</dd>
               </div>
               <div className={styles.rto}>
                 <dt>RTO – czas przywrócenia</dt>
-                <dd>Czas od awarii do powrotu do pracy. Obejmuje wykrycie problemu, decyzję, odtworzenie danych i sprawdzenie, że wszystko działa.</dd>
+                <dd>Czas od awarii do powrotu do pracy. Obejmuje wykrycie problemu, decyzję, odtworzenie danych i&nbsp;sprawdzenie, że wszystko działa.</dd>
               </div>
             </dl>
             <figcaption className={styles.caption}>
-              Rys. 2. RPO i RTO na osi czasu: ostatnia kopia, awaria i przywrócenie pracy.
+              Rys. 2. RPO i&nbsp;RTO na osi czasu: ostatnia kopia, awaria i&nbsp;przywrócenie pracy.
             </figcaption>
           </figure>
         </div>
@@ -144,10 +144,10 @@ export default function CloudPage() {
         <div className={`container ${styles.split}`}>
           <div className={styles.stack}>
             <h2 id="migracja-title" className={styles.h2}>
-              Migracja etapami, z punktem powrotu
+              Migracja etapami, z&nbsp;punktem powrotu
             </h2>
             <p className={styles.note}>
-              Unikamy przełączania wszystkiego jednej nocy. Po każdym etapie sprawdzamy wynik, a do czasu odbioru stare środowisko pozostaje gotowe do
+              Unikamy przełączania wszystkiego jednej nocy. Po każdym etapie sprawdzamy wynik, a&nbsp;do czasu odbioru stare środowisko pozostaje gotowe do
               powrotu.
             </p>
           </div>
@@ -183,7 +183,7 @@ export default function CloudPage() {
       <section className={`${styles.section} ${styles.tinted}`} aria-labelledby="faq-title">
         <div className={`container ${styles.split}`}>
           <h2 id="faq-title" className={styles.h2}>
-            Pytania o chmurę i kopie
+            Pytania o&nbsp;chmurę i&nbsp;kopie
           </h2>
           <div className={styles.stack}>
             <Accordion items={service.faq} />

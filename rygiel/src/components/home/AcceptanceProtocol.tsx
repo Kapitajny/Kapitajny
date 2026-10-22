@@ -20,7 +20,7 @@ export function AcceptanceProtocol() {
           }
         />
         <table className={styles.table}>
-          <caption className="visually-hidden">Rezultaty współpracy i sposób ich sprawdzenia</caption>
+          <caption className="visually-hidden">Rezultaty współpracy i&nbsp;sposób ich sprawdzenia</caption>
           <thead>
             <tr>
               <th scope="col">Rezultat</th>

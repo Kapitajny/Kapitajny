@@ -28,7 +28,7 @@ export default async function OpengraphImage() {
             <span style={{ fontFamily: "Archivo Expanded", fontSize: 58, lineHeight: 1.05, letterSpacing: -1.5, maxWidth: 900 }}>
               {"Administrujemy, zabezpieczamy i\u00A0odtwarzamy IT małych i\u00A0średnich firm."}
             </span>
-            <span style={{ fontSize: 26, color: "#a3a7ae" }}>Obsługa IT · Cyberbezpieczeństwo · Chmura i kopie zapasowe</span>
+            <span style={{ fontSize: 26, color: "#a3a7ae" }}>Obsługa IT · Cyberbezpieczeństwo · Chmura i&nbsp;kopie zapasowe</span>
           </div>
           <span style={{ fontSize: 20, color: "#878c94" }}>Projekt demonstracyjny ComputerIT</span>
         </div>

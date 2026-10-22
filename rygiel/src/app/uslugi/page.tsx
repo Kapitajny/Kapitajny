@@ -60,7 +60,7 @@ export default function ServicesPage() {
               <div className={styles.blocks}>
                 <section className={styles.block} aria-labelledby={`${service.slug}-problemy`}>
                   <h3 id={`${service.slug}-problemy`} className={styles.blockTitle}>
-                    Z czym przychodzą firmy
+                    Z&nbsp;czym przychodzą firmy
                   </h3>
                   <ProblemList items={service.problems} />
                 </section>
@@ -103,7 +103,7 @@ export default function ServicesPage() {
               Usługi dodatkowe
             </h2>
             <p className={styles.summary}>
-              Jednorazowe zadania, które nie wymagają stałej współpracy. Wyceniamy je po krótkiej rozmowie o zakresie.
+              Jednorazowe zadania, które nie wymagają stałej współpracy. Wyceniamy je po krótkiej rozmowie o&nbsp;zakresie.
             </p>
             <dl className={styles.extraList}>
               {additionalServices.map((item) => (
@@ -114,7 +114,7 @@ export default function ServicesPage() {
               ))}
             </dl>
             <Link href="/kontakt?usluga=inne" className="text-link">
-              Zapytaj o wdrożenie, konsultację lub szkolenie
+              Zapytaj o&nbsp;wdrożenie, konsultację lub szkolenie
             </Link>
           </section>
         </div>
