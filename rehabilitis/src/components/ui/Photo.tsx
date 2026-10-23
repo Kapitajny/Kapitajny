@@ -18,20 +18,13 @@ interface PhotoProps {
 /**
  * Zdjęcie z centralnej mapy `config/images.ts`.
  * Kontener rodzica musi mieć wymiary i `position: relative` – obraz wypełnia go z `object-fit: cover`.
- * Zdjęcia oznaczone `illustrative` dostają podpis „Zdjęcie poglądowe”. Brak pliku = spokojny placeholder.
+ * Podpis (także informację „zdjęcie poglądowe”) daje komponent `PhotoCaption`. Brak pliku = spokojny placeholder.
  */
 export function Photo({ image, sizes, className = "", preload, placeholderLabel }: PhotoProps) {
   const resolved = useImage(image);
 
   if (resolved.src) {
-    return (
-      <>
-        <Image src={resolved.src} alt={resolved.alt} fill sizes={sizes} preload={preload} quality={85} className={`object-cover ${className}`} />
-        {resolved.illustrative && (
-          <span className="pointer-events-none absolute bottom-2 left-2 rounded bg-white/85 px-1.5 py-0.5 text-xs text-graphite">Zdjęcie poglądowe</span>
-        )}
-      </>
-    );
+    return <Image src={resolved.src} alt={resolved.alt} fill sizes={sizes} preload={preload} quality={85} className={`object-cover ${className}`} />;
   }
 
   // Brak pliku – wgraj zdjęcie pod ścieżkę `resolved.expectedPath` (patrz config/images.ts).
@@ -50,5 +43,18 @@ export function Photo({ image, sizes, className = "", preload, placeholderLabel 
       {placeholderLabel && <span className="text-[0.95rem] font-medium text-moss">{placeholderLabel}</span>}
       {process.env.NODE_ENV === "development" && <span className="font-mono text-[10px] text-graphite/60">{resolved.expectedPath}</span>}
     </div>
+  );
+}
+
+/** Podpis pod zdjęciem. Dla zdjęć oznaczonych `illustrative` dopisuje „zdjęcie poglądowe”. */
+export function PhotoCaption({ image, children }: { image: ImageKey; children?: React.ReactNode }) {
+  const { illustrative } = useImage(image);
+  if (!children && !illustrative) return null;
+  return (
+    <figcaption className="mt-2 text-[0.9rem] text-muted">
+      {children}
+      {children && illustrative ? " " : ""}
+      {illustrative && (children ? "(zdjęcie poglądowe)" : "Zdjęcie poglądowe")}
+    </figcaption>
   );
 }

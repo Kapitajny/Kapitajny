@@ -1,42 +1,30 @@
 import { siteConfig } from "@/config/site";
-import { PRICE_LIST } from "@/data/pricing";
+import { CONDITION_GROUPS } from "@/data/conditions";
 import { BookingLink } from "@/components/ui/BookingLink";
-import { CheckIcon } from "@/components/ui/Icons";
-import { PendingValue } from "@/components/ui/Pending";
-import { Photo } from "@/components/ui/Photo";
 
-const STRENGTHS = ["Indywidualne podejście", "Plan terapii dopasowany do potrzeb", "Jasne zasady współpracy"];
+const STRENGTHS = [
+  { title: "Indywidualne podejście", text: "Na pierwszej wizycie mamy czas, żeby wysłuchać, z czym przychodzisz." },
+  { title: "Plan terapii dopasowany do potrzeb", text: "Ćwiczenia i tempo dobieramy do tego, co możesz dziś zrobić." },
+  { title: "Jasne zasady współpracy", text: "Przed rozpoczęciem terapii wiesz, ile potrwa wizyta i ile kosztuje." },
+];
 
+/**
+ * Hero zaczyna od pytania, z którym pacjent wchodzi na stronę: „co mnie boli?”.
+ * Lista okolic ciała prowadzi prosto do opisu w sekcji „Z czym możesz przyjść?”.
+ */
 export function Hero() {
-  const consultation = PRICE_LIST[0];
-  const facts = [
-    { label: "Pierwsza wizyta", value: consultation?.duration },
-    { label: "Konsultacja", value: consultation?.price },
-    { label: "Skierowanie", value: "niepotrzebne na wizyty prywatne" },
-    { label: "Zapisy", value: siteConfig.bookingUrl ? "online lub telefonicznie" : "telefonicznie lub przez formularz" },
-  ];
-
   return (
-    <section aria-labelledby="hero-title">
-      <div className="container-x grid items-center gap-10 py-10 lg:grid-cols-2 lg:gap-14 lg:py-16">
+    <section aria-labelledby="hero-title" className="border-b border-line">
+      <div className="container-x grid gap-12 pb-14 pt-12 lg:grid-cols-[1.35fr_1fr] lg:gap-20 lg:pb-20 lg:pt-20">
         <div>
-          <h1 id="hero-title" className="h1">
+          <h1 id="hero-title" className="h1 max-w-[13ch]">
             Odzyskaj swobodę ruchu. Zadbaj o siebie.
           </h1>
-          <p className="mt-5 max-w-xl text-lg text-muted">
+          <p className="mt-6 max-w-xl text-[1.2rem] leading-relaxed text-graphite">
             Indywidualnie dopasowana rehabilitacja i fizjoterapia, które wspierają powrót do sprawności i pomagają zadbać o komfort codziennego życia.
+            {siteConfig.city ? ` Gabinet w ${siteConfig.city}.` : ""}
           </p>
-          <ul className="mt-6 space-y-2">
-            {STRENGTHS.map((item) => (
-              <li key={item} className="flex items-center gap-3 font-medium text-ink">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-sage text-forest">
-                  <CheckIcon size={15} strokeWidth={2.2} />
-                </span>
-                {item}
-              </li>
-            ))}
-          </ul>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <BookingLink />
             <a href="#uslugi" className="btn btn-outline">
               Poznaj nasze usługi
@@ -44,21 +32,36 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-sage lg:aspect-[1/0.9]">
-          <Photo image="hero" preload sizes="(min-width: 1024px) 36rem, 92vw" />
-        </div>
+        <nav aria-labelledby="hero-regions" className="hidden lg:block lg:pt-3">
+          <h2 id="hero-regions" className="font-sans text-xl font-bold tracking-normal">
+            Co Ci dolega?
+          </h2>
+          <ul className="mt-3 border-t border-graphite/20">
+            {CONDITION_GROUPS.map((group) => (
+              <li key={group.id} className="border-b border-graphite/20">
+                <a
+                  href={`#dolegliwosci-${group.id}`}
+                  className="group flex min-h-12 items-center justify-between gap-4 py-2.5 text-[1.05rem] text-ink hover:text-forest"
+                >
+                  {group.label}
+                  <span aria-hidden="true" className="text-sm text-muted group-hover:text-forest">
+                    zobacz
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
 
-      <div className="border-y border-line bg-white">
-        <dl className="container-x grid grid-cols-2 gap-y-5 py-6 lg:grid-cols-4">
-          {facts.map((fact) => (
-            <div key={fact.label} className="pr-4">
-              <dt className="text-sm text-muted">{fact.label}</dt>
-              <dd className="mt-0.5 font-semibold text-ink">{fact.value ?? <PendingValue />}</dd>
-            </div>
-          ))}
-        </dl>
-      </div>
+      <ul className="container-x grid gap-8 pb-12 md:grid-cols-3 md:gap-10 lg:pb-16">
+        {STRENGTHS.map((item) => (
+          <li key={item.title}>
+            <p className="font-bold text-ink">{item.title}</p>
+            <p className="mt-1 text-muted">{item.text}</p>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

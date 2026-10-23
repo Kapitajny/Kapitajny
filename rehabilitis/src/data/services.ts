@@ -8,7 +8,7 @@ import type { ImageKey } from "@/config/images";
  * dopóki choć jedna usługa ma `false`, nad listą widnieje informacja, że zakres oferty jest
  * do potwierdzenia. Po weryfikacji ustaw `confirmed: true` (albo usuń usługę).
  *
- * Zdjęcie: `image` (klucz z config/images.ts). Usługa bez zdjęcia ma jednolity, szałwiowy kafel.
+ * `image` (klucz z config/images.ts) – zdjęcie pokazywane w pasku zdjęć pod listą usług.
  */
 
 export interface Service {
@@ -23,15 +23,6 @@ export interface Service {
 
 export const SERVICES: Service[] = [
   {
-    slug: "rehabilitacja-ortopedyczna",
-    title: "Rehabilitacja ortopedyczna",
-    summary:
-      "Wsparcie w odzyskiwaniu sprawności po urazach i zabiegach – prowadzone zgodnie z zaleceniami medycznymi oraz z uwzględnieniem tego, na co w danym momencie pozwala Twój organizm.",
-    includes: ["Rehabilitacja po urazach", "Praca nad zakresem ruchu", "Stopniowanie obciążeń"],
-    image: "serviceOrthopedic",
-    confirmed: false,
-  },
-  {
     slug: "fizjoterapia-indywidualna",
     title: "Fizjoterapia indywidualna",
     summary:
@@ -40,10 +31,19 @@ export const SERVICES: Service[] = [
     confirmed: false,
   },
   {
+    slug: "rehabilitacja-ortopedyczna",
+    title: "Rehabilitacja ortopedyczna",
+    summary:
+      "Pomagamy wrócić do sprawności po urazach i zabiegach. Pracujemy zgodnie z zaleceniami lekarza i w tempie, na które w danym momencie pozwala Twój organizm.",
+    includes: ["Rehabilitacja po urazach", "Praca nad zakresem ruchu", "Stopniowanie obciążeń"],
+    image: "serviceOrthopedic",
+    confirmed: false,
+  },
+  {
     slug: "terapia-bolu-plecow-i-karku",
     title: "Terapia bólu pleców i karku",
     summary:
-      "Indywidualna praca nad ruchomością, funkcją i dolegliwościami układu mięśniowo-szkieletowego w obrębie kręgosłupa, z ćwiczeniami, które możesz kontynuować w domu.",
+      "Pracujemy nad ruchomością kręgosłupa i dolegliwościami w okolicy karku i krzyża. Dostajesz ćwiczenia, które możesz robić w domu.",
     includes: ["Odcinek szyjny i lędźwiowy", "Ruchomość i funkcja", "Ćwiczenia do domu"],
     image: "serviceBack",
     confirmed: false,
@@ -52,25 +52,25 @@ export const SERVICES: Service[] = [
     slug: "masaz-leczniczy",
     title: "Masaż leczniczy",
     summary:
-      "Masaż dobierany do potrzeb pacjenta – zawsze po rozmowie i uwzględnieniu wskazań oraz przeciwwskazań. Jeśli masaż nie jest w danej sytuacji wskazany, zaproponujemy inną formę pracy.",
+      "Masaż dobieramy do Twoich potrzeb po rozmowie i sprawdzeniu przeciwwskazań. Jeśli w Twojej sytuacji masaż nie jest wskazany, zaproponujemy inną formę pracy.",
     includes: ["Wywiad przed zabiegiem", "Dobór techniki", "Wskazania i przeciwwskazania"],
-    confirmed: false,
-  },
-  {
-    slug: "cwiczenia-usprawniajace",
-    title: "Ćwiczenia usprawniające",
-    summary:
-      "Ćwiczenia ukierunkowane na poprawę ruchomości, siły, równowagi i swobody w codziennych czynnościach – od wstawania z krzesła po wchodzenie po schodach.",
-    includes: ["Ruchomość i siła", "Równowaga", "Codzienne czynności"],
-    image: "serviceExercise",
     confirmed: false,
   },
   {
     slug: "rehabilitacja-pooperacyjna",
     title: "Rehabilitacja pooperacyjna",
     summary:
-      "Wsparcie procesu powrotu do sprawności po operacji – według zaleceń lekarza prowadzącego i indywidualnego planu rehabilitacji, z tempem dopasowanym do etapu gojenia.",
+      "Prowadzimy rehabilitację po operacji według zaleceń lekarza prowadzącego. Tempo ćwiczeń dopasowujemy do etapu gojenia.",
     includes: ["Zgodnie z zaleceniami lekarza", "Indywidualny plan", "Kontrola postępów"],
+    confirmed: false,
+  },
+  {
+    slug: "cwiczenia-usprawniajace",
+    title: "Ćwiczenia usprawniające",
+    summary:
+      "Ćwiczenia poprawiające ruchomość, siłę i równowagę. Ćwiczymy to, co sprawia trudność na co dzień, na przykład wstawanie z krzesła czy wchodzenie po schodach.",
+    includes: ["Ruchomość i siła", "Równowaga", "Codzienne czynności"],
+    image: "serviceExercise",
     confirmed: false,
   },
 ];

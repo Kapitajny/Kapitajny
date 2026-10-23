@@ -12,9 +12,16 @@ export function Pending({ children }: { children: ReactNode }) {
   );
 }
 
-/** Krótka wartość do uzupełnienia w tabelach, np. w cenniku. */
+/** Brakująca wartość w tabeli (np. cena): kreska dla oka, pełna informacja dla czytnika ekranu. */
 export function PendingValue() {
-  return <span className="whitespace-nowrap text-[0.95rem] italic text-muted">do uzupełnienia</span>;
+  return (
+    <>
+      <span aria-hidden="true" className="text-muted">
+        —
+      </span>
+      <span className="sr-only">do uzupełnienia</span>
+    </>
+  );
 }
 
 /** Tekst z danych (np. FAQ), w którym fragmenty w [[podwójnych nawiasach]] oznaczają brakujące informacje. */

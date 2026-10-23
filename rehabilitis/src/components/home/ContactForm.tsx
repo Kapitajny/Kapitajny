@@ -136,7 +136,7 @@ export function ContactForm({ fallbackContact }: { fallbackContact: string | nul
         </span>
         <h3 className="mt-5 text-2xl">Dziękujemy, zgłoszenie dotarło do gabinetu.</h3>
         <p className="mt-3 max-w-lg text-graphite">
-          Skontaktujemy się z Tobą wybraną drogą, aby ustalić dogodny termin. Pamiętaj, że to jeszcze nie jest rezerwacja – termin zostanie potwierdzony
+          Skontaktujemy się z Tobą wybraną drogą, aby ustalić dogodny termin. To jeszcze nie jest rezerwacja. Termin potwierdzimy
           podczas kontaktu.
         </p>
         <button type="button" className="btn btn-outline mt-8" onClick={() => setStatus({ kind: "idle" })}>
@@ -150,9 +150,9 @@ export function ContactForm({ fallbackContact }: { fallbackContact: string | nul
   const messageLength = form.message.trim().length;
 
   return (
-    <form ref={formRef} onSubmit={submit} noValidate aria-describedby={id("intro")} className="relative rounded-lg border border-line bg-white p-6 sm:p-8">
+    <form ref={formRef} onSubmit={submit} noValidate aria-describedby={id("intro")} className="relative mt-4">
       <p id={id("intro")} className="text-[0.95rem] text-muted">
-        Formularz to prośba o kontakt – nie rezerwuje terminu. Odezwiemy się, aby wspólnie go ustalić. Pola oznaczone * są wymagane.
+        Wysłanie formularza nie rezerwuje terminu. Odezwiemy się, żeby go razem ustalić. Pola z gwiazdką (*) są wymagane.
       </p>
 
       <div className="mt-7 grid gap-6">
@@ -331,7 +331,7 @@ export function ContactForm({ fallbackContact }: { fallbackContact: string | nul
             className="field-input resize-y"
           />
           <p id={id("message-hint")} className="mt-2 flex justify-between gap-4 text-sm text-muted">
-            <span>Nie musisz opisywać stanu zdrowia – porozmawiamy o nim podczas wizyty.</span>
+            <span>Nie musisz opisywać stanu zdrowia. Porozmawiamy o nim na wizycie.</span>
             <span aria-hidden="true" className="shrink-0 tabular-nums">
               {messageLength}/{MESSAGE_MAX_LENGTH}
             </span>

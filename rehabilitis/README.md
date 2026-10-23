@@ -13,15 +13,17 @@ informacją o plikach cookies.
 
 - **Next.js 16** (App Router, Turbopack, Cache Components), **React 19**, **TypeScript**
 - **Tailwind CSS 4** – tokeny kolorów i typografii w `src/app/globals.css`
-- Kroje: **Source Serif 4** (nagłówki H1/H2) i **Figtree** (tekst, nagłówki H3), ładowane przez `next/font`
+- Kroje: **Literata** (nagłówki H1/H2) i **Atkinson Hyperlegible Next** (tekst; krój zaprojektowany dla osób
+  słabowidzących), ładowane przez `next/font`
 
 ### Kierunek wizualny
 
-Wygląd wzoruje się na praktycznych stronach lokalnych gabinetów fizjoterapii: górny pasek z adresem, godzinami
-i telefonem, wyraźny przycisk „Umów wizytę”, pasek najważniejszych informacji o pierwszej wizycie (czas, cena,
-skierowanie, zapisy), sekcja „Z czym możesz przyjść?” z wyborem okolicy ciała, karty zespołu z numerem PWZFz
-i cennik w tabeli. Świadomie bez ozdobników typowych dla generowanych szablonów (etykiety wersalikami nad
-każdą sekcją, kursywne akcenty w nagłówkach, numeracja usług, animacje przy przewijaniu).
+Wygląd wzoruje się na praktycznych stronach lokalnych gabinetów fizjoterapii. Strona zaczyna się od pytania
+pacjenta „Co Ci dolega?” (lista okolic ciała prowadzi do opisu w sekcji „Z czym możesz przyjść?”). Dalej:
+usługi jako zwykła lista, zdjęcia z podpisami, kroki pierwszej wizyty z praktycznymi informacjami, cennik w
+tabeli i formularz. Bez kart, ramek i ozdobników typowych dla generowanych szablonów; teksty pisane prostymi
+zdaniami. Brakujące dane (telefon, adres, godziny) są ukrywane, a nie oznaczane w każdym miejscu – o wersji
+roboczej informuje jeden pasek u góry strony.
 - **Vitest** – testy walidacji formularza i API kontaktowego
 
 Wymagany **Node.js 22.13+**. Projekt jest niezależny od strony NOIR COFFEE z katalogu nadrzędnego – ma własne

@@ -9,13 +9,12 @@ async function currentYear() {
   return new Date().getFullYear();
 }
 
-const missing = <span className="text-white/60">do uzupełnienia</span>;
-
 export async function SiteFooter() {
   const year = await currentYear();
   const address = formatAddress();
   const { phone, email } = siteConfig.contact;
   const { legalName, nip } = siteConfig.company;
+  const hours = siteConfig.openingHours.filter((row) => row.hours);
 
   return (
     <footer className="bg-forest pb-24 text-white sm:pb-0">
@@ -23,55 +22,53 @@ export async function SiteFooter() {
         <div>
           <Logo tone="light" />
           <p className="mt-5 max-w-xs text-[0.95rem] text-white/80">
-            Fizjoterapia i rehabilitacja{siteConfig.city ? ` w ${siteConfig.city}` : ""} – wizyty indywidualne po wcześniejszym umówieniu.
+            Fizjoterapia i rehabilitacja{siteConfig.city ? ` w ${siteConfig.city}` : ""}. Wizyty indywidualne po wcześniejszym umówieniu.
           </p>
         </div>
 
-        <div>
-          <h2 className="font-sans text-base font-semibold text-white">Kontakt</h2>
-          <ul className="mt-4 space-y-2 text-[0.95rem] text-white/85">
-            <li>
-              Tel.:{" "}
-              {phone ? (
-                <a href={phoneHref(phone)} className="font-semibold text-white hover:underline">
-                  {phone}
-                </a>
-              ) : (
-                missing
+        {(phone || email || address) && (
+          <div>
+            <h2 className="font-sans text-base font-bold text-white">Kontakt</h2>
+            <ul className="mt-4 space-y-2 text-white/85">
+              {phone && (
+                <li>
+                  <a href={phoneHref(phone)} className="font-bold text-white hover:underline">
+                    {phone}
+                  </a>
+                </li>
               )}
-            </li>
-            <li>
-              E-mail:{" "}
-              {email ? (
-                <a href={`mailto:${email}`} className="break-all text-white hover:underline">
-                  {email}
-                </a>
-              ) : (
-                missing
+              {email && (
+                <li>
+                  <a href={`mailto:${email}`} className="break-all text-white hover:underline">
+                    {email}
+                  </a>
+                </li>
               )}
-            </li>
-            <li>Adres: {address ?? missing}</li>
-          </ul>
-        </div>
+              {address && <li>{address}</li>}
+            </ul>
+          </div>
+        )}
 
-        <div>
-          <h2 className="font-sans text-base font-semibold text-white">Godziny otwarcia</h2>
-          <dl className="mt-4 space-y-2 text-[0.95rem]">
-            {siteConfig.openingHours.map((row) => (
-              <div key={row.days}>
-                <dt className="text-white/80">{row.days}</dt>
-                <dd>{row.hours ?? missing}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
+        {hours.length > 0 && (
+          <div>
+            <h2 className="font-sans text-base font-bold text-white">Godziny otwarcia</h2>
+            <dl className="mt-4 space-y-2">
+              {hours.map((row) => (
+                <div key={row.days}>
+                  <dt className="text-white/80">{row.days}</dt>
+                  <dd>{row.hours}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        )}
 
         <nav aria-label="Na stronie">
-          <h2 className="font-sans text-base font-semibold text-white">Na stronie</h2>
-          <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-[0.95rem] lg:grid-cols-1">
+          <h2 className="font-sans text-base font-bold text-white">Na stronie</h2>
+          <ul className="mt-3 grid grid-cols-2 gap-x-4 lg:grid-cols-1">
             {mainNav.slice(1).map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="text-white/85 hover:text-white hover:underline">
+                <Link href={item.href} className="inline-flex min-h-11 items-center text-white/85 hover:text-white hover:underline">
                   {item.label}
                 </Link>
               </li>
@@ -89,7 +86,7 @@ export async function SiteFooter() {
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             {legalNav.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="underline underline-offset-4 hover:text-white">
+                <Link href={item.href} className="inline-flex min-h-11 items-center underline underline-offset-4 hover:text-white">
                   {item.label}
                 </Link>
               </li>

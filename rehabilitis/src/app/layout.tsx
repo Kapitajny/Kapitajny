@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Figtree, Source_Serif_4 } from "next/font/google";
+import { Atkinson_Hyperlegible_Next, Literata } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import { getImageManifest } from "@/lib/images.server";
 import { DraftNotice } from "@/components/layout/DraftNotice";
@@ -10,16 +10,19 @@ import { TopBar } from "@/components/layout/TopBar";
 import { ImagesProvider } from "@/components/ui/ImagesProvider";
 import "./globals.css";
 
-const sourceSerif = Source_Serif_4({
-  variable: "--font-source-serif",
+// Nagłówki: Literata (krój zaprojektowany do długiego czytania). Tekst: Atkinson Hyperlegible Next –
+// krój zaprojektowany z myślą o osobach słabowidzących, czytelny także dla starszych pacjentów.
+const literata = Literata({
+  variable: "--font-literata",
   subsets: ["latin", "latin-ext"],
-  weight: ["600"],
+  weight: ["500"],
   display: "swap",
 });
 
-const figtree = Figtree({
-  variable: "--font-figtree",
+const atkinson = Atkinson_Hyperlegible_Next({
+  variable: "--font-atkinson",
   subsets: ["latin", "latin-ext"],
+  weight: ["400", "700"],
   display: "swap",
 });
 
@@ -54,7 +57,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pl" className={`${sourceSerif.variable} ${figtree.variable}`} suppressHydrationWarning>
+    <html lang="pl" className={`${literata.variable} ${atkinson.variable}`} suppressHydrationWarning>
       <body className="flex min-h-dvh flex-col">
         <ImagesProvider manifest={manifest}>
           <a href="#tresc" className="sr-only z-50 rounded-md bg-forest px-4 py-2 text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4">

@@ -1,5 +1,4 @@
 import { formatAddress, phoneHref, siteConfig } from "@/config/site";
-import { PendingValue } from "@/components/ui/Pending";
 import { ContactForm } from "./ContactForm";
 import { MapEmbed } from "./MapEmbed";
 
@@ -7,89 +6,89 @@ export function Contact() {
   const { phone, email } = siteConfig.contact;
   const address = formatAddress();
   const fallbackContact = phone ? `Telefon: ${phone}` : email ? `E-mail: ${email}` : null;
+  const hours = siteConfig.openingHours.filter((row) => row.hours);
 
   return (
-    <section id="kontakt" aria-labelledby="kontakt-title" className="section-y border-t border-line bg-sand">
-      <div className="container-x grid gap-10 lg:grid-cols-[1fr_1.25fr] lg:gap-14">
+    <section id="kontakt" aria-labelledby="kontakt-title" className="section-y bg-sand">
+      <div className="container-x grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
         <div>
           <h2 id="kontakt-title" className="h2">
             Kontakt i umawianie wizyt
           </h2>
-          <p className="section-intro">Zadzwoń albo zostaw prośbę o kontakt – oddzwonimy lub odpiszemy, żeby ustalić termin.</p>
+          <p className="section-intro">Zadzwoń albo zostaw prośbę o kontakt. Oddzwonimy lub odpiszemy, żeby ustalić termin.</p>
 
-          <dl className="mt-8 space-y-5">
-            <div>
-              <dt className="text-sm text-muted">Telefon</dt>
-              <dd className="mt-0.5">
-                {phone ? (
-                  <a href={phoneHref(phone)} className="text-2xl font-semibold text-forest hover:underline">
-                    {phone}
-                  </a>
-                ) : (
-                  <PendingValue />
-                )}
-              </dd>
-            </div>
-            <div>
-              <dt className="text-sm text-muted">E-mail</dt>
-              <dd className="mt-0.5">
-                {email ? (
-                  <a href={`mailto:${email}`} className="break-all text-lg font-semibold text-forest hover:underline">
-                    {email}
-                  </a>
-                ) : (
-                  <PendingValue />
-                )}
-              </dd>
-            </div>
-            <div>
-              <dt className="text-sm text-muted">Adres</dt>
-              <dd className="mt-0.5 text-lg text-ink">
-                {address ?? <PendingValue />}
-                {siteConfig.address.note && <span className="block text-base text-muted">{siteConfig.address.note}</span>}
-              </dd>
-            </div>
-            <div>
-              <dt className="text-sm text-muted">Godziny otwarcia</dt>
-              <dd className="mt-1">
-                <table className="w-full max-w-sm text-left">
-                  <tbody>
-                    {siteConfig.openingHours.map((row) => (
-                      <tr key={row.days} className="border-b border-graphite/10">
-                        <th scope="row" className="py-1.5 pr-4 font-normal text-graphite">
-                          {row.days}
-                        </th>
-                        <td className="py-1.5 text-right font-semibold text-ink">{row.hours ?? <PendingValue />}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </dd>
-            </div>
-          </dl>
+          {phone || email || address || hours.length ? (
+            <dl className="mt-8 space-y-5">
+              {phone && (
+                <div>
+                  <dt className="text-muted">Telefon</dt>
+                  <dd>
+                    <a href={phoneHref(phone)} className="font-serif text-[2rem] text-forest hover:underline">
+                      {phone}
+                    </a>
+                  </dd>
+                </div>
+              )}
+              {email && (
+                <div>
+                  <dt className="text-muted">E-mail</dt>
+                  <dd>
+                    <a href={`mailto:${email}`} className="break-all font-bold text-forest hover:underline">
+                      {email}
+                    </a>
+                  </dd>
+                </div>
+              )}
+              {address && (
+                <div>
+                  <dt className="text-muted">Adres</dt>
+                  <dd className="text-ink">
+                    {address}
+                    {siteConfig.address.note && <span className="block text-muted">{siteConfig.address.note}</span>}
+                  </dd>
+                </div>
+              )}
+              {hours.length > 0 && (
+                <div>
+                  <dt className="text-muted">Godziny otwarcia</dt>
+                  <dd>
+                    <table className="mt-1 w-full max-w-sm text-left">
+                      <tbody>
+                        {hours.map((row) => (
+                          <tr key={row.days} className="border-b border-graphite/15">
+                            <th scope="row" className="py-1.5 pr-4 font-normal text-graphite">
+                              {row.days}
+                            </th>
+                            <td className="py-1.5 text-right font-bold text-ink">{row.hours}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </dd>
+                </div>
+              )}
+            </dl>
+          ) : (
+            <p className="mt-8 text-muted">Telefon, adres i godziny otwarcia gabinetu pojawią się tutaj po uzupełnieniu danych.</p>
+          )}
 
-          <div className="mt-8">
-            {address ? (
+          {address && (
+            <div className="mt-8">
               <MapEmbed address={address} />
-            ) : (
-              <p className="rounded-lg border border-dashed border-graphite/25 p-5 text-sm text-muted">Mapa dojazdu pojawi się po uzupełnieniu adresu gabinetu.</p>
-            )}
-          </div>
+            </div>
+          )}
         </div>
 
         <div>
           {siteConfig.bookingUrl && (
-            <div className="mb-5 flex flex-col gap-4 rounded-lg bg-forest p-6 text-white sm:flex-row sm:items-center sm:justify-between">
-              <p>
-                <span className="block text-lg font-semibold">Wolne terminy online</span>
-                <span className="text-white/80">Zarezerwuj wizytę w kalendarzu – bez dzwonienia.</span>
-              </p>
-              <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer" className="btn shrink-0 bg-white text-forest hover:bg-sage">
+            <p className="mb-8 flex flex-col gap-3 border-b border-graphite/20 pb-8 sm:flex-row sm:items-center sm:justify-between">
+              <span>Wolne terminy sprawdzisz w kalendarzu online.</span>
+              <a href={siteConfig.bookingUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary shrink-0">
                 Zarezerwuj termin<span className="sr-only"> (nowa karta)</span>
               </a>
-            </div>
+            </p>
           )}
-          <h3 className="mb-4 text-xl">Prośba o kontakt</h3>
+          <h3 className="text-[1.2rem]">Prośba o kontakt</h3>
           <ContactForm fallbackContact={fallbackContact} />
         </div>
       </div>

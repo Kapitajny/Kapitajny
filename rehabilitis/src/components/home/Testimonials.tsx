@@ -6,7 +6,7 @@ import { TESTIMONIALS } from "@/data/testimonials";
  */
 export function Testimonials() {
   return (
-    <section aria-labelledby="opinie-title" className="section-y bg-sage">
+    <section aria-labelledby="opinie-title" className="section-y border-t border-line">
       <div className="container-x">
         <h2 id="opinie-title" className="h2">
           Opinie pacjentów
@@ -16,7 +16,7 @@ export function Testimonials() {
           <ul className="mt-10 grid gap-5 md:grid-cols-2">
             {TESTIMONIALS.map((t, i) => (
               <li key={`${t.author}-${i}`}>
-                <figure className="h-full rounded-lg bg-white p-6 sm:p-8">
+                <figure className="h-full border-l-2 border-forest pl-6">
                   <blockquote className="text-lg text-ink">
                     <p>„{t.quote}”</p>
                   </blockquote>
@@ -30,12 +30,10 @@ export function Testimonials() {
             ))}
           </ul>
         ) : (
-          <div className="mt-6 max-w-2xl rounded-lg bg-white p-6 sm:p-8">
-            <p className="text-lg font-semibold text-ink">Opinie pojawią się tu wkrótce.</p>
-            <p className="mt-2 text-graphite">
-              Publikujemy wyłącznie prawdziwe opinie, za zgodą ich autorów. Jeśli masz za sobą wizytę u nas, chętnie poznamy Twoje wrażenia.
-            </p>
-          </div>
+          <p className="section-intro">
+            Publikujemy tylko prawdziwe opinie, za zgodą ich autorów. Pierwsze pojawią się tutaj wkrótce. Jeśli masz za sobą wizytę u nas, chętnie poznamy
+            Twoje wrażenia.
+          </p>
         )}
       </div>
     </section>

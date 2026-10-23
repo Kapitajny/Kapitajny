@@ -13,7 +13,7 @@ export function MapConsentControl() {
       <p className="m-0 flex-1" aria-live="polite">
         {consent
           ? "Zgoda na wczytywanie mapy Google jest zapisana w tej przeglądarce."
-          : "Mapa Google nie wczyta się automatycznie – w tej przeglądarce nie ma zapisanej zgody."}
+          : "Mapa Google nie wczyta się automatycznie, bo w tej przeglądarce nie ma zapisanej zgody."}
       </p>
       {consent && (
         <button type="button" className="btn btn-outline btn-sm" onClick={() => setConsent(false)}>

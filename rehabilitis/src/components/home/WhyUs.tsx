@@ -1,7 +1,7 @@
 const VALUES = [
   {
     title: "Indywidualne podejście",
-    text: "Terapię układamy wokół Twoich potrzeb, możliwości i codziennych aktywności – nie według gotowego schematu.",
+    text: "Terapię układamy wokół Twoich potrzeb, możliwości i codziennych zajęć, a nie według gotowego schematu.",
   },
   {
     title: "Zrozumiałe wyjaśnienia",
@@ -13,7 +13,7 @@ const VALUES = [
   },
   {
     title: "Plan, który ma cel",
-    text: "Plan uwzględnia to, do czego chcesz wrócić – pracy, sportu czy swobodnego spaceru – i zmienia się wraz z postępami.",
+    text: "Plan uwzględnia to, do czego chcesz wrócić: do pracy, sportu czy swobodnego spaceru. Zmieniamy go razem z postępami.",
   },
 ];
 
@@ -25,7 +25,7 @@ export function WhyUs() {
           <h2 id="dlaczego-title" className="h2 !text-white">
             Dlaczego warto wybrać nasz gabinet?
           </h2>
-          <p className="mt-4 max-w-md text-lg text-white/80">Dobra terapia to taka, w której wiesz, co się dzieje, czujesz się bezpiecznie i masz wpływ na kolejne kroki.</p>
+          <p className="mt-4 max-w-md text-white/80">Na każdej wizycie wiesz, co robimy i dlaczego. O kolejnych krokach decydujemy razem.</p>
         </div>
         <dl className="divide-y divide-white/20 border-y border-white/20">
           {VALUES.map((value) => (

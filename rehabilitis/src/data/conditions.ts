@@ -39,7 +39,7 @@ export const CONDITION_GROUPS: ConditionGroup[] = [
       "dolegliwości po dłuższym wysiłku",
     ],
     approach:
-      "Szukamy ruchów i pozycji, które zmniejszają i nasilają ból, a potem stopniowo przywracamy pełną aktywność – od ćwiczeń w odciążeniu po codzienne czynności.",
+      "Szukamy ruchów i pozycji, które zmniejszają i nasilają ból. Potem stopniowo przywracamy aktywność: od ćwiczeń w odciążeniu do codziennych czynności.",
     services: ["terapia-bolu-plecow-i-karku", "cwiczenia-usprawniajace"],
   },
   {
@@ -54,7 +54,7 @@ export const CONDITION_GROUPS: ConditionGroup[] = [
     id: "lokiec",
     label: "Łokieć, nadgarstek i dłoń",
     problems: ["ból bocznej lub przyśrodkowej strony łokcia", "przeciążenia od pracy przy komputerze lub narzędziach", "stan po złamaniu w obrębie nadgarstka"],
-    approach: "Pracujemy nad zmniejszeniem przeciążenia i stopniowym budowaniem tolerancji tkanek na wysiłek – z ćwiczeniami do wykonywania w domu.",
+    approach: "Zmniejszamy przeciążenie i stopniowo przyzwyczajamy tkanki do wysiłku. Dostajesz też ćwiczenia do wykonywania w domu.",
     services: ["rehabilitacja-ortopedyczna", "cwiczenia-usprawniajace"],
   },
   {
@@ -76,7 +76,7 @@ export const CONDITION_GROUPS: ConditionGroup[] = [
     id: "stopa",
     label: "Stopa i staw skokowy",
     problems: ["stan po skręceniu stawu skokowego", "ból pięty przy pierwszych krokach rano", "ból ścięgna Achillesa", "uczucie niestabilności kostki"],
-    approach: "Przywracamy ruchomość i siłę, a następnie równowagę i kontrolę – tak, by stopa znów pewnie radziła sobie z chodzeniem, bieganiem czy pracą na stojąco.",
+    approach: "Najpierw przywracamy ruchomość i siłę, potem równowagę. Celem jest pewny krok przy chodzeniu, bieganiu czy pracy na stojąco.",
     services: ["rehabilitacja-ortopedyczna", "cwiczenia-usprawniajace"],
   },
   {

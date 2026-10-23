@@ -1,42 +1,63 @@
-import { SectionHeading } from "./SectionHeading";
+import { siteConfig } from "@/config/site";
+import { PRICE_LIST } from "@/data/pricing";
 
 const STEPS = [
-  { title: "Rozmowa", text: "Pytamy, co sprawia trudność, od kiedy i w jakich sytuacjach. Przeglądamy dokumentację i zalecenia lekarza, jeśli je masz." },
-  { title: "Ocena funkcjonalna", text: "Sprawdzamy ruch, siłę i codzienne czynności – w zakresie odpowiednim do problemu i Twojego samopoczucia." },
-  { title: "Omówienie planu", text: "Wyjaśniamy, co zaobserwowaliśmy, i proponujemy plan terapii. Masz czas na pytania i decyzję." },
-  { title: "Początek terapii", text: "Jeśli terapia jest wskazana, zaczynamy ją na tej lub kolejnej wizycie. Gdy potrzebna jest konsultacja lekarska, mówimy o tym otwarcie." },
+  { title: "Rozmowa", text: "Pytamy, co sprawia trudność, od kiedy i w jakich sytuacjach. Jeśli masz dokumentację lub zalecenia lekarza, przejrzymy je razem." },
+  { title: "Ocena funkcjonalna", text: "Sprawdzamy ruch, siłę i codzienne czynności. Tylko w takim zakresie, na jaki pozwala problem i Twoje samopoczucie." },
+  { title: "Omówienie planu", text: "Mówimy, co zauważyliśmy, i proponujemy plan terapii. Masz czas na pytania i decyzję." },
+  { title: "Początek terapii", text: "Jeśli terapia jest wskazana, zaczynamy ją na tej lub kolejnej wizycie. Gdy potrzebna jest konsultacja lekarska, powiemy o tym wprost." },
 ];
 
-const BRING = ["wygodny strój, który pozwala odsłonić bolące miejsce", "wyniki badań, wypisy ze szpitala, zalecenia lekarza", "skierowanie – jeśli je masz", "listę przyjmowanych leków"];
+const BRING = ["wygodny strój, w którym można odsłonić bolące miejsce", "wyniki badań, wypisy ze szpitala, zalecenia lekarza", "skierowanie, jeśli je masz", "listę przyjmowanych leków"];
 
 export function FirstVisit() {
-  return (
-    <section id="pierwsza-wizyta" aria-labelledby="pierwsza-wizyta-title" className="section-y">
-      <div className="container-x">
-        <SectionHeading id="pierwsza-wizyta-title" title="Jak wygląda pierwsza wizyta?">
-          <p>Nie musisz wiedzieć, jakiej terapii potrzebujesz. Pierwsze spotkanie służy temu, żeby to wspólnie ustalić.</p>
-        </SectionHeading>
+  const consultation = PRICE_LIST[0];
+  const good = [
+    "Na wizytę prywatną nie potrzebujesz skierowania.",
+    consultation?.duration ? `Pierwsza wizyta trwa ${consultation.duration}.` : null,
+    siteConfig.bookingUrl ? "Termin zarezerwujesz online, telefonicznie lub przez formularz." : "Termin ustalisz telefonicznie lub przez formularz na tej stronie.",
+  ].filter(Boolean) as string[];
 
-        <ol className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+  return (
+    <section id="pierwsza-wizyta" aria-labelledby="pierwsza-wizyta-title" className="section-y bg-sand">
+      <div className="container-x">
+        <h2 id="pierwsza-wizyta-title" className="h2">
+          Jak wygląda pierwsza wizyta?
+        </h2>
+        <p className="section-intro">Nie musisz wiedzieć, jakiej terapii potrzebujesz. Na pierwszym spotkaniu ustalimy to razem.</p>
+
+        <ol className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {STEPS.map((step, i) => (
-            <li key={step.title} className="border-t-[3px] border-forest pt-5">
-              <p className="text-sm font-semibold text-moss">Krok {i + 1}</p>
-              <h3 className="mt-1 text-xl">{step.title}</h3>
+            <li key={step.title}>
+              <p className="font-serif text-[2.6rem] leading-none text-forest" aria-hidden="true">
+                {i + 1}
+              </p>
+              <h3 className="mt-3 text-[1.2rem]">
+                <span className="sr-only">Krok {i + 1}: </span>
+                {step.title}
+              </h3>
               <p className="mt-2 text-graphite">{step.text}</p>
             </li>
           ))}
         </ol>
 
-        <div className="mt-12 grid gap-6 rounded-lg bg-sand p-6 sm:p-8 md:grid-cols-[14rem_1fr] md:gap-10">
-          <h3 className="text-xl">Co zabrać na wizytę</h3>
-          <ul className="grid gap-x-8 gap-y-2 sm:grid-cols-2">
-            {BRING.map((item) => (
-              <li key={item} className="flex gap-3">
-                <span aria-hidden="true" className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-forest" />
-                {item}
-              </li>
-            ))}
-          </ul>
+        <div className="mt-14 grid gap-10 border-t border-graphite/20 pt-10 md:grid-cols-2">
+          <div>
+            <h3 className="text-[1.2rem]">Co zabrać</h3>
+            <ul className="mt-3 list-disc space-y-1.5 pl-5 marker:text-forest">
+              {BRING.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-[1.2rem]">Dobrze wiedzieć</h3>
+            <ul className="mt-3 list-disc space-y-1.5 pl-5 marker:text-forest">
+              {good.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>

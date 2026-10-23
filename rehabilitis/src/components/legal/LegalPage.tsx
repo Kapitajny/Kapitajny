@@ -31,7 +31,7 @@ export function LegalPage({ title, intro, path, sections }: { title: string; int
       >
         <AlertIcon size={18} className="mt-0.5 shrink-0 text-moss" />
         <p>
-          <strong className="font-semibold">Projekt dokumentu – wersja robocza.</strong> Treść wymaga uzupełnienia danych administratora oraz weryfikacji
+          <strong className="font-semibold">Projekt dokumentu, wersja robocza.</strong> Treść wymaga uzupełnienia danych administratora oraz weryfikacji
           przez prawnika przed publikacją strony. Nie stanowi porady prawnej. Fragmenty oznaczone „do uzupełnienia” zależą od decyzji właściciela gabinetu.
         </p>
       </div>
