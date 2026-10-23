@@ -109,7 +109,7 @@ export const collections: Collection[] = [
     slug: "mono",
     name: "Mono",
     description: "Czerń, grafit, szarości i biel. Rzeczy, które łączą się ze sobą bez zastanawiania.",
-    coverImage: "track-zip-black",
+    coverImage: "jeans-baggy-black",
   },
   {
     slug: "sole",

@@ -83,7 +83,7 @@ export function CatalogView({ products, scope = {}, searchMode = false }: { prod
           <label htmlFor="catalog-sort" className="sr-only">
             Sortuj
           </label>
-          <select id="catalog-sort" className="field !min-h-10 !w-auto !py-1.5 text-sm" value={filters.sort} onChange={(e) => update({ ...filters, sort: e.target.value as SortKey })}>
+          <select id="catalog-sort" className="field !min-h-10 !w-auto max-w-[10.5rem] !py-1.5 text-sm sm:max-w-none" value={filters.sort} onChange={(e) => update({ ...filters, sort: e.target.value as SortKey })}>
             {SORT_OPTIONS.map((o) => (
               <option key={o.value} value={o.value}>
                 {o.label}
@@ -91,7 +91,9 @@ export function CatalogView({ products, scope = {}, searchMode = false }: { prod
             ))}
           </select>
           <button type="button" className="btn btn-outline !min-h-10 !px-3 lg:hidden" onClick={() => setFiltersOpen(true)} aria-haspopup="dialog">
-            <FilterIcon size={18} /> Filtry{activeCount > 0 ? ` (${activeCount})` : ""}
+            <FilterIcon size={18} />
+            <span className="sr-only sm:not-sr-only">Filtry</span>
+            {activeCount > 0 ? <span className="tabular-nums">({activeCount})</span> : null}
           </button>
         </div>
       </div>
@@ -120,6 +122,7 @@ export function CatalogView({ products, scope = {}, searchMode = false }: { prod
                 {results.slice(0, visibleCount).map((product, i) => (
                   <li key={product.id}>
                     <ProductCard
+                      key={filters.colors.join(",")}
                       product={product}
                       availability={stock?.[product.id]}
                       priority={i < 3}

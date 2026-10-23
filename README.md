@@ -1,168 +1,68 @@
-# NOIR COFFEE – strona kawiarni z zamówieniami online
+# KAPITAJNY – sklep z bluzami i spodniami
 
-Strona fikcyjnej kawiarni NOIR COFFEE z Gdańska: menu 10 kaw z personalizacją, koszyk, wybór lokalu i godziny
-odbioru, płatności Stripe Checkout potwierdzane webhookiem oraz projekty dokumentów prawnych.
+Sklep internetowy streetwear z dwiema kategoriami: **bluzy** i **spodnie**. Next.js 16 (App Router, Cache Components), React 19, Tailwind CSS 4, TypeScript, SQLite (`node:sqlite`), płatności Stripe Checkout.
 
-> **Projekt demonstracyjny.** Adresy lokali, godziny otwarcia, dane sprzedawcy i dokumenty prawne są danymi
-> przykładowymi / wersjami roboczymi i wymagają uzupełnienia przed przyjmowaniem prawdziwych zamówień.
+## Uruchomienie
 
-## Stack
-
-- **Next.js 16** (App Router, Turbopack, Cache Components), **React 19**, **TypeScript**
-- **Tailwind CSS 4** – tokeny kolorów i typografii w `src/app/globals.css`
-- **Stripe** (`stripe` – SDK serwerowy), **SQLite** wbudowany w Node.js (`node:sqlite`) na zamówienia
-- **Vitest** – testy logiki cen, godzin odbioru, walidacji, zamówień i webhooka
-
-Wymagany **Node.js 22.13+** (moduł `node:sqlite`).
-
-## Najprostsze uruchomienie (bez terminala)
-
-1. Zainstaluj **Node.js LTS** ze strony https://nodejs.org (jednorazowo).
-2. Rozpakuj paczkę ZIP ze stroną (na GitHubie: zielony przycisk **Code → Download ZIP**).
-3. Kliknij dwukrotnie:
-   - **Windows:** `URUCHOM-WINDOWS.bat`
-   - **Mac:** `URUCHOM-MAC.command` (za pierwszym razem: prawy przycisk → **Otwórz** → **Otwórz**)
-4. Strona otworzy się w przeglądarce pod adresem http://localhost:3000. Aby ją wyłączyć, zamknij okno skryptu.
-
-Pierwsze uruchomienie trwa kilka minut (instalacja pakietów), kolejne – kilkadziesiąt sekund.
-
-## Uruchomienie lokalne (terminal)
+Wymagany Node.js **22.13+**.
 
 ```bash
 npm install
-cp .env.example .env.local     # uzupełnij klucze testowe Stripe (opcjonalnie)
-npm run dev                    # http://localhost:3000
+npm run dev          # http://localhost:3000
 ```
 
-Bez kluczy Stripe strona działa w pełni (menu, koszyk, lokale, formularz zamówienia), a w podsumowaniu
-zamówienia wyświetla komunikat, że płatności nie są skonfigurowane – zamówienie nie zostanie złożone.
+Bez instalowania czegokolwiek ręcznie: dwuklik w `URUCHOM-MAC.command` (macOS/Linux) albo `URUCHOM-WINDOWS.bat` (Windows). Skrypty budują wersję produkcyjną i włączają zamówienia demonstracyjne.
 
-Kontrole jakości:
+| Polecenie | Co robi |
+| --- | --- |
+| `npm run lint` | ESLint |
+| `npm run typecheck` | TypeScript bez emisji |
+| `npm test` | testy Vitest (`tests/`) |
+| `npm run build` / `npm start` | wersja produkcyjna |
 
-```bash
-npm run lint && npm run typecheck && npm test && npm run build
-```
+Konfiguracja: skopiuj `.env.example` do `.env.local` i uzupełnij potrzebne wartości.
+
+## Co działa
+
+- **Katalog** – 31 produktów (17 bluz, 14 par spodni), każdy kolor ma własne zdjęcie i zdjęcie detalu. Kategorie `/kategoria/bluzy`, `/kategoria/spodnie`, podkategorie (np. `/kategoria/spodnie/cargo`), `/sklep`, `/nowosci` (najnowszy drop), `/kolekcje`.
+- **Filtry** zapisywane w adresie (można skopiować link): rozmiar, kolor, krój, cena, rodzaj, dostępność; sortowanie, wyszukiwanie, licznik wyników, „Pokaż więcej”, pusty stan, czyszczenie filtrów.
+- **Karta produktu** – galeria, wybór koloru (`?kolor=`), rozmiaru i ilości, aktualna dostępność z serwera, blokada niedostępnych rozmiarów, tabela rozmiarów (wymiary przykładowe), dostawa i zwroty, produkty powiązane, ulubione.
+- **Koszyk** – zapamiętywany w przeglądarce (także po odświeżeniu i między kartami), zmiana ilości, koloru i rozmiaru, usuwanie, sprawdzanie dostępności na serwerze.
+- **Zamówienie** – dane, adres, dostawa (kurier / punkt odbioru), płatność. Serwer ponownie wylicza ceny z katalogu, sprawdza i rezerwuje stan magazynowy (bez nadsprzedaży) i tworzy sesję Stripe. Opłacenie zapisuje wyłącznie webhook Stripe (z kontrolą kwoty i duplikatów zdarzeń).
+- **Zamówienia demonstracyjne** – do testów bez Stripe: zapisywane z numerem `DEMO-…`, wyraźnie opisane jako niezrealizowane, bez płatności i bez wpływu na stany. Domyślnie włączone poza produkcją (`DEMO_ORDERS`).
+- **Konta** – rejestracja, logowanie, wylogowanie, historia zamówień, reset hasła (hasła scrypt, sesje w bazie, ciasteczko httpOnly).
+- **Newsletter i formularz kontaktowy** – przekazywane przez webhook; bez konfiguracji formularz mówi wprost, że nic nie zostało wysłane.
+- **SEO** – tytuły i opisy, Open Graph, `sitemap.xml`, `robots.txt`, dane strukturalne (sklep, ścieżka, produkt z ceną – bez ocen, recenzji i deklaracji dostępności).
+
+## Co wymaga konfiguracji przed sprzedażą
+
+| Co | Gdzie |
+| --- | --- |
+| Adres sklepu | `NEXT_PUBLIC_SITE_URL` (wymagany w produkcji do płatności Stripe) |
+| Płatności | `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`; webhook na `/api/stripe/webhook` ze zdarzeniami `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `checkout.session.async_payment_failed`, `checkout.session.expired` |
+| Dane sprzedawcy, kontakt, social media | zmienne `NEXT_PUBLIC_SELLER_*`, `NEXT_PUBLIC_CONTACT_*`, `NEXT_PUBLIC_*_URL` – do tego czasu strona pokazuje „do uzupełnienia” |
+| Newsletter, kontakt, e-maile resetu hasła | `NEWSLETTER_WEBHOOK_URL`, `CONTACT_WEBHOOK_URL`, `MAIL_WEBHOOK_URL` |
+| Regulamin i polityka prywatności | wersje robocze – do weryfikacji przez prawnika |
+| Ceny dostawy | `src/data/shipping.ts` (przykładowe) |
+| Produkty, stany, tabele rozmiarów | `src/data/catalog.ts` (dane demonstracyjne, wymiary przykładowe) |
+| Pasek ogłoszeń | `src/config/site.ts` → `announcement` |
+| Indeksowanie | `NEXT_PUBLIC_ALLOW_INDEXING=true` dopiero po uzupełnieniu danych |
+| Baza | `DATABASE_PATH` na trwałym dysku; na hostingu serverless trzeba podmienić SQLite na zewnętrzną bazę |
+
+## Zdjęcia
+
+`public/images/products/` – zdjęcia produktów na jasnym tle studyjnym: cztery zdjęcia dostarczone przez właściciela (biała bluza, czarna bluza boxy, białe i czarne szerokie spodnie), sześć zdjęć wygenerowanych AI (Figma) oraz warianty kolorystyczne i wersje z nadrukiem logo przygotowane z nich programowo. To zdjęcia poglądowe – przed startem zastąp je zdjęciami rzeczywistych produktów (te same nazwy plików, format 4:5). Logo: `public/images/brand/` (wersja na ciemne tło ma odwrócone kolory, tak jak nadruk na czarnych bluzach).
 
 ## Struktura
 
 ```
-src/
-  app/                      strony (/, /zamowienie, /zamowienie/sukces, /zamowienie/anulowano, dokumenty prawne)
-    api/checkout            tworzy zamówienie + sesję Stripe Checkout (ceny liczone na serwerze)
-    api/stripe/webhook      jedyne miejsce oznaczające zamówienie jako opłacone
-    api/orders/status       status zamówienia (dla stron sukcesu/anulowania)
-    api/orders/cancel       anulowanie nieopłaconego zamówienia (wygasza sesję Stripe)
-    api/newsletter          zapis do newslettera (wymaga NEWSLETTER_WEBHOOK_URL)
-  config/images.ts          ★ mapa zdjęć: plik → sekcja/produkt, teksty alternatywne
-  config/site.ts            nazwa, nawigacja, kontakt, Instagram, linki do dokumentów
-  data/menu.ts              ★ katalog produktów, ceny, kategorie, opcje każdego napoju
-  data/options.ts           biblioteka opcji (rozmiary, mleko, temperatura, lód, ziarno, dodatki)
-  data/locations.ts         ★ lokale, adresy, godziny otwarcia
-  lib/pricing.ts            wycena i walidacja pozycji (wspólna dla przeglądarki i serwera)
-  lib/pickup.ts             godziny odbioru w strefie Europe/Warsaw
-  lib/validation.ts         walidacja zamówienia
-  lib/server/               Stripe, baza SQLite, zamówienia, webhook, limity żądań
-  components/               layout, sekcje strony głównej, koszyk, zamówienie, dokumenty
-tests/                      testy Vitest
-public/images/coffee/       ★ zdjęcia (lista nazw w README.md w tym katalogu)
+src/data/catalog.ts        produkty, kategorie, kolory, kroje, dropy, kolekcje, tabele rozmiarów
+src/data/shipping.ts       metody i ceny dostawy
+src/lib/catalog.ts         wyszukiwanie, filtry, sortowanie, filtry ↔ adres
+src/lib/pricing.ts         wycena koszyka (wspólna dla przeglądarki i serwera)
+src/lib/validation.ts      walidacja formularzy
+src/lib/server/            baza, zamówienia, stany, płatności, konta, webhooki
+src/app/                   strony i API
+src/components/            UI
+tests/                     testy
 ```
-
-## Zdjęcia
-
-Wgraj pliki do `public/images/coffee/` pod nazwami z `src/config/images.ts`
-(pełna lista: `public/images/coffee/README.md`). Brakujące zdjęcie zastępuje placeholder w stylistyce marki;
-w trybie deweloperskim placeholder pokazuje oczekiwaną ścieżkę pliku. Po dodaniu zdjęć w produkcji przebuduj
-projekt (`npm run build`).
-
-## Menu i ceny
-
-Wszystko w `src/data/menu.ts` (ceny w groszach, np. `1600` = 16 zł). Każdy napój wskazuje, które opcje są dla
-niego dostępne, i może nadpisać etykietę lub dopłatę. Te same dane wykorzystuje serwer do przeliczenia ceny
-przed utworzeniem płatności – przeglądarka nie może narzucić ceny.
-
-## Płatności Stripe
-
-### Jak to działa
-
-1. `POST /api/checkout` waliduje koszyk, lokal, godzinę odbioru i dane klienta, przelicza ceny z katalogu,
-   zapisuje zamówienie ze statusem `pending` i tworzy sesję **Stripe Checkout** (`locale: pl`, waluta PLN,
-   wygaśnięcie po 30 min).
-2. Klient płaci na stronie Stripe i wraca na `/zamowienie/sukces?session_id=…`.
-3. Stripe wysyła zdarzenie na `/api/stripe/webhook`. Po weryfikacji podpisu i zgodności kwoty zamówienie
-   dostaje status `paid`. Strona sukcesu odpytuje serwer i dopiero wtedy pokazuje potwierdzenie.
-4. Statusy: `pending` (oczekujące), `paid` (opłacone), `cancelled` (anulowane / sesja wygasła),
-   `failed` (płatność odrzucona).
-
-Ochrona przed podwójnym zamówieniem: klucz idempotencji próby płatności (przeglądarka, sessionStorage) jest
-unikalny w bazie – ponowne kliknięcie lub powrót ze Stripe wznawia tę samą sesję; przy zmianie treści
-zamówienia tworzona jest nowa próba. Zdarzenia webhooka są zapisywane i przetwarzane dokładnie raz.
-
-### Konfiguracja – tryb testowy
-
-1. Załóż konto na [dashboard.stripe.com](https://dashboard.stripe.com) i włącz **tryb testowy**.
-2. Skopiuj **Secret key** (`sk_test_…`) do `STRIPE_SECRET_KEY` w `.env.local`.
-3. Zainstaluj [Stripe CLI](https://docs.stripe.com/stripe-cli) i przekaż webhooki lokalnie:
-   ```bash
-   stripe login
-   stripe listen --forward-to localhost:3000/api/stripe/webhook
-   ```
-   Wypisany sekret `whsec_…` wpisz do `STRIPE_WEBHOOK_SECRET` i uruchom ponownie `npm run dev`.
-4. Zamów kawę i zapłać kartą testową `4242 4242 4242 4242` (dowolna przyszła data, dowolny CVC).
-   Testowe płatności BLIK/Przelewy24 są dostępne, jeśli włączysz te metody w ustawieniach konta.
-
-### Konfiguracja – produkcja
-
-1. Aktywuj konto Stripe (dane firmy, rachunek do wypłat) i przełącz Dashboard na tryb **live**.
-2. Ustaw na serwerze `STRIPE_SECRET_KEY=sk_live_…` oraz `NEXT_PUBLIC_SITE_URL=https://twoja-domena.pl`.
-3. Dashboard → Developers → **Webhooks** → dodaj endpoint `https://twoja-domena.pl/api/stripe/webhook`
-   ze zdarzeniami: `checkout.session.completed`, `checkout.session.async_payment_succeeded`,
-   `checkout.session.async_payment_failed`, `checkout.session.expired`. Sekret podpisu wpisz do
-   `STRIPE_WEBHOOK_SECRET`.
-4. Settings → **Payment methods**: wybierz metody dla PLN (karty, BLIK, Przelewy24). Checkout pokaże je
-   automatycznie – nie trzeba zmieniać kodu. Przelewy24 obsługiwane są przez Stripe, bez osobnej integracji.
-5. Settings → **Emails**: włącz potwierdzenia płatności (paragony e-mail) dla klientów.
-6. Klucze testowe i produkcyjne trzymaj w osobnych środowiskach; strona pokazuje baner „Tryb testowy”, gdy
-   używany jest klucz `sk_test_`.
-
-### Baza zamówień
-
-SQLite (`ORDERS_DB_PATH`, domyślnie `data/orders.sqlite`) działa na serwerze z trwałym dyskiem (VPS, kontener z
-wolumenem). Na platformach serverless (np. Vercel) system plików jest ulotny – podmień implementację w
-`src/lib/server/orders.ts` i `db.ts` na bazę zewnętrzną (np. Postgres), zachowując interfejs funkcji.
-Zamówienia można podejrzeć poleceniem `sqlite3 data/orders.sqlite "select number,status,pickup_date,pickup_time from orders"`
-– panel dla baristów nie jest częścią projektu.
-
-## Google Maps
-
-Mapa w sekcji „Nasze lokale” wczytuje się dopiero po kliknięciu (zgoda na pliki cookie Google).
-
-- Bez klucza używany jest standardowy, publiczny embed Google Maps.
-- Z kluczem `NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY` – oficjalne **Maps Embed API** (Google Cloud Console → włącz
-  „Maps Embed API” → utwórz klucz i ogranicz go do swojej domeny).
-- Dopóki lokal ma `verified: false` w `src/data/locations.ts`, mapa pokazuje ogólny widok Gdańska z oznaczeniem
-  „mapa demonstracyjna”. Po wpisaniu prawdziwego adresu ustaw `verified: true` – mapa pokaże wtedy adres
-  (wyszukiwanie po tekście, bez ręcznych współrzędnych).
-
-## Newsletter
-
-Bez konfiguracji formularz waliduje dane i uczciwie informuje, że adres **nie został zapisany**. Aby zbierać
-zapisy, ustaw `NEWSLETTER_WEBHOOK_URL` (opcjonalnie `NEWSLETTER_WEBHOOK_SECRET`, wysyłany jako `Authorization: Bearer`).
-Endpoint otrzyma JSON `{ email, consent, consentText, consentAt, source }`. Rekomendowany jest dostawca z
-podwójnym potwierdzeniem zapisu (double opt-in).
-
-## Przed uruchomieniem dla prawdziwych klientów
-
-- [ ] Uzupełnić dane sprzedawcy (nazwa, adres, NIP, REGON, CEIDG/KRS, e-mail, telefon) – `src/config/site.ts`
-      i wszystkie miejsca oznaczone „do uzupełnienia” w dokumentach (`src/app/regulamin`, `polityka-prywatnosci`,
-      `cookies`, `platnosci-i-zwroty`, `kontakt`).
-- [ ] Dać dokumenty prawne do weryfikacji prawnikowi; ustalić zasady nieodebranych zamówień, ewentualnego
-      anulowania opłaconych zamówień, informacji o alergenach i dokumentowania sprzedaży (kasa fiskalna).
-- [ ] Skonfigurować wysyłkę potwierdzenia zawarcia umowy na trwałym nośniku (e-mail z treścią zamówienia).
-- [ ] Wpisać prawdziwe adresy i godziny lokali, ustawić `verified: true`.
-- [ ] Wgrać zdjęcia w dobrej rozdzielczości i potwierdzić prawa do nich.
-- [ ] Aktywować konto Stripe, ustawić klucze live, webhook i metody płatności; wykonać płatność testową na produkcji.
-- [ ] Zapewnić trwałą bazę zamówień (wolumen lub Postgres) i sposób przekazywania zamówień do lokali
-      (panel/powiadomienia dla baristów).
-- [ ] Ustawić `NEXT_PUBLIC_SITE_URL`, HTTPS, `NEXT_PUBLIC_INSTAGRAM_URL`, a po uzupełnieniu danych
-      `NEXT_PUBLIC_ALLOW_INDEXING=true`.
-- [ ] Podłączyć newsletter (lub usunąć sekcję) i zaktualizować politykę prywatności o dostawców.

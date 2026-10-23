@@ -57,8 +57,9 @@ function create(value: ValidCheckout, userId: string | null) {
  * Tworzy (lub wznawia) zamówienie i – dla płatności online – sesję Stripe Checkout.
  * Kwoty pochodzą wyłącznie z katalogu przeliczonego na serwerze (`ValidCheckout`).
  * Zamówienie demonstracyjne nie pobiera płatności i jest wyraźnie oznaczone jako „demo”.
+ * Adres strony (`resolveSiteUrl`) jest potrzebny tylko do linków powrotnych Stripe.
  */
-export async function startCheckout(value: ValidCheckout, siteUrl: string, userId: string | null = null): Promise<CheckoutResult> {
+export async function startCheckout(value: ValidCheckout, resolveSiteUrl: () => string, userId: string | null = null): Promise<CheckoutResult> {
   if (value.payment === "demo") {
     if (!isDemoOrdersEnabled()) {
       throw new CheckoutError("DEMO_DISABLED", "Zamówienia demonstracyjne są wyłączone w tym sklepie.", 403);
@@ -96,7 +97,7 @@ export async function startCheckout(value: ValidCheckout, siteUrl: string, userI
     throw new CheckoutError("ATTEMPT_CLOSED", "Sesja płatności wygasła.", 409);
   }
 
-  const session = await createStripeSession(stripe, order, value, siteUrl);
+  const session = await createStripeSession(stripe, order, value, resolveSiteUrl());
   if (!session.url) throw new CheckoutError("PROVIDER_ERROR", "Stripe nie zwrócił adresu płatności.", 502);
   attachCheckoutSession(order.id, { id: session.id, url: session.url, expiresAt: session.expires_at });
   return { url: session.url, orderId: order.id, demo: false };

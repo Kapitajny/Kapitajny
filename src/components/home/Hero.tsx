@@ -6,11 +6,11 @@ import { formatDate } from "@/lib/format";
 export function Hero() {
   return (
     <section aria-labelledby="hero-title" className="wrap grid gap-8 pb-16 pt-8 md:pt-12 lg:grid-cols-12 lg:gap-10 lg:pb-24">
-      <div className="flex flex-col lg:col-span-7 lg:py-6">
+      <div className="@container flex flex-col lg:col-span-7 lg:py-6">
         <p className="text-sm text-muted">
           {latestDrop.name} – w sklepie od {formatDate(latestDrop.date)}
         </p>
-        <h1 id="hero-title" className="display mt-6 text-[clamp(3.3rem,0.6rem+10.2vw,10.5rem)]">
+        <h1 id="hero-title" className="display mt-6 text-[min(16.5cqi,9.5rem)]">
           Bluzy.
           <br />
           Spodnie.
@@ -30,7 +30,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="relative grid grid-cols-[1.25fr_1fr] items-end gap-2 lg:col-span-5 lg:block">
+      <div className="relative grid grid-cols-[1.25fr_1fr] items-end gap-2 lg:col-span-5 lg:block lg:self-start lg:pb-10">
         <Link href="/produkt/sole-print-hoodie" className="studio relative block aspect-[4/5] overflow-hidden lg:ml-[18%]" aria-label="SOLE Print Hoodie">
           <Image
             src="/images/products/sole-hoodie-black.jpg"
@@ -43,7 +43,7 @@ export function Hero() {
         </Link>
         <Link
           href="/produkt/sole-wide-pants"
-          className="studio relative block aspect-[4/5] overflow-hidden lg:absolute lg:-bottom-10 lg:left-0 lg:w-[42%] lg:border-[6px] lg:border-ink"
+          className="studio relative block aspect-[4/5] overflow-hidden lg:absolute lg:bottom-0 lg:left-0 lg:w-[42%] lg:border-[6px] lg:border-ink"
           aria-label="SOLE Wide Pants"
         >
           <Image

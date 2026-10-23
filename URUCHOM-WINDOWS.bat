@@ -1,10 +1,10 @@
 @echo off
 chcp 65001 >nul
-title NOIR COFFEE
+title KAPITAJNY
 cd /d "%~dp0"
 
 echo.
-echo  NOIR COFFEE - uruchamianie strony
+echo  KAPITAJNY - uruchamianie sklepu
 echo  ---------------------------------
 
 where node >nul 2>nul
@@ -31,6 +31,8 @@ if not exist node_modules (
 )
 
 set NEXT_PUBLIC_SITE_URL=http://localhost:3000
+rem Lokalnie: zamowienia demonstracyjne (bez platnosci, oznaczone DEMO), dopoki nie podlaczysz Stripe.
+set DEMO_ORDERS=true
 echo  Przygotowuje strone...
 call npm run build
 if errorlevel 1 goto error

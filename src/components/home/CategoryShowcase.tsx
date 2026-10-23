@@ -27,9 +27,9 @@ export function CategoryShowcase() {
               >
                 <Image src={cover.src} alt="" fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
               </Link>
-              <div className={`flex flex-col lg:col-span-7 ${index % 2 ? "lg:order-1" : ""}`}>
-                <div className="flex items-end justify-between gap-6">
-                  <h2 className="display text-[clamp(3.5rem,1rem+9vw,9rem)]">
+              <div className={`@container flex flex-col lg:col-span-7 ${index % 2 ? "lg:order-1" : ""}`}>
+                <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
+                  <h2 className="display text-[min(15cqi,9rem)]">
                     <Link href={`/kategoria/${category.slug}`} className="hover:underline hover:decoration-4 hover:underline-offset-8">
                       {category.name}
                     </Link>

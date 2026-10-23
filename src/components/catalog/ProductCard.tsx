@@ -108,9 +108,10 @@ export function ProductCard({
             {colorName(variant.color)}
           </p>
         )}
-        <p className="-ml-1.5 text-xs text-muted" aria-label={inStock.length ? `Dostępne rozmiary: ${inStock.join(", ")}` : "Brak dostępnych rozmiarów w tym kolorze"}>
+        <p className="-ml-1.5 text-xs text-muted">
+          <span className="sr-only">{inStock.length ? `Dostępne rozmiary: ${inStock.join(", ")}` : "Brak dostępnych rozmiarów w tym kolorze"}</span>
           {SIZES.map((s) => (
-            <span key={s} aria-hidden="true" className={`ml-1.5 ${stockOf(s) > 0 ? "text-paper" : "text-[#5c5c5c] line-through"}`}>
+            <span key={s} aria-hidden="true" className={`ml-1.5 ${stockOf(s) > 0 ? "text-paper" : "text-[#8a8a8a] line-through"}`}>
               {s}
             </span>
           ))}

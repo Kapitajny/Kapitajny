@@ -27,7 +27,7 @@ export async function POST(request: Request) {
 
   try {
     const user = await currentUser();
-    const result = await startCheckout(validation.value, getSiteUrl(request), user?.id ?? null);
+    const result = await startCheckout(validation.value, () => getSiteUrl(request), user?.id ?? null);
     return Response.json(result);
   } catch (error) {
     if (error instanceof CheckoutError) {

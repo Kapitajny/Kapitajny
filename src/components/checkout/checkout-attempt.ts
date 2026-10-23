@@ -4,7 +4,7 @@
  * (albo powrót ze Stripe) wznawia istniejącą płatność zamiast tworzyć nowe zamówienie.
  */
 
-const ATTEMPT_KEY = "noir-checkout-attempt";
+const ATTEMPT_KEY = "kp-checkout-attempt";
 
 interface StoredAttempt {
   key: string;

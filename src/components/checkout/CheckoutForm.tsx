@@ -120,6 +120,7 @@ export function CheckoutForm() {
 
   const set = <K extends keyof FormState>(key: K, value: FormState[K]) => {
     setForm((f) => ({ ...f, [key]: value }));
+    setSubmit((current) => (current.kind === "error" ? { kind: "idle" } : current));
     setServerErrors((e) => {
       const next = { ...e };
       delete next[key as CheckoutField];
@@ -196,7 +197,7 @@ export function CheckoutForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="grid gap-12 lg:grid-cols-12">
-      <div className="space-y-12 lg:col-span-7">
+      <div className="min-w-0 space-y-12 lg:col-span-7">
         <Section title="Dane kontaktowe" step={1}>
           <div className="grid gap-4 sm:grid-cols-2">
             <Field id={FIELD_IDS.firstName} label="Imię" error={errorFor("firstName")}>
@@ -315,7 +316,7 @@ export function CheckoutForm() {
         </Section>
       </div>
 
-      <aside className="lg:col-span-5 xl:col-span-4 xl:col-start-9" aria-label="Podsumowanie zamówienia">
+      <aside className="min-w-0 lg:col-span-5 xl:col-span-4 xl:col-start-9" aria-label="Podsumowanie zamówienia">
         <div className="border border-line bg-graphite p-6 lg:sticky lg:top-28">
           <h2 className="display-sm text-xl" id="checkout-items" tabIndex={-1}>
             Twoje zamówienie

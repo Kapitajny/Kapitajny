@@ -22,7 +22,7 @@ export interface CartLine {
 export const lineSku = (line: Pick<CartLine, "productId" | "color" | "size">) => skuOf(line.productId, line.color, line.size);
 
 type CartAction =
-  | { type: "hydrate"; lines: CartLine[] }
+  | { type: "hydrate"; lines: CartLine[]; favorites: string[] }
   | { type: "add"; line: CartLine }
   | { type: "set-quantity"; sku: string; quantity: number }
   | { type: "change-variant"; sku: string; color: string; size: string }
@@ -42,10 +42,27 @@ function sanitize(raw: unknown): CartLine[] {
   return lines.slice(0, ORDER_LIMITS.maxLinesPerOrder);
 }
 
-function cartReducer(state: CartLine[], action: CartAction): CartLine[] {
+interface StoreState {
+  hydrated: boolean;
+  lines: CartLine[];
+  favorites: string[];
+}
+
+type StoreAction = CartAction | { type: "set-favorites"; favorites: string[] };
+
+function storeReducer(state: StoreState, action: StoreAction): StoreState {
   switch (action.type) {
     case "hydrate":
-      return action.lines;
+      return { hydrated: true, lines: action.lines, favorites: action.favorites };
+    case "set-favorites":
+      return { ...state, favorites: action.favorites };
+    default:
+      return { ...state, lines: cartReducer(state.lines, action) };
+  }
+}
+
+function cartReducer(state: CartLine[], action: Exclude<CartAction, { type: "hydrate" }>): CartLine[] {
+  switch (action.type) {
     case "add": {
       const sku = lineSku(action.line);
       const existing = state.find((l) => lineSku(l) === sku);
@@ -125,9 +142,7 @@ interface ShopContextValue {
 const ShopContext = createContext<ShopContextValue | null>(null);
 
 export function ShopProvider({ children }: { children: ReactNode }) {
-  const [lines, dispatch] = useReducer(cartReducer, []);
-  const [favorites, setFavorites] = useState<string[]>([]);
-  const [hydrated, setHydrated] = useState(false);
+  const [{ lines, favorites, hydrated }, dispatch] = useReducer(storeReducer, { hydrated: false, lines: [], favorites: [] });
   const [cartOpen, setCartOpen] = useState(false);
   const [toasts, setToasts] = useState<Toast[]>([]);
   const toastId = useRef(0);
@@ -137,12 +152,14 @@ export function ShopProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const load = () => {
       skipWrite.current = true;
-      dispatch({ type: "hydrate", lines: sanitize(readStorage(CART_KEY)) });
       const fav = readStorage(FAVORITES_KEY);
-      setFavorites(Array.isArray(fav) ? fav.filter((id): id is string => typeof id === "string").slice(0, 100) : []);
+      dispatch({
+        type: "hydrate",
+        lines: sanitize(readStorage(CART_KEY)),
+        favorites: Array.isArray(fav) ? fav.filter((id): id is string => typeof id === "string").slice(0, 100) : [],
+      });
     };
     load();
-    setHydrated(true);
     const onStorage = (event: StorageEvent) => {
       if (event.key === CART_KEY || event.key === FAVORITES_KEY) load();
     };
@@ -184,13 +201,11 @@ export function ShopProvider({ children }: { children: ReactNode }) {
 
   const toggleFavorite = useCallback(
     (productId: string, name?: string) => {
-      setFavorites((current) => {
-        const next = current.includes(productId) ? current.filter((id) => id !== productId) : [...current, productId];
-        writeStorage(FAVORITES_KEY, next);
-        return next;
-      });
+      const adding = !favorites.includes(productId);
+      const next = adding ? [...favorites, productId] : favorites.filter((id) => id !== productId);
+      writeStorage(FAVORITES_KEY, next);
+      dispatch({ type: "set-favorites", favorites: next });
       if (name) {
-        const adding = !favorites.includes(productId);
         notify(adding ? `${name} – dodano do ulubionych` : `${name} – usunięto z ulubionych`, adding ? { label: "Ulubione", href: "/ulubione" } : undefined);
       }
     },

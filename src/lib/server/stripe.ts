@@ -3,16 +3,16 @@ import "server-only";
 import Stripe from "stripe";
 import { getStripeConfig } from "./env";
 
-const globalForStripe = globalThis as unknown as { noirStripe?: { key: string; client: Stripe } };
+const globalForStripe = globalThis as unknown as { shopStripe?: { key: string; client: Stripe } };
 
 /** Klient Stripe albo `null`, jeśli płatności nie są skonfigurowane. */
 export function getStripe(): Stripe | null {
   const config = getStripeConfig();
   if (!config) return null;
-  if (globalForStripe.noirStripe?.key !== config.secretKey) {
-    globalForStripe.noirStripe = { key: config.secretKey, client: new Stripe(config.secretKey, mockServerConfig(config.mode)) };
+  if (globalForStripe.shopStripe?.key !== config.secretKey) {
+    globalForStripe.shopStripe = { key: config.secretKey, client: new Stripe(config.secretKey, mockServerConfig(config.mode)) };
   }
-  return globalForStripe.noirStripe.client;
+  return globalForStripe.shopStripe.client;
 }
 
 /**

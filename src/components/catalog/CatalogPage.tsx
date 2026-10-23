@@ -64,8 +64,8 @@ export function CatalogPage({
   return (
     <div className="wrap pb-24 pt-8 md:pt-10">
       <Breadcrumbs items={crumbs} />
-      <header className="mt-6 grid gap-6 pb-8 lg:grid-cols-12 lg:items-end">
-        <h1 className="display text-[clamp(3rem,1rem+8vw,8.5rem)] lg:col-span-8">{title}</h1>
+      <header className="@container mt-6 grid gap-6 pb-8 lg:grid-cols-12 lg:items-end">
+        <h1 className="display min-w-0 text-[min(12cqi,8.5rem)] lg:col-span-8">{title}</h1>
         {description && <div className="max-w-md text-muted lg:col-span-4 lg:pb-3">{description}</div>}
       </header>
       {links && links.length > 0 && (

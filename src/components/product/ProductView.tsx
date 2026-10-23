@@ -6,7 +6,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useId, useState } from "react";
 import { COLORS, FITS, SIZE_CHARTS, SIZES, type Product, type Size } from "@/data/catalog";
 import { DISPATCH_TIME, RETURN_DAYS, SHIPPING_METHODS } from "@/data/shipping";
-import { catalogStock, colorName, detailSrc, getCategory, imageSrc } from "@/lib/catalog";
+import { catalogStock, colorName, detailSrc, imageSrc } from "@/lib/catalog";
 import { formatPrice, ORDER_LIMITS } from "@/lib/pricing";
 import { useShop } from "@/components/shop/ShopProvider";
 import { useLiveStock } from "@/components/shop/useLiveStock";
@@ -36,7 +36,7 @@ export function ProductView({ product, initialColor }: { product: Product; initi
   return (
     <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
       <Gallery key={variant.color} product={product} image={variant.image} colorLabel={colorName(variant.color)} />
-      <div className="lg:col-span-5 xl:col-span-4 xl:col-start-9">
+      <div className="min-w-0 lg:col-span-5 xl:col-span-4 xl:col-start-9">
         <div className="lg:sticky lg:top-28">
           <BuyBox product={product} color={variant.color} size={selected.size} onColor={selectColor} onSize={(size) => setSelected((s) => ({ ...s, size }))} />
         </div>
@@ -53,7 +53,7 @@ function Gallery({ product, image, colorLabel }: { product: Product; image: stri
   const [active, setActive] = useState(0);
 
   return (
-    <div className="lg:col-span-7">
+    <div className="min-w-0 lg:col-span-7">
       {/* Mobile: przewijana galeria, desktop: zdjęcia jedno pod drugim w dwóch kolumnach. */}
       <div className="no-scrollbar -mx-4 flex snap-x snap-mandatory overflow-x-auto md:mx-0 md:grid md:grid-cols-2 md:gap-2 md:overflow-visible" aria-label="Zdjęcia produktu" role="region" tabIndex={0}>
         {images.map((img, i) => (
@@ -89,7 +89,6 @@ function BuyBox({
   const [sizeError, setSizeError] = useState<string | null>(null);
   const [chartOpen, setChartOpen] = useState(false);
   const ids = useId();
-  const category = getCategory(product.category)!;
 
   const stockOf = (s: Size) => availability?.[color]?.[s] ?? catalogStock(product, color, s);
   const inCart = (s: Size) => lines.find((l) => l.productId === product.id && l.color === color && l.size === s)?.quantity ?? 0;
@@ -124,24 +123,7 @@ function BuyBox({
 
   return (
     <div>
-      <nav aria-label="Ścieżka" className="text-sm text-muted">
-        <ol className="flex flex-wrap gap-x-2">
-          <li>
-            <Link href={`/kategoria/${category.slug}`} className="hover:text-paper">
-              {category.name}
-            </Link>
-          </li>
-          {product.styles.slice(0, 1).map((s) => (
-            <li key={s} className="before:mr-2 before:content-['/']">
-              <Link href={`/kategoria/${category.slug}/${s}`} className="hover:text-paper">
-                {category.subcategories.find((sub) => sub.slug === s)?.name}
-              </Link>
-            </li>
-          ))}
-        </ol>
-      </nav>
-
-      <h1 className="display mt-4 text-[clamp(2.2rem,1.6rem+2.4vw,3.4rem)]">{product.name}</h1>
+      <h1 className="display text-[clamp(2.2rem,1.6rem+2.4vw,3.4rem)] [overflow-wrap:anywhere]">{product.name}</h1>
       <p className="mt-3 text-muted">{product.kind}</p>
       <p className="mt-5 text-2xl font-bold tabular-nums">
         {product.compareAtPrice && product.compareAtPrice > product.price && (
@@ -233,14 +215,14 @@ function BuyBox({
         {stockError && <p className="text-xs text-muted">Nie udało się pobrać aktualnych stanów – dostępność sprawdzimy ponownie przy składaniu zamówienia.</p>}
       </fieldset>
 
-      <div className="mt-6 flex gap-2">
+      <div className="mt-6 flex flex-wrap gap-2">
         <QuantityStepper value={qty} max={Math.max(1, remaining)} onChange={setQuantity} label="Ilość" />
-        <button type="button" className="btn btn-light flex-1" onClick={add} disabled={!colorAvailable}>
+        <button type="button" className="btn btn-light order-last basis-full" onClick={add} disabled={!colorAvailable}>
           {colorAvailable ? "Dodaj do koszyka" : "Wyprzedane"}
         </button>
         <button
           type="button"
-          className="grid h-12 w-12 shrink-0 place-items-center border border-line hover:border-paper"
+          className="ml-auto grid h-12 w-12 shrink-0 place-items-center border border-line hover:border-paper"
           aria-pressed={favorite}
           aria-label={favorite ? "Usuń z ulubionych" : "Dodaj do ulubionych"}
           onClick={() => toggleFavorite(product.id, product.name)}

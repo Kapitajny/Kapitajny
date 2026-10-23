@@ -21,7 +21,7 @@ export function NewDrop() {
         </Link>
       </div>
       <div className="wrap mt-10">
-        <ul className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 md:-mx-8 md:gap-5 md:px-8 xl:-mx-12 xl:px-12" aria-label="Produkty z nowej kolekcji">
+        <ul className="no-scrollbar -mx-4 flex snap-x snap-mandatory scroll-px-4 gap-3 md:scroll-px-8 xl:scroll-px-12 overflow-x-auto px-4 pb-2 md:-mx-8 md:gap-5 md:px-8 xl:-mx-12 xl:px-12" aria-label="Produkty z nowej kolekcji">
           {items.map((product) => (
             <li key={product.id} className="w-[68vw] shrink-0 snap-start sm:w-[42vw] md:w-[30vw] lg:w-[22vw]">
               <ProductCard product={product} sizes="(min-width: 1024px) 22vw, (min-width: 768px) 30vw, 68vw" />
