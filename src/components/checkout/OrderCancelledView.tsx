@@ -3,112 +3,64 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { AlertIcon, CheckIcon, InfoIcon } from "@/components/ui/Icons";
+import { postJson } from "@/lib/api-client";
 import { clearAttempt } from "./checkout-attempt";
-import { OrderLines } from "./OrderLines";
-import { PickupDetails, StatusShell } from "./OrderSuccessView";
 import { useOrderStatus } from "./useOrderStatus";
 
 export function OrderCancelledView() {
-  const orderId = useSearchParams().get("order");
+  const params = useSearchParams();
+  const orderId = params.get("order");
   const { state, reload } = useOrderStatus(orderId ? `order=${encodeURIComponent(orderId)}` : null, { poll: false });
-  const [cancelling, setCancelling] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [action, setAction] = useState<{ kind: "idle" | "sending" } | { kind: "error"; message: string }>({ kind: "idle" });
 
-  const cancelOrder = async () => {
+  const cancel = async () => {
     if (!orderId) return;
-    setCancelling(true);
-    setError(null);
-    try {
-      const response = await fetch("/api/orders/cancel", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ orderId }),
-      });
-      const data = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(data?.error?.message ?? "Nie udało się anulować zamówienia.");
-      clearAttempt();
-      reload();
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Nie udało się anulować zamówienia.");
-    }
-    setCancelling(false);
+    setAction({ kind: "sending" });
+    const result = await postJson<{ status: string }>("/api/orders/cancel", { orderId });
+    if (!result.ok) return setAction({ kind: "error", message: result.message });
+    clearAttempt();
+    setAction({ kind: "idle" });
+    reload();
   };
 
-  if (state.kind === "loading") {
-    return (
-      <StatusShell eyebrow="Płatność" title="Sprawdzamy zamówienie…">
-        <p className="text-muted">To potrwa tylko chwilę.</p>
-      </StatusShell>
-    );
-  }
-
-  if (state.kind === "error") {
-    return (
-      <StatusShell eyebrow="Płatność przerwana" title="Płatność nie została dokończona" icon={<InfoIcon size={28} />}>
-        <p className="text-espresso">Nie pobraliśmy żadnych środków. Twój koszyk został zachowany.</p>
-        <Link href="/zamowienie" className="btn btn-primary mt-8">
-          Wróć do zamówienia
-        </Link>
-      </StatusShell>
-    );
-  }
-
-  const { order } = state;
-
-  if (order.status === "paid") {
-    return (
-      <StatusShell eyebrow={`Zamówienie ${order.number}`} title="To zamówienie jest już opłacone" icon={<CheckIcon size={28} />} tone="success">
-        <p className="text-espresso">Operator płatności potwierdził transakcję – nie musisz płacić ponownie.</p>
-        <PickupDetails order={order} />
-      </StatusShell>
-    );
-  }
-
-  if (order.status === "cancelled" || order.status === "failed") {
-    return (
-      <StatusShell eyebrow={`Zamówienie ${order.number}`} title="Zamówienie anulowane" icon={<CheckIcon size={28} />}>
-        <p className="text-espresso">Płatność została anulowana, środki nie zostały pobrane. Produkty nadal czekają w Twoim koszyku.</p>
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link href="/zamowienie" className="btn btn-primary">
-            Złóż zamówienie ponownie
-          </Link>
-          <Link href="/#menu" className="btn btn-secondary">
-            Wróć do menu
-          </Link>
-        </div>
-      </StatusShell>
-    );
-  }
-
+  const order = state.kind === "ready" ? state.order : null;
   return (
-    <StatusShell eyebrow={`Zamówienie ${order.number}`} title="Płatność nie została dokończona" icon={<InfoIcon size={28} />}>
-      <p className="text-espresso">
-        Nie pobraliśmy żadnych środków. Możesz wrócić do tej samej płatności albo anulować zamówienie – Twój koszyk zostanie zachowany.
-      </p>
-      {error && (
-        <p role="alert" className="mt-5 flex gap-2 rounded-xl border border-danger/30 bg-paper px-4 py-3 text-sm text-danger">
-          <AlertIcon size={18} className="shrink-0" /> {error}
+    <div className="max-w-2xl py-6">
+      <h1 className="display text-[clamp(2.6rem,1rem+5vw,5.5rem)]">Płatność przerwana</h1>
+      {order?.status === "paid" ? (
+        <p className="mt-6 text-lg text-muted">
+          Zamówienie {order.number} jest jednak opłacone.{" "}
+          <Link href={`/zamowienie/sukces?order=${order.id}`} className="link text-paper">
+            Zobacz potwierdzenie
+          </Link>
+        </p>
+      ) : order?.status === "cancelled" ? (
+        <p className="mt-6 text-lg text-muted">Zamówienie {order.number} jest anulowane. Produkty nadal są w Twoim koszyku.</p>
+      ) : (
+        <p className="mt-6 text-lg text-muted">
+          Nie pobraliśmy pieniędzy. {order ? `Zamówienie ${order.number} czeka na płatność przez ok. 30 minut – możesz do niej wrócić albo je anulować.` : "Produkty nadal są w Twoim koszyku."}
         </p>
       )}
-      <div className="mt-8 flex flex-wrap gap-3">
-        {order.resumeUrl ? (
-          <a href={order.resumeUrl} className="btn btn-primary">
+      {action.kind === "error" && (
+        <p role="alert" className="mt-4 text-danger">
+          {action.message}
+        </p>
+      )}
+      <div className="mt-10 flex flex-wrap gap-3">
+        {order?.resumeUrl && (
+          <a href={order.resumeUrl} className="btn btn-light">
             Wróć do płatności
           </a>
-        ) : (
-          <Link href="/zamowienie" className="btn btn-primary">
-            Wróć do zamówienia
-          </Link>
         )}
-        <button type="button" onClick={cancelOrder} disabled={cancelling} className="btn btn-secondary">
-          {cancelling ? "Anulowanie…" : "Anuluj zamówienie"}
-        </button>
+        <Link href="/zamowienie" className={order?.resumeUrl ? "btn btn-outline" : "btn btn-light"}>
+          Wróć do zamówienia
+        </Link>
+        {order?.status === "pending" && (
+          <button type="button" className="btn btn-outline" onClick={cancel} disabled={action.kind === "sending"}>
+            {action.kind === "sending" ? "Anulowanie…" : "Anuluj zamówienie"}
+          </button>
+        )}
       </div>
-      <PickupDetails order={order} />
-      <div className="mt-8">
-        <OrderLines lines={order.items} total={order.total} />
-      </div>
-    </StatusShell>
+    </div>
   );
 }

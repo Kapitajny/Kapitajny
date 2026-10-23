@@ -1,9 +1,9 @@
 #!/bin/bash
-# NOIR COFFEE – uruchamianie strony (macOS / Linux). Dwuklik w Finderze albo: ./URUCHOM-MAC.command
+# KAPITAJNY – uruchamianie sklepu (macOS / Linux). Dwuklik w Finderze albo: ./URUCHOM-MAC.command
 cd "$(dirname "$0")" || exit 1
 
 echo
-echo " NOIR COFFEE - uruchamianie strony"
+echo " KAPITAJNY - uruchamianie sklepu"
 echo " ---------------------------------"
 
 open_url() { if command -v open >/dev/null; then open "$1"; elif command -v xdg-open >/dev/null; then xdg-open "$1" >/dev/null 2>&1; fi; }
@@ -27,6 +27,8 @@ if [ ! -d node_modules ]; then
 fi
 
 export NEXT_PUBLIC_SITE_URL=http://localhost:3000
+# Lokalnie: zamówienia demonstracyjne (bez płatności, oznaczone DEMO), dopóki nie podłączysz Stripe.
+export DEMO_ORDERS=true
 echo " Przygotowuję stronę..."
 npm run build || fail
 

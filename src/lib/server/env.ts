@@ -25,18 +25,31 @@ export function getPaymentsMode(): PaymentsMode {
 }
 
 /**
- * Adres strony używany w linkach powrotnych ze Stripe.
+ * Zamówienia demonstracyjne (bez płatności, oznaczone jako „demo”, nie są realizowane).
+ * Domyślnie włączone poza produkcją; w produkcji tylko przy DEMO_ORDERS=true.
+ */
+export function isDemoOrdersEnabled(): boolean {
+  const flag = process.env.DEMO_ORDERS?.trim().toLowerCase();
+  if (flag === "true") return true;
+  if (flag === "false") return false;
+  return process.env.NODE_ENV !== "production";
+}
+
+export const isProduction = () => process.env.NODE_ENV === "production";
+
+/**
+ * Adres strony używany w linkach powrotnych ze Stripe i w e-mailach.
  * W produkcji ustaw NEXT_PUBLIC_SITE_URL – nie polegamy wtedy na nagłówkach żądania.
  */
 export function getSiteUrl(request: Request): string {
   const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim();
   if (configured) return configured.replace(/\/+$/, "");
-  if (process.env.NODE_ENV === "production") {
+  if (isProduction()) {
     throw new Error("Brak NEXT_PUBLIC_SITE_URL – ustaw adres strony w zmiennych środowiskowych.");
   }
   return new URL(request.url).origin;
 }
 
-export function getOrdersDbPath(): string {
-  return process.env.ORDERS_DB_PATH?.trim() || "data/orders.sqlite";
+export function getDatabasePath(): string {
+  return process.env.DATABASE_PATH?.trim() || "data/shop.sqlite";
 }

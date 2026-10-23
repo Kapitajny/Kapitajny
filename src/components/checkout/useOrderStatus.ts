@@ -2,19 +2,21 @@
 
 import { useEffect, useState } from "react";
 
-export type OrderStatus = "pending" | "paid" | "cancelled" | "failed";
+export type OrderStatus = "pending" | "paid" | "cancelled" | "failed" | "demo";
 
 export interface PublicOrder {
   id: string;
   number: string;
   status: OrderStatus;
-  customerName: string;
-  locationName: string;
-  locationAddress: string;
-  pickupDate: string;
-  pickupTime: string;
-  items: { name: string; quantity: number; optionLabels: string[]; lineTotal: number }[];
+  demo: boolean;
+  customerFirstName: string;
+  shippingMethod: string;
+  shippingTo: string;
+  items: { name: string; slug: string; colorName: string; size: string; quantity: number; lineTotal: number; image: string }[];
+  subtotal: number;
+  shippingCost: number;
   total: number;
+  createdAt: string;
   resumeUrl: string | null;
 }
 

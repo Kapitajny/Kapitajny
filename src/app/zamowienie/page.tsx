@@ -1,25 +1,13 @@
 import type { Metadata } from "next";
-import { connection } from "next/server";
-import { Suspense } from "react";
-import { CheckoutFlow, CheckoutSkeleton } from "@/components/checkout/CheckoutFlow";
-import { getPaymentsMode } from "@/lib/server/env";
+import { CheckoutForm } from "@/components/checkout/CheckoutForm";
 
-export const metadata: Metadata = {
-  title: "Twoje zamówienie",
-  description: "Wybierz lokal NOIR COFFEE i godzinę odbioru, sprawdź zamówienie i zapłać online.",
-  robots: { index: false },
-};
-
-async function CheckoutWithConfig() {
-  // Konfigurację płatności czytamy przy każdym żądaniu (klucze mogą być ustawione dopiero na serwerze).
-  await connection();
-  return <CheckoutFlow paymentsMode={getPaymentsMode()} />;
-}
+export const metadata: Metadata = { title: "Zamówienie", robots: { index: false, follow: false } };
 
 export default function CheckoutPage() {
   return (
-    <Suspense fallback={<CheckoutSkeleton />}>
-      <CheckoutWithConfig />
-    </Suspense>
+    <div className="wrap pb-24 pt-10">
+      <h1 className="display mb-10 text-[clamp(2.8rem,1rem+6vw,6.5rem)]">Zamówienie</h1>
+      <CheckoutForm />
+    </div>
   );
 }

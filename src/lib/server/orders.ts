@@ -2,10 +2,11 @@ import "server-only";
 
 import { createHash, randomInt, randomUUID } from "node:crypto";
 import type { PricedLine } from "@/lib/pricing";
-import type { ValidCheckout } from "@/lib/validation";
+import type { PaymentChoice, ShippingAddress, ValidCheckout } from "@/lib/validation";
 import { getDb, transaction } from "./db";
+import { commitSale, describeStockProblems, findStockProblems } from "./inventory";
 
-export type OrderStatus = "pending" | "paid" | "cancelled" | "failed";
+export type OrderStatus = "pending" | "paid" | "cancelled" | "failed" | "demo";
 
 export interface OrderRecord {
   id: string;
@@ -13,14 +14,19 @@ export interface OrderRecord {
   idempotencyKey: string;
   payloadHash: string;
   status: OrderStatus;
-  customerName: string;
-  customerEmail: string;
-  locationId: string;
-  pickupDate: string;
-  pickupTime: string;
+  paymentMethod: PaymentChoice;
+  userId: string | null;
+  customer: { firstName: string; lastName: string; email: string; phone: string };
+  address: ShippingAddress;
+  shippingMethod: string;
+  pickupPoint: string | null;
+  notes: string | null;
   items: PricedLine[];
+  subtotal: number;
+  shippingCost: number;
   total: number;
   currency: string;
+  stockCommitted: boolean;
   stripeSessionId: string | null;
   stripeSessionUrl: string | null;
   stripeSessionExpiresAt: number | null;
@@ -40,14 +46,24 @@ function toRecord(row: Row): OrderRecord {
     idempotencyKey: row.idempotency_key as string,
     payloadHash: row.payload_hash as string,
     status: row.status as OrderStatus,
-    customerName: row.customer_name as string,
-    customerEmail: row.customer_email as string,
-    locationId: row.location_id as string,
-    pickupDate: row.pickup_date as string,
-    pickupTime: row.pickup_time as string,
+    paymentMethod: row.payment_method as PaymentChoice,
+    userId: (row.user_id as string) ?? null,
+    customer: {
+      firstName: row.customer_first_name as string,
+      lastName: row.customer_last_name as string,
+      email: row.customer_email as string,
+      phone: row.customer_phone as string,
+    },
+    address: JSON.parse(row.address_json as string) as ShippingAddress,
+    shippingMethod: row.shipping_method as string,
+    pickupPoint: (row.pickup_point as string) ?? null,
+    notes: (row.notes as string) ?? null,
     items: JSON.parse(row.items_json as string) as PricedLine[],
+    subtotal: Number(row.subtotal_amount),
+    shippingCost: Number(row.shipping_amount),
     total: Number(row.total_amount),
     currency: row.currency as string,
+    stockCommitted: Number(row.stock_committed) === 1,
     stripeSessionId: (row.stripe_session_id as string) ?? null,
     stripeSessionUrl: (row.stripe_session_url as string) ?? null,
     stripeSessionExpiresAt: row.stripe_session_expires_at === null ? null : Number(row.stripe_session_expires_at),
@@ -62,20 +78,22 @@ function toRecord(row: Row): OrderRecord {
 /** Odcisk treści zamówienia – ten sam klucz idempotencji musi oznaczać tę samą treść. */
 export function hashCheckout(value: ValidCheckout): string {
   const canonical = JSON.stringify({
-    lines: value.lines.map((l) => [l.key, l.quantity, l.unitPrice]),
-    total: value.total,
-    location: value.location.id,
-    pickup: [value.pickup.date, value.pickup.time],
-    customer: [value.customer.name, value.customer.email],
+    lines: value.lines.map((l) => [l.sku, l.quantity, l.unitPrice]),
+    totals: [value.subtotal, value.shippingCost, value.total],
+    customer: value.customer,
+    address: value.address,
+    shipping: [value.shipping.method.id, value.shipping.pickupPoint],
+    notes: value.notes,
+    payment: value.payment,
   });
   return createHash("sha256").update(canonical).digest("hex");
 }
 
 const NUMBER_ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
-function generateOrderNumber(): string {
+function generateOrderNumber(demo: boolean): string {
   let suffix = "";
   for (let i = 0; i < 6; i++) suffix += NUMBER_ALPHABET[randomInt(NUMBER_ALPHABET.length)];
-  return `NC-${suffix}`;
+  return `${demo ? "DEMO" : "KP"}-${suffix}`;
 }
 
 function select(where: string, value: string): OrderRecord | null {
@@ -87,40 +105,65 @@ export const findOrderById = (id: string) => select("id", id);
 export const findOrderByIdempotencyKey = (key: string) => select("idempotency_key", key);
 export const findOrderBySessionId = (sessionId: string) => select("stripe_session_id", sessionId);
 
-export type CreateOrderResult = { created: true; order: OrderRecord } | { created: false; order: OrderRecord };
+export function listOrdersForUser(userId: string, limit = 50): OrderRecord[] {
+  const rows = getDb().prepare("SELECT * FROM orders WHERE user_id = ? ORDER BY created_at DESC LIMIT ?").all(userId, limit) as Row[];
+  return rows.map(toRecord);
+}
+
+export class OutOfStockError extends Error {
+  constructor(message: string) {
+    super(message);
+  }
+}
+
+export type CreateOrderResult = { created: boolean; order: OrderRecord };
 
 /**
- * Tworzy zamówienie „oczekujące” albo zwraca istniejące o tym samym kluczu idempotencji
+ * Tworzy zamówienie albo zwraca istniejące o tym samym kluczu idempotencji
  * (ochrona przed podwójnym kliknięciem, odświeżeniem i ponowieniem żądania).
+ * Dostępność towaru jest sprawdzana w tej samej transakcji, w której powstaje rezerwacja.
  */
-export function createPendingOrder(value: ValidCheckout): CreateOrderResult {
+export function createOrder(value: ValidCheckout, userId: string | null): CreateOrderResult {
   const payloadHash = hashCheckout(value);
   return transaction((db) => {
     const existing = db.prepare("SELECT * FROM orders WHERE idempotency_key = ?").get(value.idempotencyKey) as Row | undefined;
     if (existing) return { created: false, order: toRecord(existing) };
 
+    const problems = findStockProblems(value.lines);
+    if (problems.length) throw new OutOfStockError(describeStockProblems(problems));
+
+    const demo = value.payment === "demo";
     const now = new Date().toISOString();
     const id = randomUUID();
     for (let attempt = 0; attempt < 5; attempt++) {
-      const number = generateOrderNumber();
-      const taken = db.prepare("SELECT 1 FROM orders WHERE number = ?").get(number);
-      if (taken) continue;
+      const number = generateOrderNumber(demo);
+      if (db.prepare("SELECT 1 FROM orders WHERE number = ?").get(number)) continue;
       db.prepare(
-        `INSERT INTO orders (id, number, idempotency_key, payload_hash, status, customer_name, customer_email,
-          location_id, pickup_date, pickup_time, items_json, total_amount, currency, created_at, updated_at)
-         VALUES (?, ?, ?, ?, 'pending', ?, ?, ?, ?, ?, ?, ?, 'pln', ?, ?)`,
+        `INSERT INTO orders (id, number, idempotency_key, payload_hash, status, payment_method, user_id,
+          customer_first_name, customer_last_name, customer_email, customer_phone, address_json, shipping_method, pickup_point, notes,
+          items_json, subtotal_amount, shipping_amount, total_amount, currency, status_note, created_at, updated_at)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pln', ?, ?, ?)`,
       ).run(
         id,
         number,
         value.idempotencyKey,
         payloadHash,
-        value.customer.name,
+        demo ? "demo" : "pending",
+        value.payment,
+        userId,
+        value.customer.firstName,
+        value.customer.lastName,
         value.customer.email,
-        value.location.id,
-        value.pickup.date,
-        value.pickup.time,
+        value.customer.phone,
+        JSON.stringify(value.address),
+        value.shipping.method.id,
+        value.shipping.pickupPoint,
+        value.notes,
         JSON.stringify(value.lines),
+        value.subtotal,
+        value.shippingCost,
         value.total,
+        demo ? "Zamówienie demonstracyjne – płatność nie została pobrana, zamówienie nie będzie realizowane." : null,
         now,
         now,
       );
@@ -146,22 +189,33 @@ export function attachCheckoutSession(orderId: string, session: { id: string; ur
  */
 export function transitionOrder(
   orderId: string,
-  to: OrderStatus,
+  to: Exclude<OrderStatus, "demo">,
   allowedFrom: OrderStatus[],
   extra: { paymentIntentId?: string | null; note?: string | null } = {},
 ): boolean {
-  const now = new Date().toISOString();
-  const placeholders = allowedFrom.map(() => "?").join(", ");
-  const result = getDb()
-    .prepare(
-      `UPDATE orders SET status = ?, updated_at = ?,
-         paid_at = CASE WHEN ? = 'paid' THEN ? ELSE paid_at END,
-         stripe_payment_intent_id = COALESCE(?, stripe_payment_intent_id),
-         status_note = CASE WHEN ? THEN ? ELSE status_note END
-       WHERE id = ? AND status IN (${placeholders})`,
-    )
-    .run(to, now, to, now, extra.paymentIntentId ?? null, extra.note !== undefined ? 1 : 0, extra.note ?? null, orderId, ...allowedFrom);
-  return Number(result.changes) > 0;
+  return transaction((db) => {
+    const now = new Date().toISOString();
+    const placeholders = allowedFrom.map(() => "?").join(", ");
+    const result = db
+      .prepare(
+        `UPDATE orders SET status = ?, updated_at = ?,
+           paid_at = CASE WHEN ? = 'paid' THEN ? ELSE paid_at END,
+           stripe_payment_intent_id = COALESCE(?, stripe_payment_intent_id),
+           status_note = CASE WHEN ? THEN ? ELSE status_note END
+         WHERE id = ? AND payment_method = 'stripe' AND status IN (${placeholders})`,
+      )
+      .run(to, now, to, now, extra.paymentIntentId ?? null, extra.note !== undefined ? 1 : 0, extra.note ?? null, orderId, ...allowedFrom);
+    const changed = Number(result.changes) > 0;
+    if (changed && to === "paid") {
+      // Sprzedaż zapisujemy dokładnie raz – flaga chroni przed podwójnym odjęciem stanu.
+      const order = db.prepare("SELECT items_json, stock_committed FROM orders WHERE id = ?").get(orderId) as Row;
+      if (Number(order.stock_committed) === 0) {
+        commitSale(JSON.parse(order.items_json as string) as PricedLine[]);
+        db.prepare("UPDATE orders SET stock_committed = 1 WHERE id = ?").run(orderId);
+      }
+    }
+    return changed;
+  });
 }
 
 export function setOrderNote(orderId: string, note: string): void {

@@ -1,22 +1,15 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { OrderSuccessView, StatusShell } from "@/components/checkout/OrderSuccessView";
+import { OrderResultView } from "@/components/checkout/OrderResultView";
 
-export const metadata: Metadata = {
-  title: "Status zamówienia",
-  robots: { index: false },
-};
+export const metadata: Metadata = { title: "Status zamówienia", robots: { index: false, follow: false } };
 
 export default function OrderSuccessPage() {
   return (
-    <Suspense
-      fallback={
-        <StatusShell eyebrow="Zamówienie" title="Sprawdzamy status płatności…">
-          <p className="text-muted">To potrwa tylko chwilę.</p>
-        </StatusShell>
-      }
-    >
-      <OrderSuccessView />
-    </Suspense>
+    <div className="wrap pb-24 pt-10">
+      <Suspense fallback={<p className="py-16 text-muted">Sprawdzanie statusu zamówienia…</p>}>
+        <OrderResultView />
+      </Suspense>
+    </div>
   );
 }

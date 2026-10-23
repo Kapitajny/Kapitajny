@@ -1,122 +1,48 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { LOCATIONS, formatHours } from "@/data/locations";
-import { LegalPage, type LegalSection } from "@/components/legal/LegalPage";
-import { Pending } from "@/components/legal/Pending";
+import { siteConfig } from "@/config/site";
+import { ContactForm } from "@/components/forms/ContactForm";
+import { Pending } from "@/components/legal/LegalPage";
 
 export const metadata: Metadata = {
-  title: "Kontakt i dane sprzedawcy",
-  description: "Dane sprzedawcy NOIR COFFEE, kontakt w sprawie zamówień i reklamacji oraz lokale w Gdańsku.",
+  title: "Kontakt",
+  description: "Pytania o zamówienie, rozmiar, zwrot lub reklamację – napisz do nas.",
+  alternates: { canonical: "/kontakt" },
 };
 
-const SELLER_FIELDS = [
-  "Pełna nazwa firmy",
-  "Forma prawna",
-  "Adres siedziby",
-  "NIP",
-  "REGON",
-  "Rejestr (CEIDG albo KRS z numerem i sądem rejestrowym)",
-  "Kapitał zakładowy (jeśli dotyczy spółki)",
-  "Adres do korespondencji i reklamacji",
-];
-
-const sections: LegalSection[] = [
-  {
-    id: "sprzedawca",
-    title: "Dane sprzedawcy",
-    content: (
-      <>
-        <p>Sprzedawcą napojów zamawianych przez stronę NOIR COFFEE jest:</p>
-        <div className="overflow-x-auto">
-          <table>
-            <tbody>
-              {SELLER_FIELDS.map((field) => (
-                <tr key={field}>
-                  <th scope="row">{field}</th>
-                  <td>
-                    <Pending>{field.toLowerCase()}</Pending>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </>
-    ),
-  },
-  {
-    id: "kontakt",
-    title: "Kontakt",
-    content: (
-      <>
-        <ul>
-          <li>
-            Zamówienia, płatności i reklamacje: <Pending>adres e-mail</Pending>
-          </li>
-          <li>
-            Telefon: <Pending>numer telefonu i godziny dostępności; koszt połączenia zgodnie z taryfą operatora</Pending>
-          </li>
-          <li>
-            Sprawy dotyczące danych osobowych: <Pending>adres e-mail</Pending>
-          </li>
-          <li>
-            Współpraca: <Pending>adres e-mail</Pending>
-          </li>
-        </ul>
-        <p>
-          Odpowiadamy na wiadomości w ciągu <Pending>czas odpowiedzi</Pending>. Na reklamacje odpowiadamy w terminie 14 dni – szczegóły w{" "}
-          <Link href="/regulamin#reklamacje">Regulaminie</Link>.
-        </p>
-      </>
-    ),
-  },
-  {
-    id: "lokale",
-    title: "Lokale",
-    content: (
-      <>
-        <p>
-          Poniższe adresy i godziny otwarcia są <strong>danymi demonstracyjnymi</strong> i nie opisują zweryfikowanych lokalizacji działających kawiarni.
-          Wymagają zastąpienia prawdziwymi danymi przed uruchomieniem sprzedaży.
-        </p>
-        <div className="overflow-x-auto">
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">Lokal</th>
-                <th scope="col">Adres (demonstracyjny)</th>
-                <th scope="col">Godziny (przykładowe)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {LOCATIONS.map((l) => (
-                <tr key={l.id}>
-                  <td>{l.name}</td>
-                  <td>
-                    {l.street}, {l.city}
-                  </td>
-                  <td>
-                    pon.–pt. {formatHours(l.hours.weekdays)}
-                    <br />
-                    sob.–niedz. {formatHours(l.hours.weekend)}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </>
-    ),
-  },
-];
-
 export default function ContactPage() {
+  const { contact, seller } = siteConfig;
   return (
-    <LegalPage
-      title="Kontakt i dane sprzedawcy"
-      path="/kontakt"
-      intro={<p>Dane sprzedawcy wymagane przy sprzedaży online oraz sposoby kontaktu w sprawie zamówień, płatności i reklamacji.</p>}
-      sections={sections}
-    />
+    <div className="wrap grid gap-14 pb-24 pt-10 lg:grid-cols-12">
+      <div className="lg:col-span-5">
+        <h1 className="display text-[clamp(3rem,1rem+7vw,7rem)]">Kontakt</h1>
+        <p className="mt-6 max-w-md text-muted">Pytanie o rozmiar, zamówienie albo zwrot? Napisz – w wiadomości podaj numer zamówienia, jeśli go masz.</p>
+        <dl className="mt-10 space-y-5 text-sm">
+          <div>
+            <dt className="font-bold">E-mail</dt>
+            <dd className="mt-1 text-muted">{contact.email ? <a href={`mailto:${contact.email}`} className="link text-paper">{contact.email}</a> : <Pending>adres e-mail obsługi</Pending>}</dd>
+          </div>
+          <div>
+            <dt className="font-bold">Telefon</dt>
+            <dd className="mt-1 text-muted">{contact.phone ? <a href={`tel:${contact.phone.replace(/\s/g, "")}`} className="link text-paper">{contact.phone}</a> : <Pending>numer telefonu</Pending>}</dd>
+          </div>
+          <div>
+            <dt className="font-bold">Sprzedawca</dt>
+            <dd className="mt-1 space-y-1 text-muted">
+              <p>{seller.company ?? <Pending>nazwa firmy</Pending>}</p>
+              <p>{seller.address ?? <Pending>adres siedziby</Pending>}</p>
+              <p>NIP: {seller.nip ?? <Pending>NIP</Pending>}</p>
+            </dd>
+          </div>
+          <div>
+            <dt className="font-bold">Adres do zwrotów</dt>
+            <dd className="mt-1 text-muted">{seller.returnsAddress ?? <Pending>adres zwrotów</Pending>}</dd>
+          </div>
+        </dl>
+      </div>
+      <div className="lg:col-span-6 lg:col-start-7 lg:pt-4">
+        <h2 className="display-sm mb-6 text-xl">Formularz kontaktowy</h2>
+        <ContactForm />
+      </div>
+    </div>
   );
 }

@@ -1,14 +1,15 @@
 import "server-only";
 
-import { getLocation } from "@/data/locations";
-import { formatPickup } from "@/lib/pickup";
+import { getShippingMethod } from "@/data/shipping";
 import type { ValidCheckout } from "@/lib/validation";
+import { isDemoOrdersEnabled } from "./env";
 import {
   attachCheckoutSession,
-  createPendingOrder,
+  createOrder,
   findOrderById,
   findOrderBySessionId,
   hashCheckout,
+  OutOfStockError,
   recordStripeEvent,
   setOrderNote,
   transitionOrder,
@@ -23,7 +24,14 @@ const SESSION_TTL_SECONDS = 30 * 60;
 
 export class CheckoutError extends Error {
   constructor(
-    public readonly code: "PAYMENTS_NOT_CONFIGURED" | "ATTEMPT_CLOSED" | "PAYLOAD_MISMATCH" | "ALREADY_PAID" | "PROVIDER_ERROR",
+    public readonly code:
+      | "PAYMENTS_NOT_CONFIGURED"
+      | "DEMO_DISABLED"
+      | "OUT_OF_STOCK"
+      | "ATTEMPT_CLOSED"
+      | "PAYLOAD_MISMATCH"
+      | "ALREADY_PAID"
+      | "PROVIDER_ERROR",
     message: string,
     public readonly status: number,
     public readonly orderId?: string,
@@ -32,19 +40,43 @@ export class CheckoutError extends Error {
   }
 }
 
-export type CheckoutResult = { url: string; orderId: string };
+export type CheckoutResult = { url: string; orderId: string; demo: boolean };
+
+function create(value: ValidCheckout, userId: string | null) {
+  try {
+    return createOrder(value, userId);
+  } catch (error) {
+    if (error instanceof OutOfStockError) {
+      throw new CheckoutError("OUT_OF_STOCK", `Część produktów nie jest już dostępna. ${error.message} Zaktualizuj koszyk.`, 409);
+    }
+    throw error;
+  }
+}
 
 /**
- * Tworzy (lub wznawia) zamówienie i sesję płatności Stripe Checkout.
+ * Tworzy (lub wznawia) zamówienie i – dla płatności online – sesję Stripe Checkout.
  * Kwoty pochodzą wyłącznie z katalogu przeliczonego na serwerze (`ValidCheckout`).
+ * Zamówienie demonstracyjne nie pobiera płatności i jest wyraźnie oznaczone jako „demo”.
+ * Adres strony (`resolveSiteUrl`) jest potrzebny tylko do linków powrotnych Stripe.
  */
-export async function startCheckout(value: ValidCheckout, siteUrl: string): Promise<CheckoutResult> {
+export async function startCheckout(value: ValidCheckout, resolveSiteUrl: () => string, userId: string | null = null): Promise<CheckoutResult> {
+  if (value.payment === "demo") {
+    if (!isDemoOrdersEnabled()) {
+      throw new CheckoutError("DEMO_DISABLED", "Zamówienia demonstracyjne są wyłączone w tym sklepie.", 403);
+    }
+    const { order } = create(value, userId);
+    if (order.payloadHash !== hashCheckout(value)) {
+      throw new CheckoutError("PAYLOAD_MISMATCH", "Zamówienie zmieniło się od poprzedniej próby.", 409);
+    }
+    return { url: `/zamowienie/sukces?order=${order.id}`, orderId: order.id, demo: true };
+  }
+
   const stripe = getStripe();
   if (!stripe) {
     throw new CheckoutError("PAYMENTS_NOT_CONFIGURED", "Płatności online nie są jeszcze skonfigurowane. Zamówienie nie zostało złożone.", 503);
   }
 
-  const { order } = createPendingOrder(value);
+  const { order } = create(value, userId);
 
   if (order.payloadHash !== hashCheckout(value)) {
     throw new CheckoutError("PAYLOAD_MISMATCH", "Zamówienie zmieniło się od poprzedniej próby płatności.", 409);
@@ -59,20 +91,19 @@ export async function startCheckout(value: ValidCheckout, siteUrl: string): Prom
   // Wznowienie: ta sama, wciąż aktywna sesja zamiast nowego zamówienia.
   const nowSeconds = Math.floor(Date.now() / 1000);
   if (order.stripeSessionUrl && order.stripeSessionExpiresAt && order.stripeSessionExpiresAt - 60 > nowSeconds) {
-    return { url: order.stripeSessionUrl, orderId: order.id };
+    return { url: order.stripeSessionUrl, orderId: order.id, demo: false };
   }
   if (order.stripeSessionId) {
     throw new CheckoutError("ATTEMPT_CLOSED", "Sesja płatności wygasła.", 409);
   }
 
-  const session = await createStripeSession(stripe, order, value, siteUrl);
+  const session = await createStripeSession(stripe, order, value, resolveSiteUrl());
   if (!session.url) throw new CheckoutError("PROVIDER_ERROR", "Stripe nie zwrócił adresu płatności.", 502);
   attachCheckoutSession(order.id, { id: session.id, url: session.url, expiresAt: session.expires_at });
-  return { url: session.url, orderId: order.id };
+  return { url: session.url, orderId: order.id, demo: false };
 }
 
 async function createStripeSession(stripe: Stripe, order: OrderRecord, value: ValidCheckout, siteUrl: string) {
-  const pickupLabel = formatPickup(value.pickup.date, value.pickup.time);
   const expiresAt = Math.floor(Date.now() / 1000) + SESSION_TTL_SECONDS;
   const params: Stripe.Checkout.SessionCreateParams = {
     mode: "payment",
@@ -81,37 +112,31 @@ async function createStripeSession(stripe: Stripe, order: OrderRecord, value: Va
     customer_email: value.customer.email,
     client_reference_id: order.id,
     expires_at: expiresAt,
-    line_items: value.lines.map((line) => ({
-      quantity: line.quantity,
-      price_data: {
-        currency: "pln",
-        unit_amount: line.unitPrice,
-        product_data: {
-          name: line.name,
-          ...(line.optionLabels.length ? { description: line.optionLabels.join(", ") } : {}),
+    line_items: [
+      ...value.lines.map((line) => ({
+        quantity: line.quantity,
+        price_data: {
+          currency: "pln",
+          unit_amount: line.unitPrice,
+          product_data: { name: line.name, description: `Kolor: ${line.colorName}, rozmiar: ${line.size}` },
         },
+      })),
+      {
+        quantity: 1,
+        price_data: { currency: "pln", unit_amount: value.shippingCost, product_data: { name: `Dostawa: ${value.shipping.method.name}` } },
       },
-    })),
-    metadata: {
-      order_id: order.id,
-      order_number: order.number,
-      location_id: value.location.id,
-      pickup: `${value.pickup.date} ${value.pickup.time}`,
-    },
+    ],
+    metadata: { order_id: order.id, order_number: order.number },
     payment_intent_data: {
-      description: `NOIR COFFEE ${order.number} – odbiór ${value.location.name}, ${pickupLabel}`,
+      description: `Zamówienie ${order.number}`,
       metadata: { order_id: order.id, order_number: order.number },
-    },
-    custom_text: {
-      submit: { message: `Odbiór osobisty: ${value.location.name}, ${pickupLabel}. Zamówienie ${order.number}.` },
     },
     success_url: `${siteUrl}/zamowienie/sukces?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${siteUrl}/zamowienie/anulowano?order=${order.id}`,
   };
 
   try {
-    // Klucz idempotencji Stripe: automatyczne ponowienia tego samego żądania (np. po zerwaniu połączenia)
-    // nie utworzą drugiej sesji. Główną ochroną przed duplikatami jest klucz zamówienia w bazie.
+    // Klucz idempotencji Stripe: automatyczne ponowienia tego samego żądania nie utworzą drugiej sesji.
     return await stripe.checkout.sessions.create(params, { idempotencyKey: `checkout-${order.id}-${expiresAt}` });
   } catch (error) {
     console.error("[checkout] Stripe error", error);
@@ -219,32 +244,44 @@ export interface PublicOrder {
   id: string;
   number: string;
   status: OrderStatus;
-  customerName: string;
-  locationName: string;
-  locationAddress: string;
-  pickupDate: string;
-  pickupTime: string;
-  items: { name: string; quantity: number; optionLabels: string[]; lineTotal: number }[];
+  demo: boolean;
+  customerFirstName: string;
+  shippingMethod: string;
+  shippingTo: string;
+  items: { name: string; slug: string; colorName: string; size: string; quantity: number; lineTotal: number; image: string }[];
+  subtotal: number;
+  shippingCost: number;
   total: number;
+  createdAt: string;
   /** Adres wznowienia płatności – tylko dla aktywnej, nieopłaconej sesji. */
   resumeUrl: string | null;
 }
 
 export function toPublicOrder(order: OrderRecord): PublicOrder {
-  const location = getLocation(order.locationId);
   const active =
     order.status === "pending" && !!order.stripeSessionUrl && !!order.stripeSessionExpiresAt && order.stripeSessionExpiresAt - 60 > Date.now() / 1000;
+  const method = getShippingMethod(order.shippingMethod);
   return {
     id: order.id,
     number: order.number,
     status: order.status,
-    customerName: order.customerName,
-    locationName: location?.name ?? order.locationId,
-    locationAddress: location ? `${location.street}, ${location.city}` : "",
-    pickupDate: order.pickupDate,
-    pickupTime: order.pickupTime,
-    items: order.items.map((i) => ({ name: i.name, quantity: i.quantity, optionLabels: i.optionLabels, lineTotal: i.lineTotal })),
+    demo: order.paymentMethod === "demo",
+    customerFirstName: order.customer.firstName,
+    shippingMethod: method?.name ?? order.shippingMethod,
+    shippingTo: order.pickupPoint ? `punkt: ${order.pickupPoint}` : `${order.address.postalCode} ${order.address.city}`,
+    items: order.items.map((i) => ({
+      name: i.name,
+      slug: i.slug,
+      colorName: i.colorName,
+      size: i.size,
+      quantity: i.quantity,
+      lineTotal: i.lineTotal,
+      image: i.image,
+    })),
+    subtotal: order.subtotal,
+    shippingCost: order.shippingCost,
     total: order.total,
+    createdAt: order.createdAt,
     resumeUrl: active ? order.stripeSessionUrl : null,
   };
 }
