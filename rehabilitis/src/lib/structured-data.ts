@@ -16,6 +16,7 @@ export function getLocalBusinessJsonLd(): Record<string, unknown> | null {
     name: siteConfig.name,
     description: siteConfig.description,
     url: siteConfig.url,
+    logo: `${siteConfig.url}/images/brand/logo-znak.png`,
     telephone: phone,
     ...(email ? { email } : {}),
     address: {
