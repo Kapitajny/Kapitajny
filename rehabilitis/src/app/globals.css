@@ -1,0 +1,410 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+ * REHABILITIS – design system „Zakres ruchu” (opis: DESIGN-SYSTEM.md)
+ *
+ * Ciepła biel jako tło, jasne zielenie jako powierzchnie (panel nawigacji, wyróżnienia),
+ * zieleń #176B4D dla działań, ciemna zieleń dla nagłówków, grafit dla tekstu.
+ * Jedna rodzina: Instrument Sans – zwężona (oś szerokości) w nagłówkach, normalna w tekście.
+ * Kształty „miękkie”: przyciski w kształcie pigułki, zaokrąglone zdjęcia; treść bez ramek.
+ * ------------------------------------------------------------------------- */
+
+@theme {
+  /* Kolory */
+  --color-brand: #176b4d;
+  --color-brand-deep: #0c3d2b;
+  --color-mint: #eef4f0;
+  --color-mint-strong: #dcebe2;
+  --color-paper: #fbfaf6;
+  --color-ink: #24292a;
+  --color-muted: #5b635f;
+  --color-line: #e0e4de;
+  --color-success: #1f6b47;
+  --color-danger: #a3352a;
+
+  /* Typografia */
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+
+  --text-caption: 0.875rem;
+  --text-caption--line-height: 1.45;
+  --text-small: 1rem;
+  --text-small--line-height: 1.55;
+  --text-body: 1.125rem;
+  --text-body--line-height: 1.65;
+  --text-lead: 1.375rem;
+  --text-lead--line-height: 1.5;
+  --text-h4: 1.25rem;
+  --text-h4--line-height: 1.3;
+  --text-h3: clamp(1.5rem, 1.3rem + 0.7vw, 1.875rem);
+  --text-h3--line-height: 1.15;
+  --text-h2: clamp(2.25rem, 1.6rem + 2.4vw, 3.75rem);
+  --text-h2--line-height: 1;
+  --text-display: clamp(3rem, 1.7rem + 5.2vw, 6.5rem);
+  --text-display--line-height: 0.95;
+
+  /* Wymiary */
+  --spacing-section: clamp(4.5rem, 3rem + 5vw, 8.5rem);
+  --spacing-rail: 16.5rem;
+  --spacing-bar: 4.25rem;
+  --container-content: 74rem;
+  --container-prose: 40rem;
+
+  /* Promienie: pigułka dla przycisków i wyboru, łagodny łuk dla zdjęć i pól */
+  --radius-pill: 999px;
+  --radius-photo: 1.25rem;
+  --radius-field: 0.75rem;
+
+  --ease-out-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    interpolate-size: allow-keywords;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 1.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (max-width: 1023px) {
+    html {
+      scroll-padding-top: calc(var(--spacing-bar) + 1rem);
+    }
+  }
+  @media (max-width: 639px) {
+    html:has(.mobile-action-bar) {
+      scroll-padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+    }
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: var(--color-brand-deep);
+    font-weight: 600;
+    font-stretch: 78%;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  h4 {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-brand);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-brand);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  html:has(dialog[open]:modal) {
+    overflow: hidden;
+  }
+}
+
+@layer components {
+  .content {
+    width: 100%;
+    max-width: var(--container-content);
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .content {
+      padding-inline: 2.5rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .content {
+      padding-inline: 3.5rem;
+    }
+  }
+
+  /* Zwężony krój nagłówków dla elementów, które nie są nagłówkami (ceny, nazwy w listach definicji) */
+  .type-condensed {
+    color: var(--color-brand-deep);
+    font-weight: 600;
+    font-stretch: 78%;
+    letter-spacing: -0.02em;
+  }
+
+  /* Nagłówek w kroju tekstu (np. pytania FAQ, podtytuły w opisie usługi, stopka) – bez zwężenia */
+  .type-plain {
+    color: var(--color-ink);
+    font-stretch: 100%;
+    letter-spacing: normal;
+  }
+
+  /* Przyciski: pigułki. Główny – jedno główne działanie w widoku; cichy – działanie poboczne. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3.25rem;
+    padding: 0.75rem 1.6rem;
+    border: 1.5px solid transparent;
+    border-radius: var(--radius-pill);
+    font-size: var(--text-small);
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      background-color 160ms var(--ease-out-soft),
+      border-color 160ms var(--ease-out-soft),
+      color 160ms var(--ease-out-soft);
+  }
+  .btn:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+  .btn:disabled,
+  .btn[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+  .btn-primary {
+    background: var(--color-brand);
+    color: #fff;
+  }
+  .btn-primary:hover:not(:disabled) {
+    background: var(--color-brand-deep);
+  }
+  .btn-quiet {
+    border-color: color-mix(in oklab, var(--color-brand) 45%, transparent);
+    color: var(--color-brand-deep);
+    background: transparent;
+  }
+  .btn-quiet:hover:not(:disabled) {
+    border-color: var(--color-brand);
+    background: var(--color-mint);
+  }
+  .btn-sm {
+    min-height: 2.75rem;
+    padding: 0.5rem 1.1rem;
+  }
+
+  /* Link tekstowy */
+  .link {
+    color: var(--color-brand);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.25em;
+  }
+  .link:hover {
+    color: var(--color-brand-deep);
+  }
+
+  /* Formularze */
+  .field-label {
+    display: block;
+    margin-bottom: 0.45rem;
+    font-size: var(--text-small);
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  .field-hint {
+    font-weight: 400;
+    color: var(--color-muted);
+  }
+  .field-input {
+    width: 100%;
+    min-height: 3.25rem;
+    padding: 0.7rem 1rem;
+    border: 1px solid #8e978f;
+    border-radius: var(--radius-field);
+    background: #fff;
+    color: var(--color-ink);
+    font-size: var(--text-small);
+  }
+  .field-input::placeholder {
+    color: #6c746f;
+  }
+  .field-input:hover {
+    border-color: var(--color-ink);
+  }
+  .field-input:focus {
+    outline: none;
+    border-color: var(--color-brand);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-brand) 22%, transparent);
+  }
+  .field-input:disabled {
+    background: var(--color-mint);
+    cursor: not-allowed;
+  }
+  .field-input[aria-invalid="true"] {
+    border-color: var(--color-danger);
+    border-width: 2px;
+  }
+  .field-error {
+    margin-top: 0.4rem;
+    font-size: var(--text-small);
+    color: var(--color-danger);
+  }
+  select.field-input {
+    appearance: none;
+    padding-right: 2.75rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23176b4d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+  }
+
+  /* Zdjęcia: proporcje nadaje kontener, łagodnie zaokrąglone rogi, bez tekstu na zdjęciu */
+  .photo {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-photo);
+    background: var(--color-mint);
+  }
+
+  /* Karta cennika z kropkami prowadzącymi do ceny */
+  .leader {
+    flex: 1;
+    min-width: 1.5rem;
+    border-bottom: 2px dotted color-mix(in oklab, var(--color-brand) 40%, transparent);
+    transform: translateY(-0.35em);
+  }
+
+  /* Menu mobilne (natywny <dialog>) */
+  .sheet {
+    margin: 0;
+    max-width: none;
+    max-height: none;
+    padding: 0;
+    border: 0;
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
+    background: var(--color-mint);
+    color: var(--color-ink);
+    opacity: 0;
+    transition:
+      opacity 200ms var(--ease-out-soft),
+      overlay 200ms allow-discrete,
+      display 200ms allow-discrete;
+  }
+  .sheet[open] {
+    opacity: 1;
+  }
+  @starting-style {
+    .sheet[open] {
+      opacity: 0;
+    }
+  }
+
+  /* FAQ – natywne <details> */
+  .faq-item::details-content {
+    block-size: 0;
+    overflow-y: clip;
+    transition:
+      block-size 260ms var(--ease-out-soft),
+      content-visibility 260ms allow-discrete;
+  }
+  .faq-item[open]::details-content {
+    block-size: auto;
+  }
+  .faq-item summary {
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item .faq-icon {
+    transition: transform 220ms var(--ease-out-soft);
+  }
+  .faq-item[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  .tab-panel-enter {
+    animation: fade-in 220ms var(--ease-out-soft);
+  }
+
+  /* Jedyny ruch bez udziału użytkownika: mozaika zdjęć w hero pojawia się raz, po kolei. */
+  .mosaic-in {
+    animation: mosaic-in 900ms var(--ease-out-soft) both;
+    animation-delay: var(--delay, 0ms);
+  }
+
+  /* Dokumenty (polityka prywatności, cookies) */
+  .prose-legal {
+    font-size: var(--text-small);
+    line-height: 1.75;
+  }
+  .prose-legal h2 {
+    margin-top: 2.75rem;
+    margin-bottom: 0.9rem;
+    font-size: var(--text-h3);
+    scroll-margin-top: 6rem;
+  }
+  .prose-legal p,
+  .prose-legal ul {
+    margin-bottom: 1rem;
+  }
+  .prose-legal ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+  }
+  .prose-legal li {
+    margin-bottom: 0.4rem;
+  }
+  .prose-legal a {
+    color: var(--color-brand);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes mosaic-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
