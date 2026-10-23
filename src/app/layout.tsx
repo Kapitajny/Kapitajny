@@ -1,37 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Fraunces } from "next/font/google";
+import { Archivo } from "next/font/google";
 import { siteConfig } from "@/config/site";
-import { getImageManifest } from "@/lib/images.server";
 import { CartDrawer } from "@/components/cart/CartDrawer";
-import { CartProvider } from "@/components/cart/CartProvider";
-import { ProductCustomizer } from "@/components/cart/ProductCustomizer";
-import { Toasts } from "@/components/cart/Toasts";
+import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
-import { ImagesProvider } from "@/components/ui/ImagesProvider";
+import { ShopProvider } from "@/components/shop/ShopProvider";
+import { Toasts } from "@/components/shop/Toasts";
 import "./globals.css";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+/** Jedna rodzina kroju: oś szerokości (wdth) daje rozszerzone nagłówki i zwykły tekst. */
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin", "latin-ext"],
-  style: ["normal", "italic"],
-  axes: ["opsz", "SOFT"],
+  axes: ["wdth"],
   display: "swap",
 });
-
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
-  subsets: ["latin", "latin-ext"],
-  display: "swap",
-});
-
-const manifest = getImageManifest();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "NOIR COFFEE – kawiarnia w Gdańsku | Zamów kawę online",
-    template: "%s | NOIR COFFEE",
+    default: `${siteConfig.name} – bluzy i spodnie streetwear`,
+    template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
@@ -39,39 +29,34 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pl_PL",
     siteName: siteConfig.name,
-    title: "NOIR COFFEE – kawiarnia w Gdańsku",
+    title: `${siteConfig.name} – bluzy i spodnie streetwear`,
     description: siteConfig.description,
-    ...(manifest.hero.src ? { images: [{ url: manifest.hero.src, alt: manifest.hero.alt }] } : {}),
   },
+  twitter: { card: "summary_large_image" },
   robots: siteConfig.allowIndexing ? { index: true, follow: true } : { index: false, follow: false },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f5efe6",
+  themeColor: "#0a0a0a",
+  colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pl" className={`${fraunces.variable} ${dmSans.variable}`} suppressHydrationWarning>
-      <head>
-        {/* Animacje przy przewijaniu włączamy tylko, gdy działa JavaScript. */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
-      </head>
+    <html lang="pl" className={archivo.variable}>
       <body className="flex min-h-dvh flex-col">
-        <ImagesProvider manifest={manifest}>
-          <CartProvider>
-            <SiteHeader />
-            <main id="tresc" className="flex-1">
-              {children}
-            </main>
-            <SiteFooter />
-            <CartDrawer />
-            <ProductCustomizer />
-            <Toasts />
-          </CartProvider>
-        </ImagesProvider>
+        <ShopProvider>
+          <AnnouncementBar />
+          <SiteHeader />
+          <main id="tresc" className="flex-1">
+            {children}
+          </main>
+          <SiteFooter />
+          <CartDrawer />
+          <Toasts />
+        </ShopProvider>
       </body>
     </html>
   );

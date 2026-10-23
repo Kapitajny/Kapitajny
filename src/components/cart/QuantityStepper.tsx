@@ -1,43 +1,30 @@
 "use client";
 
-import { ORDER_LIMITS } from "@/lib/pricing";
 import { MinusIcon, PlusIcon } from "@/components/ui/Icons";
 
 export function QuantityStepper({
   value,
+  max,
   onChange,
   label,
   size = "md",
-  max = ORDER_LIMITS.maxQuantityPerLine,
 }: {
   value: number;
+  max: number;
   onChange: (value: number) => void;
   label: string;
   size?: "sm" | "md";
-  max?: number;
 }) {
-  const box = size === "sm" ? "h-8 w-8" : "h-10 w-10";
+  const h = size === "sm" ? "h-9 w-9" : "h-12 w-12";
   return (
-    <div role="group" aria-label={label} className="inline-flex items-center rounded-full border border-oat bg-paper">
-      <button
-        type="button"
-        className={`${box} inline-flex items-center justify-center rounded-full text-roast transition-colors hover:bg-sand disabled:opacity-35`}
-        onClick={() => onChange(value - 1)}
-        disabled={value <= 1}
-        aria-label="Zmniejsz ilość"
-      >
+    <div role="group" aria-label={label} className="inline-flex items-center border border-line">
+      <button type="button" className={`grid ${h} place-items-center hover:bg-surface disabled:opacity-35`} onClick={() => onChange(value - 1)} disabled={value <= 1} aria-label="Zmniejsz ilość">
         <MinusIcon size={16} />
       </button>
-      <output aria-live="polite" className={`min-w-7 text-center tabular-nums ${size === "sm" ? "text-sm" : ""}`}>
+      <output aria-live="polite" className="min-w-8 text-center text-sm font-semibold tabular-nums">
         {value}
       </output>
-      <button
-        type="button"
-        className={`${box} inline-flex items-center justify-center rounded-full text-roast transition-colors hover:bg-sand disabled:opacity-35`}
-        onClick={() => onChange(value + 1)}
-        disabled={value >= max}
-        aria-label="Zwiększ ilość"
-      >
+      <button type="button" className={`grid ${h} place-items-center hover:bg-surface disabled:opacity-35`} onClick={() => onChange(value + 1)} disabled={value >= max} aria-label="Zwiększ ilość">
         <PlusIcon size={16} />
       </button>
     </div>

@@ -1,134 +1,134 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { mainNav } from "@/config/site";
-import { LOCATIONS, formatHours } from "@/data/locations";
-import { useCart } from "@/components/cart/CartProvider";
-import { BagIcon, CloseIcon, MenuIcon } from "@/components/ui/Icons";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { categories } from "@/data/catalog";
+import { helpNav, mainNav } from "@/config/site";
+import { useShop } from "@/components/shop/ShopProvider";
 import { Modal } from "@/components/ui/Modal";
+import { BagIcon, CloseIcon, HeartIcon, MenuIcon, SearchIcon, UserIcon } from "@/components/ui/Icons";
 import { Logo } from "./Logo";
+import { SearchDialog } from "./SearchDialog";
+
+function Count({ value }: { value: number }) {
+  if (value <= 0) return null;
+  return (
+    <span className="absolute right-0.5 top-0.5 grid h-[1.1rem] min-w-[1.1rem] place-items-center rounded-full bg-paper px-1 text-[0.65rem] font-bold leading-none text-ink tabular-nums">
+      {value > 99 ? "99+" : value}
+    </span>
+  );
+}
 
 export function SiteHeader() {
-  const { itemCount, hydrated, openCart } = useCart();
-  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const { itemCount, favorites, setCartOpen, hydrated } = useShop();
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const cartLabel = hydrated && itemCount > 0 ? `Koszyk, ${itemCount} w koszyku` : "Koszyk";
+  const [searchOpen, setSearchOpen] = useState(false);
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+  const cartLabel = hydrated && itemCount > 0 ? `Koszyk, ${itemCount} szt.` : "Koszyk";
 
   return (
-    <>
-      <a href="#tresc" className="sr-only z-50 rounded-full bg-roast px-4 py-2 text-paper focus:not-sr-only focus:fixed focus:left-4 focus:top-4">
+    <header className="sticky top-0 z-40 border-b border-line bg-ink">
+      <a href="#tresc" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2 focus:z-50 focus:bg-paper focus:px-4 focus:py-2 focus:text-ink">
         Przejdź do treści
       </a>
-      <header
-        className={`sticky top-0 z-30 transition-[background-color,border-color,box-shadow] duration-300 ${
-          scrolled ? "border-b border-line bg-cream/92 backdrop-blur-md" : "border-b border-transparent bg-cream"
-        }`}
-      >
-        <div className="container-x flex h-[4.5rem] items-center justify-between gap-6">
-          <Logo />
+      <div className="wrap flex h-16 items-center gap-2 md:h-[4.5rem]">
+        <button type="button" className="icon-btn -ml-2 lg:hidden" aria-label="Otwórz menu" aria-haspopup="dialog" onClick={() => setMenuOpen(true)}>
+          <MenuIcon />
+        </button>
 
-          <nav aria-label="Główna nawigacja" className="hidden lg:block">
-            <ul className="flex items-center gap-8 text-[0.92rem]">
-              {mainNav.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="relative py-2 text-espresso transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:text-roast hover:after:scale-x-100"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+        <Logo className="mr-6 lg:mr-10" />
 
-          <div className="flex items-center gap-2 sm:gap-3">
-            <button
-              type="button"
-              onClick={openCart}
-              className="relative inline-flex h-11 w-11 items-center justify-center rounded-full text-roast transition-colors hover:bg-sand"
-              aria-label={cartLabel}
-            >
-              <BagIcon size={22} />
-              {hydrated && itemCount > 0 && (
-                <span
-                  aria-hidden="true"
-                  className="absolute right-0.5 top-0.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-roast px-1 text-[0.68rem] font-semibold tabular-nums text-paper"
+        <nav aria-label="Główna" className="hidden lg:block">
+          <ul className="flex items-center gap-1">
+            {mainNav.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  aria-current={isActive(item.href) ? "page" : undefined}
+                  className="relative block px-3 py-2 text-[0.8125rem] font-bold uppercase tracking-[0.04em] wide text-muted transition-colors hover:text-paper aria-[current=page]:text-paper"
                 >
-                  {itemCount}
-                </span>
-              )}
-            </button>
-            <Link href="/#menu" className="btn btn-primary btn-sm hidden sm:inline-flex">
-              Zamów kawę
-            </Link>
-            <button
-              type="button"
-              onClick={() => setMenuOpen(true)}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full text-roast transition-colors hover:bg-sand lg:hidden"
-              aria-label="Otwórz menu"
-              aria-expanded={menuOpen}
-            >
-              <MenuIcon size={24} />
-            </button>
-          </div>
-        </div>
-      </header>
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-      <Modal open={menuOpen} onClose={() => setMenuOpen(false)} labelledBy="mobile-menu-title" className="sheet-full bg-cream">
-        <div className="flex h-full flex-col overflow-y-auto">
-          <div className="container-x flex h-[4.5rem] shrink-0 items-center justify-between">
-            <Logo onNavigate={() => setMenuOpen(false)} />
-            <button
-              type="button"
-              onClick={() => setMenuOpen(false)}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full hover:bg-sand"
-              aria-label="Zamknij menu"
-            >
-              <CloseIcon size={24} />
-            </button>
-          </div>
-          <nav aria-labelledby="mobile-menu-title" className="container-x flex flex-1 flex-col pt-8">
-            <h2 id="mobile-menu-title" className="eyebrow mb-6">
+        <div className="ml-auto flex items-center">
+          <button type="button" className="icon-btn" aria-label="Szukaj" aria-haspopup="dialog" onClick={() => setSearchOpen(true)}>
+            <SearchIcon />
+          </button>
+          <Link href="/konto" className="icon-btn hidden sm:inline-grid" aria-label="Konto">
+            <UserIcon />
+          </Link>
+          <Link href="/ulubione" className="icon-btn relative hidden sm:inline-grid" aria-label={hydrated && favorites.length ? `Ulubione, ${favorites.length}` : "Ulubione"}>
+            <HeartIcon />
+            {hydrated && <Count value={favorites.length} />}
+          </Link>
+          <button type="button" className="icon-btn relative -mr-2" aria-label={cartLabel} aria-haspopup="dialog" onClick={() => setCartOpen(true)}>
+            <BagIcon />
+            {hydrated && <Count value={itemCount} />}
+          </button>
+        </div>
+      </div>
+
+      <Modal open={menuOpen} onClose={() => setMenuOpen(false)} labelledBy="menu-title" className="drawer drawer-left">
+        <div className="flex h-full flex-col">
+          <div className="flex h-16 items-center justify-between border-b border-line px-4">
+            <h2 id="menu-title" className="display-sm text-lg">
               Menu
             </h2>
-            <ul className="space-y-1">
-              {mainNav.map((item, i) => (
-                <li key={item.href} className="border-b border-line">
-                  <Link
-                    href={item.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="flex items-baseline gap-4 py-4 font-serif text-4xl text-roast transition-colors hover:text-latte"
-                  >
-                    <span className="font-sans text-xs tabular-nums text-latte">0{i + 1}</span>
+            <button type="button" className="icon-btn -mr-2" aria-label="Zamknij menu" onClick={() => setMenuOpen(false)}>
+              <CloseIcon />
+            </button>
+          </div>
+          <nav aria-label="Menu mobilne" className="flex-1 overflow-y-auto px-4 pb-10">
+            {categories.map((category) => (
+              <div key={category.slug} className="border-b border-line py-5">
+                <Link href={`/kategoria/${category.slug}`} onClick={() => setMenuOpen(false)} className="display text-[2.4rem] block">
+                  {category.name}
+                </Link>
+                <ul className="mt-3 grid grid-cols-2 gap-x-4">
+                  {category.subcategories.map((sub) => (
+                    <li key={sub.slug}>
+                      <Link href={`/kategoria/${category.slug}/${sub.slug}`} onClick={() => setMenuOpen(false)} className="block py-2 text-[0.95rem] text-muted hover:text-paper">
+                        {sub.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+            <ul className="py-5">
+              {mainNav.slice(2).map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} onClick={() => setMenuOpen(false)} className="display-sm block py-2.5 text-xl">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link href="/sklep" onClick={() => setMenuOpen(false)} className="display-sm block py-2.5 text-xl">
+                  Wszystkie produkty
+                </Link>
+              </li>
+            </ul>
+            <ul className="border-t border-line pt-5">
+              {helpNav.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} onClick={() => setMenuOpen(false)} className="block py-2.5 text-muted hover:text-paper">
                     {item.label}
                   </Link>
                 </li>
               ))}
             </ul>
-            <Link href="/#menu" onClick={() => setMenuOpen(false)} className="btn btn-primary mt-10 self-start">
-              Zamów kawę
-            </Link>
-            <div className="mt-auto grid gap-4 py-10 text-sm text-muted sm:grid-cols-3">
-              {LOCATIONS.map((l) => (
-                <p key={l.id}>
-                  <span className="block text-roast">{l.district}</span>
-                  pon.–pt. {formatHours(l.hours.weekdays)}
-                </p>
-              ))}
-            </div>
           </nav>
         </div>
       </Modal>
-    </>
+
+      <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
+    </header>
   );
 }
