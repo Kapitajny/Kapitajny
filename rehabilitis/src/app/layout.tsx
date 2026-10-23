@@ -1,20 +1,20 @@
 import type { Metadata, Viewport } from "next";
-import { Albert_Sans } from "next/font/google";
+import { Instrument_Sans } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import { getImageManifest } from "@/lib/images.server";
 import { DraftNotice } from "@/components/layout/DraftNotice";
 import { MobileActionBar } from "@/components/layout/MobileActionBar";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
-import { TopBar } from "@/components/layout/TopBar";
 import { ImagesProvider } from "@/components/ui/ImagesProvider";
 import "./globals.css";
 
-// Jedna rodzina dla całej strony: Albert Sans – otwarte, czytelne kształty liter, ciepły
-// skandynawski charakter, klasyczne cyfry (ważne w cenniku) i pełne polskie znaki.
-const albert = Albert_Sans({
-  variable: "--font-albert",
+// Jedna rodzina: Instrument Sans ze zmienną szerokością – zwężona w nagłówkach, normalna w tekście.
+// Spokojne, precyzyjne kształty liter, klasyczne cyfry (cennik) i pełne polskie znaki.
+const instrument = Instrument_Sans({
+  variable: "--font-instrument",
   subsets: ["latin", "latin-ext"],
+  axes: ["wdth"],
   display: "swap",
 });
 
@@ -42,26 +42,30 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0e3b2c",
+  themeColor: "#eef4f0",
   width: "device-width",
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pl" className={albert.variable} suppressHydrationWarning>
-      <body className="flex min-h-dvh flex-col">
+    <html lang="pl" className={instrument.variable} suppressHydrationWarning>
+      <body className="min-h-dvh">
         <ImagesProvider manifest={manifest}>
-          <a href="#tresc" className="sr-only z-50 rounded-control bg-brand text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:px-4 focus:py-2">
+          <a href="#tresc" className="sr-only z-50 rounded-pill bg-brand text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:px-5 focus:py-3">
             Przejdź do treści
           </a>
-          <DraftNotice />
-          <TopBar />
-          <SiteHeader />
-          <main id="tresc" tabIndex={-1} className="flex-1 outline-none">
-            {children}
-          </main>
-          <SiteFooter />
+          {/* Na dużych ekranach: stały panel nawigacji po lewej i treść po prawej (pasek wersji roboczej nad treścią). */}
+          <div className="lg:grid lg:grid-cols-[var(--spacing-rail)_minmax(0,1fr)]">
+            <SiteHeader />
+            <div className="flex min-h-dvh min-w-0 flex-col">
+              <DraftNotice />
+              <main id="tresc" tabIndex={-1} className="flex-1 outline-none">
+                {children}
+              </main>
+              <SiteFooter />
+            </div>
+          </div>
           <MobileActionBar />
         </ImagesProvider>
       </body>

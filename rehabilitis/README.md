@@ -1,6 +1,6 @@
 # REHABILITIS – strona gabinetu rehabilitacji i fizjoterapii
 
-Strona gabinetu z podstronami: strona główna, usługi (z wyborem dolegliwości według okolic ciała), o gabinecie,
+Strona gabinetu z podstronami: strona główna (z wyborem dolegliwości według okolic ciała), usługi, o gabinecie,
 cennik, FAQ i kontakt
 z formularzem prośby o kontakt, mapą dojazdu wczytywaną po zgodzie oraz dokumentami: polityką prywatności i
 informacją o plikach cookies.
@@ -13,16 +13,17 @@ informacją o plikach cookies.
 
 - **Next.js 16** (App Router, Turbopack, Cache Components), **React 19**, **TypeScript**
 - **Tailwind CSS 4** – tokeny kolorów i typografii w `src/app/globals.css`
-- Krój: **Albert Sans** (jedna rodzina dla całej strony), ładowany przez `next/font`
+- Krój: **Instrument Sans** (jedna rodzina; nagłówki zwężone osią szerokości), ładowany przez `next/font`
 - Design system: `DESIGN-SYSTEM.md` (kolory, typografia, odstępy, komponenty, zasady zdjęć)
 
 ### Kierunek wizualny
 
-Spokojna, praktyczna strona lokalnego gabinetu: zieleń z logo jako kolor działań, kość słoniowa jako tło,
-treść ułożona w listy, tabele i indeksy zamiast powtarzalnych kart. Hero mówi wprost, czym zajmuje się gabinet,
-i pokazuje czas oraz cenę pierwszej wizyty. Każda podstrona ma własny układ (rozdziały usług z bocznym spisem,
-oś czasu pierwszej wizyty, tabele cennika, FAQ z panelem kontaktu). Brakujące dane kontaktowe są ukrywane,
-a o wersji roboczej informuje jeden pasek u góry strony.
+„Zakres ruchu”: stały jasnozielony panel nawigacji po lewej (na telefonie pasek z przyciskiem „Menu”), ciepła
+biel jako tło, duże zwężone nagłówki i zdjęcia z łagodnie zaokrąglonymi rogami. Hero to nagłówek na całą
+szerokość, fakty o pierwszej wizycie i mozaika trzech zdjęć. Jedyny motyw graficzny – łuk zakresu ruchu
+(skala 0–180°) – pokazuje kolejne kroki pierwszej wizyty. Każda podstrona ma własny układ: stykówka zdjęć
+jako spis usług, cennik z kropkami prowadzącymi do ceny, FAQ z przyklejoną kolumną, formularz na białym arkuszu.
+Brakujące dane kontaktowe są ukrywane, a o wersji roboczej informuje jeden pasek nad treścią.
 
 ## Uruchomienie
 
@@ -57,9 +58,9 @@ src/data/testimonials.ts  ★ prawdziwe opinie pacjentów (pusta lista = spokojn
 src/data/values.ts          zasady pracy gabinetu (strona główna i „O gabinecie”)
 src/app/                  podstrony: /, /uslugi, /o-gabinecie, /cennik, /faq, /kontakt, dokumenty, sitemap, robots, OG, API
   api/contact             przyjmuje formularz i przekazuje go do gabinetu (e-mail lub webhook)
-src/components/home/      sekcje strony głównej (hero, indeks dolegliwości, indeks usług, zapowiedź „O gabinecie”)
-src/components/sections/  sekcje wspólne (nagłówek podstrony, CTA, kroki wizyty, FAQ, cennik, formularz, mapa)
-src/components/layout/    nagłówek, stopka, pasek akcji na telefonach, pasek wersji roboczej
+src/components/home/      hero strony głównej, opinie
+src/components/sections/  sekcje wspólne (dolegliwości, karta usług, kroki wizyty, FAQ, formularz, mapa, zakończenie strony)
+src/components/layout/    panel nawigacji / pasek mobilny, stopka, pasek akcji na telefonach, pasek wersji roboczej
 src/lib/contact.ts        pola i walidacja formularza (wspólna dla przeglądarki i serwera)
 src/lib/server/           wysyłka zgłoszeń, limit żądań
 tests/                    testy Vitest
@@ -112,7 +113,7 @@ stronie) można dodać przez API wybranego systemu – webhook formularza może 
 Link „Przejdź do treści”, widoczne stany focus, menu mobilne na natywnym `<dialog>` (Esc, pułapka fokusu),
 FAQ na natywnych `<details>`, formularz z etykietami, komunikatami błędów powiązanymi z polami i fokusem na
 pierwszym błędnym polu, zakładki dolegliwości obsługiwane strzałkami (wzorzec ARIA Tabs). Kontrast kolorów
-tekstu ≥ 4.5:1. Ruch pojawia się tylko w odpowiedzi na działanie (menu, FAQ, zakładki) i wyłącza się przy
+tekstu ≥ 4.5:1. Poza jednorazowym pojawieniem się dwóch zdjęć w hero ruch odpowiada tylko na działanie (menu, FAQ, zakładki) i wyłącza się przy
 `prefers-reduced-motion`. Na telefonach stały pasek z „Zadzwoń” (gdy numer jest uzupełniony) i „Umów wizytę”.
 
 ## Przed publikacją

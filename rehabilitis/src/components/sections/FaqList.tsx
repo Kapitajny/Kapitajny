@@ -11,11 +11,13 @@ export function FaqList({ items, headingLevel = 3 }: { items: FaqItem[]; heading
       <OpenDetailsFromHash />
       {items.map((item) => (
         <details key={item.id} id={`faq-${item.id}`} className="faq-item border-b border-line">
-          <summary className="flex min-h-14 cursor-pointer items-center justify-between gap-6 py-4 text-left hover:text-brand">
-            <Heading className="text-h3 font-bold tracking-normal text-ink">{item.question}</Heading>
-            <PlusIcon size={24} className="faq-icon shrink-0 text-brand" />
+          <summary className="group flex min-h-16 cursor-pointer items-center justify-between gap-6 py-5 text-left">
+            <Heading className="text-h4 type-plain group-hover:text-brand-deep">{item.question}</Heading>
+            <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-mint text-brand group-hover:bg-mint-strong">
+              <PlusIcon size={20} className="faq-icon" />
+            </span>
           </summary>
-          <div className="max-w-prose space-y-3 pb-6">
+          <div className="max-w-prose space-y-3 pb-7">
             {item.answer.map((paragraph, i) => (
               <p key={i}>
                 <TextWithPending text={paragraph} />

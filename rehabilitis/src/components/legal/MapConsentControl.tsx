@@ -9,14 +9,14 @@ export function MapConsentControl() {
   if (consent === null) return null;
 
   return (
-    <div className="my-6 flex flex-wrap items-center gap-4 rounded-xl border border-line bg-brand-soft px-5 py-4 text-small">
+    <div className="my-6 flex flex-wrap items-center gap-4 rounded-field bg-mint px-5 py-4 text-small">
       <p className="m-0 flex-1" aria-live="polite">
         {consent
           ? "Zgoda na wczytywanie mapy Google jest zapisana w tej przeglądarce."
           : "Mapa Google nie wczyta się automatycznie, bo w tej przeglądarce nie ma zapisanej zgody."}
       </p>
       {consent && (
-        <button type="button" className="btn btn-outline btn-sm" onClick={() => setConsent(false)}>
+        <button type="button" className="btn btn-quiet btn-sm" onClick={() => setConsent(false)}>
           Cofnij zgodę na mapę
         </button>
       )}

@@ -134,8 +134,8 @@ export function ContactForm({ fallbackContact }: { fallbackContact: string | nul
 
   if (status.kind === "success") {
     return (
-      <div ref={statusRef} tabIndex={-1} role="status" className="border-t-2 border-success bg-white p-6 outline-none sm:p-8">
-        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-soft text-success">
+      <div ref={statusRef} tabIndex={-1} role="status" className="rounded-photo bg-mint p-6 outline-none sm:p-8">
+        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-success">
           <CheckIcon size={24} />
         </span>
         <h3 className="mt-5 text-h3">Dziękujemy, zgłoszenie dotarło do gabinetu.</h3>
@@ -143,7 +143,7 @@ export function ContactForm({ fallbackContact }: { fallbackContact: string | nul
           Skontaktujemy się z Tobą wybraną drogą, aby ustalić dogodny termin. To jeszcze nie jest rezerwacja. Termin potwierdzimy
           podczas kontaktu.
         </p>
-        <button type="button" className="btn btn-outline mt-8" onClick={() => setStatus({ kind: "idle" })}>
+        <button type="button" className="btn btn-quiet mt-8" onClick={() => setStatus({ kind: "idle" })}>
           Wyślij kolejne zgłoszenie
         </button>
       </div>
@@ -187,8 +187,8 @@ export function ContactForm({ fallbackContact }: { fallbackContact: string | nul
             {(Object.keys(CONTACT_METHODS) as ContactMethod[]).map((method, i) => (
               <label
                 key={method}
-                className={`flex min-h-12 cursor-pointer items-center gap-3 rounded-control border px-4 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand/40 ${
-                  form.contactMethod === method ? "border-brand bg-brand-soft" : errors.contactMethod ? "border-danger" : "border-[#8f968f] bg-white"
+                className={`flex min-h-12 cursor-pointer items-center gap-3 rounded-field border px-4 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand/40 ${
+                  form.contactMethod === method ? "border-brand bg-mint" : errors.contactMethod ? "border-danger" : "border-[#8e978f] bg-white"
                 }`}
               >
                 <input
@@ -366,8 +366,8 @@ export function ContactForm({ fallbackContact }: { fallbackContact: string | nul
         {(status.kind === "error" || status.kind === "unavailable") && (
           <div
             role="alert"
-            className={`mt-6 flex items-start gap-3 rounded-control px-4 py-3 text-small ${
-              status.kind === "error" ? "bg-danger/8 text-danger" : "bg-brand-soft text-ink"
+            className={`mt-6 flex items-start gap-3 rounded-field px-4 py-3 text-small ${
+              status.kind === "error" ? "bg-danger/8 text-danger" : "bg-mint text-ink"
             }`}
           >
             {status.kind === "error" ? <AlertIcon size={20} className="mt-0.5 shrink-0" /> : <InfoIcon size={20} className="mt-0.5 shrink-0 text-brand" />}

@@ -8,7 +8,7 @@ import { selectService } from "@/lib/inquiry-store";
 
 /**
  * „Z czym możesz przyjść” – wybór okolicy ciała (zakładki zgodne z wzorcem ARIA Tabs:
- * strzałki, Home/End). Na telefonach zakładki układają się w zawijane przyciski.
+ * strzałki, Home/End). Okolice to rząd pigułek, pod nim jeden jasnozielony panel z opisem.
  */
 export function Conditions() {
   const uid = useId();
@@ -16,8 +16,8 @@ export function Conditions() {
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const group = CONDITION_GROUPS[active];
 
-  // Linki z indeksu na stronie głównej prowadzą do /uslugi#dolegliwosci-<okolica> i otwierają właściwą zakładkę.
-  // Takiego id nie ma na stronie, więc sami przewijamy do sekcji – w następnej klatce, po obsłudze przewijania przez router.
+  // Bezpośrednie linki /#dolegliwosci-<okolica> (np. wysłane pacjentowi) otwierają właściwą zakładkę.
+  // Przewijamy w następnej klatce, po obsłudze przewijania przez router.
   useEffect(() => {
     const openFromHash = () => {
       const id = decodeURIComponent(window.location.hash.slice(1));
@@ -46,87 +46,83 @@ export function Conditions() {
   };
 
   return (
-    <section id="dolegliwosci" aria-labelledby="dolegliwosci-title" className="py-section">
-      <div className="page">
-        {/* Puste kotwice dla linków /uslugi#dolegliwosci-<okolica> – bez JavaScriptu przewijają do tej sekcji. */}
-        {CONDITION_GROUPS.map((g) => (
-          <span key={g.id} id={`dolegliwosci-${g.id}`} aria-hidden="true" className="block scroll-mt-28" />
-        ))}
+    <section id="dolegliwosci" aria-labelledby="dolegliwosci-title" className="content py-section">
+      {/* Puste kotwice dla linków #dolegliwosci-<okolica> – bez JavaScriptu przewijają do tej sekcji. */}
+      {CONDITION_GROUPS.map((g) => (
+        <span key={g.id} id={`dolegliwosci-${g.id}`} aria-hidden="true" className="block" />
+      ))}
+      <div className="grid gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:items-end">
         <h2 id="dolegliwosci-title" className="text-h2">
           Z czym możesz przyjść?
         </h2>
-        <p className="mt-4 max-w-prose text-lead">Wybierz, co Ci dokucza. Czy i jaka terapia jest wskazana, ustalimy razem po ocenie na pierwszej wizycie.</p>
+        <p className="max-w-prose text-muted">Wybierz, co Ci dokucza. Czy i jaka terapia jest wskazana, ustalimy razem po ocenie na pierwszej wizycie.</p>
+      </div>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-[17rem_1fr] lg:gap-10">
-          <div role="tablist" aria-label="Okolica ciała" className="flex flex-wrap gap-2 lg:flex-col lg:gap-1" onKeyDown={onKeyDown}>
-            {CONDITION_GROUPS.map((g, i) => {
-              const selected = i === active;
-              return (
-                <button
-                  key={g.id}
-                  ref={(node) => {
-                    tabs.current[i] = node;
-                  }}
-                  type="button"
-                  role="tab"
-                  id={`${uid}-tab-${g.id}`}
-                  aria-selected={selected}
-                  aria-controls={`${uid}-panel`}
-                  tabIndex={selected ? 0 : -1}
-                  onClick={() => setActive(i)}
-                  className={`min-h-11 rounded-control border px-4 py-2 text-left transition-colors lg:rounded-none lg:border-0 lg:px-0 lg:py-2.5 ${
-                    selected
-                      ? "border-brand bg-brand font-bold text-white lg:bg-transparent lg:text-brand lg:underline lg:decoration-2 lg:underline-offset-[6px]"
-                      : "border-line bg-transparent text-ink hover:border-brand lg:hover:text-brand"
-                  }`}
-                >
-                  {g.label}
-                </button>
-              );
-            })}
-          </div>
+      <div role="tablist" aria-label="Okolica ciała" className="mt-10 flex flex-wrap gap-2" onKeyDown={onKeyDown}>
+        {CONDITION_GROUPS.map((g, i) => {
+          const selected = i === active;
+          return (
+            <button
+              key={g.id}
+              ref={(node) => {
+                tabs.current[i] = node;
+              }}
+              type="button"
+              role="tab"
+              id={`${uid}-tab-${g.id}`}
+              aria-selected={selected}
+              aria-controls={`${uid}-panel`}
+              tabIndex={selected ? 0 : -1}
+              onClick={() => setActive(i)}
+              className={`min-h-11 rounded-pill border px-5 py-2 text-small font-semibold transition-colors ${
+                selected ? "border-brand bg-brand text-white" : "border-[#8e978f] bg-white text-ink hover:border-brand hover:text-brand-deep"
+              }`}
+            >
+              {g.label}
+            </button>
+          );
+        })}
+      </div>
 
-          <div
-            key={group.id}
-            role="tabpanel"
-            id={`${uid}-panel`}
-            aria-labelledby={`${uid}-tab-${group.id}`}
-            tabIndex={0}
-            className="tab-panel-enter border-t-2 border-brand pt-6 lg:border-l-2 lg:border-t-0 lg:pl-10 lg:pt-1"
-          >
-            <h3 className="text-h3">{group.label}</h3>
-            <div className="mt-5 grid gap-8 md:grid-cols-2">
-              <div>
-                <p className="font-semibold text-ink">Pacjenci zgłaszają się m.in. z powodu:</p>
-                <ul className="mt-3 space-y-2">
-                  {group.problems.map((problem) => (
-                    <li key={problem} className="flex gap-3">
-                      <span aria-hidden="true" className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
-                      <span>{problem}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <p className="font-semibold text-ink">Jak pracujemy</p>
-                <p className="mt-3 text-ink">{group.approach}</p>
-                <p className="mt-4 text-small text-muted">
-                  Zwykle pasuje:{" "}
-                  {group.services
-                    .map((slug) => getService(slug)?.title)
-                    .filter(Boolean)
-                    .join(", ")}
-                </p>
-              </div>
-            </div>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-small text-muted">Przy nagłym, silnym bólu po urazie, gorączce albo utracie czucia lub siły najpierw skontaktuj się z lekarzem.</p>
-              <Link href="/kontakt#formularz" onClick={() => group.services[0] && selectService(group.services[0])} className="btn btn-primary shrink-0">
-                Zapytaj o wizytę
-              </Link>
-            </div>
+      <div
+        key={group.id}
+        role="tabpanel"
+        id={`${uid}-panel`}
+        aria-labelledby={`${uid}-tab-${group.id}`}
+        tabIndex={0}
+        className="tab-panel-enter mt-4 grid gap-8 rounded-photo bg-mint p-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-12 md:p-10"
+      >
+        <div>
+          <h3 className="text-h3">{group.label}</h3>
+          <p className="mt-5 font-semibold text-ink">Pacjenci zgłaszają się m.in. z powodu:</p>
+          <ul className="mt-3 space-y-2">
+            {group.problems.map((problem) => (
+              <li key={problem} className="flex gap-3">
+                <span aria-hidden="true" className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                <span>{problem}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="flex flex-col">
+          <p className="font-semibold text-ink">Jak pracujemy</p>
+          <p className="mt-3 text-ink">{group.approach}</p>
+          <p className="mt-4 text-small text-muted">
+            Zwykle pasuje:{" "}
+            {group.services
+              .map((slug) => getService(slug)?.title)
+              .filter(Boolean)
+              .join(", ")}
+          </p>
+          <div className="mt-auto pt-8">
+            <Link href="/kontakt#formularz" onClick={() => group.services[0] && selectService(group.services[0])} className="btn btn-primary">
+              Zapytaj o wizytę
+            </Link>
           </div>
         </div>
+        <p className="border-t border-mint-strong pt-5 text-small text-muted md:col-span-2">
+          Przy nagłym, silnym bólu po urazie, gorączce albo utracie czucia lub siły najpierw skontaktuj się z lekarzem.
+        </p>
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { legalNav } from "@/config/site";
+import { Breadcrumb } from "@/components/sections/Breadcrumb";
 import { AlertIcon, ArrowLeftIcon } from "@/components/ui/Icons";
 
 export interface LegalSection {
@@ -15,19 +16,17 @@ export interface LegalSection {
  */
 export function LegalPage({ title, intro, path, sections }: { title: string; intro: ReactNode; path: string; sections: LegalSection[] }) {
   return (
-    <div className="page pb-24 pt-10 lg:pb-32 lg:pt-14">
-      <Link href="/" className="inline-flex items-center gap-2 text-small text-muted transition-colors hover:text-brand">
-        <ArrowLeftIcon size={16} /> Strona główna
-      </Link>
+    <div className="content pb-section pt-10 lg:pt-16">
+      <Breadcrumb current={title} />
 
-      <header className="mt-10 max-w-3xl">
-        <h1 className="text-h1">{title}</h1>
+      <header className="mt-8 max-w-3xl">
+        <h1 className="text-h2">{title}</h1>
         <div className="mt-6 text-lead leading-relaxed text-muted">{intro}</div>
       </header>
 
       <div
         role="note"
-        className="mt-10 flex max-w-3xl gap-3 border-l-4 border-brand bg-brand-soft px-5 py-4 text-small leading-relaxed text-ink"
+        className="mt-10 flex max-w-3xl gap-3 rounded-field bg-mint px-5 py-4 text-small leading-relaxed text-ink"
       >
         <AlertIcon size={18} className="mt-0.5 shrink-0 text-brand" />
         <p>
@@ -40,13 +39,13 @@ export function LegalPage({ title, intro, path, sections }: { title: string; int
         <aside className="lg:col-span-4 xl:col-span-3">
           <div className="lg:sticky lg:top-24">
             <nav aria-label="Spis treści">
-              <h2 className="mb-3 font-sans text-base font-semibold">Spis treści</h2>
+              <h2 className="mb-3 text-small font-semibold type-plain">Spis treści</h2>
               <ol className="space-y-2 border-l border-line text-small">
                 {sections.map((section, i) => (
                   <li key={section.id}>
                     <a
                       href={`#${section.id}`}
-                      className="-ml-px block border-l border-transparent py-1 pl-4 text-muted transition-colors hover:border-brand hover:text-brand"
+                      className="-ml-px block border-l border-transparent py-1 pl-4 text-muted transition-colors hover:border-brand hover:text-brand-deep"
                     >
                       <span className="tabular-nums">{i + 1}.</span> {section.title}
                     </a>
@@ -69,7 +68,7 @@ export function LegalPage({ title, intro, path, sections }: { title: string; int
           ))}
 
           <nav aria-label="Pozostałe dokumenty" className="mt-16 border-t border-line pt-8">
-            <h2 className="!mt-0 !mb-4 !text-base font-sans font-semibold">Pozostałe dokumenty</h2>
+            <h2 className="!mt-0 !mb-4 !text-base type-plain">Pozostałe dokumenty</h2>
             <ul className="!list-none !pl-0">
               {legalNav
                 .filter((item) => item.href !== path)
@@ -79,7 +78,7 @@ export function LegalPage({ title, intro, path, sections }: { title: string; int
                   </li>
                 ))}
             </ul>
-            <Link href="/" className="btn btn-outline mt-6 !no-underline">
+            <Link href="/" className="btn btn-quiet mt-6 !no-underline">
               <ArrowLeftIcon size={18} /> Wróć na stronę główną
             </Link>
           </nav>

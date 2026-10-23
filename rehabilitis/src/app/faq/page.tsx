@@ -3,8 +3,8 @@ import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { phoneHref, siteConfig } from "@/config/site";
 import { FAQ } from "@/data/faq";
+import { Breadcrumb } from "@/components/sections/Breadcrumb";
 import { FaqList } from "@/components/sections/FaqList";
-import { PageIntro } from "@/components/sections/PageIntro";
 
 export const metadata: Metadata = pageMetadata({
   title: "Najczęstsze pytania – skierowanie, pierwsza wizyta, płatność",
@@ -12,32 +12,37 @@ export const metadata: Metadata = pageMetadata({
   path: "/faq",
 });
 
+/** FAQ: nagłówek i pytanie „czego tu nie ma” w przyklejonej kolumnie, pytania w szerokiej kolumnie obok. */
 export default function FaqPage() {
   const { phone } = siteConfig.contact;
   return (
-    <>
-      <PageIntro title="Najczęstsze pytania" lead="Odpowiedzi na pytania, które pacjenci zadają przed pierwszą wizytą." />
+    <div className="content grid gap-12 pb-section pt-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] lg:gap-16 lg:pt-16">
+      <div className="lg:sticky lg:top-8 lg:self-start">
+        <Breadcrumb current="Najczęstsze pytania" />
+        <h1 className="mt-8 text-h2">Najczęstsze pytania</h1>
+        <p className="mt-5 max-w-prose text-muted">Odpowiedzi na pytania, które pacjenci zadają przed pierwszą wizytą.</p>
 
-      <div className="page grid gap-12 py-section lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-16">
-        <FaqList items={FAQ} headingLevel={2} />
-
-        <aside aria-labelledby="pytanie" className="border-t-2 border-brand-strong pt-5 lg:sticky lg:top-28 lg:self-start">
+        <aside aria-labelledby="pytanie" className="mt-10 rounded-photo bg-mint p-6">
           <h2 id="pytanie" className="text-h3">
             Nie ma tu Twojego pytania?
           </h2>
           <p className="mt-2 text-small">{phone ? "Napisz lub zadzwoń." : "Napisz do nas."} Odpowiemy przed wizytą.</p>
-          <div className="mt-5 grid gap-3">
+          <div className="mt-5 flex flex-wrap gap-3">
             <Link href="/kontakt#formularz" className="btn btn-primary">
               Zadaj pytanie
             </Link>
             {phone && (
-              <a href={phoneHref(phone)} className="btn btn-outline">
+              <a href={phoneHref(phone)} className="btn btn-quiet">
                 Zadzwoń: {phone}
               </a>
             )}
           </div>
         </aside>
       </div>
-    </>
+
+      <div className="lg:pt-16">
+        <FaqList items={FAQ} headingLevel={2} />
+      </div>
+    </div>
   );
 }

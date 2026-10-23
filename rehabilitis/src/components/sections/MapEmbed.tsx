@@ -24,7 +24,7 @@ export function MapEmbed({ address }: { address: string }) {
   const [storedConsent, setConsent] = useStoredFlag(MAP_CONSENT_KEY);
 
   return (
-    <div className="relative h-72 overflow-hidden rounded-media border border-line bg-brand-soft sm:h-80">
+    <div className="relative h-72 overflow-hidden rounded-photo bg-mint sm:h-80">
       {storedConsent === true ? (
         <iframe
           title={`Mapa dojazdu: ${address}`}
