@@ -71,6 +71,7 @@ export const mainNav = [
 ] as const;
 
 export const legalNav = [
+  { href: "/regulamin", label: "Regulamin" },
   { href: "/polityka-prywatnosci", label: "Polityka prywatności" },
   { href: "/cookies", label: "Pliki cookies" },
 ] as const;

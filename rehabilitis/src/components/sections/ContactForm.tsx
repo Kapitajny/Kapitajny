@@ -358,6 +358,10 @@ export function ContactForm({ fallbackContact }: { fallbackContact: string | nul
           Dane wykorzystamy wyłącznie do odpowiedzi na zgłoszenie.{" "}
           <Link href="/polityka-prywatnosci" className="link">
             Polityka prywatności
+          </Link>{" "}
+          i{" "}
+          <Link href="/regulamin" className="link">
+            regulamin
           </Link>
         </p>
       </div>

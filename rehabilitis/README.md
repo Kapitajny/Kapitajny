@@ -2,8 +2,8 @@
 
 Strona gabinetu z podstronami: strona główna (z wyborem dolegliwości według okolic ciała), usługi, o gabinecie,
 cennik, FAQ i kontakt
-z formularzem prośby o kontakt, mapą dojazdu wczytywaną po zgodzie oraz dokumentami: polityką prywatności i
-informacją o plikach cookies.
+z formularzem prośby o kontakt, mapą dojazdu wczytywaną po zgodzie oraz dokumentami: regulaminem strony,
+polityką prywatności i informacją o plikach cookies.
 
 > **Wersja robocza.** Strona nie zawiera wymyślonych danych: telefon, e-mail, adres, godziny, ceny, dane
 > fizjoterapeuty i część odpowiedzi w FAQ są oznaczone „do uzupełnienia”. Dopóki brakuje danych kontaktowych,
@@ -56,7 +56,7 @@ src/data/faq.ts           ★ pytania i odpowiedzi ([[tekst]] = oznaczenie „do
 src/data/team.ts          ★ fizjoterapeuta: imię i nazwisko, wykształcenie, kwalifikacje, doświadczenie
 src/data/testimonials.ts  ★ prawdziwe opinie pacjentów (pusta lista = spokojny pusty stan)
 src/data/values.ts          zasady pracy gabinetu (strona główna i „O gabinecie”)
-src/app/                  podstrony: /, /uslugi, /o-gabinecie, /cennik, /faq, /kontakt, dokumenty, sitemap, robots, OG, API
+src/app/                  podstrony: /, /uslugi, /o-gabinecie, /cennik, /faq, /kontakt, dokumenty (regulamin, prywatność, cookies), sitemap, robots, OG, API
   api/contact             przyjmuje formularz i przekazuje go do gabinetu (e-mail lub webhook)
 src/components/home/      hero strony głównej, opinie
 src/components/sections/  sekcje wspólne (dolegliwości, karta usług, kroki wizyty, FAQ, formularz, mapa, zakończenie strony)
@@ -132,5 +132,7 @@ tekstu ≥ 4.5:1. Poza jednorazowym pojawieniem się dwóch zdjęć w hero ruch 
 - [ ] Opcjonalnie: `NEXT_PUBLIC_BOOKING_URL`, `NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY`.
 - [ ] Polityka prywatności i cookies: uzupełnić dane administratora, dostawców, okres przechowywania –
       i dać do weryfikacji prawnikowi.
+- [ ] Regulamin (`src/app/regulamin/page.tsx`): uzupełnić zasady odwoływania wizyt, spóźnień, płatności,
+      pakietów, termin rozpatrzenia reklamacji i datę wejścia w życie – i dać do weryfikacji prawnikowi.
 - [ ] Opinie: dodać tylko prawdziwe, za zgodą autorów.
 - [ ] Ustawić `NEXT_PUBLIC_SITE_URL`, HTTPS, a na końcu `NEXT_PUBLIC_ALLOW_INDEXING=true`.
