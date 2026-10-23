@@ -20,32 +20,60 @@ export interface ImageDefinition {
   alt: string;
   /** Sugerowane proporcje zdjęcia – tylko informacyjnie, zdjęcie jest kadrowane przez `object-fit: cover`. */
   aspect: string;
+  /** Punkt kadrowania (CSS `object-position`), żeby przy różnych proporcjach nie ucinać najważniejszego fragmentu. */
+  position: string;
   illustrative: boolean;
 }
 
 export const IMAGES = {
+  /** Hero i obraz udostępniania: praca z pacjentem w jasnym gabinecie. */
   hero: {
+    file: "terapia-biodra-gabinet.jpg",
+    alt: "Fizjoterapeutka zgina nogę pacjentki leżącej na stole terapeutycznym w jasnym gabinecie",
+    aspect: "3:2",
+    position: "40% 50%",
+    illustrative: true,
+  },
+  serviceIndividual: {
     file: "fizjoterapeuta-z-pacjentem.jpg",
     alt: "Fizjoterapeutka prowadzi ćwiczenie ruchomości biodra u pacjenta leżącego na boku na stole terapeutycznym",
     aspect: "1:1",
+    position: "50% 50%",
     illustrative: true,
   },
   serviceOrthopedic: {
-    file: "cwiczenia-z-tasma.jpg",
-    alt: "Pacjent leżący na stole terapeutycznym wykonuje ćwiczenie nogi z taśmą oporową pod kontrolą terapeuty",
-    aspect: "3:2",
+    file: "terapia-kolana.jpg",
+    alt: "Fizjoterapeutka obejmuje dłońmi zgięte kolano pacjenta leżącego na macie",
+    aspect: "5:4",
+    position: "55% 45%",
     illustrative: true,
   },
   serviceBack: {
     file: "cwiczenia-na-pilce.jpg",
     alt: "Ćwiczenie mobilności kręgosłupa na dużej piłce gimnastycznej z asekuracją terapeuty",
     aspect: "3:2",
+    position: "50% 50%",
+    illustrative: true,
+  },
+  serviceMassage: {
+    file: "terapia-manualna-bark.jpg",
+    alt: "Terapeutka pracuje dłońmi z barkiem i biodrem pacjentki leżącej na boku",
+    aspect: "3:2",
+    position: "55% 40%",
+    illustrative: true,
+  },
+  servicePostOp: {
+    file: "cwiczenia-z-tasma.jpg",
+    alt: "Pacjent leżący na stole terapeutycznym wykonuje ćwiczenie nogi z taśmą oporową pod kontrolą terapeuty",
+    aspect: "3:2",
+    position: "60% 40%",
     illustrative: true,
   },
   serviceExercise: {
     file: "cwiczenia-stabilizacyjne.jpg",
     alt: "Mężczyzna wykonuje na macie ćwiczenie stabilizacji tułowia z uniesioną ręką i nogą",
     aspect: "3:2",
+    position: "50% 50%",
     illustrative: true,
   },
   /** Miejsce na prawdziwe zdjęcie fizjoterapeuty – plik celowo jeszcze nie istnieje. */
@@ -53,6 +81,7 @@ export const IMAGES = {
     file: "fizjoterapeuta-portret.jpg",
     alt: "Portret fizjoterapeuty prowadzącego gabinet",
     aspect: "4:5",
+    position: "50% 30%",
     illustrative: false,
   },
   /** Miejsce na prawdziwe zdjęcie wnętrza gabinetu – plik celowo jeszcze nie istnieje. */
@@ -60,6 +89,7 @@ export const IMAGES = {
     file: "gabinet-wnetrze.jpg",
     alt: "Wnętrze gabinetu rehabilitacji",
     aspect: "16:10",
+    position: "50% 50%",
     illustrative: false,
   },
 } satisfies Record<string, ImageDefinition>;
@@ -75,6 +105,7 @@ export interface ResolvedImage {
   expectedPath: string;
   alt: string;
   illustrative: boolean;
+  position: string;
 }
 
 export type ImageManifest = Record<ImageKey, ResolvedImage>;

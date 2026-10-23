@@ -1,67 +1,47 @@
+import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { CONDITION_GROUPS } from "@/data/conditions";
+import { FIRST_VISIT, PRICES_ARE_EXAMPLES } from "@/data/pricing";
 import { BookingLink } from "@/components/ui/BookingLink";
-
-const STRENGTHS = [
-  { title: "Indywidualne podejście", text: "Na pierwszej wizycie mamy czas, żeby wysłuchać, z czym przychodzisz." },
-  { title: "Plan terapii dopasowany do potrzeb", text: "Ćwiczenia i tempo dobieramy do tego, co możesz dziś zrobić." },
-  { title: "Jasne zasady współpracy", text: "Przed rozpoczęciem terapii wiesz, ile potrwa wizyta i ile kosztuje." },
-];
+import { Photo, PhotoCaption } from "@/components/ui/Photo";
 
 /**
- * Hero zaczyna od pytania, z którym pacjent wchodzi na stronę: „co mnie boli?”.
- * Lista okolic ciała prowadzi prosto do opisu w sekcji „Z czym możesz przyjść?”.
+ * Hero: konkretny nagłówek (czym zajmuje się gabinet i komu pomaga), następny krok
+ * (umówienie wizyty) i najważniejsza informacja praktyczna – czas i cena pierwszej wizyty.
+ * Zdjęcie gabinetu dochodzi do prawej krawędzi ekranu na dużych ekranach.
  */
 export function Hero() {
   return (
-    <section aria-labelledby="hero-title" className="border-b border-line">
-      <div className="container-x grid gap-12 pb-14 pt-12 lg:grid-cols-[1.35fr_1fr] lg:gap-20 lg:pb-20 lg:pt-20">
-        <div>
-          <h1 id="hero-title" className="h1 max-w-[13ch]">
-            Odzyskaj swobodę ruchu. Zadbaj o siebie.
+    <section aria-labelledby="hero-title" className="relative border-b border-line">
+      <div className="page grid lg:min-h-[38rem] lg:grid-cols-2">
+        <div className="py-12 lg:py-20 lg:pr-14">
+          <h1 id="hero-title" className="text-h1">
+            Fizjoterapia i rehabilitacja po urazach, zabiegach i przy bólu kręgosłupa
           </h1>
-          <p className="mt-6 max-w-xl text-[1.2rem] leading-relaxed text-graphite">
-            Indywidualnie dopasowana rehabilitacja i fizjoterapia, które wspierają powrót do sprawności i pomagają zadbać o komfort codziennego życia.
-            {siteConfig.city ? ` Gabinet w ${siteConfig.city}.` : ""}
+          <p className="mt-6 max-w-[34rem] text-lead">
+            {siteConfig.name} to gabinet fizjoterapii{siteConfig.city ? ` w ${siteConfig.city}` : ""}. Pracujemy indywidualnie: od oceny i planu
+            terapii po ćwiczenia, które wykonujesz samodzielnie w domu.
           </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
             <BookingLink />
-            <a href="#uslugi" className="btn btn-outline">
-              Poznaj nasze usługi
-            </a>
+            <Link href="/cennik" className="btn btn-outline">
+              Zobacz cennik
+            </Link>
           </div>
+          {FIRST_VISIT?.duration && FIRST_VISIT.price && (
+            <p className="mt-6 text-small text-muted">
+              Pierwsza wizyta: {FIRST_VISIT.duration}, {FIRST_VISIT.price}
+              {PRICES_ARE_EXAMPLES ? " (cena przykładowa)" : ""}. Bez skierowania.
+            </p>
+          )}
         </div>
 
-        <nav aria-labelledby="hero-regions" className="hidden lg:block lg:pt-3">
-          <h2 id="hero-regions" className="font-sans text-xl font-bold tracking-normal">
-            Co Ci dolega?
-          </h2>
-          <ul className="mt-3 border-t border-graphite/20">
-            {CONDITION_GROUPS.map((group) => (
-              <li key={group.id} className="border-b border-graphite/20">
-                <a
-                  href={`#dolegliwosci-${group.id}`}
-                  className="group flex min-h-12 items-center justify-between gap-4 py-2.5 text-[1.05rem] text-ink hover:text-forest"
-                >
-                  {group.label}
-                  <span aria-hidden="true" className="text-sm text-muted group-hover:text-forest">
-                    zobacz
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <figure className="-mx-5 pb-8 md:-mx-8 lg:absolute lg:inset-y-0 lg:right-0 lg:mx-0 lg:w-[calc(50vw-1rem)] lg:max-w-[46rem] lg:pb-0">
+          <div className="media aspect-[3/2] rounded-none lg:aspect-auto lg:h-full">
+            <Photo image="hero" preload sizes="(min-width: 1024px) 50vw, 100vw" />
+          </div>
+          <PhotoCaption image="hero" className="px-5 md:px-8 lg:absolute lg:bottom-3 lg:left-4 lg:mt-0 lg:rounded-control lg:bg-white/90 lg:px-2 lg:py-0.5" />
+        </figure>
       </div>
-
-      <ul className="container-x grid gap-8 pb-12 md:grid-cols-3 md:gap-10 lg:pb-16">
-        {STRENGTHS.map((item) => (
-          <li key={item.title}>
-            <p className="font-bold text-ink">{item.title}</p>
-            <p className="mt-1 text-muted">{item.text}</p>
-          </li>
-        ))}
-      </ul>
     </section>
   );
 }

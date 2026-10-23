@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { CONDITION_GROUPS } from "@/data/conditions";
 import { getService } from "@/data/services";
@@ -15,7 +16,8 @@ export function Conditions() {
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const group = CONDITION_GROUPS[active];
 
-  // Linki z hero („Co Ci dolega?”) prowadzą do #dolegliwosci-<okolica> i otwierają właściwą zakładkę.
+  // Linki z indeksu na stronie głównej prowadzą do /uslugi#dolegliwosci-<okolica> i otwierają właściwą zakładkę.
+  // Takiego id nie ma na stronie, więc sami przewijamy do sekcji – w następnej klatce, po obsłudze przewijania przez router.
   useEffect(() => {
     const openFromHash = () => {
       const id = decodeURIComponent(window.location.hash.slice(1));
@@ -23,7 +25,7 @@ export function Conditions() {
       const index = CONDITION_GROUPS.findIndex((g) => `dolegliwosci-${g.id}` === id);
       if (index < 0) return;
       setActive(index);
-      document.getElementById("dolegliwosci")?.scrollIntoView();
+      requestAnimationFrame(() => document.getElementById("dolegliwosci")?.scrollIntoView());
     };
     openFromHash();
     window.addEventListener("hashchange", openFromHash);
@@ -44,12 +46,12 @@ export function Conditions() {
   };
 
   return (
-    <section id="dolegliwosci" aria-labelledby="dolegliwosci-title" className="section-y">
-      <div className="container-x">
-        <h2 id="dolegliwosci-title" className="h2">
+    <section id="dolegliwosci" aria-labelledby="dolegliwosci-title" className="py-section">
+      <div className="page">
+        <h2 id="dolegliwosci-title" className="text-h2">
           Z czym możesz przyjść?
         </h2>
-        <p className="section-intro">Wybierz, co Ci dokucza. Czy i jaka terapia jest wskazana, ustalimy razem po ocenie na pierwszej wizycie.</p>
+        <p className="mt-4 max-w-prose text-lead">Wybierz, co Ci dokucza. Czy i jaka terapia jest wskazana, ustalimy razem po ocenie na pierwszej wizycie.</p>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[17rem_1fr] lg:gap-10">
           <div role="tablist" aria-label="Okolica ciała" aria-orientation="vertical" className="flex flex-wrap gap-2 lg:flex-col lg:gap-1" onKeyDown={onKeyDown}>
@@ -68,10 +70,10 @@ export function Conditions() {
                   aria-controls={`${uid}-panel`}
                   tabIndex={selected ? 0 : -1}
                   onClick={() => setActive(i)}
-                  className={`min-h-11 rounded-[3px] border px-4 py-2 text-left transition-colors lg:rounded-none lg:border-0 lg:px-0 lg:py-2.5 ${
+                  className={`min-h-11 rounded-control border px-4 py-2 text-left transition-colors lg:rounded-none lg:border-0 lg:px-0 lg:py-2.5 ${
                     selected
-                      ? "border-forest bg-forest font-bold text-white lg:bg-transparent lg:text-forest lg:underline lg:decoration-2 lg:underline-offset-[6px]"
-                      : "border-graphite/25 bg-transparent text-graphite hover:border-forest lg:hover:text-forest"
+                      ? "border-brand bg-brand font-bold text-white lg:bg-transparent lg:text-brand lg:underline lg:decoration-2 lg:underline-offset-[6px]"
+                      : "border-line bg-transparent text-ink hover:border-brand lg:hover:text-brand"
                   }`}
                 >
                   {g.label}
@@ -86,16 +88,16 @@ export function Conditions() {
             id={`${uid}-panel`}
             aria-labelledby={`${uid}-tab-${group.id}`}
             tabIndex={0}
-            className="tab-panel-enter border-t-2 border-forest pt-6 lg:border-l-2 lg:border-t-0 lg:pl-10 lg:pt-1"
+            className="tab-panel-enter border-t-2 border-brand pt-6 lg:border-l-2 lg:border-t-0 lg:pl-10 lg:pt-1"
           >
-            <h3 className="font-serif text-[1.9rem] font-medium">{group.label}</h3>
+            <h3 className="text-h3">{group.label}</h3>
             <div className="mt-5 grid gap-8 md:grid-cols-2">
               <div>
                 <p className="font-semibold text-ink">Pacjenci zgłaszają się m.in. z powodu:</p>
                 <ul className="mt-3 space-y-2">
                   {group.problems.map((problem) => (
                     <li key={problem} className="flex gap-3">
-                      <span aria-hidden="true" className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-forest" />
+                      <span aria-hidden="true" className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
                       <span>{problem}</span>
                     </li>
                   ))}
@@ -103,8 +105,8 @@ export function Conditions() {
               </div>
               <div>
                 <p className="font-semibold text-ink">Jak pracujemy</p>
-                <p className="mt-3 text-graphite">{group.approach}</p>
-                <p className="mt-4 text-[0.95rem] text-muted">
+                <p className="mt-3 text-ink">{group.approach}</p>
+                <p className="mt-4 text-small text-muted">
                   Zwykle pasuje:{" "}
                   {group.services
                     .map((slug) => getService(slug)?.title)
@@ -114,10 +116,10 @@ export function Conditions() {
               </div>
             </div>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-[0.95rem] text-muted">Przy nagłym, silnym bólu po urazie, gorączce albo utracie czucia lub siły najpierw skontaktuj się z lekarzem.</p>
-              <a href="#kontakt" onClick={() => group.services[0] && selectService(group.services[0])} className="btn btn-primary shrink-0">
+              <p className="text-small text-muted">Przy nagłym, silnym bólu po urazie, gorączce albo utracie czucia lub siły najpierw skontaktuj się z lekarzem.</p>
+              <Link href="/kontakt#formularz" onClick={() => group.services[0] && selectService(group.services[0])} className="btn btn-primary shrink-0">
                 Zapytaj o wizytę
-              </a>
+              </Link>
             </div>
           </div>
         </div>

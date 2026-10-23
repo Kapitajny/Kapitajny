@@ -14,6 +14,13 @@ export function selectService(slug: string) {
   for (const listener of listeners) listener();
 }
 
+/** Formularz wywołuje to po podstawieniu usługi, żeby przy kolejnej wizycie na /kontakt pole było puste. */
+export function clearSelectedService() {
+  if (!selected) return;
+  selected = null;
+  for (const listener of listeners) listener();
+}
+
 function subscribe(listener: () => void) {
   listeners.add(listener);
   return () => listeners.delete(listener);

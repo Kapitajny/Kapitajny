@@ -16,7 +16,7 @@ export const siteConfig = {
   /** Nazwa marki – zmiana tutaj aktualizuje logo, tytuły stron, stopkę i metadane. */
   name: "REHABILITIS",
   /** Krótki opis pod logo. */
-  descriptor: "Gabinet fizjoterapii i rehabilitacji",
+  descriptor: "Fizjoterapia i rehabilitacja",
   /** Miasto do lokalnego SEO i nagłówków, np. "Gdańsk". `null` = nie pokazujemy. */
   city: null as string | null,
   description:
@@ -63,11 +63,11 @@ export const siteConfig = {
 
 export const mainNav = [
   { href: "/", label: "Strona główna" },
-  { href: "/#uslugi", label: "Usługi" },
-  { href: "/#o-gabinecie", label: "O gabinecie" },
-  { href: "/#cennik", label: "Cennik" },
-  { href: "/#faq", label: "FAQ" },
-  { href: "/#kontakt", label: "Kontakt" },
+  { href: "/uslugi", label: "Usługi" },
+  { href: "/o-gabinecie", label: "O gabinecie" },
+  { href: "/cennik", label: "Cennik" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/kontakt", label: "Kontakt" },
 ] as const;
 
 export const legalNav = [

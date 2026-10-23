@@ -16,11 +16,11 @@ export function Logo({ tone = "dark", onNavigate }: { tone?: "dark" | "light"; o
         alt=""
         width={44}
         height={44}
-        className="h-11 w-11 shrink-0"
+        className="h-10 w-10 shrink-0 sm:h-11 sm:w-11"
       />
       <span className="flex flex-col leading-none">
-        <span className={`text-[1.2rem] font-bold tracking-[0.04em] ${dark ? "text-forest" : "text-white"}`}>{siteConfig.name}</span>
-        <span className={`mt-1 whitespace-nowrap text-[0.78rem] ${dark ? "text-muted" : "text-white/75"}`}>{siteConfig.descriptor}</span>
+        <span className={`text-h3 font-bold tracking-[0.05em] ${dark ? "text-brand-strong" : "text-white"}`}>{siteConfig.name}</span>
+        <span className={`mt-1 whitespace-nowrap text-caption ${dark ? "text-muted" : "text-white/80"}`}>{siteConfig.descriptor}</span>
       </span>
     </Link>
   );

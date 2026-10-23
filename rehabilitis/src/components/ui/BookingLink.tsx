@@ -17,7 +17,7 @@ export function BookingLink({ className = "btn btn-primary", children = "Umów w
     );
   }
   return (
-    <Link href="/#kontakt" className={className} onClick={onClick}>
+    <Link href="/kontakt#formularz" className={className} onClick={onClick}>
       {children}
     </Link>
   );

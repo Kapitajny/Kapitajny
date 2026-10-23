@@ -1,7 +1,7 @@
 "use client";
 
 import { useStoredFlag } from "@/lib/use-stored-flag";
-import { MAP_CONSENT_KEY as CONSENT_KEY } from "@/components/home/MapEmbed";
+import { MAP_CONSENT_KEY as CONSENT_KEY } from "@/components/sections/MapEmbed";
 
 /** Pozwala cofnąć zgodę na wczytywanie mapy Google (zapisaną w localStorage). */
 export function MapConsentControl() {
@@ -9,7 +9,7 @@ export function MapConsentControl() {
   if (consent === null) return null;
 
   return (
-    <div className="my-6 flex flex-wrap items-center gap-4 rounded-xl border border-line bg-sand px-5 py-4 text-sm">
+    <div className="my-6 flex flex-wrap items-center gap-4 rounded-xl border border-line bg-brand-soft px-5 py-4 text-small">
       <p className="m-0 flex-1" aria-live="polite">
         {consent
           ? "Zgoda na wczytywanie mapy Google jest zapisana w tej przeglądarce."

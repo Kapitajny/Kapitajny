@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Atkinson_Hyperlegible_Next, Literata } from "next/font/google";
+import { Albert_Sans } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import { getImageManifest } from "@/lib/images.server";
 import { DraftNotice } from "@/components/layout/DraftNotice";
@@ -10,19 +10,11 @@ import { TopBar } from "@/components/layout/TopBar";
 import { ImagesProvider } from "@/components/ui/ImagesProvider";
 import "./globals.css";
 
-// Nagłówki: Literata (krój zaprojektowany do długiego czytania). Tekst: Atkinson Hyperlegible Next –
-// krój zaprojektowany z myślą o osobach słabowidzących, czytelny także dla starszych pacjentów.
-const literata = Literata({
-  variable: "--font-literata",
+// Jedna rodzina dla całej strony: Albert Sans – otwarte, czytelne kształty liter, ciepły
+// skandynawski charakter, klasyczne cyfry (ważne w cenniku) i pełne polskie znaki.
+const albert = Albert_Sans({
+  variable: "--font-albert",
   subsets: ["latin", "latin-ext"],
-  weight: ["500"],
-  display: "swap",
-});
-
-const atkinson = Atkinson_Hyperlegible_Next({
-  variable: "--font-atkinson",
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "700"],
   display: "swap",
 });
 
@@ -50,17 +42,17 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#23483d",
+  themeColor: "#0e3b2c",
   width: "device-width",
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pl" className={`${literata.variable} ${atkinson.variable}`} suppressHydrationWarning>
+    <html lang="pl" className={albert.variable} suppressHydrationWarning>
       <body className="flex min-h-dvh flex-col">
         <ImagesProvider manifest={manifest}>
-          <a href="#tresc" className="sr-only z-50 rounded-md bg-forest px-4 py-2 text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4">
+          <a href="#tresc" className="sr-only z-50 rounded-control bg-brand px-4 py-2 text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4">
             Przejdź do treści
           </a>
           <DraftNotice />

@@ -11,10 +11,10 @@ import { IMAGE_DIR, IMAGES, type ImageKey, type ImageManifest } from "@/config/i
 export function getImageManifest(): ImageManifest {
   const manifest = {} as ImageManifest;
   for (const key of Object.keys(IMAGES) as ImageKey[]) {
-    const { file, alt, illustrative } = IMAGES[key];
+    const { file, alt, illustrative, position } = IMAGES[key];
     const publicPath = `${IMAGE_DIR}/${file}`;
     const exists = existsSync(join(process.cwd(), "public", publicPath));
-    manifest[key] = { key, src: exists ? publicPath : null, expectedPath: `public${publicPath}`, alt, illustrative };
+    manifest[key] = { key, src: exists ? publicPath : null, expectedPath: `public${publicPath}`, alt, illustrative, position };
   }
   return manifest;
 }

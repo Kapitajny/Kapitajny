@@ -6,7 +6,7 @@ import type { ReactNode } from "react";
  */
 export function Pending({ children }: { children: ReactNode }) {
   return (
-    <span className="rounded bg-sand px-1.5 py-0.5 text-[0.9em] text-muted">
+    <span className="rounded-control bg-brand-soft px-1.5 py-0.5 text-muted">
       {children}: <span className="italic">do uzupełnienia</span>
     </span>
   );

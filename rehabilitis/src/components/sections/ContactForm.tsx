@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useId, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
 import { SERVICES } from "@/data/services";
 import {
   CONTACT_METHODS,
@@ -15,7 +15,7 @@ import {
   type ContactMethod,
   type TimePreference,
 } from "@/lib/contact";
-import { useSelectedService } from "@/lib/inquiry-store";
+import { clearSelectedService, useSelectedService } from "@/lib/inquiry-store";
 import { AlertIcon, CheckIcon, InfoIcon } from "@/components/ui/Icons";
 
 type Status = { kind: "idle" } | { kind: "sending" } | { kind: "success" } | { kind: "unavailable" | "error"; message: string };
@@ -67,6 +67,10 @@ export function ContactForm({ fallbackContact }: { fallbackContact: string | nul
     setAppliedSelection(selected.at);
     setForm((f) => ({ ...f, service: selected.slug }));
   }
+  // Wybór jest jednorazowy – po podstawieniu czyścimy go, żeby nie wracał przy kolejnym wejściu na stronę.
+  useEffect(() => {
+    if (selected) clearSelectedService();
+  }, [selected]);
 
   const update = <K extends keyof FormState>(key: K, value: FormState[K]) => {
     setForm((f) => ({ ...f, [key]: value }));
@@ -130,12 +134,12 @@ export function ContactForm({ fallbackContact }: { fallbackContact: string | nul
 
   if (status.kind === "success") {
     return (
-      <div ref={statusRef} tabIndex={-1} role="status" className="rounded-lg border border-success/40 bg-white p-8 outline-none">
-        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-sage text-success">
+      <div ref={statusRef} tabIndex={-1} role="status" className="border-t-2 border-success bg-white p-6 outline-none sm:p-8">
+        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-soft text-success">
           <CheckIcon size={24} />
         </span>
-        <h3 className="mt-5 text-2xl">Dziękujemy, zgłoszenie dotarło do gabinetu.</h3>
-        <p className="mt-3 max-w-lg text-graphite">
+        <h3 className="mt-5 text-h3">Dziękujemy, zgłoszenie dotarło do gabinetu.</h3>
+        <p className="mt-3 max-w-lg text-ink">
           Skontaktujemy się z Tobą wybraną drogą, aby ustalić dogodny termin. To jeszcze nie jest rezerwacja. Termin potwierdzimy
           podczas kontaktu.
         </p>
@@ -151,7 +155,7 @@ export function ContactForm({ fallbackContact }: { fallbackContact: string | nul
 
   return (
     <form ref={formRef} onSubmit={submit} noValidate aria-describedby={id("intro")} className="relative mt-4">
-      <p id={id("intro")} className="text-[0.95rem] text-muted">
+      <p id={id("intro")} className="text-small text-muted">
         Wysłanie formularza nie rezerwuje terminu. Odezwiemy się, żeby go razem ustalić. Pola z gwiazdką (*) są wymagane.
       </p>
 
@@ -183,8 +187,8 @@ export function ContactForm({ fallbackContact }: { fallbackContact: string | nul
             {(Object.keys(CONTACT_METHODS) as ContactMethod[]).map((method, i) => (
               <label
                 key={method}
-                className={`flex min-h-12 cursor-pointer items-center gap-3 rounded-md border px-4 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-forest/40 ${
-                  form.contactMethod === method ? "border-forest bg-sage/60" : errors.contactMethod ? "border-danger" : "border-[#bfc3bb] bg-white"
+                className={`flex min-h-12 cursor-pointer items-center gap-3 rounded-control border px-4 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand/40 ${
+                  form.contactMethod === method ? "border-brand bg-brand-soft" : errors.contactMethod ? "border-danger" : "border-[#8f968f] bg-white"
                 }`}
               >
                 <input
@@ -194,7 +198,7 @@ export function ContactForm({ fallbackContact }: { fallbackContact: string | nul
                   data-field={i === 0 ? "contactMethod" : undefined}
                   checked={form.contactMethod === method}
                   onChange={() => update("contactMethod", method)}
-                  className="h-4 w-4 accent-forest"
+                  className="h-4 w-4 accent-brand"
                 />
                 <span className="font-medium text-ink">{CONTACT_METHODS[method]}</span>
               </label>
@@ -330,7 +334,7 @@ export function ContactForm({ fallbackContact }: { fallbackContact: string | nul
             aria-describedby={describedBy("message", id("message-hint"))}
             className="field-input resize-y"
           />
-          <p id={id("message-hint")} className="mt-2 flex justify-between gap-4 text-sm text-muted">
+          <p id={id("message-hint")} className="mt-2 flex justify-between gap-4 text-small text-muted">
             <span>Nie musisz opisywać stanu zdrowia. Porozmawiamy o nim na wizycie.</span>
             <span aria-hidden="true" className="shrink-0 tabular-nums">
               {messageLength}/{MESSAGE_MAX_LENGTH}
@@ -350,7 +354,7 @@ export function ContactForm({ fallbackContact }: { fallbackContact: string | nul
         <button type="submit" className="btn btn-primary" disabled={sending} aria-disabled={sending}>
           {sending ? "Wysyłanie…" : "Wyślij prośbę o kontakt"}
         </button>
-        <p className="text-sm leading-relaxed text-muted">
+        <p className="text-small leading-relaxed text-muted">
           Dane wykorzystamy wyłącznie do odpowiedzi na zgłoszenie.{" "}
           <Link href="/polityka-prywatnosci" className="link">
             Polityka prywatności
@@ -362,11 +366,11 @@ export function ContactForm({ fallbackContact }: { fallbackContact: string | nul
         {(status.kind === "error" || status.kind === "unavailable") && (
           <div
             role="alert"
-            className={`mt-6 flex items-start gap-3 rounded-md px-4 py-3 text-[0.95rem] ${
-              status.kind === "error" ? "bg-danger/8 text-danger" : "bg-sand text-graphite"
+            className={`mt-6 flex items-start gap-3 rounded-control px-4 py-3 text-small ${
+              status.kind === "error" ? "bg-danger/8 text-danger" : "bg-brand-soft text-ink"
             }`}
           >
-            {status.kind === "error" ? <AlertIcon size={20} className="mt-0.5 shrink-0" /> : <InfoIcon size={20} className="mt-0.5 shrink-0 text-moss" />}
+            {status.kind === "error" ? <AlertIcon size={20} className="mt-0.5 shrink-0" /> : <InfoIcon size={20} className="mt-0.5 shrink-0 text-brand" />}
             <div>
               <p>{status.message}</p>
               {fallbackContact && <p className="mt-1 font-semibold">{fallbackContact}</p>}

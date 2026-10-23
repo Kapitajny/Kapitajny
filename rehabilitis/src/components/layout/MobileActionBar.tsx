@@ -6,7 +6,7 @@ import { PhoneIcon } from "@/components/ui/Icons";
 export function MobileActionBar() {
   const { phone } = siteConfig.contact;
   return (
-    <nav aria-label="Szybki kontakt" className="fixed inset-x-0 bottom-0 z-20 border-t border-line bg-paper px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 sm:hidden">
+    <nav aria-label="Szybki kontakt" className="fixed inset-x-0 bottom-0 z-20 border-t border-line bg-ivory px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 sm:hidden">
       <div className={`grid gap-3 ${phone ? "grid-cols-2" : "grid-cols-1"}`}>
         {phone && (
           <a href={phoneHref(phone)} className="btn btn-outline w-full">

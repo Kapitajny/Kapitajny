@@ -13,45 +13,58 @@ interface PhotoProps {
   preload?: boolean;
   /** Tekst w miejscu brakującego zdjęcia, np. „Zdjęcie fizjoterapeuty”. */
   placeholderLabel?: string;
+  /** Zdjęcie tylko ilustruje sąsiedni tekst (np. miniatura w linku) – pusty alt, żeby czytnik nie powtarzał opisu. */
+  decorative?: boolean;
 }
 
 /**
- * Zdjęcie z centralnej mapy `config/images.ts`.
- * Kontener rodzica musi mieć wymiary i `position: relative` – obraz wypełnia go z `object-fit: cover`.
- * Podpis (także informację „zdjęcie poglądowe”) daje komponent `PhotoCaption`. Brak pliku = spokojny placeholder.
+ * Zdjęcie z centralnej mapy `config/images.ts`, kadrowane według pola `position`.
+ * Kontener rodzica (klasa `.media`) nadaje proporcje – obraz wypełnia go z `object-fit: cover`.
+ * Podpis, w tym informację „zdjęcie poglądowe”, daje `PhotoCaption`. Brak pliku = spokojny placeholder.
  */
-export function Photo({ image, sizes, className = "", preload, placeholderLabel }: PhotoProps) {
+export function Photo({ image, sizes, className = "", preload, placeholderLabel, decorative }: PhotoProps) {
   const resolved = useImage(image);
 
   if (resolved.src) {
-    return <Image src={resolved.src} alt={resolved.alt} fill sizes={sizes} preload={preload} quality={85} className={`object-cover ${className}`} />;
+    return (
+      <Image
+        src={resolved.src}
+        alt={decorative ? "" : resolved.alt}
+        fill
+        sizes={sizes}
+        preload={preload}
+        quality={85}
+        className={`object-cover ${className}`}
+        style={{ objectPosition: resolved.position }}
+      />
+    );
   }
 
   // Brak pliku – wgraj zdjęcie pod ścieżkę `resolved.expectedPath` (patrz config/images.ts).
   return (
     <div
-      role="img"
-      aria-label={placeholderLabel ?? resolved.alt}
+      role={decorative ? undefined : "img"}
+      aria-label={decorative ? undefined : (placeholderLabel ?? resolved.alt)}
+      aria-hidden={decorative || undefined}
       data-missing-image={resolved.expectedPath}
-      className={`absolute inset-0 flex flex-col items-center justify-center gap-2 bg-sage px-6 text-center ${className}`}
+      className={`absolute inset-0 flex flex-col items-center justify-center gap-2 bg-brand-soft px-6 text-center text-brand ${className}`}
     >
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-moss" aria-hidden="true">
-        <rect x="3" y="5" width="18" height="14" rx="2" />
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+        <rect x="3" y="5" width="18" height="14" rx="1.5" />
         <circle cx="9" cy="10" r="2" />
         <path d="m21 16-5-5-8 8" />
       </svg>
-      {placeholderLabel && <span className="text-[0.95rem] font-medium text-moss">{placeholderLabel}</span>}
-      {process.env.NODE_ENV === "development" && <span className="font-mono text-[10px] text-graphite/60">{resolved.expectedPath}</span>}
+      {placeholderLabel && <span className="text-small font-bold">{placeholderLabel}</span>}
     </div>
   );
 }
 
 /** Podpis pod zdjęciem. Dla zdjęć oznaczonych `illustrative` dopisuje „zdjęcie poglądowe”. */
-export function PhotoCaption({ image, children }: { image: ImageKey; children?: React.ReactNode }) {
-  const { illustrative } = useImage(image);
-  if (!children && !illustrative) return null;
+export function PhotoCaption({ image, children, className = "" }: { image: ImageKey; children?: React.ReactNode; className?: string }) {
+  const { illustrative, src } = useImage(image);
+  if (!src || (!children && !illustrative)) return null;
   return (
-    <figcaption className="mt-2 text-[0.9rem] text-muted">
+    <figcaption className={`mt-2 text-caption text-muted ${className}`}>
       {children}
       {children && illustrative ? " " : ""}
       {illustrative && (children ? "(zdjęcie poglądowe)" : "Zdjęcie poglądowe")}

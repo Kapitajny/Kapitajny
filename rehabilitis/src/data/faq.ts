@@ -17,7 +17,7 @@ export const FAQ: FaqItem[] = [
     id: "pierwsza-wizyta",
     question: "Jak umówić się na pierwszą wizytę?",
     answer: [
-      "Najprościej zadzwonić lub wysłać formularz kontaktowy na dole strony. Wystarczy imię, preferowany sposób kontaktu i orientacyjny termin. Oddzwonimy lub odpiszemy, żeby razem ustalić dzień i godzinę.",
+      "Najprościej zadzwonić lub wysłać formularz na stronie Kontakt. Wystarczy imię, preferowany sposób kontaktu i orientacyjny termin. Oddzwonimy lub odpiszemy, żeby razem ustalić dzień i godzinę.",
       "Wysłanie formularza nie oznacza rezerwacji. Termin jest potwierdzony dopiero wtedy, gdy uzgodnimy go z Tobą telefonicznie lub mailowo.",
     ],
   },
@@ -41,8 +41,8 @@ export const FAQ: FaqItem[] = [
     id: "czas-trwania",
     question: "Ile trwa spotkanie?",
     answer: [
-      "Czas pierwszej wizyty: [[czas pierwszej wizyty]]. Kolejne spotkania: [[czas kolejnych wizyt]]. Aktualny czas poszczególnych usług znajdziesz w cenniku.",
-      "Liczba i częstotliwość wizyt są ustalane indywidualnie, po ocenie Twoich potrzeb.",
+      "Pierwsza wizyta jest dłuższa, bo obejmuje rozmowę i ocenę funkcjonalną. Czas każdej wizyty podajemy w cenniku przy poszczególnych usługach.",
+      "Liczbę i częstotliwość wizyt ustalamy indywidualnie, po ocenie Twoich potrzeb.",
     ],
   },
   {

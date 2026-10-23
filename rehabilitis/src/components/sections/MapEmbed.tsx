@@ -24,7 +24,7 @@ export function MapEmbed({ address }: { address: string }) {
   const [storedConsent, setConsent] = useStoredFlag(MAP_CONSENT_KEY);
 
   return (
-    <div className="relative h-72 overflow-hidden rounded-lg border border-line bg-sage sm:h-80">
+    <div className="relative h-72 overflow-hidden rounded-media border border-line bg-brand-soft sm:h-80">
       {storedConsent === true ? (
         <iframe
           title={`Mapa dojazdu: ${address}`}
@@ -36,9 +36,9 @@ export function MapEmbed({ address }: { address: string }) {
         />
       ) : (
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-          <PinIcon size={28} className="text-forest" />
-          <p className="mt-3 text-lg font-semibold text-ink">Mapa dojazdu</p>
-          <p className="mt-2 max-w-xs text-sm leading-relaxed text-graphite">
+          <PinIcon size={28} className="text-brand" />
+          <p className="mt-3 text-lead font-semibold text-ink">Mapa dojazdu</p>
+          <p className="mt-2 max-w-xs text-small leading-relaxed text-ink">
             Po wczytaniu mapy Google może zapisywać pliki cookie i otrzyma Twój adres IP.{" "}
             <Link href="/cookies" className="link">
               Więcej informacji
@@ -51,7 +51,7 @@ export function MapEmbed({ address }: { address: string }) {
             href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="link mt-3 text-sm"
+            className="link mt-3 text-small"
           >
             Otwórz w Mapach Google<span className="sr-only"> (nowa karta)</span>
           </a>

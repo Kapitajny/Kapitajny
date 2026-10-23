@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { mainNav, phoneHref, siteConfig } from "@/config/site";
 import { BookingLink } from "@/components/ui/BookingLink";
@@ -9,9 +10,11 @@ import { Modal } from "@/components/ui/Modal";
 import { Logo } from "./Logo";
 
 export function SiteHeader() {
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const close = () => setMenuOpen(false);
   const { phone } = siteConfig.contact;
+  const isCurrent = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
   // Menu mobilne zamykamy, gdy okno zostanie poszerzone do widoku desktopowego.
   useEffect(() => {
@@ -24,15 +27,19 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-30 border-b border-line bg-paper/95 backdrop-blur-sm">
-        <div className="container-x flex h-[4.25rem] items-center justify-between gap-6">
+      <header className="sticky top-0 z-30 border-b border-line bg-ivory/95 backdrop-blur-sm">
+        <div className="page flex h-header items-center justify-between gap-4">
           <Logo />
 
           <nav aria-label="Główna nawigacja" className="hidden lg:block">
             <ul className="flex items-center gap-1">
               {mainNav.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="rounded-md px-3 py-2 font-medium text-graphite transition-colors hover:bg-sage hover:text-forest">
+                  <Link
+                    href={item.href}
+                    aria-current={isCurrent(item.href) ? "page" : undefined}
+                    className="relative inline-flex min-h-11 items-center px-3 text-small text-ink transition-colors after:absolute after:inset-x-3 after:bottom-1.5 after:h-0.5 after:scale-x-0 after:bg-brand after:transition-transform hover:text-brand aria-[current=page]:font-bold aria-[current=page]:text-brand-strong aria-[current=page]:after:scale-x-100"
+                  >
                     {item.label}
                   </Link>
                 </li>
@@ -41,11 +48,17 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-2">
+            {phone && (
+              <a href={phoneHref(phone)} className="hidden items-center gap-2 px-2 text-small font-bold text-brand-strong hover:underline xl:inline-flex">
+                <PhoneIcon size={18} />
+                {phone}
+              </a>
+            )}
             <BookingLink className="btn btn-primary btn-sm hidden sm:inline-flex" />
             <button
               type="button"
               onClick={() => setMenuOpen(true)}
-              className="inline-flex h-11 items-center gap-2 rounded-md px-3 font-semibold text-forest hover:bg-sage lg:hidden"
+              className="inline-flex min-h-11 items-center gap-2 rounded-control px-2 font-bold text-brand-strong hover:bg-brand-soft lg:hidden"
               aria-haspopup="dialog"
               aria-expanded={menuOpen}
             >
@@ -58,21 +71,26 @@ export function SiteHeader() {
 
       <Modal open={menuOpen} onClose={close} labelledBy="mobile-menu-title" className="">
         <div className="flex h-full flex-col overflow-y-auto">
-          <div className="container-x flex h-[4.25rem] shrink-0 items-center justify-between border-b border-line">
+          <div className="page flex h-header shrink-0 items-center justify-between border-b border-line">
             <Logo onNavigate={close} />
-            <button type="button" onClick={close} className="inline-flex h-11 items-center gap-2 rounded-md px-3 font-semibold text-forest hover:bg-sage">
+            <button type="button" onClick={close} className="inline-flex min-h-11 items-center gap-2 rounded-control px-3 font-bold text-brand-strong hover:bg-brand-soft">
               <CloseIcon size={22} />
               Zamknij
             </button>
           </div>
-          <nav aria-labelledby="mobile-menu-title" className="container-x flex flex-1 flex-col pb-10 pt-4">
+          <nav aria-labelledby="mobile-menu-title" className="page flex flex-1 flex-col pb-10 pt-4">
             <h2 id="mobile-menu-title" className="sr-only">
               Menu
             </h2>
             <ul>
               {mainNav.map((item) => (
                 <li key={item.href} className="border-b border-line">
-                  <Link href={item.href} onClick={close} className="block py-4 text-xl font-semibold text-ink hover:text-forest">
+                  <Link
+                    href={item.href}
+                    onClick={close}
+                    aria-current={isCurrent(item.href) ? "page" : undefined}
+                    className="flex min-h-14 items-center text-h3 font-bold text-ink hover:text-brand aria-[current=page]:text-brand"
+                  >
                     {item.label}
                   </Link>
                 </li>

@@ -1,7 +1,7 @@
 # REHABILITIS – strona gabinetu rehabilitacji i fizjoterapii
 
-Jednostronicowa strona gabinetu (dolegliwości według okolic ciała, usługi, pierwsza wizyta, wartości, o gabinecie
-i zespół, cennik, opinie, FAQ, kontakt)
+Strona gabinetu z podstronami: strona główna, usługi (z wyborem dolegliwości według okolic ciała), o gabinecie,
+cennik, FAQ i kontakt
 z formularzem prośby o kontakt, mapą dojazdu wczytywaną po zgodzie oraz dokumentami: polityką prywatności i
 informacją o plikach cookies.
 
@@ -13,21 +13,16 @@ informacją o plikach cookies.
 
 - **Next.js 16** (App Router, Turbopack, Cache Components), **React 19**, **TypeScript**
 - **Tailwind CSS 4** – tokeny kolorów i typografii w `src/app/globals.css`
-- Kroje: **Literata** (nagłówki H1/H2) i **Atkinson Hyperlegible Next** (tekst; krój zaprojektowany dla osób
-  słabowidzących), ładowane przez `next/font`
+- Krój: **Albert Sans** (jedna rodzina dla całej strony), ładowany przez `next/font`
+- Design system: `DESIGN-SYSTEM.md` (kolory, typografia, odstępy, komponenty, zasady zdjęć)
 
 ### Kierunek wizualny
 
-Wygląd wzoruje się na praktycznych stronach lokalnych gabinetów fizjoterapii. Strona zaczyna się od pytania
-pacjenta „Co Ci dolega?” (lista okolic ciała prowadzi do opisu w sekcji „Z czym możesz przyjść?”). Dalej:
-usługi jako zwykła lista, zdjęcia z podpisami, kroki pierwszej wizyty z praktycznymi informacjami, cennik w
-tabeli i formularz. Bez kart, ramek i ozdobników typowych dla generowanych szablonów; teksty pisane prostymi
-zdaniami. Brakujące dane (telefon, adres, godziny) są ukrywane, a nie oznaczane w każdym miejscu – o wersji
-roboczej informuje jeden pasek u góry strony.
-- **Vitest** – testy walidacji formularza i API kontaktowego
-
-Wymagany **Node.js 22.13+**. Projekt jest niezależny od strony NOIR COFFEE z katalogu nadrzędnego – ma własne
-`package.json`, zależności i konfigurację.
+Spokojna, praktyczna strona lokalnego gabinetu: zieleń z logo jako kolor działań, kość słoniowa jako tło,
+treść ułożona w listy, tabele i indeksy zamiast powtarzalnych kart. Hero mówi wprost, czym zajmuje się gabinet,
+i pokazuje czas oraz cenę pierwszej wizyty. Każda podstrona ma własny układ (rozdziały usług z bocznym spisem,
+oś czasu pierwszej wizyty, tabele cennika, FAQ z panelem kontaktu). Brakujące dane kontaktowe są ukrywane,
+a o wersji roboczej informuje jeden pasek u góry strony.
 
 ## Uruchomienie
 
@@ -55,13 +50,15 @@ src/config/site.ts        ★ nazwa marki, telefon, e-mail, adres, godziny, dane
 src/config/images.ts      ★ zdjęcia: plik → miejsce na stronie, teksty alternatywne, oznaczenie „poglądowe”
 src/data/conditions.ts    ★ „Z czym możesz przyjść?” – dolegliwości według okolic ciała
 src/data/services.ts      ★ usługi (opis, zakres, zdjęcie, potwierdzenie przez gabinet)
-src/data/pricing.ts       ★ cennik, czas trwania, formy płatności
+src/data/pricing.ts       ★ cennik (PRZYKŁADOWE ceny – PRICES_ARE_EXAMPLES), czas trwania, formy płatności
 src/data/faq.ts           ★ pytania i odpowiedzi ([[tekst]] = oznaczenie „do uzupełnienia”)
 src/data/team.ts          ★ fizjoterapeuta: imię i nazwisko, wykształcenie, kwalifikacje, doświadczenie
 src/data/testimonials.ts  ★ prawdziwe opinie pacjentów (pusta lista = spokojny pusty stan)
-src/app/                  strona główna, polityka prywatności, cookies, sitemap, robots, obraz OG, API
+src/data/values.ts          zasady pracy gabinetu (strona główna i „O gabinecie”)
+src/app/                  podstrony: /, /uslugi, /o-gabinecie, /cennik, /faq, /kontakt, dokumenty, sitemap, robots, OG, API
   api/contact             przyjmuje formularz i przekazuje go do gabinetu (e-mail lub webhook)
-src/components/home/      sekcje strony głównej
+src/components/home/      sekcje strony głównej (hero, indeks dolegliwości, indeks usług, zapowiedź „O gabinecie”)
+src/components/sections/  sekcje wspólne (nagłówek podstrony, CTA, kroki wizyty, FAQ, cennik, formularz, mapa)
 src/components/layout/    nagłówek, stopka, pasek akcji na telefonach, pasek wersji roboczej
 src/lib/contact.ts        pola i walidacja formularza (wspólna dla przeglądarki i serwera)
 src/lib/server/           wysyłka zgłoszeń, limit żądań
@@ -122,7 +119,8 @@ tekstu ≥ 4.5:1. Ruch pojawia się tylko w odpowiedzi na działanie (menu, FAQ,
 
 - [ ] `src/config/site.ts`: telefon, e-mail, adres, godziny otwarcia, miasto, dane firmy (nazwa, NIP).
 - [ ] `src/data/services.ts`: potwierdzić usługi (`confirmed: true`) lub usunąć te, których gabinet nie świadczy.
-- [ ] `src/data/pricing.ts`: ceny, czas trwania, formy płatności; usunąć pakiety, jeśli nie są oferowane.
+- [ ] `src/data/pricing.ts`: wpisać PRAWDZIWE ceny i czasy (obecne są przykładowe), ustawić
+      `PRICES_ARE_EXAMPLES = false`, uzupełnić formy płatności; usunąć pakiety, jeśli nie są oferowane.
 - [ ] `src/data/team.ts`: imię i nazwisko, potwierdzone wykształcenie, kwalifikacje, doświadczenie;
       wgrać `public/images/rehab/fizjoterapeuta-portret.jpg` i `gabinet-wnetrze.jpg`.
 - [ ] `src/data/conditions.ts`: usunąć okolice/dolegliwości, z którymi gabinet nie pracuje.

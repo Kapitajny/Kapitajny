@@ -15,21 +15,21 @@ export interface LegalSection {
  */
 export function LegalPage({ title, intro, path, sections }: { title: string; intro: ReactNode; path: string; sections: LegalSection[] }) {
   return (
-    <div className="container-x pb-24 pt-10 lg:pb-32 lg:pt-14">
-      <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-forest">
+    <div className="page pb-24 pt-10 lg:pb-32 lg:pt-14">
+      <Link href="/" className="inline-flex items-center gap-2 text-small text-muted transition-colors hover:text-brand">
         <ArrowLeftIcon size={16} /> Strona główna
       </Link>
 
       <header className="mt-10 max-w-3xl">
-        <h1 className="h1">{title}</h1>
-        <div className="mt-6 text-lg leading-relaxed text-muted">{intro}</div>
+        <h1 className="text-h1">{title}</h1>
+        <div className="mt-6 text-lead leading-relaxed text-muted">{intro}</div>
       </header>
 
       <div
         role="note"
-        className="mt-10 flex max-w-3xl gap-3 rounded-xl border border-dashed border-moss/50 bg-sand px-5 py-4 text-sm leading-relaxed text-graphite"
+        className="mt-10 flex max-w-3xl gap-3 border-l-4 border-brand bg-brand-soft px-5 py-4 text-small leading-relaxed text-ink"
       >
-        <AlertIcon size={18} className="mt-0.5 shrink-0 text-moss" />
+        <AlertIcon size={18} className="mt-0.5 shrink-0 text-brand" />
         <p>
           <strong className="font-semibold">Projekt dokumentu, wersja robocza.</strong> Treść wymaga uzupełnienia danych administratora oraz weryfikacji
           przez prawnika przed publikacją strony. Nie stanowi porady prawnej. Fragmenty oznaczone „do uzupełnienia” zależą od decyzji właściciela gabinetu.
@@ -41,12 +41,12 @@ export function LegalPage({ title, intro, path, sections }: { title: string; int
           <div className="lg:sticky lg:top-24">
             <nav aria-label="Spis treści">
               <h2 className="mb-3 font-sans text-base font-semibold">Spis treści</h2>
-              <ol className="space-y-2 border-l border-line text-sm">
+              <ol className="space-y-2 border-l border-line text-small">
                 {sections.map((section, i) => (
                   <li key={section.id}>
                     <a
                       href={`#${section.id}`}
-                      className="-ml-px block border-l border-transparent py-1 pl-4 text-muted transition-colors hover:border-forest hover:text-forest"
+                      className="-ml-px block border-l border-transparent py-1 pl-4 text-muted transition-colors hover:border-brand hover:text-brand"
                     >
                       <span className="tabular-nums">{i + 1}.</span> {section.title}
                     </a>
