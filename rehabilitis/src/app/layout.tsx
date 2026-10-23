@@ -52,13 +52,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="pl" className={albert.variable} suppressHydrationWarning>
       <body className="flex min-h-dvh flex-col">
         <ImagesProvider manifest={manifest}>
-          <a href="#tresc" className="sr-only z-50 rounded-control bg-brand px-4 py-2 text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4">
+          <a href="#tresc" className="sr-only z-50 rounded-control bg-brand text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:px-4 focus:py-2">
             Przejdź do treści
           </a>
           <DraftNotice />
           <TopBar />
           <SiteHeader />
-          <main id="tresc" className="flex-1">
+          <main id="tresc" tabIndex={-1} className="flex-1 outline-none">
             {children}
           </main>
           <SiteFooter />

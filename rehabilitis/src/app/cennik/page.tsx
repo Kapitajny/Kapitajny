@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { PAYMENT_METHODS } from "@/data/pricing";
 import { CtaBand } from "@/components/sections/CtaBand";
@@ -6,11 +7,11 @@ import { ExamplePricesNote } from "@/components/sections/ExamplePricesNote";
 import { PageIntro } from "@/components/sections/PageIntro";
 import { PriceTable } from "@/components/sections/PriceTable";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Cennik – fizjoterapia, rehabilitacja i masaż leczniczy",
   description: "Ceny i czas trwania wizyt: konsultacja fizjoterapeutyczna, fizjoterapia indywidualna, rehabilitacja ortopedyczna i pooperacyjna, masaż leczniczy, pakiety wizyt.",
-  alternates: { canonical: "/cennik" },
-};
+  path: "/cennik",
+});
 
 export default function PricingPage() {
   return (

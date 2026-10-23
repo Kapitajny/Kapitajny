@@ -12,10 +12,12 @@ export function Modal({
   labelledBy,
   className,
   children,
+  id,
 }: {
   open: boolean;
   onClose: () => void;
   labelledBy: string;
+  id?: string;
   className: string;
   children: ReactNode;
 }) {
@@ -36,6 +38,7 @@ export function Modal({
   return (
     <dialog
       ref={ref}
+      id={id}
       aria-labelledby={labelledBy}
       className={`sheet ${className}`.trim()}
       onCancel={(event) => {

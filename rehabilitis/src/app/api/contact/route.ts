@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site";
 import { validateContact, type ContactInput } from "@/lib/contact";
 import { deliverContactRequest, getDeliveryConfig, isDeliveryConfigured } from "@/lib/server/contact-delivery";
 import { errorResponse, rateLimit, readJson } from "@/lib/server/http";
@@ -32,7 +33,9 @@ export async function POST(request: Request) {
     return errorResponse(
       503,
       "CONTACT_NOT_CONFIGURED",
-      "Formularz nie jest jeszcze podłączony, więc Twoje zgłoszenie nie zostało wysłane. Skontaktuj się z gabinetem telefonicznie lub mailowo.",
+      siteConfig.contact.phone || siteConfig.contact.email
+        ? "Formularz nie jest jeszcze podłączony, więc Twoje zgłoszenie nie zostało wysłane. Skontaktuj się z gabinetem telefonicznie lub mailowo."
+        : "Formularz nie jest jeszcze podłączony, więc Twoje zgłoszenie nie zostało wysłane. Strona jest w wersji roboczej – spróbuj ponownie po jej publikacji.",
     );
   }
 

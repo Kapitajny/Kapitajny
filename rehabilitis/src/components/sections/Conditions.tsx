@@ -25,7 +25,7 @@ export function Conditions() {
       const index = CONDITION_GROUPS.findIndex((g) => `dolegliwosci-${g.id}` === id);
       if (index < 0) return;
       setActive(index);
-      requestAnimationFrame(() => document.getElementById("dolegliwosci")?.scrollIntoView());
+      requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView());
     };
     openFromHash();
     window.addEventListener("hashchange", openFromHash);
@@ -48,13 +48,17 @@ export function Conditions() {
   return (
     <section id="dolegliwosci" aria-labelledby="dolegliwosci-title" className="py-section">
       <div className="page">
+        {/* Puste kotwice dla linków /uslugi#dolegliwosci-<okolica> – bez JavaScriptu przewijają do tej sekcji. */}
+        {CONDITION_GROUPS.map((g) => (
+          <span key={g.id} id={`dolegliwosci-${g.id}`} aria-hidden="true" className="block scroll-mt-28" />
+        ))}
         <h2 id="dolegliwosci-title" className="text-h2">
           Z czym możesz przyjść?
         </h2>
         <p className="mt-4 max-w-prose text-lead">Wybierz, co Ci dokucza. Czy i jaka terapia jest wskazana, ustalimy razem po ocenie na pierwszej wizycie.</p>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[17rem_1fr] lg:gap-10">
-          <div role="tablist" aria-label="Okolica ciała" aria-orientation="vertical" className="flex flex-wrap gap-2 lg:flex-col lg:gap-1" onKeyDown={onKeyDown}>
+          <div role="tablist" aria-label="Okolica ciała" className="flex flex-wrap gap-2 lg:flex-col lg:gap-1" onKeyDown={onKeyDown}>
             {CONDITION_GROUPS.map((g, i) => {
               const selected = i === active;
               return (

@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
+import Link from "next/link";
 import { formatAddress, phoneHref, siteConfig } from "@/config/site";
+import { FIRST_VISIT, PRICES_ARE_EXAMPLES } from "@/data/pricing";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { MapEmbed } from "@/components/sections/MapEmbed";
 import { PageIntro } from "@/components/sections/PageIntro";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Kontakt i umawianie wizyt",
   description: `Umów wizytę w gabinecie ${siteConfig.name}: telefon, e-mail, adres, godziny otwarcia i formularz prośby o kontakt.`,
-  alternates: { canonical: "/kontakt" },
-};
+  path: "/kontakt",
+});
 
 export default function ContactPage() {
   const { phone, email } = siteConfig.contact;
@@ -20,7 +23,11 @@ export default function ContactPage() {
     <>
       <PageIntro
         title="Kontakt i umawianie wizyt"
-        lead="Zadzwoń albo wyślij prośbę o kontakt. Oddzwonimy lub odpiszemy, żeby razem ustalić termin."
+        lead={
+          phone
+            ? "Zadzwoń albo wyślij prośbę o kontakt. Oddzwonimy lub odpiszemy, żeby razem ustalić termin."
+            : "Wyślij prośbę o kontakt. Oddzwonimy lub odpiszemy, żeby razem ustalić termin."
+        }
       />
 
       <div className="page grid gap-14 py-section lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-20">
@@ -88,6 +95,29 @@ export default function ContactPage() {
               <MapEmbed address={address} />
             </div>
           )}
+
+          <div className="mt-12 border-t border-line pt-6">
+            <h2 className="text-h3">Przed pierwszą wizytą</h2>
+            <ul className="mt-3 space-y-2">
+              {FIRST_VISIT?.duration && FIRST_VISIT.price && (
+                <li>
+                  Konsultacja trwa {FIRST_VISIT.duration} i kosztuje {FIRST_VISIT.price}
+                  {PRICES_ARE_EXAMPLES ? " (cena przykładowa)" : ""}.
+                </li>
+              )}
+              <li>Na wizytę prywatną nie potrzebujesz skierowania.</li>
+              <li>
+                <Link href="/o-gabinecie#pierwsza-wizyta" className="link">
+                  Jak wygląda pierwsza wizyta i co zabrać
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq" className="link">
+                  Najczęstsze pytania
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <section id="formularz" aria-labelledby="formularz-title" className="scroll-mt-28 border-t-2 border-brand-strong pt-6">

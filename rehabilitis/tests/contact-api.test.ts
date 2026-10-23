@@ -120,6 +120,14 @@ describe("POST /api/contact", () => {
     expect(response.status).toBe(502);
   });
 
+  it("nie pozwala obejść limitu, podając własny pierwszy adres w X-Forwarded-For", async () => {
+    const { clientIp } = await import("@/lib/server/http");
+    const forged = new Request("http://localhost/api/contact", { headers: { "x-forwarded-for": "1.2.3.4, 10.0.0.9" } });
+    expect(clientIp(forged)).toBe("10.0.0.9");
+    const realIp = new Request("http://localhost/api/contact", { headers: { "x-forwarded-for": "1.2.3.4", "x-real-ip": "10.0.0.8" } });
+    expect(clientIp(realIp)).toBe("10.0.0.8");
+  });
+
   it("ogranicza liczbę zgłoszeń z jednego adresu", async () => {
     const { POST } = await import("@/app/api/contact/route");
     const ip = nextIp();

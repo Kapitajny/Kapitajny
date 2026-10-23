@@ -73,8 +73,12 @@ export function normalizePhone(value: unknown): string | null {
   const raw = text(value);
   if (!/^\+?[\d\s()-]+$/.test(raw)) return null;
   const digits = raw.replace(/[\s()-]/g, "");
-  const count = digits.replace("+", "").length;
-  return count >= 9 && count <= 15 ? digits : null;
+  // Numer polski: 9 cyfr, opcjonalnie z prefiksem +48 lub 0048.
+  const polish = digits.match(/^(?:\+48|0048)?(\d{9})$/);
+  if (polish) return digits.startsWith("0048") ? `+48${polish[1]}` : digits;
+  if (/^(?:\+48|0048)/.test(digits)) return null;
+  // Numer zagraniczny: z prefiksem kraju, 7–15 cyfr.
+  return /^\+\d{7,15}$/.test(digits) ? digits : null;
 }
 
 export function validatePhone(value: unknown): string | null {

@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { phoneHref, siteConfig } from "@/config/site";
 import { FAQ } from "@/data/faq";
 import { FaqList } from "@/components/sections/FaqList";
 import { PageIntro } from "@/components/sections/PageIntro";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Najczęstsze pytania – skierowanie, pierwsza wizyta, płatność",
   description: "Czy potrzebuję skierowania do fizjoterapeuty? Jak przygotować się do wizyty, ile trwa spotkanie, co zabrać na rehabilitację i jak odwołać wizytę.",
-  alternates: { canonical: "/faq" },
-};
+  path: "/faq",
+});
 
 export default function FaqPage() {
   const { phone } = siteConfig.contact;
@@ -24,7 +25,7 @@ export default function FaqPage() {
           <h2 id="pytanie" className="text-h3">
             Nie ma tu Twojego pytania?
           </h2>
-          <p className="mt-2 text-small">Napisz lub zadzwoń. Odpowiemy przed wizytą.</p>
+          <p className="mt-2 text-small">{phone ? "Napisz lub zadzwoń." : "Napisz do nas."} Odpowiemy przed wizytą.</p>
           <div className="mt-5 grid gap-3">
             <Link href="/kontakt#formularz" className="btn btn-primary">
               Zadaj pytanie

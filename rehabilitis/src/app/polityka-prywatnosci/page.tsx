@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { formatAddress, siteConfig } from "@/config/site";
 import { LegalPage, type LegalSection } from "@/components/legal/LegalPage";
 import { Pending } from "@/components/ui/Pending";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Polityka prywatności",
   description: `Informacje o przetwarzaniu danych osobowych przez gabinet ${siteConfig.name}, w tym danych z formularza kontaktowego.`,
-  alternates: { canonical: "/polityka-prywatnosci" },
-};
+  path: "/polityka-prywatnosci",
+});
 
 export default function PrivacyPolicyPage() {
   const { legalName, nip } = siteConfig.company;

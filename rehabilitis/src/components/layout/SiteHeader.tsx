@@ -60,6 +60,7 @@ export function SiteHeader() {
               onClick={() => setMenuOpen(true)}
               className="inline-flex min-h-11 items-center gap-2 rounded-control px-2 font-bold text-brand-strong hover:bg-brand-soft lg:hidden"
               aria-haspopup="dialog"
+              aria-controls="menu-mobilne"
               aria-expanded={menuOpen}
             >
               <MenuIcon size={22} />
@@ -69,7 +70,7 @@ export function SiteHeader() {
         </div>
       </header>
 
-      <Modal open={menuOpen} onClose={close} labelledBy="mobile-menu-title" className="">
+      <Modal open={menuOpen} onClose={close} labelledBy="mobile-menu-title" className="" id="menu-mobilne">
         <div className="flex h-full flex-col overflow-y-auto">
           <div className="page flex h-header shrink-0 items-center justify-between border-b border-line">
             <Logo onNavigate={close} />

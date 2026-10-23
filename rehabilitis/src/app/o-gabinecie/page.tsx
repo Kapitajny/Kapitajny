@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { FIRST_VISIT, PRICES_ARE_EXAMPLES } from "@/data/pricing";
@@ -10,11 +11,11 @@ import { PageIntro } from "@/components/sections/PageIntro";
 import { VisitSteps } from "@/components/sections/VisitSteps";
 import { Photo, PhotoCaption } from "@/components/ui/Photo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "O gabinecie – podejście, pierwsza wizyta i fizjoterapeuci",
   description: `Jak pracujemy w gabinecie ${siteConfig.name}, jak wygląda pierwsza wizyta u fizjoterapeuty, co zabrać i kto prowadzi terapię.`,
-  alternates: { canonical: "/o-gabinecie" },
-};
+  path: "/o-gabinecie",
+});
 
 const BRING = ["wygodny strój, w którym można odsłonić bolące miejsce", "wyniki badań, wypisy ze szpitala, zalecenia lekarza", "skierowanie, jeśli je masz", "listę przyjmowanych leków"];
 
@@ -26,7 +27,11 @@ export default function AboutPage() {
     FIRST_VISIT?.duration
       ? `Pierwsza wizyta trwa ${FIRST_VISIT.duration}${FIRST_VISIT.price ? ` i kosztuje ${FIRST_VISIT.price}${PRICES_ARE_EXAMPLES ? " (cena przykładowa)" : ""}` : ""}.`
       : null,
-    siteConfig.bookingUrl ? "Termin zarezerwujesz online, telefonicznie lub przez formularz." : "Termin ustalisz telefonicznie lub przez formularz kontaktowy.",
+    siteConfig.bookingUrl
+      ? "Termin zarezerwujesz online lub przez formularz kontaktowy."
+      : siteConfig.contact.phone
+        ? "Termin ustalisz telefonicznie lub przez formularz kontaktowy."
+        : "Termin ustalisz przez formularz kontaktowy.",
   ].filter(Boolean) as string[];
 
   return (

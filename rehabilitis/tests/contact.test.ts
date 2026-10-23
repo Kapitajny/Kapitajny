@@ -58,10 +58,14 @@ describe("normalizePhone", () => {
   it.each([
     ["600 100 200", "600100200"],
     ["+48 600-100-200", "+48600100200"],
+    ["0048 600 100 200", "+48600100200"],
     ["(58) 123 45 67", "581234567"],
+    ["+49 30 1234567", "+49301234567"],
   ])("%s → %s", (input, expected) => expect(normalizePhone(input)).toBe(expected));
 
-  it.each(["12345", "600 100 2OO", "+48 600 100 200 300 400", ""])("odrzuca %s", (input) => expect(normalizePhone(input)).toBeNull());
+  it.each(["12345", "600 100 2OO", "+48 600 700 80", "+48 600 100 2000", "60010020", "6001002001", "+48 600 100 200 300 400", ""])("odrzuca %s", (input) =>
+    expect(normalizePhone(input)).toBeNull(),
+  );
 });
 
 describe("validatePreferredDate", () => {

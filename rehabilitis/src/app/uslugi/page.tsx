@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import { SERVICES } from "@/data/services";
 import { PRICES_ARE_EXAMPLES, priceForService } from "@/data/pricing";
 import { Conditions } from "@/components/sections/Conditions";
@@ -7,12 +8,11 @@ import { InquiryButton } from "@/components/sections/InquiryButton";
 import { PageIntro } from "@/components/sections/PageIntro";
 import { Photo, PhotoCaption } from "@/components/ui/Photo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Usługi – fizjoterapia, rehabilitacja ortopedyczna i pooperacyjna, masaż leczniczy",
-  description:
-    "Fizjoterapia indywidualna, rehabilitacja ortopedyczna i pooperacyjna, terapia bólu pleców i karku, masaż leczniczy i ćwiczenia usprawniające. Opis usług, czas wizyt i ceny.",
-  alternates: { canonical: "/uslugi" },
-};
+  description: "Fizjoterapia indywidualna, rehabilitacja ortopedyczna i pooperacyjna, terapia bólu pleców i karku, masaż leczniczy i ćwiczenia usprawniające. Opis usług, czas wizyt i ceny.",
+  path: "/uslugi",
+});
 
 export default function ServicesPage() {
   const hasUnconfirmed = SERVICES.some((s) => !s.confirmed);

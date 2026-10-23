@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/config/site";
 import { LegalPage, type LegalSection } from "@/components/legal/LegalPage";
 import { MapConsentControl } from "@/components/legal/MapConsentControl";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Pliki cookies",
   description: `Informacje o plikach cookies i pamięci przeglądarki na stronie ${siteConfig.name}.`,
-  alternates: { canonical: "/cookies" },
-};
+  path: "/cookies",
+});
 
 export default function CookiesPage() {
   const sections: LegalSection[] = [

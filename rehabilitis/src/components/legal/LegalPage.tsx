@@ -61,7 +61,7 @@ export function LegalPage({ title, intro, path, sections }: { title: string; int
           {sections.map((section, i) => (
             <section key={section.id} aria-labelledby={section.id}>
               <h2 id={section.id}>
-                <span className="mr-2 tabular-nums">{i + 1}.</span>
+                <span className="mr-2 tabular-nums">{i + 1}.</span>{" "}
                 {section.title}
               </h2>
               {section.content}
