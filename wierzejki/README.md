@@ -102,7 +102,8 @@ Brakujące zdjęcie zastępuje plansza z opisem kadru (w trybie demo) – gotowa
 | `produkcja.jpg` | zakład z lotu ptaka – przekazane przez ComputerIT (1200×675 px) – **do potwierdzenia** |
 | `szynka-deska.jpg` | szynka w siatce na desce – materiał firmy (288×288 px) – **użycie wymaga zgody** |
 | `biala-kielbasa.jpg` | biała kiełbasa – kadr z grafiki firmy przekazanej przez ComputerIT, bez znaku firmy (237×296 px) – **użycie wymaga zgody**; na stronie „Jakość i produkcja” stoi w miejscu zdjęcia z wędzarni (`smokehouse`), dopóki takie nie powstanie |
-| `kariera.jpg` | obsługa przy ladzie stoiska z szyldem Wierzejki – przekazane przez ComputerIT (416×480 px) – **do potwierdzenia, w tym zgoda osób na zdjęciu** |
+| `kariera.jpg` | obsługa przy ladzie stoiska z szyldem Wierzejki (sekcja o pracy na stronie głównej) – przekazane przez ComputerIT (416×480 px) – **do potwierdzenia, w tym zgoda osób na zdjęciu** |
+| `kariera-lada.jpg` | sprzedawczynie przy ladzie pod szyldem Wierzejki (strona „Kariera”) – przekazane przez ComputerIT (547×365 px) – **do potwierdzenia, w tym zgoda osób na zdjęciu** |
 | pozostałe (3) | brak (`rzemioslo.jpg`, `wedzarnia.jpg`, `dla-biznesu.jpg`) – w środowisku, w którym powstała koncepcja, banki zdjęć były niedostępne |
 
 Zasady: zdjęcia oznaczone `mustBeAuthentic` (zakład, ludzie, sklep) muszą pochodzić od firmy. Zdjęcia poglądowe

@@ -25,7 +25,7 @@ export default function CareersPage() {
     <>
       <PageIntro
         variant="split"
-        media="careers"
+        media="careersCounter"
         crumbs={[{ href: "/kariera", label: "Kariera" }]}
         title="Praca w Wierzejkach"
         lead={<p>Zakład w Płudach, transport i sklepy firmowe. Praca przy mięsie – w produkcji, w logistyce i przy ladzie.</p>}

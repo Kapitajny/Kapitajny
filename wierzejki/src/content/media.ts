@@ -143,6 +143,14 @@ export const MEDIA = {
     mustBeAuthentic: true,
     position: "50% 10%",
   },
+  careersCounter: {
+    file: "kariera-lada.jpg",
+    alt: "Sprzedawczynie za ladą z wędlinami pod szyldem Wierzejki, przed ladą klienci",
+    brief: "Sprzedawcy przy ladzie stoiska Wierzejki; docelowo wersja min. 2000 px szerokości, za zgodą osób",
+    aspect: "3:2",
+    credit: "Zdjęcie przekazane przez ComputerIT (547×365 px) – źródło, prawa do publikacji i zgoda osób widocznych na zdjęciu do potwierdzenia z firmą",
+    mustBeAuthentic: true,
+  },
 } satisfies Record<string, MediaDefinition>;
 
 export type MediaKey = keyof typeof MEDIA;
