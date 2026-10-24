@@ -93,7 +93,9 @@ Brakujące zdjęcie zastępuje plansza z opisem kadru (w trybie demo) – gotowa
 | Plik | Status |
 | --- | --- |
 | `zaklad-pludy.jpg` | zdjęcie lotnicze zakładu przekazane przez ComputerIT (500×375 px) – **źródło i prawa do publikacji do potwierdzenia**, docelowo wersja min. 2000 px |
-| pozostałe (10) | brak – w środowisku, w którym powstała koncepcja, banki zdjęć były niedostępne |
+| `sklep-firmowy.jpg` | zdjęcie stoiska patronackiego Wierzejki przekazane przez ComputerIT (547×365 px) – **do potwierdzenia** |
+| `katalog-mies-okladka.jpg` | okładka katalogu mięs (materiał firmy, widoczne na niej oficjalne logo) – **użycie wymaga zgody** |
+| pozostałe (8) | brak – w środowisku, w którym powstała koncepcja, banki zdjęć były niedostępne |
 
 Zasady: zdjęcia oznaczone `mustBeAuthentic` (zakład, ludzie, sklep) muszą pochodzić od firmy. Zdjęcia poglądowe
 (np. stockowe) wolno użyć tylko dla produktów i nigdy z podpisem sugerującym, że przedstawiają zakład Wierzejki.

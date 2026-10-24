@@ -15,9 +15,12 @@ export function SalesNetwork() {
             Hurtownie firmowe obsługują odbiorców na Mazowszu i Lubelszczyźnie. Sklepy firmowe prowadzą sprzedaż detaliczną – ich lista trafi
             do wyszukiwarki po potwierdzeniu adresów przez firmę.
           </p>
-          <div className="relative mt-10 hidden aspect-[3/2] overflow-hidden bg-linen lg:block">
-            <Photo media="shop" sizes="38vw" />
-          </div>
+          <figure className="mt-10">
+            <div className="relative aspect-[3/2] overflow-hidden bg-linen">
+              <Photo media="shop" sizes="(min-width: 1024px) 38vw, 100vw" />
+            </div>
+            <figcaption className="ui mt-3 text-[0.8125rem] text-muted">Stoisko patronackie Wierzejki – mięso, wędliny, drób</figcaption>
+          </figure>
         </div>
 
         <div className="lg:col-span-6 lg:col-start-7">

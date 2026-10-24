@@ -98,11 +98,18 @@ export const MEDIA = {
   },
   shop: {
     file: "sklep-firmowy.jpg",
-    alt: "Lada w sklepie firmowym Wierzejki",
-    brief: "Lada sklepu firmowego z ekspozycją wędlin, sprzedawca w tle",
+    alt: "Pawilon handlowy ze stoiskiem patronackim Wierzejki – szyld „Mięso, wędliny, drób” i flaga firmy",
+    brief: "Punkt sprzedaży z szyldem Wierzejki; docelowo wersja min. 2000 px szerokości",
     aspect: "3:2",
-    credit: null,
+    credit: "Zdjęcie przekazane przez ComputerIT (547×365 px) – źródło i prawa do publikacji do potwierdzenia z firmą",
     mustBeAuthentic: true,
+  },
+  catalogMeat: {
+    file: "katalog-mies-okladka.jpg",
+    alt: "Okładka katalogu mięs Zakładu Mięsnego Wierzejki",
+    brief: "Okładka katalogu mięs (materiał firmy)",
+    aspect: "5:7",
+    credit: "Okładka katalogu firmy przekazana przez ComputerIT – materiał Zakładu Mięsnego Wierzejki, użycie wymaga zgody",
   },
   careers: {
     file: "kariera.jpg",

@@ -161,10 +161,23 @@ export default async function CategoryPage({ params }: PageProps<"/produkty/[kat
         lead={<p>{category.intro}</p>}
       >
         {category.catalog && (
-          <a href={category.catalog.href} className="btn btn-outline" target="_blank" rel="noopener noreferrer">
-            <DownloadIcon size={18} />
-            {category.catalog.label}
-          </a>
+          <div className="flex items-end gap-5">
+            {category.catalog.cover && (
+              <a
+                href={category.catalog.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative block aspect-[5/7] w-24 shrink-0 overflow-hidden border border-line bg-surface shadow-[0_12px_28px_-16px_rgb(34_37_42/0.55)] transition-transform hover:-translate-y-0.5 sm:w-28"
+              >
+                <Photo media={category.catalog.cover} sizes="112px" />
+                <span className="sr-only">{category.catalog.label} (otwiera się w nowej karcie)</span>
+              </a>
+            )}
+            <a href={category.catalog.href} className="btn btn-outline" target="_blank" rel="noopener noreferrer">
+              <DownloadIcon size={18} />
+              {category.catalog.label}
+            </a>
+          </div>
         )}
       </PageIntro>
 

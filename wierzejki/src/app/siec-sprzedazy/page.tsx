@@ -6,6 +6,7 @@ import { pageMetadata } from "@/lib/metadata";
 import { PageIntro } from "@/components/layout/PageIntro";
 import { LocationFinder } from "@/components/locations/LocationFinder";
 import { DemoNote } from "@/components/ui/DemoNote";
+import { Photo } from "@/components/ui/Photo";
 
 export const metadata = pageMetadata({
   title: "Sieć sprzedaży – hurtownie i sklepy firmowe",
@@ -31,9 +32,17 @@ export default function SalesNetworkPage() {
 
       <section aria-labelledby="sklepy-firmowe" className="border-t border-line bg-surface py-16 lg:py-20">
         <div className="container-x grid gap-8 lg:grid-cols-12">
-          <h2 id="sklepy-firmowe" className="display-lg lg:col-span-5">
-            Sklepy firmowe
-          </h2>
+          <div className="lg:col-span-5">
+            <h2 id="sklepy-firmowe" className="display-lg">
+              Sklepy firmowe
+            </h2>
+            <figure className="mt-8">
+              <div className="relative aspect-[3/2] overflow-hidden bg-linen">
+                <Photo media="shop" sizes="(min-width: 1024px) 38vw, 100vw" />
+              </div>
+              <figcaption className="ui mt-3 text-[0.8125rem] text-muted">Stoisko patronackie Wierzejki – mięso, wędliny, drób</figcaption>
+            </figure>
+          </div>
           <div className="lg:col-span-6 lg:col-start-7">
             {retailStores.length === 0 ? (
               <p>

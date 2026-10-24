@@ -30,7 +30,7 @@ export interface Category {
   /** Akapit otwierający podstronę. */
   intro: string;
   media: MediaKey;
-  catalog: { label: string; href: string } | null;
+  catalog: { label: string; href: string; cover?: MediaKey } | null;
 }
 
 /** Strona z katalogami na dotychczasowej witrynie – działa jako zastępczy link do PDF. */
@@ -45,7 +45,7 @@ export const categories: Category[] = [
     intro:
       "Ubój i rozbiór odbywają się w zakładzie w Płudach. Odbiorcy hurtowi kupują półtusze, ćwierćtusze i elementy, klienci sklepów firmowych – mięso porcjowane na co dzień.",
     media: "categoryMeat",
-    catalog: { label: "Katalog mięsa (PDF, dotychczasowa strona)", href: LEGACY_CATALOGS_URL },
+    catalog: { label: "Katalog mięs (dotychczasowa strona)", href: LEGACY_CATALOGS_URL, cover: "catalogMeat" },
   },
   {
     id: "wedliny",
