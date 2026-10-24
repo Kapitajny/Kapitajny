@@ -24,7 +24,7 @@ export function BusinessOffer() {
           </h2>
           <p className="lead mt-6 max-w-[38rem] text-on-dark/85">
             Mięso, wędliny i wyroby garmażeryjne z jednego zakładu. Własne samochody docierają na terenie województw lubelskiego i
-            mazowieckiego, a cztery hurtownie firmowe działają w {listPl(wholesalePoints.map((w) => w.cityLocative))}.
+            mazowieckiego, a cztery hurtownie firmowe działają w {listPl(wholesalePoints.map((w) => w.cityLocative ?? w.city))}.
           </p>
 
           <ul className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2">

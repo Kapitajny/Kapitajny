@@ -82,7 +82,7 @@ function CategoryFeature({ category }: { category: Category }) {
               <p className="mt-6 text-[1rem]">
                 Rozbiorem i porcjowaniem mięsa zajmuje się także{" "}
                 <Link href={`/siec-sprzedazy/${porcjowanie.slug}`} className="link font-semibold">
-                  hurtownia w {porcjowanie.cityLocative}
+                  hurtownia w {porcjowanie.cityLocative ?? porcjowanie.city}
                 </Link>
                 .
               </p>

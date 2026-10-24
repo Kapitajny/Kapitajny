@@ -120,7 +120,7 @@ export default function BusinessPage() {
               Asortyment i hurtownie
             </h2>
             <p className="mt-5 max-w-[30rem] text-muted">
-              Hurtownie firmowe działają w {listPl(wholesalePoints.map((w) => w.cityLocative))}. Katalogi PDF zawierają pełną listę
+              Hurtownie firmowe działają w {listPl(wholesalePoints.map((w) => w.cityLocative ?? w.city))}. Katalogi PDF zawierają pełną listę
               wyrobów.
             </p>
           </div>

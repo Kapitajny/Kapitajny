@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { retailStores, wholesalePoints } from "@/content/locations";
+import { citySummary, pluralPl } from "@/lib/locations-search";
 import { PinIcon } from "@/components/ui/Icons";
 import { Photo } from "@/components/ui/Photo";
 
@@ -12,8 +13,8 @@ export function SalesNetwork() {
             Gdzie kupić wyroby z&nbsp;Wierzejek
           </h2>
           <p className="mt-6 max-w-[32rem] text-ink/85">
-            Hurtownie firmowe obsługują odbiorców na Mazowszu i Lubelszczyźnie. Sklepy firmowe prowadzą sprzedaż detaliczną – ich lista trafi
-            do wyszukiwarki po potwierdzeniu adresów przez firmę.
+            Hurtownie firmowe obsługują odbiorców na Mazowszu i Lubelszczyźnie, a sklepy firmowe działają m.in. w Warszawie, Łodzi, Lublinie i
+            Siedlcach. Wyszukiwarka pokaże najbliższy punkt i drogę dojazdu.
           </p>
           <figure className="mt-10">
             <div className="relative aspect-[3/2] overflow-hidden bg-linen">
@@ -41,14 +42,11 @@ export function SalesNetwork() {
 
           <div className="mt-10 border border-dashed border-linen-deep bg-surface p-6">
             <h3 className="display-sm">Sklepy firmowe</h3>
-            {retailStores.length > 0 ? (
-              <p className="mt-2 text-muted">W wyszukiwarce znajdziesz {retailStores.length} sklepów z adresami i godzinami otwarcia.</p>
-            ) : (
-              <p className="mt-2 text-[1rem] text-muted">
-                Moduł jest gotowy na listę sklepów z adresami, godzinami i mapą. Do czasu jej uzupełnienia o najbliższy sklep zapytaj w
-                sekretariacie.
-              </p>
-            )}
+            <p className="mt-2 text-[1rem] text-muted">
+              W wyszukiwarce: {retailStores.length} {pluralPl(retailStores.length, "sklep", "sklepy", "sklepów")} w{" "}
+              {citySummary(retailStores).length} {pluralPl(citySummary(retailStores).length, "miejscowości", "miejscowościach", "miejscowościach")}, z mapą i
+              wyszukiwaniem po ulicy lub kodzie pocztowym.
+            </p>
             <Link href="/siec-sprzedazy" className="btn btn-ink mt-5">
               Otwórz wyszukiwarkę punktów
             </Link>

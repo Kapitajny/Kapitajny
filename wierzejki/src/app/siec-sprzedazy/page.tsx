@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getDepartment } from "@/content/company";
 import { retailStores } from "@/content/locations";
 import { telHref } from "@/lib/format";
+import { pluralPl } from "@/lib/locations-search";
 import { pageMetadata } from "@/lib/metadata";
 import { PageIntro } from "@/components/layout/PageIntro";
 import { LocationFinder } from "@/components/locations/LocationFinder";
@@ -10,18 +11,20 @@ import { Photo } from "@/components/ui/Photo";
 
 export const metadata = pageMetadata({
   title: "Sieć sprzedaży – hurtownie i sklepy firmowe",
-  description: "Hurtownie firmowe Wierzejki w Siedlcach, Łukowie, Otwocku i Warszawie. Wyszukiwarka punktów sprzedaży z mapą.",
+  description: "Hurtownie i sklepy firmowe Wierzejki w Warszawie, Łodzi, Lublinie, Siedlcach, Łukowie, Otwocku i okolicach. Wyszukiwarka punktów z mapą.",
   path: "/siec-sprzedazy",
 });
 
 export default function SalesNetworkPage() {
   const secretariat = getDepartment("sekretariat");
+  const woltCount = retailStores.filter((s) => s.verification === "wolt").length;
+  const catalogCount = retailStores.filter((s) => s.verification === "katalog").length;
   return (
     <>
       <PageIntro
         crumbs={[{ href: "/siec-sprzedazy", label: "Sieć sprzedaży" }]}
         title="Gdzie kupić"
-        lead={<p>Hurtownie firmowe na Mazowszu i Lubelszczyźnie oraz sklepy firmowe Wierzejki.</p>}
+        lead={<p>Hurtownie i sklepy firmowe Wierzejki na Mazowszu, Lubelszczyźnie i w Łodzi. Szukaj po miejscowości, ulicy lub kodzie pocztowym.</p>}
       />
 
       <section aria-label="Wyszukiwarka punktów sprzedaży" className="py-14 lg:py-20">
@@ -44,21 +47,18 @@ export default function SalesNetworkPage() {
             </figure>
           </div>
           <div className="lg:col-span-6 lg:col-start-7">
-            {retailStores.length === 0 ? (
-              <p>
-                Firma prowadzi własną sieć sklepów mięsnych. Ich aktualna lista z adresami i godzinami otwarcia zostanie dodana do wyszukiwarki
-                po potwierdzeniu przez firmę. O najbliższy sklep zapytaj w sekretariacie:{" "}
-                <a href={telHref(secretariat.phones[0].display)} className="link font-semibold">
-                  {secretariat.phones[0].display}
-                </a>
-                .
-              </p>
-            ) : (
-              <p>Wszystkie sklepy firmowe znajdziesz w wyszukiwarce powyżej – wybierz rodzaj punktu „Sklep firmowy”.</p>
-            )}
+            <p>
+              Firma prowadzi własną sieć sklepów mięsnych. Wyszukiwarka zawiera {retailStores.length}{" "}
+              {pluralPl(retailStores.length, "sklep", "sklepy", "sklepów")}: {woltCount} z aktywną stroną w serwisie Wolt i {catalogCount} z katalogów firm.
+              Przy każdym punkcie widać, skąd pochodzi adres. Jeśli chcesz mieć pewność przed wizytą, zadzwoń do sekretariatu:{" "}
+              <a href={telHref(secretariat.phones[0].display)} className="link font-semibold">
+                {secretariat.phones[0].display}
+              </a>
+              .
+            </p>
             <DemoNote className="mt-6">
-              W katalogach internetowych są adresy sklepów Wierzejki, ale część wpisów ma kilka lat. Koncepcja nie przenosi ich bez
-              potwierdzenia – listę uzupełnia się w pliku <code>src/content/locations.ts</code>.
+              Firma nie publikuje dziś pełnej listy sklepów. Adresy zebrano z serwisu Wolt i katalogów firm – część wpisów katalogowych może być
+              nieaktualna. Po otrzymaniu listy od firmy wystarczy podmienić dane w pliku <code>src/content/locations.ts</code>.
             </DemoNote>
             <Link href="/dla-biznesu" className="btn btn-outline mt-8">
               Oferta dla biznesu
