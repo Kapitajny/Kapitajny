@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useId, useRef, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from "react";
 import {
   BUSINESS_TYPES,
   CONSENT_TEXT,
@@ -17,7 +17,12 @@ import {
 } from "@/lib/contact";
 import { CheckIcon, InfoIcon } from "@/components/ui/Icons";
 
-type Status = { kind: "idle" } | { kind: "sending" } | { kind: "sent" } | { kind: "error"; message: string; notConfigured?: boolean };
+type Status =
+  | { kind: "idle" }
+  | { kind: "sending" }
+  | { kind: "sent" }
+  | { kind: "demo"; snapshot: ContactPayload }
+  | { kind: "error"; message: string };
 
 interface ContactFormProps {
   variant: "general" | "b2b";
@@ -41,8 +46,16 @@ export function ContactForm({ variant, configured, defaultTopic, fallback }: Con
   const [errors, setErrors] = useState<ContactErrors>({});
   const [status, setStatus] = useState<Status>({ kind: "idle" });
   const formRef = useRef<HTMLFormElement>(null);
+  const resultRef = useRef<HTMLDivElement>(null);
   const uid = useId();
   const id = (name: string) => `${uid}-${name}`;
+
+  // Panel wyniku zastępuje formularz – przewijamy do niego i przenosimy fokus, żeby wynik był od razu widoczny.
+  useEffect(() => {
+    if (status.kind !== "sent" && status.kind !== "demo") return;
+    resultRef.current?.focus({ preventScroll: true });
+    resultRef.current?.scrollIntoView({ block: "start" });
+  }, [status.kind]);
 
   const b2b = isB2BTopic(data.topic);
   const topic = getTopic(data.topic);
@@ -79,15 +92,16 @@ export function ContactForm({ variant, configured, defaultTopic, fallback }: Con
         setData(emptyPayload(initialTopic));
         return;
       }
+      if (result.error?.code === "CONTACT_NOT_CONFIGURED") {
+        // Wersja pokazowa: serwer sprawdził dane, ale skrzynka firmy nie jest jeszcze podłączona.
+        setStatus({ kind: "demo", snapshot: data });
+        return;
+      }
       if (result.error?.fields) {
         setErrors(result.error.fields);
         focusFirstError(result.error.fields);
       }
-      setStatus({
-        kind: "error",
-        message: result.error?.message ?? "Nie udało się wysłać wiadomości. Spróbuj ponownie.",
-        notConfigured: result.error?.code === "CONTACT_NOT_CONFIGURED",
-      });
+      setStatus({ kind: "error", message: result.error?.message ?? "Nie udało się wysłać wiadomości. Spróbuj ponownie." });
     } catch {
       setStatus({ kind: "error", message: "Brak połączenia z serwerem. Sprawdź internet i spróbuj ponownie." });
     }
@@ -95,13 +109,68 @@ export function ContactForm({ variant, configured, defaultTopic, fallback }: Con
 
   if (status.kind === "sent") {
     return (
-      <div role="status" className="border border-success/40 bg-surface p-8">
+      <div ref={resultRef} tabIndex={-1} role="status" className="border border-success/40 bg-surface p-8 outline-none">
         <CheckIcon size={32} className="text-success" />
         <p className="display-md mt-4">Wiadomość wysłana</p>
         <p className="mt-3 max-w-[32rem] text-muted">Trafiła do: {topic?.department ?? "sekretariatu"}. Odpowiemy na podany adres e-mail.</p>
         <button type="button" className="btn btn-outline mt-6" onClick={() => setStatus({ kind: "idle" })}>
           Napisz kolejną wiadomość
         </button>
+      </div>
+    );
+  }
+
+  if (status.kind === "demo") {
+    const d = status.snapshot;
+    const t = getTopic(d.topic);
+    const rows: [string, string][] = [
+      ["Temat", t?.label ?? d.topic],
+      ...(isB2BTopic(d.topic)
+        ? ([
+            ["Firma", d.company],
+            ["Rodzaj działalności", d.businessType],
+            ["NIP", d.nip],
+            ["Region dostaw", d.region],
+            ["Asortyment", d.interests.join(", ")],
+          ] as [string, string][])
+        : []),
+      [isB2BTopic(d.topic) ? "Osoba kontaktowa" : "Imię i nazwisko", d.name],
+      ["E-mail", d.email],
+      ["Telefon", d.phone],
+      ["Wiadomość", d.message],
+    ].filter(([, v]) => v.trim() !== "") as [string, string][];
+    return (
+      <div ref={resultRef} tabIndex={-1} role="status" className="border border-green/40 bg-surface p-6 sm:p-8 outline-none">
+        <CheckIcon size={32} className="text-green" />
+        <p className="display-md mt-4">Formularz działa – wiadomość jest gotowa</p>
+        <p className="mt-3 max-w-[40rem]">
+          Dane przeszły sprawdzenie w przeglądarce i na serwerze. To wersja pokazowa strony: nie jest jeszcze połączona ze skrzynką firmy, więc
+          wiadomość nie została wysłana. Po podłączeniu trafi do: <strong>{t?.department ?? "sekretariatu"}</strong>.
+        </p>
+        <dl className="ui mt-6 divide-y divide-line border-y border-line text-[0.9375rem]">
+          {rows.map(([k, v]) => (
+            <div key={k} className="grid gap-1 py-2.5 sm:grid-cols-[11rem_1fr] sm:gap-4">
+              <dt className="text-muted">{k}</dt>
+              <dd className="whitespace-pre-line break-words">{v}</dd>
+            </div>
+          ))}
+        </dl>
+        <div className="ui mt-5 text-[0.9375rem] text-muted">Pilna sprawa? {fallback}</div>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <button type="button" className="btn btn-outline" onClick={() => setStatus({ kind: "idle" })}>
+            Popraw dane
+          </button>
+          <button
+            type="button"
+            className="btn btn-ink"
+            onClick={() => {
+              setData(emptyPayload(initialTopic));
+              setStatus({ kind: "idle" });
+            }}
+          >
+            Wypełnij od nowa
+          </button>
+        </div>
       </div>
     );
   }
@@ -122,8 +191,8 @@ export function ContactForm({ variant, configured, defaultTopic, fallback }: Con
         <p id={id("demo")} className="ui flex items-start gap-3 border-l-2 border-red bg-surface px-4 py-3 text-[0.875rem] leading-relaxed">
           <InfoIcon size={18} className="mt-0.5 shrink-0 text-red" />
           <span>
-            <strong className="font-semibold">Tryb demonstracyjny.</strong> Formularz sprawdza dane, ale nie wysyła wiadomości, dopóki firma
-            nie podłączy skrzynki pocztowej. Zadzwoń lub napisz bezpośrednio na adres działu.
+            <strong className="font-semibold">Wersja pokazowa.</strong> Formularz działa i sprawdza dane, a po wypełnieniu pokaże gotową wiadomość.
+            Wysyłka do skrzynki firmy włącza się po jej podłączeniu.
           </span>
         </p>
       )}
@@ -368,7 +437,7 @@ export function ContactForm({ variant, configured, defaultTopic, fallback }: Con
       {status.kind === "error" && (
         <div role="alert" className="ui border border-danger/40 bg-surface px-4 py-4 text-[0.9375rem]">
           <p className="font-semibold text-danger">{status.message}</p>
-          {status.notConfigured && <div className="mt-3 text-ink">{fallback}</div>}
+          <div className="mt-3 text-ink">{fallback}</div>
         </div>
       )}
 
