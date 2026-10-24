@@ -140,7 +140,7 @@ export default async function LocationPage({ params }: PageProps<"/siec-sprzedaz
           </ul>
           <Link href="/siec-sprzedazy" className="btn btn-outline mt-8">
             <ArrowLeft size={18} />
-            Wróć do wyszukiwarki
+            Wróć do spisu punktów
           </Link>
         </div>
       </nav>

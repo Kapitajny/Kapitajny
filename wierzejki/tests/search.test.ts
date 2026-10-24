@@ -3,7 +3,7 @@ import { allLocations, retailStores, wholesalePoints } from "@/content/locations
 import { productGroups } from "@/content/products";
 import { filterGroups } from "@/lib/catalog";
 import { listPl, normalizeForSearch, telHref } from "@/lib/format";
-import { EMPTY_FILTER, citySummary, groupByCity, pluralPl, searchLocations } from "@/lib/locations-search";
+import { cityAnchor, citySummary, groupByCity, pluralPl } from "@/lib/locations-search";
 
 describe("format", () => {
   it("buduje link tel: z zapisu numeru", () => {
@@ -17,37 +17,25 @@ describe("format", () => {
   });
 });
 
-describe("searchLocations", () => {
-  const all = EMPTY_FILTER;
-  it("znajduje hurtownię bez polskich znaków", () => {
-    const found = searchLocations(allLocations, { ...all, query: "lukow" });
-    expect(found.map((l) => l.city)).toContain("Łuków");
-    expect(found.map((l) => l.street)).toContain("ul. Łukowska 16");
+describe("spis punktów sprzedaży", () => {
+  const groups = groupByCity(allLocations);
+  it("każdy punkt trafia do dokładnie jednej grupy miasta", () => {
+    expect(new Set(groups.map((g) => g.city)).size).toBe(groups.length);
+    expect(groups.reduce((n, g) => n + g.items.length, 0)).toBe(allLocations.length);
+    expect(groups.every((g) => g.items.every((l) => l.city === g.city))).toBe(true);
   });
-  it("filtruje po województwie", () => {
-    expect(searchLocations(allLocations, { ...all, region: "lubelskie" })).toHaveLength(
-      allLocations.filter((l) => l.region === "lubelskie").length,
-    );
+  it("miasta od największej liczby punktów, w mieście najpierw hurtownia", () => {
+    expect(groups[0].city).toBe("Warszawa");
+    const siedlce = groups.find((g) => g.city === "Siedlce")!;
+    expect(siedlce.items[0].type).toBe("hurtownia");
   });
-  it("zwraca pustą listę dla nieznanej miejscowości", () => {
-    expect(searchLocations(allLocations, { ...all, query: "Gdańsk" })).toEqual([]);
+  it("kotwice miast są bez polskich znaków i unikalne", () => {
+    expect(cityAnchor("Łódź")).toBe("punkty-lodz");
+    expect(cityAnchor("Ząbki")).toBe("punkty-zabki");
+    expect(new Set(groups.map((g) => cityAnchor(g.city))).size).toBe(groups.length);
   });
   it("każdy punkt ma unikalny adres URL", () => {
     expect(new Set(allLocations.map((l) => l.slug)).size).toBe(allLocations.length);
-  });
-  it("szuka po kodzie pocztowym i numerze sklepu", () => {
-    expect(searchLocations(allLocations, { ...all, query: "03-361" }).map((l) => l.street)).toEqual(["ul. Ludwika Kondratowicza 23"]);
-    expect(searchLocations(allLocations, { ...all, query: "nr 45" }).map((l) => l.street)).toEqual(["ul. Złota 67"]);
-  });
-  it("filtruje po miejscowości i stawia hurtownie przed sklepami", () => {
-    const siedlce = searchLocations(allLocations, { ...all, city: "Siedlce" });
-    expect(siedlce.every((l) => l.city === "Siedlce")).toBe(true);
-    expect(siedlce[0].type).toBe("hurtownia");
-  });
-  it("grupuje wyniki po miejscowości bez powtórzeń", () => {
-    const groups = groupByCity(searchLocations(allLocations, all));
-    expect(new Set(groups.map((g) => g.city)).size).toBe(groups.length);
-    expect(groups.reduce((n, g) => n + g.items.length, 0)).toBe(allLocations.length);
   });
   it("każdy sklep ma źródło, a sklepy z Wolt także link", () => {
     expect(retailStores.every((s) => s.source && s.verification !== "firma")).toBe(true);

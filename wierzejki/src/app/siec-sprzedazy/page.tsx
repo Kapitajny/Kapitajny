@@ -5,13 +5,13 @@ import { telHref } from "@/lib/format";
 import { pluralPl } from "@/lib/locations-search";
 import { pageMetadata } from "@/lib/metadata";
 import { PageIntro } from "@/components/layout/PageIntro";
-import { LocationFinder } from "@/components/locations/LocationFinder";
+import { LocationDirectory } from "@/components/locations/LocationDirectory";
 import { DemoNote } from "@/components/ui/DemoNote";
 import { Photo } from "@/components/ui/Photo";
 
 export const metadata = pageMetadata({
   title: "Sieć sprzedaży – hurtownie i sklepy firmowe",
-  description: "Hurtownie i sklepy firmowe Wierzejki w Warszawie, Łodzi, Lublinie, Siedlcach, Łukowie, Otwocku i okolicach. Wyszukiwarka punktów z mapą.",
+  description: "Hurtownie i sklepy firmowe Wierzejki w Warszawie, Łodzi, Lublinie, Siedlcach, Łukowie, Otwocku i okolicach. Spis punktów z adresami i trasą dojazdu.",
   path: "/siec-sprzedazy",
 });
 
@@ -24,12 +24,12 @@ export default function SalesNetworkPage() {
       <PageIntro
         crumbs={[{ href: "/siec-sprzedazy", label: "Sieć sprzedaży" }]}
         title="Gdzie kupić"
-        lead={<p>Hurtownie i sklepy firmowe Wierzejki na Mazowszu, Lubelszczyźnie i w Łodzi. Szukaj po miejscowości, ulicy lub kodzie pocztowym.</p>}
+        lead={<p>Hurtownie i sklepy firmowe Wierzejki na Mazowszu, Lubelszczyźnie i w Łodzi. Wybierz miejscowość i sprawdź adresy oraz trasę dojazdu.</p>}
       />
 
-      <section aria-label="Wyszukiwarka punktów sprzedaży" className="py-14 lg:py-20">
+      <section aria-label="Spis punktów sprzedaży" className="py-12 lg:py-16">
         <div className="container-x">
-          <LocationFinder />
+          <LocationDirectory />
         </div>
       </section>
 
@@ -48,7 +48,7 @@ export default function SalesNetworkPage() {
           </div>
           <div className="lg:col-span-6 lg:col-start-7">
             <p>
-              Firma prowadzi własną sieć sklepów mięsnych. Wyszukiwarka zawiera {retailStores.length}{" "}
+              Firma prowadzi własną sieć sklepów mięsnych. Spis zawiera {retailStores.length}{" "}
               {pluralPl(retailStores.length, "sklep", "sklepy", "sklepów")}: {woltCount} z aktywną stroną w serwisie Wolt i {catalogCount} z katalogów firm.
               Przy każdym punkcie widać, skąd pochodzi adres. Jeśli chcesz mieć pewność przed wizytą, zadzwoń do sekretariatu:{" "}
               <a href={telHref(secretariat.phones[0].display)} className="link font-semibold">
