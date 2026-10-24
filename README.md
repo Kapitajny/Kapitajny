@@ -1,5 +1,9 @@
 # NOIR COFFEE – strona kawiarni z zamówieniami online
 
+> **W tym repozytorium są dwa niezależne projekty.** Poniżej opis strony kawiarni NOIR COFFEE (katalog główny).
+> Koncepcja redesignu witryny Zakładu Mięsnego Wierzejki (ComputerIT) znajduje się w katalogu
+> [`wierzejki/`](wierzejki/README.md) – ma własne zależności, skrypty uruchamiania i dokumentację.
+
 Strona fikcyjnej kawiarni NOIR COFFEE z Gdańska: menu 10 kaw z personalizacją, koszyk, wybór lokalu i godziny
 odbioru, płatności Stripe Checkout potwierdzane webhookiem oraz projekty dokumentów prawnych.
 
