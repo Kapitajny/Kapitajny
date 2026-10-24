@@ -113,10 +113,10 @@ export const MEDIA = {
   },
   business: {
     file: "dla-biznesu.jpg",
-    alt: "Załadunek towaru do samochodu chłodni",
-    brief: "Załadunek skrzynek do chłodni przy rampie, ruch, poranek",
+    alt: "Dwie osoby w odzieży ochronnej w chłodni; jedna wskazuje wózki z zawieszonymi kiełbasami",
+    brief: "Oprowadzanie gościa po chłodni z wyrobami; docelowo wersja min. 2000 px szerokości",
     aspect: "3:2",
-    credit: null,
+    credit: "Zdjęcie przekazane przez ComputerIT (852×568 px) – źródło, prawa do publikacji i zgoda osób na zdjęciu do potwierdzenia z firmą",
     mustBeAuthentic: true,
   },
   shop: {

@@ -105,7 +105,8 @@ Brakujące zdjęcie zastępuje plansza z opisem kadru (w trybie demo) – gotowa
 | `wedzarnia.jpg` | pracownik między wózkami z wędzonymi kiełbasami (strona „Jakość i produkcja”) – przekazane przez ComputerIT (1200×675 px) – **do potwierdzenia, w tym zgoda osoby na zdjęciu** |
 | `kariera.jpg` | obsługa przy ladzie stoiska z szyldem Wierzejki (sekcja o pracy na stronie głównej) – przekazane przez ComputerIT (416×480 px) – **do potwierdzenia, w tym zgoda osób na zdjęciu** |
 | `kariera-lada.jpg` | sprzedawczynie przy ladzie pod szyldem Wierzejki (strona „Kariera”) – przekazane przez ComputerIT (547×365 px) – **do potwierdzenia, w tym zgoda osób na zdjęciu** |
-| pozostałe | brak `dla-biznesu.jpg` (załadunek do chłodni, strona „Dla biznesu”); `rzemioslo.jpg` (zdefiniowane, obecnie nieużywane) – w środowisku, w którym powstała koncepcja, banki zdjęć były niedostępne |
+| `dla-biznesu.jpg` | dwie osoby w chłodni przy wózkach z kiełbasami (strona „Dla biznesu”) – przekazane przez ComputerIT (852×568 px) – **do potwierdzenia, w tym zgoda osób na zdjęciu** |
+| pozostałe | `rzemioslo.jpg` – zdefiniowane, obecnie nieużywane – w środowisku, w którym powstała koncepcja, banki zdjęć były niedostępne |
 
 Zasady: zdjęcia oznaczone `mustBeAuthentic` (zakład, ludzie, sklep) muszą pochodzić od firmy. Zdjęcia poglądowe
 (np. stockowe) wolno użyć tylko dla produktów i nigdy z podpisem sugerującym, że przedstawiają zakład Wierzejki.
