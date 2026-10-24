@@ -165,6 +165,10 @@ Strony są generowane statycznie; serwer jest potrzebny tylko dla `/api/kontakt`
 - **Vercel:** nowy projekt z katalogiem głównym `wierzejki/`, zmienne z tabeli powyżej.
 - **Własny serwer / VPS:** `npm ci && npm run build && npm start` (port przez `PORT` lub `-p`), za reverse proxy z HTTPS.
   Limit żądań formularza działa w pamięci procesu – przy kilku instancjach zastąp go współdzielonym (np. Redis).
+- **Hosting bez Node.js (sam FTP):** nie wystarczy – formularz i przekierowania wymagają serwera Node.js ≥ 22.13.
+- **Pokaz koncepcji dla klienta:** zostaw `NEXT_PUBLIC_DEMO_MODE=true` i `NEXT_PUBLIC_ALLOW_INDEXING=false`, publikuj pod
+  adresem roboczym (np. `*.vercel.app`), nie pod domeną firmy, najlepiej z ochroną hasłem. Bez podłączonej skrzynki
+  formularz sprawdza dane i pokazuje gotową wiadomość z informacją, że w wersji pokazowej nie została wysłana.
 
 ## Struktura
 
