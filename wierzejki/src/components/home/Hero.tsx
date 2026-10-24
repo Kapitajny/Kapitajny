@@ -44,10 +44,10 @@ export function Hero() {
         </div>
 
         <div className="relative lg:col-span-5">
-          <div className="relative ml-auto aspect-[4/5] w-full max-w-[34rem] overflow-hidden bg-linen lg:max-w-none">
+          <div className="relative ml-auto aspect-[4/5] w-full max-w-[34rem] overflow-hidden bg-linen sm:aspect-square lg:max-w-none">
             <Photo media="hero" sizes="(min-width: 1024px) 38vw, 100vw" preload tone="dark" />
           </div>
-          <Seal className="hero-fade absolute -left-2 -top-8 w-36 rotate-[-8deg] sm:w-44 lg:-left-20 lg:top-12 lg:w-52" />
+          <Seal className="hero-fade absolute -bottom-8 right-2 w-36 rotate-[-8deg] sm:w-44 lg:-left-20 lg:bottom-10 lg:right-auto lg:w-52" />
         </div>
       </div>
 

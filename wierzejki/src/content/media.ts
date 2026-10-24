@@ -30,10 +30,10 @@ export interface MediaDefinition {
 export const MEDIA = {
   hero: {
     file: "hero-wedliny.jpg",
-    alt: "Wędzonki i kiełbasy ułożone na bukowej desce",
-    brief: "Wędzonki i pęta kiełbasy na desce, ciemne tło, miękkie światło z boku",
-    aspect: "4:5",
-    credit: null,
+    alt: "Szynka z piersi indyka Wierzejki w kawałku i w plastrach na kamiennej desce",
+    brief: "Szynka z piersi indyka na łupku; docelowo oryginał w wysokiej rozdzielczości",
+    aspect: "1:1",
+    credit: "Zdjęcie produktu przekazane przez ComputerIT (kadr z oryginału 1200×674 px) – materiał firmy, użycie wymaga zgody",
   },
   aboutPlant: {
     file: "zaklad-pludy.jpg",
@@ -60,10 +60,10 @@ export const MEDIA = {
   },
   categoryCharcuterie: {
     file: "kategoria-wedliny.jpg",
-    alt: "Pokrojone wędliny i kiełbasy na desce",
-    brief: "Wędliny krojone w plastry i pęto kiełbasy, ujęcie pod kątem 45°",
-    aspect: "4:5",
-    credit: null,
+    alt: "Pęta wędzonej kiełbasy Wierzejki na kamiennej desce, jedna przekrojona",
+    brief: "Kiełbasy na łupku; docelowo oryginał w wysokiej rozdzielczości",
+    aspect: "16:9",
+    credit: "Zdjęcie produktu przekazane przez ComputerIT (kadr z oryginału 739×415 px) – materiał firmy, użycie wymaga zgody",
   },
   categoryReadyMeals: {
     file: "kategoria-garmaz.jpg",
