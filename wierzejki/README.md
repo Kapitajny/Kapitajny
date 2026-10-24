@@ -40,7 +40,7 @@ npm run lint && npm run typecheck && npm test && npm run build
 
 1. `npm run build && npm start` na laptopie (bez internetu działa wszystko poza mapą Google i linkami do katalogów PDF).
 2. Zacznij od strony głównej (pierwszy ekran, ścieżki „Na skróty”), potem: Produkty → Wędliny, Oferta dla biznesu
-   (formularz B2B), Sieć sprzedaży (spis punktów po miastach), Kariera, Kontakt.
+   (formularz B2B), Gdzie kupić (hurtownie, sklepy firmowe), Kariera, Kontakt.
 3. Strona **/o-koncepcji** zbiera źródła danych, status zdjęć i listę rzeczy do potwierdzenia przez firmę – dobra
    podstawa rozmowy.
 4. Pokaz online: wdroż na prywatny podgląd (np. Vercel – projekt z katalogu `wierzejki/`, z zabezpieczeniem hasłem)
@@ -58,7 +58,7 @@ npm run lint && npm run typecheck && npm test && npm run build
 | `/produkty/mieso`, `/wedliny`, `/wyroby-garmazeryjne` | grupy asortymentowe, linki do katalogów PDF, blok właściwy dla kategorii |
 | `/dla-biznesu` | segmenty odbiorców, etapy współpracy, hurtownie, sekcja dla hodowców, formularz zapytania B2B |
 | `/jakosc-i-produkcja` | etapy ubój → rozbiór → przetwórstwo → sprzedaż, wyróżnienia, miejsce na systemy jakości |
-| `/siec-sprzedazy`, `/siec-sprzedazy/[punkt]` | spis 27 punktów po miastach (skróty, trasa dojazdu, źródło adresu); strona każdego punktu z mapą |
+| `/siec-sprzedazy`, `/siec-sprzedazy/[punkt]` | 4 hurtownie firmowe z trasą dojazdu, sekcja o sklepach firmowych z kontaktem do sekretariatu; strona każdej hurtowni z mapą |
 | `/kariera`, `/kariera/[oferta]`, `/kariera/wzor-ogloszenia` | obszary pracy, ogłoszenia (puste – brak potwierdzonych), podgląd szablonu (tylko demo) |
 | `/kontakt` | działy z klikalnymi numerami, formularz z wyborem tematu, siedziba z mapą |
 | `/polityka-prywatnosci` | projekt dokumentu do weryfikacji prawnej |
@@ -67,7 +67,7 @@ npm run lint && npm run typecheck && npm test && npm run build
 
 **Funkcje:** rozwijane menu (mysz i klawiatura, Esc), menu mobilne (natywny `<dialog>`), okruszki z danymi
 strukturalnymi, formularz z walidacją po obu stronach (NIP z sumą kontrolną, pułapka na boty, limit żądań), osobny
-wariant B2B, filtrowanie asortymentu, spis punktów sprzedaży po miastach (działa bez JavaScriptu), mapa Google wczytywana
+wariant B2B, filtrowanie asortymentu, strona „Gdzie kupić” z linkami do trasy dojazdu, mapa Google wczytywana
 dopiero po zgodzie, przekierowania 301 ze starych adresów (`/?kontakt=` → `/kontakt` itd.), `sitemap.xml`,
 `robots.txt`, adresy kanoniczne, Open Graph, JSON-LD (Organization, BreadcrumbList, JobPosting dla ogłoszeń).
 
@@ -171,12 +171,12 @@ src/
     layout/            nagłówek z menu, stopka, okruszki, nagłówki podstron, znacznik koncepcji
     home/              sekcje strony głównej
     forms/             formularz kontaktowy (wariant ogólny i B2B)
-    locations/         spis punktów sprzedaży, mapa po zgodzie
+    locations/         mapa Google wczytywana po zgodzie
     products/          przeglądarka asortymentu
     careers/           widok ogłoszenia
     ui/                zdjęcie z planszą zastępczą, ikony, pieczęć, notatki demo
   content/             ★ wszystkie dane strony
   lib/                 walidacja formularza, wyszukiwanie, formatowanie, metadane; lib/server – wysyłka
   proxy.ts             przekierowania 301 starych adresów
-tests/                 testy Vitest (walidacja, NIP, spis punktów, asortyment, przekierowania)
+tests/                 testy Vitest (walidacja, NIP, punkty sprzedaży, asortyment, przekierowania)
 ```

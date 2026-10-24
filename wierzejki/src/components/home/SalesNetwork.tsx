@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { retailStores, wholesalePoints } from "@/content/locations";
-import { citySummary, pluralPl } from "@/lib/locations-search";
+import { company } from "@/content/company";
+import { wholesalePoints } from "@/content/locations";
+import { telHref } from "@/lib/format";
 import { PinIcon } from "@/components/ui/Icons";
 import { Photo } from "@/components/ui/Photo";
 
@@ -13,8 +14,8 @@ export function SalesNetwork() {
             Gdzie kupić wyroby z&nbsp;Wierzejek
           </h2>
           <p className="mt-6 max-w-[32rem] text-ink/85">
-            Hurtownie firmowe obsługują odbiorców na Mazowszu i Lubelszczyźnie, a sklepy firmowe działają m.in. w Warszawie, Łodzi, Lublinie i
-            Siedlcach. Pełny spis zawiera adresy i trasę dojazdu do każdego punktu.
+            Hurtownie firmowe obsługują odbiorców na Mazowszu i Lubelszczyźnie. Wyroby z Wierzejek kupisz też w sklepach firmowych i na
+            stoiskach patronackich.
           </p>
           <figure className="mt-10">
             <div className="relative aspect-[3/2] overflow-hidden bg-linen">
@@ -43,12 +44,14 @@ export function SalesNetwork() {
           <div className="mt-10 border border-dashed border-linen-deep bg-surface p-6">
             <h3 className="display-sm">Sklepy firmowe</h3>
             <p className="mt-2 text-[1rem] text-muted">
-              W spisie: {retailStores.length} {pluralPl(retailStores.length, "sklep", "sklepy", "sklepów")} w{" "}
-              {citySummary(retailStores).length} {pluralPl(citySummary(retailStores).length, "miejscowości", "miejscowościach", "miejscowościach")}, z adresem,
-              trasą dojazdu i mapą.
+              Adres sklepu najbliżej Ciebie poda sekretariat:{" "}
+              <a href={telHref(company.phone)} className="link font-semibold text-ink">
+                {company.phone}
+              </a>
+              .
             </p>
             <Link href="/siec-sprzedazy" className="btn btn-ink mt-5">
-              Zobacz wszystkie punkty
+              Gdzie kupić
             </Link>
           </div>
         </div>
