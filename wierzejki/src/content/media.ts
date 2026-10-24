@@ -32,8 +32,8 @@ export const MEDIA = {
     file: "hero-wedliny.jpg",
     alt: "Szynka z piersi indyka Wierzejki w kawałku i w plastrach na kamiennej desce",
     brief: "Szynka z piersi indyka na łupku; docelowo oryginał w wysokiej rozdzielczości",
-    aspect: "1:1",
-    credit: "Zdjęcie produktu przekazane przez ComputerIT (kadr z oryginału 1200×674 px) – materiał firmy, użycie wymaga zgody",
+    aspect: "16:9",
+    credit: "Zdjęcie produktu przekazane przez ComputerIT (kadr 890×490 z oryginału 1200×674 px) – materiał firmy, użycie wymaga zgody",
   },
   aboutPlant: {
     file: "zaklad-pludy.jpg",

@@ -76,7 +76,7 @@ export function JobOfferView({ offer, template }: { offer: JobOffer; template?: 
               )}
             </dl>
             {template ? (
-              <p className="btn btn-red mt-6 w-full cursor-default opacity-70">Aplikuj (aktywne w opublikowanym ogłoszeniu)</p>
+              <p className="btn mt-6 w-full cursor-default border-linen-deep bg-linen text-ink">Aplikuj (aktywne w opublikowanym ogłoszeniu)</p>
             ) : (
               <a href={mailHref(offer.applyEmail, `Zgłoszenie: ${offer.title}`)} className="btn btn-red mt-6 w-full">
                 Aplikuj e-mailem

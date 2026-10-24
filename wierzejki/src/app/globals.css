@@ -1,34 +1,35 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
- * WIERZEJKI – Polska tradycja. Nowoczesna produkcja.
+ * WIERZEJKI – wariant „Marka”: kierunek oparty na istniejącej identyfikacji firmy.
  *
- * Kolor:  wiśniowa czerwień wyłącznie na działania i znak, jałowcowa zieleń jako tło sekcji
- *         „biznesowych”, złamana biel i len jako tła, grafit dla tekstu.
- * Krój:   Archivo w wąskiej szerokości (oś wdth) dla nagłówków – jak szyld hali i etykieta na skrzynce;
- *         Source Serif 4 dla tekstów ciągłych – ciepło i czytelność. Archivo w normalnej szerokości
- *         dla elementów interfejsu.
+ * Kolor:  czerwień znaku firmowego (owal z napisem), zieleń wstęgi „Zakład Mięsny”, czysta biel tła,
+ *         łupek z sesji produktowych jako ciemne sekcje, żółć szyldu stoiska tylko jako drobny akcent.
+ * Krój:   Alegreya w nagłówkach – szeryf z kaligraficznym rodowodem, bliski napisowi „WIERZEJKI”
+ *         na deskach z łupku; Alegreya Sans w treści i interfejsie.
  * ------------------------------------------------------------------------- */
 
 @theme {
-  --color-paper: #f4f0ea;
-  --color-surface: #fbf9f6;
-  --color-linen: #e8e1d6;
-  --color-linen-deep: #d9cfbf;
-  --color-red: #8e1b23;
-  --color-red-deep: #6c131a;
-  --color-green: #22382d;
-  --color-green-soft: #34503f;
-  --color-green-mist: #c9d3c7;
-  --color-ink: #22252a;
-  --color-muted: #595d62;
-  --color-line: #d9d1c4;
-  --color-on-dark: #f4f0ea;
+  --color-paper: #ffffff;
+  --color-surface: #f6f3ef;
+  --color-linen: #ece6de;
+  --color-linen-deep: #d6cdc1;
+  --color-red: #c8102e;
+  --color-red-deep: #9e0b22;
+  --color-green: #1b6633;
+  --color-green-soft: #2a8546;
+  --color-green-mist: #cfe5d5;
+  --color-slate: #2a2c2e;
+  --color-yellow: #f2b705;
+  --color-ink: #1f2124;
+  --color-muted: #595c60;
+  --color-line: #e3ddd5;
+  --color-on-dark: #ffffff;
   --color-success: #2c5a40;
   --color-danger: #a1222b;
 
-  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-source-serif), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-alegreya-sans), "Segoe UI", system-ui, sans-serif;
+  --font-serif: var(--font-alegreya), "Iowan Old Style", Georgia, serif;
 
   --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
@@ -47,9 +48,9 @@
   body {
     background-color: var(--color-paper);
     color: var(--color-ink);
-    font-family: var(--font-serif);
-    font-size: 1.0625rem;
-    line-height: 1.65;
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    line-height: 1.6;
     font-optical-sizing: auto;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -59,11 +60,10 @@
   h2,
   h3,
   h4 {
-    font-family: var(--font-sans);
-    font-variation-settings: "wdth" 78;
-    font-weight: 700;
-    line-height: 1.02;
-    letter-spacing: -0.012em;
+    font-family: var(--font-serif);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
     text-wrap: balance;
     color: inherit;
   }
@@ -115,35 +115,31 @@
 
   /* Skala nagłówków – wąskie Archivo */
   .display-xl {
-    font-family: var(--font-sans);
-    font-variation-settings: "wdth" 66;
-    font-weight: 780;
-    font-size: clamp(3rem, 1.6rem + 6.6vw, 7.75rem);
-    line-height: 0.9;
+    font-family: var(--font-serif);
+    font-weight: 800;
+    font-size: clamp(2.6rem, 1.5rem + 4.8vw, 6rem);
+    line-height: 0.98;
     letter-spacing: -0.02em;
   }
   .display-lg {
-    font-family: var(--font-sans);
-    font-variation-settings: "wdth" 70;
-    font-weight: 750;
-    font-size: clamp(2.4rem, 1.5rem + 3.6vw, 4.75rem);
-    line-height: 0.95;
-    letter-spacing: -0.016em;
+    font-family: var(--font-serif);
+    font-weight: 800;
+    font-size: clamp(2.1rem, 1.45rem + 2.7vw, 3.9rem);
+    line-height: 1.02;
+    letter-spacing: -0.015em;
   }
   .display-md {
-    font-family: var(--font-sans);
-    font-variation-settings: "wdth" 74;
-    font-weight: 720;
-    font-size: clamp(1.9rem, 1.4rem + 1.9vw, 3.1rem);
-    line-height: 1;
-    letter-spacing: -0.012em;
+    font-family: var(--font-serif);
+    font-weight: 800;
+    font-size: clamp(1.7rem, 1.35rem + 1.4vw, 2.6rem);
+    line-height: 1.06;
+    letter-spacing: -0.01em;
   }
   .display-sm {
-    font-family: var(--font-sans);
-    font-variation-settings: "wdth" 80;
+    font-family: var(--font-serif);
     font-weight: 700;
-    font-size: clamp(1.35rem, 1.15rem + 0.7vw, 1.75rem);
-    line-height: 1.1;
+    font-size: clamp(1.3rem, 1.15rem + 0.6vw, 1.65rem);
+    line-height: 1.15;
   }
 
   .lead {
@@ -155,13 +151,28 @@
   /* Drobne etykiety informacyjne – zwykła wielkość liter, interfejsowe Archivo */
   .label {
     font-family: var(--font-sans);
-    font-size: 0.8125rem;
-    font-weight: 600;
+    font-size: 0.875rem;
+    font-weight: 700;
     letter-spacing: 0.01em;
   }
 
   .ui {
     font-family: var(--font-sans);
+  }
+
+  /* Zielona wstęga z wciętymi końcami – nawiązanie do wstęgi „Zakład Mięsny” w znaku firmy */
+  .ribbon {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 1.1rem;
+    background: var(--color-green);
+    color: var(--color-on-dark);
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 0.55rem) 50%, 100% 100%, 0 100%, 0.55rem 50%);
   }
 
   /* Przyciski – prostokątne jak szyld, minimalne zaokrąglenie */
@@ -171,12 +182,12 @@
     justify-content: center;
     gap: 0.55rem;
     min-height: 3rem;
-    padding: 0.75rem 1.4rem;
+    padding: 0.75rem 1.6rem;
     border: 1px solid transparent;
-    border-radius: 2px;
+    border-radius: 999px;
     font-family: var(--font-sans);
-    font-size: 0.9375rem;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: 700;
     line-height: 1.2;
     text-align: center;
     cursor: pointer;
@@ -213,7 +224,7 @@
   }
   .btn-light {
     background: var(--color-on-dark);
-    color: var(--color-green);
+    color: var(--color-red);
   }
   .btn-light:hover:not(:disabled) {
     background: #fff;
@@ -269,7 +280,7 @@
     min-height: 3rem;
     padding: 0.7rem 0.9rem;
     border: 1px solid var(--color-linen-deep);
-    border-radius: 2px;
+    border-radius: 8px;
     background: var(--color-surface);
     color: var(--color-ink);
     font-family: var(--font-sans);

@@ -11,7 +11,7 @@ export function AboutTeaser() {
             aria-hidden="true"
             data-numeral="1991"
             className="select-none before:content-[attr(data-numeral)] text-[clamp(6rem,3rem+14vw,15rem)] font-extrabold leading-[0.8] text-linen-deep"
-            style={{ fontFamily: "var(--font-sans)", fontVariationSettings: '"wdth" 62' }}
+            style={{ fontFamily: "var(--font-serif)" }}
           />
           <figure className="relative -mt-10 w-[88%] sm:-mt-16 lg:-mt-20 lg:ml-[12%]">
             <div className="relative aspect-[4/3] overflow-hidden bg-linen">

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, Source_Serif_4 } from "next/font/google";
+import { Alegreya, Alegreya_Sans } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import { company } from "@/content/company";
 import { DemoBadge } from "@/components/layout/DemoBadge";
@@ -9,18 +9,18 @@ import { JsonLd } from "@/components/ui/JsonLd";
 import { resolveMedia } from "@/components/ui/Photo";
 import "./globals.css";
 
-const archivo = Archivo({
-  variable: "--font-archivo",
+const alegreya = Alegreya({
+  variable: "--font-alegreya",
   subsets: ["latin", "latin-ext"],
-  axes: ["wdth"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
-const sourceSerif = Source_Serif_4({
-  variable: "--font-source-serif",
+const alegreyaSans = Alegreya_Sans({
+  variable: "--font-alegreya-sans",
   subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "700", "800"],
   style: ["normal", "italic"],
-  axes: ["opsz"],
   display: "swap",
 });
 
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f4f0ea",
+  themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
 };
@@ -75,7 +75,7 @@ const organizationJsonLd = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pl" className={`${archivo.variable} ${sourceSerif.variable}`}>
+    <html lang="pl" className={`${alegreya.variable} ${alegreyaSans.variable}`}>
       <body className="flex min-h-dvh flex-col">
         <SiteHeader />
         <main id="tresc" className="flex-1">

@@ -20,7 +20,7 @@ export function HistoryStrip() {
             <li key={event.id} className="relative">
               <p
                 className="text-[clamp(2.75rem,2rem+2.5vw,4.25rem)] font-extrabold leading-none text-red"
-                style={{ fontFamily: "var(--font-sans)", fontVariationSettings: '"wdth" 64' }}
+                style={{ fontFamily: "var(--font-serif)" }}
               >
                 <time dateTime={String(event.year)}>{event.year}</time>
               </p>

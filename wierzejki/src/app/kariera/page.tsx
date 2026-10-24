@@ -116,7 +116,7 @@ export default function CareersPage() {
               <li key={s.title}>
                 <span
                   className="block text-[3rem] font-extrabold leading-none text-red"
-                  style={{ fontFamily: "var(--font-sans)", fontVariationSettings: '"wdth" 62' }}
+                  style={{ fontFamily: "var(--font-serif)" }}
                 >
                   {i + 1}
                 </span>

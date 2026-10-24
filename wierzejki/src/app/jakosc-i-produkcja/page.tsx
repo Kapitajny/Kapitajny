@@ -37,7 +37,7 @@ export default function QualityPage() {
               <p
                 aria-hidden="true"
                 className="text-[clamp(4rem,3rem+5vw,8rem)] font-extrabold leading-[0.85] text-red md:col-span-2"
-                style={{ fontFamily: "var(--font-sans)", fontVariationSettings: '"wdth" 62' }}
+                style={{ fontFamily: "var(--font-serif)" }}
               >
                 {i + 1}
               </p>
@@ -88,7 +88,7 @@ export default function QualityPage() {
             {recognitions.map((r) => (
               <li key={r.title} className="border-t border-on-dark/25 pt-4">
                 <p className="display-sm">{r.title}</p>
-                {r.year && <p className="ui mt-1 text-[0.875rem] text-on-dark/70">{r.year}</p>}
+                {r.year && <p className="ui mt-1 text-[0.875rem] text-on-dark/90">{r.year}</p>}
               </li>
             ))}
           </ul>

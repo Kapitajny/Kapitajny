@@ -16,7 +16,7 @@ export default function NotFound() {
             aria-hidden="true"
             data-numeral="404"
             className="before:content-[attr(data-numeral)] text-[clamp(6rem,4rem+10vw,13rem)] font-extrabold leading-[0.8] text-linen-deep"
-            style={{ fontFamily: "var(--font-sans)", fontVariationSettings: '"wdth" 62' }}
+            style={{ fontFamily: "var(--font-serif)" }}
           />
           <h1 className="display-lg mt-6">Nie ma takiej strony</h1>
           <p className="lead mt-5 max-w-[34rem] text-ink/85">

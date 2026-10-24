@@ -68,7 +68,7 @@ export function SiteHeader() {
       </a>
 
       {/* Pasek informacyjny B2B – przewija się razem ze stroną, więc nie zabiera miejsca przy czytaniu. */}
-      <aside aria-label="Kontakt dla odbiorców hurtowych" className="ui bg-ink text-[0.8125rem] text-on-dark/85">
+      <aside aria-label="Kontakt dla odbiorców hurtowych" className="ui bg-red text-[0.875rem] text-on-dark">
         <div className="container-x flex min-h-10 items-center justify-between gap-4 py-2">
           <p className="min-w-0">
             <span className="hidden sm:inline">Hurt, gastronomia i stołówki – Dział Zbytu: </span>

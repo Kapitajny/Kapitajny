@@ -28,7 +28,7 @@ export function Seal({ className = "", tone = "red" }: { className?: string; ton
         y="70"
         textAnchor="middle"
         fill="currentColor"
-        style={{ fontFamily: "var(--font-sans)", fontVariationSettings: '"wdth" 68', fontSize: 34, fontWeight: 800 }}
+        style={{ fontFamily: "var(--font-serif)", fontSize: 32, fontWeight: 800, fontStyle: "italic" }}
       >
         Wierzejki
       </text>

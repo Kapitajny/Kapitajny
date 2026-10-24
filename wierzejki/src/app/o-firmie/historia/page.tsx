@@ -39,7 +39,7 @@ export default function HistoryPage() {
                 <span aria-hidden="true" className="absolute left-0 top-4 h-3 w-3 bg-red" />
                 <p
                   className="text-[clamp(3.5rem,2.5rem+4vw,6.5rem)] font-extrabold leading-[0.9] text-ink"
-                  style={{ fontFamily: "var(--font-sans)", fontVariationSettings: '"wdth" 62' }}
+                  style={{ fontFamily: "var(--font-serif)" }}
                 >
                   {event.year}
                 </p>

@@ -99,7 +99,7 @@ export default function BusinessPage() {
               <li key={s.title} className="grid grid-cols-[3rem_1fr] gap-4 border-t border-line py-6 last:border-b">
                 <span
                   className="text-[2.5rem] font-extrabold leading-none text-red"
-                  style={{ fontFamily: "var(--font-sans)", fontVariationSettings: '"wdth" 64' }}
+                  style={{ fontFamily: "var(--font-serif)" }}
                 >
                   {i + 1}
                 </span>
