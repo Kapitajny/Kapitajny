@@ -27,6 +27,8 @@ export interface MediaDefinition {
   mustBeAuthentic?: boolean;
   /** "contain" – zdjęcie produktu na białym tle pokazywane w całości, bez kadrowania. */
   fit?: "cover" | "contain";
+  /** Punkt zaczepienia kadru przy przycinaniu (CSS `object-position`), np. "50% 15%". */
+  position?: string;
 }
 
 export const MEDIA = {
@@ -86,6 +88,13 @@ export const MEDIA = {
     mustBeAuthentic: true,
   },
 
+  whiteSausage: {
+    file: "biala-kielbasa.jpg",
+    alt: "Surowa biała kiełbasa Wierzejki na talerzach, obok żółte tulipany",
+    brief: "Biała kiełbasa na talerzach; docelowo oryginał w wysokiej rozdzielczości",
+    aspect: "4:5",
+    credit: "Zdjęcie produktu przekazane przez ComputerIT (kadr 237×296 px z grafiki 674×296 px, bez znaku firmy) – materiał firmy, użycie wymaga zgody",
+  },
   smokehouse: {
     file: "wedzarnia.jpg",
     alt: "Kiełbasy na kijach w komorze wędzarniczej",
@@ -127,11 +136,12 @@ export const MEDIA = {
   },
   careers: {
     file: "kariera.jpg",
-    alt: "Pracownicy zakładu przy stanowisku pracy",
-    brief: "Zespół przy stanowisku pracy, naturalne kadry, za zgodą osób",
+    alt: "Ekspedientki przy ladzie z mięsem i wędlinami, nad ladą podświetlony szyld Wierzejki",
+    brief: "Obsługa przy ladzie stoiska Wierzejki; docelowo zespół zakładu przy pracy, w wysokiej rozdzielczości, za zgodą osób",
     aspect: "4:5",
-    credit: null,
+    credit: "Zdjęcie przekazane przez ComputerIT (416×480 px) – źródło, prawa do publikacji i zgoda osób widocznych na zdjęciu do potwierdzenia z firmą",
     mustBeAuthentic: true,
+    position: "50% 10%",
   },
 } satisfies Record<string, MediaDefinition>;
 

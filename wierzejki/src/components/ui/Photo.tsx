@@ -40,7 +40,17 @@ export function Photo({ media, sizes, className = "", preload, tone = "light" }:
   }
 
   if (src) {
-    return <Image src={src} alt={definition.alt} fill sizes={sizes} preload={preload} className={`object-cover ${className}`} />;
+    return (
+      <Image
+        src={src}
+        alt={definition.alt}
+        fill
+        sizes={sizes}
+        preload={preload}
+        className={`object-cover ${className}`}
+        style={definition.position ? { objectPosition: definition.position } : undefined}
+      />
+    );
   }
 
   const dark = tone === "dark";
