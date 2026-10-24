@@ -30,6 +30,15 @@ export function Photo({ media, sizes, className = "", preload, tone = "light" }:
   const definition: MediaDefinition = MEDIA[media];
   const src = resolveMedia(media);
 
+  if (src && definition.fit === "contain") {
+    // Zdjęcie produktu na białym tle: całe opakowanie, bez kadrowania, na białej planszy.
+    return (
+      <div className="absolute inset-0 bg-white">
+        <Image src={src} alt={definition.alt} fill sizes={sizes} preload={preload} className={`object-contain p-[7%] ${className}`} />
+      </div>
+    );
+  }
+
   if (src) {
     return <Image src={src} alt={definition.alt} fill sizes={sizes} preload={preload} className={`object-cover ${className}`} />;
   }

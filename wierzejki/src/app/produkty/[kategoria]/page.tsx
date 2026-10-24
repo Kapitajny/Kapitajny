@@ -98,7 +98,7 @@ function CategoryFeature({ category }: { category: Category }) {
       <section aria-labelledby="katalog-wedlin" className="py-20 lg:py-24">
         <div className="container-x grid gap-12 lg:grid-cols-12 lg:items-center">
           <div className="relative aspect-[4/5] overflow-hidden bg-linen lg:col-span-5">
-            <Photo media="smokehouse" sizes="(min-width: 1024px) 40vw, 100vw" />
+            <Photo media="hamOnBoard" sizes="(min-width: 1024px) 40vw, 100vw" />
           </div>
           <div className="lg:col-span-6 lg:col-start-7">
             <h2 id="katalog-wedlin" className="display-lg">

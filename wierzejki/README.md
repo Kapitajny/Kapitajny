@@ -97,7 +97,11 @@ Brakujące zdjęcie zastępuje plansza z opisem kadru (w trybie demo) – gotowa
 | `katalog-mies-okladka.jpg` | okładka katalogu mięs (materiał firmy, widoczne na niej oficjalne logo) – **użycie wymaga zgody** |
 | `hero-wedliny.jpg` | szynka z piersi indyka – zdjęcie produktu firmy przekazane przez ComputerIT (kadr 495×495 px) – **użycie wymaga zgody** |
 | `kategoria-wedliny.jpg` | kiełbasy – zdjęcie produktu firmy przekazane przez ComputerIT (kadr 548×304 px) – **użycie wymaga zgody** |
-| pozostałe (6) | brak – w środowisku, w którym powstała koncepcja, banki zdjęć były niedostępne |
+| `kategoria-mieso.jpg` | półtusze w chłodni – przekazane przez ComputerIT (547×365 px) – **do potwierdzenia** |
+| `kategoria-garmaz.jpg` | opakowanie pierogów „Garmażerka” – materiał firmy (248×299 px) – **użycie wymaga zgody** |
+| `produkcja.jpg` | zakład z lotu ptaka – przekazane przez ComputerIT (1200×675 px) – **do potwierdzenia** |
+| `szynka-deska.jpg` | szynka w siatce na desce – materiał firmy (288×288 px) – **użycie wymaga zgody** |
+| pozostałe (4) | brak – w środowisku, w którym powstała koncepcja, banki zdjęć były niedostępne |
 
 Zasady: zdjęcia oznaczone `mustBeAuthentic` (zakład, ludzie, sklep) muszą pochodzić od firmy. Zdjęcia poglądowe
 (np. stockowe) wolno użyć tylko dla produktów i nigdy z podpisem sugerującym, że przedstawiają zakład Wierzejki.

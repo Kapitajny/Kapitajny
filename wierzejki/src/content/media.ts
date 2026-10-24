@@ -25,6 +25,8 @@ export interface MediaDefinition {
   credit: string | null;
   /** Czy zdjęcie musi być autentyczne (zakład, ludzie firmy), a nie poglądowe. */
   mustBeAuthentic?: boolean;
+  /** "contain" – zdjęcie produktu na białym tle pokazywane w całości, bez kadrowania. */
+  fit?: "cover" | "contain";
 }
 
 export const MEDIA = {
@@ -53,11 +55,12 @@ export const MEDIA = {
   },
   categoryMeat: {
     file: "kategoria-mieso.jpg",
-    alt: "Elementy wieprzowe i wołowe na papierze rzeźniczym",
-    brief: "Schab, karkówka i rostbef na szarym papierze rzeźniczym, widok z góry",
-    aspect: "4:5",
-    credit: null,
+    alt: "Półtusze wieprzowe zawieszone w chłodni",
+    brief: "Półtusze w chłodni; docelowo wersja min. 2000 px szerokości",
+    aspect: "3:2",
+    credit: "Zdjęcie przekazane przez ComputerIT (547×365 px) – źródło i prawa do publikacji do potwierdzenia z firmą",
   },
+
   categoryCharcuterie: {
     file: "kategoria-wedliny.jpg",
     alt: "Pęta wędzonej kiełbasy Wierzejki na kamiennej desce, jedna przekrojona",
@@ -67,19 +70,22 @@ export const MEDIA = {
   },
   categoryReadyMeals: {
     file: "kategoria-garmaz.jpg",
-    alt: "Pierogi na talerzu, obok krokiety",
-    brief: "Pierogi i krokiety na talerzu w domowej scenografii, jasne tło",
-    aspect: "4:5",
-    credit: null,
+    alt: "Opakowanie pierogów Wierzejki z linii Garmażerka",
+    brief: "Opakowanie pierogów z linii Garmażerka; docelowo packshot w wysokiej rozdzielczości",
+    aspect: "5:6",
+    credit: "Zdjęcie opakowania produktu przekazane przez ComputerIT (248×299 px) – materiał firmy, użycie wymaga zgody",
+    fit: "contain",
   },
+
   production: {
     file: "produkcja.jpg",
-    alt: "Hala rozbioru w zakładzie w Płudach",
-    brief: "Hala rozbioru: stanowiska, biała odzież robocza, szeroki kadr",
+    alt: "Budynki zakładu Wierzejki z lotu ptaka, obok parking i pola",
+    brief: "Zakład z lotu ptaka; docelowo wersja min. 2400 px szerokości",
     aspect: "16:9",
-    credit: null,
+    credit: "Zdjęcie przekazane przez ComputerIT (1200×675 px) – źródło i prawa do publikacji do potwierdzenia z firmą",
     mustBeAuthentic: true,
   },
+
   smokehouse: {
     file: "wedzarnia.jpg",
     alt: "Kiełbasy na kijach w komorze wędzarniczej",
@@ -87,6 +93,14 @@ export const MEDIA = {
     aspect: "4:5",
     credit: null,
     mustBeAuthentic: true,
+  },
+  hamOnBoard: {
+    file: "szynka-deska.jpg",
+    alt: "Szynka w siatce i plastry szynki na drewnianej desce",
+    brief: "Szynka w siatce na desce; docelowo packshot w wysokiej rozdzielczości",
+    aspect: "1:1",
+    credit: "Zdjęcie produktu przekazane przez ComputerIT (288×288 px) – materiał firmy, użycie wymaga zgody",
+    fit: "contain",
   },
   business: {
     file: "dla-biznesu.jpg",
