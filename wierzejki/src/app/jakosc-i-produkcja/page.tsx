@@ -58,10 +58,10 @@ export default function QualityPage() {
         <div className="container-x grid gap-12 lg:grid-cols-12 lg:items-center">
           <div className="grid grid-cols-2 gap-4 lg:col-span-6">
             <div className="relative aspect-[4/5] overflow-hidden bg-linen">
-              <Photo media="whiteSausage" sizes="(min-width: 1024px) 24vw, 50vw" />
+              <Photo media="smokehouse" sizes="(min-width: 1024px) 24vw, 50vw" />
             </div>
             <div className="relative mt-12 aspect-[4/5] overflow-hidden bg-linen">
-              <Photo media="aboutCraft" sizes="(min-width: 1024px) 24vw, 50vw" />
+              <Photo media="whiteSausage" sizes="(min-width: 1024px) 24vw, 50vw" />
             </div>
           </div>
           <div className="lg:col-span-5 lg:col-start-8">

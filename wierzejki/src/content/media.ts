@@ -97,10 +97,10 @@ export const MEDIA = {
   },
   smokehouse: {
     file: "wedzarnia.jpg",
-    alt: "Kiełbasy na kijach w komorze wędzarniczej",
-    brief: "Kiełbasy zawieszone na kijach w wędzarni, ciepłe światło",
-    aspect: "4:5",
-    credit: null,
+    alt: "Pracownik w białym fartuchu i maseczce między wózkami z zawieszonymi wędzonymi kiełbasami",
+    brief: "Wózki z kiełbasami po wędzeniu; docelowo także kadr z wnętrza wędzarni",
+    aspect: "16:9",
+    credit: "Zdjęcie przekazane przez ComputerIT (1200×675 px) – źródło, prawa do publikacji i zgoda osoby na zdjęciu do potwierdzenia z firmą",
     mustBeAuthentic: true,
   },
   hamOnBoard: {
