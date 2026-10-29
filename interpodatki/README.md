@@ -16,6 +16,17 @@ przygotowany przez ComputerIT jako przykład realizacji premium.
 
 Bez bazy danych i bez CMS – demonstracyjne zgłoszenia i zamówienia trzymane są w pamięci serwera.
 
+## Najprostsze uruchomienie (bez terminala)
+
+1. Zainstaluj **Node.js LTS** ze strony https://nodejs.org (jednorazowo).
+2. Pobierz repozytorium jako ZIP i rozpakuj je.
+3. Wejdź do folderu `interpodatki` i kliknij dwukrotnie:
+   - **Windows:** `URUCHOM-WINDOWS.bat`
+   - **Mac:** `URUCHOM-MAC.command` (za pierwszym razem: prawy przycisk → **Otwórz** → **Otwórz**)
+4. Strona otworzy się w przeglądarce pod adresem http://localhost:3100. Aby ją wyłączyć, zamknij okno skryptu.
+
+Pierwsze uruchomienie trwa kilka minut (instalacja pakietów), kolejne – kilkadziesiąt sekund.
+
 ## Uruchomienie
 
 Wymagany Node.js 22.13+.
