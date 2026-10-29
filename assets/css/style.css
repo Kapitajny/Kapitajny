@@ -587,7 +587,7 @@ body.menu-open .site-header { color: var(--white); background: var(--black); bor
 
 .work-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: clamp(1rem, 0.5rem + 1.5vw, 1.75rem);
 }
 @media (min-width: 720px) {
@@ -633,6 +633,7 @@ body.menu-open .site-header { color: var(--white); background: var(--black); bor
 .work__dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--fog); }
 .work__address {
   flex: 1;
+  min-width: 0;
   overflow: hidden;
   color: var(--muted);
   font-size: 0.6875rem;
