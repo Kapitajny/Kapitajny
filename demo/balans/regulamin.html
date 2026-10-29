@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Regulamin | BALANS — Centrum Zdrowia Psychicznego</title>
+  <meta name="description" content="Projekt regulaminu korzystania ze strony i rejestracji na konsultacje w BALANS — Centrum Zdrowia Psychicznego. Dokument demonstracyjny.">
+  <meta name="theme-color" content="#f8f3ec">
+  <meta name="robots" content="noindex, nofollow"><!-- Projekt demonstracyjny: usuń przed wdrożeniem prawdziwej placówki -->
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="pl_PL">
+  <meta property="og:site_name" content="BALANS — Centrum Zdrowia Psychicznego">
+  <meta property="og:title" content="Regulamin — BALANS">
+  <meta property="og:description" content="Projekt regulaminu korzystania ze strony i rejestracji na konsultacje w BALANS — Centrum Zdrowia Psychicznego. Dokument demonstracyjny.">
+  <meta property="og:image" content="assets/images/og-image.jpg">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/images/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <!-- Symbole SVG wykorzystywane w wielu miejscach -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="logo-mark" viewBox="46 8 108 84">
+      <path fill="#95AB9F" d="M60.02 48.8A40 40 0 0 1 139.98 48.8H139.08A20.64 20.64 0 0 0 100.27 48.8H99.73A20.64 20.64 0 0 0 60.92 48.8Z"/>
+      <path fill="#E4C8A8" d="M60.02 51.2A40 40 0 0 0 139.98 51.2H139.08A20.64 20.64 0 0 1 100.27 51.2H99.73A20.64 20.64 0 0 1 60.92 51.2Z"/>
+      <path stroke="#C99E72" stroke-width="1.2" d="M46 50h108"/>
+    </symbol>
+    <symbol id="mark-small" viewBox="58 8 84 84">
+      <path fill="#95AB9F" d="M60.02 48.8A40 40 0 0 1 139.98 48.8H139.08A20.64 20.64 0 0 0 100.27 48.8H99.73A20.64 20.64 0 0 0 60.92 48.8Z"/>
+      <path fill="#E4C8A8" d="M60.02 51.2A40 40 0 0 0 139.98 51.2H139.08A20.64 20.64 0 0 1 100.27 51.2H99.73A20.64 20.64 0 0 1 60.92 51.2Z"/>
+    </symbol>
+  </svg>
+
+  <a class="skip-link" href="#tresc">Przejdź do treści</a>
+
+  <div class="demo-bar" role="note">
+    <strong>Projekt demonstracyjny.</strong> BALANS to fikcyjna marka przygotowana do portfolio — ten dokument nie jest zweryfikowanym prawnie tekstem gotowym do wdrożenia.
+  </div>
+
+  <header class="site-header" id="naglowek">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html" aria-label="BALANS — Centrum Zdrowia Psychicznego, strona główna">
+        <svg class="brand__mark" aria-hidden="true" focusable="false"><use href="#logo-mark"/></svg>
+        <span class="brand__text" aria-hidden="true">
+          <span class="brand__name">BALANS</span>
+          <span class="brand__tag">Centrum Zdrowia Psychicznego</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nawigacja">
+        <span class="nav-toggle__label">Menu</span>
+        <span class="nav-toggle__icon" aria-hidden="true"></span>
+      </button>
+
+      <nav class="nav" id="nawigacja" aria-label="Główna nawigacja">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="index.html">Strona główna</a></li>
+          <li><a class="nav__link" href="index.html#o-nas">O nas</a></li>
+          <li><a class="nav__link" href="index.html#specjalisci">Nasi specjaliści</a></li>
+          <li><a class="nav__link" href="index.html#cennik">Cennik</a></li>
+          <li><a class="nav__link" href="index.html#historia">Historia</a></li>
+          <li><a class="nav__link" href="index.html#kontakt">Kontakt</a></li>
+        </ul>
+        <a class="btn nav__mobile-cta" href="index.html#rejestracja">Umów wizytę</a>
+        <p class="nav__mobile-meta">Rejestracja: pon.–pt., 8:00–18:00 <span class="demo-tag">przykład</span></p>
+      </nav>
+
+      <a class="btn site-header__cta" href="index.html#rejestracja">Umów wizytę</a>
+    </div>
+  </header>
+
+
+  <main id="tresc">
+    <div class="doc-hero">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Okruszki">
+          <ol>
+            <li><a href="index.html">Strona główna</a></li>
+            <li aria-current="page">Regulamin</li>
+          </ol>
+        </nav>
+        <p class="eyebrow">Dokumenty</p>
+        <h1 class="display h2">Regulamin</h1>
+        <p class="lead">Zasady korzystania ze strony oraz rejestracji na konsultacje w BALANS — Centrum Zdrowia Psychicznego.</p>
+        <div class="notice" role="note">
+          <p><strong>Projekt demonstracyjny.</strong> Dokument nie został zweryfikowany prawnie i nie jest gotowy do wdrożenia. Przed publikacją należy go dostosować do faktycznej działalności placówki i skonsultować z prawnikiem. Miejsca oznaczone jako „do uzupełnienia” wymagają danych placówki.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container doc">
+      <nav class="doc__toc" aria-labelledby="spis-tresci">
+        <h2 id="spis-tresci">Spis treści</h2>
+        <ol>
+            <li><a href="#postanowienia-ogolne">1. Postanowienia ogólne</a></li>
+            <li><a href="#zakres-uslug">2. Zakres usług</a></li>
+            <li><a href="#rejestracja">3. Zasady rejestracji</a></li>
+            <li><a href="#terminy">4. Zasady ustalania terminów</a></li>
+            <li><a href="#cennik-platnosci">5. Cennik i płatności</a></li>
+            <li><a href="#zmiana-odwolanie">6. Zmiana i odwoływanie wizyt</a></li>
+            <li><a href="#prawa-obowiazki">7. Prawa i obowiązki pacjenta</a></li>
+            <li><a href="#reklamacje">8. Reklamacje i kontakt</a></li>
+            <li><a href="#ochrona-praw-pacjenta">9. Ochrona praw pacjenta</a></li>
+            <li><a href="#postanowienia-koncowe">10. Postanowienia końcowe</a></li>
+        </ol>
+      </nav>
+
+      <article class="doc__body">
+          <section id="postanowienia-ogolne" aria-labelledby="postanowienia-ogolne-h">
+            <h2 id="postanowienia-ogolne-h"><span>§ 1</span>Postanowienia ogólne</h2>
+            <ol>
+              <li>Niniejszy regulamin określa zasady korzystania ze strony internetowej oraz zasady rejestracji na konsultacje w BALANS — Centrum Zdrowia Psychicznego (dalej: „Placówka”).</li>
+              <li>Podmiot prowadzący Placówkę: <strong>nazwa podmiotu leczniczego, adres siedziby, numer księgi rejestrowej w rejestrze podmiotów wykonujących działalność leczniczą, NIP i REGON</strong> — <span class="todo">do uzupełnienia</span>.</li>
+              <li>Ilekroć w regulaminie mowa o „Pacjencie”, należy przez to rozumieć osobę korzystającą lub zamierzającą skorzystać z konsultacji w Placówce.</li>
+              <li>Regulamin nie zastępuje regulaminu organizacyjnego podmiotu leczniczego, którego obowiązek ustalenia wynika z przepisów ustawy z dnia 15 kwietnia 2011 r. o działalności leczniczej.</li>
+            </ol>
+          </section>
+
+          <section id="zakres-uslug" aria-labelledby="zakres-uslug-h">
+            <h2 id="zakres-uslug-h"><span>§ 2</span>Zakres usług</h2>
+            <ol>
+              <li>Placówka oferuje:
+                <ul>
+                  <li>konsultacje psychiatryczne — pierwszą i kolejne,</li>
+                  <li>konsultacje psychologiczne — standardowe i rozszerzone.</li>
+                </ul>
+              </li>
+              <li>Forma udzielania konsultacji (stacjonarnie, zdalnie) oraz czas ich trwania: <span class="todo">do uzupełnienia</span>.</li>
+              <li>Informacja o sposobie finansowania świadczeń (odpłatnie lub w ramach umowy z publicznym płatnikiem): <span class="todo">do uzupełnienia</span>.</li>
+              <li>Placówka nie udziela pomocy w stanach nagłych. W sytuacji zagrożenia życia lub zdrowia należy zadzwonić pod numer alarmowy <strong>112</strong> lub zgłosić się do najbliższego szpitalnego oddziału ratunkowego.</li>
+            </ol>
+          </section>
+
+          <section id="rejestracja" aria-labelledby="rejestracja-h">
+            <h2 id="rejestracja-h"><span>§ 3</span>Zasady rejestracji</h2>
+            <ol>
+              <li>Rejestracja na konsultacje odbywa się telefonicznie, mailowo lub poprzez formularz zapytania dostępny na stronie internetowej, w godzinach pracy rejestracji: <span class="todo">do uzupełnienia</span>.</li>
+              <li>Formularz na stronie służy wyłącznie do przesłania zapytania o termin. Wysłanie formularza nie jest równoznaczne z rezerwacją wizyty.</li>
+              <li>W formularzu należy podać imię oraz dane kontaktowe (numer telefonu lub adres e-mail). Formularz nie służy do przekazywania informacji o stanie zdrowia.</li>
+              <li>Dane niezbędne do prowadzenia dokumentacji medycznej są zbierane podczas wizyty, w zakresie wynikającym z przepisów prawa.</li>
+              <li>Rejestracja może pomóc Pacjentowi w wyborze odpowiedniego specjalisty i rodzaju konsultacji.</li>
+            </ol>
+          </section>
+
+          <section id="terminy" aria-labelledby="terminy-h">
+            <h2 id="terminy-h"><span>§ 4</span>Zasady ustalania terminów</h2>
+            <ol>
+              <li>Termin konsultacji ustalany jest indywidualnie, z uwzględnieniem dostępności specjalistów i preferencji Pacjenta.</li>
+              <li>Preferowany termin wskazany w formularzu ma charakter informacyjny i nie jest wiążący dla Placówki.</li>
+              <li>Wizyta jest umówiona po potwierdzeniu terminu przez rejestrację — telefonicznie lub mailowo.</li>
+              <li>Zasady postępowania w przypadku spóźnienia Pacjenta: <span class="todo">do uzupełnienia</span>.</li>
+            </ol>
+          </section>
+
+          <section id="cennik-platnosci" aria-labelledby="cennik-platnosci-h">
+            <h2 id="cennik-platnosci-h"><span>§ 5</span>Cennik i płatności</h2>
+            <p><span class="todo">Sekcja wymaga uzupełnienia</span></p>
+            <ol>
+              <li>Aktualne ceny konsultacji są publikowane w cenniku na stronie internetowej. Ceny przedstawione w wersji demonstracyjnej są przykładowe.</li>
+              <li>Moment i dostępne formy płatności: <span class="todo">do uzupełnienia</span>.</li>
+              <li>Zasady wystawiania dokumentów sprzedaży: <span class="todo">do uzupełnienia</span>.</li>
+            </ol>
+          </section>
+
+          <section id="zmiana-odwolanie" aria-labelledby="zmiana-odwolanie-h">
+            <h2 id="zmiana-odwolanie-h"><span>§ 6</span>Zmiana i odwoływanie wizyt</h2>
+            <p><span class="todo">Sekcja wymaga uzupełnienia</span></p>
+            <ol>
+              <li>Pacjent może zmienić lub odwołać termin wizyty, kontaktując się z rejestracją.</li>
+              <li>Termin, w jakim należy poinformować o odwołaniu lub zmianie wizyty, oraz ewentualne konsekwencje późnego odwołania: <span class="todo">do uzupełnienia</span>.</li>
+              <li>W przypadku konieczności odwołania wizyty przez Placówkę rejestracja niezwłocznie poinformuje o tym Pacjenta i zaproponuje inny termin.</li>
+            </ol>
+          </section>
+
+          <section id="prawa-obowiazki" aria-labelledby="prawa-obowiazki-h">
+            <h2 id="prawa-obowiazki-h"><span>§ 7</span>Prawa i obowiązki pacjenta</h2>
+            <ol>
+              <li>Pacjentowi przysługują prawa określone w ustawie z dnia 6 listopada 2008 r. o prawach pacjenta i Rzeczniku Praw Pacjenta, w szczególności prawo do:
+                <ul>
+                  <li>świadczeń zdrowotnych udzielanych z należytą starannością,</li>
+                  <li>informacji o swoim stanie zdrowia,</li>
+                  <li>wyrażenia zgody na udzielenie świadczeń zdrowotnych lub odmowy jej wyrażenia,</li>
+                  <li>zachowania w tajemnicy informacji z nim związanych,</li>
+                  <li>dostępu do dokumentacji medycznej,</li>
+                  <li>poszanowania intymności i godności.</li>
+                </ul>
+              </li>
+              <li>Pacjent jest proszony o podawanie aktualnych danych kontaktowych oraz o informowanie rejestracji o rezygnacji z umówionej wizyty.</li>
+              <li>Pozostałe zasady porządkowe obowiązujące w Placówce: <span class="todo">do uzupełnienia</span>.</li>
+            </ol>
+          </section>
+
+          <section id="reklamacje" aria-labelledby="reklamacje-h">
+            <h2 id="reklamacje-h"><span>§ 8</span>Reklamacje i kontakt</h2>
+            <ol>
+              <li>Uwagi, skargi i reklamacje dotyczące funkcjonowania Placówki można zgłaszać: <span class="todo">do uzupełnienia</span> (adres e-mail, adres korespondencyjny).</li>
+              <li>Termin i sposób udzielenia odpowiedzi na zgłoszenie: <span class="todo">do uzupełnienia</span>.</li>
+              <li>Zgłoszenie powinno zawierać dane umożliwiające kontakt oraz opis sprawy. Nie jest konieczne przekazywanie informacji o stanie zdrowia, chyba że jest to niezbędne do rozpatrzenia sprawy.</li>
+            </ol>
+          </section>
+
+          <section id="ochrona-praw-pacjenta" aria-labelledby="ochrona-praw-pacjenta-h">
+            <h2 id="ochrona-praw-pacjenta-h"><span>§ 9</span>Ochrona praw pacjenta</h2>
+            <ol>
+              <li>W sprawach dotyczących naruszenia praw pacjenta Pacjent może zwrócić się do Rzecznika Praw Pacjenta. Informacje dostępne są na stronie <a href="https://www.gov.pl/web/rpp" target="_blank" rel="noopener noreferrer">gov.pl/web/rpp<span class="visually-hidden"> (otwiera się w nowej karcie)</span></a> oraz pod numerem bezpłatnej infolinii <strong>800 190 590</strong> (przed wdrożeniem należy zweryfikować aktualność danych).</li>
+              <li>Informacja o prawach pacjenta powinna być udostępniona także w siedzibie Placówki, zgodnie z obowiązującymi przepisami.</li>
+            </ol>
+          </section>
+
+          <section id="postanowienia-koncowe" aria-labelledby="postanowienia-koncowe-h">
+            <h2 id="postanowienia-koncowe-h"><span>§ 10</span>Postanowienia końcowe</h2>
+            <ol>
+              <li>Regulamin jest dostępny na stronie internetowej Placówki oraz w rejestracji.</li>
+              <li>W sprawach nieuregulowanych regulaminem zastosowanie mają przepisy prawa powszechnie obowiązującego.</li>
+              <li>Data wejścia regulaminu w życie: <span class="todo">do uzupełnienia</span>.</li>
+            </ol>
+          </section>
+
+        <p class="doc__updated">Wersja demonstracyjna dokumentu — nie obowiązuje.</p>
+      </article>
+    </div>
+  </main>
+
+  <!-- Fala — motyw z identyfikacji wizualnej -->
+  <svg class="wave" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true" focusable="false" style="background:var(--cream)">
+    <path d="M0 70C220 20 420 10 640 40s420 70 800 10v90H0z" fill="#95AB9F" opacity=".55"/>
+    <path d="M0 100C260 60 480 60 720 86s440 34 720-10v64H0z" fill="#22324B"/>
+    <path d="M0 58C260 8 470 0 700 34s440 66 740 6" fill="none" stroke="#C99E72" stroke-width="1.2"/>
+  </svg>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="brand" href="index.html" aria-label="BALANS — Centrum Zdrowia Psychicznego, strona główna">
+            <svg class="brand__mark" aria-hidden="true" focusable="false"><use href="#logo-mark"/></svg>
+            <span class="brand__text" aria-hidden="true">
+              <span class="brand__name">BALANS</span>
+              <span class="brand__tag">Centrum Zdrowia Psychicznego</span>
+            </span>
+          </a>
+          <p class="footer__motto">Znajdź przestrzeń dla siebie</p>
+        </div>
+
+        <nav aria-labelledby="stopka-nawigacja">
+          <h2 class="footer__title" id="stopka-nawigacja">Nawigacja</h2>
+          <ul class="footer__links">
+            <li><a href="index.html">Strona główna</a></li>
+            <li><a href="index.html#o-nas">O nas</a></li>
+            <li><a href="index.html#historia">Historia</a></li>
+            <li><a href="index.html#faq">Pytania i odpowiedzi</a></li>
+            <li><a href="index.html#kontakt">Kontakt</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-labelledby="stopka-pacjent">
+          <h2 class="footer__title" id="stopka-pacjent">Dla pacjentów</h2>
+          <ul class="footer__links">
+            <li><a href="index.html#specjalisci">Nasi specjaliści</a></li>
+            <li><a href="index.html#cennik">Cennik</a></li>
+            <li><a href="index.html#rejestracja">Rejestracja</a></li>
+            <li><a href="regulamin.html">Regulamin</a></li>
+            <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
+          </ul>
+        </nav>
+
+        <div>
+          <h2 class="footer__title">Kontakt</h2>
+          <address class="footer__contact">
+            ul. Piotrkowska 100, Łódź<br>
+            +48 42 000 00 00<br>
+            rejestracja@balans.example<br>
+            pon.–pt., 8:00–18:00
+            <small>Wszystkie dane kontaktowe są przykładowe.</small>
+          </address>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2026 BALANS. Projekt demonstracyjny przygotowany do portfolio agencji. Marka, osoby, ceny, historia i dane kontaktowe są fikcyjne — strona nie jest witryną rzeczywistej placówki medycznej.</p>
+        <p><a href="regulamin.html">Regulamin</a> · <a href="polityka-prywatnosci.html">Polityka prywatności</a></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

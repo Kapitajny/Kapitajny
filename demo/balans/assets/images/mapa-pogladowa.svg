@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" role="img" aria-labelledby="t d">
+  <title id="t">Schemat poglądowy lokalizacji</title>
+  <desc id="d">Uproszczony, nieodzwierciedlający rzeczywistości schemat ulic ze znacznikiem lokalizacji przychodni. Miejsce na przyszłą integrację mapy.</desc>
+  <rect width="800" height="560" fill="#EDE5D9"/>
+  <g fill="#E3D8C8">
+    <rect x="30" y="30" width="150" height="110" rx="8"/><rect x="30" y="170" width="150" height="150" rx="8"/><rect x="30" y="350" width="150" height="180" rx="8"/>
+    <rect x="210" y="30" width="140" height="200" rx="8"/><rect x="210" y="260" width="140" height="120" rx="8"/><rect x="210" y="410" width="140" height="120" rx="8"/>
+    <rect x="450" y="30" width="140" height="130" rx="8"/><rect x="450" y="190" width="140" height="170" rx="8"/><rect x="450" y="390" width="140" height="140" rx="8"/>
+    <rect x="620" y="30" width="150" height="230" rx="8"/><rect x="620" y="390" width="150" height="140" rx="8"/>
+  </g>
+  <rect x="620" y="290" width="150" height="70" rx="8" fill="#C9D6CE"/>
+  <rect x="378" y="0" width="44" height="560" fill="#F8F4EE"/>
+  <text x="400" y="470" transform="rotate(-90 400 470)" text-anchor="middle" dy="5" font-family="Manrope, sans-serif" font-size="13" letter-spacing="2" fill="#8C7B67">UL. PIOTRKOWSKA</text>
+  <g fill="#F8F4EE"><rect y="150" width="800" height="14"/><rect y="376" width="800" height="14"/></g>
+  <circle cx="400" cy="300" r="48" fill="#2B3D57" opacity=".08"/>
+  <path d="M400 330c-26-30-38-50-38-68a38 38 0 0 1 76 0c0 18-12 38-38 68z" fill="#2B3D57"/>
+  <circle cx="400" cy="262" r="16" fill="#F8F3EC"/>
+  <path d="M388 260a12 12 0 0 1 24 0z" fill="#95AB9F"/><path d="M388 264a12 12 0 0 0 24 0z" fill="#E4C8A8"/>
+</svg>

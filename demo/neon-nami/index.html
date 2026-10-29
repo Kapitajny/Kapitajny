@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NEON NAMI — sushi bar po zmroku (projekt demonstracyjny)</title>
+  <meta name="description" content="NEON NAMI — demonstracyjna strona nocnego baru sushi: menu z filtrami, lada omakase, godziny otwarcia i rezerwacja stolika. Projekt pokazowy ComputerIT, restauracja jest fikcyjna.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0e0b10">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#tresc">Przejdź do treści</a>
+
+  <div class="demo-bar" role="note">
+    <p><strong>Projekt demonstracyjny ComputerIT.</strong> NEON NAMI to fikcyjna restauracja — menu, ceny, adres i godziny są przykładowe, a rezerwacje nie są wysyłane.</p>
+    <a href="../../index.html#portfolio">← Wróć do portfolio</a>
+  </div>
+
+  <header class="header" data-header>
+    <div class="wrap header__inner">
+      <a class="logo" href="#start" aria-label="NEON NAMI — początek strony">
+        <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M4 26c4-8 10-12 16-12s12 4 16 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M10 26c2.5-4.5 6-7 10-7s7.5 2.5 10 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M16 26c1-1.8 2.3-3 4-3s3 1.2 4 3" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <span>NEON NAMI</span>
+      </a>
+      <nav class="nav" aria-label="Nawigacja">
+        <ul>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#omakase">Omakase</a></li>
+          <li><a href="#godziny">Godziny i dojazd</a></li>
+        </ul>
+      </nav>
+      <p class="status" data-status><span class="status__dot" aria-hidden="true"></span><span data-status-text>Sprawdzam godziny…</span></p>
+      <a class="btn btn--neon btn--sm header__cta" href="#rezerwacja">Zarezerwuj</a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="mobile-nav" data-burger><span class="sr">Menu nawigacji</span><span aria-hidden="true"></span></button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Nawigacja mobilna" hidden data-mobile-nav>
+      <a href="#menu">Menu</a>
+      <a href="#omakase">Omakase</a>
+      <a href="#godziny">Godziny i dojazd</a>
+      <a href="#rezerwacja">Rezerwacja stolika</a>
+    </nav>
+  </header>
+
+  <main id="tresc" tabindex="-1">
+    <!-- HERO -->
+    <section class="hero" id="start" aria-labelledby="hero-title">
+      <div class="wrap hero__inner">
+        <div class="hero__copy">
+          <p class="kicker">Sushi bar · Kraków · od 17:00</p>
+          <h1 class="hero__title" id="hero-title"><span class="hero__neon">NEON</span><span class="hero__nami">NAMI</span></h1>
+          <p class="hero__claim">Sushi po zmroku.</p>
+          <p class="hero__lead">Nigiri krojone przy ladzie, autorskie uramaki i lada omakase na dziesięć miejsc. Wpadnij na kolację albo późny set po koncercie.</p>
+          <div class="hero__actions">
+            <a class="btn btn--neon" href="#rezerwacja">Zarezerwuj stolik</a>
+            <a class="btn btn--line" href="#menu">Zobacz menu</a>
+          </div>
+        </div>
+        <figure class="hero__art">
+          <img src="assets/img/plate.svg" width="640" height="640" alt="Ilustracja: talerz z nigiri z łososiem i tuńczykiem, dwa kawałki maki, wasabi, imbir i pałeczki w neonowym kręgu">
+        </figure>
+      </div>
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker__track">
+          <span>Nigiri</span><span>Maki</span><span>Uramaki</span><span>Sashimi</span><span>Omakase</span><span>Gyoza</span><span>Matcha</span><span>Yuzu</span>
+          <span>Nigiri</span><span>Maki</span><span>Uramaki</span><span>Sashimi</span><span>Omakase</span><span>Gyoza</span><span>Matcha</span><span>Yuzu</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU -->
+    <section class="section menu" id="menu" aria-labelledby="menu-title">
+      <div class="wrap">
+        <div class="section__head">
+          <p class="kicker">Karta</p>
+          <h2 class="section__title" id="menu-title">Menu</h2>
+          <p class="section__lead">Ryby kroimy na bieżąco, ryż doprawiamy octem z yuzu. Zaznacz filtry, żeby szybko znaleźć dania wegetariańskie lub ostre.</p>
+        </div>
+
+        <div class="menu__controls">
+          <div class="tabs" role="tablist" aria-label="Kategorie menu" data-tabs>
+            <button type="button" role="tab" aria-selected="true" data-cat="all">Wszystko</button>
+            <button type="button" role="tab" aria-selected="false" data-cat="nigiri" tabindex="-1">Nigiri</button>
+            <button type="button" role="tab" aria-selected="false" data-cat="maki" tabindex="-1">Maki</button>
+            <button type="button" role="tab" aria-selected="false" data-cat="uramaki" tabindex="-1">Uramaki</button>
+            <button type="button" role="tab" aria-selected="false" data-cat="sashimi" tabindex="-1">Sashimi</button>
+            <button type="button" role="tab" aria-selected="false" data-cat="cieple" tabindex="-1">Na ciepło</button>
+            <button type="button" role="tab" aria-selected="false" data-cat="sety" tabindex="-1">Sety</button>
+          </div>
+          <div class="toggles" role="group" aria-label="Filtry diety">
+            <label class="toggle"><input type="checkbox" data-diet="wege"><span>Wege</span></label>
+            <label class="toggle"><input type="checkbox" data-diet="ostre"><span>Ostre</span></label>
+          </div>
+        </div>
+
+        <div class="menu__panel" role="tabpanel" aria-label="Pozycje menu" data-menu>
+          <div class="menu__group" data-group="nigiri">
+            <h3 class="menu__cat">Nigiri</h3>
+            <ul class="dishes">
+              <li class="dish" data-cat="nigiri" data-diet="">
+                <div class="dish__head"><h4 class="dish__name">Sake</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">16 zł</p></div>
+                <p class="dish__desc">Łosoś norweski, odrobina wasabi <span class="dish__qty">· 2 szt.</span></p>
+                
+              </li>
+              <li class="dish" data-cat="nigiri" data-diet="">
+                <div class="dish__head"><h4 class="dish__name">Maguro</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">22 zł</p></div>
+                <p class="dish__desc">Tuńczyk yellowfin, sos nikiri <span class="dish__qty">· 2 szt.</span></p>
+                
+              </li>
+              <li class="dish" data-cat="nigiri" data-diet="ostre">
+                <div class="dish__head"><h4 class="dish__name">Hamachi</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">21 zł</p></div>
+                <p class="dish__desc">Seriola, skórka yuzu, płatki chili <span class="dish__qty">· 2 szt.</span></p>
+                <p class="dish__tags"><span class="tag tag--hot">Ostre</span></p>
+              </li>
+              <li class="dish" data-cat="nigiri" data-diet="">
+                <div class="dish__head"><h4 class="dish__name">Aburi sake</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">19 zł</p></div>
+                <p class="dish__desc">Opalany łosoś, glazura miso, szczypiorek <span class="dish__qty">· 2 szt.</span></p>
+                <p class="dish__tags"><span class="tag tag--sig">Polecane</span></p>
+              </li>
+              <li class="dish" data-cat="nigiri" data-diet="">
+                <div class="dish__head"><h4 class="dish__name">Unagi</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">24 zł</p></div>
+                <p class="dish__desc">Węgorz pieczony, sos kabayaki, sezam <span class="dish__qty">· 2 szt.</span></p>
+                
+              </li>
+              <li class="dish" data-cat="nigiri" data-diet="wege">
+                <div class="dish__head"><h4 class="dish__name">Tamago</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">12 zł</p></div>
+                <p class="dish__desc">Słodki omlet japoński, pasek nori <span class="dish__qty">· 2 szt.</span></p>
+                <p class="dish__tags"><span class="tag">Wege</span></p>
+              </li>
+              <li class="dish" data-cat="nigiri" data-diet="wege vegan">
+                <div class="dish__head"><h4 class="dish__name">Avocado</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">12 zł</p></div>
+                <p class="dish__desc">Awokado, sól morska, limonka <span class="dish__qty">· 2 szt.</span></p>
+                <p class="dish__tags"><span class="tag">Wegańskie</span></p>
+              </li>
+            </ul>
+          </div>
+          <div class="menu__group" data-group="maki">
+            <h3 class="menu__cat">Maki</h3>
+            <ul class="dishes">
+              <li class="dish" data-cat="maki" data-diet="wege vegan">
+                <div class="dish__head"><h4 class="dish__name">Kappa maki</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">14 zł</p></div>
+                <p class="dish__desc">Ogórek, sezam <span class="dish__qty">· 6 szt.</span></p>
+                <p class="dish__tags"><span class="tag">Wegańskie</span></p>
+              </li>
+              <li class="dish" data-cat="maki" data-diet="">
+                <div class="dish__head"><h4 class="dish__name">Sake maki</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">18 zł</p></div>
+                <p class="dish__desc">Łosoś <span class="dish__qty">· 6 szt.</span></p>
+                
+              </li>
+              <li class="dish" data-cat="maki" data-diet="">
+                <div class="dish__head"><h4 class="dish__name">Tekka maki</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">22 zł</p></div>
+                <p class="dish__desc">Tuńczyk <span class="dish__qty">· 6 szt.</span></p>
+                
+              </li>
+              <li class="dish" data-cat="maki" data-diet="wege vegan">
+                <div class="dish__head"><h4 class="dish__name">Oshinko maki</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">14 zł</p></div>
+                <p class="dish__desc">Marynowana rzepa daikon <span class="dish__qty">· 6 szt.</span></p>
+                <p class="dish__tags"><span class="tag">Wegańskie</span></p>
+              </li>
+            </ul>
+          </div>
+          <div class="menu__group" data-group="uramaki">
+            <h3 class="menu__cat">Uramaki</h3>
+            <ul class="dishes">
+              <li class="dish" data-cat="uramaki" data-diet="ostre">
+                <div class="dish__head"><h4 class="dish__name">Neon Roll</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">39 zł</p></div>
+                <p class="dish__desc">Opalany łosoś, awokado, sriracha-mayo, chrupiąca cebulka, chili <span class="dish__qty">· 8 szt.</span></p>
+                <p class="dish__tags"><span class="tag tag--sig">Polecane</span><span class="tag tag--hot">Ostre</span></p>
+              </li>
+              <li class="dish" data-cat="uramaki" data-diet="">
+                <div class="dish__head"><h4 class="dish__name">Black Tide</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">42 zł</p></div>
+                <p class="dish__desc">Krewetka w tempurze, ogórek, czarne tobiko, teriyaki <span class="dish__qty">· 8 szt.</span></p>
+                
+              </li>
+              <li class="dish" data-cat="uramaki" data-diet="ostre">
+                <div class="dish__head"><h4 class="dish__name">Spicy Tuna</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">41 zł</p></div>
+                <p class="dish__desc">Tuńczyk, kimchi-mayo, szczypiorek, togarashi <span class="dish__qty">· 8 szt.</span></p>
+                <p class="dish__tags"><span class="tag tag--hot">Ostre</span></p>
+              </li>
+              <li class="dish" data-cat="uramaki" data-diet="wege vegan">
+                <div class="dish__head"><h4 class="dish__name">Green Wave</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">32 zł</p></div>
+                <p class="dish__desc">Awokado, mango, ogórek, tofu marynowane, sezam <span class="dish__qty">· 8 szt.</span></p>
+                <p class="dish__tags"><span class="tag">Wegańskie</span></p>
+              </li>
+              <li class="dish" data-cat="uramaki" data-diet="">
+                <div class="dish__head"><h4 class="dish__name">Midnight Eel</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">44 zł</p></div>
+                <p class="dish__desc">Węgorz, serek, ogórek, sos unagi, sezam prażony <span class="dish__qty">· 8 szt.</span></p>
+                
+              </li>
+            </ul>
+          </div>
+          <div class="menu__group" data-group="sashimi">
+            <h3 class="menu__cat">Sashimi</h3>
+            <ul class="dishes">
+              <li class="dish" data-cat="sashimi" data-diet="">
+                <div class="dish__head"><h4 class="dish__name">Sashimi sake</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">34 zł</p></div>
+                <p class="dish__desc">Łosoś, daikon, shiso <span class="dish__qty">· 5 plastrów</span></p>
+                
+              </li>
+              <li class="dish" data-cat="sashimi" data-diet="">
+                <div class="dish__head"><h4 class="dish__name">Sashimi maguro</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">42 zł</p></div>
+                <p class="dish__desc">Tuńczyk, daikon, shiso <span class="dish__qty">· 5 plastrów</span></p>
+                
+              </li>
+              <li class="dish" data-cat="sashimi" data-diet="">
+                <div class="dish__head"><h4 class="dish__name">Sashimi mix</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">59 zł</p></div>
+                <p class="dish__desc">Łosoś, tuńczyk, seriola <span class="dish__qty">· 9 plastrów</span></p>
+                <p class="dish__tags"><span class="tag tag--sig">Polecane</span></p>
+              </li>
+            </ul>
+          </div>
+          <div class="menu__group" data-group="cieple">
+            <h3 class="menu__cat">Na ciepło</h3>
+            <ul class="dishes">
+              <li class="dish" data-cat="cieple" data-diet="">
+                <div class="dish__head"><h4 class="dish__name">Miso shiru</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">14 zł</p></div>
+                <p class="dish__desc">Bulion dashi, miso, tofu, wakame <span class="dish__qty">· 300 ml</span></p>
+                
+              </li>
+              <li class="dish" data-cat="cieple" data-diet="wege vegan">
+                <div class="dish__head"><h4 class="dish__name">Edamame</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">16 zł</p></div>
+                <p class="dish__desc">Sól morska lub wersja z chili i czosnkiem <span class="dish__qty">· 200 g</span></p>
+                <p class="dish__tags"><span class="tag">Wegańskie</span></p>
+              </li>
+              <li class="dish" data-cat="cieple" data-diet="wege vegan ostre">
+                <div class="dish__head"><h4 class="dish__name">Spicy edamame</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">18 zł</p></div>
+                <p class="dish__desc">Chili, czosnek, olej sezamowy <span class="dish__qty">· 200 g</span></p>
+                <p class="dish__tags"><span class="tag">Wegańskie</span><span class="tag tag--hot">Ostre</span></p>
+              </li>
+              <li class="dish" data-cat="cieple" data-diet="">
+                <div class="dish__head"><h4 class="dish__name">Gyoza z kurczakiem</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">26 zł</p></div>
+                <p class="dish__desc">Pierożki smażone, sos ponzu <span class="dish__qty">· 6 szt.</span></p>
+                
+              </li>
+              <li class="dish" data-cat="cieple" data-diet="wege vegan">
+                <div class="dish__head"><h4 class="dish__name">Gyoza warzywne</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">24 zł</p></div>
+                <p class="dish__desc">Kapusta, shiitake, imbir, sos ponzu <span class="dish__qty">· 6 szt.</span></p>
+                <p class="dish__tags"><span class="tag">Wegańskie</span></p>
+              </li>
+            </ul>
+          </div>
+          <div class="menu__group" data-group="sety">
+            <h3 class="menu__cat">Sety</h3>
+            <ul class="dishes">
+              <li class="dish" data-cat="sety" data-diet="ostre">
+                <div class="dish__head"><h4 class="dish__name">Set Nami</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">129 zł</p></div>
+                <p class="dish__desc">8 nigiri, 8 uramaki Neon Roll, 8 maki <span class="dish__qty">· 24 szt.</span></p>
+                <p class="dish__tags"><span class="tag tag--sig">Polecane</span><span class="tag tag--hot">Ostre</span></p>
+              </li>
+              <li class="dish" data-cat="sety" data-diet="wege">
+                <div class="dish__head"><h4 class="dish__name">Set Zielony</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">99 zł</p></div>
+                <p class="dish__desc">Nigiri avocado i tamago, Green Wave, kappa i oshinko maki <span class="dish__qty">· 22 szt.</span></p>
+                <p class="dish__tags"><span class="tag">Wege</span></p>
+              </li>
+              <li class="dish" data-cat="sety" data-diet="">
+                <div class="dish__head"><h4 class="dish__name">Set na dwoje</h4><span class="dish__dots" aria-hidden="true"></span><p class="dish__price">219 zł</p></div>
+                <p class="dish__desc">12 nigiri, 16 uramaki, 12 maki, edamame <span class="dish__qty">· 40 szt.</span></p>
+                
+              </li>
+            </ul>
+          </div>
+        </div>
+        <p class="menu__empty" data-menu-empty hidden>Brak dań spełniających wybrane filtry. <button type="button" class="link" data-reset>Wyczyść filtry</button></p>
+        <p class="menu__count" role="status" aria-live="polite" data-menu-count></p>
+        <p class="menu__note">Ceny w złotych, przykładowe. Informacje o alergenach podaje obsługa — w wersji produkcyjnej restauracja uzupełnia je przy każdym daniu.</p>
+      </div>
+    </section>
+
+    <!-- OMAKASE -->
+    <section class="section omakase" id="omakase" aria-labelledby="omakase-title">
+      <div class="wrap omakase__inner">
+        <div class="omakase__sign" aria-hidden="true">
+          <span>お</span><span>ま</span><span>か</span><span>せ</span>
+        </div>
+        <div class="omakase__copy">
+          <p class="kicker">Piątek i sobota · 20:00</p>
+          <h2 class="section__title" id="omakase-title">Lada omakase</h2>
+          <p class="omakase__lead">Dziesięć miejsc przy ladzie, czternaście serwowań i szef kuchni, który decyduje, co dziś najlepsze.</p>
+          <dl class="facts">
+            <div><dt>Czas</dt><dd>ok. 2 godziny</dd></div>
+            <div><dt>Miejsca</dt><dd>10 przy ladzie</dd></div>
+            <div><dt>Cena</dt><dd>290 zł / os.</dd></div>
+          </dl>
+          <a class="btn btn--neon" href="#rezerwacja" data-omakase>Zarezerwuj omakase</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- GODZINY I DOJAZD -->
+    <section class="section visit" id="godziny" aria-labelledby="godziny-title">
+      <div class="wrap visit__inner">
+        <div>
+          <p class="kicker">Odwiedź nas</p>
+          <h2 class="section__title" id="godziny-title">Godziny i dojazd</h2>
+          <table class="hours" data-hours>
+            <caption class="sr">Godziny otwarcia</caption>
+            <tbody>
+              <tr data-day="1"><th scope="row">Poniedziałek</th><td>zamknięte</td></tr>
+              <tr data-day="2"><th scope="row">Wtorek</th><td>17:00 – 23:00</td></tr>
+              <tr data-day="3"><th scope="row">Środa</th><td>17:00 – 23:00</td></tr>
+              <tr data-day="4"><th scope="row">Czwartek</th><td>17:00 – 23:00</td></tr>
+              <tr data-day="5"><th scope="row">Piątek</th><td>17:00 – 01:00</td></tr>
+              <tr data-day="6"><th scope="row">Sobota</th><td>17:00 – 01:00</td></tr>
+              <tr data-day="0"><th scope="row">Niedziela</th><td>16:00 – 22:00</td></tr>
+            </tbody>
+          </table>
+          <address class="address">
+            ul. Neonowa 8, 31-000 Kraków<br>
+            <span>adres fikcyjny — projekt demonstracyjny</span>
+          </address>
+        </div>
+        <figure class="map">
+          <svg viewBox="0 0 600 420" role="img" aria-labelledby="map-title">
+            <title id="map-title">Poglądowa mapa okolicy restauracji (ilustracja)</title>
+            <rect width="600" height="420" fill="#141017"/>
+            <g stroke="#2a2330" stroke-width="18" stroke-linecap="round" fill="none">
+              <path d="M-20 300 L 620 210"/>
+              <path d="M140 -20 L 210 440"/>
+              <path d="M420 -20 C 400 120, 460 260, 430 440"/>
+            </g>
+            <g stroke="#221c27" stroke-width="8" fill="none">
+              <path d="M-20 120 L 620 80"/><path d="M-20 380 L 620 350"/><path d="M300 -20 L 320 440"/><path d="M40 -20 L 70 440"/><path d="M540 -20 L 560 440"/>
+            </g>
+            <path d="M-20 40 C 120 70, 200 20, 320 50 S 520 30, 620 60" stroke="#1d2a3a" stroke-width="26" fill="none"/>
+            <text x="470" y="52" fill="#4a5d75" font-size="13" font-family="Archivo, sans-serif" letter-spacing="2">WISŁA</text>
+            <text x="230" y="282" fill="#5a4f60" font-size="12" font-family="Archivo, sans-serif" letter-spacing="1.5" transform="rotate(-8 230 282)">UL. NEONOWA</text>
+            <circle cx="318" cy="250" r="34" fill="#ff4d3d" opacity=".18"/>
+            <circle cx="318" cy="250" r="16" fill="#ff4d3d" opacity=".35"/>
+            <circle cx="318" cy="250" r="7" fill="#ffd9d2"/>
+          </svg>
+          <figcaption>Ilustracja poglądowa — w wersji produkcyjnej: mapa lub link do nawigacji.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- REZERWACJA -->
+    <section class="section booking" id="rezerwacja" aria-labelledby="rezerwacja-title">
+      <div class="wrap booking__inner">
+        <div class="booking__intro">
+          <p class="kicker">Stolik lub lada</p>
+          <h2 class="section__title" id="rezerwacja-title">Rezerwacja</h2>
+          <p class="section__lead">Wybierz dzień — godziny dopasują się do tego, kiedy jesteśmy otwarci. Dla grup powyżej 8 osób przygotowujemy osobną ofertę.</p>
+          <p class="booking__demo"><strong>To formularz demonstracyjny.</strong> Sprawdza poprawność danych i pokazuje podsumowanie, ale niczego nie wysyła ani nie zapisuje. Nie wpisuj prawdziwych danych.</p>
+        </div>
+
+        <form class="form" novalidate data-booking>
+          <fieldset class="form__group">
+            <legend class="sr">Termin</legend>
+            <div class="field">
+              <label for="b-date">Data</label>
+              <input id="b-date" name="date" type="date" required aria-describedby="b-date-err">
+              <p class="field__err" id="b-date-err" data-err></p>
+            </div>
+            <div class="field">
+              <label for="b-time">Godzina</label>
+              <select id="b-time" name="time" required aria-describedby="b-time-err" disabled>
+                <option value="">Najpierw wybierz datę</option>
+              </select>
+              <p class="field__err" id="b-time-err" data-err></p>
+            </div>
+            <div class="field">
+              <label for="b-guests">Liczba osób</label>
+              <select id="b-guests" name="guests" required>
+                <option value="1">1 osoba</option>
+                <option value="2" selected>2 osoby</option>
+                <option value="3">3 osoby</option>
+                <option value="4">4 osoby</option>
+                <option value="5">5 osób</option>
+                <option value="6">6 osób</option>
+                <option value="7">7 osób</option>
+                <option value="8">8 osób</option>
+              </select>
+            </div>
+          </fieldset>
+          <fieldset class="form__seat">
+            <legend>Miejsce</legend>
+            <label class="seat"><input type="radio" name="seat" value="stolik" checked><span>Stolik</span></label>
+            <label class="seat"><input type="radio" name="seat" value="lada"><span>Przy ladzie</span></label>
+            <label class="seat"><input type="radio" name="seat" value="omakase"><span>Omakase (pt–sob, 20:00)</span></label>
+          </fieldset>
+          <div class="form__group form__group--2">
+            <div class="field">
+              <label for="b-name">Imię i nazwisko</label>
+              <input id="b-name" name="name" type="text" autocomplete="name" required maxlength="80" aria-describedby="b-name-err">
+              <p class="field__err" id="b-name-err" data-err></p>
+            </div>
+            <div class="field">
+              <label for="b-phone">Telefon</label>
+              <input id="b-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="np. 600 100 200" aria-describedby="b-phone-err">
+              <p class="field__err" id="b-phone-err" data-err></p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="b-email">E-mail</label>
+            <input id="b-email" name="email" type="email" autocomplete="email" required maxlength="160" aria-describedby="b-email-err">
+            <p class="field__err" id="b-email-err" data-err></p>
+          </div>
+          <div class="field">
+            <label for="b-notes">Uwagi <span class="opt">(opcjonalnie — np. alergie, okazja)</span></label>
+            <textarea id="b-notes" name="notes" rows="3" maxlength="500"></textarea>
+          </div>
+          <div class="field field--check">
+            <input id="b-consent" name="consent" type="checkbox" required aria-describedby="b-consent-err">
+            <label for="b-consent">Rozumiem, że to formularz demonstracyjny i rezerwacja nie zostanie wysłana.</label>
+            <p class="field__err" id="b-consent-err" data-err></p>
+          </div>
+          <button class="btn btn--neon btn--block" type="submit">Sprawdź rezerwację</button>
+          <p class="form__status" role="status" aria-live="polite" data-booking-status></p>
+        </form>
+
+        <div class="summary" tabindex="-1" hidden data-summary>
+          <p class="kicker">Podsumowanie (demo)</p>
+          <h3 class="summary__title">Rezerwacja przygotowana — <span>nie została wysłana</span></h3>
+          <dl class="summary__list" data-summary-list></dl>
+          <p class="summary__note">W wersji produkcyjnej restauracja otrzymałaby powiadomienie, a gość — potwierdzenie e-mail lub SMS. Ten projekt pokazowy nie przesyła ani nie zapisuje danych.</p>
+          <button type="button" class="btn btn--line" data-summary-reset>Nowa rezerwacja</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <p class="footer__logo">NEON NAMI</p>
+      <p>Fikcyjny bar sushi — projekt demonstracyjny.</p>
+      <p>Projekt i wykonanie: <a href="../../index.html">ComputerIT</a> · <a href="../../index.html#portfolio">więcej realizacji demonstracyjnych</a></p>
+    </div>
+  </footer>
+</body>
+</html>

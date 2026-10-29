@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Koszyk — ComputerIT Store (sklep demonstracyjny)</title>
+  <meta name="description" content="Koszyk i demonstracyjny proces zamówienia w sklepie ComputerIT Store. Zamówienia nie są realizowane.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#f4f3f0">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/store.css">
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/art.js" defer></script>
+  <script src="assets/js/store.js" defer></script>
+</head>
+<body data-page="cart">
+  <a class="skip" href="#tresc">Przejdź do treści</a>
+  <div class="demo-bar" role="note">
+    <p><strong>Sklep demonstracyjny ComputerIT.</strong> Produkty, ceny i stany są fikcyjne — zamówienia nie są realizowane, a płatności nie są pobierane.</p>
+    <a href="../../index.html#portfolio">← Wróć do portfolio</a>
+  </div>
+
+  <header class="header">
+    <div class="wrap header__inner">
+      <a class="logo" href="index.html" aria-label="ComputerIT Store — strona główna"><span class="logo__mark" aria-hidden="true"></span><span>ComputerIT <b>Store</b></span></a>
+      <form class="search" role="search" action="index.html" method="get" data-search-form>
+        <label class="sr" for="q">Szukaj produktów</label>
+        <input id="q" name="q" type="search" placeholder="Szukaj: laptop, monitor, słuchawki…" autocomplete="off" maxlength="60">
+        <button type="submit" aria-label="Szukaj"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+      </form>
+      <button class="cart-btn" type="button" data-cart-open aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 7Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 7a3 3 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        <span class="cart-btn__label">Koszyk</span>
+        <span class="cart-btn__count" data-cart-count>0</span>
+        <span class="sr" data-cart-count-label>, 0 produktów</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="tresc" tabindex="-1">
+    <div class="wrap checkout">
+      <nav class="crumbs" aria-label="Ścieżka"><ol><li><a href="index.html">Sklep</a></li><li aria-current="page">Koszyk i zamówienie</li></ol></nav>
+      <h1 class="h1">Koszyk</h1>
+      <div class="checkout__grid" data-checkout>
+        <div class="checkout__main">
+          <section aria-labelledby="items-title">
+            <h2 class="sr" id="items-title">Produkty w koszyku</h2>
+            <ul class="lines" data-lines></ul>
+            <div class="empty" data-cart-empty hidden>
+              <p class="empty__title">Koszyk jest pusty.</p>
+              <p>Dodaj produkty z katalogu — koszyk zapamięta je w tej przeglądarce.</p>
+              <a class="btn" href="index.html#katalog">Przejdź do katalogu</a>
+            </div>
+          </section>
+
+          <form class="order" novalidate data-order hidden>
+            <h2 class="h3">Dane do zamówienia</h2>
+            <p class="order__demo"><strong>Zamówienie demonstracyjne.</strong> Formularz sprawdza poprawność danych i pokazuje podsumowanie — nic nie jest wysyłane ani zapisywane, a płatność nie jest pobierana. Nie wpisuj prawdziwych danych.</p>
+            <div class="order__grid">
+              <div class="field"><label for="o-name">Imię i nazwisko</label><input id="o-name" name="name" autocomplete="name" required maxlength="80"><p class="field__err" data-err></p></div>
+              <div class="field"><label for="o-email">E-mail</label><input id="o-email" name="email" type="email" autocomplete="email" required maxlength="160"><p class="field__err" data-err></p></div>
+              <div class="field"><label for="o-phone">Telefon</label><input id="o-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="np. 600 100 200"><p class="field__err" data-err></p></div>
+              <div class="field field--wide"><label for="o-street">Ulica i numer</label><input id="o-street" name="street" autocomplete="street-address" required maxlength="120"><p class="field__err" data-err></p></div>
+              <div class="field"><label for="o-zip">Kod pocztowy</label><input id="o-zip" name="zip" autocomplete="postal-code" inputmode="numeric" required placeholder="00-000" maxlength="6"><p class="field__err" data-err></p></div>
+              <div class="field"><label for="o-city">Miejscowość</label><input id="o-city" name="city" autocomplete="address-level2" required maxlength="60"><p class="field__err" data-err></p></div>
+            </div>
+            <fieldset class="options" data-shipping>
+              <legend class="h4">Dostawa</legend>
+            </fieldset>
+            <fieldset class="options">
+              <legend class="h4">Płatność</legend>
+              <p class="options__info">Ten sklep demonstracyjny nie ma podłączonej bramki płatniczej. W wersji produkcyjnej w tym miejscu klient wybiera metodę płatności udostępnioną przez operatora.</p>
+            </fieldset>
+            <div class="field field--check"><input id="o-terms" name="terms" type="checkbox" required><label for="o-terms">Rozumiem, że to sklep demonstracyjny i zamówienie nie zostanie złożone.</label><p class="field__err" data-err></p></div>
+            <button class="btn btn--block btn--lg" type="submit">Sprawdź zamówienie</button>
+            <p class="form-status" role="status" aria-live="polite" data-order-status></p>
+          </form>
+
+          <section class="result" tabindex="-1" hidden data-result aria-labelledby="result-title">
+            <p class="result__kicker">Podsumowanie demonstracyjne</p>
+            <h2 class="h2" id="result-title">Zamówienie przygotowane — <span>nie zostało złożone</span></h2>
+            <dl class="result__list" data-result-list></dl>
+            <p class="result__note">W sklepie produkcyjnym w tym momencie powstałoby zamówienie, klient zostałby przekierowany do operatora płatności, a po potwierdzeniu płatności otrzymałby e-mail. W tej demonstracji nic nie zostało wysłane.</p>
+            <div class="result__actions">
+              <button type="button" class="btn" data-result-clear>Wyczyść koszyk i wróć do sklepu</button>
+              <button type="button" class="btn btn--ghost" data-result-back>Wróć do formularza</button>
+            </div>
+          </section>
+        </div>
+
+        <aside class="summary" aria-labelledby="summary-title" data-summary hidden>
+          <h2 class="h4" id="summary-title">Podsumowanie</h2>
+          <dl class="summary__rows" data-summary-rows></dl>
+          <div class="freeship" data-freeship></div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <p class="logo logo--footer"><span class="logo__mark" aria-hidden="true"></span><span>ComputerIT <b>Store</b></span></p>
+      <p>Sklep demonstracyjny — nie prowadzi sprzedaży. Nazwy i ceny produktów są fikcyjne, ilustracje generowane w SVG.</p>
+      <p>Projekt i wykonanie: <a href="../../index.html">ComputerIT</a> · <a href="../../index.html#portfolio">portfolio</a> · <a href="../../index.html#kontakt">zamów podobny sklep</a></p>
+    </div>
+  </footer>
+
+  <!-- koszyk (panel boczny) -->
+  <div class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" hidden data-drawer>
+    <div class="drawer__backdrop" data-cart-close></div>
+    <div class="drawer__panel" tabindex="-1" data-drawer-panel>
+      <div class="drawer__head">
+        <h2 class="drawer__title" id="drawer-title">Koszyk</h2>
+        <button type="button" class="icon-btn" data-cart-close aria-label="Zamknij koszyk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+      </div>
+      <div class="drawer__body" data-drawer-body></div>
+    </div>
+  </div>
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
+</body>
+</html>

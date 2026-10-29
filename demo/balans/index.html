@@ -1,0 +1,751 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<script>document.documentElement.lang="pl";</script>
+<title>BALANS — Centrum Zdrowia Psychicznego</title>
+  <meta name="description" content="BALANS — Centrum Zdrowia Psychicznego. Konsultacje psychiatryczne i psychologiczne, przejrzysty cennik i pomoc rejestracji w wyborze specjalisty. Projekt demonstracyjny.">
+  <meta name="theme-color" content="#f8f3ec">
+  <meta name="robots" content="noindex, nofollow"><!-- Projekt demonstracyjny: usuń przed wdrożeniem prawdziwej placówki -->
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pl_PL">
+  <meta property="og:site_name" content="BALANS — Centrum Zdrowia Psychicznego">
+  <meta property="og:title" content="BALANS — Centrum Zdrowia Psychicznego">
+  <meta property="og:description" content="Znajdź przestrzeń dla siebie. Konsultacje psychiatryczne i psychologiczne — projekt demonstracyjny strony przychodni.">
+  <!-- Po wdrożeniu podaj pełny adres URL obrazu, np. https://twoja-domena.pl/assets/images/og-image.jpg -->
+  <meta property="og:image" content="assets/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo BALANS — Centrum Zdrowia Psychicznego">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/images/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+
+  <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="assets/js/main.js" defer></script>
+  <!-- Symbole SVG wykorzystywane w wielu miejscach -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="logo-mark" viewBox="46 8 108 84">
+      <path fill="#95AB9F" d="M60.02 48.8A40 40 0 0 1 139.98 48.8H139.08A20.64 20.64 0 0 0 100.27 48.8H99.73A20.64 20.64 0 0 0 60.92 48.8Z"/>
+      <path fill="#E4C8A8" d="M60.02 51.2A40 40 0 0 0 139.98 51.2H139.08A20.64 20.64 0 0 1 100.27 51.2H99.73A20.64 20.64 0 0 1 60.92 51.2Z"/>
+      <path stroke="#C99E72" stroke-width="1.2" d="M46 50h108"/>
+    </symbol>
+    <symbol id="mark-small" viewBox="58 8 84 84">
+      <path fill="#95AB9F" d="M60.02 48.8A40 40 0 0 1 139.98 48.8H139.08A20.64 20.64 0 0 0 100.27 48.8H99.73A20.64 20.64 0 0 0 60.92 48.8Z"/>
+      <path fill="#E4C8A8" d="M60.02 51.2A40 40 0 0 0 139.98 51.2H139.08A20.64 20.64 0 0 1 100.27 51.2H99.73A20.64 20.64 0 0 1 60.92 51.2Z"/>
+    </symbol>
+  </svg>
+
+  <a class="skip-link" href="#tresc">Przejdź do treści</a>
+
+  <div class="demo-bar" role="note">
+    <strong>Projekt demonstracyjny.</strong> BALANS to fikcyjna marka przygotowana do portfolio — osoby, ceny, daty, adres i dane kontaktowe są przykładowe.
+  </div>
+
+  <header class="site-header" id="naglowek">
+    <div class="container site-header__inner">
+      <a class="brand" href="#start" aria-label="BALANS — Centrum Zdrowia Psychicznego, strona główna">
+        <svg class="brand__mark" aria-hidden="true" focusable="false"><use href="#logo-mark"/></svg>
+        <span class="brand__text" aria-hidden="true">
+          <span class="brand__name">BALANS</span>
+          <span class="brand__tag">Centrum Zdrowia Psychicznego</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nawigacja">
+        <span class="nav-toggle__label">Menu</span>
+        <span class="nav-toggle__icon" aria-hidden="true"></span>
+      </button>
+
+      <nav class="nav" id="nawigacja" aria-label="Główna nawigacja">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="#start">Strona główna</a></li>
+          <li><a class="nav__link" href="#o-nas">O nas</a></li>
+          <li><a class="nav__link" href="#specjalisci">Nasi specjaliści</a></li>
+          <li><a class="nav__link" href="#cennik">Cennik</a></li>
+          <li><a class="nav__link" href="#historia">Historia</a></li>
+          <li><a class="nav__link" href="#kontakt">Kontakt</a></li>
+        </ul>
+        <a class="btn nav__mobile-cta" href="#rejestracja">Umów wizytę</a>
+        <p class="nav__mobile-meta">Rejestracja: pon.–pt., 8:00–18:00 <span class="demo-tag">przykład</span></p>
+      </nav>
+
+      <a class="btn site-header__cta" href="#rejestracja">Umów wizytę</a>
+    </div>
+  </header>
+
+  <main id="tresc">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="start" aria-labelledby="hero-title">
+      <div class="container hero__grid">
+        <div class="hero__content" data-reveal>
+          <p class="eyebrow">Centrum Zdrowia Psychicznego · Łódź</p>
+          <h1 class="display h1 hero__title" id="hero-title">
+            Zadbaj o siebie. <em class="accent">Zacznij od rozmowy.</em>
+          </h1>
+          <p class="lead">W BALANS tworzymy przestrzeń do spokojnej rozmowy, lepszego zrozumienia swoich potrzeb i poszukiwania odpowiedniego wsparcia. Poznaj naszych specjalistów i dowiedz się, jak wygląda pierwsza konsultacja.</p>
+          <div class="hero__actions">
+            <a class="btn" href="#specjalisci">Poznaj naszych specjalistów <span class="arrow" aria-hidden="true">→</span></a>
+            <a class="btn btn--ghost" href="#rejestracja">Umów wizytę</a>
+          </div>
+          <dl class="hero__facts">
+            <div>
+              <dt>Rejestracja</dt>
+              <dd>pon.–pt., 8:00–18:00<small>godziny przykładowe</small></dd>
+            </div>
+            <div>
+              <dt>Adres</dt>
+              <dd>ul. Piotrkowska 100, Łódź<small>adres przykładowy</small></dd>
+            </div>
+            <div>
+              <dt>Konsultacje</dt>
+              <dd>psychiatryczne i psychologiczne</dd>
+            </div>
+          </dl>
+        </div>
+
+        <figure class="hero__media" data-reveal>
+          <div class="hero__frame">
+            <!-- Miejsce na zdjęcie gabinetu: podmień src na własną fotografię (zalecane 1200×1500 px, WebP/JPG) -->
+            <img src="assets/images/gabinet.svg" width="800" height="1000"
+                 alt="Ilustracja jasnego gabinetu konsultacyjnego z łukowym oknem, fotelem i rośliną">
+          </div>
+          <figcaption class="hero__caption">Ilustracja poglądowa — miejsce na zdjęcie wnętrza przychodni</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===================== OBSZARY ===================== -->
+    <section class="section section--paper" id="oferta" aria-labelledby="oferta-title">
+      <div class="container">
+        <div class="section-head section-head--split" data-reveal>
+          <div>
+            <p class="eyebrow">W czym możemy pomóc</p>
+            <h2 class="display h2" id="oferta-title">Trzy obszary, jedna spokojna ścieżka</h2>
+          </div>
+          <p class="lead">Konsultacja z psychiatrą lub psychologiem to rozmowa, w której możesz spokojnie opowiedzieć o tym, co jest dla Ciebie ważne. Rejestracja pomoże zorganizować wszystko, co dzieje się wokół wizyty.</p>
+        </div>
+
+        <ol class="areas">
+          <li class="area" data-reveal>
+            <span class="area__num" aria-hidden="true">01</span>
+            <h3>Konsultacje psychiatryczne</h3>
+            <p>Spotkanie z lekarzem psychiatrą, podczas którego można omówić swoje samopoczucie i codzienne funkcjonowanie, a następnie wspólnie zastanowić się nad dalszymi krokami.</p>
+            <a class="link-arrow" href="#psychiatria">Lekarze psychiatrzy <span aria-hidden="true">→</span></a>
+          </li>
+          <li class="area" data-reveal>
+            <span class="area__num" aria-hidden="true">02</span>
+            <h3>Konsultacje psychologiczne</h3>
+            <p>Rozmowa z psychologiem, która pomaga przyjrzeć się swojej sytuacji, nazwać własne potrzeby i ustalić, jaka forma wsparcia może być odpowiednia.</p>
+            <a class="link-arrow" href="#psychologia">Psycholodzy <span aria-hidden="true">→</span></a>
+          </li>
+          <li class="area" data-reveal>
+            <span class="area__num" aria-hidden="true">03</span>
+            <h3>Rejestracja i organizacja wizyt</h3>
+            <p>Rejestracja pomaga wybrać specjalistę, ustalić dogodny termin i odpowiada na pytania organizacyjne — także wtedy, gdy nie wiesz jeszcze, od czego zacząć.</p>
+            <a class="link-arrow" href="#rejestracja">Skontaktuj się z rejestracją <span aria-hidden="true">→</span></a>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== PIERWSZY KONTAKT ===================== -->
+    <section class="section section--navy steps-wrap" id="pierwszy-kontakt" aria-labelledby="kroki-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow eyebrow--light">Pierwszy kontakt</p>
+          <h2 class="display h2" id="kroki-title">Jak wygląda pierwszy kontakt z przychodnią</h2>
+          <p class="lead">Nie musisz mieć wszystkiego przemyślanego. Wystarczy pierwszy krok — resztę ustalimy razem.</p>
+        </div>
+
+        <ol class="steps">
+          <li class="step" data-reveal>
+            <span class="step__num" aria-hidden="true">1</span>
+            <h3>Wybór specjalisty</h3>
+            <p>Zapoznaj się z profilami specjalistów. Jeśli nie wiesz, do kogo się zgłosić, rejestracja pomoże podjąć decyzję.</p>
+          </li>
+          <li class="step" data-reveal>
+            <span class="step__num" aria-hidden="true">2</span>
+            <h3>Kontakt z rejestracją</h3>
+            <p>Zadzwoń, napisz lub wyślij zapytanie przez formularz. Nie musisz opisywać swoich objawów ani historii leczenia.</p>
+          </li>
+          <li class="step" data-reveal>
+            <span class="step__num" aria-hidden="true">3</span>
+            <h3>Ustalenie terminu</h3>
+            <p>Rejestracja zaproponuje dostępne terminy i potwierdzi szczegóły wizyty. Termin jest zarezerwowany dopiero po tym potwierdzeniu.</p>
+          </li>
+          <li class="step" data-reveal>
+            <span class="step__num" aria-hidden="true">4</span>
+            <h3>Przygotowanie do konsultacji</h3>
+            <p>Jeśli masz dokumentację medyczną lub listę przyjmowanych leków, warto zabrać je ze sobą. Możesz też zapisać pytania, które chcesz zadać.</p>
+          </li>
+        </ol>
+
+        <div class="steps-note" data-reveal>
+          <p>Konsultacja to początek rozmowy, a nie gotowe rozwiązanie. Dalsze kroki specjalista ustala indywidualnie — wspólnie z Tobą.</p>
+          <a class="btn btn--light" href="#rejestracja">Umów wizytę <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== O NAS ===================== -->
+    <section class="section" id="o-nas" aria-labelledby="o-nas-title">
+      <div class="container about">
+        <figure class="about__media" data-reveal>
+          <!-- Miejsce na zdjęcie wnętrza: podmień src na własną fotografię (zalecane 1200×960 px) -->
+          <img src="assets/images/detal-wnetrza.svg" width="800" height="640" loading="lazy"
+               alt="Ilustracja detalu wnętrza: komoda z wazonem z gałązkami eukaliptusa i stosem książek">
+          <figcaption>Ilustracja poglądowa — miejsce na zdjęcie wnętrza</figcaption>
+        </figure>
+
+        <div data-reveal>
+          <p class="eyebrow">O nas</p>
+          <h2 class="display h2" id="o-nas-title">Spokojnie, z szacunkiem i bez pośpiechu</h2>
+          <p class="about__quote">Wierzymy, że rozmowa, uważność i odpowiednio dobrane wsparcie mogą być ważnym krokiem w trosce o zdrowie psychiczne.</p>
+          <div class="about__body">
+            <p>W BALANS stawiamy na szacunek, indywidualne podejście i jasną komunikację. Chcemy, aby każda osoba odwiedzająca naszą stronę mogła spokojnie zapoznać się z ofertą i znaleźć informacje potrzebne do podjęcia kolejnego kroku.</p>
+          </div>
+
+          <ul class="values" aria-label="Zasady, którymi się kierujemy">
+            <li><svg aria-hidden="true" focusable="false"><use href="#mark-small"/></svg>Indywidualne podejście do pacjenta</li>
+            <li><svg aria-hidden="true" focusable="false"><use href="#mark-small"/></svg>Szacunek i zrozumienie</li>
+            <li><svg aria-hidden="true" focusable="false"><use href="#mark-small"/></svg>Przejrzyste informacje o usługach</li>
+            <li><svg aria-hidden="true" focusable="false"><use href="#mark-small"/></svg>Czytelny cennik bez ukrytych kosztów</li>
+            <li><svg aria-hidden="true" focusable="false"><use href="#mark-small"/></svg>Pomoc rejestracji w wyborze specjalisty</li>
+            <li><svg aria-hidden="true" focusable="false"><use href="#mark-small"/></svg>Poszanowanie prywatności</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SPECJALIŚCI ===================== -->
+    <section class="section section--paper" id="specjalisci" aria-labelledby="specjalisci-title">
+      <div class="container">
+        <div class="section-head section-head--split" data-reveal>
+          <div>
+            <p class="eyebrow">Nasi specjaliści</p>
+            <h2 class="display h2" id="specjalisci-title">Poznaj osoby, z którymi porozmawiasz</h2>
+          </div>
+          <div class="notice" role="note">
+            <p><strong>Profile fikcyjne.</strong> Poniższe osoby nie istnieją i służą wyłącznie prezentacji projektu. Przed wdrożeniem placówka uzupełnia zdjęcia, opisy oraz zweryfikowane informacje o kwalifikacjach.</p>
+          </div>
+        </div>
+
+        <!-- Psychiatria -->
+        <div class="team-group" id="psychiatria">
+          <div class="team-group__head" data-reveal>
+            <h3>Psychiatria</h3>
+          </div>
+          <ul class="team">
+            <li class="profile" data-reveal>
+              <figure class="portrait portrait--placeholder">
+                <!-- Miejsce na zdjęcie: zastąp zawartość elementem <img src="..." alt="Portret: lek. Anna Zielińska"> -->
+                <span class="portrait__initials" aria-hidden="true">AZ</span>
+                <figcaption>Miejsce na zdjęcie</figcaption>
+              </figure>
+              <div>
+                <span class="demo-tag">Profil fikcyjny</span>
+                <p class="profile__role">Psychiatra</p>
+                <h4>lek. Anna Zielińska</h4>
+                <p class="profile__desc">Na pierwszym spotkaniu poświęca czas na spokojną rozmowę o tym, co skłoniło do wizyty, i wspólne omówienie możliwych dalszych kroków.</p>
+                <dl class="profile__meta">
+                  <div><dt>Rodzaj konsultacji:</dt> <dd>konsultacja psychiatryczna — pierwsza i kolejna</dd></div>
+                  <div><dt>Forma:</dt> <dd>wizyta w przychodni <span class="todo">do potwierdzenia</span></dd></div>
+                </dl>
+                <a class="btn btn--ghost btn--sm" href="#rejestracja" data-specialist="anna-zielinska">Umów konsultację<span class="visually-hidden"> z lek. Anną Zielińską</span></a>
+              </div>
+            </li>
+
+            <li class="profile" data-reveal>
+              <figure class="portrait portrait--placeholder portrait--alt">
+                <!-- Miejsce na zdjęcie: zastąp zawartość elementem <img src="..." alt="Portret: lek. Michał Lewandowski"> -->
+                <span class="portrait__initials" aria-hidden="true">ML</span>
+                <figcaption>Miejsce na zdjęcie</figcaption>
+              </figure>
+              <div>
+                <span class="demo-tag">Profil fikcyjny</span>
+                <p class="profile__role">Psychiatra</p>
+                <h4>lek. Michał Lewandowski</h4>
+                <p class="profile__desc">Stawia na jasne wyjaśnianie proponowanych rozwiązań i zostawia przestrzeń na pytania — tak, aby pacjent wiedział, czego może się spodziewać.</p>
+                <dl class="profile__meta">
+                  <div><dt>Rodzaj konsultacji:</dt> <dd>konsultacja psychiatryczna — pierwsza i kolejna</dd></div>
+                  <div><dt>Forma:</dt> <dd>wizyta w przychodni <span class="todo">do potwierdzenia</span></dd></div>
+                </dl>
+                <a class="btn btn--ghost btn--sm" href="#rejestracja" data-specialist="michal-lewandowski">Umów konsultację<span class="visually-hidden"> z lek. Michałem Lewandowskim</span></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Psychologia -->
+        <div class="team-group" id="psychologia">
+          <div class="team-group__head" data-reveal>
+            <h3>Psychologia</h3>
+          </div>
+          <ul class="team">
+            <li class="profile" data-reveal>
+              <figure class="portrait portrait--placeholder portrait--alt">
+                <!-- Miejsce na zdjęcie: zastąp zawartość elementem <img src="..." alt="Portret: Katarzyna Wiśniewska"> -->
+                <span class="portrait__initials" aria-hidden="true">KW</span>
+                <figcaption>Miejsce na zdjęcie</figcaption>
+              </figure>
+              <div>
+                <span class="demo-tag">Profil fikcyjny</span>
+                <p class="profile__role">Psycholog</p>
+                <h4>Katarzyna Wiśniewska</h4>
+                <p class="profile__desc">Prowadzi rozmowy w spokojnym tempie, pomagając uporządkować myśli i lepiej zrozumieć własne potrzeby.</p>
+                <dl class="profile__meta">
+                  <div><dt>Rodzaj konsultacji:</dt> <dd>konsultacja psychologiczna — standardowa i rozszerzona</dd></div>
+                  <div><dt>Forma:</dt> <dd>wizyta w przychodni <span class="todo">do potwierdzenia</span></dd></div>
+                </dl>
+                <a class="btn btn--ghost btn--sm" href="#rejestracja" data-specialist="katarzyna-wisniewska">Umów konsultację<span class="visually-hidden"> z Katarzyną Wiśniewską</span></a>
+              </div>
+            </li>
+
+            <li class="profile" data-reveal>
+              <figure class="portrait portrait--placeholder">
+                <!-- Miejsce na zdjęcie: zastąp zawartość elementem <img src="..." alt="Portret: Piotr Kamiński"> -->
+                <span class="portrait__initials" aria-hidden="true">PK</span>
+                <figcaption>Miejsce na zdjęcie</figcaption>
+              </figure>
+              <div>
+                <span class="demo-tag">Profil fikcyjny</span>
+                <p class="profile__role">Psycholog</p>
+                <h4>Piotr Kamiński</h4>
+                <p class="profile__desc">Pomaga przyjrzeć się bieżącym trudnościom i wspólnie zastanowić się, jaka forma wsparcia może być w danej sytuacji odpowiednia.</p>
+                <dl class="profile__meta">
+                  <div><dt>Rodzaj konsultacji:</dt> <dd>konsultacja psychologiczna — standardowa i rozszerzona</dd></div>
+                  <div><dt>Forma:</dt> <dd>wizyta w przychodni <span class="todo">do potwierdzenia</span></dd></div>
+                </dl>
+                <a class="btn btn--ghost btn--sm" href="#rejestracja" data-specialist="piotr-kaminski">Umów konsultację<span class="visually-hidden"> z Piotrem Kamińskim</span></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CENNIK ===================== -->
+    <section class="section section--beige" id="cennik" aria-labelledby="cennik-title">
+      <div class="container pricing">
+        <div class="pricing__intro" data-reveal>
+          <p class="eyebrow">Cennik</p>
+          <h2 class="display h2" id="cennik-title">Jasne zasady, czytelne ceny</h2>
+          <p class="lead">Koszt wizyty znasz przed jej rozpoczęciem. Jeśli nie wiesz, którą konsultację wybrać, rejestracja pomoże podjąć decyzję.</p>
+          <div class="notice" role="note">
+            <p><strong>Ceny przykładowe.</strong> Wszystkie kwoty mają charakter demonstracyjny i wymagają potwierdzenia przed wykorzystaniem strony przez prawdziwą placówkę.</p>
+          </div>
+        </div>
+
+        <ul class="price-list">
+          <li class="price" data-reveal>
+            <div>
+              <h3>Pierwsza konsultacja psychiatryczna</h3>
+              <p class="price__desc">Pierwsze spotkanie z lekarzem psychiatrą: rozmowa o powodach wizyty, obecnym samopoczuciu i możliwych dalszych krokach.</p>
+            </div>
+            <p class="price__value">250 zł<small>cena przykładowa</small></p>
+            <div class="price__foot">
+              <span class="price__duration">Czas trwania: <span class="todo">do uzupełnienia</span></span>
+              <a class="btn btn--sm" href="#rejestracja" data-service="psychiatria-pierwsza">Zapytaj o termin<span class="visually-hidden">: pierwsza konsultacja psychiatryczna</span></a>
+            </div>
+          </li>
+          <li class="price" data-reveal>
+            <div>
+              <h3>Kolejna konsultacja psychiatryczna</h3>
+              <p class="price__desc">Spotkanie kontynuujące współpracę z lekarzem — omówienie zmian od poprzedniej wizyty i dalszego planu.</p>
+            </div>
+            <p class="price__value">200 zł<small>cena przykładowa</small></p>
+            <div class="price__foot">
+              <span class="price__duration">Czas trwania: <span class="todo">do uzupełnienia</span></span>
+              <a class="btn btn--sm" href="#rejestracja" data-service="psychiatria-kolejna">Zapytaj o termin<span class="visually-hidden">: kolejna konsultacja psychiatryczna</span></a>
+            </div>
+          </li>
+          <li class="price" data-reveal>
+            <div>
+              <h3>Konsultacja psychologiczna</h3>
+              <p class="price__desc">Rozmowa z psychologiem, podczas której można przyjrzeć się swojej sytuacji i ustalić odpowiednią formę wsparcia.</p>
+            </div>
+            <p class="price__value">200 zł<small>cena przykładowa</small></p>
+            <div class="price__foot">
+              <span class="price__duration">Czas trwania: <span class="todo">do uzupełnienia</span></span>
+              <a class="btn btn--sm" href="#rejestracja" data-service="psychologia">Zapytaj o termin<span class="visually-hidden">: konsultacja psychologiczna</span></a>
+            </div>
+          </li>
+          <li class="price" data-reveal>
+            <div>
+              <h3>Rozszerzona konsultacja psychologiczna</h3>
+              <p class="price__desc">Dłuższe spotkanie z psychologiem dla osób, które potrzebują więcej czasu na rozmowę.</p>
+            </div>
+            <p class="price__value">250 zł<small>cena przykładowa</small></p>
+            <div class="price__foot">
+              <span class="price__duration">Czas trwania: <span class="todo">do uzupełnienia</span></span>
+              <a class="btn btn--sm" href="#rejestracja" data-service="psychologia-rozszerzona">Zapytaj o termin<span class="visually-hidden">: rozszerzona konsultacja psychologiczna</span></a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== HISTORIA ===================== -->
+    <section class="section" id="historia" aria-labelledby="historia-title">
+      <div class="container">
+        <div class="section-head section-head--split" data-reveal>
+          <div>
+            <p class="eyebrow">Historia</p>
+            <h2 class="display h2" id="historia-title">Jak mogłaby wyglądać droga BALANS</h2>
+          </div>
+          <div class="notice" role="note">
+            <p><strong>Oś czasu demonstracyjna.</strong> Daty i wydarzenia są fikcyjne i pokazują jedynie, jak może wyglądać ta sekcja. Marka BALANS nie działa od 2012 roku.</p>
+          </div>
+        </div>
+
+        <ol class="timeline">
+          <li class="milestone" data-reveal>
+            <span class="milestone__year">2012</span>
+            <h3>Początek działalności</h3>
+            <p>Przykładowy start marki: niewielki gabinet i pierwsze konsultacje psychiatryczne.</p>
+            <span class="milestone__flag">Wydarzenie fikcyjne</span>
+          </li>
+          <li class="milestone" data-reveal>
+            <span class="milestone__year">2016</span>
+            <h3>Rozwój konsultacji psychologicznych</h3>
+            <p>Przykładowe poszerzenie oferty o konsultacje z psychologami.</p>
+            <span class="milestone__flag">Wydarzenie fikcyjne</span>
+          </li>
+          <li class="milestone" data-reveal>
+            <span class="milestone__year">2020</span>
+            <h3>Lepsza organizacja kontaktu</h3>
+            <p>Przykładowe uporządkowanie pracy rejestracji i kanałów kontaktu z pacjentami.</p>
+            <span class="milestone__flag">Wydarzenie fikcyjne</span>
+          </li>
+          <li class="milestone" data-reveal>
+            <span class="milestone__year">2026</span>
+            <h3>Modernizacja oferty i rejestracji</h3>
+            <p>Przykładowe odświeżenie oferty i przygotowanie nowych rozwiązań rejestracyjnych, w tym formularza zapytań.</p>
+            <span class="milestone__flag">Wydarzenie fikcyjne</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section class="section section--paper" id="faq" aria-labelledby="faq-title">
+      <div class="container faq">
+        <div class="faq__aside" data-reveal>
+          <p class="eyebrow">Pytania i odpowiedzi</p>
+          <h2 class="display h2" id="faq-title">Najczęściej zadawane pytania</h2>
+          <p>Nie ma tu odpowiedzi na Twoje pytanie? Rejestracja chętnie wyjaśni wszystkie kwestie organizacyjne.</p>
+          <a class="link-arrow" href="#rejestracja">Przejdź do rejestracji <span aria-hidden="true">→</span></a>
+        </div>
+
+        <div class="faq__list" data-reveal>
+          <details class="faq__item">
+            <summary>Jak umówić pierwszą wizytę? <span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__answer">
+              <p>Zadzwoń do rejestracji, napisz e-mail lub wyślij zapytanie przez formularz na tej stronie. Rejestracja skontaktuje się z Tobą i zaproponuje termin. Wizyta jest umówiona dopiero po potwierdzeniu przez rejestrację.</p>
+            </div>
+          </details>
+          <details class="faq__item">
+            <summary>Czy mogę wybrać konkretnego specjalistę? <span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__answer">
+              <p>Tak. Możesz wskazać specjalistę w formularzu lub w rozmowie z rejestracją. Jeśli nie wiesz, kogo wybrać, rejestracja pomoże podjąć decyzję.</p>
+            </div>
+          </details>
+          <details class="faq__item">
+            <summary>Ile kosztuje konsultacja? <span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__answer">
+              <p>Ceny poszczególnych konsultacji znajdziesz w <a href="#cennik">cenniku</a>. W wersji demonstracyjnej kwoty są przykładowe i wynoszą od 200 zł do 250 zł, w zależności od rodzaju wizyty.</p>
+            </div>
+          </details>
+          <details class="faq__item">
+            <summary>Jak przygotować się do pierwszej wizyty? <span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__answer">
+              <p>Nie potrzebujesz specjalnego przygotowania. Jeśli masz dokumentację medyczną lub listę przyjmowanych leków, warto zabrać je ze sobą. Możesz też zapisać pytania, które chcesz zadać podczas spotkania.</p>
+            </div>
+          </details>
+          <details class="faq__item">
+            <summary>Czy mogę odwołać lub zmienić termin? <span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__answer">
+              <p>Tak — skontaktuj się z rejestracją, gdy tylko będzie to możliwe. Szczegółowe zasady odwoływania i zmiany terminów: <span class="todo">do uzupełnienia przez placówkę</span>.</p>
+            </div>
+          </details>
+          <details class="faq__item">
+            <summary>Jak skontaktować się z rejestracją? <span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__answer">
+              <p>Telefonicznie lub mailowo w godzinach pracy rejestracji (przykładowo pon.–pt., 8:00–18:00) albo przez formularz. Dane kontaktowe znajdziesz w sekcji <a href="#rejestracja">Rejestracja</a>.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== REJESTRACJA ===================== -->
+    <section class="section" id="rejestracja" aria-labelledby="rejestracja-title">
+      <div class="container booking">
+        <div data-reveal>
+          <p class="eyebrow">Rejestracja</p>
+          <h2 class="display h2" id="rejestracja-title">Umów wizytę</h2>
+          <p class="lead booking__lead">Skontaktuj się z rejestracją telefonicznie, mailowo lub wyślij zapytanie przez formularz. Nie musisz podawać informacji o swoim zdrowiu.</p>
+
+          <dl class="contact-list">
+            <div>
+              <dt>Telefon</dt>
+              <!-- Numer demonstracyjny — po wdrożeniu zamień na link: <a href="tel:+48...">...</a> -->
+              <dd>+48 42 000 00 00<small>numer przykładowy</small></dd>
+            </div>
+            <div>
+              <dt>E-mail</dt>
+              <dd>rejestracja@balans.example<small>adres przykładowy</small></dd>
+            </div>
+            <div>
+              <dt>Godziny</dt>
+              <dd>poniedziałek–piątek, 8:00–18:00<small>godziny przykładowe; w weekendy i święta rejestracja nieczynna</small></dd>
+            </div>
+          </dl>
+
+          <div class="howto">
+            <h3>Jak umówić wizytę</h3>
+            <ol>
+              <li>Wybierz specjalistę lub zaznacz, że potrzebujesz pomocy w wyborze.</li>
+              <li>Zadzwoń, napisz albo wyślij zapytanie przez formularz.</li>
+              <li>Rejestracja oddzwoni lub odpisze z propozycją terminu.</li>
+              <li>Wizyta jest umówiona po potwierdzeniu terminu przez rejestrację.</li>
+            </ol>
+          </div>
+
+          <aside class="crisis" aria-labelledby="kryzys-title">
+            <h3 id="kryzys-title">Potrzebujesz pilnej pomocy?</h3>
+            <p>Przychodnia nie udziela pomocy w nagłych przypadkach. Jeśli zagrożone jest życie lub zdrowie Twoje albo innej osoby, zadzwoń pod numer alarmowy <strong>112</strong> lub zgłoś się na najbliższy szpitalny oddział ratunkowy.</p>
+            <ul>
+              <li><strong>116 123</strong> — telefon zaufania dla osób dorosłych w kryzysie emocjonalnym</li>
+              <li><strong>800 70 2222</strong> — Centrum Wsparcia dla Osób Dorosłych w Kryzysie Psychicznym</li>
+              <li><strong>116 111</strong> — telefon zaufania dla dzieci i młodzieży</li>
+            </ul>
+          </aside>
+        </div>
+
+        <div class="form-panel" data-reveal>
+          <div class="form-panel__head">
+            <h3>Zapytanie o konsultację</h3>
+            <p>Wypełnij krótki formularz, a rejestracja skontaktuje się z Tobą w sprawie terminu. Pola oznaczone jako opcjonalne możesz pominąć.</p>
+          </div>
+
+          <div class="form-status" id="form-status" role="status" aria-live="polite" tabindex="-1"></div>
+
+          <!--
+            Integracja z backendem: wpisz adres endpointu w atrybucie data-endpoint
+            (np. data-endpoint="/api/zapytania"). Skrypt wyśle dane jako JSON metodą POST.
+            Gdy atrybut jest pusty, formularz działa w trybie demonstracyjnym i niczego nie wysyła ani nie zapisuje.
+          -->
+          <form class="booking-form" id="booking-form" action="#rejestracja" method="post" novalidate data-endpoint="">
+            <div class="form-grid">
+              <div class="field field--full">
+                <label for="f-name">Imię</label>
+                <input class="input" id="f-name" name="name" type="text" autocomplete="given-name" maxlength="60" required aria-describedby="f-name-error">
+                <p class="field__error" id="f-name-error"></p>
+              </div>
+
+              <fieldset class="field field--full" aria-describedby="f-method-error">
+                <legend>Preferowany sposób kontaktu</legend>
+                <div class="choice-row">
+                  <label class="choice"><input type="radio" name="contactMethod" value="phone" checked> Telefon</label>
+                  <label class="choice"><input type="radio" name="contactMethod" value="email"> E-mail</label>
+                </div>
+                <p class="field__error" id="f-method-error"></p>
+              </fieldset>
+
+              <div class="field field--full">
+                <label for="f-contact" id="f-contact-label">Numer telefonu</label>
+                <input class="input" id="f-contact" name="contact" type="tel" autocomplete="tel" inputmode="tel" maxlength="80" required aria-describedby="f-contact-hint f-contact-error">
+                <p class="field__hint" id="f-contact-hint">Na ten numer rejestracja oddzwoni z propozycją terminu.</p>
+                <p class="field__error" id="f-contact-error"></p>
+              </div>
+
+              <div class="field">
+                <label for="f-specialist">Specjalista</label>
+                <select class="select" id="f-specialist" name="specialist" required aria-describedby="f-specialist-error">
+                  <option value="pomoc-w-wyborze">Proszę o pomoc w wyborze</option>
+                  <optgroup label="Psychiatria">
+                    <option value="anna-zielinska">lek. Anna Zielińska</option>
+                    <option value="michal-lewandowski">lek. Michał Lewandowski</option>
+                  </optgroup>
+                  <optgroup label="Psychologia">
+                    <option value="katarzyna-wisniewska">Katarzyna Wiśniewska</option>
+                    <option value="piotr-kaminski">Piotr Kamiński</option>
+                  </optgroup>
+                </select>
+                <p class="field__error" id="f-specialist-error"></p>
+              </div>
+
+              <div class="field">
+                <label for="f-service">Rodzaj wizyty <span class="optional">(opcjonalnie)</span></label>
+                <select class="select" id="f-service" name="service">
+                  <option value="">Nie wiem / do ustalenia</option>
+                  <option value="psychiatria-pierwsza">Pierwsza konsultacja psychiatryczna</option>
+                  <option value="psychiatria-kolejna">Kolejna konsultacja psychiatryczna</option>
+                  <option value="psychologia">Konsultacja psychologiczna</option>
+                  <option value="psychologia-rozszerzona">Rozszerzona konsultacja psychologiczna</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="f-date">Preferowany termin <span class="optional">(opcjonalnie)</span></label>
+                <input class="input" id="f-date" name="preferredDate" type="date" aria-describedby="f-date-hint f-date-error">
+                <p class="field__hint" id="f-date-hint">To tylko preferencja — rejestracja sprawdzi dostępność.</p>
+                <p class="field__error" id="f-date-error"></p>
+              </div>
+
+              <div class="field">
+                <label for="f-time">Pora dnia <span class="optional">(opcjonalnie)</span></label>
+                <select class="select" id="f-time" name="preferredTime">
+                  <option value="">Dowolna</option>
+                  <option value="rano">Przed południem</option>
+                  <option value="popoludnie">Po południu</option>
+                </select>
+              </div>
+
+              <div class="field field--full">
+                <div class="form-privacy" role="note">
+                  <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 1.5 3 4.3v5c0 4.3 3 7.6 7 9.2 4-1.6 7-4.9 7-9.2v-5z" fill="none" stroke="#46604f" stroke-width="1.5"/><path d="m6.8 10 2.2 2.2 4.2-4.4" fill="none" stroke="#46604f" stroke-width="1.5"/></svg>
+                  <p>Prosimy, nie podawaj w formularzu informacji o stanie zdrowia, objawach, diagnozach ani przebiegu leczenia. Te kwestie omówisz bezpośrednio ze specjalistą.</p>
+                </div>
+              </div>
+
+              <div class="field field--full">
+                <label class="check" for="f-consent">
+                  <input id="f-consent" name="consent" type="checkbox" required aria-describedby="f-consent-error">
+                  <span>Potwierdzam zapoznanie się z <a href="polityka-prywatnosci.html">polityką prywatności</a> i proszę o kontakt w sprawie terminu konsultacji.</span>
+                </label>
+                <p class="field__error" id="f-consent-error"></p>
+              </div>
+
+              <div class="hp-field" aria-hidden="true">
+                <label for="f-website">Pozostaw to pole puste</label>
+                <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
+              </div>
+
+              <div class="field field--full form-actions">
+                <button class="btn btn--block" type="submit">Wyślij zapytanie</button>
+                <p>Wysłanie zapytania nie jest rezerwacją terminu. Wizytę potwierdza rejestracja.</p>
+              </div>
+            </div>
+            <noscript><p class="field__hint">Formularz wymaga włączonej obsługi JavaScript. Możesz też skontaktować się z rejestracją telefonicznie lub mailowo.</p></noscript>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== LOKALIZACJA ===================== -->
+    <section class="section section--paper" id="kontakt" aria-labelledby="kontakt-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Kontakt i lokalizacja</p>
+          <h2 class="display h2" id="kontakt-title">Jak do nas trafić</h2>
+        </div>
+
+        <div class="location">
+          <figure class="map" data-reveal>
+            <!-- Miejsce na mapę: zastąp obraz osadzoną mapą (np. iframe Google Maps lub OpenStreetMap) po uzyskaniu zgody na pliki cookies -->
+            <img src="assets/images/mapa-pogladowa.svg" width="800" height="560" loading="lazy"
+                 alt="Schemat poglądowy lokalizacji przychodni przy ul. Piotrkowskiej w Łodzi — nie przedstawia rzeczywistego układu ulic">
+            <figcaption><span class="demo-tag">Schemat poglądowy — miejsce na mapę</span></figcaption>
+          </figure>
+
+          <div class="location__card" data-reveal>
+            <span class="demo-tag demo-tag--dark">Dane przykładowe</span>
+            <h3>BALANS — Centrum Zdrowia Psychicznego</h3>
+            <dl class="location__list">
+              <div>
+                <dt>Adres</dt>
+                <dd><address>ul. Piotrkowska 100<br>Łódź</address><small>Pod tym adresem nie działa placówka BALANS.</small></dd>
+              </div>
+              <div>
+                <dt>Rejestracja</dt>
+                <dd>poniedziałek–piątek, 8:00–18:00</dd>
+              </div>
+              <div>
+                <dt>Telefon</dt>
+                <dd>+48 42 000 00 00</dd>
+              </div>
+              <div>
+                <dt>E-mail</dt>
+                <dd>rejestracja@balans.example</dd>
+              </div>
+            </dl>
+            <a class="btn btn--light" href="https://www.google.com/maps/search/?api=1&amp;query=ul.+Piotrkowska+100%2C+%C5%81%C3%B3d%C5%BA" target="_blank" rel="noopener noreferrer">
+              Otwórz w Google Maps <span class="visually-hidden">(otwiera się w nowej karcie)</span><span aria-hidden="true">↗</span>
+            </a>
+            <p class="location__note">Link prowadzi do przykładowego adresu w serwisie Google Maps.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Fala — motyw z identyfikacji wizualnej -->
+  <svg class="wave" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true" focusable="false" style="background:var(--paper)">
+    <path d="M0 70C220 20 420 10 640 40s420 70 800 10v90H0z" fill="#95AB9F" opacity=".55"/>
+    <path d="M0 100C260 60 480 60 720 86s440 34 720-10v64H0z" fill="#22324B"/>
+    <path d="M0 58C260 8 470 0 700 34s440 66 740 6" fill="none" stroke="#C99E72" stroke-width="1.2"/>
+  </svg>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="brand" href="#start" aria-label="BALANS — Centrum Zdrowia Psychicznego, powrót na górę strony">
+            <svg class="brand__mark" aria-hidden="true" focusable="false"><use href="#logo-mark"/></svg>
+            <span class="brand__text" aria-hidden="true">
+              <span class="brand__name">BALANS</span>
+              <span class="brand__tag">Centrum Zdrowia Psychicznego</span>
+            </span>
+          </a>
+          <p class="footer__motto">Znajdź przestrzeń dla siebie</p>
+        </div>
+
+        <nav aria-labelledby="stopka-nawigacja">
+          <h2 class="footer__title" id="stopka-nawigacja">Nawigacja</h2>
+          <ul class="footer__links">
+            <li><a href="#start">Strona główna</a></li>
+            <li><a href="#o-nas">O nas</a></li>
+            <li><a href="#historia">Historia</a></li>
+            <li><a href="#faq">Pytania i odpowiedzi</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-labelledby="stopka-pacjent">
+          <h2 class="footer__title" id="stopka-pacjent">Dla pacjentów</h2>
+          <ul class="footer__links">
+            <li><a href="#specjalisci">Nasi specjaliści</a></li>
+            <li><a href="#cennik">Cennik</a></li>
+            <li><a href="#rejestracja">Rejestracja</a></li>
+            <li><a href="regulamin.html">Regulamin</a></li>
+            <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
+          </ul>
+        </nav>
+
+        <div>
+          <h2 class="footer__title">Kontakt</h2>
+          <address class="footer__contact">
+            ul. Piotrkowska 100, Łódź<br>
+            +48 42 000 00 00<br>
+            rejestracja@balans.example<br>
+            pon.–pt., 8:00–18:00
+            <small>Wszystkie dane kontaktowe są przykładowe.</small>
+          </address>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2026 BALANS. Projekt demonstracyjny przygotowany do portfolio agencji. Marka, osoby, ceny, historia i dane kontaktowe są fikcyjne — strona nie jest witryną rzeczywistej placówki medycznej.</p>
+        <p><a href="regulamin.html">Regulamin</a> · <a href="polityka-prywatnosci.html">Polityka prywatności</a></p>
+      </div>
+    </div>
+  </footer>
+
+</body></html>

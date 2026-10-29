@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" role="img" aria-labelledby="t">
+  <title id="t">Ilustracja: talerz z nigiri z łososiem i tuńczykiem, maki i pałeczki w neonowym kręgu</title>
+  <defs>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="9" result="b1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="b2"/>
+      <feMerge><feMergeNode in="b1"/><feMergeNode in="b1"/><feMergeNode in="b2"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+    <radialGradient id="plate" cx="45%" cy="40%" r="65%">
+      <stop offset="0" stop-color="#2a2230"/>
+      <stop offset="0.7" stop-color="#18131c"/>
+      <stop offset="1" stop-color="#0f0b12"/>
+    </radialGradient>
+    <linearGradient id="salmon" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffa37a"/>
+      <stop offset="1" stop-color="#f2683f"/>
+    </linearGradient>
+    <linearGradient id="tuna" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d93b4f"/>
+      <stop offset="1" stop-color="#9e1f33"/>
+    </linearGradient>
+    <linearGradient id="rice" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbf6ec"/>
+      <stop offset="1" stop-color="#e7decd"/>
+    </linearGradient>
+    <linearGradient id="wood" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#d9b48a"/>
+      <stop offset="1" stop-color="#a87c52"/>
+    </linearGradient>
+    <pattern id="grain" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="1.4" fill="#fff" opacity=".55"/>
+      <circle cx="7" cy="7" r="1.2" fill="#d8ccb6" opacity=".7"/>
+    </pattern>
+  </defs>
+
+  <!-- neonowy krąg -->
+  <circle cx="320" cy="320" r="282" fill="none" stroke="#ff4d3d" stroke-width="5" filter="url(#glow)" opacity=".95"/>
+  <circle cx="320" cy="320" r="282" fill="none" stroke="#ffd9d2" stroke-width="1.6"/>
+
+  <!-- talerz -->
+  <ellipse cx="330" cy="352" rx="214" ry="206" fill="#000" opacity=".55" filter="url(#soft)"/>
+  <circle cx="320" cy="330" r="212" fill="url(#plate)"/>
+  <circle cx="320" cy="330" r="212" fill="none" stroke="#3a3040" stroke-width="2"/>
+  <circle cx="320" cy="330" r="190" fill="none" stroke="#241d29" stroke-width="1"/>
+
+  <!-- nigiri łosoś -->
+  <g transform="rotate(-24 260 260)">
+    <rect x="166" y="246" width="182" height="82" rx="41" fill="url(#rice)"/>
+    <rect x="166" y="246" width="182" height="82" rx="41" fill="url(#grain)"/>
+    <path d="M160 238 C 200 206, 300 204, 352 226 C 362 250, 356 280, 336 300 C 280 312, 210 312, 168 292 C 150 274, 150 254, 160 238 Z" fill="url(#salmon)"/>
+    <g stroke="#ffe0d0" stroke-width="5" stroke-linecap="round" opacity=".85" fill="none">
+      <path d="M196 220 C 186 250, 190 280, 204 304"/>
+      <path d="M232 214 C 222 248, 226 282, 240 308"/>
+      <path d="M270 212 C 260 246, 264 282, 278 308"/>
+      <path d="M308 216 C 298 248, 302 280, 316 304"/>
+    </g>
+    <path d="M176 236 C 220 214, 300 214, 342 230" stroke="#fff" stroke-opacity=".35" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- nigiri tuńczyk -->
+  <g transform="rotate(-24 300 380)">
+    <rect x="210" y="372" width="182" height="82" rx="41" fill="url(#rice)"/>
+    <rect x="210" y="372" width="182" height="82" rx="41" fill="url(#grain)"/>
+    <path d="M204 364 C 246 332, 344 330, 396 352 C 406 376, 400 406, 380 426 C 324 438, 254 438, 212 418 C 194 400, 194 380, 204 364 Z" fill="url(#tuna)"/>
+    <path d="M222 362 C 266 342, 344 342, 386 356" stroke="#fff" stroke-opacity=".28" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M240 400 C 290 410, 340 408, 372 398" stroke="#7a1526" stroke-opacity=".5" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- maki -->
+  <g>
+    <circle cx="430" cy="232" r="46" fill="#121014"/>
+    <circle cx="430" cy="232" r="38" fill="url(#rice)"/>
+    <circle cx="430" cy="232" r="38" fill="url(#grain)"/>
+    <circle cx="430" cy="232" r="15" fill="#f2683f"/>
+    <circle cx="436" cy="226" r="7" fill="#6fae5c"/>
+  </g>
+  <g>
+    <circle cx="452" cy="340" r="42" fill="#121014"/>
+    <circle cx="452" cy="340" r="34" fill="url(#rice)"/>
+    <circle cx="452" cy="340" r="34" fill="url(#grain)"/>
+    <circle cx="452" cy="340" r="13" fill="#7cc06a"/>
+  </g>
+
+  <!-- wasabi i imbir -->
+  <path d="M398 446 c 10 -22, 42 -24, 50 -4 c 8 18 -6 30 -26 30 c -18 0 -30 -10 -24 -26 Z" fill="#9fcf5b"/>
+  <path d="M410 444 c 8 -8 20 -10 28 -4" stroke="#c9ea8e" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <g fill="#f7b3ba" stroke="#e98c98" stroke-width="1.5">
+    <path d="M330 470 c 20 -16 52 -10 58 8 c -20 12 -46 10 -58 -8 Z"/>
+    <path d="M318 488 c 22 -10 50 0 52 18 c -22 6 -46 0 -52 -18 Z" opacity=".9"/>
+  </g>
+
+  <!-- pałeczki -->
+  <g transform="rotate(-38 320 320)">
+    <rect x="92" y="566" width="430" height="12" rx="6" fill="url(#wood)"/>
+    <rect x="98" y="588" width="420" height="11" rx="5.5" fill="url(#wood)" opacity=".92"/>
+    <rect x="92" y="566" width="80" height="12" rx="6" fill="#ff4d3d"/>
+    <rect x="98" y="588" width="80" height="11" rx="5.5" fill="#ff4d3d"/>
+  </g>
+</svg>

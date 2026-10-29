@@ -1,0 +1,1 @@
+function e(e){return`${t(e)} zł`}function t(e){return Math.round(e).toString().replace(/\B(?=(\d{3})+(?!\d))/g,`\xA0`)}function n(e,t,n,r){let i=e%10,a=e%100;return e===1?t:i>=2&&i<=4&&(a<12||a>14)?n:r}function r(e){return`${e} ${n(e,`doba`,`doby`,`dób`)}`}export{t as n,e as r,r as t};
