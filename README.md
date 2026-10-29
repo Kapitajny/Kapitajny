@@ -6,6 +6,9 @@ odbioru, płatności Stripe Checkout potwierdzane webhookiem oraz projekty dokum
 > **Projekt demonstracyjny.** Adresy lokali, godziny otwarcia, dane sprzedawcy i dokumenty prawne są danymi
 > przykładowymi / wersjami roboczymi i wymagają uzupełnienia przed przyjmowaniem prawdziwych zamówień.
 
+> **Drugi projekt w repozytorium:** serwis demonstracyjny biura rachunkowego **InterPodatki** znajduje się
+> w katalogu [`interpodatki/`](interpodatki/README.md) – to osobna aplikacja Next.js z własnymi zależnościami.
+
 ## Stack
 
 - **Next.js 16** (App Router, Turbopack, Cache Components), **React 19**, **TypeScript**
