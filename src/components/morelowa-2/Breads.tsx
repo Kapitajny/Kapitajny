@@ -1,67 +1,61 @@
 import Image from "next/image";
 import { photos } from "@/components/morelowa/images";
 import { Reveal } from "@/components/ui/Reveal";
-import { breadMenu } from "@/data/morelowa";
+import { bakeryRhythm, breads } from "@/data/morelowa";
 
-/** Pieczywo jako karta wypieków: kategorie, przykładowe bochenki, czas fermentacji i gramatura. */
+/** Pieczywo: zdjęcie od krawędzi ekranu, rytm pracy piekarni i rodzaje pieczywa. */
 export function Breads() {
   return (
-    <section id="pieczywo" aria-labelledby="pieczywo-tytul" className="band bg-papier">
-      <div className="wrap">
-        <Reveal className="grid gap-6 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-7">
-            <p className="kicker">Nasze wypieki · Pieczywo</p>
-            <h2 id="pieczywo-tytul" className="title-lg mt-6 text-braz">
-              Codziennie od świtu, <em className="text-bordo italic">tak jak przed laty.</em>
+    <section id="pieczywo" aria-labelledby="pieczywo-tytul" className="bg-braz lg:grid lg:grid-cols-2">
+      {/* GRAFIKA 2 – pieczywo, od lewej krawędzi ekranu */}
+      <figure className="relative min-h-[26rem] sm:min-h-[34rem] lg:min-h-full">
+        <Image
+          src={photos.bread.src}
+          alt={photos.bread.alt}
+          fill
+          placeholder="blur"
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          className="object-cover object-[40%_50%]"
+        />
+        <figcaption className="absolute bottom-0 left-0 bg-noc/85 px-5 py-3 text-[0.82rem] text-mgla italic">
+          Bochenek na zakwasie, krojony prosto na desce.
+        </figcaption>
+      </figure>
+
+      <div className="rytm px-5 sm:px-8 lg:px-14 xl:px-20">
+        <div className="max-w-[38rem]">
+          <Reveal>
+            <p className="etykieta">Nasze wypieki · Pieczywo</p>
+            <h2 id="pieczywo-tytul" className="display-xl mt-6 text-krem">
+              Pieczemy, zanim <em className="text-zloto italic">miasto się obudzi.</em>
             </h2>
-          </div>
-          <p className="intro text-szary lg:col-span-5">
-            Pierwsze bochenki wyjmujemy z pieca, zanim miasto się obudzi. Zakwas dojrzewa powoli, ciasto formujemy ręcznie, a każdą partię sprawdzamy,
-            zanim trafi na półkę.
-          </p>
-        </Reveal>
+            <p className="lead mt-7 text-mgla">
+              Codzienna praca piekarza zaczyna się w nocy. Ciasto formujemy ręcznie, a każdą partię sprawdzamy, zanim trafi na półkę — tak samo jak
+              w pierwszym roku.
+            </p>
+          </Reveal>
 
-        <div className="mt-14 grid gap-14 lg:mt-20 lg:grid-cols-12 lg:gap-12">
-          {/* GRAFIKA 2 – pieczywo, w ramie z przesuniętą złotą linią */}
-          <div className="lg:col-span-5">
-            <Reveal as="figure" className="lg:sticky lg:top-32">
-              <div className="relative ml-3 mt-3 sm:ml-4 sm:mt-4">
-                <span aria-hidden="true" className="absolute -top-3 -left-3 h-full w-full border border-zloto sm:-top-4 sm:-left-4" />
-                <div className="relative aspect-[4/5] overflow-hidden bg-bez">
-                  <Image
-                    src={photos.bread.src}
-                    alt={photos.bread.alt}
-                    fill
-                    placeholder="blur"
-                    sizes="(min-width: 1344px) 480px, (min-width: 1024px) 36vw, 92vw"
-                    className="object-cover object-[42%_50%]"
-                  />
-                </div>
-              </div>
-              <figcaption className="mt-5 text-[0.85rem] text-szary italic">Bochenek na zakwasie, krojony prosto na desce.</figcaption>
-            </Reveal>
-          </div>
+          <Reveal as="div" className="mt-12">
+            <h3 className="font-sans text-[0.72rem] font-semibold tracking-[0.26em] text-zloto uppercase">Rytm piekarni</h3>
+            <ol className="mt-5 border-l border-zloto/50">
+              {bakeryRhythm.map((step) => (
+                <li key={step.time} className="relative pb-6 pl-6 last:pb-0">
+                  <span aria-hidden="true" className="absolute top-[0.6rem] -left-[4px] h-[7px] w-[7px] rounded-full bg-zloto" />
+                  <p className="font-serif text-[1.35rem] leading-tight text-krem">{step.time}</p>
+                  <p className="mt-1 text-[0.95rem] text-mgla">{step.text}</p>
+                </li>
+              ))}
+            </ol>
+          </Reveal>
 
-          <div className="grid content-start gap-x-12 gap-y-12 md:grid-cols-2 lg:col-span-7">
-            {breadMenu.map((group, index) => (
-              <Reveal key={group.category} delay={(index % 2) * 120} className="border-t border-braz pt-6">
-                <h3 className="text-[1.65rem] leading-tight text-braz">{group.category}</h3>
-                <p className="mt-2 text-[0.72rem] font-medium tracking-[0.22em] text-zloto-tekst uppercase">{group.note}</p>
-                <ul className="mt-6 space-y-3.5">
-                  {group.items.map((item) => (
-                    <li key={item.name} className="flex items-baseline gap-3 text-[0.98rem]">
-                      <span className="text-braz">{item.name}</span>
-                      <span aria-hidden="true" className="leader" />
-                      <span className="shrink-0 text-[0.82rem] text-szary tabular-nums">{item.spec}</span>
-                    </li>
-                  ))}
-                </ul>
+          <ul className="mt-14 grid gap-x-8 gap-y-8 sm:grid-cols-2">
+            {breads.map((item, index) => (
+              <Reveal as="li" key={item.name} delay={(index % 2) * 100} className="border-t border-linia-ciemna pt-5">
+                <h3 className="text-[1.45rem] leading-tight text-krem">{item.name}</h3>
+                <p className="mt-2 text-[0.92rem] text-mgla">{item.text}</p>
               </Reveal>
             ))}
-            <p className="text-[0.85rem] text-szary md:col-span-2">
-              Wybór zmienia się w ciągu dnia i z porami roku. Gramatury i czasy fermentacji są orientacyjne — o szczegóły zapytaj przy ladzie.
-            </p>
-          </div>
+          </ul>
         </div>
       </div>
     </section>

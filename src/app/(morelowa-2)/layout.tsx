@@ -1,26 +1,26 @@
 import type { Metadata, Viewport } from "next";
-import { Jost, Libre_Bodoni } from "next/font/google";
+import { DM_Serif_Display, Hanken_Grotesk } from "next/font/google";
 import type { ReactNode } from "react";
 import { siteConfig } from "@/config/site";
 import { morelowa } from "@/data/morelowa";
 import "./morelowa-2.css";
 
-const bodoni = Libre_Bodoni({
-  variable: "--font-bodoni",
+const display = DM_Serif_Display({
+  variable: "--font-display",
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500"],
+  weight: "400",
   style: ["normal", "italic"],
   display: "swap",
 });
 
-const jost = Jost({
-  variable: "--font-jost",
+const body = Hanken_Grotesk({
+  variable: "--font-body",
   subsets: ["latin", "latin-ext"],
-  weight: ["300", "400", "500"],
+  weight: ["300", "400", "500", "600"],
   display: "swap",
 });
 
-const title = "Morelowa – piekarnia i cukiernia rodzinna od 1991 roku | Koncepcja 2";
+const title = "Morelowa – rodzinna piekarnia i cukiernia od 1991 roku | Koncepcja 2";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -38,18 +38,19 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f8f4ec",
+  themeColor: "#231912",
+  colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
 };
 
 /**
- * Layout główny koncepcji 2 strony Morelowej (grupa tras) – własne fonty i arkusz stylów,
- * niezależne od koncepcji 1 w `(morelowa)` i kawiarni NOIR COFFEE w `(noir)`.
+ * Layout główny koncepcji 2 strony Morelowej (grupa tras) – ciemny, nastrojowy kierunek
+ * z własnymi fontami i arkuszem stylów, niezależny od koncepcji 1 w `(morelowa)`.
  */
 export default function MorelowaConcept2Layout({ children }: { children: ReactNode }) {
   return (
-    <html lang="pl" className={`${bodoni.variable} ${jost.variable}`} suppressHydrationWarning>
+    <html lang="pl" className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
       <head>
         {/* Animacje przy przewijaniu włączamy tylko, gdy działa JavaScript. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />

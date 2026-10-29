@@ -138,42 +138,10 @@ export const bakeryLocations: readonly BakeryLocation[] = [
   },
 ];
 
-/** Karta pieczywa z koncepcji 2 – kategorie z przykładowymi wypiekami (bez cen: strona nie prowadzi sprzedaży). */
-export const breadMenu = [
-  {
-    category: "Chleby na zakwasie",
-    note: "Zakwas dokarmiany codziennie",
-    items: [
-      { name: "Żytni razowy", spec: "48 h fermentacji · 1 kg" },
-      { name: "Pszenno-żytni z ziarnami", spec: "24 h fermentacji · 800 g" },
-      { name: "Wiejski na zakwasie", spec: "24 h fermentacji · 1,2 kg" },
-    ],
-  },
-  {
-    category: "Tradycyjne chleby pszenne i żytnie",
-    note: "Codzienne bochenki o prostym składzie",
-    items: [
-      { name: "Chleb pszenny", spec: "600 g" },
-      { name: "Baltonowski", spec: "500 g" },
-      { name: "Żytni z kminkiem", spec: "700 g" },
-    ],
-  },
-  {
-    category: "Bułki i bagietki",
-    note: "Wypiekane od świtu",
-    items: [
-      { name: "Bagietka", spec: "250 g" },
-      { name: "Kajzerka", spec: "60 g" },
-      { name: "Grahamka", spec: "70 g" },
-    ],
-  },
-  {
-    category: "Drożdżówki i wypieki sezonowe",
-    note: "Zmieniają się z porami roku",
-    items: [
-      { name: "Drożdżówka z morelą", spec: "lato" },
-      { name: "Drożdżówka ze śliwką i kruszonką", spec: "jesień" },
-      { name: "Strucla z makiem", spec: "zima" },
-    ],
-  },
+/** Rytm pracy piekarni – od nocnej fermentacji do popołudniowych wypieków (koncepcja 2). */
+export const bakeryRhythm = [
+  { time: "Noc", text: "Zakwas dojrzewa powoli, a ciasto na chleby żytnie odpoczywa w dzieżach." },
+  { time: "Przed świtem", text: "Rozpalamy piec, formujemy bochenki ręcznie i nacinamy je tuż przed wypiekiem." },
+  { time: "Ranek", text: "Pierwsze chleby, bułki i bagietki trafiają na półki jeszcze ciepłe." },
+  { time: "W ciągu dnia", text: "Powstają drożdżówki, ciasta i wypieki sezonowe – w rytmie tego, co akurat dojrzewa." },
 ] as const;

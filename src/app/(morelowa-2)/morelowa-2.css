@@ -5,53 +5,59 @@
 @source "../../components/morelowa-2";
 
 /* ---------------------------------------------------------------------------
- * MORELOWA – koncepcja 2 „Łuk pieca”
- * Jasna, architektoniczna kompozycja: łuk (otwór pieca, okno witryny) jako motyw,
- * wysokokontrastowy Bodoni w nagłówkach i geometryczny Jost w treści.
+ * MORELOWA – koncepcja 2 „Nocny wypiek”
+ * Ciemna, nastrojowa piekarnia przed świtem: głęboki brąz i bordo jako tło,
+ * krem jako tekst, złoto jako światło pieca. Jedna jasna sekcja (lokale) dla oddechu.
+ * Nagłówki: DM Serif Display, treść: Hanken Grotesk.
  * ------------------------------------------------------------------------- */
 
 @theme {
   --color-*: initial;
-  --color-krem: #f8f4ec;
-  --color-papier: #fdfbf7;
-  --color-bez: #e9ddcc;
+  --color-noc: #231912;
+  --color-braz: #382920;
+  --color-braz-jasny: #4a372b;
   --color-bordo: #682c35;
   --color-bordo-ciemne: #4f1f27;
-  --color-braz: #382920;
+  --color-krem: #f8f4ec;
+  --color-bez: #e9ddcc;
   --color-zloto: #b69a69;
   /* Złoto na jasnym tle ma za niski kontrast dla tekstu – ten odcień spełnia WCAG AA. */
   --color-zloto-tekst: #84683a;
+  /* Stonowany tekst na ciemnym tle */
+  --color-mgla: #c9bfb2;
   --color-szary: #67584c;
   --color-linia: #dccdb8;
+  --color-linia-ciemna: #4d3c31;
   --color-white: #ffffff;
+  --color-black: #000000;
   --color-transparent: transparent;
   --color-current: currentColor;
 
-  --font-serif: var(--font-bodoni), "Libre Bodoni", "Bodoni 72", "Didot", Georgia, serif;
-  --font-sans: var(--font-jost), "Futura", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-display), "DM Serif Display", Georgia, serif;
+  --font-sans: var(--font-body), "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
 
   --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 @layer base {
   :root {
-    color-scheme: light;
+    color-scheme: dark;
   }
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5.5rem;
+    scroll-padding-top: 4.5rem;
     -webkit-text-size-adjust: 100%;
   }
-  @media (min-width: 1280px) {
+  @media (min-width: 1024px) {
     html {
-      scroll-padding-top: 8.5rem;
+      scroll-padding-top: 5.25rem;
     }
   }
 
   body {
-    background-color: var(--color-krem);
-    color: var(--color-braz);
+    background-color: var(--color-noc);
+    color: var(--color-krem);
     font-family: var(--font-sans);
     font-size: 1.0625rem;
     line-height: 1.7;
@@ -65,7 +71,7 @@
     font-family: var(--font-serif);
     font-weight: 400;
     line-height: 1.02;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
     text-wrap: balance;
   }
 
@@ -78,24 +84,24 @@
   }
 
   ::selection {
-    background: var(--color-bordo);
-    color: var(--color-krem);
+    background: var(--color-zloto);
+    color: var(--color-noc);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-bordo);
+    outline: 2px solid var(--color-zloto);
     outline-offset: 3px;
   }
 
-  .on-dark :focus-visible {
-    outline-color: var(--color-krem);
+  .jasne :focus-visible {
+    outline-color: var(--color-bordo);
   }
 
   section[tabindex="-1"]:focus {
     outline: none;
   }
 
-  /* Blokada przewijania tła przy otwartym menu mobilnym lub oknie lokalu. */
+  /* Blokada przewijania tła przy otwartym menu mobilnym lub panelu lokalu. */
   html[data-menu-open],
   html:has(dialog[open]:modal) {
     overflow: hidden;
@@ -103,217 +109,211 @@
 }
 
 @layer components {
-  .wrap {
+  .shell {
     width: 100%;
-    max-width: 84rem;
+    max-width: 86rem;
     margin-inline: auto;
     padding-inline: 1.25rem;
   }
   @media (min-width: 640px) {
-    .wrap {
+    .shell {
       padding-inline: 2rem;
     }
   }
   @media (min-width: 1024px) {
-    .wrap {
+    .shell {
       padding-inline: 3.5rem;
     }
   }
 
-  .band {
-    padding-block: clamp(4.5rem, 3rem + 6vw, 8.5rem);
+  .rytm {
+    padding-block: clamp(5rem, 3rem + 7vw, 10rem);
   }
 
-  /* Nadtytuł: drobna kapitaliki z romboidalnym znacznikiem */
-  .kicker {
+  /* Etykieta sekcji: złota kapitalika z krótką linią */
+  .etykieta {
     display: inline-flex;
     align-items: center;
-    gap: 0.7rem;
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.28em;
+    gap: 0.9rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
+    color: var(--color-zloto);
+  }
+  .etykieta::before {
+    content: "";
+    width: 1.75rem;
+    height: 1px;
+    background: currentColor;
+  }
+  .jasne .etykieta {
     color: var(--color-bordo);
   }
-  .kicker::before {
-    content: "";
-    width: 0.4rem;
-    height: 0.4rem;
-    transform: rotate(45deg);
-    background: var(--color-zloto);
+
+  .display-xxl {
+    font-size: clamp(3.1rem, 0.8rem + 7.6vw, 9rem);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
   }
-  .on-dark .kicker {
-    color: var(--color-krem);
+  .display-xl {
+    font-size: clamp(2.5rem, 1.3rem + 4vw, 5.4rem);
+    line-height: 0.98;
+  }
+  .display-md {
+    font-size: clamp(1.8rem, 1.4rem + 1.2vw, 2.6rem);
   }
 
-  .title-xl {
-    font-size: clamp(3rem, 1.2rem + 5.2vw, 6.5rem);
-    line-height: 0.95;
-  }
-  .title-lg {
-    font-size: clamp(2.4rem, 1.4rem + 3.6vw, 4.75rem);
-  }
-  .title-md {
-    font-size: clamp(1.75rem, 1.3rem + 1.4vw, 2.6rem);
-  }
-
-  .intro {
-    font-size: clamp(1.1rem, 1rem + 0.35vw, 1.3rem);
-    line-height: 1.65;
+  .lead {
+    font-size: clamp(1.08rem, 1rem + 0.3vw, 1.25rem);
     font-weight: 300;
+    line-height: 1.7;
   }
 
-  /* Łuk – górna krawędź jak otwór pieca chlebowego */
-  .arch {
-    border-radius: 999px 999px 0 0;
+  /* Rok na osi czasu: kontur złotą linią */
+  .rok-kontur {
+    color: transparent;
+    -webkit-text-stroke: 1.2px var(--color-zloto);
   }
 
-  /* Przyciski – zaokrąglone jak bochenek, z wyraźną kapitaliką */
-  .pill {
+  /* Przyciski – prostokątne bloki ze strzałką */
+  .cta {
     display: inline-flex;
     min-height: 3.25rem;
     align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
+    justify-content: space-between;
+    gap: 1.5rem;
     border: 1px solid transparent;
-    border-radius: 999px;
-    padding: 0.85rem 1.9rem;
-    font-family: var(--font-sans);
+    padding: 0.85rem 1.4rem 0.85rem 1.6rem;
     font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.16em;
+    font-weight: 600;
+    letter-spacing: 0.14em;
     line-height: 1.2;
-    text-align: center;
     text-transform: uppercase;
     transition:
       background-color 250ms var(--ease-soft),
       color 250ms var(--ease-soft),
       border-color 250ms var(--ease-soft);
   }
-  .pill-sm {
-    min-height: 2.75rem;
-    padding: 0.65rem 1.35rem;
+  .cta > span[aria-hidden] {
+    transition: transform 250ms var(--ease-soft);
   }
-  .pill-bordo {
+  .cta:hover > span[aria-hidden] {
+    transform: translateX(4px);
+  }
+  .cta-sm {
+    min-height: 2.75rem;
+    gap: 1rem;
+    padding: 0.6rem 1.1rem 0.6rem 1.25rem;
+  }
+  .cta-zloto {
+    background: var(--color-zloto);
+    color: var(--color-noc);
+  }
+  .cta-zloto:hover {
+    background: var(--color-bez);
+  }
+  .cta-kontur {
+    border-color: color-mix(in srgb, var(--color-krem) 55%, transparent);
+    color: var(--color-krem);
+  }
+  .cta-kontur:hover {
+    border-color: var(--color-krem);
+    background: var(--color-krem);
+    color: var(--color-noc);
+  }
+  .cta-bordo {
     background: var(--color-bordo);
     color: var(--color-krem);
   }
-  .pill-bordo:hover {
+  .cta-bordo:hover {
     background: var(--color-bordo-ciemne);
   }
-  .pill-line {
+  .cta-ciemny {
     border-color: var(--color-braz);
     color: var(--color-braz);
   }
-  .pill-line:hover {
+  .cta-ciemny:hover {
     background: var(--color-braz);
     color: var(--color-krem);
   }
-  .pill-krem {
-    background: var(--color-krem);
-    color: var(--color-bordo);
+
+  .podkreslenie {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    padding-bottom: 3px;
+    transition: background-size 300ms var(--ease-soft);
   }
-  .pill-krem:hover {
-    background: var(--color-bez);
+  .podkreslenie:hover,
+  .podkreslenie[aria-current="true"] {
+    background-size: 100% 1px;
   }
 
-  /* Link ze strzałką */
-  .arrow-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    border-bottom: 1px solid currentColor;
-    padding-bottom: 0.3rem;
-  }
-  .arrow-link span[aria-hidden] {
-    transition: transform 250ms var(--ease-soft);
-  }
-  .arrow-link:hover span[aria-hidden] {
-    transform: translateX(4px);
-  }
-
-  .nav-link {
-    position: relative;
-    padding-block: 0.4rem;
-  }
-  .nav-link::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    width: 0.3rem;
-    height: 0.3rem;
-    border-radius: 999px;
-    background: var(--color-bordo);
-    transform: translateX(-50%) scale(0);
-    transition: transform 250ms var(--ease-soft);
-  }
-  .nav-link:hover::after,
-  .nav-link[aria-current="true"]::after {
-    transform: translateX(-50%) scale(1);
-  }
-
-  /* Kropkowane wypełnienie w karcie pieczywa */
-  .leader {
-    flex: 1;
-    min-width: 1.5rem;
-    border-bottom: 1px dotted color-mix(in srgb, var(--color-braz) 35%, transparent);
-    transform: translateY(-0.3em);
-  }
-
-  /* Pola formularza na jasnym tle */
-  .input {
+  /* Pola formularza na ciemnym tle */
+  .pole {
     width: 100%;
-    border: 1px solid var(--color-linia);
-    border-radius: 0.25rem;
-    background: var(--color-papier);
-    padding: 0.85rem 1rem;
-    color: var(--color-braz);
+    border: 1px solid var(--color-linia-ciemna);
+    background: var(--color-braz);
+    padding: 0.9rem 1rem;
+    color: var(--color-krem);
     font-size: 1rem;
     transition: border-color 200ms var(--ease-soft);
   }
-  .input:hover {
-    border-color: color-mix(in srgb, var(--color-braz) 45%, transparent);
+  .pole:hover {
+    border-color: color-mix(in srgb, var(--color-zloto) 60%, transparent);
   }
-  .input:focus-visible {
-    outline: 2px solid var(--color-bordo);
+  .pole:focus-visible {
+    outline: 2px solid var(--color-zloto);
     outline-offset: 0;
-    border-color: var(--color-bordo);
+    border-color: var(--color-zloto);
   }
-  .input[aria-invalid="true"] {
-    border-color: #9b2c2c;
+  .pole[aria-invalid="true"] {
+    border-color: #e8a598;
   }
 
-  /* Okno szczegółów lokalu */
-  .dialog {
-    width: min(36rem, calc(100% - 2rem));
-    max-height: calc(100dvh - 2rem);
-    margin: auto;
+  /* Panel lokalu wysuwany z prawej (natywny <dialog>) */
+  .panel {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(32rem, 100%);
+    max-width: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
+    margin: 0;
     border: 0;
     padding: 0;
     background: var(--color-krem);
     color: var(--color-braz);
-    box-shadow: 0 30px 80px -30px rgb(56 41 32 / 0.55);
+    overflow-y: auto;
   }
-  .dialog::backdrop {
-    background: rgb(56 41 32 / 0.55);
+  .panel[open] {
+    animation: panel-in 380ms var(--ease-soft);
+  }
+  .panel::backdrop {
+    background: rgb(20 14 10 / 0.7);
   }
 
   .js .reveal {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(18px);
     transition:
-      opacity 800ms var(--ease-soft),
-      transform 800ms var(--ease-soft);
+      opacity 900ms var(--ease-soft),
+      transform 900ms var(--ease-soft);
     transition-delay: var(--reveal-delay, 0ms);
   }
   .js .reveal[data-visible="true"] {
     opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes panel-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
     transform: none;
   }
 }

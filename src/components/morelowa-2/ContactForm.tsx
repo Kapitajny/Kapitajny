@@ -35,14 +35,14 @@ export function ContactForm() {
   }
 
   return (
-    <form ref={formRef} noValidate onSubmit={onSubmit} aria-describedby={`${id}-demo`} className="border border-linia bg-papier p-6 sm:p-10">
-      <div className="flex flex-wrap items-baseline justify-between gap-3">
-        <h3 className="text-[2rem] leading-tight text-braz">Napisz do nas</h3>
-        <span className="rounded-full bg-bez px-3 py-1 text-[0.65rem] font-medium tracking-[0.2em] text-braz uppercase">Demo</span>
+    <form ref={formRef} noValidate onSubmit={onSubmit} aria-describedby={`${id}-demo`} className="border border-linia-ciemna p-6 text-left sm:p-10">
+      <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-linia-ciemna pb-5">
+        <h3 className="text-[1.9rem] leading-tight text-krem">Napisz do nas</h3>
+        <p id={`${id}-demo`} className="text-[0.8rem] text-mgla">
+          <span className="mr-2 border border-zloto px-2 py-0.5 text-[0.62rem] font-semibold tracking-[0.2em] text-zloto uppercase">Demo</span>
+          Wiadomości nie są wysyłane ani zapisywane.
+        </p>
       </div>
-      <p id={`${id}-demo`} className="mt-3 text-[0.9rem] text-szary">
-        Formularz demonstracyjny — wiadomości nie są wysyłane ani zapisywane.
-      </p>
 
       <div className="mt-8 grid gap-6 sm:grid-cols-2">
         {FIELDS.map((field) => {
@@ -51,22 +51,27 @@ export function ContactForm() {
           const common = {
             id: fieldId,
             name: field.name,
-            className: "input",
             "aria-invalid": errors[field.name] ? true : undefined,
             "aria-describedby": errors[field.name] ? errorId : undefined,
           };
           return (
             <div key={field.name} className={field.type === "textarea" ? "sm:col-span-2" : undefined}>
-              <label htmlFor={fieldId} className="mb-2 block text-[0.72rem] font-medium tracking-[0.2em] text-braz uppercase">
+              <label htmlFor={fieldId} className="mb-2 block text-[0.72rem] font-semibold tracking-[0.2em] text-krem uppercase">
                 {field.label}
               </label>
               {field.type === "textarea" ? (
-                <textarea {...common} rows={4} className="input resize-y" />
+                <textarea {...common} rows={4} className="pole resize-y" />
               ) : (
-                <input {...common} type={field.type} autoComplete={field.autoComplete} inputMode={field.type === "email" ? "email" : undefined} />
+                <input
+                  {...common}
+                  className="pole"
+                  type={field.type}
+                  autoComplete={field.autoComplete}
+                  inputMode={field.type === "email" ? "email" : undefined}
+                />
               )}
               {errors[field.name] && (
-                <p id={errorId} className="mt-2 text-[0.85rem] text-[#9b2c2c]">
+                <p id={errorId} className="mt-2 text-[0.85rem] text-[#f0bfb3]">
                   {errors[field.name]}
                 </p>
               )}
@@ -75,15 +80,15 @@ export function ContactForm() {
         })}
       </div>
 
-      <button type="submit" className="pill pill-bordo mt-8 w-full sm:w-auto">
-        Sprawdź formularz
+      <button type="submit" className="cta cta-zloto mt-8 w-full sm:w-auto">
+        Sprawdź formularz <span aria-hidden="true">→</span>
       </button>
 
       <div ref={statusRef} tabIndex={-1} role="status" className="outline-none">
         {checked && (
-          <p className="mt-6 border-l-2 border-bordo pl-4 text-[0.95rem] text-braz">
+          <p className="mt-6 border-l-2 border-zloto pl-4 text-[0.95rem] text-krem">
             Formularz został wypełniony poprawnie. To jednak wersja demonstracyjna —{" "}
-            <strong className="font-medium">wiadomość nie została wysłana.</strong> W prawdziwym wdrożeniu trafiłaby do skrzynki piekarni.
+            <strong className="font-semibold">wiadomość nie została wysłana.</strong> W prawdziwym wdrożeniu trafiłaby do skrzynki piekarni.
           </p>
         )}
       </div>

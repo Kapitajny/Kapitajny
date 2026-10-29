@@ -8,14 +8,11 @@ import { Patisserie } from "@/components/morelowa-2/Patisserie";
 import { Philosophy } from "@/components/morelowa-2/Philosophy";
 import { Timeline } from "@/components/morelowa-2/Timeline";
 
-/** Koncepcja 2 strony Morelowej – ta sama treść i zdjęcia, inny kierunek wizualny niż `/morelowa`. */
+/** Koncepcja 2 strony Morelowej – ciemny, nastrojowy kierunek „Nocny wypiek”. */
 export default function MorelowaConcept2Page() {
   return (
     <>
-      <a
-        href="#tresc"
-        className="sr-only z-50 rounded-full bg-bordo px-5 py-3 text-sm font-medium text-krem focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
-      >
+      <a href="#tresc" className="sr-only z-50 bg-zloto px-5 py-3 text-sm font-semibold text-noc focus:not-sr-only focus:fixed focus:top-3 focus:left-3">
         Przejdź do treści
       </a>
       <Header />

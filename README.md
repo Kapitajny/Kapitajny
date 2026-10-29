@@ -6,7 +6,7 @@ Repozytorium zawiera niezależne strony w jednej aplikacji Next.js:
 | --- | --- | --- |
 | `/` (i podstrony) | **NOIR COFFEE** – kawiarnia z zamówieniami online | `src/app/(noir)/`, opis poniżej |
 | `/morelowa` | **Morelowa** – rodzinna piekarnia i cukiernia, koncepcja 1 | `src/app/(morelowa)/`, sekcja [Morelowa](#morelowa--rodzinna-piekarnia--cukiernia) |
-| `/morelowa-2` | **Morelowa** – koncepcja 2 (ten sam brief, inny kierunek wizualny) | `src/app/(morelowa-2)/`, sekcja [Koncepcja 2](#morelowa--koncepcja-2-łuk-pieca) |
+| `/morelowa-2` | **Morelowa** – koncepcja 2, ciemna (ten sam brief, inny kierunek wizualny) | `src/app/(morelowa-2)/`, sekcja [Koncepcja 2](#morelowa--koncepcja-2-nocny-wypiek) |
 
 Każda strona ma własny layout główny (grupy tras `(noir)`, `(morelowa)` i `(morelowa-2)`): osobne fonty, kolory, arkusz stylów,
 favicon i metadane. Przejście między nimi przeładowuje stronę. Adresy spoza obu stron obsługuje wspólna strona 404
@@ -53,22 +53,23 @@ uzupełnienia”, nie ma linków do map ani systemu zamówień. Formularz kontak
 wysyła** i mówi o tym wprost. W stopce: „Projekt demonstracyjny — fikcyjna marka stworzona na potrzeby portfolio
 ComputerIT” oraz „Website concept by ComputerIT”.
 
-## Morelowa – koncepcja 2 „Łuk pieca”
+## Morelowa – koncepcja 2 „Nocny wypiek”
 
-Druga propozycja tej samej strony (http://localhost:3000/morelowa-2). Treści (`src/data/morelowa.ts`), zdjęcia
-(`src/components/morelowa/images.ts`), logika menu (`site-menu.ts`) i walidacja formularza (`contact-validation.ts`)
-są wspólne z koncepcją 1 – różni się kierunek wizualny:
+Druga propozycja tej samej strony (http://localhost:3000/morelowa-2) – ciemny, nastrojowy kierunek: piekarnia przed
+świtem. Treści (`src/data/morelowa.ts`), zdjęcia (`src/components/morelowa/images.ts`), logika menu (`site-menu.ts`)
+i walidacja formularza (`contact-validation.ts`) są wspólne z koncepcją 1 – różni się kierunek wizualny:
 
 | | Koncepcja 1 (`/morelowa`) | Koncepcja 2 (`/morelowa-2`) |
 | --- | --- | --- |
-| Typografia | Cormorant Garamond + Manrope | Libre Bodoni (wysoki kontrast) + Jost (geometryczny) |
-| Nagłówek | logo z lewej, menu w linii | logo pośrodku, menu w drugim rzędzie; mobilnie bordowy panel |
-| Hero | zdjęcie na całą szerokość z tekstem na zdjęciu | jasny, podzielony ekran; zdjęcie w łuku (otwór pieca) z pieczęcią „od 1991” |
-| Pieczywo | lista kategorii obok zdjęcia | karta wypieków z czasem fermentacji i gramaturą |
-| Cukiernia | układ magazynu kulinarnego na beżu | bordowa sekcja, zdjęcie w ramce jak w witrynie |
-| Historia | pionowa oś czasu, ciemne tło | szeroki kadr 21:9 i pozioma oś czasu |
-| Lokale | lista z rozwijanymi szczegółami | dwie kolumny, szczegóły w oknie (`<dialog>`) |
-| Przyciski | prostokątne | zaokrąglone |
+| Charakter | jasna, kremowa, klasyczna | ciemna i nastrojowa: brąz, bordo, złoto jako światło pieca |
+| Typografia | Cormorant Garamond + Manrope | DM Serif Display + Hanken Grotesk |
+| Nagłówek | kremowy pasek | przezroczysty nad zdjęciem, po przewinięciu ciemny |
+| Hero | tekst w lewej kolumnie na zdjęciu | zdjęcie na cały ekran, nagłówek przez całą szerokość, przyciski po prawej |
+| Pieczywo | lista obok zdjęcia | zdjęcie od krawędzi ekranu i „rytm piekarni” od nocy do rana |
+| Cukiernia | magazyn na beżu | rozkładówka na bordo – blok z tytułem nachodzi na zdjęcie |
+| Historia | pionowa oś, zdjęcie z lewej | lata w złotym konturze, zdjęcie z prawej |
+| Lokale | rozwijane szczegóły | jasna sekcja, zdjęcie do prawej krawędzi; „Zobacz lokal” wysuwa panel z boku |
+| Przyciski | prostokątne bez strzałek | prostokątne bloki ze strzałką, złote na ciemnym tle |
 
 Pliki: `src/app/(morelowa-2)/` (layout, `morelowa-2.css`, strona) i `src/components/morelowa-2/`.
 
