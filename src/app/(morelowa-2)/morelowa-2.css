@@ -1,0 +1,336 @@
+@import "tailwindcss" source(none);
+
+/* Klasy generujemy tylko z plików koncepcji 2 – koncepcja 1 i kawiarnia NOIR mają własne arkusze. */
+@source "./";
+@source "../../components/morelowa-2";
+
+/* ---------------------------------------------------------------------------
+ * MORELOWA – koncepcja 2 „Łuk pieca”
+ * Jasna, architektoniczna kompozycja: łuk (otwór pieca, okno witryny) jako motyw,
+ * wysokokontrastowy Bodoni w nagłówkach i geometryczny Jost w treści.
+ * ------------------------------------------------------------------------- */
+
+@theme {
+  --color-*: initial;
+  --color-krem: #f8f4ec;
+  --color-papier: #fdfbf7;
+  --color-bez: #e9ddcc;
+  --color-bordo: #682c35;
+  --color-bordo-ciemne: #4f1f27;
+  --color-braz: #382920;
+  --color-zloto: #b69a69;
+  /* Złoto na jasnym tle ma za niski kontrast dla tekstu – ten odcień spełnia WCAG AA. */
+  --color-zloto-tekst: #84683a;
+  --color-szary: #67584c;
+  --color-linia: #dccdb8;
+  --color-white: #ffffff;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --font-serif: var(--font-bodoni), "Libre Bodoni", "Bodoni 72", "Didot", Georgia, serif;
+  --font-sans: var(--font-jost), "Futura", ui-sans-serif, system-ui, sans-serif;
+
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (min-width: 1280px) {
+    html {
+      scroll-padding-top: 8.5rem;
+    }
+  }
+
+  body {
+    background-color: var(--color-krem);
+    color: var(--color-braz);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  address {
+    font-style: normal;
+  }
+
+  ::selection {
+    background: var(--color-bordo);
+    color: var(--color-krem);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-bordo);
+    outline-offset: 3px;
+  }
+
+  .on-dark :focus-visible {
+    outline-color: var(--color-krem);
+  }
+
+  section[tabindex="-1"]:focus {
+    outline: none;
+  }
+
+  /* Blokada przewijania tła przy otwartym menu mobilnym lub oknie lokalu. */
+  html[data-menu-open],
+  html:has(dialog[open]:modal) {
+    overflow: hidden;
+  }
+}
+
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: 84rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .wrap {
+      padding-inline: 2rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .wrap {
+      padding-inline: 3.5rem;
+    }
+  }
+
+  .band {
+    padding-block: clamp(4.5rem, 3rem + 6vw, 8.5rem);
+  }
+
+  /* Nadtytuł: drobna kapitaliki z romboidalnym znacznikiem */
+  .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-bordo);
+  }
+  .kicker::before {
+    content: "";
+    width: 0.4rem;
+    height: 0.4rem;
+    transform: rotate(45deg);
+    background: var(--color-zloto);
+  }
+  .on-dark .kicker {
+    color: var(--color-krem);
+  }
+
+  .title-xl {
+    font-size: clamp(3rem, 1.2rem + 5.2vw, 6.5rem);
+    line-height: 0.95;
+  }
+  .title-lg {
+    font-size: clamp(2.4rem, 1.4rem + 3.6vw, 4.75rem);
+  }
+  .title-md {
+    font-size: clamp(1.75rem, 1.3rem + 1.4vw, 2.6rem);
+  }
+
+  .intro {
+    font-size: clamp(1.1rem, 1rem + 0.35vw, 1.3rem);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* Łuk – górna krawędź jak otwór pieca chlebowego */
+  .arch {
+    border-radius: 999px 999px 0 0;
+  }
+
+  /* Przyciski – zaokrąglone jak bochenek, z wyraźną kapitaliką */
+  .pill {
+    display: inline-flex;
+    min-height: 3.25rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: 0.85rem 1.9rem;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    line-height: 1.2;
+    text-align: center;
+    text-transform: uppercase;
+    transition:
+      background-color 250ms var(--ease-soft),
+      color 250ms var(--ease-soft),
+      border-color 250ms var(--ease-soft);
+  }
+  .pill-sm {
+    min-height: 2.75rem;
+    padding: 0.65rem 1.35rem;
+  }
+  .pill-bordo {
+    background: var(--color-bordo);
+    color: var(--color-krem);
+  }
+  .pill-bordo:hover {
+    background: var(--color-bordo-ciemne);
+  }
+  .pill-line {
+    border-color: var(--color-braz);
+    color: var(--color-braz);
+  }
+  .pill-line:hover {
+    background: var(--color-braz);
+    color: var(--color-krem);
+  }
+  .pill-krem {
+    background: var(--color-krem);
+    color: var(--color-bordo);
+  }
+  .pill-krem:hover {
+    background: var(--color-bez);
+  }
+
+  /* Link ze strzałką */
+  .arrow-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 0.3rem;
+  }
+  .arrow-link span[aria-hidden] {
+    transition: transform 250ms var(--ease-soft);
+  }
+  .arrow-link:hover span[aria-hidden] {
+    transform: translateX(4px);
+  }
+
+  .nav-link {
+    position: relative;
+    padding-block: 0.4rem;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0.3rem;
+    height: 0.3rem;
+    border-radius: 999px;
+    background: var(--color-bordo);
+    transform: translateX(-50%) scale(0);
+    transition: transform 250ms var(--ease-soft);
+  }
+  .nav-link:hover::after,
+  .nav-link[aria-current="true"]::after {
+    transform: translateX(-50%) scale(1);
+  }
+
+  /* Kropkowane wypełnienie w karcie pieczywa */
+  .leader {
+    flex: 1;
+    min-width: 1.5rem;
+    border-bottom: 1px dotted color-mix(in srgb, var(--color-braz) 35%, transparent);
+    transform: translateY(-0.3em);
+  }
+
+  /* Pola formularza na jasnym tle */
+  .input {
+    width: 100%;
+    border: 1px solid var(--color-linia);
+    border-radius: 0.25rem;
+    background: var(--color-papier);
+    padding: 0.85rem 1rem;
+    color: var(--color-braz);
+    font-size: 1rem;
+    transition: border-color 200ms var(--ease-soft);
+  }
+  .input:hover {
+    border-color: color-mix(in srgb, var(--color-braz) 45%, transparent);
+  }
+  .input:focus-visible {
+    outline: 2px solid var(--color-bordo);
+    outline-offset: 0;
+    border-color: var(--color-bordo);
+  }
+  .input[aria-invalid="true"] {
+    border-color: #9b2c2c;
+  }
+
+  /* Okno szczegółów lokalu */
+  .dialog {
+    width: min(36rem, calc(100% - 2rem));
+    max-height: calc(100dvh - 2rem);
+    margin: auto;
+    border: 0;
+    padding: 0;
+    background: var(--color-krem);
+    color: var(--color-braz);
+    box-shadow: 0 30px 80px -30px rgb(56 41 32 / 0.55);
+  }
+  .dialog::backdrop {
+    background: rgb(56 41 32 / 0.55);
+  }
+
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 800ms var(--ease-soft),
+      transform 800ms var(--ease-soft);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .js .reveal[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

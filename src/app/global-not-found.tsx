@@ -3,7 +3,7 @@ import Link from "next/link";
 
 /**
  * Strona 404 dla adresów spoza wszystkich tras. Aplikacja ma dwa layouty główne
- * – `(noir)` i `(morelowa)` – więc zwykły `app/not-found.tsx` nie ma w czym się wyrenderować.
+ * – `(noir)`, `(morelowa)` i `(morelowa-2)` – więc zwykły `app/not-found.tsx` nie ma w czym się wyrenderować.
  *
  * Celowo bez `next/font` i arkuszy stylów: ten plik trafia do każdej strony jako granica 404,
  * więc importowane tu fonty byłyby wstępnie ładowane także na stronach, które ich nie używają.
@@ -40,6 +40,7 @@ export default function GlobalNotFound() {
           <nav aria-label="Strony główne">
             <Link href="/">NOIR COFFEE</Link>
             <Link href="/morelowa">Piekarnia Morelowa</Link>
+            <Link href="/morelowa-2">Morelowa – koncepcja 2</Link>
           </nav>
         </main>
       </body>

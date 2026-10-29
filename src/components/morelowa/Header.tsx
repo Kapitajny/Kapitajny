@@ -1,105 +1,15 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type MouseEvent } from "react";
 import { morelowaNav } from "@/data/morelowa";
 import { Logo } from "./Logo";
+import { useActiveSection, useMobileMenu, useScrolled } from "./site-menu";
 
 const SECTION_IDS = morelowaNav.map((item) => item.href.slice(1));
 
-/** Śledzi, która sekcja jest aktualnie na ekranie (do podświetlenia pozycji menu). */
-function useActiveSection() {
-  const [active, setActive] = useState<string>("start");
-
-  useEffect(() => {
-    const sections = SECTION_IDS.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => el !== null);
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) setActive(entry.target.id);
-        }
-      },
-      // Sekcja jest „aktywna”, gdy przecina pasek tuż pod nagłówkiem.
-      { rootMargin: "-30% 0px -65% 0px" },
-    );
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
-
-  return active;
-}
-
 export function Header() {
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const active = useActiveSection();
-  const toggleRef = useRef<HTMLButtonElement>(null);
-  const panelRef = useRef<HTMLDivElement>(null);
-
-  const close = useCallback((returnFocus = false) => {
-    setOpen(false);
-    if (returnFocus) toggleRef.current?.focus();
-  }, []);
-
-  // Link z menu mobilnego: najpierw zdejmujemy blokadę przewijania, potem przewijamy do sekcji
-  // (przy zablokowanym przewijaniu natywny skok kotwicy kończy się w złym miejscu).
-  const navigateFromMenu = useCallback(
-    (event: MouseEvent<HTMLAnchorElement>) => {
-      const hash = event.currentTarget.hash;
-      const target = hash ? document.getElementById(hash.slice(1)) : null;
-      if (!target) return close();
-      event.preventDefault();
-      delete document.documentElement.dataset.menuOpen;
-      close();
-      history.pushState(null, "", hash);
-      target.scrollIntoView();
-      target.setAttribute("tabindex", "-1");
-      target.focus({ preventScroll: true });
-    },
-    [close],
-  );
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Menu mobilne: blokada przewijania, Escape, pułapka fokusu i zamknięcie po przejściu na desktop.
-  useEffect(() => {
-    if (!open) return;
-    const root = document.documentElement;
-    root.dataset.menuOpen = "";
-    panelRef.current?.querySelector<HTMLElement>("a")?.focus();
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        close(true);
-        return;
-      }
-      if (event.key !== "Tab" || !panelRef.current) return;
-      const focusable = [toggleRef.current, ...panelRef.current.querySelectorAll<HTMLElement>("a")].filter(Boolean) as HTMLElement[];
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
-      }
-    };
-    const desktop = window.matchMedia("(min-width: 1024px)");
-    const onBreakpoint = () => desktop.matches && close();
-
-    document.addEventListener("keydown", onKeyDown);
-    desktop.addEventListener("change", onBreakpoint);
-    return () => {
-      delete root.dataset.menuOpen;
-      document.removeEventListener("keydown", onKeyDown);
-      desktop.removeEventListener("change", onBreakpoint);
-    };
-  }, [open, close]);
+  const active = useActiveSection(SECTION_IDS);
+  const scrolled = useScrolled();
+  const { open, setOpen, toggleRef, panelRef, navigateFromMenu } = useMobileMenu("(min-width: 1024px)");
 
   return (
     <header

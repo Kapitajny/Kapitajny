@@ -1,29 +1,14 @@
 "use client";
 
 import { useId, useRef, useState, type FormEvent } from "react";
-
-type Field = "name" | "email" | "message";
-type Errors = Partial<Record<Field, string>>;
-
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-function validate(data: FormData): Errors {
-  const errors: Errors = {};
-  const name = String(data.get("name") ?? "").trim();
-  const email = String(data.get("email") ?? "").trim();
-  const message = String(data.get("message") ?? "").trim();
-  if (name.length < 2) errors.name = "Wpisz imię (co najmniej 2 znaki).";
-  if (!EMAIL_PATTERN.test(email)) errors.email = "Wpisz poprawny adres e-mail, np. jan@example.com.";
-  if (message.length < 10) errors.message = "Wiadomość powinna mieć co najmniej 10 znaków.";
-  return errors;
-}
+import { validateContact, type ContactErrors, type ContactField } from "./contact-validation";
 
 /**
  * Formularz demonstracyjny – strona nie ma backendu, więc wiadomość NIE jest nigdzie wysyłana.
  * Po poprawnym wypełnieniu pokazujemy uczciwy komunikat zamiast udawanego potwierdzenia.
  */
 export function ContactForm() {
-  const [errors, setErrors] = useState<Errors>({});
+  const [errors, setErrors] = useState<ContactErrors>({});
   const [checked, setChecked] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const statusRef = useRef<HTMLDivElement>(null);
@@ -31,9 +16,9 @@ export function ContactForm() {
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const nextErrors = validate(new FormData(event.currentTarget));
+    const nextErrors = validateContact(new FormData(event.currentTarget));
     setErrors(nextErrors);
-    const firstInvalid = (Object.keys(nextErrors) as Field[])[0];
+    const firstInvalid = (Object.keys(nextErrors) as ContactField[])[0];
     if (firstInvalid) {
       setChecked(false);
       formRef.current?.querySelector<HTMLElement>(`[name="${firstInvalid}"]`)?.focus();
@@ -43,7 +28,7 @@ export function ContactForm() {
     requestAnimationFrame(() => statusRef.current?.focus());
   }
 
-  const describedBy = (field: Field) => (errors[field] ? `${id}-${field}-blad` : undefined);
+  const describedBy = (field: ContactField) => (errors[field] ? `${id}-${field}-blad` : undefined);
 
   return (
     <form ref={formRef} noValidate onSubmit={onSubmit} aria-describedby={`${id}-demo`} className="border border-krem/25 p-6 sm:p-10">
