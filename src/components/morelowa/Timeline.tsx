@@ -8,7 +8,7 @@ export function Timeline() {
     <section id="historia" aria-labelledby="historia-tytul" className="on-dark section-y bg-braz text-krem">
       <div className="container-m">
         <Reveal className="max-w-[52rem]">
-          <p className="eyebrow">Nasza historia · 1991–2021</p>
+          <p className="eyebrow">Nasza historia · 1991–2026</p>
           <h2 id="historia-tytul" className="display-2 mt-6 text-krem">
             Trzy dekady. Dwa miasta. <em className="font-normal text-zloto italic">Jedna rodzinna tradycja.</em>
           </h2>
