@@ -9,6 +9,10 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   cacheComponents: true,
+  // Dwa layouty główne (NOIR COFFEE i Morelowa) – wspólna strona 404 w app/global-not-found.tsx.
+  experimental: {
+    globalNotFound: true,
+  },
   partialPrefetching: true,
   poweredByHeader: false,
   images: {

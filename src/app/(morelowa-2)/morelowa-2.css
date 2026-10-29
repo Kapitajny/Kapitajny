@@ -1,0 +1,336 @@
+@import "tailwindcss" source(none);
+
+/* Klasy generujemy tylko z plików koncepcji 2 – koncepcja 1 i kawiarnia NOIR mają własne arkusze. */
+@source "./";
+@source "../../components/morelowa-2";
+
+/* ---------------------------------------------------------------------------
+ * MORELOWA – koncepcja 2 „Nocny wypiek”
+ * Ciemna, nastrojowa piekarnia przed świtem: głęboki brąz i bordo jako tło,
+ * krem jako tekst, złoto jako światło pieca. Jedna jasna sekcja (lokale) dla oddechu.
+ * Nagłówki: DM Serif Display, treść: Hanken Grotesk.
+ * ------------------------------------------------------------------------- */
+
+@theme {
+  --color-*: initial;
+  --color-noc: #231912;
+  --color-braz: #382920;
+  --color-braz-jasny: #4a372b;
+  --color-bordo: #682c35;
+  --color-bordo-ciemne: #4f1f27;
+  --color-krem: #f8f4ec;
+  --color-bez: #e9ddcc;
+  --color-zloto: #b69a69;
+  /* Złoto na jasnym tle ma za niski kontrast dla tekstu – ten odcień spełnia WCAG AA. */
+  --color-zloto-tekst: #84683a;
+  /* Stonowany tekst na ciemnym tle */
+  --color-mgla: #c9bfb2;
+  --color-szary: #67584c;
+  --color-linia: #dccdb8;
+  --color-linia-ciemna: #4d3c31;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --font-serif: var(--font-display), "DM Serif Display", Georgia, serif;
+  --font-sans: var(--font-body), "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (min-width: 1024px) {
+    html {
+      scroll-padding-top: 5.25rem;
+    }
+  }
+
+  body {
+    background-color: var(--color-noc);
+    color: var(--color-krem);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  address {
+    font-style: normal;
+  }
+
+  ::selection {
+    background: var(--color-zloto);
+    color: var(--color-noc);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-zloto);
+    outline-offset: 3px;
+  }
+
+  .jasne :focus-visible {
+    outline-color: var(--color-bordo);
+  }
+
+  section[tabindex="-1"]:focus {
+    outline: none;
+  }
+
+  /* Blokada przewijania tła przy otwartym menu mobilnym lub panelu lokalu. */
+  html[data-menu-open],
+  html:has(dialog[open]:modal) {
+    overflow: hidden;
+  }
+}
+
+@layer components {
+  .shell {
+    width: 100%;
+    max-width: 86rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .shell {
+      padding-inline: 2rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .shell {
+      padding-inline: 3.5rem;
+    }
+  }
+
+  .rytm {
+    padding-block: clamp(5rem, 3rem + 7vw, 10rem);
+  }
+
+  /* Etykieta sekcji: złota kapitalika z krótką linią */
+  .etykieta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.9rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-zloto);
+  }
+  .etykieta::before {
+    content: "";
+    width: 1.75rem;
+    height: 1px;
+    background: currentColor;
+  }
+  .jasne .etykieta {
+    color: var(--color-bordo);
+  }
+
+  .display-xxl {
+    font-size: clamp(3.1rem, 0.8rem + 7.6vw, 9rem);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+  }
+  .display-xl {
+    font-size: clamp(2.5rem, 1.3rem + 4vw, 5.4rem);
+    line-height: 0.98;
+  }
+  .display-md {
+    font-size: clamp(1.8rem, 1.4rem + 1.2vw, 2.6rem);
+  }
+
+  .lead {
+    font-size: clamp(1.08rem, 1rem + 0.3vw, 1.25rem);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* Rok na osi czasu: kontur złotą linią */
+  .rok-kontur {
+    color: transparent;
+    -webkit-text-stroke: 1.2px var(--color-zloto);
+  }
+
+  /* Przyciski – prostokątne bloki ze strzałką */
+  .cta {
+    display: inline-flex;
+    min-height: 3.25rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    border: 1px solid transparent;
+    padding: 0.85rem 1.4rem 0.85rem 1.6rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    transition:
+      background-color 250ms var(--ease-soft),
+      color 250ms var(--ease-soft),
+      border-color 250ms var(--ease-soft);
+  }
+  .cta > span[aria-hidden] {
+    transition: transform 250ms var(--ease-soft);
+  }
+  .cta:hover > span[aria-hidden] {
+    transform: translateX(4px);
+  }
+  .cta-sm {
+    min-height: 2.75rem;
+    gap: 1rem;
+    padding: 0.6rem 1.1rem 0.6rem 1.25rem;
+  }
+  .cta-zloto {
+    background: var(--color-zloto);
+    color: var(--color-noc);
+  }
+  .cta-zloto:hover {
+    background: var(--color-bez);
+  }
+  .cta-kontur {
+    border-color: color-mix(in srgb, var(--color-krem) 55%, transparent);
+    color: var(--color-krem);
+  }
+  .cta-kontur:hover {
+    border-color: var(--color-krem);
+    background: var(--color-krem);
+    color: var(--color-noc);
+  }
+  .cta-bordo {
+    background: var(--color-bordo);
+    color: var(--color-krem);
+  }
+  .cta-bordo:hover {
+    background: var(--color-bordo-ciemne);
+  }
+  .cta-ciemny {
+    border-color: var(--color-braz);
+    color: var(--color-braz);
+  }
+  .cta-ciemny:hover {
+    background: var(--color-braz);
+    color: var(--color-krem);
+  }
+
+  .podkreslenie {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    padding-bottom: 3px;
+    transition: background-size 300ms var(--ease-soft);
+  }
+  .podkreslenie:hover,
+  .podkreslenie[aria-current="true"] {
+    background-size: 100% 1px;
+  }
+
+  /* Pola formularza na ciemnym tle */
+  .pole {
+    width: 100%;
+    border: 1px solid var(--color-linia-ciemna);
+    background: var(--color-braz);
+    padding: 0.9rem 1rem;
+    color: var(--color-krem);
+    font-size: 1rem;
+    transition: border-color 200ms var(--ease-soft);
+  }
+  .pole:hover {
+    border-color: color-mix(in srgb, var(--color-zloto) 60%, transparent);
+  }
+  .pole:focus-visible {
+    outline: 2px solid var(--color-zloto);
+    outline-offset: 0;
+    border-color: var(--color-zloto);
+  }
+  .pole[aria-invalid="true"] {
+    border-color: #e8a598;
+  }
+
+  /* Panel lokalu wysuwany z prawej (natywny <dialog>) */
+  .panel {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(32rem, 100%);
+    max-width: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background: var(--color-krem);
+    color: var(--color-braz);
+    overflow-y: auto;
+  }
+  .panel[open] {
+    animation: panel-in 380ms var(--ease-soft);
+  }
+  .panel::backdrop {
+    background: rgb(20 14 10 / 0.7);
+  }
+
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 900ms var(--ease-soft),
+      transform 900ms var(--ease-soft);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .js .reveal[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes panel-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

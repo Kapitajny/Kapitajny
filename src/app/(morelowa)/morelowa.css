@@ -1,0 +1,294 @@
+@import "tailwindcss" source(none);
+
+/* Klasy generujemy tylko z plików strony Morelowej – arkusz kawiarni NOIR jest osobny. */
+@source "./";
+@source "../../components/morelowa";
+
+/* ---------------------------------------------------------------------------
+ * MORELOWA – system wizualny
+ * Kremowa biel, ciemne bordo, głęboki brąz, delikatny beż i stonowane złoto.
+ * ------------------------------------------------------------------------- */
+
+@theme {
+  --color-*: initial;
+  --color-krem: #f8f4ec;
+  --color-papier: #fcfaf6;
+  --color-bez: #e9ddcc;
+  --color-bordo: #682c35;
+  --color-bordo-ciemne: #521f28;
+  --color-braz: #382920;
+  --color-braz-ciemny: #2a1e17;
+  --color-zloto: #b69a69;
+  /* Złoto na jasnym tle ma za niski kontrast dla tekstu – ten odcień spełnia WCAG AA. */
+  --color-zloto-tekst: #84683a;
+  --color-szary: #6a5a4d;
+  --color-linia: #dccdb8;
+  --color-white: #ffffff;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-krem);
+    color: var(--color-braz);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  address {
+    font-style: normal;
+  }
+
+  ::selection {
+    background: var(--color-bordo);
+    color: var(--color-krem);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-bordo);
+    outline-offset: 3px;
+  }
+
+  /* Sekcje dostają fokus programowo po nawigacji z menu mobilnego – bez ramki. */
+  section[tabindex="-1"]:focus {
+    outline: none;
+  }
+
+  .on-dark :focus-visible {
+    outline-color: var(--color-krem);
+  }
+
+  /* Blokada przewijania tła przy otwartym menu mobilnym. */
+  html[data-menu-open] {
+    overflow: hidden;
+  }
+}
+
+@layer components {
+  .container-m {
+    width: 100%;
+    max-width: 82rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .container-m {
+      padding-inline: 2rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container-m {
+      padding-inline: 3rem;
+    }
+  }
+
+  .section-y {
+    padding-block: clamp(4.5rem, 3rem + 6vw, 9rem);
+  }
+
+  /* Nadtytuł z cienką linią */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-bordo);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 2.25rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.6;
+  }
+  .on-dark .eyebrow {
+    color: var(--color-zloto);
+  }
+
+  .display-1 {
+    font-size: clamp(2.75rem, 1.6rem + 4.6vw, 6rem);
+    line-height: 0.98;
+  }
+  .display-2 {
+    font-size: clamp(2.35rem, 1.5rem + 3.2vw, 4.4rem);
+  }
+  .display-3 {
+    font-size: clamp(1.75rem, 1.35rem + 1.4vw, 2.5rem);
+  }
+
+  .lead {
+    font-size: clamp(1.05rem, 1rem + 0.25vw, 1.2rem);
+    line-height: 1.7;
+  }
+
+  /* Przyciski – prostokątne, z cienką ramką i rozstrzelonym krojem */
+  .btn {
+    display: inline-flex;
+    min-height: 3.125rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    border: 1px solid transparent;
+    padding: 0.85rem 1.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    line-height: 1.2;
+    text-align: center;
+    text-transform: uppercase;
+    transition:
+      background-color 250ms var(--ease-soft),
+      color 250ms var(--ease-soft),
+      border-color 250ms var(--ease-soft);
+  }
+  .btn-sm {
+    min-height: 2.75rem;
+    padding: 0.7rem 1.25rem;
+  }
+  .btn-primary {
+    background: var(--color-bordo);
+    color: var(--color-krem);
+    border-color: var(--color-bordo);
+  }
+  .btn-primary:hover {
+    background: var(--color-bordo-ciemne);
+    border-color: var(--color-bordo-ciemne);
+  }
+  .btn-outline {
+    border-color: color-mix(in srgb, var(--color-braz) 45%, transparent);
+    color: var(--color-braz);
+  }
+  .btn-outline:hover {
+    background: var(--color-braz);
+    border-color: var(--color-braz);
+    color: var(--color-krem);
+  }
+  .btn-light {
+    background: var(--color-krem);
+    border-color: var(--color-krem);
+    color: var(--color-braz);
+  }
+  .btn-light:hover {
+    background: var(--color-bez);
+    border-color: var(--color-bez);
+  }
+  .btn-ghost-light {
+    border-color: color-mix(in srgb, var(--color-krem) 65%, transparent);
+    color: var(--color-krem);
+  }
+  .btn-ghost-light:hover {
+    background: var(--color-krem);
+    border-color: var(--color-krem);
+    color: var(--color-braz);
+  }
+
+  /* Link tekstowy z podkreśleniem */
+  .link-line {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    padding-bottom: 2px;
+    transition: background-size 300ms var(--ease-soft);
+  }
+  .link-line:hover,
+  .link-line[aria-current="true"] {
+    background-size: 100% 1px;
+  }
+
+  /* Pola formularza – tylko dolna linia */
+  .field {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-krem) 45%, transparent);
+    background: transparent;
+    padding: 0.7rem 0;
+    color: var(--color-krem);
+    font-size: 1rem;
+    border-radius: 0;
+    transition: border-color 200ms var(--ease-soft);
+  }
+  .field::placeholder {
+    color: color-mix(in srgb, var(--color-krem) 55%, transparent);
+  }
+  .field:hover {
+    border-bottom-color: color-mix(in srgb, var(--color-krem) 75%, transparent);
+  }
+  .field:focus-visible {
+    outline: none;
+    border-bottom-color: var(--color-krem);
+    box-shadow: 0 1px 0 0 var(--color-krem);
+  }
+  .field[aria-invalid="true"] {
+    border-bottom-color: #f1b9a8;
+  }
+
+  /* Pojawianie się przy przewijaniu – aktywne tylko z JS i bez ograniczenia ruchu */
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 900ms var(--ease-soft),
+      transform 900ms var(--ease-soft);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .js .reveal[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

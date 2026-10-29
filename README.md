@@ -1,3 +1,80 @@
+# Projekty demonstracyjne ComputerIT
+
+Repozytorium zawiera niezależne strony w jednej aplikacji Next.js:
+
+| Adres | Projekt | Kod |
+| --- | --- | --- |
+| `/` (i podstrony) | **NOIR COFFEE** – kawiarnia z zamówieniami online | `src/app/(noir)/`, opis poniżej |
+| `/morelowa` | **Morelowa** – rodzinna piekarnia i cukiernia, koncepcja 1 | `src/app/(morelowa)/`, sekcja [Morelowa](#morelowa--rodzinna-piekarnia--cukiernia) |
+| `/morelowa-2` | **Morelowa** – koncepcja 2, ciemna (ten sam brief, inny kierunek wizualny) | `src/app/(morelowa-2)/`, sekcja [Koncepcja 2](#morelowa--koncepcja-2-nocny-wypiek) |
+
+Każda strona ma własny layout główny (grupy tras `(noir)`, `(morelowa)` i `(morelowa-2)`): osobne fonty, kolory, arkusz stylów,
+favicon i metadane. Przejście między nimi przeładowuje stronę. Adresy spoza obu stron obsługuje wspólna strona 404
+`src/app/global-not-found.tsx` (włączona flagą `experimental.globalNotFound` w `next.config.ts`).
+
+## Morelowa – rodzinna piekarnia & cukiernia
+
+Jednostronicowa witryna fikcyjnej rodzinnej piekarni i cukierni z Grodziska Mazowieckiego (od 1991) i Warszawy
+(od 2010). **Marka, historia, osoby i adresy są fikcyjne** – strona jest projektem demonstracyjnym portfolio
+ComputerIT. Po uruchomieniu: http://localhost:3000/morelowa
+
+Sekcje: nagłówek z menu mobilnym → hero → filozofia → pieczywo → cukiernia → historia (oś czasu) → lokale →
+kontakt → stopka. Wszystkie odnośniki prowadzą do kotwic na tej samej stronie.
+
+```
+src/app/(morelowa)/
+  layout.tsx              layout główny: fonty Cormorant Garamond + Manrope, metadane, viewport
+  morelowa.css            tokeny kolorów, typografia, przyciski, pola formularza, animacje przewijania
+  icon.png, apple-icon.png  favicon z emblematu marki
+  morelowa/page.tsx       strona /morelowa (+ opengraph-image.jpg)
+src/components/morelowa/  Header (menu mobilne, podświetlanie sekcji), Hero, Philosophy, Breads, Patisserie,
+                          Timeline, Locations + LocationEntry („Zobacz lokal”), Contact + ContactForm, Footer, Logo
+src/components/morelowa/images.ts  ★ pięć głównych zdjęć: plik → sekcja, teksty alternatywne
+src/data/morelowa.ts      ★ treści: nawigacja, filary, wypieki, oś czasu, lokale
+src/assets/morelowa/      ★ zdjęcia i emblemat (import statyczny → wymiary i rozmyty podgląd z automatu)
+```
+
+Zdjęcia (każde użyte raz):
+
+| Sekcja | Plik | Źródło |
+| --- | --- | --- |
+| 1. Hero | `hero-piekarnia-piec.jpg` | grafika przekazana przez właściciela projektu (odbita poziomo pod układ tekstu) |
+| 2. Pieczywo | `pieczywo-krojenie-chleba.jpg` | grafika przekazana przez właściciela projektu |
+| 3. Cukiernia | `cukiernia-torty-i-tarty.jpg` | wygenerowana w Canva AI – **obecnie miniatura 199 px, do podmiany** |
+| 4. Historia | `historia-piekarz-przy-stole.jpg` | grafika przekazana przez właściciela projektu |
+| 5. Lokale | `lokal-lada.jpg` | grafika przekazana przez właściciela projektu (kadr 4:5 bez anglojęzycznej tabliczki z ceną) |
+| Logo / favicon | `emblemat.png` | grafika przekazana przez właściciela projektu (wycięte tło) |
+
+Aby podmienić zdjęcie, wgraj plik pod tą samą nazwą do `src/assets/morelowa/` (zalecane min. 1600 px po dłuższym
+boku) i przebuduj projekt.
+
+Uczciwe dane demonstracyjne: adresy są oznaczone jako demonstracyjne, godziny otwarcia i telefony – „do
+uzupełnienia”, nie ma linków do map ani systemu zamówień. Formularz kontaktowy waliduje pola, ale **niczego nie
+wysyła** i mówi o tym wprost. W stopce: „Projekt demonstracyjny — fikcyjna marka stworzona na potrzeby portfolio
+ComputerIT” oraz „Website concept by ComputerIT”.
+
+## Morelowa – koncepcja 2 „Nocny wypiek”
+
+Druga propozycja tej samej strony (http://localhost:3000/morelowa-2) – ciemny, nastrojowy kierunek: piekarnia przed
+świtem. Treści (`src/data/morelowa.ts`), zdjęcia (`src/components/morelowa/images.ts`), logika menu (`site-menu.ts`)
+i walidacja formularza (`contact-validation.ts`) są wspólne z koncepcją 1 – różni się kierunek wizualny:
+
+| | Koncepcja 1 (`/morelowa`) | Koncepcja 2 (`/morelowa-2`) |
+| --- | --- | --- |
+| Charakter | jasna, kremowa, klasyczna | ciemna i nastrojowa: brąz, bordo, złoto jako światło pieca |
+| Typografia | Cormorant Garamond + Manrope | DM Serif Display + Hanken Grotesk |
+| Nagłówek | kremowy pasek | przezroczysty nad zdjęciem, po przewinięciu ciemny |
+| Hero | tekst w lewej kolumnie na zdjęciu | zdjęcie na cały ekran, nagłówek przez całą szerokość, przyciski po prawej |
+| Pieczywo | lista obok zdjęcia | zdjęcie od krawędzi ekranu i „rytm piekarni” od nocy do rana |
+| Cukiernia | magazyn na beżu | rozkładówka na bordo – blok z tytułem nachodzi na zdjęcie |
+| Historia | pionowa oś, zdjęcie z lewej | lata w złotym konturze, zdjęcie z prawej |
+| Lokale | rozwijane szczegóły | jasna sekcja, zdjęcie do prawej krawędzi; „Zobacz lokal” wysuwa panel z boku |
+| Przyciski | prostokątne bez strzałek | prostokątne bloki ze strzałką, złote na ciemnym tle |
+
+Pliki: `src/app/(morelowa-2)/` (layout, `morelowa-2.css`, strona) i `src/components/morelowa-2/`.
+
+---
+
 # NOIR COFFEE – strona kawiarni z zamówieniami online
 
 Strona fikcyjnej kawiarni NOIR COFFEE z Gdańska: menu 10 kaw z personalizacją, koszyk, wybór lokalu i godziny
@@ -47,7 +124,7 @@ npm run lint && npm run typecheck && npm test && npm run build
 
 ```
 src/
-  app/                      strony (/, /zamowienie, /zamowienie/sukces, /zamowienie/anulowano, dokumenty prawne)
+  app/(noir)/               strony (/, /zamowienie, /zamowienie/sukces, /zamowienie/anulowano, dokumenty prawne)
     api/checkout            tworzy zamówienie + sesję Stripe Checkout (ceny liczone na serwerze)
     api/stripe/webhook      jedyne miejsce oznaczające zamówienie jako opłacone
     api/orders/status       status zamówienia (dla stron sukcesu/anulowania)
