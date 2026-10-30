@@ -6,7 +6,7 @@ import { ConsentField, FieldError, Honeypot, NotConfiguredNotice, SubmitButton, 
 import { useValidatedForm } from "./useValidatedForm";
 
 export function ContactForm() {
-  const { state, pending, errors, summary, formRef, formAction, onSubmit, onBlur, clearError } = useValidatedForm(sendContactMessage, validateContact);
+  const { state, pending, errors, summary, formRef, formAction, onSubmit, onBlur, onInput, clearError } = useValidatedForm(sendContactMessage, validateContact);
 
   if (state.status === "sent") {
     return (
@@ -18,7 +18,7 @@ export function ContactForm() {
   }
 
   return (
-    <form ref={formRef} action={formAction} onSubmit={onSubmit} onBlur={onBlur} noValidate className="relative space-y-8" aria-describedby="contact-status">
+    <form ref={formRef} action={formAction} onSubmit={onSubmit} onBlur={onBlur} onInput={onInput} noValidate className="relative space-y-8" aria-describedby="contact-status">
       <Honeypot />
       <div className="grid gap-8 sm:grid-cols-2">
         <TextField name="name" label="Imię i nazwisko" autoComplete="name" required maxLength={LIMITS.name} error={errors.name} />

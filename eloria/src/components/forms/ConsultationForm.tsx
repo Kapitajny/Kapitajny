@@ -49,7 +49,7 @@ export function ConsultationForm({ initialService }: { initialService?: string }
   const preselected = services.find((s) => s.slug === initialService);
   const [category, setCategory] = useState<ConsultationCategory | "">(preselected?.category ?? "");
   const [service, setService] = useState(preselected?.slug ?? "");
-  const { state, pending, errors, summary, formRef, formAction, onSubmit, onBlur, clearError } = useValidatedForm(requestConsultation, (input) =>
+  const { state, pending, errors, summary, formRef, formAction, onSubmit, onBlur, onInput, clearError } = useValidatedForm(requestConsultation, (input) =>
     validateConsultation(input),
   );
 
@@ -66,7 +66,7 @@ export function ConsultationForm({ initialService }: { initialService?: string }
   const today = todayInWarsaw();
 
   return (
-    <form ref={formRef} action={formAction} onSubmit={onSubmit} onBlur={onBlur} noValidate className="relative space-y-12" aria-describedby="consultation-status">
+    <form ref={formRef} action={formAction} onSubmit={onSubmit} onBlur={onBlur} onInput={onInput} noValidate className="relative space-y-12" aria-describedby="consultation-status">
       <Honeypot />
 
       <Step title="Czego dotyczy wizyta">

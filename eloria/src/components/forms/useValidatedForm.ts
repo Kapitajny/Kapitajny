@@ -10,7 +10,7 @@ type Action<K extends string> = (prev: FormState<K>, formData: FormData) => Prom
  * Formularz z walidacją po stronie przeglądarki i Server Action.
  * – Przed wysłaniem pola są sprawdzane tymi samymi regułami co na serwerze.
  * – Błędy pojawiają się przy polach, a fokus trafia do pierwszego błędnego pola.
- * – Po opuszczeniu pola komunikat aktualizuje się na bieżąco (tylko dla pól już wypełnianych lub błędnych).
+ * – Komunikat pola z błędem aktualizuje się podczas poprawiania; wypełnione pole sprawdzamy po opuszczeniu.
  * – Bez JavaScriptu formularz nadal działa (action + walidacja serwerowa).
  */
 export function useValidatedForm<K extends string>(action: Action<K>, validate: (input: Record<string, unknown>) => ValidationResult<unknown, K>) {
@@ -47,20 +47,28 @@ export function useValidatedForm<K extends string>(action: Action<K>, validate: 
     startTransition(() => formAction(formData));
   };
 
+  const fieldError = (name: K) => (formRef.current ? validate(formDataToObject(new FormData(formRef.current))).errors[name] : undefined);
+
+  // Pole z błędem aktualizuje się w trakcie poprawiania – komunikat znika, gdy wartość jest już poprawna.
+  const onInput = (event: React.FormEvent<HTMLFormElement>) => {
+    const name = (event.target as HTMLInputElement).name as K;
+    if (name && errors[name]) setErrors((prev) => ({ ...prev, [name]: fieldError(name) }));
+  };
+
+  // Wypełnione pole sprawdzamy po opuszczeniu – chyba że fokus przechodzi na przycisk: przycisk i tak
+  // sprawdza cały formularz, a zmiana układu w trakcie kliknięcia sprawiłaby, że kliknięcie chybi.
   const onBlur = (event: React.FocusEvent<HTMLFormElement>) => {
     const target = event.target as unknown as HTMLInputElement;
     const name = target.name as K;
-    if (!name || !formRef.current) return;
-    const hasValue = target.type === "checkbox" || target.type === "radio" ? false : Boolean(target.value.trim());
-    if (!hasValue && !errors[name]) return;
-    const result = validate(formDataToObject(new FormData(formRef.current)));
-    setErrors((prev) => ({ ...prev, [name]: result.errors[name] }));
+    if (!name || target.type === "checkbox" || target.type === "radio" || !target.value.trim()) return;
+    if (event.relatedTarget instanceof HTMLButtonElement) return;
+    setErrors((prev) => ({ ...prev, [name]: fieldError(name) }));
   };
 
   /** Usuwa komunikat błędu pola po zmianie wartości (np. zaznaczeniu zgody). */
   const clearError = (name: K) => setErrors((prev) => (prev[name] ? { ...prev, [name]: undefined } : prev));
 
-  return { state, pending, errors, summary, formRef, formAction, onSubmit, onBlur, clearError };
+  return { state, pending, errors, summary, formRef, formAction, onSubmit, onBlur, onInput, clearError };
 }
 
 function focusFirstInvalid(form: HTMLFormElement | null, names: string[]) {
