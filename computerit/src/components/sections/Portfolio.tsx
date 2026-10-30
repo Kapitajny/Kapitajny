@@ -98,28 +98,35 @@ export function Portfolio() {
           </div>
         )}
 
-        <div className="mt-[clamp(5rem,10vw,9rem)] grid gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
-          {more.map((project, i) => (
-            <article key={project.slug} aria-labelledby={`projekt-${project.slug}`} className="reveal group flex flex-col" style={{ "--d": `${i * 100}ms` } as CSSProperties}>
-              <Link href={`/portfolio/${project.slug}`} tabIndex={-1} aria-hidden="true" className="block overflow-hidden">
-                <div className="transition-transform duration-[1.2s] ease-[var(--ease-out)] group-hover:scale-[1.03]">
-                  <ProjectCover project={project} />
-                </div>
-              </Link>
-              <div className="mt-6 flex flex-1 flex-col">
-                <DemoTag />
-                <h3 id={`projekt-${project.slug}`} className="wide mt-5 text-[1.5rem]">
-                  {project.name}
-                </h3>
-                <p className="mt-2 text-[0.9375rem] text-slate">Branża: {project.industry}</p>
-                <p className="mt-4 mb-7">{project.summary}</p>
-                <Link href={`/portfolio/${project.slug}`} className="btn btn-outline-ink mt-auto self-start" aria-label={`Zobacz projekt ${project.name}`}>
-                  Zobacz projekt
+        {more.length > 0 && (
+          <div className="mt-[clamp(5rem,10vw,9rem)] grid gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
+            {more.map((project, i) => (
+              <article
+                key={project.slug}
+                aria-labelledby={`projekt-${project.slug}`}
+                className="reveal group flex flex-col"
+                style={{ "--d": `${i * 100}ms` } as CSSProperties}
+              >
+                <Link href={`/portfolio/${project.slug}`} tabIndex={-1} aria-hidden="true" className="block overflow-hidden">
+                  <div className="transition-transform duration-[1.2s] ease-[var(--ease-out)] group-hover:scale-[1.03]">
+                    <ProjectCover project={project} />
+                  </div>
                 </Link>
-              </div>
-            </article>
-          ))}
-        </div>
+                <div className="mt-6 flex flex-1 flex-col">
+                  <DemoTag />
+                  <h3 id={`projekt-${project.slug}`} className="wide mt-5 text-[1.5rem]">
+                    {project.name}
+                  </h3>
+                  <p className="mt-2 text-[0.9375rem] text-slate">Branża: {project.industry}</p>
+                  <p className="mt-4 mb-7">{project.summary}</p>
+                  <Link href={`/portfolio/${project.slug}`} className="btn btn-outline-ink mt-auto self-start" aria-label={`Zobacz projekt ${project.name}`}>
+                    Zobacz projekt
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
 
         <div className="reveal mt-[clamp(5rem,10vw,8rem)] flex flex-col items-start justify-between gap-6 border-t border-ink/15 pt-10 md:flex-row md:items-center">
           <p className="wide max-w-[34rem] text-[clamp(1.375rem,2.4vw,1.875rem)] leading-tight font-medium tracking-[-0.02em]">
