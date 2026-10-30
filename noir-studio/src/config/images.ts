@@ -24,11 +24,11 @@ export interface ImageDefinition {
 
 const portfolio = {
   weddingVows: { file: "wedding-vows.jpg", aspect: "7/6", focus: "40% 50%" },
-  weddingDance: { file: "wedding-first-dance.jpg", aspect: "3/2" },
+  weddingDance: { file: "wedding-first-dance.jpg", aspect: "8/5" },
   weddingDetails: { file: "wedding-details.jpg", aspect: "2/3" },
-  weddingWalk: { file: "wedding-walk.jpg", aspect: "16/9" },
+  weddingWalk: { file: "wedding-walk.jpg", aspect: "3/2" },
 
-  portraitStudio: { file: "portrait-studio.jpg", aspect: "4/5" },
+  portraitStudio: { file: "portrait-studio.jpg", aspect: "3/2" },
   portraitWindow: { file: "portrait-window.jpg", aspect: "2/3", focus: "50% 30%" },
   portraitHands: { file: "portrait-hands.jpg", aspect: "1/1" },
   portraitRetro: { file: "portrait-retro.jpg", aspect: "16/9", focus: "40% 40%" },
@@ -44,10 +44,10 @@ const portfolio = {
   commercialPainting: { file: "commercial-painting.jpg", aspect: "4/5" },
   commercialFood: { file: "commercial-food.jpg", aspect: "3/2" },
 
-  storyKitchen: { file: "story-kitchen.jpg", aspect: "3/2" },
+  storyKitchen: { file: "story-kitchen.jpg", aspect: "4/5" },
   storyMorning: { file: "story-morning.jpg", aspect: "3/4", focus: "50% 40%" },
   storySea: { file: "story-sea.jpg", aspect: "3/2" },
-  storyLetters: { file: "story-letters.jpg", aspect: "1/1" },
+  storyTorun: { file: "story-torun.jpg", aspect: "4/3" },
 } satisfies Record<string, ImageDefinition>;
 
 /** Usługi korzystają ze zdjęć z portfolio tej samej kategorii. */

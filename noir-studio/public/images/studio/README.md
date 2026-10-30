@@ -32,20 +32,24 @@ i przebuduj projekt (`npm run build`).
 | `commercial-painting.jpg` | portfolio – Dla firm (reprodukcja obrazu) | oryginał 399 × 501 px, powiększony 2,5× |
 | `commercial-food.jpg` | portfolio – Dla firm (fotografia kulinarna) | oryginał 588 × 408 px, powiększony 2,5× |
 | `story-sea.jpg` | portfolio – Historie osobiste (Bałtyk zimą) | oryginał 588 × 390 px, powiększony 2,5× |
+| `wedding-walk.jpg` | portfolio – Śluby (wyjście z kościoła) | oryginał 678 × 452 px, powiększony 2× |
+| `wedding-first-dance.jpg` | portfolio – Śluby (pierwszy taniec) | oryginał 566 × 353 px, powiększony 2,5× |
+| `portrait-studio.jpg` | portfolio – Portrety (sesja na czerwonym tle) | oryginał 678 × 452 px, powiększony 2× |
+| `story-kitchen.jpg` | portfolio – Historie osobiste (ciasto w ogrodzie) | **oryginał 201 × 251 px**, powiększony 3× |
+| `story-torun.jpg` | portfolio – Historie osobiste (Rynek w Toruniu) | oryginał 588 × 441 px, powiększony 2,5× |
 
 Usługi używają tych samych plików co pierwsze zdjęcie danej kategorii w portfolio (`src/config/images.ts`).
 Pliki oznaczone pogrubieniem to miniatury – na stronie są wyraźnie miękkie. Przed prezentacją warto podmienić je
 (i powiększone zdjęcia z pierwszych czterech wierszy) na oryginały w pełnej rozdzielczości, pod tymi samymi nazwami.
 
-## Do uzupełnienia – portfolio (7 kadrów)
+## Do uzupełnienia – portfolio (2 kadry)
 
 | Kategoria | Pliki (proporcje) |
 | --- | --- |
-| Śluby | `wedding-first-dance.jpg` (3:2), `wedding-details.jpg` (2:3), `wedding-walk.jpg` (16:9) |
-| Portrety | `portrait-studio.jpg` (4:5), `portrait-hands.jpg` (1:1) |
-| Historie osobiste | `story-kitchen.jpg` (3:2), `story-letters.jpg` (1:1) |
+| Śluby | `wedding-details.jpg` (2:3) – detal przed ceremonią, np. dłonie, biżuteria, buty |
+| Portrety | `portrait-hands.jpg` (1:1) – zbliżenie dłoni (np. muzyka przy instrumencie) |
 
-Kategorie Moda i Dla firm są już kompletne.
+Pozostałe kategorie są kompletne.
 
 Tytuły i miejsca pod zdjęciami są w słownikach (`portfolio.items`), lata – w `src/data/portfolio.ts`.
 Po wgraniu zdjęcia zmień też jego tytuł, miejsce i `alt` w `src/i18n/pl.ts` oraz `src/i18n/en.ts`.

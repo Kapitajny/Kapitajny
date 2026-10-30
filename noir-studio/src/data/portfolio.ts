@@ -33,12 +33,13 @@ export const PORTFOLIO: PortfolioItem[] = [
 
   { image: "commercialFood", category: "commercial", year: 2024 },
   { image: "commercialPainting", category: "commercial", year: 2025 },
-  { image: "weddingWalk", category: "weddings", year: 2024 },
-  { image: "portraitStudio", category: "portraits", year: 2026 },
   { image: "storyKitchen", category: "stories", year: 2025 },
-  { image: "weddingDetails", category: "weddings", year: 2026 },
-
-  { image: "portraitHands", category: "portraits", year: 2024 },
   { image: "weddingDance", category: "weddings", year: 2025 },
-  { image: "storyLetters", category: "stories", year: 2026 },
+  { image: "portraitStudio", category: "portraits", year: 2026 },
+  { image: "storyTorun", category: "stories", year: 2024 },
+
+  { image: "weddingWalk", category: "weddings", year: 2025 },
+  // Kadry czekające na zdjęcia.
+  { image: "weddingDetails", category: "weddings", year: 2026 },
+  { image: "portraitHands", category: "portraits", year: 2024 },
 ];
