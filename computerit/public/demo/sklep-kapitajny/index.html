@@ -1,0 +1,1076 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Sklep KAPITAJNY</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+<style>
+/* Układ: ciemna witryna, zdjęcia produktów na jasnym tle studyjnym jako jedyne jasne płaszczyzny; rozszerzony Archivo w nagłówkach. */
+:root {
+  --ink: #0a0a0a;
+  --graphite: #171717;
+  --surface: #202020;
+  --line: #353535;
+  --muted: #a3a3a3;
+  --paper: #f5f5f5;
+  --studio: #dcdcd9;
+  --danger: #ff8a80;
+  --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { background: var(--ink); color: var(--paper); }
+body { font-family: var(--font); font-size: 16px; line-height: 1.55; font-variation-settings: "wdth" 100; -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 50; background: var(--ink); }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; padding: 0; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--paper); outline-offset: 3px; }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+p { margin: 0; text-wrap: pretty; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+img { display: block; max-width: 100%; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; } }
+
+.wrap { width: 100%; max-width: 100rem; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 768px) { .wrap { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); } }
+.display { font-variation-settings: "wdth" 125; font-weight: 850; text-transform: uppercase; line-height: .86; letter-spacing: -.025em; overflow-wrap: anywhere; }
+.display-sm { font-variation-settings: "wdth" 125; font-weight: 800; text-transform: uppercase; line-height: .95; letter-spacing: -.01em; }
+.muted { color: var(--muted); }
+.small { font-size: .875rem; }
+.xs { font-size: .75rem; }
+.tab { font-variant-numeric: tabular-nums; }
+.studio { background: var(--studio); position: relative; overflow: hidden; }
+.studio img { width: 100%; height: 100%; object-fit: cover; }
+.r45 { aspect-ratio: 4 / 5; max-width: 100%; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; min-height: 3rem; padding: .75rem 1.4rem; border-radius: 2px; font-size: .875rem; font-weight: 700; font-variation-settings: "wdth" 118; letter-spacing: .03em; text-transform: uppercase; transition: background-color .16s, border-color .16s; text-align: center; }
+.btn-light { background: var(--paper); color: var(--ink); }
+.btn-light:hover { background: #fff; }
+.btn-outline { border: 1px solid #8a8a8a; }
+.btn-outline:hover { border-color: var(--paper); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.block { width: 100%; }
+.link { text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1px; }
+.icon-btn { display: inline-grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 2px; position: relative; }
+.icon-btn:hover { background: var(--surface); }
+.icon-btn svg { width: 22px; height: 22px; }
+.count { position: absolute; top: 2px; right: 2px; min-width: 1.1rem; height: 1.1rem; padding: 0 .25rem; border-radius: 999px; background: var(--paper); color: var(--ink); font-size: .65rem; font-weight: 800; display: grid; place-items: center; }
+
+/* Pasek informacji o podglądzie i nagłówek */
+.preview-note { background: var(--surface); border-bottom: 1px solid var(--line); font-size: .8rem; }
+.preview-note .wrap { padding-block: .55rem; display: flex; gap: .75rem; align-items: baseline; flex-wrap: wrap; }
+.announce { background: var(--paper); color: var(--ink); text-align: center; font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; font-variation-settings: "wdth" 118; }
+.announce button { width: 100%; min-height: 2.25rem; }
+.announce button:hover { text-decoration: underline; }
+header.site { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: var(--ink); border-bottom: 1px solid var(--line); }
+header.site .wrap { display: flex; align-items: center; gap: .5rem; height: 4.25rem; }
+.brand { display: inline-flex; align-items: center; gap: .7rem; margin-right: 1.5rem; }
+.brand img { height: 28px; width: auto; }
+.brand span { font-size: .95rem; letter-spacing: .04em; }
+nav.main { display: none; gap: .25rem; }
+nav.main button { padding: .5rem .75rem; font-size: .8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; font-variation-settings: "wdth" 118; color: var(--muted); }
+nav.main button:hover, nav.main button[aria-current="page"] { color: var(--paper); }
+.hdr-actions { margin-left: auto; display: flex; align-items: center; }
+.only-mobile { display: inline-grid; }
+@media (min-width: 1024px) { nav.main { display: flex; } .only-mobile { display: none; } }
+@media (max-width: 520px) { .brand span { display: none; } .brand { margin-right: .25rem; } }
+
+main { min-height: 60vh; }
+section { padding-block: 3.5rem; }
+@media (min-width: 768px) { section { padding-block: 5rem; } }
+.bt { border-top: 1px solid var(--line); }
+
+/* Strona główna */
+.hero { display: grid; gap: 2rem; padding-block: 2rem 4rem; }
+.hero .copy { container-type: inline-size; display: flex; flex-direction: column; min-width: 0; }
+.hero h1 { font-size: min(14.5cqi, 9rem); margin-top: 1.5rem; overflow-wrap: normal; }
+.hero .lead { margin-top: 2rem; max-width: 28rem; font-size: 1.1rem; color: var(--muted); }
+.hero .ctas { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: .75rem; }
+.hero .pics { position: relative; display: grid; grid-template-columns: 1.25fr 1fr; gap: .5rem; align-items: end; }
+.hero .pics button { display: block; }
+@media (min-width: 1024px) {
+  .hero { grid-template-columns: 7fr 5fr; gap: 2.5rem; padding-block: 3rem 6rem; }
+  .hero .copy .lead { margin-top: auto; padding-top: 2.5rem; }
+  .hero .pics { display: block; align-self: start; padding-bottom: 2.5rem; }
+  .hero .pics .big { margin-left: 18%; }
+  .hero .pics .small { position: absolute; left: 0; bottom: 0; width: 42%; border: 6px solid var(--ink); }
+}
+.cat-row { display: grid; gap: 2rem; padding-block: 3.5rem; border-bottom: 1px solid var(--line); }
+.cat-row .text { container-type: inline-size; min-width: 0; display: flex; flex-direction: column; }
+.cat-row h2 { font-size: min(15cqi, 9rem); }
+.cat-row .head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: .5rem 1.5rem; }
+.sublist { margin-top: 2rem; border-top: 1px solid var(--line); }
+.sublist button { width: 100%; display: flex; align-items: center; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--line); text-align: left; }
+.sublist button:hover { background: var(--graphite); }
+.sublist .name { flex: 1; font-size: 1.35rem; }
+.sublist svg { width: 20px; height: 20px; color: var(--muted); transition: transform .16s; }
+.sublist button:hover svg { transform: translateX(4px); color: var(--paper); }
+@media (min-width: 1024px) {
+  .cat-row { grid-template-columns: 5fr 7fr; gap: 3rem; padding-block: 5rem; }
+  .cat-row.flip .pic { order: 2; }
+  .cat-row .sublist { margin-top: auto; }
+  .cat-row .desc { margin-bottom: 2.5rem; }
+}
+.h2 { font-size: clamp(2.4rem, 1rem + 5vw, 5.5rem); }
+.sec-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1rem 1.5rem; }
+.strip { display: flex; gap: .75rem; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: .5rem; margin-top: 2.5rem; scrollbar-width: none; }
+.strip::-webkit-scrollbar { display: none; }
+.strip > li { flex: 0 0 68%; scroll-snap-align: start; min-width: 0; }
+@media (min-width: 640px) { .strip > li { flex-basis: 42%; } }
+@media (min-width: 900px) { .strip > li { flex-basis: 30%; } }
+@media (min-width: 1200px) { .strip > li { flex-basis: 22%; } }
+.story { background: var(--graphite); }
+.story .grid { display: grid; gap: 2.5rem; }
+@media (min-width: 1024px) { .story .grid { grid-template-columns: 1fr 1fr; gap: 5rem; } }
+.story p { color: var(--muted); font-size: 1.1rem; }
+.story .paras { display: grid; gap: 1.25rem; align-content: start; }
+
+/* Siatka produktów i karta */
+.grid-products { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.5rem .75rem; }
+@media (min-width: 768px) { .grid-products { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem 1.25rem; } }
+.grid-products.four { }
+@media (min-width: 1024px) { .grid-products.four { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.card { position: relative; display: flex; flex-direction: column; min-width: 0; }
+.card .studio img { position: absolute; inset: 0; transition: opacity .3s; }
+.card .studio .alt { opacity: 0; }
+.card:hover .studio .alt, .card:focus-within .studio .alt { opacity: 1; }
+.card .open { position: absolute; inset: 0; z-index: 1; }
+.badge { position: absolute; top: .5rem; left: .5rem; z-index: 2; padding: .2rem .5rem; font-size: .7rem; font-weight: 800; background: var(--paper); color: var(--ink); }
+.badge.dark { background: var(--ink); color: var(--paper); }
+.fav { position: absolute; top: .3rem; right: .3rem; z-index: 2; width: 2.75rem; height: 2.75rem; display: grid; place-items: center; color: var(--ink); }
+.fav svg { width: 22px; height: 22px; }
+.card .row1 { display: flex; justify-content: space-between; gap: .75rem; margin-top: .75rem; font-weight: 700; font-size: .95rem; }
+.card .name { text-align: left; }
+.card .name:hover { text-decoration: underline; }
+.card .row3 { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .25rem .75rem; margin-top: .6rem; }
+.swatches { display: flex; gap: .3rem; }
+.sw { width: 1.75rem; height: 1.75rem; border-radius: 999px; border: 1px solid transparent; display: grid; place-items: center; }
+.sw[aria-pressed="true"] { border-color: var(--paper); }
+.sw i, .dot { width: 1rem; height: 1rem; border-radius: 999px; border: 1px solid rgb(255 255 255 / .25); display: inline-block; }
+.sizes-line span { margin-left: .35rem; }
+.sizes-line .no { color: #8a8a8a; text-decoration: line-through; }
+
+/* Katalog */
+.page-head { padding-block: 2rem 1.5rem; }
+.crumbs { display: flex; flex-wrap: wrap; gap: .5rem; font-size: .875rem; color: var(--muted); }
+.crumbs button:hover { color: var(--paper); }
+.crumbs li + li::before { content: "/"; margin-right: .5rem; }
+.page-head .title-row { container-type: inline-size; margin-top: 1.5rem; display: grid; gap: 1.25rem; }
+.page-head h1 { font-size: min(12cqi, 8.5rem); min-width: 0; }
+@media (min-width: 1024px) { .page-head .title-row { grid-template-columns: 2fr 1fr; align-items: end; } }
+.chips { display: flex; gap: .5rem; overflow-x: auto; padding-bottom: .25rem; margin-bottom: 1.5rem; scrollbar-width: none; }
+.chips button { flex-shrink: 0; border: 1px solid var(--line); padding: .5rem 1rem; font-size: .875rem; font-weight: 600; }
+.chips button:hover { border-color: var(--paper); }
+.chips button[aria-current="page"] { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+.toolbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 4.25rem); z-index: 20; background: var(--ink); border-block: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: .75rem; padding-block: .6rem; }
+.toolbar .right { display: flex; align-items: center; gap: .5rem; }
+.field { display: block; width: 100%; min-height: 3rem; padding: .7rem .9rem; border: 1px solid var(--line); border-radius: 2px; background: var(--graphite); }
+.field:focus-visible { outline: none; border-color: var(--paper); box-shadow: 0 0 0 1px var(--paper); }
+.field[aria-invalid="true"] { border-color: var(--danger); }
+select.field { appearance: none; padding-right: 2.25rem; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23a3a3a3' stroke-width='1.5'%3E%3Cpath d='m1 1.5 5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .8rem center; }
+.field.sm { min-height: 2.5rem; padding-block: .35rem; font-size: .875rem; width: auto; max-width: 11rem; }
+.label { display: block; margin-bottom: .4rem; font-size: .8125rem; font-weight: 600; }
+.err { margin-top: .35rem; font-size: .8125rem; color: var(--danger); }
+.hint { margin-top: .35rem; font-size: .8125rem; color: var(--muted); }
+.catalog { display: grid; gap: 2.5rem; margin-top: 2rem; }
+.filters-side { display: none; }
+@media (min-width: 1024px) { .catalog { grid-template-columns: 15.5rem minmax(0, 1fr); } .filters-side { display: block; } .filters-side > div { position: sticky; top: 9.5rem; max-height: calc(100dvh - 11rem); overflow-y: auto; padding-right: .5rem; } .only-narrow { display: none !important; } }
+fieldset { border: 0; margin: 0; padding: 1.25rem 0; border-bottom: 1px solid var(--line); min-width: 0; }
+fieldset:first-child { padding-top: 0; }
+legend { padding: 0; margin-bottom: .75rem; font-size: .875rem; font-weight: 700; float: left; width: 100%; }
+legend + * { clear: left; }
+.checks { display: grid; gap: .5rem; }
+.check-row { display: flex; gap: .75rem; align-items: flex-start; font-size: .875rem; cursor: pointer; }
+input[type=checkbox], input[type=radio] { width: 1.1rem; height: 1.1rem; margin: .15rem 0 0; accent-color: var(--paper); flex-shrink: 0; }
+.size-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .35rem; }
+.size-grid button, .size-pick button { height: 2.6rem; border: 1px solid var(--line); font-size: .875rem; font-weight: 600; }
+.size-grid button:hover, .size-pick button:hover { border-color: var(--paper); }
+.size-grid button[aria-pressed="true"], .size-pick button[aria-pressed="true"] { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+.color-checks { display: grid; grid-template-columns: 1fr; gap: .35rem; }
+.price-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: .5rem; align-items: end; }
+.empty { border: 1px solid var(--line); padding: 4rem 1.5rem; text-align: center; }
+.empty p.display { font-size: clamp(2rem, 1rem + 3vw, 3rem); }
+.empty .muted { max-width: 28rem; margin: .75rem auto 0; }
+.more { display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-top: 3rem; }
+
+/* Produkt */
+.product { display: grid; gap: 2rem; padding-block: 1.5rem 4rem; }
+@media (min-width: 1024px) { .product { grid-template-columns: 7fr 5fr; gap: 3.5rem; } .product .buy { position: sticky; top: 6rem; align-self: start; } }
+.gallery { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: .5rem; scrollbar-width: none; min-width: 0; }
+.gallery::-webkit-scrollbar { display: none; }
+.gallery figure { margin: 0; flex: 0 0 86%; scroll-snap-align: start; }
+@media (min-width: 768px) { .gallery { display: grid; grid-template-columns: 1fr 1fr; overflow: visible; } }
+.buy { min-width: 0; }
+.buy h1 { font-size: clamp(2.2rem, 1.6rem + 2.4vw, 3.4rem); }
+.price { margin-top: 1.25rem; font-size: 1.5rem; font-weight: 700; }
+.color-pick { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
+.color-pick button { display: flex; align-items: center; gap: .5rem; border: 1px solid var(--line); padding: .3rem .75rem .3rem .3rem; font-size: .875rem; }
+.color-pick button[aria-pressed="true"] { border-color: var(--paper); }
+.color-pick .thumb { width: 2.5rem; height: 3rem; }
+.size-pick { display: grid; grid-template-columns: repeat(6, 1fr); gap: .35rem; margin-top: .75rem; }
+.size-pick button { height: 3rem; }
+.size-pick button.no { color: #6b6b6b; text-decoration: line-through; cursor: not-allowed; }
+.qty { display: inline-flex; align-items: center; border: 1px solid var(--line); }
+.qty button { width: 3rem; height: 3rem; display: grid; place-items: center; font-size: 1.2rem; }
+.qty button:disabled { opacity: .35; cursor: not-allowed; }
+.qty.sm button { width: 2.25rem; height: 2.25rem; }
+.qty output { min-width: 2rem; text-align: center; font-weight: 600; font-variant-numeric: tabular-nums; }
+.buy-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+.buy-row .btn-light { order: 3; flex-basis: 100%; }
+.buy-row .favbtn { margin-left: auto; width: 3rem; height: 3rem; border: 1px solid var(--line); display: grid; place-items: center; }
+.buy-row .favbtn svg { width: 22px; height: 22px; }
+details { border-bottom: 1px solid var(--line); }
+details summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; padding: 1rem 0; font-weight: 700; }
+details summary::-webkit-details-marker { display: none; }
+details summary::after { content: "+"; color: var(--muted); font-size: 1.2rem; line-height: 1; transition: transform .16s; }
+details[open] summary::after { transform: rotate(45deg); }
+details .body { padding-bottom: 1.25rem; font-size: .875rem; color: var(--muted); }
+details ul { list-style: square; padding-left: 1.25rem; margin-top: .75rem; display: grid; gap: .25rem; }
+table { width: 100%; border-collapse: collapse; font-size: .875rem; font-variant-numeric: tabular-nums; min-width: 28rem; }
+th, td { text-align: left; padding: .6rem 1rem .6rem 0; border-bottom: 1px solid var(--line); }
+td { color: var(--muted); }
+.table-scroll { overflow-x: auto; margin-top: 1.25rem; }
+
+/* Panele i okna */
+dialog { padding: 0; border: 0; color: var(--paper); background: var(--graphite); }
+dialog::backdrop { background: rgb(0 0 0 / .7); }
+dialog.drawer { margin: 0 0 0 auto; width: min(100vw, 28rem); max-width: 100vw; height: 100dvh; max-height: 100dvh; border-left: 1px solid var(--line); }
+dialog.drawer.left { margin: 0 auto 0 0; border-left: 0; border-right: 1px solid var(--line); }
+dialog.modal { margin: auto; width: min(calc(100vw - 2rem), 44rem); max-height: calc(100dvh - 2rem); border: 1px solid var(--line); }
+dialog[open].drawer { animation: slide .22s ease-out; }
+@keyframes slide { from { transform: translateX(2rem); opacity: 0; } }
+.dlg { display: flex; flex-direction: column; height: 100%; }
+.dlg-head { display: flex; align-items: center; justify-content: space-between; height: 4rem; padding-inline: 1.25rem; border-bottom: 1px solid var(--line); flex-shrink: 0; }
+.dlg-body { flex: 1; overflow-y: auto; padding-inline: 1.25rem; }
+.dlg-foot { flex-shrink: 0; border-top: 1px solid var(--line); padding: 1.25rem; padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px)); display: grid; gap: .5rem; }
+.line { display: flex; gap: 1rem; padding-block: 1.25rem; border-bottom: 1px solid var(--line); }
+.line .studio { width: 6rem; flex-shrink: 0; }
+.line .info { flex: 1; min-width: 0; }
+.line .top { display: flex; justify-content: space-between; gap: .75rem; }
+.line .selects { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin-top: .75rem; }
+.line .selects .field { min-height: 2.25rem; padding-block: .3rem; font-size: .875rem; }
+.line .bottom { display: flex; justify-content: space-between; align-items: center; margin-top: .75rem; }
+.line .warn { margin-top: .5rem; color: var(--danger); font-size: .875rem; }
+.sum { display: grid; gap: .5rem; font-size: .875rem; }
+.sum div { display: flex; justify-content: space-between; gap: 1rem; }
+.sum .total { border-top: 1px solid var(--line); padding-top: .75rem; font-size: 1.1rem; font-weight: 700; }
+.menu-cat { padding-block: 1.25rem; border-bottom: 1px solid var(--line); }
+.menu-cat > button { font-size: 2.4rem; }
+.menu-cat .subs { display: grid; grid-template-columns: 1fr 1fr; margin-top: .5rem; }
+.menu-cat .subs button { text-align: left; padding: .5rem 0; color: var(--muted); }
+.menu-links { display: grid; padding-block: 1rem; }
+.menu-links button { text-align: left; padding-block: .6rem; font-size: 1.25rem; }
+.search-res li button { display: flex; align-items: center; gap: 1rem; width: 100%; padding-block: .75rem; text-align: left; border-bottom: 1px solid var(--line); }
+.search-res .studio { width: 3.2rem; height: 4rem; flex-shrink: 0; }
+
+/* Zamówienie */
+.checkout { display: grid; gap: 3rem; padding-block: 1rem 5rem; }
+@media (min-width: 1024px) { .checkout { grid-template-columns: 7fr 5fr; } .checkout aside > div { position: sticky; top: 6rem; } }
+.checkout > * { min-width: 0; }
+.step h2 { font-size: 1.25rem; margin-bottom: 1.25rem; display: flex; gap: .75rem; align-items: baseline; }
+.form-grid { display: grid; gap: 1rem; }
+@media (min-width: 640px) { .form-grid.two { grid-template-columns: 1fr 1fr; } .form-grid .span2 { grid-column: span 2; } }
+.opt { display: flex; gap: .75rem; border: 1px solid var(--line); padding: 1rem; cursor: pointer; }
+.opt:has(input:checked) { border-color: var(--paper); }
+.opt.disabled { opacity: .55; cursor: not-allowed; }
+.panel { border: 1px solid var(--line); background: var(--graphite); padding: 1.5rem; }
+.alert { border: 1px solid rgb(255 138 128 / .6); color: var(--danger); padding: .75rem; font-size: .875rem; margin-top: 1rem; }
+.note-dashed { border: 1px dashed #6b6b6b; padding: 1rem; font-size: .9rem; }
+
+/* Stopka i powiadomienia */
+footer.site { border-top: 1px solid var(--line); background: var(--graphite); margin-top: 2rem; }
+footer.site .cols { display: grid; gap: 2.5rem; padding-block: 3.5rem; }
+@media (min-width: 768px) { footer.site .cols { grid-template-columns: 2fr 1fr 1fr 2fr; } }
+footer h2 { font-size: .875rem; }
+footer ul { display: grid; gap: .6rem; margin-top: 1rem; font-size: .875rem; color: var(--muted); }
+footer ul button { text-align: left; }
+footer ul button:hover { color: var(--paper); }
+.pending { border: 1px dashed #6b6b6b; padding: 0 .35em; color: var(--paper); white-space: nowrap; font-size: .92em; }
+.toasts { position: fixed; z-index: 60; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; gap: .5rem; padding: 1rem; padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); pointer-events: none; }
+@media (min-width: 768px) { .toasts { align-items: flex-end; } }
+.toast { pointer-events: auto; display: flex; align-items: center; gap: .75rem; width: 100%; max-width: 24rem; background: var(--paper); color: var(--ink); padding: .5rem .5rem .5rem 1rem; font-size: .875rem; font-weight: 600; box-shadow: 0 10px 30px rgb(0 0 0 / .5); }
+.toast p { flex: 1; }
+.toast .act { text-decoration: underline; font-weight: 800; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.stack { display: grid; gap: 1rem; }
+.mt1 { margin-top: .5rem; } .mt2 { margin-top: 1rem; } .mt3 { margin-top: 1.5rem; } .mt4 { margin-top: 2.5rem; }
+
+/* Dokumenty: regulamin, polityka prywatności */
+.doc-grid { display: grid; gap: 2.5rem; margin-top: 2rem; }
+@media (min-width: 1024px) { .doc-grid { grid-template-columns: 15rem minmax(0, 1fr); gap: 4rem; } .doc-grid .toc { position: sticky; top: 6rem; align-self: start; } }
+.toc ol { border-left: 1px solid var(--line); display: grid; gap: .15rem; font-size: .875rem; }
+.toc button { display: block; text-align: left; padding: .3rem 0 .3rem 1rem; margin-left: -1px; border-left: 1px solid transparent; color: var(--muted); }
+.toc button:hover { color: var(--paper); border-left-color: var(--paper); }
+.doc { color: #d4d4d4; line-height: 1.7; max-width: 70ch; min-width: 0; }
+.doc section { padding-block: 0; }
+.doc h2 { font-size: 1.2rem; font-weight: 750; color: var(--paper); font-variation-settings: "wdth" 115; margin: 2.75rem 0 .9rem; scroll-margin-top: 6rem; }
+.doc section:first-child h2 { margin-top: 0; }
+.doc p + p, .doc p + ul, .doc p + ol, .doc ul + p, .doc ol + p { margin-top: .9rem; }
+.doc ul { list-style: square; padding-left: 1.25rem; display: grid; gap: .35rem; }
+.doc ol { list-style: decimal; padding-left: 1.25rem; display: grid; gap: .35rem; }
+.doc strong { color: var(--paper); font-weight: 650; }
+.doc .inline-link { color: var(--paper); text-decoration: underline; text-underline-offset: .2em; }
+.doc-others { margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: .75rem; }
+</style>
+
+<div class="preview-note" role="note">
+  <div class="wrap">
+    <strong>Podgląd sklepu.</strong>
+    <span class="muted">Katalog, filtry, karta produktu, koszyk i zamówienie demo działają w Twojej przeglądarce. Płatności, konta i wysyłka formularzy działają w pełnej wersji sklepu z repozytorium.</span>
+  </div>
+</div>
+<div class="announce"><button type="button" data-go="list:new">New drop – odkryj kolekcję</button></div>
+<header class="site">
+  <div class="wrap">
+    <button type="button" class="icon-btn only-mobile" id="open-menu" aria-label="Otwórz menu" aria-haspopup="dialog" style="margin-left:-.5rem"></button>
+    <button type="button" class="brand" data-go="home" aria-label="KAPITAJNY – strona główna">
+      <img src="images/brand/logo-dark.png" alt="" width="54" height="28">
+      <span class="display-sm">KAPITAJNY</span>
+    </button>
+    <nav class="main" aria-label="Główna">
+      <button type="button" data-go="list:cat:bluzy" data-nav="bluzy">Bluzy</button>
+      <button type="button" data-go="list:cat:spodnie" data-nav="spodnie">Spodnie</button>
+      <button type="button" data-go="list:new" data-nav="new">Nowości</button>
+      <button type="button" data-go="collections" data-nav="collections">Kolekcje</button>
+    </nav>
+    <div class="hdr-actions">
+      <button type="button" class="icon-btn" id="open-search" aria-label="Szukaj" aria-haspopup="dialog"></button>
+      <button type="button" class="icon-btn" id="fav-link" data-go="list:fav" aria-label="Ulubione"></button>
+      <button type="button" class="icon-btn" id="open-cart" aria-haspopup="dialog" aria-label="Koszyk" style="margin-right:-.5rem"></button>
+    </div>
+  </div>
+</header>
+
+<main id="app" tabindex="-1"></main>
+
+<footer class="site">
+  <div class="wrap cols">
+    <div>
+      <button type="button" class="brand" data-go="home" aria-label="KAPITAJNY – strona główna"><img src="images/brand/logo-dark.png" alt="" width="54" height="28"><span class="display-sm">KAPITAJNY</span></button>
+      <p class="muted small mt2" id="footer-lead"></p>
+    </div>
+    <div><h2>Sklep</h2><ul>
+      <li><button type="button" data-go="list:cat:bluzy">Bluzy</button></li>
+      <li><button type="button" data-go="list:cat:spodnie">Spodnie</button></li>
+      <li><button type="button" data-go="list:new">Nowości</button></li>
+      <li><button type="button" data-go="collections">Kolekcje</button></li>
+      <li><button type="button" data-go="list:all">Wszystkie produkty</button></li>
+    </ul></div>
+    <div><h2>Pomoc</h2><ul>
+      <li><button type="button" data-go="shipping">Dostawa i zwroty</button></li>
+      <li><button type="button" data-go="list:fav">Ulubione</button></li>
+      <li><button type="button" data-go="cart">Koszyk</button></li>
+      <li><button type="button" data-go="terms">Regulamin sklepu</button></li>
+      <li><button type="button" data-go="privacy">Polityka prywatności</button></li>
+    </ul></div>
+    <div><h2>Kontakt</h2><ul>
+      <li>E-mail: <span class="pending">do uzupełnienia</span></li>
+      <li>Telefon: <span class="pending">do uzupełnienia</span></li>
+      <li>Instagram, TikTok: <span class="pending">do uzupełnienia</span></li>
+    </ul></div>
+  </div>
+  <div class="bt"><div class="wrap xs muted" style="padding-block:1.5rem">© KAPITAJNY. Ceny brutto w PLN. Zdjęcia poglądowe.</div></div>
+</footer>
+
+<dialog class="drawer" id="cart-dlg" aria-labelledby="cart-title"><div class="dlg" id="cart-body"></div></dialog>
+<dialog class="drawer left" id="menu-dlg" aria-labelledby="menu-title"><div class="dlg" id="menu-body"></div></dialog>
+<dialog class="modal" id="search-dlg" aria-labelledby="search-title" style="margin-top:4rem;margin-bottom:auto"><div id="search-body" style="padding:1.25rem"></div></dialog>
+<dialog class="modal" id="chart-dlg" aria-labelledby="chart-title"><div id="chart-body" style="padding:1.5rem"></div></dialog>
+<div class="toasts" aria-live="polite" role="status" id="toasts"></div>
+
+<script>
+const DATA = {"SIZES":["XS","S","M","L","XL","XXL"],"categories":[{"slug":"bluzy","name":"Bluzy","singular":"bluza","description":"Ciężka dzianina pętelkowa, obniżone ramiona i proste kolory. Hoodie, zipy i krótkie bluzy boxy.","subcategories":[{"slug":"oversize","name":"Oversize","description":"Szeroki korpus i obniżona linia ramion. Bierz swój zwykły rozmiar – luz jest wpisany w krój."},{"slug":"z-kapturem","name":"Z kapturem","description":"Hoodie i zipy z podwójnym kapturem, ściągaczem i kieszenią kangurką."},{"slug":"bez-kaptura","name":"Bez kaptura","description":"Krótkie, pudełkowe bluzy z okrągłym dekoltem i ściągaczem u dołu."},{"slug":"rozpinane","name":"Rozpinane","description":"Zip hoodie na metalowym zamku dwukierunkowym – do noszenia otwarte lub zapięte."},{"slug":"z-nadrukami","name":"Z nadrukami","description":"Znak buta w dwóch skalach: duży nadruk na piersi albo mały znak przy sercu."}]},{"slug":"spodnie","name":"Spodnie","singular":"spodnie","description":"Cargo, denim i dresy w szerokich krojach. Wysoki stan, długa nogawka, która układa się na bucie.","subcategories":[{"slug":"baggy","name":"Baggy","description":"Luźne udo i szeroka nogawka na całej długości. Najlepiej z grubą podeszwą."},{"slug":"cargo","name":"Cargo","description":"Kieszenie miechowe na udach, mocna bawełna i regulacja w pasie lub przy nogawce."},{"slug":"dresowe","name":"Dresowe","description":"Dzianina pętelkowa, gumka w pasie i sznurek. Do kompletu z bluzami z tej samej dzianiny."},{"slug":"straight-fit","name":"Straight fit","description":"Prosta nogawka od biodra do kostki. Spokojna sylwetka, która pasuje do wszystkiego."},{"slug":"szeroka-nogawka","name":"Szeroka nogawka","description":"Nogawka rozszerzona od uda, która zakrywa but. Najszersze kroje w sklepie."}]}],"COLORS":{"black":{"name":"Czarny","hex":"#141414"},"washed-black":{"name":"Sprany czarny","hex":"#2f2f30"},"graphite":{"name":"Grafitowy","hex":"#3a3a3a"},"grey":{"name":"Szary","hex":"#8f8f8c"},"grey-marl":{"name":"Szary melanż","hex":"#b4b4b2"},"light-grey":{"name":"Jasnoszary","hex":"#c9c9c4"},"white":{"name":"Biały","hex":"#f4f4f2"},"ecru":{"name":"Ecru","hex":"#ddd6c6"},"stone":{"name":"Kamienny","hex":"#b6b1a6"},"olive":{"name":"Oliwkowy","hex":"#55573f"},"mocha":{"name":"Mokka","hex":"#594a3e"},"navy":{"name":"Granatowy","hex":"#2b3140"}},"FITS":{"oversize":{"name":"Oversize","description":"Obniżone ramiona i szeroki korpus. Weź swój zwykły rozmiar; o rozmiar mniej, jeśli wolisz bliżej ciała."},"boxy":{"name":"Boxy","description":"Krótki, szeroki, pudełkowy krój. Długość do pasa, szerokie rękawy do łokcia."},"relaxed":{"name":"Relaxed","description":"Swobodny, ale nie przeskalowany krój. Zwykły rozmiar daje klasyczny luz."},"baggy":{"name":"Baggy","description":"Luźne udo i szeroka nogawka na całej długości. Wysoki stan."},"straight":{"name":"Straight","description":"Prosta nogawka od biodra do kostki, średni stan."},"wide":{"name":"Szeroka nogawka","description":"Nogawka rozszerzona od uda, zakrywa but. Wysoki stan na gumce."}},"drops":[{"id":"2026-08","name":"Drop sierpień 2026","date":"2026-08-21"},{"id":"2026-09","name":"Drop wrzesień 2026","date":"2026-09-18"},{"id":"2026-10","name":"Drop październik 2026","date":"2026-10-16"}],"collections":[{"slug":"mono","name":"Mono","description":"Czerń, grafit, szarości i biel. Rzeczy, które łączą się ze sobą bez zastanawiania.","coverImage":"jeans-baggy-black"},{"slug":"sole","name":"Sole","description":"Wszystko ze znakiem buta – od dużego nadruku na piersi po mały znak na nogawce.","coverImage":"sole-hoodie-black"},{"slug":"earth","name":"Earth","description":"Oliwka, mokka, kamień i ecru. Ciepłe, przygaszone kolory do zestawiania z czernią.","coverImage":"earth-hoodie-olive"}],"products":[{"id":"B01","slug":"core-hoodie","name":"CORE Hoodie","kind":"Bluza z kapturem","category":"bluzy","styles":["z-kapturem","oversize"],"collections":["mono"],"drop":"2026-08","fit":"oversize","material":"80% bawełna, 20% poliester; dzianina pętelkowa 420 g/m²","description":"Podstawa szafy: gruba pętelka, podwójny kaptur bez metalowych końcówek sznurka i kangurka szyta z jednego kawałka.","details":["Podwójny kaptur","Kieszeń kangurka","Obniżona linia ramion","Ściągacze 2×2 przy rękawach i u dołu"],"care":"Pranie w 30°C na lewej stronie, bez suszarki bębnowej. Nie prasuj nadruku.","price":28900,"variants":[{"color":"black","image":"core-hoodie-black","stock":[3,8,12,10,6,2]},{"color":"graphite","image":"core-hoodie-graphite","stock":[0,4,7,6,3,0]}]},{"id":"B02","slug":"ash-hoodie","name":"ASH Hoodie","kind":"Bluza z kapturem","category":"bluzy","styles":["z-kapturem","oversize"],"collections":["mono"],"drop":"2026-09","fit":"oversize","material":"80% bawełna, 20% poliester; dzianina pętelkowa 420 g/m²","description":"Ten sam krój co CORE w jasnej szarości. Dobrze wygląda z czarnymi cargo i szerokim denimem.","details":["Podwójny kaptur","Kieszeń kangurka","Obniżona linia ramion","Ściągacze 2×2"],"care":"Pranie w 30°C na lewej stronie, bez suszarki bębnowej. Nie prasuj nadruku.","price":28900,"variants":[{"color":"grey","image":"core-hoodie-grey","stock":[2,5,9,9,4,1]}]},{"id":"B03","slug":"sole-print-hoodie","name":"SOLE Print Hoodie","kind":"Bluza z kapturem z nadrukiem","category":"bluzy","styles":["z-kapturem","oversize","z-nadrukami"],"collections":["sole"],"drop":"2026-10","fit":"oversize","material":"80% bawełna, 20% poliester; dzianina pętelkowa 420 g/m²","description":"Duży znak buta na piersi, drukowany sitodrukiem w trzech kolorach. Na czarnej i szarej bluzie znak jest odwrócony – białe panele, czarne przeszycia.","details":["Sitodruk na piersi, ok. 28 cm szerokości","Podwójny kaptur","Kieszeń kangurka","Obniżona linia ramion"],"care":"Pranie w 30°C na lewej stronie, bez suszarki bębnowej. Nie prasuj nadruku.","price":32900,"variants":[{"color":"black","image":"sole-hoodie-black","stock":[2,6,10,8,5,2]},{"color":"ecru","image":"sole-hoodie-ecru","stock":[1,4,6,5,2,0]},{"color":"grey","image":"sole-hoodie-grey","stock":[0,3,5,4,2,1]}]},{"id":"B04","slug":"mark-hoodie","name":"MARK Hoodie","kind":"Bluza z kapturem z nadrukiem","category":"bluzy","styles":["z-kapturem","z-nadrukami"],"collections":["sole","mono"],"drop":"2026-09","fit":"relaxed","material":"100% bawełna; dzianina pętelkowa 360 g/m²","description":"Biała bluza z małym znakiem buta na środku piersi. Lżejsza dzianina, klasyczny luz bez przeskalowania.","details":["Znak buta na piersi, ok. 9 cm","Kaptur ze sznurkiem","Kieszeń kangurka","Ściągacze 1×1"],"care":"Pranie w 30°C na lewej stronie, bez suszarki bębnowej. Nie prasuj nadruku.","price":29900,"variants":[{"color":"white","image":"mark-hoodie-white","stock":[3,7,9,8,4,2]}]},{"id":"B05","slug":"track-zip-hoodie","name":"TRACK Zip Hoodie","kind":"Bluza rozpinana z kapturem","category":"bluzy","styles":["rozpinane","z-kapturem","oversize"],"collections":["mono"],"drop":"2026-08","fit":"oversize","material":"80% bawełna, 20% poliester; dzianina pętelkowa 420 g/m²","description":"Zip na metalowym zamku dwukierunkowym. Kieszenie boczne z ukrytym szwem i wysoki kaptur, który stoi.","details":["Zamek dwukierunkowy","Dwie kieszenie boczne","Podwójny kaptur","Obniżona linia ramion"],"care":"Pranie w 30°C na lewej stronie, bez suszarki bębnowej. Nie prasuj nadruku.","price":31900,"variants":[{"color":"black","image":"track-zip-black","stock":[2,7,11,9,6,3]},{"color":"graphite","image":"track-zip-graphite","stock":[1,3,6,6,2,0]}]},{"id":"B06","slug":"field-zip-hoodie","name":"FIELD Zip Hoodie","kind":"Bluza rozpinana z kapturem","category":"bluzy","styles":["rozpinane","z-kapturem"],"collections":["earth"],"drop":"2026-09","fit":"relaxed","material":"80% bawełna, 20% poliester; dzianina pętelkowa 420 g/m²","description":"Rozpinana bluza w przygaszonej oliwce i mokce. Mniej luzu niż TRACK – dobrze leży pod kurtką.","details":["Zamek dwukierunkowy","Dwie kieszenie boczne","Podwójny kaptur","Ściągacze 2×2"],"care":"Pranie w 30°C na lewej stronie, bez suszarki bębnowej. Nie prasuj nadruku.","price":31900,"variants":[{"color":"olive","image":"field-zip-olive","stock":[0,4,6,5,3,1]},{"color":"mocha","image":"field-zip-mocha","stock":[1,3,5,4,2,0]}]},{"id":"B07","slug":"sole-boxy-crew","name":"SOLE Boxy Crew","kind":"Bluza bez kaptura z krótkim rękawem","category":"bluzy","styles":["bez-kaptura","z-nadrukami","oversize"],"collections":["sole"],"drop":"2026-10","fit":"boxy","material":"80% bawełna, 20% poliester; dzianina pętelkowa 420 g/m²","description":"Krótka, pudełkowa bluza z rękawem do łokcia i dużym znakiem buta. Na czarnej wersji nadruk jest odwrócony.","details":["Sitodruk na piersi, ok. 30 cm","Okrągły dekolt ze ściągaczem","Rękaw do łokcia","Długość do pasa"],"care":"Pranie w 30°C na lewej stronie, bez suszarki bębnowej. Nie prasuj nadruku.","price":24900,"variants":[{"color":"black","image":"boxy-sole-black","stock":[3,6,8,7,4,1]},{"color":"ecru","image":"boxy-sole-ecru","stock":[1,3,5,4,2,0]}]},{"id":"B08","slug":"earth-hoodie","name":"EARTH Hoodie","kind":"Bluza z kapturem","category":"bluzy","styles":["z-kapturem","oversize"],"collections":["earth"],"drop":"2026-09","fit":"oversize","material":"80% bawełna, 20% poliester; dzianina pętelkowa 420 g/m²","description":"Krój CORE w oliwce i mokce. Ta sama gruba pętelka i podwójny kaptur.","details":["Kolor jednolity także na ściągaczach","Podwójny kaptur","Kieszeń kangurka","Obniżona linia ramion"],"care":"Pranie w 30°C na lewej stronie, bez suszarki bębnowej. Nie prasuj nadruku.","price":28900,"variants":[{"color":"olive","image":"earth-hoodie-olive","stock":[1,5,7,6,3,1]},{"color":"mocha","image":"earth-hoodie-mocha","stock":[0,2,6,5,3,0]}]},{"id":"B09","slug":"blank-hoodie","name":"BLANK Hoodie","kind":"Bluza z kapturem","category":"bluzy","styles":["z-kapturem"],"collections":["earth"],"drop":"2026-08","fit":"relaxed","material":"100% bawełna; dzianina pętelkowa 360 g/m²","description":"Jasna bluza bez żadnych oznaczeń. Lżejsza dzianina na wczesną jesień i warstwy.","details":["Bez nadruków i metek na zewnątrz","Kaptur ze sznurkiem","Kieszeń kangurka","Ściągacze 1×1"],"care":"Pranie w 30°C na lewej stronie, bez suszarki bębnowej. Nie prasuj nadruku.","price":26900,"variants":[{"color":"ecru","image":"blank-hoodie-ecru","stock":[2,5,8,6,3,1]},{"color":"stone","image":"blank-hoodie-stone","stock":[0,4,5,5,2,0]}]},{"id":"B10","slug":"mini-sole-hoodie","name":"MINI SOLE Hoodie","kind":"Bluza z kapturem z nadrukiem","category":"bluzy","styles":["z-kapturem","z-nadrukami"],"collections":["sole"],"drop":"2026-10","fit":"relaxed","material":"80% bawełna, 20% poliester; dzianina pętelkowa 420 g/m²","description":"Mały znak buta po lewej stronie piersi. Spokojniejsza wersja SOLE na co dzień.","details":["Nadruk przy sercu, ok. 8 cm","Podwójny kaptur","Kieszeń kangurka","Ściągacze 2×2"],"care":"Pranie w 30°C na lewej stronie, bez suszarki bębnowej. Nie prasuj nadruku.","price":29900,"variants":[{"color":"black","image":"mini-hoodie-black","stock":[2,6,9,9,5,2]},{"color":"ecru","image":"mini-hoodie-ecru","stock":[1,4,6,4,2,1]}]},{"id":"B11","slug":"mini-sole-zip","name":"MINI SOLE Zip","kind":"Bluza rozpinana z nadrukiem","category":"bluzy","styles":["rozpinane","z-kapturem","z-nadrukami"],"collections":["sole"],"drop":"2026-10","fit":"oversize","material":"80% bawełna, 20% poliester; dzianina pętelkowa 420 g/m²","description":"TRACK Zip z małym znakiem buta przy zamku. Ten sam ciężar dzianiny i ten sam zamek dwukierunkowy.","details":["Nadruk przy sercu, ok. 8 cm","Zamek dwukierunkowy","Dwie kieszenie boczne","Podwójny kaptur"],"care":"Pranie w 30°C na lewej stronie, bez suszarki bębnowej. Nie prasuj nadruku.","price":33900,"variants":[{"color":"black","image":"mini-zip-black","stock":[1,5,8,7,4,1]},{"color":"ecru","image":"mini-zip-ecru","stock":[0,2,4,4,1,0]}]},{"id":"B12","slug":"earth-boxy-crew","name":"EARTH Boxy Crew","kind":"Bluza bez kaptura z krótkim rękawem","category":"bluzy","styles":["bez-kaptura","z-nadrukami","oversize"],"collections":["earth","sole"],"drop":"2026-09","fit":"boxy","material":"80% bawełna, 20% poliester; dzianina pętelkowa 420 g/m²","description":"SOLE Boxy Crew w oliwce i mokce. Nadruk zostaje biało-szary, panele buta przyjmują kolor dzianiny.","details":["Sitodruk na piersi, ok. 30 cm","Okrągły dekolt","Rękaw do łokcia","Długość do pasa"],"care":"Pranie w 30°C na lewej stronie, bez suszarki bębnowej. Nie prasuj nadruku.","price":24900,"variants":[{"color":"olive","image":"boxy-earth-olive","stock":[1,3,5,4,2,0]},{"color":"mocha","image":"boxy-earth-mocha","stock":[0,3,4,4,1,1]}]},{"id":"B13","slug":"tonal-hoodie","name":"TONAL Hoodie","kind":"Bluza z kapturem z nadrukiem","category":"bluzy","styles":["z-kapturem","oversize","z-nadrukami"],"collections":["mono","sole"],"drop":"2026-10","fit":"oversize","material":"80% bawełna, 20% poliester; dzianina pętelkowa 420 g/m²","description":"Grafitowa bluza z dużym znakiem buta w odcieniach szarości. Nadruk widać z bliska, z daleka zlewa się z dzianiną.","details":["Tonalny sitodruk, ok. 28 cm","Podwójny kaptur","Kieszeń kangurka","Obniżona linia ramion"],"care":"Pranie w 30°C na lewej stronie, bez suszarki bębnowej. Nie prasuj nadruku.","price":32900,"variants":[{"color":"graphite","image":"tonal-hoodie-graphite","stock":[1,4,7,6,3,1]}]},{"id":"B14","slug":"stone-zip-hoodie","name":"STONE Zip Hoodie","kind":"Bluza rozpinana z kapturem","category":"bluzy","styles":["rozpinane","z-kapturem","oversize"],"collections":["earth"],"drop":"2026-08","fit":"oversize","material":"80% bawełna, 20% poliester; dzianina pętelkowa 420 g/m²","description":"Zip w jasnych, kamiennych odcieniach. Krój TRACK, czyli szeroko i z wysokim kapturem.","details":["Zamek dwukierunkowy","Dwie kieszenie boczne","Podwójny kaptur","Obniżona linia ramion"],"care":"Pranie w 30°C na lewej stronie, bez suszarki bębnowej. Nie prasuj nadruku.","price":30900,"variants":[{"color":"stone","image":"stone-zip-stone","stock":[1,4,6,5,2,0]},{"color":"grey","image":"stone-zip-grey","stock":[0,3,5,5,3,1]}]},{"id":"B15","slug":"ash-boxy-crew","name":"ASH Boxy Crew","kind":"Bluza bez kaptura z krótkim rękawem","category":"bluzy","styles":["bez-kaptura","z-nadrukami","oversize"],"collections":["mono","sole"],"drop":"2026-08","fit":"boxy","material":"80% bawełna, 20% poliester; dzianina pętelkowa 420 g/m²","description":"Pudełkowa bluza z dużym znakiem buta w szarości i grafitowej wersji.","details":["Sitodruk na piersi, ok. 30 cm","Okrągły dekolt","Rękaw do łokcia","Długość do pasa"],"care":"Pranie w 30°C na lewej stronie, bez suszarki bębnowej. Nie prasuj nadruku.","price":24900,"variants":[{"color":"grey","image":"boxy-grey-grey","stock":[2,4,6,5,2,1]},{"color":"graphite","image":"boxy-grey-graphite","stock":[1,3,5,3,2,0]}]},{"id":"B16","slug":"deep-hoodie","name":"DEEP Hoodie","kind":"Bluza z kapturem","category":"bluzy","styles":["z-kapturem","oversize"],"collections":[],"drop":"2026-09","fit":"oversize","material":"80% bawełna, 20% poliester; dzianina pętelkowa 420 g/m²","description":"Głęboki granat zamiast czerni. Krój CORE z tą samą grubą pętelką.","details":["Podwójny kaptur","Kieszeń kangurka","Obniżona linia ramion","Ściągacze 2×2"],"care":"Pranie w 30°C na lewej stronie, bez suszarki bębnowej. Nie prasuj nadruku.","price":28900,"variants":[{"color":"navy","image":"wash-hoodie-navy","stock":[1,3,6,6,3,0]}]},{"id":"B17","slug":"tonal-zip-hoodie","name":"TONAL Zip Hoodie","kind":"Bluza rozpinana z nadrukiem","category":"bluzy","styles":["rozpinane","z-kapturem","z-nadrukami"],"collections":["mono"],"drop":"2026-10","fit":"oversize","material":"80% bawełna, 20% poliester; dzianina pętelkowa 420 g/m²","description":"Grafitowy zip z małym, tonalnym znakiem buta przy zamku.","details":["Tonalny nadruk przy sercu","Zamek dwukierunkowy","Dwie kieszenie boczne","Podwójny kaptur"],"care":"Pranie w 30°C na lewej stronie, bez suszarki bębnowej. Nie prasuj nadruku.","price":32900,"variants":[{"color":"graphite","image":"tonal-zip-graphite","stock":[0,3,5,5,2,1]}]},{"id":"P01","slug":"parachute-cargo","name":"PARACHUTE Cargo","kind":"Spodnie cargo baggy","category":"spodnie","styles":["cargo","baggy"],"collections":["mono"],"drop":"2026-08","fit":"baggy","material":"100% bawełna; ripstop 250 g/m²","description":"Szerokie cargo z regulacją nogawki na stoperach. Dół można ściągnąć nad butem albo zostawić prosto.","details":["Kieszenie miechowe na udach","Stopery przy nogawce","Pas z guzikiem i rozporkiem na zamek","Pięć kieszeni"],"care":"Pranie w 30°C na lewej stronie z podobnymi kolorami. Suszenie na wieszaku.","price":34900,"variants":[{"color":"black","image":"cargo-baggy-black","stock":[2,7,10,9,5,2]},{"color":"olive","image":"cargo-baggy-olive","stock":[1,4,6,6,3,0]}]},{"id":"P02","slug":"parachute-cargo-earth","name":"PARACHUTE Cargo Earth","kind":"Spodnie cargo baggy","category":"spodnie","styles":["cargo","baggy"],"collections":["earth"],"drop":"2026-09","fit":"baggy","material":"100% bawełna; ripstop 250 g/m²","description":"PARACHUTE w kamieniu i mokce. Jasna wersja do ciemnych bluz, ciemna do ecru.","details":["Kieszenie miechowe na udach","Stopery przy nogawce","Pas z guzikiem","Pięć kieszeni"],"care":"Pranie w 30°C na lewej stronie z podobnymi kolorami. Suszenie na wieszaku.","price":34900,"variants":[{"color":"stone","image":"cargo-earth-stone","stock":[1,4,5,5,2,1]},{"color":"mocha","image":"cargo-earth-mocha","stock":[0,3,5,4,2,0]}]},{"id":"P03","slug":"parachute-cargo-night","name":"PARACHUTE Cargo Night","kind":"Spodnie cargo baggy","category":"spodnie","styles":["cargo","baggy"],"collections":["mono"],"drop":"2026-10","fit":"baggy","material":"100% bawełna; ripstop 250 g/m²","description":"Granat i grafit – ciemne kolory, które nie są czernią. Krój i detale jak w PARACHUTE.","details":["Kieszenie miechowe na udach","Stopery przy nogawce","Pas z guzikiem","Pięć kieszeni"],"care":"Pranie w 30°C na lewej stronie z podobnymi kolorami. Suszenie na wieszaku.","price":34900,"variants":[{"color":"navy","image":"cargo-navy-navy","stock":[1,3,6,5,3,1]},{"color":"graphite","image":"cargo-navy-graphite","stock":[0,4,6,5,2,0]}]},{"id":"P04","slug":"utility-cargo-straight","name":"UTILITY Cargo Straight","kind":"Spodnie cargo straight fit","category":"spodnie","styles":["cargo","straight-fit"],"collections":["mono"],"drop":"2026-08","fit":"straight","material":"100% bawełna; diagonal 280 g/m²","description":"Prosta nogawka i płaskie kieszenie na udach. Cargo, które można założyć także do pracy.","details":["Płaskie kieszenie na udach z klapką","Prosta nogawka","Pas z guzikiem","Szlufki pod szeroki pasek"],"care":"Pranie w 30°C na lewej stronie z podobnymi kolorami. Suszenie na wieszaku.","price":32900,"variants":[{"color":"light-grey","image":"cargo-straight-grey","stock":[2,5,8,7,4,1]},{"color":"black","image":"cargo-straight-black","stock":[3,6,9,8,5,2]}]},{"id":"P05","slug":"utility-cargo-night","name":"UTILITY Cargo Night","kind":"Spodnie cargo straight fit","category":"spodnie","styles":["cargo","straight-fit"],"collections":["mono"],"drop":"2026-09","fit":"straight","material":"100% bawełna; diagonal 280 g/m²","description":"UTILITY w grafitowym i granatowym diagonalu.","details":["Płaskie kieszenie na udach z klapką","Prosta nogawka","Pas z guzikiem","Szlufki pod szeroki pasek"],"care":"Pranie w 30°C na lewej stronie z podobnymi kolorami. Suszenie na wieszaku.","price":32900,"variants":[{"color":"graphite","image":"cargo-straight-graphite","stock":[1,4,6,6,3,1]},{"color":"navy","image":"cargo-straight-navy","stock":[0,3,5,4,2,0]}]},{"id":"P06","slug":"field-cargo","name":"FIELD Cargo","kind":"Spodnie cargo straight fit","category":"spodnie","styles":["cargo","straight-fit"],"collections":["earth"],"drop":"2026-09","fit":"straight","material":"100% bawełna; diagonal 280 g/m²","description":"Prosty krój cargo w oliwce i ecru. Pasuje do FIELD Zip Hoodie z tej samej palety.","details":["Płaskie kieszenie na udach z klapką","Prosta nogawka","Pas z guzikiem","Pięć kieszeni"],"care":"Pranie w 30°C na lewej stronie z podobnymi kolorami. Suszenie na wieszaku.","price":32900,"variants":[{"color":"olive","image":"cargo-field-olive","stock":[1,4,7,6,3,0]},{"color":"ecru","image":"cargo-field-ecru","stock":[1,3,5,4,2,1]}]},{"id":"P07","slug":"core-sweatpants","name":"CORE Sweatpants","kind":"Spodnie dresowe","category":"spodnie","styles":["dresowe","straight-fit"],"collections":["mono"],"drop":"2026-08","fit":"straight","material":"80% bawełna, 20% poliester; dzianina pętelkowa 420 g/m²","description":"Dresy z tej samej pętelki co CORE Hoodie. Prosta nogawka bez ściągacza na dole.","details":["Gumka w pasie i płaski sznurek","Kieszenie boczne i kieszeń z tyłu","Prosta nogawka","Dzianina 420 g/m²"],"care":"Pranie w 30°C na lewej stronie, bez suszarki bębnowej. Nie prasuj nadruku.","price":22900,"variants":[{"color":"grey-marl","image":"core-sweats-grey","stock":[3,7,10,9,5,2]},{"color":"black","image":"core-sweats-black","stock":[3,8,12,10,6,3]},{"color":"ecru","image":"core-sweats-ecru","stock":[1,3,5,4,2,0]}]},{"id":"P08","slug":"mini-sole-sweatpants","name":"MINI SOLE Sweatpants","kind":"Spodnie dresowe z nadrukiem","category":"spodnie","styles":["dresowe","straight-fit"],"collections":["sole"],"drop":"2026-10","fit":"straight","material":"80% bawełna, 20% poliester; dzianina pętelkowa 420 g/m²","description":"CORE Sweatpants z małym znakiem buta na udzie. Do kompletu z MINI SOLE Hoodie.","details":["Nadruk na udzie, ok. 7 cm","Gumka w pasie i sznurek","Kieszenie boczne","Prosta nogawka"],"care":"Pranie w 30°C na lewej stronie, bez suszarki bębnowej. Nie prasuj nadruku.","price":24900,"variants":[{"color":"grey-marl","image":"mini-sweats-grey","stock":[2,5,7,7,3,1]},{"color":"black","image":"mini-sweats-black","stock":[2,6,9,8,4,2]}]},{"id":"P09","slug":"earth-sweatpants","name":"EARTH Sweatpants","kind":"Spodnie dresowe","category":"spodnie","styles":["dresowe","straight-fit"],"collections":["earth"],"drop":"2026-09","fit":"straight","material":"80% bawełna, 20% poliester; dzianina pętelkowa 420 g/m²","description":"Dresy w oliwce i mokce – w tych samych kolorach co EARTH Hoodie.","details":["Dzianina 420 g/m²","Gumka w pasie i sznurek","Kieszenie boczne","Prosta nogawka"],"care":"Pranie w 30°C na lewej stronie, bez suszarki bębnowej. Nie prasuj nadruku.","price":22900,"variants":[{"color":"olive","image":"earth-sweats-olive","stock":[1,4,6,5,3,0]},{"color":"mocha","image":"earth-sweats-mocha","stock":[0,3,5,5,2,1]}]},{"id":"P10","slug":"wash-baggy-jeans","name":"WASH Baggy Jeans","kind":"Jeansy baggy","category":"spodnie","styles":["baggy","szeroka-nogawka"],"collections":["mono"],"drop":"2026-09","fit":"baggy","material":"100% bawełna; denim 13,5 oz","description":"Sprany czarny denim z przetarciami na udach. Szeroko od biodra po kostkę.","details":["Pięć kieszeni","Rozporek na guziki","Ręczne przetarcia","Długość nogawki 82 cm w rozmiarze M"],"care":"Pranie w 30°C na lewej stronie z podobnymi kolorami. Suszenie na wieszaku.","price":37900,"variants":[{"color":"washed-black","image":"jeans-baggy-black","stock":[2,5,8,8,4,1]}]},{"id":"P11","slug":"grey-wash-jeans","name":"GREY WASH Jeans","kind":"Jeansy baggy","category":"spodnie","styles":["baggy","szeroka-nogawka"],"collections":["mono"],"drop":"2026-10","fit":"baggy","material":"100% bawełna; denim 13,5 oz","description":"Ten sam krój co WASH w jasnoszarym wybarwieniu.","details":["Pięć kieszeni","Rozporek na guziki","Ręczne przetarcia","Długość nogawki 82 cm w rozmiarze M"],"care":"Pranie w 30°C na lewej stronie z podobnymi kolorami. Suszenie na wieszaku.","price":37900,"variants":[{"color":"grey","image":"jeans-baggy-grey","stock":[1,4,6,6,3,0]}]},{"id":"P12","slug":"raw-baggy-jeans","name":"RAW Baggy Jeans","kind":"Jeansy baggy","category":"spodnie","styles":["baggy","szeroka-nogawka"],"collections":["earth"],"drop":"2026-10","fit":"baggy","material":"100% bawełna; denim 13,5 oz","description":"Szeroki denim w ecru i mokce. Jasna wersja z delikatnym wytarciem na kolanach.","details":["Pięć kieszeni","Rozporek na guziki","Wytarcia na kolanach","Długość nogawki 82 cm w rozmiarze M"],"care":"Pranie w 30°C na lewej stronie z podobnymi kolorami. Suszenie na wieszaku.","price":37900,"variants":[{"color":"ecru","image":"jeans-ecru-ecru","stock":[1,3,5,5,2,1]},{"color":"mocha","image":"jeans-ecru-mocha","stock":[0,2,4,4,2,0]}]},{"id":"P13","slug":"sole-wide-pants","name":"SOLE Wide Pants","kind":"Spodnie dresowe z szeroką nogawką","category":"spodnie","styles":["dresowe","szeroka-nogawka"],"collections":["sole","mono"],"drop":"2026-10","fit":"wide","material":"100% bawełna; dzianina pętelkowa 360 g/m²","description":"Najszersze spodnie w sklepie: wysoki stan na gumce i nogawka, która zakrywa but. Mały znak buta na udzie.","details":["Nadruk na udzie, ok. 7 cm","Szeroka gumka w pasie","Kieszenie boczne","Nogawka bez ściągacza"],"care":"Pranie w 30°C na lewej stronie, bez suszarki bębnowej. Nie prasuj nadruku.","price":26900,"variants":[{"color":"black","image":"wide-sole-black","stock":[3,6,9,8,4,2]},{"color":"white","image":"wide-sole-white","stock":[2,4,6,5,2,0]}]},{"id":"P14","slug":"wide-tone-pants","name":"WIDE Tone Pants","kind":"Spodnie dresowe z szeroką nogawką","category":"spodnie","styles":["dresowe","szeroka-nogawka"],"collections":["earth"],"drop":"2026-10","fit":"wide","material":"100% bawełna; dzianina pętelkowa 360 g/m²","description":"SOLE Wide Pants w trzech przygaszonych kolorach z tonalnym znakiem na udzie.","details":["Tonalny nadruk na udzie","Szeroka gumka w pasie","Kieszenie boczne","Nogawka bez ściągacza"],"care":"Pranie w 30°C na lewej stronie, bez suszarki bębnowej. Nie prasuj nadruku.","price":26900,"variants":[{"color":"grey","image":"wide-tone-grey","stock":[1,4,6,5,3,1]},{"color":"stone","image":"wide-tone-stone","stock":[1,3,5,4,2,0]},{"color":"olive","image":"wide-tone-olive","stock":[0,3,4,4,2,0]}]}],"SIZE_CHARTS":{"oversize":{"columns":["Szerokość klatki","Długość","Długość rękawa"],"rows":[{"size":"XS","values":[60,68,55]},{"size":"S","values":[63,70,56]},{"size":"M","values":[66,72,57]},{"size":"L","values":[69,74,58]},{"size":"XL","values":[72,76,59]},{"size":"XXL","values":[75,78,60]}],"note":"Szerokość klatki mierzona na płasko 2 cm pod pachą, długość od najwyższego punktu ramienia, rękaw od szwu ramienia."},"relaxed":{"columns":["Szerokość klatki","Długość","Długość rękawa"],"rows":[{"size":"XS","values":[53,66,61]},{"size":"S","values":[56,68,62]},{"size":"M","values":[59,70,63]},{"size":"L","values":[62,72,64]},{"size":"XL","values":[65,74,65]},{"size":"XXL","values":[68,76,66]}],"note":"Szerokość klatki mierzona na płasko 2 cm pod pachą, długość od najwyższego punktu ramienia, rękaw od szwu ramienia."},"boxy":{"columns":["Szerokość klatki","Długość","Długość rękawa"],"rows":[{"size":"XS","values":[61,59,24]},{"size":"S","values":[64,61,25]},{"size":"M","values":[67,63,26]},{"size":"L","values":[70,65,27]},{"size":"XL","values":[73,67,28]},{"size":"XXL","values":[76,69,29]}],"note":"Szerokość klatki mierzona na płasko 2 cm pod pachą, długość od najwyższego punktu ramienia, rękaw od szwu ramienia."},"baggy":{"columns":["Obwód pasa","Długość wewnętrzna nogawki","Szerokość nogawki u dołu"],"rows":[{"size":"XS","values":[70,78,25]},{"size":"S","values":[74,80,26]},{"size":"M","values":[78,82,27]},{"size":"L","values":[84,83,28]},{"size":"XL","values":[90,84,29]},{"size":"XXL","values":[96,85,30]}],"note":"Obwód pasa w spoczynku (gumka/guzik zapięty), szerokość nogawki mierzona na płasko przy dolnej krawędzi."},"straight":{"columns":["Obwód pasa","Długość wewnętrzna nogawki","Szerokość nogawki u dołu"],"rows":[{"size":"XS","values":[70,76,20]},{"size":"S","values":[74,78,21]},{"size":"M","values":[78,80,22]},{"size":"L","values":[84,81,23]},{"size":"XL","values":[90,82,24]},{"size":"XXL","values":[96,83,25]}],"note":"Obwód pasa w spoczynku (gumka/guzik zapięty), szerokość nogawki mierzona na płasko przy dolnej krawędzi."},"wide":{"columns":["Obwód pasa","Długość wewnętrzna nogawki","Szerokość nogawki u dołu"],"rows":[{"size":"XS","values":[66,78,31]},{"size":"S","values":[70,80,32]},{"size":"M","values":[74,82,33]},{"size":"L","values":[80,83,34]},{"size":"XL","values":[86,84,35]},{"size":"XXL","values":[92,85,36]}],"note":"Obwód pasa w spoczynku (gumka/guzik zapięty), szerokość nogawki mierzona na płasko przy dolnej krawędzi."}},"SHIPPING":[{"id":"kurier","name":"Kurier","description":"Dostawa pod wskazany adres, zwykle 1–2 dni robocze od nadania.","price":1999,"requiresPickupPoint":false},{"id":"punkt","name":"Punkt odbioru","description":"Odbiór w wybranym punkcie lub automacie paczkowym, zwykle 1–2 dni robocze od nadania.","price":1499,"requiresPickupPoint":true}],"DISPATCH_TIME":"do 2 dni roboczych","RETURN_DAYS":14};
+(() => {
+  const { SIZES, categories, COLORS, FITS, drops, collections, products, SIZE_CHARTS, SHIPPING, DISPATCH_TIME, RETURN_DAYS } = DATA;
+  const $ = (s, el = document) => el.querySelector(s);
+  const esc = (v) => String(v).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  const pln = new Intl.NumberFormat("pl-PL", { style: "currency", currency: "PLN" });
+  const plnW = new Intl.NumberFormat("pl-PL", { style: "currency", currency: "PLN", maximumFractionDigits: 0 });
+  const price = (g, compact) => (compact && g % 100 === 0 ? plnW : pln).format(g / 100);
+  const dateFmt = new Intl.DateTimeFormat("pl-PL", { day: "numeric", month: "long", year: "numeric" });
+  const plural = (n, one, few, many) => { if (n === 1) return one; const l = n % 10, t = n % 100; return l >= 2 && l <= 4 && (t < 12 || t > 14) ? few : many; };
+  const img = (name) => `images/products/${name}.jpg`;
+  const det = (name) => `images/products/${name}-detail.jpg`;
+  const byId = new Map(products.map((p) => [p.id, p]));
+  const bySlug = new Map(products.map((p) => [p.slug, p]));
+  const cat = (slug) => categories.find((c) => c.slug === slug);
+  const latest = drops.reduce((a, b) => (a.date > b.date ? a : b));
+  const isNew = (p) => p.drop === latest.id;
+  const stockOf = (p, color, size) => { const v = p.variants.find((x) => x.color === color); return v ? v.stock[SIZES.indexOf(size)] : 0; };
+  const soldOut = (p) => p.variants.every((v) => v.stock.every((n) => n === 0));
+  const MAX_QTY = 5;
+
+  const ICON = {
+    menu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h12"/></svg>',
+    search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>',
+    heart: (f) => `<svg viewBox="0 0 24 24" fill="${f ? "currentColor" : "none"}" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.2a4.3 4.3 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20Z"/></svg>`,
+    bag: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4.5 8h15l-1 13h-13l-1-13Z"/><path d="M8.5 10V7a3.5 3.5 0 0 1 7 0v3"/></svg>',
+    close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" width="22" height="22"><path d="m5 5 14 14M19 5 5 19"/></svg>',
+    arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>',
+  };
+
+  /* ---------- Pamięć przeglądarki ---------- */
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+  };
+  const skuOf = (l) => `${l.productId}-${l.color}-${l.size}`;
+  let cart = store.get("kp-preview-cart", []).filter((l) => byId.has(l.productId) && SIZES.includes(l.size));
+  let favs = store.get("kp-preview-favs", []).filter((id) => byId.has(id));
+  const saveCart = () => { store.set("kp-preview-cart", cart); renderHeader(); };
+  const saveFavs = () => { store.set("kp-preview-favs", favs); renderHeader(); };
+
+  /* ---------- Powiadomienia ---------- */
+  function toast(msg, action) {
+    const el = document.createElement("div");
+    el.className = "toast";
+    el.innerHTML = `<p>${esc(msg)}</p>${action ? `<button type="button" class="act">${esc(action.label)}</button>` : ""}<button type="button" class="icon-btn" aria-label="Zamknij powiadomienie" style="color:var(--ink)">${ICON.close}</button>`;
+    const box = $("#toasts");
+    box.append(el);
+    while (box.children.length > 3) box.firstChild.remove();
+    if (action) el.querySelector(".act").onclick = () => { el.remove(); go(action.go); };
+    el.querySelector(".icon-btn").onclick = () => el.remove();
+    setTimeout(() => el.remove(), 4500);
+  }
+
+  /* ---------- Nawigacja w obrębie strony ---------- */
+  let view = { name: "home" };
+  function go(target) {
+    const [name, ...rest] = target.split(":");
+    if (name === "list") view = { name: "list", scope: rest[0], arg: rest[1], arg2: rest[2], filters: emptyFilters(), visible: 12 };
+    else if (name === "product") view = { name: "product", slug: rest[0], color: rest[1] || null, size: null, qty: 1, msg: null };
+    else if (name === "search") view = { name: "list", scope: "search", filters: { ...emptyFilters(), q: rest.join(":") }, visible: 12 };
+    else view = { name };
+    document.querySelectorAll("dialog[open]").forEach((d) => d.close());
+    render();
+    window.scrollTo(0, 0);
+    $("#app").focus({ preventScroll: true });
+  }
+  document.addEventListener("click", (e) => {
+    const t = e.target.closest("[data-go]");
+    if (t) { e.preventDefault(); go(t.dataset.go); }
+  });
+
+  /* ---------- Nagłówek ---------- */
+  function renderHeader() {
+    const count = cart.reduce((n, l) => n + l.quantity, 0);
+    $("#open-menu").innerHTML = ICON.menu;
+    $("#open-search").innerHTML = ICON.search;
+    $("#fav-link").innerHTML = ICON.heart(false) + (favs.length ? `<span class="count">${favs.length}</span>` : "");
+    $("#fav-link").setAttribute("aria-label", favs.length ? `Ulubione, ${favs.length}` : "Ulubione");
+    $("#open-cart").innerHTML = ICON.bag + (count ? `<span class="count">${count}</span>` : "");
+    $("#open-cart").setAttribute("aria-label", count ? `Koszyk, ${count} szt.` : "Koszyk");
+    const active = view.name === "list" ? (view.scope === "cat" ? view.arg : view.scope) : view.name;
+    document.querySelectorAll("nav.main button").forEach((b) => (b.dataset.nav === active ? b.setAttribute("aria-current", "page") : b.removeAttribute("aria-current")));
+  }
+
+  /* ---------- Karta produktu ---------- */
+  function card(p, color) {
+    const v = p.variants.find((x) => x.color === color) || p.variants[0];
+    const fav = favs.includes(p.id);
+    const inStock = SIZES.filter((s) => stockOf(p, v.color, s) > 0);
+    const badge = soldOut(p) ? '<span class="badge dark">Wyprzedane</span>' : isNew(p) ? '<span class="badge">Nowość</span>' : "";
+    const swatches = p.variants.length > 1
+      ? `<div class="swatches" role="group" aria-label="Kolory: ${esc(p.name)}">${p.variants.map((x) => `<button type="button" class="sw" data-sw="${p.id}:${x.color}" aria-pressed="${x.color === v.color}" aria-label="${esc(COLORS[x.color].name)}" title="${esc(COLORS[x.color].name)}"><i style="background:${COLORS[x.color].hex}"></i></button>`).join("")}</div>`
+      : `<span class="small muted" style="display:flex;gap:.5rem;align-items:center"><span class="dot" style="background:${COLORS[v.color].hex}"></span>${esc(COLORS[v.color].name)}</span>`;
+    return `<article class="card" data-card="${p.id}">
+      <div class="studio r45">
+        <img src="${img(v.image)}" alt="" loading="lazy" width="928" height="1160">
+        <img class="alt" src="${det(v.image)}" alt="" loading="lazy">
+        <button type="button" class="open" data-go="product:${p.slug}:${v.color}" tabindex="-1" aria-hidden="true"></button>
+        ${badge}
+        <button type="button" class="fav" data-fav="${p.id}" aria-pressed="${fav}" aria-label="${fav ? "Usuń z ulubionych" : "Dodaj do ulubionych"}: ${esc(p.name)}">${ICON.heart(fav)}</button>
+      </div>
+      <div class="row1"><button type="button" class="name" data-go="product:${p.slug}:${v.color}">${esc(p.name)}</button><span class="tab">${price(p.price, true)}</span></div>
+      <p class="small muted">${esc(p.kind)}</p>
+      <div class="row3">${swatches}<p class="xs muted sizes-line"><span class="sr-only">${inStock.length ? "Dostępne rozmiary: " + inStock.join(", ") : "Brak rozmiarów w tym kolorze"}</span>${SIZES.map((s) => `<span aria-hidden="true" class="${stockOf(p, v.color, s) > 0 ? "" : "no"}">${s}</span>`).join("")}</p></div>
+    </article>`;
+  }
+  document.addEventListener("click", (e) => {
+    const sw = e.target.closest("[data-sw]");
+    if (sw) {
+      const [id, color] = sw.dataset.sw.split(":");
+      const holder = sw.closest("[data-card]");
+      holder.outerHTML = card(byId.get(id), color);
+      return;
+    }
+    const f = e.target.closest("[data-fav]");
+    if (f) {
+      const p = byId.get(f.dataset.fav);
+      const adding = !favs.includes(p.id);
+      favs = adding ? [...favs, p.id] : favs.filter((x) => x !== p.id);
+      saveFavs();
+      f.setAttribute("aria-pressed", adding);
+      f.innerHTML = ICON.heart(adding);
+      toast(adding ? `${p.name} – dodano do ulubionych` : `${p.name} – usunięto z ulubionych`, adding ? { label: "Ulubione", go: "list:fav" } : null);
+      if (view.name === "list" && view.scope === "fav") render();
+      if (view.name === "product") render();
+    }
+  });
+
+  /* ---------- Strona główna ---------- */
+  function home() {
+    const featured = ["core-hoodie", "parachute-cargo", "sole-boxy-crew", "wash-baggy-jeans", "track-zip-hoodie", "core-sweatpants", "earth-hoodie", "utility-cargo-straight"].map((s) => bySlug.get(s));
+    const covers = { bluzy: "track-zip-black", spodnie: "cargo-baggy-black" };
+    const newItems = products.filter(isNew);
+    return `
+    <div class="wrap hero">
+      <div class="copy">
+        <p class="small muted">${esc(latest.name)} – w sklepie od ${dateFmt.format(new Date(latest.date))}</p>
+        <h1 class="display">Bluzy.<br>Spodnie.<br>Nic ponad to.</h1>
+        <p class="lead">Hoodie, zipy, cargo i szerokie dresy. Ciężka dzianina, kroje z luzem i tabela wymiarów w centymetrach przy każdym produkcie.</p>
+        <div class="ctas"><button type="button" class="btn btn-light" data-go="list:cat:bluzy">Odkryj bluzy</button><button type="button" class="btn btn-outline" data-go="list:cat:spodnie">Odkryj spodnie</button></div>
+      </div>
+      <div class="pics">
+        <button type="button" class="studio r45 big" data-go="product:sole-print-hoodie" aria-label="SOLE Print Hoodie"><img src="${img("sole-hoodie-black")}" alt="Czarna bluza z kapturem z dużym nadrukiem buta na piersi"></button>
+        <button type="button" class="studio r45 small" data-go="product:sole-wide-pants" aria-label="SOLE Wide Pants"><img src="${img("wide-sole-black")}" alt="Czarne spodnie dresowe z szeroką nogawką"></button>
+      </div>
+    </div>
+    <div class="bt">${categories.map((c, i) => {
+      const n = products.filter((p) => p.category === c.slug).length;
+      return `<div class="wrap cat-row ${i % 2 ? "flip" : ""}">
+        <button type="button" class="studio r45 pic" data-go="list:cat:${c.slug}" tabindex="-1" aria-hidden="true"><img src="${img(covers[c.slug])}" alt="" loading="lazy"></button>
+        <div class="text">
+          <div class="head"><h2 class="display"><button type="button" data-go="list:cat:${c.slug}">${esc(c.name)}</button></h2><p class="small muted tab">${n} ${plural(n, "produkt", "produkty", "produktów")}</p></div>
+          <p class="muted mt3 desc" style="max-width:32rem">${esc(c.description)}</p>
+          <ul class="sublist">${c.subcategories.map((s) => `<li><button type="button" data-go="list:cat:${c.slug}:${s.slug}"><span class="display-sm name">${esc(s.name)}</span><span class="small muted tab">${products.filter((p) => p.category === c.slug && p.styles.includes(s.slug)).length}</span>${ICON.arrow}</button></li>`).join("")}</ul>
+        </div>
+      </div>`;
+    }).join("")}</div>
+    <section class="wrap">
+      <div class="sec-head"><div><h2 class="display h2">Nowa kolekcja</h2><p class="muted mt2" style="max-width:36rem">${esc(latest.name)}: ${newItems.length} modeli w sklepie od ${dateFmt.format(new Date(latest.date))}. Duży i mały znak buta, tonalne nadruki i najszersze spodnie, jakie mamy.</p></div><button type="button" class="btn btn-outline" data-go="list:new">Wszystkie nowości</button></div>
+      <ul class="strip" aria-label="Produkty z nowej kolekcji">${newItems.map((p) => `<li>${card(p)}</li>`).join("")}</ul>
+    </section>
+    <section class="wrap bt">
+      <div class="sec-head"><h2 class="display h2">Polecane</h2><button type="button" class="link small" data-go="list:all">Wszystkie produkty</button></div>
+      <ul class="grid-products four mt4">${featured.map((p) => `<li>${card(p)}</li>`).join("")}</ul>
+    </section>
+    <section class="wrap bt">
+      <h2 class="display h2">Kolekcje</h2>
+      <ul class="grid-products mt4" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr))">${collections.map((c) => { const n = products.filter((p) => p.collections.includes(c.slug)).length; return `<li><button type="button" style="display:block;width:100%;text-align:left" data-go="list:col:${c.slug}"><span class="studio r45" style="display:block"><img src="${img(c.coverImage)}" alt="" loading="lazy"></span><span style="display:flex;justify-content:space-between;align-items:baseline;margin-top:1rem"><span class="display" style="font-size:2.6rem">${esc(c.name)}</span><span class="small muted">${n} ${plural(n, "produkt", "produkty", "produktów")}</span></span><span class="small muted" style="display:block;margin-top:.4rem">${esc(c.description)}</span></button></li>`; }).join("")}</ul>
+    </section>
+    <section class="story bt"><div class="wrap grid">
+      <div><img src="images/brand/logo-dark.png" alt="Znak marki: stylizowany but sportowy" style="width:12rem"><h2 class="display h2 mt4">Dwie kategorie. Zero dodatków.</h2></div>
+      <div class="paras"><p>Sprzedajemy tylko bluzy i spodnie. Dzięki temu każdy model ma opisany krój, gramaturę dzianiny i wymiary w centymetrach – zanim go kupisz, wiesz, jak będzie leżał.</p><p>Jedynym oznaczeniem na ubraniach jest znak buta: duży na piersi, mały przy sercu albo tonalny, prawie niewidoczny. Reszta to kolor, materiał i krój.</p></div>
+    </div></section>`;
+  }
+
+  /* ---------- Listy z filtrami ---------- */
+  function emptyFilters() { return { q: "", sizes: [], colors: [], fits: [], styles: [], cats: [], min: "", max: "", avail: false, sort: "polecane" }; }
+  const norm = (t) => t.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/ł/g, "l");
+  const searchText = new Map(products.map((p) => { const c = cat(p.category); return [p.id, norm([p.name, p.kind, c.name, ...p.styles.map((s) => c.subcategories.find((x) => x.slug === s)?.name || s), ...p.variants.map((v) => COLORS[v.color].name), FITS[p.fit].name, p.material, p.description].join(" "))]; }));
+  const matches = (p, q) => norm(q).split(/\s+/).filter(Boolean).every((t) => { const stem = t.length > 4 ? t.slice(0, -1) : t; return new RegExp(`(^|[^a-z0-9])${stem.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`).test(searchText.get(p.id)); });
+
+  function baseList(v) {
+    if (v.scope === "cat") return products.filter((p) => p.category === v.arg && (!v.arg2 || p.styles.includes(v.arg2)));
+    if (v.scope === "new") return products.filter(isNew);
+    if (v.scope === "col") return products.filter((p) => p.collections.includes(v.arg));
+    if (v.scope === "fav") return favs.map((id) => byId.get(id));
+    return products;
+  }
+  function applyFilters(list, f) {
+    const order = new Map(products.map((p, i) => [p.id, i]));
+    const out = list.filter((p) => {
+      if (f.cats.length && !f.cats.includes(p.category)) return false;
+      if (f.styles.length && !f.styles.some((s) => p.styles.includes(s))) return false;
+      if (f.fits.length && !f.fits.includes(p.fit)) return false;
+      const zl = p.price / 100;
+      if (f.min !== "" && zl < Number(f.min)) return false;
+      if (f.max !== "" && zl > Number(f.max)) return false;
+      if (f.q && !matches(p, f.q)) return false;
+      const vs = f.colors.length ? p.variants.filter((x) => f.colors.includes(x.color)) : p.variants;
+      if (!vs.length) return false;
+      if (f.sizes.length || f.avail) { const sz = f.sizes.length ? f.sizes : SIZES; if (!vs.some((x) => sz.some((s) => x.stock[SIZES.indexOf(s)] > 0))) return false; }
+      return true;
+    });
+    const dropDate = (p) => drops.find((d) => d.id === p.drop).date;
+    const by = { "najnowsze": (a, b) => dropDate(b).localeCompare(dropDate(a)), "cena-rosnaco": (a, b) => a.price - b.price, "cena-malejaco": (a, b) => b.price - a.price };
+    return out.sort((a, b) => (by[f.sort] ? by[f.sort](a, b) : 0) || order.get(a.id) - order.get(b.id));
+  }
+  const activeCount = (f) => (f.q && view.scope !== "search" ? 1 : 0) + f.sizes.length + f.colors.length + f.fits.length + f.styles.length + f.cats.length + (f.min !== "" ? 1 : 0) + (f.max !== "" ? 1 : 0) + (f.avail ? 1 : 0);
+
+  function listMeta(v) {
+    const crumbs = [["home", "Strona główna"]];
+    let title = "Wszystko", desc = "Bluzy i spodnie w jednym miejscu. Filtruj po rozmiarze, kolorze, kroju i cenie.", chips = null;
+    if (v.scope === "cat") {
+      const c = cat(v.arg); crumbs.push([`list:cat:${c.slug}`, c.name]);
+      title = c.name; desc = c.description;
+      if (v.arg2) { const s = c.subcategories.find((x) => x.slug === v.arg2); crumbs.push([`list:cat:${c.slug}:${s.slug}`, s.name]); title = `${c.name} ${s.name.toLowerCase()}`; desc = s.description; }
+      chips = [[`list:cat:${c.slug}`, "Wszystkie", !v.arg2], ...c.subcategories.map((s) => [`list:cat:${c.slug}:${s.slug}`, s.name, s.slug === v.arg2])];
+    } else if (v.scope === "new") { crumbs.push(["list:new", "Nowości"]); title = "Nowości"; desc = `${latest.name} – w sklepie od ${dateFmt.format(new Date(latest.date))}.`; }
+    else if (v.scope === "col") { const c = collections.find((x) => x.slug === v.arg); crumbs.push(["collections", "Kolekcje"], [`list:col:${c.slug}`, c.name]); title = c.name; desc = c.description; chips = collections.map((x) => [`list:col:${x.slug}`, x.name, x.slug === c.slug]); }
+    else if (v.scope === "fav") { crumbs.push(["list:fav", "Ulubione"]); title = "Ulubione"; desc = "Lista jest zapisana w tej przeglądarce."; }
+    else if (v.scope === "search") { crumbs.push(["list:all", "Szukaj"]); title = "Szukaj"; desc = null; }
+    else { crumbs.push(["list:all", "Wszystkie produkty"]); chips = [["list:cat:bluzy", "Bluzy", false], ["list:cat:spodnie", "Spodnie", false], ["list:new", "Nowości", false]]; }
+    return { crumbs, title, desc, chips };
+  }
+  const crumbsHtml = (crumbs) => `<nav aria-label="Ścieżka"><ol class="crumbs">${crumbs.map(([g, l], i) => `<li>${i === crumbs.length - 1 ? `<span aria-current="page" style="color:var(--paper)">${esc(l)}</span>` : `<button type="button" data-go="${g}">${esc(l)}</button>`}</li>`).join("")}</ol></nav>`;
+
+  function filterPanel(v, base) {
+    const f = v.filters;
+    const colorsIn = Object.keys(COLORS).filter((c) => base.some((p) => p.variants.some((x) => x.color === c)));
+    const fitsIn = Object.keys(FITS).filter((k) => base.some((p) => p.fit === k));
+    const styleCat = v.scope === "cat" ? (v.arg2 ? null : v.arg) : f.cats.length === 1 ? f.cats[0] : null;
+    const prices = base.map((p) => p.price / 100);
+    return `
+      ${v.scope === "cat" ? "" : `<fieldset><legend>Kategoria</legend><div class="checks">${categories.map((c) => `<label class="check-row"><input type="checkbox" data-f="cats" value="${c.slug}" ${f.cats.includes(c.slug) ? "checked" : ""}>${esc(c.name)}</label>`).join("")}</div></fieldset>`}
+      ${styleCat ? `<fieldset><legend>Rodzaj</legend><div class="checks">${cat(styleCat).subcategories.map((s) => `<label class="check-row"><input type="checkbox" data-f="styles" value="${s.slug}" ${f.styles.includes(s.slug) ? "checked" : ""}>${esc(s.name)}</label>`).join("")}</div></fieldset>` : ""}
+      <fieldset><legend>Rozmiar</legend><div class="size-grid">${SIZES.map((s) => `<button type="button" data-fs="${s}" aria-pressed="${f.sizes.includes(s)}">${s}</button>`).join("")}</div></fieldset>
+      <fieldset><legend>Kolor</legend><div class="color-checks">${colorsIn.map((c) => `<label class="check-row" style="align-items:center"><input type="checkbox" data-f="colors" value="${c}" ${f.colors.includes(c) ? "checked" : ""}><span class="dot" style="background:${COLORS[c].hex}"></span>${esc(COLORS[c].name)}</label>`).join("")}</div></fieldset>
+      <fieldset><legend>Krój</legend><div class="checks">${fitsIn.map((k) => `<label class="check-row"><input type="checkbox" data-f="fits" value="${k}" ${f.fits.includes(k) ? "checked" : ""}>${esc(FITS[k].name)}</label>`).join("")}</div></fieldset>
+      <fieldset><legend>Cena (zł)</legend><div class="price-row"><div><label class="xs muted" for="pmin-${v._id}">Od</label><input class="field" style="min-height:2.5rem" id="pmin-${v._id}" inputmode="numeric" data-price="min" placeholder="${prices.length ? Math.floor(Math.min(...prices)) : ""}" value="${esc(f.min)}"></div><span class="muted" style="padding-bottom:.6rem">–</span><div><label class="xs muted" for="pmax-${v._id}">Do</label><input class="field" style="min-height:2.5rem" id="pmax-${v._id}" inputmode="numeric" data-price="max" placeholder="${prices.length ? Math.ceil(Math.max(...prices)) : ""}" value="${esc(f.max)}"></div></div></fieldset>
+      <fieldset style="border:0"><legend class="sr-only">Dostępność</legend><label class="check-row"><input type="checkbox" data-avail ${f.avail ? "checked" : ""}>Tylko dostępne od ręki</label></fieldset>`;
+  }
+
+  let listUid = 0;
+  function list(v) {
+    v._id = v._id || ++listUid;
+    const meta = listMeta(v);
+    const base = baseList(v);
+    const results = applyFilters(base, v.filters);
+    const ac = activeCount(v.filters);
+    const shown = results.slice(0, v.visible);
+    const emptyFav = v.scope === "fav" && base.length === 0;
+    return `<div class="wrap" style="padding-bottom:5rem">
+      <div class="page-head">${crumbsHtml(meta.crumbs)}
+        <div class="title-row"><h1 class="display">${esc(meta.title)}</h1>${meta.desc ? `<p class="muted" style="max-width:28rem">${esc(meta.desc)}</p>` : ""}</div>
+      </div>
+      ${meta.chips ? `<nav class="chips" aria-label="Podkategorie">${meta.chips.map(([g, l, cur]) => `<button type="button" data-go="${g}" ${cur ? 'aria-current="page"' : ""}>${esc(l)}</button>`).join("")}</nav>` : ""}
+      ${emptyFav ? `<div class="empty"><p class="display">Nic tu jeszcze nie ma</p><p class="muted">Kliknij serce przy produkcie, żeby go tu zapisać.</p><button type="button" class="btn btn-light mt3" data-go="list:all">Przeglądaj produkty</button></div>` : `
+      <form role="search" class="mt2" style="max-width:30rem;margin-bottom:1.5rem" data-qform><label class="sr-only" for="q-${v._id}">${v.scope === "search" ? "Czego szukasz?" : "Szukaj w tej kategorii"}</label><input class="field" type="search" id="q-${v._id}" data-q placeholder="${v.scope === "search" ? "np. czarne cargo, zip hoodie" : "Szukaj w tej kategorii"}" value="${esc(v.filters.q)}" maxlength="80"></form>
+      <div class="toolbar" style="margin-inline:calc(-1 * max(16px, env(safe-area-inset-left, 0px)));padding-inline:max(16px, env(safe-area-inset-left, 0px))">
+        <p class="small muted" aria-live="polite"><strong class="tab" style="color:var(--paper)">${results.length}</strong> ${plural(results.length, "produkt", "produkty", "produktów")}</p>
+        <div class="right">
+          ${ac ? `<button type="button" class="small link" data-clear>Wyczyść (${ac})</button>` : ""}
+          <label class="sr-only" for="sort-${v._id}">Sortuj</label>
+          <select class="field sm" id="sort-${v._id}" data-sort>${[["polecane", "Polecane"], ["najnowsze", "Najnowsze"], ["cena-rosnaco", "Cena: od najniższej"], ["cena-malejaco", "Cena: od najwyższej"]].map(([k, l]) => `<option value="${k}" ${v.filters.sort === k ? "selected" : ""}>${l}</option>`).join("")}</select>
+          <button type="button" class="btn btn-outline only-narrow" style="min-height:2.5rem;padding:.4rem .8rem" data-open-filters aria-haspopup="dialog">Filtry${ac ? ` (${ac})` : ""}</button>
+        </div>
+      </div>
+      <div class="catalog">
+        <aside class="filters-side" aria-label="Filtry"><div>${filterPanel(v, base)}</div></aside>
+        <div style="min-width:0">${results.length === 0
+          ? `<div class="empty"><p class="display">Nic tu nie ma</p><p class="muted">${v.filters.q ? `Żaden produkt nie pasuje do „${esc(v.filters.q)}” przy wybranych filtrach.` : "Żaden produkt nie spełnia wszystkich wybranych filtrów."} Usuń część filtrów albo wyczyść wszystkie.</p>${ac ? '<button type="button" class="btn btn-light mt3" data-clear>Wyczyść filtry</button>' : ""}</div>`
+          : `<ul class="grid-products">${shown.map((p) => `<li>${card(p, v.filters.colors.find((c) => p.variants.some((x) => x.color === c)))}</li>`).join("")}</ul>
+             <div class="more"><p class="small muted">Wyświetlono ${shown.length} z ${results.length}</p>${shown.length < results.length ? '<button type="button" class="btn btn-outline" data-more>Pokaż więcej</button>' : ""}</div>`}
+        </div>
+      </div>
+      <dialog class="drawer" id="filters-dlg" aria-labelledby="filters-title"><div class="dlg"><div class="dlg-head"><h2 id="filters-title" class="display-sm" style="font-size:1.1rem">Filtry</h2><button type="button" class="icon-btn" data-close-dlg aria-label="Zamknij filtry">${ICON.close}</button></div><div class="dlg-body" style="padding-top:1rem">${filterPanel({ ...v, _id: v._id + "m" }, base)}</div><div class="dlg-foot" style="grid-template-columns:1fr 1fr"><button type="button" class="btn btn-outline" data-clear ${ac ? "" : "disabled"}>Wyczyść</button><button type="button" class="btn btn-light" data-close-dlg>Pokaż (${results.length})</button></div></div></dialog>`}
+    </div>`;
+  }
+
+  function updateFilters(mut, keepDialog) {
+    mut(view.filters);
+    view.visible = 12;
+    const dlgOpen = !!document.querySelector("#filters-dlg[open]");
+    const focusSel = document.activeElement?.dataset?.f ? `[data-f="${document.activeElement.dataset.f}"][value="${document.activeElement.value}"]` : document.activeElement?.dataset?.fs ? `[data-fs="${document.activeElement.dataset.fs}"]` : null;
+    render();
+    if (dlgOpen || keepDialog) { const d = $("#filters-dlg"); d.showModal(); if (focusSel) d.querySelector(focusSel)?.focus(); }
+    else if (focusSel) $(".filters-side " + focusSel)?.focus();
+  }
+  const toggle = (arr, x) => (arr.includes(x) ? arr.filter((y) => y !== x) : [...arr, x]);
+  document.addEventListener("change", (e) => {
+    if (view.name !== "list") return;
+    const t = e.target;
+    if (t.dataset.f) updateFilters((f) => { f[t.dataset.f] = toggle(f[t.dataset.f], t.value); if (t.dataset.f === "cats") f.styles = []; });
+    else if (t.hasAttribute("data-avail")) updateFilters((f) => { f.avail = t.checked; });
+    else if (t.hasAttribute("data-sort")) updateFilters((f) => { f.sort = t.value; });
+    else if (t.dataset.price) {
+      const val = t.value.replace(/\D/g, "");
+      updateFilters((f) => { f[t.dataset.price] = val; if (f.min !== "" && f.max !== "" && Number(f.min) > Number(f.max)) [f.min, f.max] = [f.max, f.min]; });
+    }
+  });
+  let qTimer;
+  document.addEventListener("input", (e) => {
+    if (view.name !== "list" || !e.target.hasAttribute("data-q")) return;
+    clearTimeout(qTimer);
+    const val = e.target.value;
+    qTimer = setTimeout(() => { updateFilters((f) => { f.q = val.slice(0, 80); }); const q = $("[data-q]"); if (q) { q.focus(); q.setSelectionRange(q.value.length, q.value.length); } }, 350);
+  });
+  document.addEventListener("submit", (e) => { if (e.target.hasAttribute("data-qform")) e.preventDefault(); });
+  document.addEventListener("click", (e) => {
+    if (view.name === "list") {
+      const fs = e.target.closest("[data-fs]");
+      if (fs) return updateFilters((f) => { f.sizes = toggle(f.sizes, fs.dataset.fs); });
+      if (e.target.closest("[data-clear]")) { const q = view.scope === "search" ? view.filters.q : ""; const s = view.filters.sort; return updateFilters((f) => Object.assign(f, emptyFilters(), { q, sort: s })); }
+      if (e.target.closest("[data-more]")) { view.visible += 12; return render(); }
+      if (e.target.closest("[data-open-filters]")) return $("#filters-dlg").showModal();
+    }
+    if (e.target.closest("[data-close-dlg]")) e.target.closest("dialog").close();
+  });
+
+  /* ---------- Produkt ---------- */
+  function product(v) {
+    const p = bySlug.get(v.slug);
+    if (!p) return `<div class="wrap" style="padding-block:5rem"><h1 class="display" style="font-size:4rem">Nie ma tu nic</h1><button type="button" class="btn btn-light mt4" data-go="home">Strona główna</button></div>`;
+    const c = cat(p.category);
+    const variant = p.variants.find((x) => x.color === v.color) || p.variants[0];
+    v.color = variant.color;
+    const inCart = (s) => cart.find((l) => l.productId === p.id && l.color === variant.color && l.size === s)?.quantity || 0;
+    const left = v.size ? Math.max(0, Math.min(MAX_QTY, stockOf(p, variant.color, v.size)) - inCart(v.size)) : MAX_QTY;
+    const qty = Math.max(1, Math.min(v.qty, Math.max(1, left)));
+    v.qty = qty;
+    const colorAvail = SIZES.some((s) => stockOf(p, variant.color, s) > 0);
+    const fav = favs.includes(p.id);
+    const sizeStock = v.size ? stockOf(p, variant.color, v.size) : null;
+    const msg = v.msg ? `<span style="color:var(--danger)">${esc(v.msg)}</span>`
+      : v.size && sizeStock === 0 ? `<span style="color:var(--danger)">Rozmiar ${v.size} jest niedostępny w tym kolorze. Wybierz inny.</span>`
+      : v.size ? `<span class="muted">${sizeStock <= 3 ? `Dostępne: ${sizeStock} szt. w tym rozmiarze.` : "Dostępny od ręki."}</span>`
+      : !colorAvail ? '<span style="color:var(--danger)">Ten kolor jest obecnie wyprzedany.</span>' : `<span class="muted">${esc(FITS[p.fit].description)}</span>`;
+    const related = products.filter((x) => x.id !== p.id).map((x) => ({ x, s: (x.category === p.category ? 2 : 0) + x.styles.filter((s) => p.styles.includes(s)).length + x.collections.filter((s) => p.collections.includes(s)).length * 2 })).sort((a, b) => b.s - a.s || a.x.id.localeCompare(b.x.id)).slice(0, 4).map((r) => r.x);
+    const cn = COLORS[variant.color].name.toLowerCase();
+    return `<div class="wrap">
+      <div style="padding-top:1.5rem">${crumbsHtml([["home", "Strona główna"], [`list:cat:${c.slug}`, c.name], [`product:${p.slug}`, p.name]])}</div>
+      <div class="product">
+        <div style="min-width:0">
+          <div class="gallery" role="region" aria-label="Zdjęcia produktu" tabindex="0">
+            <figure class="studio r45"><img src="${img(variant.image)}" alt="${esc(p.name)} w kolorze ${esc(cn)} – cały produkt na jasnym tle"></figure>
+            <figure class="studio r45"><img src="${det(variant.image)}" alt="${esc(p.name)} w kolorze ${esc(cn)} – zbliżenie na dzianinę i wykończenie" loading="lazy"></figure>
+          </div>
+          <p class="xs muted mt2">Zdjęcia poglądowe produktu na tle studyjnym.</p>
+        </div>
+        <div class="buy">
+          <h1 class="display">${esc(p.name)}</h1>
+          <p class="muted mt2">${esc(p.kind)}</p>
+          <p class="price tab">${price(p.price)}</p>
+          <p class="xs muted">Cena brutto z VAT. Koszt dostawy od ${price(Math.min(...SHIPPING.map((m) => m.price)))}.</p>
+          <fieldset style="border:0;padding:1.75rem 0 0"><legend class="small" style="margin-bottom:0"><strong>Kolor:</strong> ${esc(COLORS[variant.color].name)}</legend>
+            <div class="color-pick">${p.variants.map((x) => `<button type="button" data-color="${x.color}" aria-pressed="${x.color === variant.color}"><span class="studio thumb"><img src="${img(x.image)}" alt=""></span><span class="dot" style="background:${COLORS[x.color].hex};width:.75rem;height:.75rem"></span>${esc(COLORS[x.color].name)}</button>`).join("")}</div>
+          </fieldset>
+          <fieldset style="border:0;padding:1.5rem 0 0">
+            <div style="display:flex;justify-content:space-between;align-items:baseline"><legend style="margin:0;width:auto;float:none">Rozmiar</legend><button type="button" class="small link" data-chart aria-haspopup="dialog">Tabela rozmiarów</button></div>
+            <div class="size-pick" role="group" aria-label="Rozmiar" id="size-pick">${SIZES.map((s) => { const n = stockOf(p, variant.color, s); return `<button type="button" data-size="${s}" aria-pressed="${v.size === s}" ${n <= 0 ? 'class="no" aria-disabled="true"' : ""} aria-label="${n <= 0 ? `${s} – niedostępny` : n <= 3 ? `${s} – zostały ${n} szt.` : s}">${s}</button>`; }).join("")}</div>
+            <p class="small mt1" aria-live="polite" style="min-height:1.4rem">${msg}</p>
+          </fieldset>
+          <div class="buy-row">
+            <div class="qty" role="group" aria-label="Ilość"><button type="button" data-qty="-1" aria-label="Zmniejsz ilość" ${qty <= 1 ? "disabled" : ""}>−</button><output>${qty}</output><button type="button" data-qty="1" aria-label="Zwiększ ilość" ${qty >= Math.max(1, left) ? "disabled" : ""}>+</button></div>
+            <button type="button" class="favbtn" data-fav="${p.id}" aria-pressed="${fav}" aria-label="${fav ? "Usuń z ulubionych" : "Dodaj do ulubionych"}">${ICON.heart(fav)}</button>
+            <button type="button" class="btn btn-light" data-add ${colorAvail ? "" : "disabled"}>${colorAvail ? "Dodaj do koszyka" : "Wyprzedane"}</button>
+          </div>
+          <p class="small muted mt3">Wysyłka ${esc(DISPATCH_TIME)}. ${RETURN_DAYS} dni na odstąpienie od umowy bez podania przyczyny. <button type="button" class="link" style="color:var(--paper)" data-go="shipping">Dostawa i zwroty</button></p>
+          <div class="mt4" style="border-top:1px solid var(--line)">
+            <details open><summary>Opis</summary><div class="body"><p>${esc(p.description)}</p><ul>${p.details.map((d) => `<li>${esc(d)}</li>`).join("")}</ul></div></details>
+            <details><summary>Materiał i pielęgnacja</summary><div class="body"><p><strong style="color:var(--paper)">Skład:</strong> ${esc(p.material)}</p><p class="mt1">${esc(p.care)}</p></div></details>
+            <details><summary>Krój</summary><div class="body"><p><strong style="color:var(--paper)">${esc(FITS[p.fit].name)}.</strong> ${esc(FITS[p.fit].description)}</p></div></details>
+          </div>
+        </div>
+      </div>
+      <section class="bt" aria-labelledby="rel-title"><h2 id="rel-title" class="display h2" style="font-size:clamp(2.2rem,1rem + 3.6vw,4rem)">Pasuje do tego</h2><ul class="grid-products four mt4">${related.map((x) => `<li>${card(x)}</li>`).join("")}</ul></section>
+    </div>`;
+  }
+  document.addEventListener("click", (e) => {
+    if (view.name !== "product") return;
+    const p = bySlug.get(view.slug);
+    const col = e.target.closest("[data-color]");
+    if (col) { view.color = col.dataset.color; view.msg = null; return rerenderKeep(); }
+    const sz = e.target.closest("[data-size]");
+    if (sz) {
+      const s = sz.dataset.size;
+      if (stockOf(p, view.color, s) <= 0) { view.msg = `Rozmiar ${s} w tym kolorze jest niedostępny.`; return rerenderKeep(`[data-size="${s}"]`); }
+      view.size = s; view.msg = null; return rerenderKeep(`[data-size="${s}"]`);
+    }
+    const q = e.target.closest("[data-qty]");
+    if (q) { view.qty += Number(q.dataset.qty); return rerenderKeep(`[data-qty="${q.dataset.qty}"]`); }
+    if (e.target.closest("[data-chart]")) return openChart(p);
+    if (e.target.closest("[data-add]")) {
+      if (!view.size) { view.msg = "Wybierz rozmiar."; rerenderKeep(); $("#size-pick button")?.focus(); return; }
+      const stock = stockOf(p, view.color, view.size);
+      const line = cart.find((l) => l.productId === p.id && l.color === view.color && l.size === view.size);
+      const have = line ? line.quantity : 0;
+      const room = Math.min(MAX_QTY, stock) - have;
+      if (stock <= 0) { view.msg = "Ten rozmiar jest niedostępny. Wybierz inny."; return rerenderKeep(); }
+      if (room <= 0) { view.msg = `Masz już w koszyku całą dostępną ilość tego rozmiaru (${have} szt.).`; return rerenderKeep(); }
+      const add = Math.min(view.qty, room);
+      if (line) line.quantity += add; else cart.push({ productId: p.id, color: view.color, size: view.size, quantity: add });
+      saveCart();
+      view.qty = 1;
+      rerenderKeep();
+      openCart();
+    }
+  });
+  function rerenderKeep(focusSel) {
+    const y = window.scrollY;
+    render();
+    window.scrollTo(0, y);
+    if (focusSel) $(focusSel)?.focus({ preventScroll: true });
+  }
+  function openChart(p) {
+    const ch = SIZE_CHARTS[p.fit];
+    $("#chart-body").innerHTML = `<div style="display:flex;justify-content:space-between;gap:1rem;align-items:flex-start"><h2 id="chart-title" class="display-sm" style="font-size:1.3rem">Tabela rozmiarów – ${esc(p.name)}</h2><button type="button" class="icon-btn" data-close-dlg aria-label="Zamknij tabelę rozmiarów">${ICON.close}</button></div>
+      <p class="small muted mt2">Krój: ${esc(FITS[p.fit].name)}. <strong style="color:var(--paper)">Wymiary przykładowe</strong>, tolerancja ±2 cm.</p>
+      <div class="table-scroll"><table><caption class="sr-only">Wymiary w centymetrach</caption><thead><tr><th scope="col">Rozmiar</th>${ch.columns.map((x) => `<th scope="col">${esc(x)} (cm)</th>`).join("")}</tr></thead><tbody>${ch.rows.map((r) => `<tr><th scope="row">${r.size}</th>${r.values.map((n) => `<td>${n}</td>`).join("")}</tr>`).join("")}</tbody></table></div>
+      <p class="xs muted mt2">${esc(ch.note)}</p>`;
+    $("#chart-dlg").showModal();
+  }
+
+  /* ---------- Koszyk ---------- */
+  function lineHtml(l) {
+    const p = byId.get(l.productId);
+    const v = p.variants.find((x) => x.color === l.color);
+    const stock = stockOf(p, l.color, l.size);
+    const key = skuOf(l);
+    const warn = stock === 0 ? `Rozmiar ${l.size} w kolorze ${COLORS[l.color].name.toLowerCase()} jest niedostępny. Zmień rozmiar lub kolor albo usuń pozycję.` : stock < l.quantity ? `Dostępne tylko ${stock} szt. – zmniejsz ilość.` : "";
+    return `<li class="line">
+      <button type="button" class="studio r45" data-go="product:${p.slug}:${l.color}" aria-label="${esc(p.name)}"><img src="${img(v.image)}" alt=""></button>
+      <div class="info">
+        <div class="top"><div><button type="button" style="font-weight:700;text-align:left" data-go="product:${p.slug}:${l.color}">${esc(p.name)}</button><p class="small muted">${esc(p.kind)}</p></div><span class="tab" style="font-weight:600">${price(p.price * l.quantity)}</span></div>
+        <div class="selects"><label class="sr-only" for="c-${key}">Kolor</label><select class="field" id="c-${key}" data-line-color="${key}">${p.variants.map((x) => `<option value="${x.color}" ${x.color === l.color ? "selected" : ""}>${esc(COLORS[x.color].name)}</option>`).join("")}</select><label class="sr-only" for="s-${key}">Rozmiar</label><select class="field" id="s-${key}" data-line-size="${key}">${SIZES.map((s) => `<option value="${s}" ${s === l.size ? "selected" : ""}>Rozmiar ${s}${stockOf(p, l.color, s) === 0 ? " (brak)" : ""}</option>`).join("")}</select></div>
+        <div class="bottom"><div class="qty sm" role="group" aria-label="Ilość: ${esc(p.name)}"><button type="button" data-lq="${key}:-1" aria-label="Zmniejsz ilość" ${l.quantity <= 1 ? "disabled" : ""}>−</button><output>${l.quantity}</output><button type="button" data-lq="${key}:1" aria-label="Zwiększ ilość" ${l.quantity >= Math.min(MAX_QTY, Math.max(1, stock)) ? "disabled" : ""}>+</button></div><button type="button" class="small muted link" data-remove="${key}">Usuń</button></div>
+        ${warn ? `<p class="warn" role="alert">${esc(warn)}</p>` : ""}
+      </div></li>`;
+  }
+  const cartProblems = () => cart.filter((l) => stockOf(byId.get(l.productId), l.color, l.size) < l.quantity).length;
+  const subtotal = () => cart.reduce((n, l) => n + byId.get(l.productId).price * l.quantity, 0);
+  function cartDrawer() {
+    const count = cart.reduce((n, l) => n + l.quantity, 0);
+    const probs = cartProblems();
+    $("#cart-body").innerHTML = `<div class="dlg-head"><h2 id="cart-title" class="display-sm" style="font-size:1.1rem">Koszyk${count ? ` <span class="muted tab">(${count})</span>` : ""}</h2><button type="button" class="icon-btn" data-close-dlg aria-label="Zamknij koszyk">${ICON.close}</button></div>
+      ${cart.length === 0 ? `<div class="dlg-body" style="display:flex;flex-direction:column;justify-content:center;gap:1.25rem"><p class="display" style="font-size:2.4rem">Koszyk jest pusty</p><p class="muted">Dodaj bluzę albo spodnie – koszyk zapamięta je także po odświeżeniu strony.</p><div style="display:flex;gap:.75rem;flex-wrap:wrap"><button type="button" class="btn btn-light" data-go="list:cat:bluzy">Bluzy</button><button type="button" class="btn btn-outline" data-go="list:cat:spodnie">Spodnie</button></div></div>`
+      : `<ul class="dlg-body">${cart.map(lineHtml).join("")}</ul><div class="dlg-foot"><div class="sum"><div class="total" style="border:0;padding:0"><span>Wartość produktów</span><span class="tab">${price(subtotal())}</span></div></div><p class="small muted">Koszt dostawy wybierzesz w kolejnym kroku.</p>${probs ? '<p class="small" style="color:var(--danger)" role="alert">Popraw pozycje oznaczone powyżej, aby przejść do zamówienia.</p>' : ""}<button type="button" class="btn btn-light block" data-go="checkout" ${probs ? "disabled" : ""}>Przejdź do zamówienia</button><button type="button" class="btn btn-outline block" data-go="cart">Zobacz koszyk</button></div>`}`;
+  }
+  function openCart() { cartDrawer(); const d = $("#cart-dlg"); if (!d.open) d.showModal(); }
+  $("#open-cart").onclick = openCart;
+  function cartPage() {
+    if (!cart.length) return `<div class="wrap" style="padding-block:2.5rem 5rem"><h1 class="display" style="font-size:clamp(3rem,1rem + 7vw,7rem)">Koszyk</h1><div class="empty mt4"><p class="display">Koszyk jest pusty</p><p class="muted">Wybierz bluzę albo spodnie.</p><div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap" class="mt3"><button type="button" class="btn btn-light" data-go="list:cat:bluzy">Odkryj bluzy</button><button type="button" class="btn btn-outline" data-go="list:cat:spodnie">Odkryj spodnie</button></div></div></div>`;
+    const probs = cartProblems();
+    return `<div class="wrap" style="padding-block:2.5rem 5rem"><h1 class="display" style="font-size:clamp(3rem,1rem + 7vw,7rem)">Koszyk</h1>
+      <div class="checkout mt4"><div><ul style="border-top:1px solid var(--line)">${cart.map(lineHtml).join("")}</ul><button type="button" class="small muted link mt3" data-clear-cart>Wyczyść koszyk</button></div>
+      <aside><div class="panel"><h2 class="display-sm" style="font-size:1.2rem">Podsumowanie</h2><div class="sum mt3"><div><span class="muted">Produkty (${cart.reduce((n, l) => n + l.quantity, 0)} szt.)</span><span class="tab">${price(subtotal())}</span></div><div><span class="muted">Dostawa</span><span class="muted">od ${price(Math.min(...SHIPPING.map((m) => m.price)))}</span></div><div class="total"><span>Razem bez dostawy</span><span class="tab">${price(subtotal())}</span></div></div>${probs ? `<p class="small mt2" style="color:var(--danger)" role="alert">Popraw pozycje oznaczone obok – zmień rozmiar, ilość albo usuń produkt.</p>` : ""}<button type="button" class="btn btn-light block mt3" data-go="checkout" ${probs ? "disabled" : ""}>Przejdź do zamówienia</button><button type="button" class="btn btn-outline block mt1" data-go="list:all">Kontynuuj zakupy</button></div></aside></div></div>`;
+  }
+  function refreshCartViews() { if ($("#cart-dlg").open) cartDrawer(); if (view.name === "cart" || view.name === "checkout") rerenderKeep(); }
+  document.addEventListener("click", (e) => {
+    const lq = e.target.closest("[data-lq]");
+    if (lq) { const [key, d] = lq.dataset.lq.split(/:(?=-?\d+$)/); const l = cart.find((x) => skuOf(x) === key); if (l) { l.quantity = Math.max(1, Math.min(MAX_QTY, l.quantity + Number(d))); saveCart(); refreshCartViews(); } return; }
+    const rm = e.target.closest("[data-remove]");
+    if (rm) { cart = cart.filter((x) => skuOf(x) !== rm.dataset.remove); saveCart(); refreshCartViews(); return; }
+    if (e.target.closest("[data-clear-cart]")) { cart = []; saveCart(); refreshCartViews(); }
+  });
+  document.addEventListener("change", (e) => {
+    const t = e.target;
+    const key = t.dataset.lineColor || t.dataset.lineSize;
+    if (!key) return;
+    const l = cart.find((x) => skuOf(x) === key);
+    if (!l) return;
+    if (t.dataset.lineColor) l.color = t.value; else l.size = t.value;
+    const dupe = cart.find((x) => x !== l && skuOf(x) === skuOf(l));
+    if (dupe) { dupe.quantity = Math.min(MAX_QTY, dupe.quantity + l.quantity); cart = cart.filter((x) => x !== l); }
+    saveCart(); refreshCartViews();
+  });
+
+  /* ---------- Zamówienie (demo) ---------- */
+  let form = { firstName: "", lastName: "", email: "", phone: "", street: "", postalCode: "", city: "", method: "kurier", point: "", notes: "", terms: false };
+  let formErrors = {}, formTouched = false, lastOrder = null;
+  const NAME_RE = /^[\p{L}][\p{L}\p{M} .'-]*$/u;
+  function validate() {
+    const e = {};
+    const nm = (v, label) => (!v.trim() ? `Podaj ${label}.` : v.trim().length < 2 ? `Pole „${label}” powinno mieć co najmniej 2 znaki.` : !NAME_RE.test(v.trim()) ? `Pole „${label}” może zawierać tylko litery, spacje, apostrof i myślnik.` : null);
+    const set = (k, m) => { if (m) e[k] = m; };
+    set("firstName", nm(form.firstName, "imię")); set("lastName", nm(form.lastName, "nazwisko"));
+    set("email", !form.email.trim() ? "Podaj adres e-mail." : !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.trim()) ? "Podaj poprawny adres e-mail, np. anna@example.com." : null);
+    set("phone", !form.phone.trim() ? "Podaj numer telefonu – przekażemy go przewoźnikowi." : !/^(?:\+?48)?\d{9}$/.test(form.phone.replace(/[\s-]/g, "")) ? "Podaj 9-cyfrowy numer telefonu, np. 600 100 200." : null);
+    set("street", !form.street.trim() ? "Podaj ulicę i numer domu." : null);
+    set("postalCode", !/^\d{2}-\d{3}$/.test(form.postalCode.trim()) ? (form.postalCode.trim() ? "Kod pocztowy w formacie 00-000." : "Podaj kod pocztowy.") : null);
+    set("city", !form.city.trim() ? "Podaj miejscowość." : null);
+    if (form.method === "punkt") set("point", !form.point.trim() ? "Podaj kod lub adres punktu odbioru." : null);
+    set("terms", !form.terms ? "Zaakceptuj regulamin, aby złożyć zamówienie." : null);
+    return e;
+  }
+  const field = (k, label, attrs = "", hint = "") => {
+    const err = formTouched ? formErrors[k] : null;
+    return `<div><label class="label" for="co-${k}">${label}</label><input class="field" id="co-${k}" data-co="${k}" value="${esc(form[k])}" ${attrs} aria-invalid="${!!err}" ${err ? `aria-describedby="co-${k}-e"` : hint ? `aria-describedby="co-${k}-h"` : ""}>${err ? `<p class="err" id="co-${k}-e">${esc(err)}</p>` : hint ? `<p class="hint" id="co-${k}-h">${hint}</p>` : ""}</div>`;
+  };
+  function checkout() {
+    if (!cart.length) return `<div class="wrap" style="padding-block:2.5rem 5rem"><h1 class="display" style="font-size:clamp(2.8rem,1rem + 6vw,6.5rem)">Zamówienie</h1><div class="empty mt4"><p class="display">Koszyk jest pusty</p><p class="muted">Dodaj produkty do koszyka, żeby złożyć zamówienie.</p><button type="button" class="btn btn-light mt3" data-go="list:all">Przejdź do sklepu</button></div></div>`;
+    const m = SHIPPING.find((x) => x.id === form.method);
+    const sub = subtotal();
+    const errCount = formTouched ? Object.keys(formErrors).length : 0;
+    return `<div class="wrap" style="padding-block:2.5rem 0"><h1 class="display" style="font-size:clamp(2.8rem,1rem + 6vw,6.5rem)">Zamówienie</h1>
+    <form class="checkout mt4" novalidate data-checkout>
+      <div class="stack" style="gap:3rem">
+        <div class="step"><h2 class="display-sm"><span class="muted">1.</span> Dane kontaktowe</h2><div class="form-grid two">${field("firstName", "Imię", 'autocomplete="given-name"')}${field("lastName", "Nazwisko", 'autocomplete="family-name"')}${field("email", "E-mail", 'type="email" autocomplete="email"', "Na ten adres przyjdzie potwierdzenie.")}${field("phone", "Telefon", 'type="tel" inputmode="tel" autocomplete="tel"', "Dla przewoźnika.")}</div></div>
+        <div class="step"><h2 class="display-sm"><span class="muted">2.</span> Adres</h2><div class="form-grid two"><div class="span2">${field("street", "Ulica i numer", 'autocomplete="street-address"')}</div>${field("postalCode", "Kod pocztowy", 'inputmode="numeric" placeholder="00-000" maxlength="6" autocomplete="postal-code"')}${field("city", "Miejscowość", 'autocomplete="address-level2"')}</div><p class="small muted mt2">Wysyłamy wyłącznie na terenie Polski.</p></div>
+        <div class="step"><h2 class="display-sm"><span class="muted">3.</span> Dostawa</h2><fieldset style="border:0;padding:0"><legend class="sr-only">Sposób dostawy</legend><div class="stack" style="gap:.5rem">${SHIPPING.map((x) => `<label class="opt"><input type="radio" name="ship" data-ship="${x.id}" ${form.method === x.id ? "checked" : ""}><span style="flex:1"><span style="display:flex;justify-content:space-between;gap:1rem;font-weight:600">${esc(x.name)}<span class="tab">${price(x.price)}</span></span><span class="small muted" style="display:block;margin-top:.25rem">${esc(x.description)}</span></span></label>`).join("")}</div></fieldset>
+          ${form.method === "punkt" ? `<div class="mt2">${field("point", "Punkt odbioru", 'maxlength="160"', "Kod punktu lub jego adres.")}</div>` : ""}
+          <div class="mt2"><label class="label" for="co-notes">Uwagi do zamówienia (opcjonalnie)</label><textarea class="field" id="co-notes" data-co="notes" maxlength="500" style="min-height:6rem">${esc(form.notes)}</textarea></div></div>
+        <div class="step"><h2 class="display-sm"><span class="muted">4.</span> Płatność</h2><div class="stack" style="gap:.5rem">
+          <div class="opt disabled" aria-disabled="true"><input type="radio" disabled aria-label="Płatność online (Stripe) – niedostępna w podglądzie"><span><span style="display:block;font-weight:600">Płatność online (Stripe)</span><span class="small muted" style="display:block;margin-top:.25rem">Niedostępna w tym podglądzie. W pełnej wersji sklepu przekierowuje na stronę płatności Stripe.</span></span></div>
+          <label class="opt" style="border-style:dashed"><input type="radio" checked aria-describedby="demo-desc"><span><span style="display:block;font-weight:600">Zamówienie demonstracyjne</span><span class="small muted" style="display:block;margin-top:.25rem" id="demo-desc">Bez płatności. Nic nie zostanie pobrane ani wysłane.</span></span></label>
+        </div></div>
+      </div>
+      <aside><div class="panel"><h2 class="display-sm" style="font-size:1.2rem">Twoje zamówienie</h2>
+        <ul class="mt2">${cart.map((l) => { const p = byId.get(l.productId); const v = p.variants.find((x) => x.color === l.color); return `<li style="display:flex;gap:.75rem;padding-block:.75rem;border-bottom:1px solid var(--line)"><span class="studio" style="width:4rem;height:5rem;flex-shrink:0"><img src="${img(v.image)}" alt=""></span><span class="small" style="flex:1;min-width:0"><strong style="display:block">${esc(p.name)}</strong><span class="muted">${esc(COLORS[l.color].name)}, ${l.size}, ${l.quantity} szt.</span></span><span class="small tab">${price(p.price * l.quantity)}</span></li>`; }).join("")}</ul>
+        <button type="button" class="small muted link mt2" data-go="cart">Zmień zawartość koszyka</button>
+        <div class="sum mt3"><div><span class="muted">Produkty</span><span class="tab">${price(sub)}</span></div><div><span class="muted">Dostawa (${esc(m.name.toLowerCase())})</span><span class="tab">${price(m.price)}</span></div><div class="total"><span>Do zapłaty</span><span class="tab">${price(sub + m.price)}</span></div></div>
+        <label class="check-row mt3"><input type="checkbox" id="co-terms" data-terms ${form.terms ? "checked" : ""} aria-invalid="${!!(formTouched && formErrors.terms)}"><span class="muted">Akceptuję <button type="button" class="link" style="color:var(--paper)" data-go="terms">regulamin</button> i zapoznałem/-am się z <button type="button" class="link" style="color:var(--paper)" data-go="privacy">polityką prywatności</button>.</span></label>
+        ${formTouched && formErrors.terms ? `<p class="err">${esc(formErrors.terms)}</p>` : ""}
+        ${errCount ? `<p class="alert" role="alert">Uzupełnij zaznaczone pola (${errCount}).</p>` : ""}
+        <button type="submit" class="btn btn-light block mt3">Złóż zamówienie demonstracyjne</button>
+      </div></aside>
+    </form></div>`;
+  }
+  document.addEventListener("input", (e) => {
+    const k = e.target.dataset.co;
+    if (!k) return;
+    let val = e.target.value;
+    if (k === "postalCode") { const d = val.replace(/\D/g, "").slice(0, 5); val = d.length > 2 ? `${d.slice(0, 2)}-${d.slice(2)}` : d; e.target.value = val; }
+    form[k] = val;
+  });
+  document.addEventListener("change", (e) => {
+    if (e.target.dataset.ship) { form.method = e.target.dataset.ship; if (formTouched) formErrors = validate(); rerenderKeep(`[data-ship="${form.method}"]`); }
+    if (e.target.hasAttribute("data-terms")) { form.terms = e.target.checked; if (formTouched) { formErrors = validate(); rerenderKeep("#co-terms"); } }
+  });
+  document.addEventListener("focusout", (e) => { if (e.target.dataset?.co && formTouched) { const before = JSON.stringify(formErrors); formErrors = validate(); if (before !== JSON.stringify(formErrors)) { const next = e.relatedTarget?.id; rerenderKeep(next ? `#${next}` : null); } } });
+  document.addEventListener("submit", (e) => {
+    if (!e.target.hasAttribute("data-checkout")) return;
+    e.preventDefault();
+    formTouched = true;
+    formErrors = validate();
+    const first = ["firstName", "lastName", "email", "phone", "street", "postalCode", "city", "point", "terms"].find((k) => formErrors[k]);
+    if (first) { rerenderKeep(); $(`#co-${first}`)?.focus(); return; }
+    if (cartProblems()) { go("cart"); return; }
+    const m = SHIPPING.find((x) => x.id === form.method);
+    const alphabet = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+    const number = "DEMO-" + Array.from(crypto.getRandomValues(new Uint8Array(6)), (b) => alphabet[b % alphabet.length]).join("");
+    lastOrder = { number, name: form.firstName.trim(), items: cart.map((l) => ({ ...l })), sub: subtotal(), ship: m, to: m.id === "punkt" ? `punkt: ${form.point.trim()}` : `${form.postalCode} ${form.city.trim()}` };
+    cart = []; saveCart(); formTouched = false; formErrors = {};
+    go("done");
+  });
+  function done() {
+    if (!lastOrder) return `<div class="wrap" style="padding-block:5rem"><p class="muted">Brak zamówienia do pokazania.</p></div>`;
+    const o = lastOrder;
+    return `<div class="wrap checkout" style="padding-block:2.5rem 5rem"><div style="container-type:inline-size">
+      <h1 class="display" style="font-size:min(11cqi,5.5rem)">Zamówienie demo zapisane</h1>
+      <div class="note-dashed mt3" role="note" style="max-width:36rem"><strong>To nie jest prawdziwy zakup.</strong> Zamówienie ${esc(o.number)} istnieje tylko w tym podglądzie: płatność nie została pobrana, a paczka nie zostanie wysłana.</div>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap" class="mt4"><button type="button" class="btn btn-outline" data-go="list:all">Wróć do sklepu</button></div></div>
+      <aside><div class="panel"><h2 class="display-sm" style="font-size:1.1rem">Zamówienie ${esc(o.number)}</h2><ul class="mt2">${o.items.map((l) => { const p = byId.get(l.productId); return `<li style="display:flex;justify-content:space-between;gap:1rem;padding-block:.6rem;border-bottom:1px solid var(--line)" class="small"><span><strong>${esc(p.name)}</strong><br><span class="muted">${esc(COLORS[l.color].name)}, ${l.size}, ${l.quantity} szt.</span></span><span class="tab">${price(p.price * l.quantity)}</span></li>`; }).join("")}</ul>
+      <div class="sum mt3"><div><span class="muted">Produkty</span><span class="tab">${price(o.sub)}</span></div><div><span class="muted">Dostawa: ${esc(o.ship.name)}</span><span class="tab">${price(o.ship.price)}</span></div><div class="total"><span>Razem</span><span class="tab">${price(o.sub + o.ship.price)}</span></div></div><p class="small muted mt2">Wysyłka: ${esc(o.to)}</p></div></aside></div>`;
+  }
+
+  /* ---------- Kolekcje, dostawa ---------- */
+  function collectionsPage() {
+    return `<div class="wrap" style="padding-bottom:5rem"><div class="page-head">${crumbsHtml([["home", "Strona główna"], ["collections", "Kolekcje"]])}<div class="title-row"><h1 class="display">Kolekcje</h1><p class="muted">Produkty pogrupowane według palety i nadruków.</p></div></div>
+      <ul class="grid-products mt2" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr))">${collections.map((c) => { const n = products.filter((p) => p.collections.includes(c.slug)).length; return `<li><button type="button" style="display:block;width:100%;text-align:left" data-go="list:col:${c.slug}"><span class="studio r45" style="display:block"><img src="${img(c.coverImage)}" alt=""></span><span style="display:flex;justify-content:space-between;align-items:baseline;margin-top:1rem"><span class="display" style="font-size:2.8rem">${esc(c.name)}</span><span class="small muted">${n} ${plural(n, "produkt", "produkty", "produktów")}</span></span><span class="small muted" style="display:block;margin-top:.4rem">${esc(c.description)}</span></button></li>`; }).join("")}</ul></div>`;
+  }
+  function shipping() {
+    return `<div class="wrap" style="padding-bottom:5rem;max-width:56rem;margin-left:0"><div class="page-head">${crumbsHtml([["home", "Strona główna"], ["shipping", "Dostawa i zwroty"]])}<div class="title-row" style="grid-template-columns:1fr"><h1 class="display">Dostawa i zwroty</h1></div></div>
+      <div class="stack" style="gap:2rem;color:#d4d4d4;max-width:68ch">
+        <div><h2 class="display-sm" style="font-size:1.2rem;color:var(--paper)">Dostawa</h2><p class="mt2">Wysyłamy na terenie Polski. Paczkę przygotowujemy ${esc(DISPATCH_TIME)} od zaksięgowania płatności.</p><ul class="mt2" style="list-style:square;padding-left:1.25rem;display:grid;gap:.4rem">${SHIPPING.map((m) => `<li><strong style="color:var(--paper)">${esc(m.name)}</strong> – ${price(m.price)}. ${esc(m.description)}</li>`).join("")}</ul><p class="mt2">Nie oferujemy obecnie darmowej dostawy. Ceny dostawy są przykładowe.</p></div>
+        <div><h2 class="display-sm" style="font-size:1.2rem;color:var(--paper)">Zwrot w ${RETURN_DAYS} dni</h2><p class="mt2">Jako konsument możesz odstąpić od umowy bez podania przyczyny w ciągu ${RETURN_DAYS} dni od otrzymania paczki. Zwracamy zapłaconą kwotę, w tym koszt najtańszej oferowanej dostawy, w ciągu 14 dni. Adres zwrotów: <span class="pending">do uzupełnienia</span>.</p></div>
+        <div><h2 class="display-sm" style="font-size:1.2rem;color:var(--paper)">Reklamacje</h2><p class="mt2">Jeśli produkt jest niezgodny z umową, zgłoś reklamację z numerem zamówienia. Odpowiadamy w ciągu 14 dni.</p></div>
+      </div></div>`;
+  }
+
+  /* ---------- Regulamin i polityka prywatności ---------- */
+  const PENDING = (what) => `<span class="pending">[do uzupełnienia: ${what}]</span>`;
+  function docPage(key, title, intro, sections) {
+    const others = [["terms", "Regulamin sklepu"], ["privacy", "Polityka prywatności"], ["shipping", "Dostawa i zwroty"]].filter(([k]) => k !== key);
+    return `<div class="wrap" style="padding-bottom:5rem"><div class="page-head">${crumbsHtml([["home", "Strona główna"], [key, title]])}<div class="title-row"><h1 class="display">${esc(title)}</h1><p class="muted">${esc(intro)}</p></div></div>
+      <div class="note-dashed" role="note" style="max-width:48rem"><strong>Projekt dokumentu – wersja robocza.</strong> Wymaga uzupełnienia danych sprzedawcy i weryfikacji przez prawnika przed uruchomieniem sprzedaży. Nie stanowi porady prawnej.</div>
+      <div class="doc-grid">
+        <nav class="toc" aria-label="Spis treści"><h2 class="small" style="margin-bottom:.75rem">Spis treści</h2><ol>${sections.map(([id, t], i) => `<li><button type="button" data-scroll="${key}-${id}">${i + 1}. ${esc(t)}</button></li>`).join("")}</ol></nav>
+        <article class="doc">${sections.map(([id, t, body], i) => `<section aria-labelledby="${key}-${id}"><h2 id="${key}-${id}">${i + 1}. ${esc(t)}</h2>${body}</section>`).join("")}
+          <nav class="doc-others" aria-label="Pozostałe dokumenty">${others.map(([k, l]) => `<button type="button" class="btn btn-outline" data-go="${k}">${l}</button>`).join("")}</nav>
+        </article>
+      </div></div>`;
+  }
+  const docLink = (key, label) => `<button type="button" class="inline-link" data-go="${key}">${label}</button>`;
+  function terms() {
+    const minShip = price(Math.min(...SHIPPING.map((m) => m.price)));
+    return docPage("terms", "Regulamin sklepu", "Zasady zakupów: składanie zamówień, płatność, dostawa, zwroty i reklamacje.", [
+      ["sprzedawca", "Sprzedawca", `<p>Sklep internetowy KAPITAJNY prowadzi:</p><ul><li>Firma: ${PENDING("nazwa firmy")}</li><li>Adres: ${PENDING("adres siedziby")}</li><li>NIP: ${PENDING("NIP")}</li><li>E-mail: ${PENDING("adres e-mail")}</li><li>Telefon: ${PENDING("telefon")}</li></ul>`],
+      ["definicje", "Definicje", `<ul><li><strong>Sklep</strong> – sklep internetowy KAPITAJNY.</li><li><strong>Klient</strong> – osoba, która składa zamówienie.</li><li><strong>Konsument</strong> – osoba fizyczna kupująca w celu niezwiązanym bezpośrednio z działalnością gospodarczą lub zawodową; te same prawa ma przedsiębiorca na prawach konsumenta.</li><li><strong>Produkt</strong> – bluza lub spodnie z oferty sklepu.</li></ul>`],
+      ["postanowienia", "Postanowienia ogólne", `<p>Sklep sprzedaje odzież – bluzy i spodnie – przez stronę internetową. Do zakupów potrzebna jest przeglądarka internetowa i adres e-mail.</p><p>Ceny podane są w złotych polskich i zawierają podatek VAT. Koszt dostawy (od ${minShip}) widać przed złożeniem zamówienia.</p><p>Zdjęcia produktów są poglądowe; odcień na ekranie może się nieznacznie różnić od rzeczywistego.</p>`],
+      ["konto", "Konto klienta", `<p>Założenie konta jest dobrowolne i bezpłatne. Konto pozwala przeglądać historię zamówień. Konto można usunąć w każdej chwili, wysyłając prośbę na adres e-mail sklepu.</p>`],
+      ["zamowienia", "Składanie zamówień", `<ol><li>Wybierz produkt, kolor i rozmiar, a następnie dodaj go do koszyka.</li><li>W formularzu zamówienia podaj dane kontaktowe, adres i sposób dostawy, a następnie zaakceptuj regulamin.</li><li>Kliknięcie przycisku „Zamawiam i płacę” oznacza złożenie zamówienia z obowiązkiem zapłaty.</li><li>Umowa zostaje zawarta z chwilą potwierdzenia płatności. Dostępność produktów sprawdzamy w momencie składania zamówienia.</li></ol>`],
+      ["platnosc", "Płatność", `<p>Płatności online obsługuje Stripe. Dostępne metody płatności wyświetlają się na stronie płatności. Na zapłatę masz 30 minut od złożenia zamówienia; po tym czasie nieopłacone zamówienie jest anulowane, a zarezerwowane produkty wracają do sprzedaży.</p>`],
+      ["dostawa", "Dostawa", `<p>Dostarczamy na terenie Polski. Paczkę wysyłamy ${esc(DISPATCH_TIME)} od zaksięgowania płatności.</p><ul>${SHIPPING.map((m) => `<li>${esc(m.name)} – ${price(m.price)}. ${esc(m.description)}</li>`).join("")}</ul><p>Szczegóły: ${docLink("shipping", "Dostawa i zwroty")}.</p>`],
+      ["odstapienie", "Prawo odstąpienia od umowy", `<p>Konsument może odstąpić od umowy bez podania przyczyny w terminie ${RETURN_DAYS} dni od otrzymania produktu, składając oświadczenie, np. e-mailem.</p><p>Produkt należy odesłać w ciągu ${RETURN_DAYS} dni od złożenia oświadczenia na adres: ${PENDING("adres zwrotów")}.</p><p>Sprzedawca zwraca wszystkie płatności, w tym koszt najtańszej oferowanej dostawy, w ciągu 14 dni od otrzymania oświadczenia, tą samą metodą płatności. Może wstrzymać zwrot do czasu otrzymania produktu. Bezpośredni koszt odesłania produktu ponosi kupujący.</p><p>Kupujący odpowiada za zmniejszenie wartości produktu wynikające z korzystania z niego w sposób wykraczający poza sprawdzenie jego charakteru, cech i dopasowania – tak jak przy przymierzaniu w sklepie.</p>`],
+      ["reklamacje", "Reklamacje", `<p>Sprzedawca odpowiada za zgodność produktu z umową. Reklamację można złożyć e-mailem, opisując niezgodność i podając numer zamówienia. Sprzedawca odpowiada na reklamację w ciągu 14 dni.</p><p>Konsument może skorzystać z pozasądowych sposobów rozpatrywania sporów, m.in. z pomocy miejskiego lub powiatowego rzecznika konsumentów.</p>`],
+      ["dane", "Dane osobowe", `<p>Zasady przetwarzania danych opisuje ${docLink("privacy", "polityka prywatności")}.</p>`],
+      ["koncowe", "Postanowienia końcowe", `<p>Regulamin obowiązuje od ${PENDING("data wejścia w życie")}. Zmiany regulaminu nie dotyczą zamówień złożonych przed ich wejściem w życie.</p><p>W sprawach nieuregulowanych stosuje się przepisy prawa polskiego, w szczególności Kodeksu cywilnego i ustawy o prawach konsumenta.</p>`],
+    ]);
+  }
+  function privacy() {
+    return docPage("privacy", "Polityka prywatności", "Jakie dane zbieramy, po co, komu je przekazujemy i jakie masz prawa.", [
+      ["administrator", "Administrator danych", `<p>Administratorem danych jest ${PENDING("nazwa firmy")}, ${PENDING("adres")}. Kontakt w sprawie danych: ${PENDING("adres e-mail")}.</p>`],
+      ["cele", "Cele i podstawy przetwarzania", `<ul><li>Realizacja zamówienia i dostawa – imię, nazwisko, e-mail, telefon, adres (art. 6 ust. 1 lit. b RODO).</li><li>Rozliczenia i obowiązki podatkowe (art. 6 ust. 1 lit. c RODO).</li><li>Prowadzenie konta – imię, e-mail i zabezpieczone hasło (art. 6 ust. 1 lit. b RODO).</li><li>Newsletter – wyłącznie adres e-mail, na podstawie zgody, którą można wycofać w każdej chwili (art. 6 ust. 1 lit. a RODO).</li><li>Odpowiedź na wiadomość i obsługa reklamacji (art. 6 ust. 1 lit. f RODO).</li></ul>`],
+      ["odbiorcy", "Odbiorcy danych", `<ul><li>Stripe – operator płatności.</li><li>Przewoźnik – dane potrzebne do doręczenia paczki.</li><li>Dostawca hostingu oraz, jeśli zostaną uruchomione, dostawcy newslettera i poczty e-mail: ${PENDING("nazwy dostawców")}.</li></ul>`],
+      ["okres", "Okres przechowywania", `<p>Dane zamówień przechowujemy przez okres wymagany przepisami podatkowymi i do przedawnienia roszczeń. Dane konta – do jego usunięcia. Adres w newsletterze – do wycofania zgody.</p>`],
+      ["prawa", "Twoje prawa", `<p>Masz prawo dostępu do danych, ich sprostowania, usunięcia, ograniczenia przetwarzania, przenoszenia, sprzeciwu oraz wycofania zgody. Możesz też złożyć skargę do Prezesa Urzędu Ochrony Danych Osobowych.</p>`],
+      ["cookies", "Pliki cookies i pamięć przeglądarki", `<p>Sklep nie używa narzędzi analitycznych ani reklamowych. Korzysta tylko z mechanizmów niezbędnych do działania:</p><ul><li>ciasteczko sesji – tylko po zalogowaniu, ważne do 30 dni;</li><li>pamięć przeglądarki – zawartość koszyka i lista ulubionych, zapisywane wyłącznie na Twoim urządzeniu.</li></ul>`],
+    ]);
+  }
+  document.addEventListener("click", (e) => {
+    const s = e.target.closest("[data-scroll]");
+    if (s) { const t = document.getElementById(s.dataset.scroll); if (t) { t.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }); t.setAttribute("tabindex", "-1"); t.focus({ preventScroll: true }); } }
+  });
+
+  /* ---------- Menu i wyszukiwarka ---------- */
+  $("#open-menu").onclick = () => {
+    $("#menu-body").innerHTML = `<div class="dlg-head"><h2 id="menu-title" class="display-sm" style="font-size:1.1rem">Menu</h2><button type="button" class="icon-btn" data-close-dlg aria-label="Zamknij menu">${ICON.close}</button></div>
+      <nav class="dlg-body" aria-label="Menu mobilne">${categories.map((c) => `<div class="menu-cat"><button type="button" class="display" data-go="list:cat:${c.slug}">${esc(c.name)}</button><div class="subs">${c.subcategories.map((s) => `<button type="button" data-go="list:cat:${c.slug}:${s.slug}">${esc(s.name)}</button>`).join("")}</div></div>`).join("")}
+      <div class="menu-links"><button type="button" class="display-sm" data-go="list:new">Nowości</button><button type="button" class="display-sm" data-go="collections">Kolekcje</button><button type="button" class="display-sm" data-go="list:all">Wszystkie produkty</button></div>
+      <div class="menu-links" style="border-top:1px solid var(--line)"><button type="button" class="muted" style="font-size:1rem" data-go="shipping">Dostawa i zwroty</button><button type="button" class="muted" style="font-size:1rem" data-go="list:fav">Ulubione</button><button type="button" class="muted" style="font-size:1rem" data-go="cart">Koszyk</button><button type="button" class="muted" style="font-size:1rem" data-go="terms">Regulamin sklepu</button><button type="button" class="muted" style="font-size:1rem" data-go="privacy">Polityka prywatności</button></div></nav>`;
+    $("#menu-dlg").showModal();
+  };
+  $("#open-search").onclick = () => {
+    $("#search-body").innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center"><h2 id="search-title" class="display-sm" style="font-size:1.1rem">Szukaj</h2><button type="button" class="icon-btn" data-close-dlg aria-label="Zamknij wyszukiwanie">${ICON.close}</button></div>
+      <form role="search" style="display:flex;gap:.5rem;margin-top:1rem" data-sform><label class="sr-only" for="sq">Czego szukasz?</label><input class="field" id="sq" type="search" placeholder="np. czarne cargo, zip hoodie" autocomplete="off" maxlength="80"><button type="submit" class="btn btn-light" aria-label="Pokaż wyniki" style="padding-inline:1rem"><span style="width:20px;height:20px;display:inline-block">${ICON.search}</span></button></form>
+      <div id="sres" class="mt3" aria-live="polite"></div>`;
+    const input = $("#sq");
+    const show = () => {
+      const q = input.value.trim();
+      const res = $("#sres");
+      if (q.length < 2) { res.innerHTML = `<p class="small muted">Popularne wyszukiwania</p><div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem">${["hoodie", "zip", "cargo", "baggy", "dresy", "szeroka nogawka"].map((s) => `<button type="button" class="small" style="border:1px solid var(--line);padding:.35rem .75rem" data-go="search:${s}">${s}</button>`).join("")}</div>`; return; }
+      const r = products.filter((p) => matches(p, q));
+      res.innerHTML = r.length ? `<ul class="search-res">${r.slice(0, 5).map((p) => `<li><button type="button" data-go="product:${p.slug}"><span class="studio"><img src="${img(p.variants[0].image)}" alt=""></span><span style="flex:1;min-width:0"><strong style="display:block">${esc(p.name)}</strong><span class="small muted">${esc(p.kind)}</span></span><span class="small tab">${price(p.price, true)}</span></button></li>`).join("")}</ul><button type="button" class="btn btn-outline block mt2" data-go="search:${esc(q)}">Wszystkie wyniki (${r.length})</button>` : `<p class="small muted">Brak produktów dla „${esc(q)}”. Spróbuj krótszej frazy, np. „bluza” albo „cargo”.</p>`;
+    };
+    input.oninput = show;
+    $("[data-sform]").onsubmit = (e) => { e.preventDefault(); if (input.value.trim()) go(`search:${input.value.trim()}`); };
+    show();
+    $("#search-dlg").showModal();
+    input.focus();
+  };
+  document.querySelectorAll("dialog").forEach((d) => d.addEventListener("click", (e) => { if (e.target === d) d.close(); }));
+
+  /* ---------- Render ---------- */
+  function render() {
+    const app = $("#app");
+    app.innerHTML = view.name === "list" ? list(view) : view.name === "product" ? product(view) : view.name === "cart" ? cartPage() : view.name === "checkout" ? checkout() : view.name === "done" ? done() : view.name === "collections" ? collectionsPage() : view.name === "shipping" ? shipping() : view.name === "terms" ? terms() : view.name === "privacy" ? privacy() : home();
+    renderHeader();
+    const t = view.name === "product" ? bySlug.get(view.slug)?.name : view.name === "list" ? listMeta(view).title : null;
+    document.title = t ? `${t} | Sklep KAPITAJNY` : "Sklep KAPITAJNY";
+  }
+  $("#footer-lead").textContent = `Bluzy i spodnie w szerokich krojach. Wysyłka w Polsce, ${RETURN_DAYS} dni na odstąpienie od umowy.`;
+  render();
+})();
+</script>
+
+<!-- computerit:powrot -->
+<a id="computerit-powrot" href="/#portfolio"><svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 3 5 8l5 5"/></svg>Wróć do portfolio</a>
+<style>
+#computerit-powrot{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:2147483000;display:inline-flex;align-items:center;gap:8px;min-height:44px;margin:0;padding:10px 18px 10px 12px;border:1px solid rgba(255,255,255,.18);border-radius:3px;background:#0a1633;color:#fff;font:600 14px/1.2 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:0;text-transform:none;text-decoration:none;box-shadow:0 12px 30px -12px rgba(10,22,51,.7);transition:transform .2s ease,background-color .2s ease}
+#computerit-powrot:hover{background:#0c2257;transform:translateY(-1px)}
+#computerit-powrot:focus-visible{outline:2px solid #ffc25c;outline-offset:3px}
+#computerit-powrot svg{width:16px;height:16px;flex:none}
+@media (max-width:760px){body:has(.offer__mobile-bar) #computerit-powrot{bottom:calc(84px + env(safe-area-inset-bottom,0px))}}
+@media print{#computerit-powrot{display:none}}
+</style>
+<script>
+(function () {
+  var link = document.getElementById("computerit-powrot");
+  if (!link) return;
+  link.addEventListener("click", function (event) {
+    try {
+      var from = new URL(document.referrer);
+      if (from.origin === location.origin && from.pathname.indexOf("/demo/") === -1 && history.length > 1) {
+        event.preventDefault();
+        history.back();
+      }
+    } catch (error) {}
+  });
+})();
+</script>
+<!-- /computerit:powrot -->
+</body></html>

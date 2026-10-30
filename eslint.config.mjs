@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Osobny projekt (strona ComputerIT) ma własną konfigurację ESLint.
+    "computerit/**",
   ]),
 ]);
 
