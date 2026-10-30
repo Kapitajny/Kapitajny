@@ -5,10 +5,10 @@ import { Photo } from "@/components/ui/Photo";
 import { formatDate, journal } from "@/data/journal";
 
 export const metadata: Metadata = {
-  title: "Journal",
-  description: "Notes from the VÉRA studio on skin, care, consultations and treatments.",
-  alternates: { canonical: "/journal" },
-  openGraph: { title: "Journal | VÉRA Aesthetic Studio", url: "/journal" },
+  title: "Magazyn",
+  description: "Teksty ze studia VÉRA o skórze, pielęgnacji, konsultacjach i zabiegach.",
+  alternates: { canonical: "/magazyn" },
+  openGraph: { title: "Magazyn | VÉRA Aesthetic Studio", url: "/magazyn" },
 };
 
 export default function JournalPage() {
@@ -17,20 +17,20 @@ export default function JournalPage() {
       <section className="shell pb-16 pt-[calc(var(--header-h)+3rem)] lg:pt-[calc(var(--header-h)+5rem)]">
         <Breadcrumbs
           items={[
-            { href: "/", label: "Home" },
-            { href: "/journal", label: "Journal" },
+            { href: "/", label: "Strona główna" },
+            { href: "/magazyn", label: "Magazyn" },
           ]}
         />
         <div className="mt-10 flex flex-col gap-8 border-b border-black pb-10 lg:flex-row lg:items-end lg:justify-between">
-          <h1 className="display text-[clamp(3.5rem,13vw,12rem)] text-burgundy">Journal</h1>
-          <p className="max-w-sm text-black/80 lg:pb-6">Notes on skin, care and restraint, written by the people who work at the studio.</p>
+          <h1 className="display text-[clamp(3.5rem,13vw,12rem)] text-burgundy">Magazyn</h1>
+          <p className="max-w-sm text-black/80 lg:pb-6">O skórze, pielęgnacji i umiarze – piszą osoby, które pracują w studiu.</p>
         </div>
       </section>
 
       <ol className="shell pb-28">
         {journal.map((entry, i) => (
           <li key={entry.slug} className="border-b border-line">
-            <Link href={`/journal/${entry.slug}`} className="group grid gap-6 py-10 sm:grid-cols-12 sm:items-center sm:gap-8 sm:py-14">
+            <Link href={`/magazyn/${entry.slug}`} className="group grid gap-6 py-10 sm:grid-cols-12 sm:items-center sm:gap-8 sm:py-14">
               <div className={`sm:col-span-4 ${i % 2 ? "sm:order-2 sm:col-start-9" : ""}`}>
                 <div className="overflow-hidden">
                   <Photo
@@ -44,7 +44,7 @@ export default function JournalPage() {
               </div>
               <div className={`sm:col-span-7 ${i % 2 ? "sm:order-1 sm:col-start-1" : "sm:col-start-6"}`}>
                 <p className="text-xs font-medium text-rose-deep">
-                  {entry.topic}, <time dateTime={entry.date}>{formatDate(entry.date)}</time>, {entry.readingMinutes} min read
+                  {entry.topic}, <time dateTime={entry.date}>{formatDate(entry.date)}</time>, {entry.readingMinutes} min czytania
                 </p>
                 <h2 className="mt-4 font-serif text-4xl leading-[1.05] group-hover:text-burgundy sm:text-5xl">{entry.title}</h2>
                 <p className="mt-4 max-w-lg text-stone">{entry.excerpt}</p>

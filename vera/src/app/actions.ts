@@ -7,7 +7,7 @@ import { deliverSubmission } from "@/lib/server/deliver";
 import { allowRequest } from "@/lib/server/rate-limit";
 import { getCategory, getTreatment } from "@/data/treatments";
 
-const CONSENT_TEXT = "I agree to VÉRA Aesthetic Studio processing my personal data to answer my enquiry, as described in the Privacy policy.";
+const CONSENT_TEXT = "Wyrażam zgodę na przetwarzanie moich danych osobowych przez VÉRA Aesthetic Studio w celu odpowiedzi na zapytanie, zgodnie z Polityką prywatności.";
 
 async function clientKey(scope: string) {
   const h = await headers();
@@ -15,15 +15,15 @@ async function clientKey(scope: string) {
   return `${scope}:${ip}`;
 }
 
-/** Honeypot field, invisible to people – only bots fill it in. */
+/** Pole-pułapka niewidoczne dla ludzi – wypełniają je tylko boty. */
 function isBot(formData: FormData) {
   return Boolean(String(formData.get("company") ?? "").trim());
 }
 
 export async function sendContactMessage(_prev: FormState<ContactField>, formData: FormData): Promise<FormState<ContactField>> {
-  if (isBot(formData)) return { status: "sent", message: "Thank you for your message." };
+  if (isBot(formData)) return { status: "sent", message: "Dziękujemy za wiadomość." };
   if (!allowRequest(await clientKey("contact"), 5, 10 * 60_000)) {
-    return { status: "error", message: "Several messages were sent in a short time. Try again in a few minutes, or call the studio." };
+    return { status: "error", message: "Wysłano już kilka wiadomości w krótkim czasie. Spróbuj ponownie za kilka minut lub zadzwoń do studia." };
   }
 
   const { data, errors } = validateContact(formDataToObject(formData));
@@ -35,14 +35,14 @@ export async function sendContactMessage(_prev: FormState<ContactField>, formDat
     consent: { text: CONSENT_TEXT, at: new Date().toISOString() },
   });
   if (result === "not_configured") return { status: "not_configured" };
-  if (result === "failed") return { status: "error", message: "The message could not be sent. Try again shortly, or call the studio." };
-  return { status: "sent", message: `Thank you, ${data.name.split(" ")[0]}. Your message has reached the studio – we reply during opening hours.` };
+  if (result === "failed") return { status: "error", message: "Nie udało się wysłać wiadomości. Spróbuj ponownie za chwilę lub zadzwoń do studia." };
+  return { status: "sent", message: `Dziękujemy, ${data.name.split(" ")[0]}. Wiadomość trafiła do studia – odpowiemy w godzinach otwarcia.` };
 }
 
 export async function requestConsultation(_prev: FormState<ConsultationField>, formData: FormData): Promise<FormState<ConsultationField>> {
-  if (isBot(formData)) return { status: "sent", message: "Thank you for your request." };
+  if (isBot(formData)) return { status: "sent", message: "Dziękujemy za zapytanie." };
   if (!allowRequest(await clientKey("consultation"), 5, 10 * 60_000)) {
-    return { status: "error", message: "Several requests were sent in a short time. Try again in a few minutes, or call the studio." };
+    return { status: "error", message: "Wysłano już kilka zapytań w krótkim czasie. Spróbuj ponownie za kilka minut lub zadzwoń do studia." };
   }
 
   const { data, errors } = validateConsultation(formDataToObject(formData));
@@ -50,15 +50,15 @@ export async function requestConsultation(_prev: FormState<ConsultationField>, f
 
   const result = await deliverSubmission("consultation", {
     ...data,
-    categoryLabel: data.category === UNSURE ? "Not sure – please advise" : getCategory(data.category).name,
+    categoryLabel: data.category === UNSURE ? "Nie wiem – proszę o doradztwo" : getCategory(data.category).name,
     treatmentLabel: data.treatment ? getTreatment(data.treatment)?.name : null,
     consent: { text: CONSENT_TEXT, at: new Date().toISOString() },
   });
   if (result === "not_configured") return { status: "not_configured" };
-  if (result === "failed") return { status: "error", message: "The request could not be sent. Try again shortly, or call the studio." };
-  const channel = data.contactBy === "phone" ? "call you" : "e-mail you";
+  if (result === "failed") return { status: "error", message: "Nie udało się wysłać zapytania. Spróbuj ponownie za chwilę lub zadzwoń do studia." };
+  const channel = data.contactBy === "phone" ? "zadzwonimy" : "napiszemy";
   return {
     status: "sent",
-    message: `Thank you, ${data.name.split(" ")[0]}. Your request has reached the studio and we will ${channel} to propose a consultation time. This is not yet a confirmed appointment.`,
+    message: `Dziękujemy, ${data.name.split(" ")[0]}. Zapytanie trafiło do studia – ${channel}, aby zaproponować termin konsultacji. To jeszcze nie jest potwierdzenie wizyty.`,
   };
 }

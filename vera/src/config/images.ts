@@ -1,11 +1,11 @@
 /**
- * Photo library – every photo on the site is listed here once, with its alt text.
+ * Biblioteka zdjęć – każde zdjęcie na stronie jest tu wpisane raz, z tekstem alternatywnym.
  *
- * `source` records where the file came from:
- * - "client": supplied by the client,
- * - "generated": generated for this concept (Figma AI). Files marked `preview` are
- *   enlarged from a low-resolution preview; export the full-size frame from the Figma
- *   file (node id in `figmaNode`) over the same file name to sharpen them.
+ * `source` mówi, skąd pochodzi plik:
+ * - "client": dostarczone przez klienta,
+ * - "generated": wygenerowane dla konceptu (Figma AI). Pliki z `preview` są powiększone
+ *   z podglądu w niskiej rozdzielczości; wyeksportuj pełną ramkę z pliku Figma (identyfikator
+ *   w `figmaNode`) pod tą samą nazwą pliku, aby je wyostrzyć.
  */
 
 export const IMAGE_DIR = "/images/vera";
@@ -15,7 +15,7 @@ export interface ImageEntry {
   alt: string;
   width: number;
   height: number;
-  /** CSS object-position for art-directed crops. */
+  /** CSS object-position – kadrowanie zdjęcia. */
   focus?: string;
   source: "client" | "generated";
   preview?: boolean;
@@ -25,7 +25,7 @@ export interface ImageEntry {
 export const IMAGES = {
   heroPortrait: {
     file: "hero-portrait.jpg",
-    alt: "A woman in a burgundy satin dress leaning against a warm plaster wall in soft window light",
+    alt: "Kobieta w burgundowej satynowej sukience opiera się o ciepłą, tynkowaną ścianę w miękkim świetle z okna",
     width: 1024,
     height: 1280,
     focus: "62% 30%",
@@ -34,7 +34,7 @@ export const IMAGES = {
   },
   profile: {
     file: "profile-burgundy.jpg",
-    alt: "Side profile of a woman's face and neck lit softly against a deep burgundy wall",
+    alt: "Profil twarzy i szyi kobiety w miękkim świetle na tle głębokiej burgundowej ściany",
     width: 577,
     height: 720,
     focus: "40% 40%",
@@ -44,7 +44,7 @@ export const IMAGES = {
   },
   serum: {
     file: "serum-still.jpg",
-    alt: "An amber serum bottle with a dropper on a travertine block, burgundy fabric behind",
+    alt: "Bursztynowa butelka serum z pipetą na bloku trawertynu, w tle burgundowa tkanina",
     width: 720,
     height: 577,
     focus: "70% 50%",
@@ -54,7 +54,7 @@ export const IMAGES = {
   },
   assessment: {
     file: "assessment.jpg",
-    alt: "A specialist in black gloves gently assessing a client's jawline during a consultation",
+    alt: "Specjalistka w czarnych rękawiczkach delikatnie ocenia linię żuchwy klientki podczas konsultacji",
     width: 577,
     height: 720,
     focus: "50% 40%",
@@ -64,7 +64,7 @@ export const IMAGES = {
   },
   cream: {
     file: "cream-texture.jpg",
-    alt: "A swirl of ivory face cream and a brass spatula on burgundy satin",
+    alt: "Smuga kremu w kolorze kości słoniowej i mosiężna szpatułka na burgundowej satynie",
     width: 720,
     height: 720,
     source: "generated",
@@ -73,7 +73,7 @@ export const IMAGES = {
   },
   specialistPhysician: {
     file: "specialist-physician.jpg",
-    alt: "Portrait of Helena Mróz in a black tunic against an ivory wall",
+    alt: "Portret Heleny Mróz w czarnej tunice na tle jasnej ściany",
     width: 577,
     height: 720,
     focus: "50% 25%",
@@ -83,7 +83,7 @@ export const IMAGES = {
   },
   specialistCosmetologist: {
     file: "specialist-cosmetologist.jpg",
-    alt: "Portrait of Julia Sowa in a powder-beige tunic against a burgundy backdrop",
+    alt: "Portret Julii Sowy w pudrowobeżowej tunice na burgundowym tle",
     width: 577,
     height: 720,
     focus: "45% 25%",
@@ -93,7 +93,7 @@ export const IMAGES = {
   },
   specialistSkin: {
     file: "specialist-skin.jpg",
-    alt: "Portrait of Adam Lis seated on a wooden stool in a black tunic",
+    alt: "Portret Adama Lisa w czarnej tunice, siedzącego na drewnianym stołku",
     width: 577,
     height: 720,
     focus: "50% 22%",
@@ -103,7 +103,7 @@ export const IMAGES = {
   },
   facialMask: {
     file: "facial-mask.jpg",
-    alt: "A cosmetologist brushing a pale pink clay mask onto a relaxed client's cheek",
+    alt: "Kosmetolożka nakłada pędzlem jasnoróżową maskę z glinki na policzek zrelaksowanej klientki",
     width: 720,
     height: 577,
     focus: "45% 40%",
@@ -113,7 +113,7 @@ export const IMAGES = {
   },
   consultation: {
     file: "consultation.jpg",
-    alt: "A specialist taking handwritten notes across a travertine table from a client, a hand mirror between them",
+    alt: "Specjalistka robi odręczne notatki przy trawertynowym stoliku naprzeciw klientki, między nimi lusterko",
     width: 720,
     height: 577,
     source: "generated",
@@ -122,7 +122,7 @@ export const IMAGES = {
   },
   reception: {
     file: "reception.jpg",
-    alt: "The studio reception with a curved burgundy velvet sofa and limewashed walls",
+    alt: "Recepcja studia z zaokrągloną burgundową aksamitną sofą i wapiennymi ścianami",
     width: 720,
     height: 481,
     focus: "30% 60%",
@@ -132,7 +132,7 @@ export const IMAGES = {
   },
   spf: {
     file: "spf-winter.jpg",
-    alt: "An unbranded sunscreen tube on a folded wool knit beside a snowy window",
+    alt: "Tubka kremu z filtrem bez etykiety na złożonym wełnianym swetrze przy zaśnieżonym oknie",
     width: 720,
     height: 577,
     source: "generated",
@@ -141,7 +141,7 @@ export const IMAGES = {
   },
   hydration: {
     file: "hydration.jpg",
-    alt: "Water droplets and a ribbon of clear gel on a powder-beige surface in raking light",
+    alt: "Krople wody i pasmo przezroczystego żelu na pudrowobeżowej powierzchni w bocznym świetle",
     width: 577,
     height: 720,
     source: "generated",
@@ -150,7 +150,7 @@ export const IMAGES = {
   },
   portraitPlatinum: {
     file: "portrait-platinum.jpg",
-    alt: "A woman with cropped platinum hair in a black knit, resting her chin on her hand against a burgundy wall",
+    alt: "Kobieta z krótkimi platynowymi włosami w czarnym golfie opiera brodę na dłoni na tle burgundowej ściany",
     width: 577,
     height: 720,
     focus: "50% 30%",
@@ -160,7 +160,7 @@ export const IMAGES = {
   },
   treatmentRoom: {
     file: "studio-treatment-room.jpg",
-    alt: "A treatment room with an ivory treatment chair, fluted cabinetry and brown velvet curtains",
+    alt: "Gabinet zabiegowy z jasnym fotelem zabiegowym, ryflowanymi szafkami i brązowymi aksamitnymi zasłonami",
     width: 2048,
     height: 1376,
     focus: "60% 60%",
@@ -168,7 +168,7 @@ export const IMAGES = {
   },
   facialRitual: {
     file: "facial-ritual.jpg",
-    alt: "A client with a towel wrapped around her hair receiving a cream facial massage",
+    alt: "Klientka z ręcznikiem na włosach podczas masażu twarzy z kremem",
     width: 610,
     height: 610,
     focus: "55% 45%",
@@ -176,14 +176,14 @@ export const IMAGES = {
   },
   nailsBurgundy: {
     file: "nails-burgundy.jpg",
-    alt: "A hand with short glossy deep-red nails against a soft grey curtain",
+    alt: "Dłoń z krótkimi, lśniącymi paznokciami w głębokiej czerwieni na tle szarej zasłony",
     width: 480,
     height: 600,
     source: "client",
   },
   nailsNude: {
     file: "nails-nude.jpg",
-    alt: "A hand with nude glossy nails and a thin gold ring, resting on a cream knit sleeve",
+    alt: "Dłoń z lśniącymi paznokciami w kolorze nude i cienkim złotym pierścionkiem na kremowym rękawie swetra",
     width: 447,
     height: 447,
     source: "client",
@@ -196,7 +196,7 @@ export function imageSrc(key: ImageKey) {
   return `${IMAGE_DIR}/${IMAGES[key].file}`;
 }
 
-/** CSS object-position of a photo's art-directed crop. */
+/** CSS object-position kadru zdjęcia. */
 export function imageFocus(key: ImageKey): string {
   const entry: ImageEntry = IMAGES[key];
   return entry.focus ?? "50% 50%";

@@ -53,7 +53,7 @@ export function useValidatedForm<K extends string>(action: Action<K>, validate: 
     const keys = Object.keys(result.errors);
     setErrors(result.errors);
     if (keys.length) {
-      setSummary(keys.length === 1 ? "Correct the highlighted field." : `Correct the ${keys.length} highlighted fields.`);
+      setSummary(keys.length === 1 ? "Popraw zaznaczone pole formularza." : `Popraw zaznaczone pola formularza (${keys.length}).`);
       focusFirstInvalid(event.currentTarget, keys);
       return;
     }
@@ -69,8 +69,8 @@ export function useValidatedForm<K extends string>(action: Action<K>, validate: 
     if (!hasValue && !errors[name]) return;
     const result = validate(formDataToObject(new FormData(formRef.current)));
     const apply = () => setErrors((prev) => ({ ...prev, [name]: result.errors[name] }));
-    // Focus leaves a field on pointerdown elsewhere. Showing or hiding its message at that moment moves the
-    // layout under the pointer, so a click on e.g. the consent box would miss – wait until the click is done.
+    // Pole traci fokus już przy wciśnięciu przycisku myszy w innym miejscu. Pokazanie lub ukrycie komunikatu w tej chwili
+    // przesuwa układ pod kursorem i kliknięcie (np. w zgodę) chybia – dlatego czekamy na koniec kliknięcia.
     if (pointerDown.current) window.addEventListener("pointerup", () => setTimeout(apply, 0), { once: true });
     else apply();
   };

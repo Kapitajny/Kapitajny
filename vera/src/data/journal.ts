@@ -1,6 +1,6 @@
 import type { ImageKey } from "@/config/images";
 
-/** Journal entries. Educational content for the concept – to be reviewed by the studio's specialists. */
+/** Artykuły magazynu. Treści edukacyjne konceptu – do weryfikacji przez specjalistów studia. */
 
 export interface JournalBlock {
   type: "p" | "h2" | "list" | "quote";
@@ -13,7 +13,7 @@ export interface JournalEntry {
   title: string;
   excerpt: string;
   topic: string;
-  /** ISO date. */
+  /** Data ISO. */
   date: string;
   readingMinutes: number;
   author: string;
@@ -23,83 +23,71 @@ export interface JournalEntry {
 
 export const journal: JournalEntry[] = [
   {
-    slug: "what-happens-at-a-first-consultation",
-    title: "What happens at a first consultation",
-    excerpt: "An hour, a mirror and a lot of questions. Here is what to expect – and what to bring.",
-    topic: "At the studio",
+    slug: "pierwsza-konsultacja-czego-sie-spodziewac",
+    title: "Pierwsza konsultacja – czego się spodziewać",
+    excerpt: "Godzina, lustro i sporo pytań. Podpowiadamy, jak wygląda wizyta i co warto ze sobą zabrać.",
+    topic: "W studiu",
     date: "2026-10-14",
     readingMinutes: 4,
     author: "Adam Lis",
     image: "consultation",
     body: [
-      { type: "p", text: "Most people arrive at their first consultation with a photo, a treatment name or a worry. All three are good starting points. None of them is a decision." },
-      { type: "h2", text: "We start with you, not the treatment" },
-      { type: "p", text: "The first part of the visit is a conversation: what you would like to change, what you have tried, what you use at home and anything about your health we should know. There are no wrong answers, and nothing is booked at this stage." },
-      { type: "h2", text: "Then we look closely" },
-      { type: "p", text: "We assess your skin in daylight, sometimes with magnification. We look at texture, tone, hydration and how your face moves when you talk. With your permission, we take reference photos for your file." },
-      { type: "h2", text: "What to bring" },
+      { type: "p", text: "Większość osób przychodzi na pierwszą konsultację ze zdjęciem, nazwą zabiegu albo z niepokojem. Każdy z tych punktów wyjścia jest dobry. Żaden nie jest decyzją." },
+      { type: "h2", text: "Zaczynamy od Ciebie, nie od zabiegu" },
+      { type: "p", text: "Pierwsza część wizyty to rozmowa: co chcesz zmienić, czego już próbowałaś lub próbowałeś, czego używasz w domu i co powinniśmy wiedzieć o Twoim zdrowiu. Nie ma złych odpowiedzi i na tym etapie niczego nie rezerwujemy." },
+      { type: "h2", text: "Potem przyglądamy się z bliska" },
+      { type: "p", text: "Oceniamy skórę w świetle dziennym, czasem w powiększeniu. Patrzymy na teksturę, koloryt, nawilżenie i na to, jak twarz pracuje podczas mówienia. Za Twoją zgodą robimy zdjęcia porównawcze do dokumentacji." },
+      { type: "h2", text: "Co zabrać" },
       {
         type: "list",
-        items: [
-          "A list of the skincare products you use, or photos of them",
-          "Any medication or supplements you take regularly",
-          "Notes on previous treatments – what, when and where",
-        ],
+        items: ["Listę kosmetyków, których używasz, albo ich zdjęcia", "Leki lub suplementy przyjmowane na stałe", "Informacje o wcześniejszych zabiegach – jakich, kiedy i gdzie"],
       },
-      { type: "h2", text: "What you leave with" },
-      { type: "p", text: "A written plan that includes options, timing and costs. Sometimes the plan is home care for three months before anything else. Sometimes it is a referral to a doctor. Sometimes it is a treatment. You decide, in your own time." },
+      { type: "h2", text: "Z czym wychodzisz" },
+      { type: "p", text: "Z pisemnym planem, który obejmuje możliwości, terminy i koszty. Czasem plan to trzy miesiące pielęgnacji domowej przed czymkolwiek innym. Czasem skierowanie do lekarza. Czasem zabieg. Decydujesz Ty, we własnym tempie." },
     ],
   },
   {
-    slug: "sunscreen-in-winter",
-    title: "Sunscreen in winter is not optional",
-    excerpt: "Shorter days do not switch off UV. Why we ask about SPF before every peel – even in January.",
-    topic: "Skin care",
+    slug: "filtr-spf-zima",
+    title: "Filtr SPF zimą nie jest opcjonalny",
+    excerpt: "Krótsze dni nie wyłączają promieniowania UV. Dlaczego przed każdym peelingiem pytamy o SPF – nawet w styczniu.",
+    topic: "Pielęgnacja",
     date: "2026-09-30",
     readingMinutes: 3,
     author: "Julia Sowa",
     image: "spf",
     body: [
-      { type: "p", text: "Autumn and winter are when we plan most peels and microneedling courses. They are also when many people quietly drop their sunscreen. The two do not go well together." },
-      { type: "h2", text: "UV doesn't take the winter off" },
-      { type: "p", text: "UVA radiation, which contributes to pigmentation and skin ageing, is present all year round and passes through clouds and window glass. After a peel, freshly renewed skin is more sensitive to it." },
-      { type: "h2", text: "A routine you will keep" },
+      { type: "p", text: "Jesień i zima to czas, kiedy planujemy najwięcej peelingów i serii mikroigłowania. To także czas, kiedy wiele osób po cichu rezygnuje z filtra. Jedno z drugim się nie łączy." },
+      { type: "h2", text: "Promieniowanie UV nie ma zimowej przerwy" },
+      { type: "p", text: "Promieniowanie UVA, które przyczynia się do przebarwień i starzenia skóry, występuje przez cały rok i przenika przez chmury oraz szyby. Po peelingu odnowiona skóra jest na nie bardziej wrażliwa." },
+      { type: "h2", text: "Rutyna, której się utrzymasz" },
       {
         type: "list",
-        items: [
-          "Apply a broad-spectrum SPF every morning as the last step of your routine",
-          "Choose a texture you like – it is the one you will actually use",
-          "Reapply when you spend longer outdoors, especially on snow",
-        ],
+        items: ["Nakładaj krem z szerokim spektrum ochrony każdego ranka jako ostatni krok pielęgnacji", "Wybierz konsystencję, którą lubisz – to jej naprawdę będziesz używać", "Ponawiaj aplikację, gdy dłużej przebywasz na zewnątrz, zwłaszcza na śniegu"],
       },
-      { type: "quote", text: "The best sunscreen is the one you are happy to wear every single day." },
-      { type: "p", text: "If you are in a treatment series with us, we will ask about SPF at each visit. It is not a formality: it is part of the treatment." },
+      { type: "quote", text: "Najlepszy filtr to ten, który z przyjemnością nakładasz każdego dnia." },
+      { type: "p", text: "Jeśli jesteś w trakcie serii zabiegów, zapytamy o SPF na każdej wizycie. To nie formalność – to część zabiegu." },
     ],
   },
   {
-    slug: "hydration-versus-moisture",
-    title: "Hydrated or moisturised? The difference matters",
-    excerpt: "Two words that are used as synonyms – and two different things your skin may need.",
-    topic: "Skin care",
+    slug: "nawilzenie-a-natluszczenie",
+    title: "Nawilżona czy natłuszczona? Ta różnica ma znaczenie",
+    excerpt: "Dwa słowa używane zamiennie – i dwie różne rzeczy, których może potrzebować Twoja skóra.",
+    topic: "Pielęgnacja",
     date: "2026-09-09",
     readingMinutes: 5,
     author: "Adam Lis",
     image: "hydration",
     body: [
-      { type: "p", text: "Dehydrated skin lacks water. Dry skin lacks oil. They can look similar – tight, dull, a little rough – but they call for slightly different care." },
-      { type: "h2", text: "Signs of dehydration" },
-      { type: "p", text: "Fine lines that appear when you gently push the skin, a feeling of tightness after cleansing, make-up that sits on the surface. Any skin type can be dehydrated, including oily skin." },
-      { type: "h2", text: "What helps" },
+      { type: "p", text: "Skórze odwodnionej brakuje wody. Skórze suchej brakuje lipidów. Mogą wyglądać podobnie – ściągnięte, matowe, lekko szorstkie – ale potrzebują nieco innej pielęgnacji." },
+      { type: "h2", text: "Oznaki odwodnienia" },
+      { type: "p", text: "Drobne zmarszczki widoczne po delikatnym przesunięciu skóry, uczucie ściągnięcia po myciu, makijaż, który „siedzi” na powierzchni. Odwodniona może być każda skóra, także tłusta." },
+      { type: "h2", text: "Co pomaga" },
       {
         type: "list",
-        items: [
-          "Humectants such as glycerin or hyaluronic acid, which attract water",
-          "A moisturiser with emollients to keep that water in",
-          "A gentle cleanser that does not strip the skin",
-        ],
+        items: ["Humektanty, takie jak gliceryna czy kwas hialuronowy, które przyciągają wodę", "Krem z emolientami, który tę wodę zatrzymuje", "Łagodny preparat myjący, który nie wysusza skóry"],
       },
-      { type: "h2", text: "When to come in" },
-      { type: "p", text: "If your skin stays tight and uncomfortable despite a consistent routine, a skin consultation can help find out why. Sometimes the answer is a treatment; more often it is a simpler routine." },
+      { type: "h2", text: "Kiedy do nas przyjść" },
+      { type: "p", text: "Jeśli mimo regularnej pielęgnacji skóra wciąż jest ściągnięta i nieprzyjemna, konsultacja pomoże ustalić przyczynę. Czasem odpowiedzią jest zabieg; częściej – prostsza pielęgnacja." },
     ],
   },
 ];
@@ -109,5 +97,5 @@ export function getEntry(slug: string) {
 }
 
 export function formatDate(iso: string) {
-  return new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${iso}T00:00:00Z`));
+  return new Intl.DateTimeFormat("pl-PL", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${iso}T00:00:00Z`));
 }

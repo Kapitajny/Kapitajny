@@ -15,11 +15,11 @@ function isActive(pathname: string, href: string) {
 }
 
 /**
- * Header with the studio's navigation panel.
- * – Closed: only the logo and a three-line toggle are visible.
- * – Open: a burgundy panel unrolls from the top edge, the toggle becomes a cross,
- *   the page behind is locked and dimmed, and focus stays within the header.
- * – Closes on Escape, on the scrim, on the toggle and on any navigation.
+ * Nagłówek z panelem nawigacji studia.
+ * – Zamknięty: widać tylko logo i przycisk z trzech kresek.
+ * – Otwarty: burgundowy panel rozwija się od górnej krawędzi, przycisk zmienia się w X,
+ *   strona pod spodem jest zablokowana i przyciemniona, a fokus zostaje w nagłówku.
+ * – Zamyka się klawiszem Escape, kliknięciem w tło, przyciskiem i przy każdej nawigacji.
  */
 export function SiteHeader() {
   const pathname = usePathname();
@@ -29,7 +29,7 @@ export function SiteHeader() {
   const headerRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
 
-  // Close the panel whenever the route changes (e.g. browser back while open).
+  // Zamknij panel przy każdej zmianie adresu (np. przycisk Wstecz przy otwartym menu).
   const [lastPath, setLastPath] = useState(pathname);
   if (lastPath !== pathname) {
     setLastPath(pathname);
@@ -48,7 +48,7 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Scroll lock with scrollbar compensation, so the page does not shift sideways.
+  // Blokada przewijania z kompensacją paska przewijania, aby strona nie przesuwała się w bok.
   useEffect(() => {
     const root = document.documentElement;
     if (!open) return;
@@ -60,7 +60,7 @@ export function SiteHeader() {
     };
   }, [open]);
 
-  // Escape closes; Tab cycles within the header while the panel is open.
+  // Escape zamyka; Tab krąży w obrębie nagłówka, gdy panel jest otwarty.
   useEffect(() => {
     if (!open) return;
     const onKey = (event: KeyboardEvent) => {
@@ -95,7 +95,7 @@ export function SiteHeader() {
 
   return (
     <header ref={headerRef} data-menu={open ? "open" : "closed"} className="fixed inset-x-0 top-0 z-50">
-      {/* Bar: logo + toggle. Stays above the panel so the logo remains visible. */}
+      {/* Pasek: logo + przycisk. Leży nad panelem, więc logo pozostaje widoczne. */}
       <div
         className={`relative z-[60] transition-[background-color,color,border-color] duration-500 ${
           onLight
@@ -111,7 +111,7 @@ export function SiteHeader() {
             className="menu-toggle"
             aria-expanded={open}
             aria-controls="site-menu"
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? "Zamknij menu" : "Otwórz menu"}
             onClick={() => setOpen((v) => !v)}
           >
             <span className="bar" aria-hidden="true" />
@@ -121,10 +121,10 @@ export function SiteHeader() {
         </div>
       </div>
 
-      {/* Scrim over the page below the panel. */}
+      {/* Przyciemnienie strony pod panelem. */}
       <div aria-hidden="true" className="menu-scrim fixed inset-0 z-40 bg-black/55" onClick={() => close()} />
 
-      {/* The panel. Inert while closed, so nothing inside it can be focused or read out. */}
+      {/* Panel. Gdy jest zamknięty, ma atrybut inert – niczego w nim nie da się zaznaczyć ani odczytać. */}
       <div
         id="site-menu"
         inert={!open}
@@ -132,7 +132,7 @@ export function SiteHeader() {
       >
         <div className="h-[var(--header-h)] shrink-0" />
         <div className="shell flex flex-1 flex-col pb-6 pt-6 sm:pt-8 lg:grid lg:grid-cols-12 lg:gap-x-8 lg:pb-8 lg:pt-[3vh]">
-          <nav aria-label="Main" className="lg:col-span-7 lg:flex lg:flex-col lg:justify-center xl:col-span-7">
+          <nav aria-label="Menu główne" className="lg:col-span-7 lg:flex lg:flex-col lg:justify-center xl:col-span-7">
             <ul className="menu-list space-y-1 sm:space-y-2 lg:space-y-[0.6vh]" onMouseLeave={() => setPreview(null)}>
               {mainNav.map((item, i) => {
                 const active = isActive(pathname, item.href);
@@ -152,10 +152,10 @@ export function SiteHeader() {
                             {String(i + 1).padStart(2, "0")}
                           </span>
                           <span aria-hidden="true" className="menu-dash hidden shrink-0 opacity-60 sm:inline-block" />
-                          <span className="menu-label font-serif text-[clamp(1.75rem,8.2vw,3rem)] font-light uppercase leading-[1.04] tracking-[0.04em] lg:text-[clamp(2.5rem,min(5vw,7.4svh),5.25rem)]">
+                          <span className="menu-label font-serif text-[clamp(1.6rem,7.6vw,3rem)] font-light uppercase leading-[1.04] tracking-[0.04em] lg:text-[clamp(2.5rem,min(5vw,7.4svh),5.25rem)]">
                             {item.label}
                           </span>
-                          {active && <span className="sr-only">(current page)</span>}
+                          {active && <span className="sr-only">(bieżąca strona)</span>}
                         </span>
                       </span>
                     </Link>
@@ -165,7 +165,7 @@ export function SiteHeader() {
             </ul>
           </nav>
 
-          {/* Preview of the hovered destination – desktop only. */}
+          {/* Podgląd wskazanej podstrony – tylko na komputerze. */}
           <div className="menu-fade relative hidden lg:col-span-4 lg:col-start-9 lg:flex lg:flex-col lg:justify-center" style={{ "--i": 2 } as React.CSSProperties} aria-hidden="true">
             <div className="menu-preview relative aspect-[4/5] max-h-[52svh] w-full overflow-hidden bg-burgundy-deep">
               {mainNav.map((item, i) => (
@@ -183,14 +183,14 @@ export function SiteHeader() {
             <p className="mt-4 min-h-[1.5em] font-serif text-xl italic text-rose-light">{mainNav[shownPreview].blurb}</p>
           </div>
 
-          {/* Footer of the panel: booking and contact placeholders. */}
+          {/* Stopka panelu: rezerwacja i dane kontaktowe (placeholdery). */}
           <div className="menu-fade mt-10 flex flex-col gap-6 border-t border-line-light pt-6 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between lg:col-span-12 lg:mt-auto" style={{ "--i": 4 } as React.CSSProperties}>
             <Link href={bookingHref} onClick={() => close()} className="btn btn-light self-start sm:self-auto">
-              Book your visit
+              Umów wizytę
             </Link>
             <ul className="flex flex-col gap-3 text-sm sm:flex-row sm:flex-wrap sm:gap-x-10">
               <li>
-                <span className="block text-2xs text-rose-light">Phone</span>
+                <span className="block text-2xs text-rose-light">Telefon</span>
                 <a href={siteConfig.contact.phoneHref} className="link-line">
                   {siteConfig.contact.phone}
                 </a>
@@ -205,7 +205,7 @@ export function SiteHeader() {
                 <span className="block text-2xs text-rose-light">Instagram</span>
                 <a href={siteConfig.contact.instagramUrl} target="_blank" rel="noopener noreferrer" className="link-line">
                   {siteConfig.contact.instagramHandle}
-                  <span className="sr-only"> (opens in a new tab)</span>
+                  <span className="sr-only"> (otwiera się w nowej karcie)</span>
                 </a>
               </li>
             </ul>

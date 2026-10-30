@@ -2,12 +2,12 @@ import Link from "next/link";
 import { Photo } from "@/components/ui/Photo";
 import { categories, treatmentsIn, type CategorySlug } from "@/data/treatments";
 
-/** Each category gets its own frame in an asymmetric spread, like a magazine layout. */
+/** Każda kategoria ma własny kadr w asymetrycznej rozkładówce, jak w magazynie. */
 const layout: Record<CategorySlug, { frame: string; photo: string; sizes: string }> = {
-  "aesthetic-medicine": { frame: "lg:col-span-5", photo: "aspect-[4/5]", sizes: "(min-width: 1024px) 38vw, 100vw" },
-  "skin-treatments": { frame: "lg:col-span-5 lg:col-start-8 lg:mt-48", photo: "aspect-[5/4]", sizes: "(min-width: 1024px) 38vw, 100vw" },
-  "professional-cosmetology": { frame: "lg:col-span-4 lg:col-start-2 lg:-mt-10", photo: "aspect-square", sizes: "(min-width: 1024px) 30vw, 100vw" },
-  "skin-consultation": { frame: "lg:col-span-6 lg:col-start-7 lg:mt-24", photo: "aspect-[5/4]", sizes: "(min-width: 1024px) 46vw, 100vw" },
+  "medycyna-estetyczna": { frame: "lg:col-span-5", photo: "aspect-[4/5]", sizes: "(min-width: 1024px) 38vw, 100vw" },
+  "zabiegi-na-skore": { frame: "lg:col-span-5 lg:col-start-8 lg:mt-48", photo: "aspect-[5/4]", sizes: "(min-width: 1024px) 38vw, 100vw" },
+  "kosmetologia": { frame: "lg:col-span-4 lg:col-start-2 lg:-mt-10", photo: "aspect-square", sizes: "(min-width: 1024px) 30vw, 100vw" },
+  "konsultacja-skory": { frame: "lg:col-span-6 lg:col-start-7 lg:mt-24", photo: "aspect-[5/4]", sizes: "(min-width: 1024px) 46vw, 100vw" },
 };
 
 export function SelectedTreatments() {
@@ -16,12 +16,12 @@ export function SelectedTreatments() {
       <div className="shell">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
           <h2 id="treatments-title" className="display text-[clamp(3rem,8vw,7rem)]">
-            Selected
+            Wybrane
             <br />
-            <span className="pl-[0.9em]">treatments</span>
+            <span className="pl-[0.9em]">zabiegi</span>
           </h2>
-          <Link href="/treatments" className="btn btn-outline-light self-start sm:self-auto">
-            All treatments
+          <Link href="/zabiegi" className="btn btn-outline-light self-start sm:self-auto">
+            Wszystkie zabiegi
           </Link>
         </div>
 
@@ -31,7 +31,7 @@ export function SelectedTreatments() {
             const items = treatmentsIn(category.slug);
             return (
               <article key={category.slug} className={l.frame}>
-                <Link href={`/treatments#${category.slug}`} className="group block" aria-describedby={`${category.slug}-summary`}>
+                <Link href={`/zabiegi#${category.slug}`} className="group block" aria-describedby={`${category.slug}-summary`}>
                   <div className="overflow-hidden">
                     <Photo
                       image={category.image}
@@ -51,7 +51,7 @@ export function SelectedTreatments() {
                 <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm">
                   {items.map((t) => (
                     <li key={t.slug}>
-                      <Link href={`/treatments/${t.slug}`} className="text-rose-light hover:text-ivory">
+                      <Link href={`/zabiegi/${t.slug}`} className="text-rose-light hover:text-ivory">
                         {t.name}
                       </Link>
                     </li>

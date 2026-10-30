@@ -7,15 +7,15 @@ import { IMAGES, imageFocus, imageSrc, type ImageKey } from "@/config/images";
 export interface GalleryItem {
   image: ImageKey;
   caption: string;
-  /** Grid placement on large screens. */
+  /** Położenie na siatce na dużych ekranach. */
   span: string;
   aspect: string;
 }
 
 /**
- * Editorial gallery: an asymmetric grid of photos that open in a lightbox.
- * The lightbox is a native modal <dialog>, so focus is contained and Escape closes it;
- * arrow keys move between photos.
+ * Galeria: asymetryczna siatka zdjęć otwieranych w powiększeniu.
+ * Podgląd to natywne okno <dialog>, więc fokus zostaje w środku, a Escape je zamyka;
+ * strzałki przełączają zdjęcia.
  */
 export function Gallery({ items }: { items: GalleryItem[] }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -56,7 +56,7 @@ export function Gallery({ items }: { items: GalleryItem[] }) {
               type="button"
               onClick={() => open(i)}
               className="group relative block w-full cursor-zoom-in overflow-hidden bg-powder text-left"
-              aria-label={`Open photo: ${item.caption}`}
+              aria-label={`Powiększ zdjęcie: ${item.caption}`}
               aria-haspopup="dialog"
             >
               <span className={`relative block ${item.aspect}`}>
@@ -76,7 +76,7 @@ export function Gallery({ items }: { items: GalleryItem[] }) {
 
       <dialog
         ref={dialogRef}
-        aria-label="Photo viewer"
+        aria-label="Podgląd zdjęcia"
         className="m-0 h-dvh max-h-none w-screen max-w-none bg-black p-0 text-ivory backdrop:bg-black/80"
         onKeyDown={(e) => {
           if (e.key === "ArrowRight") step(1);
@@ -96,7 +96,7 @@ export function Gallery({ items }: { items: GalleryItem[] }) {
                 <span className="ml-4 text-ivory/70">{current.caption}</span>
               </p>
               <button type="button" onClick={close} className="-mr-3 inline-flex h-12 items-center gap-3 px-3 hover:text-rose-light" autoFocus>
-                Close
+                Zamknij
                 <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16">
                   <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="1.4" />
                 </svg>
@@ -110,10 +110,10 @@ export function Gallery({ items }: { items: GalleryItem[] }) {
                 <svg aria-hidden="true" width="28" height="10" viewBox="0 0 28 10">
                   <path d="M27 5H2M6 1L2 5l4 4" stroke="currentColor" fill="none" strokeWidth="1.2" />
                 </svg>
-                Previous
+                Poprzednie
               </button>
               <button type="button" onClick={() => step(1)} className="inline-flex h-12 items-center gap-3 text-sm hover:text-rose-light">
-                Next
+                Następne
                 <svg aria-hidden="true" width="28" height="10" viewBox="0 0 28 10">
                   <path d="M1 5h25M22 1l4 4-4 4" stroke="currentColor" fill="none" strokeWidth="1.2" />
                 </svg>

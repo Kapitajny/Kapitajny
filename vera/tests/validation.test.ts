@@ -4,8 +4,8 @@ import { formDataToObject, normalizePhone, validateConsultation, validateContact
 const NOW = new Date("2026-10-30T10:00:00Z");
 
 const validConsultation = {
-  category: "skin-treatments",
-  treatment: "chemical-peel",
+  category: "zabiegi-na-skore",
+  treatment: "peeling-chemiczny",
   firstVisit: "yes",
   days: ["tue", "thu"],
   timeOfDay: "evening",
@@ -48,14 +48,14 @@ describe("validateConsultation", () => {
   it("accepts a complete request", () => {
     const { data, errors } = validateConsultation(validConsultation, NOW);
     expect(errors).toEqual({});
-    expect(data).toMatchObject({ treatment: "chemical-peel", firstVisit: true, phone: "+48600100200", email: "anna@example.com", days: ["tue", "thu"] });
+    expect(data).toMatchObject({ treatment: "peeling-chemiczny", firstVisit: true, phone: "+48600100200", email: "anna@example.com", days: ["tue", "thu"] });
   });
   it("rejects a treatment from another category", () => {
-    const { errors } = validateConsultation({ ...validConsultation, treatment: "signature-facial" }, NOW);
-    expect(errors.treatment).toMatch(/another area/);
+    const { errors } = validateConsultation({ ...validConsultation, treatment: "rytual-vera" }, NOW);
+    expect(errors.treatment).toMatch(/innego obszaru/);
   });
   it("allows any treatment when the client is not sure of the area", () => {
-    const { errors } = validateConsultation({ ...validConsultation, category: "not-sure", treatment: "signature-facial" }, NOW);
+    const { errors } = validateConsultation({ ...validConsultation, category: "not-sure", treatment: "rytual-vera" }, NOW);
     expect(errors).toEqual({});
   });
   it("requires a phone number and consent", () => {
@@ -75,9 +75,9 @@ describe("validateDateFrom", () => {
     expect(validateDateFrom("2027-04-30", NOW)).toBeUndefined();
   });
   it("rejects past and far-future dates", () => {
-    expect(validateDateFrom("2026-10-29", NOW)).toMatch(/passed/);
-    expect(validateDateFrom("2027-05-01", NOW)).toMatch(/six months/);
-    expect(validateDateFrom("30/10/2026", NOW)).toMatch(/calendar/);
+    expect(validateDateFrom("2026-10-29", NOW)).toMatch(/minęła/);
+    expect(validateDateFrom("2027-05-01", NOW)).toMatch(/sześciu miesięcy/);
+    expect(validateDateFrom("30/10/2026", NOW)).toMatch(/kalendarza/);
   });
 });
 

@@ -3,17 +3,17 @@ import { IMAGES, imageFocus, imageSrc, type ImageKey } from "@/config/images";
 
 interface PhotoProps {
   image: ImageKey;
-  /** Responsive sizes hint for next/image. */
+  /** Podpowiedź rozmiarów dla next/image. */
   sizes: string;
   className?: string;
   imgClassName?: string;
   priority?: boolean;
-  /** Decorative use (alt is announced elsewhere or repeats nearby text). */
+  /** Użycie dekoracyjne (opis jest obok lub powtarzałby pobliski tekst). */
   decorative?: boolean;
   focus?: string;
 }
 
-/** A cropped photo that fills its box. The box sets the aspect ratio. */
+/** Kadrowane zdjęcie wypełniające swój kontener; proporcje wyznacza kontener. */
 export function Photo({ image, sizes, className = "", imgClassName = "", priority, decorative, focus }: PhotoProps) {
   const entry = IMAGES[image];
   return (

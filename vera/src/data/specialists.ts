@@ -2,9 +2,9 @@ import type { ImageKey } from "@/config/images";
 import type { CategorySlug } from "./treatments";
 
 /**
- * The team shown on the site. These are fictional people for the concept –
- * names, roles and biographies must be replaced with the studio's real staff,
- * and any credentials added only from documents the staff provide.
+ * Zespół pokazany na stronie. To osoby fikcyjne na potrzeby konceptu – imiona, role i biogramy
+ * trzeba zastąpić danymi prawdziwego zespołu, a ewentualne kwalifikacje dodać wyłącznie
+ * na podstawie dokumentów dostarczonych przez pracowników.
  */
 
 export interface Specialist {
@@ -12,11 +12,11 @@ export interface Specialist {
   name: string;
   role: string;
   image: ImageKey;
-  /** Short line used on the home page. */
+  /** Krótka linijka na stronę główną. */
   short: string;
   bio: string[];
   areas: CategorySlug[];
-  /** In their own words – a sentence about how they work. */
+  /** Własnymi słowami – zdanie o tym, jak pracuje. */
   quote: string;
 }
 
@@ -24,40 +24,40 @@ export const specialists: Specialist[] = [
   {
     slug: "helena-mroz",
     name: "Helena Mróz",
-    role: "Physician, aesthetic medicine",
+    role: "Lekarz medycyny estetycznej",
     image: "specialistPhysician",
-    short: "Leads every aesthetic medicine procedure, from the first interview to the follow-up.",
+    short: "Prowadzi każdy zabieg medycyny estetycznej – od pierwszego wywiadu po wizytę kontrolną.",
     bio: [
-      "Helena performs all aesthetic medicine procedures at VÉRA. She begins every new client relationship with a medical interview and a frank conversation about expectations.",
-      "Her approach is incremental: small changes, reviewed together, rather than a single large one.",
+      "Helena wykonuje wszystkie zabiegi medycyny estetycznej w VÉRA. Każdą nową współpracę zaczyna od wywiadu medycznego i szczerej rozmowy o oczekiwaniach.",
+      "Pracuje stopniowo: małe zmiany, oceniane wspólnie, zamiast jednej dużej.",
     ],
-    areas: ["aesthetic-medicine", "skin-consultation"],
-    quote: "The best result is one your friends can't name – they just say you look well.",
+    areas: ["medycyna-estetyczna", "konsultacja-skory"],
+    quote: "Najlepszy efekt to taki, którego znajomi nie potrafią nazwać – mówią po prostu, że dobrze wyglądasz.",
   },
   {
     slug: "julia-sowa",
     name: "Julia Sowa",
-    role: "Cosmetologist",
+    role: "Kosmetolog",
     image: "specialistCosmetologist",
-    short: "Designs our facials and hand rituals, and the home-care plans that go with them.",
+    short: "Projektuje nasze zabiegi na twarz i rytuały dłoni oraz plany pielęgnacji domowej.",
     bio: [
-      "Julia is responsible for professional cosmetology at the studio: facials, massage and hand care.",
-      "She believes that what happens at home between visits matters as much as the visit itself, and keeps her recommendations short enough to follow.",
+      "Julia odpowiada w studiu za kosmetologię profesjonalną: zabiegi na twarz, masaż i pielęgnację dłoni.",
+      "Uważa, że to, co dzieje się w domu między wizytami, jest równie ważne jak sama wizyta – dlatego jej zalecenia są na tyle krótkie, by dało się ich trzymać.",
     ],
-    areas: ["professional-cosmetology", "skin-treatments"],
-    quote: "Three good products used every day do more than ten used now and then.",
+    areas: ["kosmetologia", "zabiegi-na-skore"],
+    quote: "Trzy dobre produkty używane codziennie dają więcej niż dziesięć używanych od czasu do czasu.",
   },
   {
     slug: "adam-lis",
     name: "Adam Lis",
-    role: "Skin specialist",
+    role: "Specjalista ds. skóry",
     image: "specialistSkin",
-    short: "Runs skin consultations and plans peel and microneedling courses.",
+    short: "Prowadzi konsultacje skóry i planuje serie peelingów oraz mikroigłowania.",
     bio: [
-      "Adam meets most new clients first, during the skin consultation. He plans courses of peels and microneedling and adjusts them across the seasons.",
-      "He is the one most likely to suggest waiting, or doing less.",
+      "Większość nowych klientów najpierw poznaje Adama – podczas konsultacji skóry. Planuje serie peelingów i mikroigłowania i dopasowuje je do pór roku.",
+      "To on najczęściej proponuje, żeby poczekać albo zrobić mniej.",
     ],
-    areas: ["skin-consultation", "skin-treatments"],
-    quote: "A plan is only good if it still makes sense in February and in July.",
+    areas: ["konsultacja-skory", "zabiegi-na-skore"],
+    quote: "Plan jest dobry tylko wtedy, gdy ma sens i w lutym, i w lipcu.",
   },
 ];

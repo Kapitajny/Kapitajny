@@ -6,10 +6,10 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Photo } from "@/components/ui/Photo";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: "Address, opening hours, phone and e-mail of VÉRA Aesthetic Studio, and a form to send us a message.",
-  alternates: { canonical: "/contact" },
-  openGraph: { title: "Contact | VÉRA Aesthetic Studio", url: "/contact" },
+  title: "Kontakt",
+  description: "Adres, godziny otwarcia, telefon i e-mail VÉRA Aesthetic Studio oraz formularz kontaktowy.",
+  alternates: { canonical: "/kontakt" },
+  openGraph: { title: "Kontakt | VÉRA Aesthetic Studio", url: "/kontakt" },
 };
 
 export default function ContactPage() {
@@ -19,15 +19,15 @@ export default function ContactPage() {
       <section className="shell pb-20 pt-[calc(var(--header-h)+3rem)] lg:pt-[calc(var(--header-h)+5rem)]">
         <Breadcrumbs
           items={[
-            { href: "/", label: "Home" },
-            { href: "/contact", label: "Contact" },
+            { href: "/", label: "Strona główna" },
+            { href: "/kontakt", label: "Kontakt" },
           ]}
         />
-        <h1 className="display mt-10 text-[clamp(3.5rem,13vw,12rem)] text-burgundy">Contact</h1>
+        <h1 className="display mt-10 text-[clamp(3.5rem,13vw,12rem)] text-burgundy">Kontakt</h1>
 
         <div className="mt-12 grid gap-px border-y border-black bg-line sm:grid-cols-2 lg:grid-cols-4">
           <div className="bg-ivory py-8 sm:pr-8">
-            <h2 className="text-xs font-semibold text-stone">Phone</h2>
+            <h2 className="text-xs font-semibold text-stone">Telefon</h2>
             <a href={contact.phoneHref} className="mt-3 block font-serif text-3xl hover:text-burgundy">
               {contact.phone}
             </a>
@@ -39,21 +39,21 @@ export default function ContactPage() {
             </a>
           </div>
           <div className="bg-ivory py-8 sm:pr-8 lg:px-8">
-            <h2 className="text-xs font-semibold text-stone">Address</h2>
+            <h2 className="text-xs font-semibold text-stone">Adres</h2>
             <address className="mt-3 font-serif text-2xl not-italic leading-snug">
               {address.street}
               <br />
               {address.postalCode} {address.city}
             </address>
             <a href={address.mapsUrl} target="_blank" rel="noopener noreferrer" className="link-line mt-3 inline-block text-sm font-semibold text-burgundy">
-              Get directions<span className="sr-only"> (opens Google Maps in a new tab)</span>
+              Wyznacz trasę<span className="sr-only"> (otwiera Mapy Google w nowej karcie)</span>
             </a>
           </div>
           <div className="bg-ivory py-8 sm:pl-8">
             <h2 className="text-xs font-semibold text-stone">Instagram</h2>
             <a href={contact.instagramUrl} target="_blank" rel="noopener noreferrer" className="mt-3 block font-serif text-2xl hover:text-burgundy">
               {contact.instagramHandle}
-              <span className="sr-only"> (opens in a new tab)</span>
+              <span className="sr-only"> (otwiera się w nowej karcie)</span>
             </a>
           </div>
         </div>
@@ -62,12 +62,12 @@ export default function ContactPage() {
       <section aria-labelledby="message-title" className="shell grid gap-16 pb-28 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-4">
           <h2 id="message-title" className="font-serif text-4xl sm:text-5xl">
-            Send a message
+            Napisz do nas
           </h2>
           <p className="mt-5 text-stone">
-            For questions about treatments, an existing appointment or anything else. To arrange a first visit, use the{" "}
+            W sprawie zabiegów, umówionej wizyty lub czegokolwiek innego. Aby umówić pierwszą wizytę, skorzystaj z{" "}
             <Link href={bookingHref} className="text-burgundy underline underline-offset-[3px]">
-              consultation request
+              zapytania o konsultację
             </Link>
             .
           </p>

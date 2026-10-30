@@ -5,7 +5,7 @@ export function Breadcrumbs({ items, className = "" }: { items: { href: string; 
   return (
     <>
       <JsonLd data={breadcrumbJsonLd(items)} />
-      <nav aria-label="Breadcrumb" className={`text-xs text-stone ${className}`}>
+      <nav aria-label="Okruszki" className={`text-xs text-stone ${className}`}>
         <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
           {items.map((item, i) => {
             const last = i === items.length - 1;

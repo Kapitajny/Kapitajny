@@ -13,33 +13,33 @@ export function generateStaticParams() {
   return treatments.map((t) => ({ slug: t.slug }));
 }
 
-export async function generateMetadata({ params }: PageProps<"/treatments/[slug]">): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps<"/zabiegi/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const treatment = getTreatment(slug);
   if (!treatment) return {};
   const category = getCategory(treatment.category);
   return {
     title: treatment.name === category.name ? treatment.name : `${treatment.name} – ${category.name}`,
-    description: `${treatment.lede} Consultation, indications, contraindications and qualification at VÉRA Aesthetic Studio.`,
-    alternates: { canonical: `/treatments/${treatment.slug}` },
-    openGraph: { title: `${treatment.name} | VÉRA Aesthetic Studio`, description: treatment.lede, url: `/treatments/${treatment.slug}`, type: "article" },
+    description: `${treatment.lede} Konsultacja, wskazania, przeciwwskazania i kwalifikacja – VÉRA Aesthetic Studio.`,
+    alternates: { canonical: `/zabiegi/${treatment.slug}` },
+    openGraph: { title: `${treatment.name} | VÉRA Aesthetic Studio`, description: treatment.lede, url: `/zabiegi/${treatment.slug}`, type: "article" },
   };
 }
 
 const sections = [
-  { id: "description", label: "Description" },
-  { id: "consultation", label: "Consultation and visit" },
-  { id: "indications", label: "Indications and contraindications" },
-  { id: "qualification", label: "Qualification" },
+  { id: "opis", label: "Opis" },
+  { id: "przebieg", label: "Konsultacja i przebieg" },
+  { id: "wskazania", label: "Wskazania i przeciwwskazania" },
+  { id: "kwalifikacja", label: "Kwalifikacja" },
 ];
 
-export default async function TreatmentPage({ params }: PageProps<"/treatments/[slug]">) {
+export default async function TreatmentPage({ params }: PageProps<"/zabiegi/[slug]">) {
   const { slug } = await params;
   const treatment = getTreatment(slug);
   if (!treatment) notFound();
   const category = getCategory(treatment.category);
   const related = treatmentsIn(treatment.category).filter((t) => t.slug !== treatment.slug);
-  const bookHref = `${bookingHref}?treatment=${treatment.slug}`;
+  const bookHref = `${bookingHref}?zabieg=${treatment.slug}`;
 
   return (
     <article>
@@ -47,31 +47,31 @@ export default async function TreatmentPage({ params }: PageProps<"/treatments/[
         <div className="lg:col-span-7">
           <Breadcrumbs
             items={[
-              { href: "/", label: "Home" },
-              { href: "/treatments", label: "Treatments" },
-              { href: `/treatments/${treatment.slug}`, label: treatment.name },
+              { href: "/", label: "Strona główna" },
+              { href: "/zabiegi", label: "Zabiegi" },
+              { href: `/zabiegi/${treatment.slug}`, label: treatment.name },
             ]}
           />
-          <Link href={`/treatments#${category.slug}`} className="mt-10 inline-block text-sm font-medium text-rose-deep hover:text-burgundy">
+          <Link href={`/zabiegi#${category.slug}`} className="mt-10 inline-block text-sm font-medium text-rose-deep hover:text-burgundy">
             {category.name}
           </Link>
           <h1 className="display mt-4 text-[clamp(3rem,7.5vw,7rem)] text-burgundy">{treatment.name}</h1>
           <p className="lede mt-8 text-black/85">{treatment.lede}</p>
           <dl className="mt-10 grid max-w-xl grid-cols-2 gap-6 border-t border-black pt-6">
             <div>
-              <dt className="text-xs text-stone">Duration</dt>
+              <dt className="text-xs text-stone">Czas trwania</dt>
               <dd className="mt-1 font-serif text-2xl">{treatment.duration}</dd>
             </div>
             <div>
-              <dt className="text-xs text-stone">Usual course</dt>
+              <dt className="text-xs text-stone">Zwykły przebieg</dt>
               <dd className="mt-1 text-sm leading-relaxed">{treatment.course}</dd>
             </div>
           </dl>
           <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
             <Link href={bookHref} className="btn btn-primary">
-              Book a consultation
+              Umów konsultację
             </Link>
-            <span className="text-sm text-stone">Price confirmed at the consultation.</span>
+            <span className="text-sm text-stone">Cenę potwierdzamy podczas konsultacji.</span>
           </div>
         </div>
         <div className="lg:col-span-4 lg:col-start-9">
@@ -80,7 +80,7 @@ export default async function TreatmentPage({ params }: PageProps<"/treatments/[
       </header>
 
       <div className="shell grid gap-12 pb-24 lg:grid-cols-12 lg:gap-8 lg:pb-32">
-        <nav aria-label="On this page" className="hidden lg:col-span-3 lg:block">
+        <nav aria-label="Na tej stronie" className="hidden lg:col-span-3 lg:block">
           <ul className="sticky top-[calc(var(--header-h)+2rem)] space-y-3 border-l border-line pl-5 text-sm">
             {sections.map((s) => (
               <li key={s.id}>
@@ -93,9 +93,9 @@ export default async function TreatmentPage({ params }: PageProps<"/treatments/[
         </nav>
 
         <div className="space-y-24 lg:col-span-8 lg:col-start-5">
-          <section id="description" aria-labelledby="description-title">
-            <h2 id="description-title" className="font-serif text-4xl sm:text-5xl">
-              Description
+          <section id="opis" aria-labelledby="opis-title">
+            <h2 id="opis-title" className="font-serif text-4xl sm:text-5xl">
+              Opis
             </h2>
             <div className="mt-6 max-w-2xl space-y-5 text-lg leading-relaxed text-black/85">
               {treatment.description.map((p) => (
@@ -104,9 +104,9 @@ export default async function TreatmentPage({ params }: PageProps<"/treatments/[
             </div>
           </section>
 
-          <section id="consultation" aria-labelledby="consultation-title">
-            <h2 id="consultation-title" className="font-serif text-4xl sm:text-5xl">
-              Consultation and visit
+          <section id="przebieg" aria-labelledby="przebieg-title">
+            <h2 id="przebieg-title" className="font-serif text-4xl sm:text-5xl">
+              Konsultacja i przebieg
             </h2>
             <ol className="mt-10 grid gap-x-10 gap-y-10 sm:grid-cols-2">
               {treatment.process.map((step, i) => (
@@ -121,13 +121,13 @@ export default async function TreatmentPage({ params }: PageProps<"/treatments/[
             </ol>
           </section>
 
-          <section id="indications" aria-labelledby="indications-title">
-            <h2 id="indications-title" className="sr-only">
-              Indications and contraindications
+          <section id="wskazania" aria-labelledby="wskazania-title">
+            <h2 id="wskazania-title" className="sr-only">
+              Wskazania i przeciwwskazania
             </h2>
             <div className="grid gap-12 sm:grid-cols-2 sm:gap-10">
               <div>
-                <h3 className="font-serif text-3xl sm:text-4xl">Indications</h3>
+                <h3 className="font-serif text-3xl sm:text-4xl">Wskazania</h3>
                 <ul className="mt-6 divide-y divide-line border-y border-line">
                   {treatment.indications.map((item) => (
                     <li key={item} className="py-4">
@@ -137,7 +137,7 @@ export default async function TreatmentPage({ params }: PageProps<"/treatments/[
                 </ul>
               </div>
               <div>
-                <h3 className="font-serif text-3xl sm:text-4xl">Contraindications</h3>
+                <h3 className="font-serif text-3xl sm:text-4xl">Przeciwwskazania</h3>
                 <ul className="mt-6 divide-y divide-line border-y border-line">
                   {treatment.contraindications.map((item) => (
                     <li key={item} className="py-4">
@@ -145,24 +145,24 @@ export default async function TreatmentPage({ params }: PageProps<"/treatments/[
                     </li>
                   ))}
                 </ul>
-                <p className="mt-4 text-sm text-stone">This list is not exhaustive. The specialist confirms contraindications during your visit.</p>
+                <p className="mt-4 text-sm text-stone">Lista nie jest wyczerpująca. Specjalista potwierdza przeciwwskazania podczas wizyty.</p>
               </div>
             </div>
           </section>
 
-          <section id="qualification" aria-labelledby="qualification-title" className="bg-burgundy px-6 py-12 text-ivory sm:px-12 sm:py-14">
-            <h2 id="qualification-title" className="font-serif text-4xl sm:text-5xl">
-              Qualification
+          <section id="kwalifikacja" aria-labelledby="kwalifikacja-title" className="bg-burgundy px-6 py-12 text-ivory sm:px-12 sm:py-14">
+            <h2 id="kwalifikacja-title" className="font-serif text-4xl sm:text-5xl">
+              Kwalifikacja
             </h2>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ivory/85">{treatment.qualification}</p>
             <Link href={bookHref} className="btn btn-light mt-10">
-              Book a consultation
+              Umów konsultację
             </Link>
           </section>
 
           <DemoNote>
-            Demonstration content. The description, indications and contraindications must be reviewed and approved by the studio&apos;s medical staff before
-            publication. Results vary between people and are never guaranteed.
+            Treść demonstracyjna. Opis, wskazania i przeciwwskazania musi przed publikacją sprawdzić i zatwierdzić personel medyczny studia. Efekty różnią się
+            u poszczególnych osób i nigdy nie są gwarantowane.
           </DemoNote>
         </div>
       </div>
@@ -171,12 +171,12 @@ export default async function TreatmentPage({ params }: PageProps<"/treatments/[
         <aside aria-labelledby="related-title" className="border-t border-line">
           <div className="shell py-20">
             <h2 id="related-title" className="font-serif text-3xl">
-              Also in {category.name.toLowerCase()}
+              Więcej w kategorii: {category.name.toLowerCase()}
             </h2>
             <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {related.map((t) => (
                 <li key={t.slug}>
-                  <Link href={`/treatments/${t.slug}`} className="group block border-t border-black pt-5">
+                  <Link href={`/zabiegi/${t.slug}`} className="group block border-t border-black pt-5">
                     <span className="block font-serif text-2xl group-hover:text-burgundy">{t.name}</span>
                     <span className="mt-2 block text-sm text-stone">{t.lede}</span>
                   </Link>

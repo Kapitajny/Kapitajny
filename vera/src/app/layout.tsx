@@ -22,7 +22,7 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "VÉRA Aesthetic Studio – aesthetic medicine and professional skin care",
+    default: "VÉRA Aesthetic Studio – medycyna estetyczna i profesjonalna pielęgnacja skóry",
     template: "%s | VÉRA Aesthetic Studio",
   },
   description: siteConfig.description,
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    locale: "en_GB",
+    locale: "pl_PL",
     siteName: siteConfig.fullName,
     title: "VÉRA Aesthetic Studio",
     description: siteConfig.description,
@@ -49,10 +49,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${manrope.variable}`}>
+    <html lang="pl" className={`${cormorant.variable} ${manrope.variable}`}>
       <body className="flex min-h-dvh flex-col">
         <a href="#content" className="sr-only z-[70] bg-burgundy px-5 py-3 text-sm text-ivory focus:not-sr-only focus:fixed focus:left-4 focus:top-4">
-          Skip to content
+          Przejdź do treści
         </a>
         <SiteHeader />
         <main id="content" tabIndex={-1} className="flex-1 focus:outline-none">

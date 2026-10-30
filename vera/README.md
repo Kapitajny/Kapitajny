@@ -1,6 +1,6 @@
 # VÉRA Aesthetic Studio – strona internetowa
 
-Strona fikcyjnego studia medycyny estetycznej i profesjonalnej pielęgnacji skóry. Hasło marki: *Your beauty. Your identity.*
+Strona fikcyjnego studia medycyny estetycznej i profesjonalnej pielęgnacji skóry. Hasło marki: *Twoje piękno. Twoja tożsamość.* (z briefu: *Your beauty. Your identity.*)
 
 > **Koncept demonstracyjny agencji ComputerIT.** Studio, zespół, adres, telefon, e-mail i Instagram są fikcyjne
 > (placeholdery). Opisy zabiegów, wskazania i przeciwwskazania mają charakter poglądowy i przed publikacją wymagają
@@ -36,21 +36,21 @@ npm run lint && npm run typecheck && npm test && npm run build
 - **next/og** – grafika Open Graph generowana z krojów marki (`@fontsource`)
 - **Vitest** – testy walidacji formularzy
 
-Język strony: angielski (zgodnie z briefem – nazwy sekcji, menu i CTA po angielsku).
+Język strony: polski (treści, menu, formularze, komunikaty i adresy podstron).
 
 ## Podstrony
 
 | Adres | Zawartość |
 | --- | --- |
-| `/` | hero kampanijne, filozofia, wybrane zabiegi, „The VÉRA experience”, specjaliści, galeria z lightboxem, journal, kontakt |
-| `/about` | historia nazwy, podejście, „czego nie robimy”, przestrzeń studia |
-| `/treatments` | cztery kategorie – każda z własnym układem (burgund + lista, tabela, kolumny zdjęć, oferta konsultacji) |
-| `/treatments/[slug]` | 10 zabiegów: opis, przebieg konsultacji i wizyty, wskazania, przeciwwskazania, kwalifikacja, CTA |
-| `/specialists` | trzy osoby (fikcyjne), naprzemienne portrety |
-| `/journal`, `/journal/[slug]` | trzy artykuły |
-| `/contact` | dane kontaktowe, godziny, formularz kontaktowy |
-| `/book` | zapytanie o konsultację (zabieg można wybrać z adresu: `/book?treatment=chemical-peel`) |
-| `/privacy-policy` | projekt polityki prywatności |
+| `/` | hero kampanijne, filozofia, wybrane zabiegi, „Wizyta w VÉRA”, specjaliści, galeria z lightboxem, magazyn, kontakt |
+| `/o-nas` | historia nazwy, podejście, „czego nie robimy”, przestrzeń studia |
+| `/zabiegi` | cztery kategorie – każda z własnym układem (burgund + lista, tabela, kolumny zdjęć, oferta konsultacji) |
+| `/zabiegi/[slug]` | 10 zabiegów: opis, przebieg konsultacji i wizyty, wskazania, przeciwwskazania, kwalifikacja, CTA |
+| `/specjalisci` | trzy osoby (fikcyjne), naprzemienne portrety |
+| `/magazyn`, `/magazyn/[slug]` | trzy artykuły |
+| `/kontakt` | dane kontaktowe, godziny, formularz kontaktowy |
+| `/konsultacja` | zapytanie o konsultację (zabieg można wybrać z adresu: `/konsultacja?zabieg=peeling-chemiczny`) |
+| `/polityka-prywatnosci` | projekt polityki prywatności |
 
 Do tego: strona 404, `sitemap.xml`, `robots.txt`, manifest, ikona, grafika Open Graph, dane strukturalne JSON-LD
 (BeautySalon, BreadcrumbList, Article).
@@ -61,11 +61,11 @@ Do tego: strona 404, `sitemap.xml`, `robots.txt`, manifest, ikona, grafika Open 
 
 - W nagłówku tylko logo i przycisk z trzech poziomych kresek (środkowa krótsza; wydłuża się po najechaniu).
 - Po kliknięciu burgundowy panel rozwija się od górnej krawędzi (`clip-path`), na desktopie ma ~84% wysokości
-  ekranu, na telefonie pełną wysokość. Pozycje „01 — HOME … 06 — CONTACT” wysuwają się z masek z opóźnieniem (stagger),
+  ekranu, na telefonie pełną wysokość. Pozycje „01 — STRONA GŁÓWNA … 06 — KONTAKT” wysuwają się z masek z opóźnieniem (stagger),
   przycisk zamienia się w X, logo zostaje widoczne.
 - Hover/fokus: pozostałe pozycje przygasają, wskazana przesuwa się, kreska się wydłuża, a po prawej (desktop)
   zmienia się podgląd zdjęcia docelowej podstrony.
-- Na dole panelu: „Book your visit”, telefon, e-mail i Instagram (placeholdery).
+- Na dole panelu: „Umów wizytę”, telefon, e-mail i Instagram (placeholdery).
 - Dostępność: `aria-expanded`, `aria-controls`, zmienna etykieta przycisku, `aria-current` dla bieżącej strony,
   panel `inert` gdy zamknięty, fokus zamknięty w nagłówku, Escape zamyka i zwraca fokus do przycisku, kliknięcie
   w tło zamyka, blokada przewijania z kompensacją paska przewijania, `prefers-reduced-motion`.
@@ -86,6 +86,11 @@ Do tego: strona 404, `sitemap.xml`, `robots.txt`, manifest, ikona, grafika Open 
 Charakterystyczne elementy: nagłówki z przesuniętą drugą linią, akcent „É” w logotypie rysowany jako kreska,
 przekrojony wielki logotyp w stopce. Ruch: jedna sekwencja wejścia w hero; pozostałe animacje odpowiadają na
 działania użytkownika (menu, hover, lightbox).
+
+## Podgląd online
+
+Statyczny podgląd wszystkich podstron (bez serwera; formularze w podglądzie nie wysyłają danych):
+https://claude.ai/artifact/WB9kntBJGvk4P5ftazTgbc – prywatny, udostępnia się go z menu „Share” na stronie.
 
 ## Zdjęcia
 
@@ -108,7 +113,7 @@ pracownicy studia.
   Bez JavaScriptu formularze nadal działają. Pole-pułapka na boty i limit prób.
 - Zgłoszenia trafiają do `FORMS_WEBHOOK_URL` (JSON z typem `contact` / `consultation`).
   **Bez tej zmiennej formularz mówi wprost, że nic nie zostało wysłane**, i podaje telefon oraz e-mail.
-- Strona nie udaje rezerwacji: formularz `/book` to zapytanie, studio oddzwania z terminem. Po ustawieniu
+- Strona nie udaje rezerwacji: formularz `/konsultacja` to zapytanie, studio oddzwania z terminem. Po ustawieniu
   `NEXT_PUBLIC_BOOKING_URL` pojawia się przycisk do zewnętrznego kalendarza (np. Booksy).
 
 Zmienne środowiskowe: `.env.example`. Indeksowanie w wyszukiwarkach jest wyłączone, dopóki

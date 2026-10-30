@@ -3,9 +3,9 @@ import "server-only";
 export type DeliveryResult = "sent" | "not_configured" | "failed";
 
 /**
- * Forwards a form submission to the studio's systems through a webhook (FORMS_WEBHOOK_URL) –
- * e.g. a Make/Zapier/n8n scenario that e-mails reception, a CRM or a booking system.
- * Without this setting the submission is NOT stored anywhere, and the page says so plainly.
+ * Przekazuje zgłoszenie z formularza do systemu studia przez webhook (FORMS_WEBHOOK_URL) –
+ * np. scenariusz Make/Zapier/n8n wysyłający e-mail do recepcji, CRM albo system rezerwacji.
+ * Bez tej konfiguracji zgłoszenie NIE jest nigdzie zapisywane – strona mówi o tym wprost.
  */
 export async function deliverSubmission(type: "contact" | "consultation", data: unknown): Promise<DeliveryResult> {
   const url = process.env.FORMS_WEBHOOK_URL?.trim();

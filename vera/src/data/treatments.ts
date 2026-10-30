@@ -1,16 +1,16 @@
 import type { ImageKey } from "@/config/images";
 
 /**
- * Treatment catalogue. Medical content is illustrative for this concept and must be
- * reviewed and approved by the studio's medical staff before publication.
+ * Katalog zabiegów. Treści medyczne są poglądowe (koncept) i przed publikacją muszą zostać
+ * sprawdzone i zatwierdzone przez personel medyczny studia.
  */
 
-export type CategorySlug = "aesthetic-medicine" | "skin-treatments" | "professional-cosmetology" | "skin-consultation";
+export type CategorySlug = "medycyna-estetyczna" | "zabiegi-na-skore" | "kosmetologia" | "konsultacja-skory";
 
 export interface Category {
   slug: CategorySlug;
   name: string;
-  /** One sentence used in lists and the home page. */
+  /** Jedno zdanie do list i strony głównej. */
   summary: string;
   intro: string;
   image: ImageKey;
@@ -23,9 +23,9 @@ export interface Treatment {
   lede: string;
   description: string[];
   duration: string;
-  /** How the visit is usually planned – a description, not a promise. */
+  /** Jak zwykle planujemy wizyty – opis, nie obietnica. */
   course: string;
-  /** Ordered steps of the visit. */
+  /** Kolejne etapy wizyty. */
   process: { title: string; text: string }[];
   indications: string[];
   contraindications: string[];
@@ -35,286 +35,277 @@ export interface Treatment {
 
 export const categories: Category[] = [
   {
-    slug: "aesthetic-medicine",
-    name: "Aesthetic medicine",
-    summary: "Physician-led procedures that work with your proportions, never against them.",
+    slug: "medycyna-estetyczna",
+    name: "Medycyna estetyczna",
+    summary: "Zabiegi wykonywane przez lekarza, które pracują z Twoimi proporcjami, a nie przeciw nim.",
     intro:
-      "Every aesthetic medicine procedure at VÉRA is performed by a physician and preceded by a medical interview. We plan in small, measured steps and agree on the result before anything is done.",
+      "Każdy zabieg medycyny estetycznej w VÉRA wykonuje lekarz i poprzedza go wywiad medyczny. Planujemy małymi, przemyślanymi krokami i ustalamy efekt, zanim cokolwiek zostanie zrobione.",
     image: "assessment",
   },
   {
-    slug: "skin-treatments",
-    name: "Skin treatments",
-    summary: "Peels and microneedling planned as a course, matched to season and skin type.",
+    slug: "zabiegi-na-skore",
+    name: "Zabiegi na skórę",
+    summary: "Peelingi i mikroigłowanie planowane jako seria, dopasowane do pory roku i rodzaju skóry.",
     intro:
-      "Treatments that renew the skin's surface and support its structure. We plan them as a course, adjust them to the season and always pair them with home care you can actually keep up.",
+      "Zabiegi, które odnawiają powierzchnię skóry i wspierają jej strukturę. Planujemy je jako serię, dopasowujemy do pory roku i zawsze łączymy z pielęgnacją domową, którą da się utrzymać.",
     image: "serum",
   },
   {
-    slug: "professional-cosmetology",
-    name: "Professional cosmetology",
-    summary: "Facials, massage and hand care performed by cosmetologists, unhurried and precise.",
+    slug: "kosmetologia",
+    name: "Kosmetologia profesjonalna",
+    summary: "Zabiegi na twarz, masaż i pielęgnacja dłoni w wykonaniu kosmetologów – bez pośpiechu i z precyzją.",
     intro:
-      "Hands-on care for the face and hands. Each ritual begins with a short skin check, so the products and techniques suit how your skin looks on the day, not on paper.",
+      "Pielęgnacja twarzy i dłoni wykonywana ręcznie. Każdy rytuał zaczyna się od krótkiej oceny skóry, aby produkty i techniki pasowały do tego, jak skóra wygląda tego dnia – a nie na papierze.",
     image: "facialRitual",
   },
   {
-    slug: "skin-consultation",
-    name: "Skin consultation",
-    summary: "An hour to understand your skin before deciding on any treatment.",
+    slug: "konsultacja-skory",
+    name: "Konsultacja skóry",
+    summary: "Godzina na zrozumienie Twojej skóry, zanim zdecydujesz o jakimkolwiek zabiegu.",
     intro:
-      "The starting point for most of our clients. A specialist assesses your skin, listens to what you want to change and proposes a plan – including the option of doing nothing at all.",
+      "Punkt wyjścia dla większości naszych klientek i klientów. Specjalista ocenia skórę, słucha, co chcesz zmienić, i proponuje plan – łącznie z opcją, by nie robić nic.",
     image: "consultation",
   },
 ];
 
-const standardMedicalContra = [
-  "Pregnancy and breastfeeding",
-  "Active skin infection, inflammation or cold sores in the treatment area",
-  "Uncontrolled systemic illness or fever",
-];
+const standardMedicalContra = ["Ciąża i karmienie piersią", "Aktywna infekcja, stan zapalny lub opryszczka w miejscu zabiegu", "Nieustabilizowana choroba ogólnoustrojowa lub gorączka"];
 
 export const treatments: Treatment[] = [
-  /* ───────────── Aesthetic medicine ───────────── */
+  /* ───────────── Medycyna estetyczna ───────────── */
   {
-    slug: "wrinkle-relaxing-treatment",
-    name: "Wrinkle relaxing treatment",
-    category: "aesthetic-medicine",
-    lede: "Softening of expression lines on the forehead, between the brows and around the eyes, planned to keep your face expressive.",
+    slug: "redukcja-zmarszczek-mimicznych",
+    name: "Redukcja zmarszczek mimicznych",
+    category: "medycyna-estetyczna",
+    lede: "Wygładzenie zmarszczek na czole, między brwiami i wokół oczu – zaplanowane tak, by twarz zachowała naturalną mimikę.",
     description: [
-      "A prescription preparation is injected in very small doses into selected muscles to reduce how strongly they contract. Lines formed by repeated expressions become less visible over the following days.",
-      "We aim for a rested face rather than a frozen one. The dose and the points are planned with you in front of a mirror, and a follow-up visit is part of the plan.",
+      "Preparat na receptę podaje się w bardzo małych dawkach do wybranych mięśni, aby zmniejszyć siłę ich skurczu. Zmarszczki powstające przy powtarzanej mimice stają się w kolejnych dniach mniej widoczne.",
+      "Dążymy do wypoczętej twarzy, a nie nieruchomej. Dawki i punkty planujemy razem z Tobą przed lustrem, a wizyta kontrolna jest częścią planu.",
     ],
-    duration: "30 minutes",
-    course: "One session with a follow-up visit about two weeks later",
+    duration: "30 minut",
+    course: "Jedna wizyta i kontrola po około dwóch tygodniach",
     process: [
-      { title: "Medical interview", text: "The physician asks about your health, medication and any previous procedures." },
-      { title: "Facial analysis", text: "We look at your expressions together and agree which lines to soften and which to keep." },
-      { title: "Treatment", text: "Small doses are placed with a fine needle. Most people describe it as brief pinpricks." },
-      { title: "Follow-up", text: "About two weeks later we review the result and decide whether any adjustment is needed." },
+      { title: "Wywiad medyczny", text: "Lekarz pyta o zdrowie, przyjmowane leki i wcześniejsze zabiegi." },
+      { title: "Analiza twarzy", text: "Wspólnie oglądamy Twoją mimikę i ustalamy, które zmarszczki wygładzić, a które zostawić." },
+      { title: "Zabieg", text: "Niewielkie dawki podaje się cienką igłą. Większość osób opisuje to jako krótkie ukłucia." },
+      { title: "Kontrola", text: "Po około dwóch tygodniach oceniamy efekt i decydujemy, czy potrzebna jest korekta." },
     ],
-    indications: ["Horizontal forehead lines", "Vertical lines between the brows", "Lines at the outer corners of the eyes"],
+    indications: ["Poziome zmarszczki na czole", "Pionowe zmarszczki między brwiami", "Zmarszczki w zewnętrznych kącikach oczu"],
     contraindications: [
       ...standardMedicalContra,
-      "Neuromuscular disorders",
-      "Known allergy to any component of the preparation",
-      "Certain medications – the physician reviews them during the interview",
+      "Choroby nerwowo-mięśniowe",
+      "Uczulenie na którykolwiek składnik preparatu",
+      "Niektóre leki – lekarz sprawdza je podczas wywiadu",
     ],
     qualification:
-      "Qualification is made by the physician during a consultation, after a medical interview and examination. The physician may decide that the treatment is not suitable for you or recommend postponing it.",
+      "O kwalifikacji decyduje lekarz podczas konsultacji, po wywiadzie i badaniu. Lekarz może uznać, że zabieg nie jest dla Ciebie odpowiedni, albo zalecić jego odłożenie.",
     image: "assessment",
   },
   {
-    slug: "hyaluronic-acid-contouring",
-    name: "Hyaluronic acid contouring",
-    category: "aesthetic-medicine",
-    lede: "Restoring volume and definition to lips, cheeks or jawline with hyaluronic acid fillers, in proportion to your features.",
+    slug: "modelowanie-kwasem-hialuronowym",
+    name: "Modelowanie kwasem hialuronowym",
+    category: "medycyna-estetyczna",
+    lede: "Przywrócenie objętości i konturu ust, policzków lub linii żuchwy wypełniaczem z kwasem hialuronowym – w proporcji do Twoich rysów.",
     description: [
-      "Hyaluronic acid is a substance naturally present in the skin. As a filler, it can restore volume that has diminished over time or gently define the lips, cheekbones and jawline.",
-      "We work with modest amounts and your own proportions as the reference. Where it makes sense, we spread the result over two visits instead of one.",
+      "Kwas hialuronowy naturalnie występuje w skórze. Jako wypełniacz może uzupełnić objętość, która z czasem się zmniejszyła, albo delikatnie podkreślić usta, kości policzkowe i linię żuchwy.",
+      "Pracujemy na niewielkich ilościach, a punktem odniesienia są Twoje własne proporcje. Gdy ma to sens, rozkładamy efekt na dwie wizyty zamiast jednej.",
     ],
-    duration: "45–60 minutes",
-    course: "Usually one session; the plan may include a top-up visit",
+    duration: "45–60 minut",
+    course: "Zwykle jedna wizyta; plan może obejmować wizytę uzupełniającą",
     process: [
-      { title: "Medical interview", text: "Health questions, previous fillers and your expectations, discussed openly." },
-      { title: "Proportion analysis", text: "We assess the face as a whole and mark the planned areas together." },
-      { title: "Treatment", text: "After a topical anaesthetic, the preparation is placed with a needle or a cannula." },
-      { title: "Aftercare and review", text: "You receive written aftercare instructions. We review the result at a follow-up visit." },
+      { title: "Wywiad medyczny", text: "Pytania o zdrowie, wcześniejsze wypełniacze i Twoje oczekiwania – rozmawiamy otwarcie." },
+      { title: "Analiza proporcji", text: "Oceniamy twarz jako całość i wspólnie zaznaczamy planowane obszary." },
+      { title: "Zabieg", text: "Po znieczuleniu miejscowym preparat podaje się igłą lub kaniulą." },
+      { title: "Zalecenia i kontrola", text: "Otrzymujesz pisemne zalecenia pozabiegowe. Efekt oceniamy na wizycie kontrolnej." },
     ],
-    indications: ["Loss of volume in the cheeks or temples", "Lip definition or hydration", "Softening of the nasolabial folds", "Jawline and chin contour"],
+    indications: ["Utrata objętości policzków lub skroni", "Podkreślenie konturu lub nawilżenie ust", "Złagodzenie bruzd nosowo-wargowych", "Kontur żuchwy i brody"],
     contraindications: [
       ...standardMedicalContra,
-      "Autoimmune disease in an active phase",
-      "Blood clotting disorders or anticoagulant treatment",
-      "Permanent filler previously placed in the area",
+      "Choroba autoimmunologiczna w fazie aktywnej",
+      "Zaburzenia krzepnięcia lub leczenie przeciwzakrzepowe",
+      "Wcześniej podany wypełniacz trwały w tym obszarze",
     ],
     qualification:
-      "The physician qualifies you for treatment after a medical interview and examination. If your goals are better served by another approach – or by no treatment – you will hear it at the consultation.",
+      "Lekarz kwalifikuje do zabiegu po wywiadzie i badaniu. Jeśli Twoim celom lepiej posłuży inne rozwiązanie – albo żaden zabieg – usłyszysz to podczas konsultacji.",
     image: "profile",
   },
   {
-    slug: "skin-boosters",
-    name: "Skin boosters",
-    category: "aesthetic-medicine",
-    lede: "Micro-injections of non-crosslinked hyaluronic acid to support skin hydration and texture on the face, neck and décolleté.",
+    slug: "skin-boostery",
+    name: "Skin boostery",
+    category: "medycyna-estetyczna",
+    lede: "Mikroiniekcje nieusieciowanego kwasu hialuronowego wspierające nawilżenie i teksturę skóry twarzy, szyi i dekoltu.",
     description: [
-      "Skin boosters deliver a light, fluid form of hyaluronic acid into the skin in many tiny points. Their aim is better hydration and elasticity rather than added volume.",
-      "They are usually planned as a short series, often in the cooler months, and combine well with consistent home care.",
+      "Skin boostery wprowadzają lekką, płynną postać kwasu hialuronowego w wielu drobnych punktach. Ich celem jest lepsze nawilżenie i elastyczność skóry, a nie dodanie objętości.",
+      "Zwykle planujemy je jako krótką serię, często w chłodniejszych miesiącach, i łączymy z regularną pielęgnacją domową.",
     ],
-    duration: "45 minutes",
-    course: "Typically a series of two to three sessions several weeks apart",
+    duration: "45 minut",
+    course: "Zwykle seria dwóch–trzech wizyt w odstępie kilku tygodni",
     process: [
-      { title: "Medical interview", text: "We check your health and recent treatments, and look at your skin in daylight." },
-      { title: "Preparation", text: "The skin is cleansed and a topical anaesthetic is applied." },
-      { title: "Treatment", text: "Small amounts are placed across the area with a fine needle." },
-      { title: "Aftercare", text: "Small marks can be visible for a day or two. We explain what to avoid in the meantime." },
+      { title: "Wywiad medyczny", text: "Sprawdzamy stan zdrowia i ostatnie zabiegi oraz oglądamy skórę w świetle dziennym." },
+      { title: "Przygotowanie", text: "Oczyszczenie skóry i znieczulenie miejscowe." },
+      { title: "Zabieg", text: "Niewielkie ilości preparatu podaje się cienką igłą w całym obszarze." },
+      { title: "Zalecenia", text: "Drobne ślady mogą być widoczne przez dzień lub dwa. Wyjaśniamy, czego w tym czasie unikać." },
     ],
-    indications: ["Dehydrated, dull skin", "Fine crepey lines on the neck or décolleté", "Skin that looks tired after summer"],
-    contraindications: [...standardMedicalContra, "Autoimmune disease in an active phase", "Known allergy to hyaluronic acid preparations"],
-    qualification: "Qualification by the physician during a consultation. The series is planned only after your skin has been assessed in person.",
+    indications: ["Odwodniona, matowa skóra", "Drobne zmarszczki na szyi lub dekolcie", "Skóra zmęczona po lecie"],
+    contraindications: [...standardMedicalContra, "Choroba autoimmunologiczna w fazie aktywnej", "Uczulenie na preparaty z kwasem hialuronowym"],
+    qualification: "Kwalifikacja przez lekarza podczas konsultacji. Serię planujemy dopiero po ocenie skóry na miejscu.",
     image: "hydration",
   },
 
-  /* ───────────── Skin treatments ───────────── */
+  /* ───────────── Zabiegi na skórę ───────────── */
   {
-    slug: "chemical-peel",
-    name: "Chemical peel",
-    category: "skin-treatments",
-    lede: "Controlled exfoliation with acids chosen for your skin, to even out texture and tone.",
+    slug: "peeling-chemiczny",
+    name: "Peeling chemiczny",
+    category: "zabiegi-na-skore",
+    lede: "Kontrolowane złuszczanie kwasami dobranymi do Twojej skóry, które wyrównuje jej teksturę i koloryt.",
     description: [
-      "A peel applies a selected acid or blend of acids that loosens the outer layer of the skin. Depending on the formula and concentration, it can refine texture, help with blemishes or even out tone.",
-      "We favour gentle peels in a series over a single strong one, and we schedule them for the months with less sun.",
+      "Peeling polega na nałożeniu wybranego kwasu lub mieszanki kwasów, które rozluźniają zewnętrzną warstwę naskórka. W zależności od preparatu i stężenia może wygładzić teksturę, pomóc przy niedoskonałościach lub wyrównać koloryt.",
+      "Zamiast jednego mocnego peelingu wybieramy serię łagodniejszych i planujemy je na miesiące z mniejszym nasłonecznieniem.",
     ],
-    duration: "40 minutes",
-    course: "Usually a series of three to six sessions",
+    duration: "40 minut",
+    course: "Zwykle seria trzech–sześciu wizyt",
     process: [
-      { title: "Skin check", text: "We assess your skin and ask about recent sun exposure, retinoids and other actives." },
-      { title: "Preparation", text: "Cleansing and degreasing so the acid works evenly." },
-      { title: "Peel", text: "The acid is applied and timed. A tingling or warm sensation is expected." },
-      { title: "Neutralising and protection", text: "We finish with calming care and SPF, and give you home-care guidance." },
+      { title: "Ocena skóry", text: "Oglądamy skórę i pytamy o niedawną ekspozycję na słońce, retinoidy i inne substancje aktywne." },
+      { title: "Przygotowanie", text: "Oczyszczenie i odtłuszczenie, aby kwas działał równomiernie." },
+      { title: "Peeling", text: "Kwas jest nakładany i odmierzany w czasie. Mrowienie lub uczucie ciepła jest normalne." },
+      { title: "Neutralizacja i ochrona", text: "Kończymy kojącą pielęgnacją i filtrem SPF oraz omawiamy pielęgnację domową." },
     ],
-    indications: ["Uneven texture and enlarged pores", "Blemish-prone skin", "Uneven tone and post-blemish marks"],
-    contraindications: [
-      ...standardMedicalContra,
-      "Recent sunburn or intensive tanning",
-      "Oral retinoid treatment now or recently",
-      "Open wounds or broken skin in the area",
-    ],
-    qualification: "Qualification by a specialist after a skin check. The type and strength of the peel are chosen individually and may change during the series.",
+    indications: ["Nierówna tekstura i rozszerzone pory", "Skóra skłonna do niedoskonałości", "Nierówny koloryt i przebarwienia pozapalne"],
+    contraindications: [...standardMedicalContra, "Niedawne oparzenie słoneczne lub intensywne opalanie", "Doustne retinoidy obecnie lub niedawno", "Rany lub uszkodzona skóra w miejscu zabiegu"],
+    qualification: "Kwalifikacja przez specjalistę po ocenie skóry. Rodzaj i stężenie peelingu dobieramy indywidualnie i mogą się zmieniać w trakcie serii.",
     image: "serum",
   },
   {
-    slug: "microneedling",
-    name: "Microneedling",
-    category: "skin-treatments",
-    lede: "Fine, controlled micro-punctures that encourage the skin's own renewal, for texture and firmness.",
+    slug: "mikroiglowanie",
+    name: "Mikroigłowanie",
+    category: "zabiegi-na-skore",
+    lede: "Drobne, kontrolowane mikronakłucia pobudzające naturalną odnowę skóry – dla lepszej tekstury i jędrności.",
     description: [
-      "A device with very fine needles creates micro-channels in the skin. The skin's natural repair response is what supports smoother texture over time.",
-      "Results build gradually across a series. The skin is usually pink for a day or two after each session.",
+      "Urządzenie z bardzo cienkimi igłami tworzy w skórze mikrokanaliki. To naturalna reakcja naprawcza skóry z czasem wspiera gładszą teksturę.",
+      "Efekty narastają stopniowo w trakcie serii. Po każdej wizycie skóra jest zwykle zaróżowiona przez dzień lub dwa.",
     ],
-    duration: "60 minutes",
-    course: "A series of three to four sessions about four weeks apart",
+    duration: "60 minut",
+    course: "Seria trzech–czterech wizyt co około cztery tygodnie",
     process: [
-      { title: "Skin check", text: "We check for contraindications and agree the areas to treat." },
-      { title: "Preparation", text: "Cleansing and a topical anaesthetic for comfort." },
-      { title: "Treatment", text: "The device is moved across the skin with a serum chosen for your skin." },
-      { title: "Calming and aftercare", text: "A soothing mask, then clear instructions for the next days." },
+      { title: "Ocena skóry", text: "Sprawdzamy przeciwwskazania i ustalamy obszary zabiegowe." },
+      { title: "Przygotowanie", text: "Oczyszczenie i znieczulenie miejscowe dla komfortu." },
+      { title: "Zabieg", text: "Urządzenie prowadzi się po skórze z serum dobranym do Twojej skóry." },
+      { title: "Ukojenie i zalecenia", text: "Kojąca maska, a potem jasne wskazówki na kolejne dni." },
     ],
-    indications: ["Uneven texture", "Shallow acne scars", "Loss of firmness", "Enlarged pores"],
-    contraindications: [...standardMedicalContra, "Active acne lesions in the area", "Tendency to keloid scarring", "Blood clotting disorders"],
-    qualification: "Qualification by a specialist during a skin consultation. For some concerns we may refer you to a physician first.",
+    indications: ["Nierówna tekstura", "Płytkie blizny potrądzikowe", "Utrata jędrności", "Rozszerzone pory"],
+    contraindications: [...standardMedicalContra, "Aktywne zmiany trądzikowe w miejscu zabiegu", "Skłonność do bliznowców", "Zaburzenia krzepnięcia"],
+    qualification: "Kwalifikacja przez specjalistę podczas konsultacji skóry. W niektórych przypadkach najpierw kierujemy do lekarza.",
     image: "cream",
   },
 
-  /* ───────────── Professional cosmetology ───────────── */
+  /* ───────────── Kosmetologia profesjonalna ───────────── */
   {
-    slug: "signature-facial",
-    name: "VÉRA signature facial",
-    category: "professional-cosmetology",
-    lede: "Our ninety-minute facial: cleansing, gentle exfoliation, a mask chosen on the day and a long sculpting massage.",
+    slug: "rytual-vera",
+    name: "Rytuał VÉRA na twarz",
+    category: "kosmetologia",
+    lede: "Nasz dziewięćdziesięciominutowy zabieg: oczyszczanie, delikatne złuszczanie, maska dobrana na miejscu i długi masaż modelujący.",
     description: [
-      "The facial is built around a short skin check at the start, so each step answers how your skin looks on the day. It combines careful cleansing, gentle exfoliation, a mask and a slow facial massage.",
-      "It is a good first visit if you are new to professional care, and a good monthly routine if you are not.",
+      "Zabieg zaczyna się od krótkiej oceny skóry, tak by każdy etap odpowiadał temu, jak skóra wygląda tego dnia. Łączy staranne oczyszczanie, delikatne złuszczanie, maskę i powolny masaż twarzy.",
+      "To dobra pierwsza wizyta, jeśli dopiero zaczynasz profesjonalną pielęgnację – i dobra comiesięczna rutyna, jeśli już ją znasz.",
     ],
-    duration: "90 minutes",
-    course: "A single visit, or monthly as part of a care plan",
+    duration: "90 minut",
+    course: "Jedna wizyta lub co miesiąc jako część planu pielęgnacji",
     process: [
-      { title: "Skin check", text: "A few questions and a close look at your skin in good light." },
-      { title: "Cleansing and exfoliation", text: "Double cleansing, then an exfoliation suited to your skin." },
-      { title: "Mask and massage", text: "A mask chosen on the day and a sculpting face, neck and shoulder massage." },
-      { title: "Finish and advice", text: "Final care with SPF and a short note on home care." },
+      { title: "Ocena skóry", text: "Kilka pytań i uważne spojrzenie na skórę w dobrym świetle." },
+      { title: "Oczyszczanie i złuszczanie", text: "Dwuetapowe oczyszczanie, a potem złuszczanie dopasowane do skóry." },
+      { title: "Maska i masaż", text: "Maska dobrana na miejscu i modelujący masaż twarzy, szyi i ramion." },
+      { title: "Zakończenie i porada", text: "Pielęgnacja z filtrem SPF i krótka wskazówka do pielęgnacji domowej." },
     ],
-    indications: ["Dull or tired-looking skin", "Dehydrated skin", "Anyone starting regular professional care"],
-    contraindications: ["Active skin infection or cold sores", "Recent aesthetic medicine procedure in the area – please tell us", "Known allergy to cosmetic ingredients"],
-    qualification: "No separate consultation is needed. The cosmetologist checks your skin at the start of the visit and adjusts or postpones steps if needed.",
+    indications: ["Skóra matowa lub zmęczona", "Skóra odwodniona", "Każdy, kto zaczyna regularną pielęgnację profesjonalną"],
+    contraindications: ["Aktywna infekcja skóry lub opryszczka", "Niedawny zabieg medycyny estetycznej w tym obszarze – poinformuj nas", "Uczulenie na składniki kosmetyków"],
+    qualification: "Osobna konsultacja nie jest potrzebna. Kosmetolog ocenia skórę na początku wizyty i w razie potrzeby zmienia lub przekłada poszczególne etapy.",
     image: "facialMask",
   },
   {
-    slug: "sculpting-face-massage",
-    name: "Sculpting face massage",
-    category: "professional-cosmetology",
-    lede: "A manual massage of the face, neck and décolleté that relaxes tension and leaves the skin looking rested.",
+    slug: "masaz-modelujacy-twarzy",
+    name: "Masaż modelujący twarzy",
+    category: "kosmetologia",
+    lede: "Manualny masaż twarzy, szyi i dekoltu, który rozluźnia napięcia i sprawia, że skóra wygląda na wypoczętą.",
     description: [
-      "A slow, deep manual massage combining lymphatic drainage movements with work on the muscles of the face and jaw.",
-      "Many clients book it on its own; it also pairs well with a facial or after a period of stress.",
+      "Powolny, głęboki masaż manualny łączący ruchy drenażu limfatycznego z pracą na mięśniach twarzy i żuchwy.",
+      "Wiele osób rezerwuje go osobno; dobrze łączy się też z zabiegiem na twarz lub po okresie stresu.",
     ],
-    duration: "60 minutes",
-    course: "A single visit or a short series",
+    duration: "60 minut",
+    course: "Jedna wizyta lub krótka seria",
     process: [
-      { title: "Short interview", text: "We ask about tension, jaw clenching and anything we should avoid." },
-      { title: "Preparation", text: "Light cleansing and a massage oil suited to your skin." },
-      { title: "Massage", text: "Face, neck, décolleté and scalp, at a pace that lets you rest." },
-      { title: "Finish", text: "Removal of excess oil and light care." },
+      { title: "Krótki wywiad", text: "Pytamy o napięcia, zaciskanie zębów i o to, czego powinniśmy unikać." },
+      { title: "Przygotowanie", text: "Lekkie oczyszczenie i olejek do masażu dobrany do skóry." },
+      { title: "Masaż", text: "Twarz, szyja, dekolt i skóra głowy – w tempie, które pozwala odpocząć." },
+      { title: "Zakończenie", text: "Usunięcie nadmiaru olejku i lekka pielęgnacja." },
     ],
-    indications: ["Facial and jaw tension", "Puffiness", "Tired-looking skin"],
-    contraindications: ["Active skin infection or inflammation", "Fever", "Recent filler treatment in the area – please tell us"],
-    qualification: "No separate consultation is needed. Please mention any recent procedures when booking.",
+    indications: ["Napięcie twarzy i żuchwy", "Obrzęki", "Zmęczony wygląd skóry"],
+    contraindications: ["Aktywna infekcja lub stan zapalny skóry", "Gorączka", "Niedawny zabieg z wypełniaczem w tym obszarze – poinformuj nas"],
+    qualification: "Osobna konsultacja nie jest potrzebna. Przy rezerwacji poinformuj nas o niedawnych zabiegach.",
     image: "facialRitual",
   },
   {
-    slug: "hand-ritual",
-    name: "Hand ritual and manicure",
-    category: "professional-cosmetology",
-    lede: "Exfoliation, a nourishing mask and precise nail care, finished in a classic shade or bare.",
+    slug: "rytual-dloni-i-manicure",
+    name: "Rytuał dłoni i manicure",
+    category: "kosmetologia",
+    lede: "Złuszczanie, odżywcza maska i precyzyjna pielęgnacja paznokci – na koniec klasyczny kolor albo naturalne wykończenie.",
     description: [
-      "A complete treatment for hands that work hard: exfoliation, a nourishing mask, cuticle care and nail shaping.",
-      "We finish with a long-wear polish in a short, considered palette – from nude to the studio's deep red – or simply with a buffed natural nail.",
+      "Kompletny zabieg dla dłoni, które dużo pracują: złuszczanie, odżywcza maska, pielęgnacja skórek i nadanie kształtu paznokciom.",
+      "Kończymy trwałym lakierem z krótkiej, przemyślanej palety – od nude po głęboką czerwień studia – albo po prostu wypolerowaną naturalną płytką.",
     ],
-    duration: "75 minutes",
-    course: "Every three to four weeks",
+    duration: "75 minut",
+    course: "Co trzy–cztery tygodnie",
     process: [
-      { title: "Hand and nail check", text: "We look at the skin, the nails and any previous product to remove." },
-      { title: "Exfoliation and mask", text: "A gentle scrub and a warm nourishing mask." },
-      { title: "Nail care", text: "Cuticle care, shaping and preparation of the nail plate." },
-      { title: "Finish", text: "Long-wear polish or a natural finish, and hand cream." },
+      { title: "Ocena dłoni i paznokci", text: "Oglądamy skórę, paznokcie i ewentualny produkt do usunięcia." },
+      { title: "Złuszczanie i maska", text: "Delikatny peeling i ciepła, odżywcza maska." },
+      { title: "Pielęgnacja paznokci", text: "Pielęgnacja skórek, kształt i przygotowanie płytki." },
+      { title: "Wykończenie", text: "Trwały lakier lub naturalne wykończenie i krem do rąk." },
     ],
-    indications: ["Dry or rough hands", "Brittle nails", "Regular nail care"],
-    contraindications: ["Fungal or bacterial nail infection", "Open wounds on the hands", "Known allergy to nail products"],
-    qualification: "No separate consultation is needed. If we see signs of a nail infection, we will recommend seeing a doctor first.",
+    indications: ["Suche lub szorstkie dłonie", "Łamliwe paznokcie", "Regularna pielęgnacja paznokci"],
+    contraindications: ["Grzybicze lub bakteryjne zakażenie paznokci", "Rany na dłoniach", "Uczulenie na produkty do paznokci"],
+    qualification: "Osobna konsultacja nie jest potrzebna. Jeśli zauważymy oznaki infekcji paznokcia, zalecimy najpierw wizytę u lekarza.",
     image: "nailsBurgundy",
   },
 
-  /* ───────────── Skin consultation ───────────── */
+  /* ───────────── Konsultacja skóry ───────────── */
   {
-    slug: "skin-consultation",
-    name: "Skin consultation",
-    category: "skin-consultation",
-    lede: "An unhurried hour with a specialist to understand your skin and leave with a written plan.",
+    slug: "konsultacja-skory",
+    name: "Konsultacja skóry",
+    category: "konsultacja-skory",
+    lede: "Godzina ze specjalistą bez pośpiechu, aby zrozumieć Twoją skórę i wyjść z pisemnym planem.",
     description: [
-      "We talk about what you would like to change, look at your skin closely in daylight and review your current routine. Then we explain what is realistic, what it involves and what it costs.",
-      "You leave with a written plan. It can include treatments at the studio, home care only, or a referral to a doctor if something needs medical attention first.",
+      "Rozmawiamy o tym, co chcesz zmienić, oglądamy skórę z bliska w świetle dziennym i omawiamy Twoją obecną pielęgnację. Następnie wyjaśniamy, co jest realne, z czym się wiąże i ile kosztuje.",
+      "Wychodzisz z pisemnym planem. Może obejmować zabiegi w studiu, samą pielęgnację domową albo skierowanie do lekarza, jeśli coś wymaga najpierw konsultacji medycznej.",
     ],
-    duration: "60 minutes",
-    course: "One visit; the plan is reviewed at your next appointment",
+    duration: "60 minut",
+    course: "Jedna wizyta; plan omawiamy ponownie na kolejnym spotkaniu",
     process: [
-      { title: "Conversation", text: "Your goals, your history with treatments and products, and your health." },
-      { title: "Skin assessment", text: "A close look at your skin in daylight, with magnification where useful." },
-      { title: "Options", text: "What could help, what each option involves, and what we would not recommend." },
-      { title: "Written plan", text: "A summary of the plan and home care, sent to you after the visit." },
+      { title: "Rozmowa", text: "Twoje cele, doświadczenia z zabiegami i produktami oraz stan zdrowia." },
+      { title: "Ocena skóry", text: "Uważne spojrzenie na skórę w świetle dziennym, w razie potrzeby w powiększeniu." },
+      { title: "Możliwości", text: "Co może pomóc, z czym wiąże się każda opcja i czego byśmy nie polecali." },
+      { title: "Pisemny plan", text: "Podsumowanie planu i pielęgnacji domowej, które wysyłamy po wizycie." },
     ],
-    indications: ["Before your first treatment at VÉRA", "When you are unsure what your skin needs", "When previous treatments did not meet your expectations"],
-    contraindications: ["None for the consultation itself"],
-    qualification: "Open to everyone over 18. Please bring a list of the products and medication you currently use.",
+    indications: ["Przed pierwszym zabiegiem w VÉRA", "Gdy nie wiesz, czego potrzebuje Twoja skóra", "Gdy wcześniejsze zabiegi nie spełniły oczekiwań"],
+    contraindications: ["Brak przeciwwskazań do samej konsultacji"],
+    qualification: "Dla osób pełnoletnich. Prosimy o zabranie listy obecnie stosowanych kosmetyków i leków.",
     image: "consultation",
   },
   {
-    slug: "treatment-plan-review",
-    name: "Treatment plan review",
-    category: "skin-consultation",
-    lede: "A short follow-up to see how your skin responds and adjust the plan for the next season.",
+    slug: "przeglad-planu-pielegnacji",
+    name: "Przegląd planu pielęgnacji",
+    category: "konsultacja-skory",
+    lede: "Krótka wizyta kontrolna, aby sprawdzić, jak reaguje skóra, i dopasować plan na kolejny sezon.",
     description: [
-      "Skin changes with the seasons, with hormones and with treatments. A review visit is a chance to compare with where you started and decide on the next steps together.",
+      "Skóra zmienia się z porami roku, z hormonami i pod wpływem zabiegów. Wizyta kontrolna to okazja, by porównać ją z punktem wyjścia i wspólnie ustalić kolejne kroki.",
     ],
-    duration: "30 minutes",
-    course: "Every few months, or whenever you have questions",
+    duration: "30 minut",
+    course: "Co kilka miesięcy lub gdy pojawią się pytania",
     process: [
-      { title: "Comparison", text: "We compare your skin with the notes and photos from your first consultation." },
-      { title: "Discussion", text: "What worked, what did not, and how your routine fits your life." },
-      { title: "Updated plan", text: "Adjustments to treatments and home care for the coming months." },
+      { title: "Porównanie", text: "Porównujemy skórę z notatkami i zdjęciami z pierwszej konsultacji." },
+      { title: "Rozmowa", text: "Co zadziałało, co nie i jak pielęgnacja wpisuje się w Twój dzień." },
+      { title: "Zaktualizowany plan", text: "Zmiany w zabiegach i pielęgnacji domowej na najbliższe miesiące." },
     ],
-    indications: ["Clients with an existing VÉRA plan", "Change of season", "Changes in your skin or health"],
-    contraindications: ["None for the consultation itself"],
-    qualification: "Available to clients after a skin consultation at VÉRA.",
+    indications: ["Osoby z planem pielęgnacji VÉRA", "Zmiana pory roku", "Zmiany w skórze lub stanie zdrowia"],
+    contraindications: ["Brak przeciwwskazań do samej konsultacji"],
+    qualification: "Dla osób po konsultacji skóry w VÉRA.",
     image: "spf",
   },
 ];

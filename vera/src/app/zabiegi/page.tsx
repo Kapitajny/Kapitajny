@@ -7,40 +7,40 @@ import { Photo } from "@/components/ui/Photo";
 import { getCategory, treatmentsIn } from "@/data/treatments";
 
 export const metadata: Metadata = {
-  title: "Treatments",
-  description: "Aesthetic medicine, skin treatments, professional cosmetology and skin consultations at VÉRA Aesthetic Studio.",
-  alternates: { canonical: "/treatments" },
-  openGraph: { title: "Treatments | VÉRA Aesthetic Studio", url: "/treatments" },
+  title: "Zabiegi",
+  description: "Medycyna estetyczna, zabiegi na skórę, kosmetologia profesjonalna i konsultacje skóry w VÉRA Aesthetic Studio.",
+  alternates: { canonical: "/zabiegi" },
+  openGraph: { title: "Zabiegi | VÉRA Aesthetic Studio", url: "/zabiegi" },
 };
 
 function TreatmentLink({ slug, children, className = "" }: { slug: string; children: React.ReactNode; className?: string }) {
   return (
-    <Link href={`/treatments/${slug}`} className={`group block ${className}`}>
+    <Link href={`/zabiegi/${slug}`} className={`group block ${className}`}>
       {children}
     </Link>
   );
 }
 
 export default function TreatmentsPage() {
-  const medicine = getCategory("aesthetic-medicine");
-  const skin = getCategory("skin-treatments");
-  const cosmetology = getCategory("professional-cosmetology");
-  const consultation = getCategory("skin-consultation");
+  const medicine = getCategory("medycyna-estetyczna");
+  const skin = getCategory("zabiegi-na-skore");
+  const cosmetology = getCategory("kosmetologia");
+  const consultation = getCategory("konsultacja-skory");
 
   return (
     <>
       <section className="shell pb-20 pt-[calc(var(--header-h)+3rem)] lg:pt-[calc(var(--header-h)+5rem)]">
         <Breadcrumbs
           items={[
-            { href: "/", label: "Home" },
-            { href: "/treatments", label: "Treatments" },
+            { href: "/", label: "Strona główna" },
+            { href: "/zabiegi", label: "Zabiegi" },
           ]}
         />
         <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:items-end">
-          <h1 className="display text-[clamp(3.5rem,11vw,10rem)] text-burgundy lg:col-span-8">Treatments</h1>
-          <p className="lede text-black/85 lg:col-span-4">Four areas of care, one rule: every plan starts with a consultation. Choose an area, or start with the consultation itself.</p>
+          <h1 className="display text-[clamp(3.5rem,11vw,10rem)] text-burgundy lg:col-span-8">Zabiegi</h1>
+          <p className="lede text-black/85 lg:col-span-4">Cztery obszary opieki i jedna zasada: każdy plan zaczyna się od konsultacji. Wybierz obszar albo zacznij od samej konsultacji.</p>
         </div>
-        <nav aria-label="Treatment areas" className="mt-14 border-y border-line">
+        <nav aria-label="Obszary zabiegów" className="mt-14 border-y border-line">
           <ul className="grid sm:grid-cols-2 lg:grid-cols-4">
             {[medicine, skin, cosmetology, consultation].map((c) => (
               <li key={c.slug} className="border-line sm:odd:border-r lg:border-r lg:last:border-r-0">
@@ -56,14 +56,14 @@ export default function TreatmentsPage() {
         </nav>
       </section>
 
-      {/* Aesthetic medicine – burgundy, photo and long rows. */}
-      <section id="aesthetic-medicine" aria-labelledby="aesthetic-medicine-title" className="scroll-mt-0 bg-burgundy py-24 text-ivory sm:py-32">
+      {/* Medycyna estetyczna – burgund, zdjęcie i długie wiersze. */}
+      <section id="medycyna-estetyczna" aria-labelledby="medycyna-estetyczna-title" className="scroll-mt-0 bg-burgundy py-24 text-ivory sm:py-32">
         <div className="shell grid gap-14 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-4">
             <Photo image={medicine.image} sizes="(min-width: 1024px) 30vw, 100vw" className="aspect-[4/5]" />
           </div>
           <div className="lg:col-span-7 lg:col-start-6">
-            <h2 id="aesthetic-medicine-title" className="display text-[clamp(2.75rem,6vw,5.5rem)]">
+            <h2 id="medycyna-estetyczna-title" className="display text-[clamp(2.75rem,6vw,5.5rem)]">
               {medicine.name}
             </h2>
             <p className="mt-6 max-w-xl text-ivory/80">{medicine.intro}</p>
@@ -84,11 +84,11 @@ export default function TreatmentsPage() {
         </div>
       </section>
 
-      {/* Skin treatments – a quiet table on ivory. */}
-      <section id="skin-treatments" aria-labelledby="skin-treatments-title" className="shell py-24 sm:py-32">
+      {/* Zabiegi na skórę – spokojna tabela na jasnym tle. */}
+      <section id="zabiegi-na-skore" aria-labelledby="zabiegi-na-skore-title" className="shell py-24 sm:py-32">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-6">
-            <h2 id="skin-treatments-title" className="display text-[clamp(2.75rem,6vw,5.5rem)] text-burgundy">
+            <h2 id="zabiegi-na-skore-title" className="display text-[clamp(2.75rem,6vw,5.5rem)] text-burgundy">
               {skin.name}
             </h2>
             <p className="mt-6 max-w-lg text-black/80">{skin.intro}</p>
@@ -98,20 +98,20 @@ export default function TreatmentsPage() {
           </div>
         </div>
         <table className="mt-16 w-full text-left">
-          <caption className="sr-only">{skin.name}: duration and usual course</caption>
+          <caption className="sr-only">{skin.name}: czas trwania i zwykły przebieg</caption>
           <thead className="hidden text-xs text-stone sm:table-header-group">
             <tr className="border-b border-black">
               <th scope="col" className="pb-3 font-medium">
-                Treatment
+                Zabieg
               </th>
               <th scope="col" className="pb-3 font-medium">
-                Duration
+                Czas trwania
               </th>
               <th scope="col" className="pb-3 font-medium">
-                Usual course
+                Zwykły przebieg
               </th>
               <th scope="col" className="pb-3">
-                <span className="sr-only">Details</span>
+                <span className="sr-only">Szczegóły</span>
               </th>
             </tr>
           </thead>
@@ -119,15 +119,15 @@ export default function TreatmentsPage() {
             {treatmentsIn(skin.slug).map((t) => (
               <tr key={t.slug} className="grid border-b border-line py-6 sm:table-row sm:py-0">
                 <th scope="row" className="font-normal sm:py-8 sm:pr-8">
-                  <Link href={`/treatments/${t.slug}`} className="font-serif text-3xl hover:text-burgundy">
+                  <Link href={`/zabiegi/${t.slug}`} className="font-serif text-3xl hover:text-burgundy">
                     {t.name}
                   </Link>
                 </th>
                 <td className="mt-2 text-sm text-stone sm:mt-0 sm:py-8 sm:pr-8">{t.duration}</td>
                 <td className="text-sm text-stone sm:py-8 sm:pr-8">{t.course}</td>
                 <td className="mt-3 sm:mt-0 sm:py-8 sm:text-right">
-                  <Link href={`/treatments/${t.slug}`} className="link-line text-sm font-semibold text-burgundy">
-                    Details<span className="sr-only"> about {t.name}</span>
+                  <Link href={`/zabiegi/${t.slug}`} className="link-line text-sm font-semibold text-burgundy">
+                    Szczegóły<span className="sr-only">: {t.name}</span>
                   </Link>
                 </td>
               </tr>
@@ -136,14 +136,14 @@ export default function TreatmentsPage() {
         </table>
       </section>
 
-      {/* Professional cosmetology – black, three photographic columns. */}
-      <section id="professional-cosmetology" aria-labelledby="professional-cosmetology-title" className="bg-black py-24 text-ivory sm:py-32">
+      {/* Kosmetologia profesjonalna – czerń, trzy kolumny ze zdjęciami. */}
+      <section id="kosmetologia" aria-labelledby="kosmetologia-title" className="bg-black py-24 text-ivory sm:py-32">
         <div className="shell">
           <div className="grid gap-8 lg:grid-cols-12">
-            <h2 id="professional-cosmetology-title" className="display text-[clamp(2.75rem,6vw,5.5rem)] lg:col-span-7">
-              Professional
+            <h2 id="kosmetologia-title" className="display text-[clamp(2.75rem,6vw,5.5rem)] lg:col-span-7">
+              Kosmetologia
               <br />
-              <span className="pl-[0.9em]">cosmetology</span>
+              <span className="pl-[0.9em]">profesjonalna</span>
             </h2>
             <p className="max-w-md text-ivory/75 lg:col-span-4 lg:col-start-9 lg:self-end">{cosmetology.intro}</p>
           </div>
@@ -170,20 +170,20 @@ export default function TreatmentsPage() {
         </div>
       </section>
 
-      {/* Skin consultation – the starting point, presented as a single offer. */}
-      <section id="skin-consultation" aria-labelledby="skin-consultation-title" className="bg-powder py-24 sm:py-32">
+      {/* Konsultacja skóry – punkt wyjścia, pokazany jako jedna oferta. */}
+      <section id="konsultacja-skory" aria-labelledby="konsultacja-skory-title" className="bg-powder py-24 sm:py-32">
         <div className="shell grid gap-14 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-6">
-            <h2 id="skin-consultation-title" className="display text-[clamp(2.75rem,6vw,5.5rem)] text-burgundy">
+            <h2 id="konsultacja-skory-title" className="display text-[clamp(2.75rem,6vw,5.5rem)] text-burgundy">
               {consultation.name}
             </h2>
             <p className="mt-8 font-serif text-3xl font-light leading-snug">{consultation.intro}</p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <Link href={`${bookingHref}?treatment=skin-consultation`} className="btn btn-primary">
-                Book a skin consultation
+              <Link href={`${bookingHref}?zabieg=konsultacja-skory`} className="btn btn-primary">
+                Umów konsultację skóry
               </Link>
-              <Link href="/treatments/skin-consultation" className="btn btn-outline">
-                What happens during it
+              <Link href="/zabiegi/konsultacja-skory" className="btn btn-outline">
+                Jak wygląda konsultacja
               </Link>
             </div>
           </div>
@@ -205,8 +205,8 @@ export default function TreatmentsPage() {
 
       <div className="shell py-14">
         <DemoNote>
-          Treatment descriptions on this demonstration site are illustrative. Before publication they must be reviewed by the studio&apos;s medical staff. Results
-          vary between people and are never guaranteed.
+          Opisy zabiegów na tej demonstracyjnej stronie mają charakter poglądowy. Przed publikacją musi je sprawdzić personel medyczny studia. Efekty różnią się
+          u poszczególnych osób i nigdy nie są gwarantowane.
         </DemoNote>
       </div>
     </>

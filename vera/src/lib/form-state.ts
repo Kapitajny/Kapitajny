@@ -1,6 +1,6 @@
 import type { FieldErrors } from "./validation";
 
-/** Result of a form submission – shared by Server Actions and the form components. */
+/** Wynik wysłania formularza – wspólny dla Server Actions i komponentów formularzy. */
 export type FormState<K extends string> =
   | { status: "idle" }
   | { status: "invalid"; errors: FieldErrors<K> }

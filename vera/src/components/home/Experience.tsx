@@ -2,12 +2,12 @@ import Link from "next/link";
 import { bookingHref } from "@/config/site";
 import { Photo } from "@/components/ui/Photo";
 
-/** The visit is a real sequence, so the steps are numbered. */
+/** Wizyta to rzeczywista sekwencja, dlatego kroki są numerowane. */
 export const visitSteps = [
-  { title: "Consultation", text: "An unhurried conversation and a close look at your skin. Nothing is booked yet." },
-  { title: "A written plan", text: "Options, timing and costs on paper – including what we would not recommend." },
-  { title: "Treatment", text: "Performed by the specialist you met, in a private room, at a calm pace." },
-  { title: "Follow-up", text: "We review the result together and adjust the plan for the next season." },
+  { title: "Konsultacja", text: "Rozmowa bez pośpiechu i uważne spojrzenie na Twoją skórę. Niczego jeszcze nie rezerwujemy." },
+  { title: "Pisemny plan", text: "Możliwości, terminy i koszty na papierze – także to, czego byśmy nie polecali." },
+  { title: "Zabieg", text: "Wykonuje go specjalista, którego już znasz, w osobnym gabinecie i spokojnym tempie." },
+  { title: "Kontrola", text: "Wspólnie oceniamy efekt i dopasowujemy plan na kolejny sezon." },
 ];
 
 export function Experience() {
@@ -17,11 +17,11 @@ export function Experience() {
       <div className="shell relative lg:-mt-64">
         <div className="bg-burgundy px-6 py-14 text-ivory sm:px-12 sm:py-16 lg:ml-auto lg:w-[64%] lg:px-16 lg:py-20">
           <h2 id="experience-title" className="display text-[clamp(2.75rem,6vw,5.25rem)]">
-            The VÉRA
+            Wizyta
             <br />
-            <span className="pl-[0.9em]">experience</span>
+            <span className="pl-[0.9em]">w VÉRA</span>
           </h2>
-          <p className="mt-6 max-w-md text-ivory/80">Every visit follows the same four steps, whether you come for a facial or a medical procedure.</p>
+          <p className="mt-6 max-w-md text-ivory/80">Każda wizyta przebiega w tych samych czterech krokach – niezależnie od tego, czy przychodzisz na zabieg na twarz, czy na zabieg medyczny.</p>
           <ol className="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2">
             {visitSteps.map((step, i) => (
               <li key={step.title} className="border-t border-line-light pt-5">
@@ -34,7 +34,7 @@ export function Experience() {
             ))}
           </ol>
           <Link href={bookingHref} className="btn btn-light mt-12">
-            Book a consultation
+            Umów konsultację
           </Link>
         </div>
       </div>

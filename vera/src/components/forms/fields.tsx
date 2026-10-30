@@ -14,7 +14,7 @@ export function FieldError({ id, message }: { id: string; message?: string }) {
   );
 }
 
-/** Accessibility attributes linking a field to its hint and error message. */
+/** Atrybuty dostępności: powiązanie pola z podpowiedzią i komunikatem błędu. */
 export function describe(name: string, error?: string, hint?: boolean) {
   const ids = [hint ? `${name}-hint` : null, error ? `${name}-error` : null].filter(Boolean).join(" ");
   return { "aria-invalid": error ? true : undefined, "aria-describedby": ids || undefined } as const;
@@ -33,7 +33,7 @@ export function TextField({ name, label, hint, error, optional, className = "", 
     <div className={className}>
       <label htmlFor={name} className="field-label">
         {label}
-        {optional && <span className="font-normal text-stone"> (optional)</span>}
+        {optional && <span className="font-normal text-stone"> (opcjonalnie)</span>}
       </label>
       {hint && (
         <span id={`${name}-hint`} className="field-hint">
@@ -59,7 +59,7 @@ export function TextAreaField({ name, label, hint, error, optional, className = 
     <div className={className}>
       <label htmlFor={name} className="field-label">
         {label}
-        {optional && <span className="font-normal text-stone"> (optional)</span>}
+        {optional && <span className="font-normal text-stone"> (opcjonalnie)</span>}
       </label>
       {hint && (
         <span id={`${name}-hint`} className="field-hint">
@@ -72,11 +72,11 @@ export function TextAreaField({ name, label, hint, error, optional, className = 
   );
 }
 
-/** Honeypot for bots: hidden from people and screen readers. */
+/** Pole-pułapka na boty: ukryte przed ludźmi i czytnikami ekranu. */
 export function Honeypot() {
   return (
     <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
-      <label htmlFor="company">Company</label>
+      <label htmlFor="company">Firma</label>
       <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
     </div>
   );
@@ -88,10 +88,10 @@ export function ConsentField({ error }: { error?: string }) {
       <label className="flex cursor-pointer gap-4 text-sm leading-relaxed text-stone">
         <input type="checkbox" name="consent" required className="checkbox" {...describe("consent", error)} />
         <span>
-          I agree to VÉRA Aesthetic Studio processing my personal data to answer my enquiry. Details in the{" "}
-          <Link href="/privacy-policy" className="text-black underline underline-offset-[3px]" target="_blank">
-            privacy policy
-            <span className="sr-only"> (opens in a new tab)</span>
+          Wyrażam zgodę na przetwarzanie moich danych osobowych przez VÉRA Aesthetic Studio w celu odpowiedzi na zapytanie. Szczegóły w{" "}
+          <Link href="/polityka-prywatnosci" className="text-black underline underline-offset-[3px]" target="_blank">
+            polityce prywatności
+            <span className="sr-only"> (otwiera się w nowej karcie)</span>
           </Link>
           .
         </span>
@@ -101,22 +101,22 @@ export function ConsentField({ error }: { error?: string }) {
   );
 }
 
-/** Shown when no form integration is configured – honestly: nothing has been sent. */
+/** Komunikat, gdy formularz nie jest z niczym połączony – uczciwie: nic nie zostało wysłane. */
 export function NotConfiguredNotice({ what }: { what: string }) {
   const { contact } = siteConfig;
   return (
     <div role="alert" className="border-l-2 border-burgundy bg-white/60 p-6 sm:p-8">
-      <p className="font-serif text-2xl leading-snug text-burgundy">{what} has not been sent</p>
+      <p className="font-serif text-2xl leading-snug text-burgundy">{what}</p>
       <p className="mt-3 text-sm text-stone">
-        This demonstration site is not yet connected to the studio&apos;s inbox, so the details you entered were not stored or passed on. Please contact the
-        studio directly:
+        Ta demonstracyjna strona nie jest jeszcze połączona ze skrzynką studia, więc wpisane dane nie zostały nigdzie zapisane ani przekazane.
+        Skontaktuj się ze studiem bezpośrednio:
       </p>
       <div className="mt-6 flex flex-wrap gap-3">
         <a href={contact.phoneHref} className="btn btn-primary">
-          Call {contact.phone}
+          Zadzwoń: {contact.phone}
         </a>
         <a href={`mailto:${contact.email}`} className="btn btn-outline">
-          Write an e-mail
+          Napisz e-mail
         </a>
       </div>
     </div>

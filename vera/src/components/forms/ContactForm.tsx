@@ -11,7 +11,7 @@ export function ContactForm() {
   if (state.status === "sent") {
     return (
       <div role="status" className="border-t border-black pt-8">
-        <p className="font-serif text-4xl leading-tight text-burgundy">Message sent</p>
+        <p className="font-serif text-4xl leading-tight text-burgundy">Wiadomość wysłana</p>
         <p className="mt-4 max-w-md text-stone">{state.message}</p>
       </div>
     );
@@ -21,18 +21,18 @@ export function ContactForm() {
     <form ref={formRef} action={formAction} onSubmit={onSubmit} onBlur={onBlur} noValidate className="relative space-y-9" aria-describedby="contact-status">
       <Honeypot />
       <div className="grid gap-9 sm:grid-cols-2 sm:gap-8">
-        <TextField name="name" label="Full name" autoComplete="name" required maxLength={LIMITS.name} error={errors.name} />
+        <TextField name="name" label="Imię i nazwisko" autoComplete="name" required maxLength={LIMITS.name} error={errors.name} />
         <TextField name="email" type="email" label="E-mail" autoComplete="email" inputMode="email" required maxLength={LIMITS.email} error={errors.email} />
       </div>
       <div className="grid gap-9 sm:grid-cols-2 sm:gap-8">
-        <TextField name="phone" type="tel" label="Phone" optional autoComplete="tel" inputMode="tel" error={errors.phone} />
+        <TextField name="phone" type="tel" label="Telefon" optional autoComplete="tel" inputMode="tel" error={errors.phone} />
         <div>
           <label htmlFor="topic" className="field-label">
-            Topic
+            Temat
           </label>
           <select id="topic" name="topic" defaultValue="" required className="field-input" onChange={() => clearError("topic")} {...describe("topic", errors.topic)}>
             <option value="" disabled>
-              Choose a topic
+              Wybierz temat
             </option>
             {contactTopics.map((t) => (
               <option key={t.value} value={t.value}>
@@ -45,8 +45,8 @@ export function ContactForm() {
       </div>
       <TextAreaField
         name="message"
-        label="Message"
-        hint="Please don't describe health details here – we will talk about them at the consultation."
+        label="Wiadomość"
+        hint="Prosimy nie opisywać tu szczegółów stanu zdrowia – porozmawiamy o nich podczas konsultacji."
         required
         maxLength={LIMITS.message}
         rows={5}
@@ -59,10 +59,10 @@ export function ContactForm() {
       <div id="contact-status" aria-live="polite" className="space-y-4">
         {summary && <p className="text-sm text-danger">{summary}</p>}
         {state.status === "error" && <p className="text-sm text-danger">{state.message}</p>}
-        {state.status === "not_configured" && <NotConfiguredNotice what="Your message" />}
+        {state.status === "not_configured" && <NotConfiguredNotice what="Wiadomość nie została wysłana" />}
       </div>
 
-      <SubmitButton pending={pending} label="Send message" pendingLabel="Sending…" />
+      <SubmitButton pending={pending} label="Wyślij wiadomość" pendingLabel="Wysyłanie…" />
     </form>
   );
 }

@@ -1,6 +1,6 @@
 import { siteConfig } from "@/config/site";
 
-/** Structured data. `<` is escaped so content can never close the script tag. */
+/** Dane strukturalne. `<` jest zamieniane, aby treść nigdy nie zamknęła znacznika script. */
 export function JsonLd({ data }: { data: Record<string, unknown> }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />;
 }

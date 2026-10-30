@@ -8,16 +8,16 @@ export function JournalPreview() {
     <section aria-labelledby="journal-title" className="shell py-24 sm:py-32 lg:py-40">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <h2 id="journal-title" className="display text-[clamp(3rem,7vw,6.25rem)] text-burgundy">
-          Journal
+          Magazyn
         </h2>
-        <Link href="/journal" className="link-line self-start text-sm font-semibold text-burgundy sm:self-auto">
-          All articles
+        <Link href="/magazyn" className="link-line self-start text-sm font-semibold text-burgundy sm:self-auto">
+          Wszystkie artykuły
         </Link>
       </div>
 
       <div className="mt-14 grid gap-14 lg:mt-20 lg:grid-cols-12 lg:gap-8">
         <article className="lg:col-span-7">
-          <Link href={`/journal/${lead.slug}`} className="group block">
+          <Link href={`/magazyn/${lead.slug}`} className="group block">
             <div className="overflow-hidden">
               <Photo
                 image={lead.image}
@@ -40,7 +40,7 @@ export function JournalPreview() {
         <ul className="flex flex-col lg:col-span-4 lg:col-start-9 lg:justify-end">
           {rest.map((entry) => (
             <li key={entry.slug} className="border-t border-line py-8 last:border-b">
-              <Link href={`/journal/${entry.slug}`} className="group block">
+              <Link href={`/magazyn/${entry.slug}`} className="group block">
                 <p className="text-xs font-medium text-rose-deep">
                   {entry.topic}, <time dateTime={entry.date}>{formatDate(entry.date)}</time>
                 </p>

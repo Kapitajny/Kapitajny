@@ -9,14 +9,14 @@ export function SiteFooter() {
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-5">
             <p className="font-serif text-4xl font-light leading-[1.02] sm:text-5xl">
-              Your beauty.
+              Twoje piękno.
               <br />
-              <span className="pl-[0.9em]">Your identity.</span>
+              <span className="pl-[0.9em]">Twoja tożsamość.</span>
             </p>
-            <p className="mt-6 max-w-xs text-sm text-ivory/70">Aesthetic medicine and professional skin care, planned around you.</p>
+            <p className="mt-6 max-w-xs text-sm text-ivory/70">Medycyna estetyczna i profesjonalna pielęgnacja skóry, zaplanowane wokół Ciebie.</p>
           </div>
 
-          <nav aria-label="Footer" className="text-sm lg:col-span-2 lg:col-start-7">
+          <nav aria-label="Stopka" className="text-sm lg:col-span-2 lg:col-start-7">
             <h2 className="mb-4 font-sans text-xs font-semibold text-rose">Studio</h2>
             <ul className="space-y-2.5">
               {mainNav.slice(1).map((item) => (
@@ -28,14 +28,14 @@ export function SiteFooter() {
               ))}
               <li>
                 <Link href={bookingHref} className="link-line bg-[length:0%_1px] hover:bg-[length:100%_1px]">
-                  Book a consultation
+                  Umów konsultację
                 </Link>
               </li>
             </ul>
           </nav>
 
           <div className="text-sm lg:col-span-2">
-            <h2 className="mb-4 font-sans text-xs font-semibold text-rose">Visit</h2>
+            <h2 className="mb-4 font-sans text-xs font-semibold text-rose">Adres</h2>
             <address className="not-italic leading-relaxed">
               {address.street}
               <br />
@@ -50,7 +50,7 @@ export function SiteFooter() {
           </div>
 
           <div className="text-sm lg:col-span-2">
-            <h2 className="mb-4 font-sans text-xs font-semibold text-rose">Hours</h2>
+            <h2 className="mb-4 font-sans text-xs font-semibold text-rose">Godziny otwarcia</h2>
             <dl className="space-y-1.5">
               {hours.map((h) => (
                 <div key={h.days}>
@@ -64,7 +64,7 @@ export function SiteFooter() {
 
         <div className="mt-20 flex flex-col gap-4 border-t border-line-light py-6 text-xs text-ivory/70 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} {siteConfig.fullName}. A demonstration concept by {siteConfig.agency}; the studio, people and contact details are fictional.
+            © {new Date().getFullYear()} {siteConfig.fullName}. Koncept demonstracyjny {siteConfig.agency}; studio, osoby i dane kontaktowe są fikcyjne.
           </p>
           <ul className="flex gap-6">
             {legalNav.map((item) => (
@@ -76,14 +76,13 @@ export function SiteFooter() {
             ))}
             <li>
               <a href={contact.instagramUrl} target="_blank" rel="noopener noreferrer" className="hover:text-ivory">
-                Instagram<span className="sr-only"> (opens in a new tab)</span>
+                Instagram<span className="sr-only"> (otwiera się w nowej karcie)</span>
               </a>
             </li>
           </ul>
         </div>
       </div>
-      {/* The wordmark, cropped by the page edge. */}
-      {/* Drawn from a pseudo-element: purely decorative, so it is not read out or treated as text. */}
+      {/* Logotyp przycięty krawędzią strony – rysowany pseudoelementem, czysto dekoracyjny. */}
       <div
         aria-hidden="true"
         data-word="VÉRA"

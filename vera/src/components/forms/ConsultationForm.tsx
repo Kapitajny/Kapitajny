@@ -18,7 +18,7 @@ import {
 import { ConsentField, FieldError, Honeypot, NotConfiguredNotice, SubmitButton, TextAreaField, TextField, describe } from "./fields";
 import { useValidatedForm } from "./useValidatedForm";
 
-const categoryOptions: { value: ConsultationCategory; label: string }[] = [...categories.map((c) => ({ value: c.slug, label: c.name })), { value: UNSURE, label: "Not sure yet" }];
+const categoryOptions: { value: ConsultationCategory; label: string }[] = [...categories.map((c) => ({ value: c.slug, label: c.name })), { value: UNSURE, label: "Jeszcze nie wiem" }];
 
 function Fieldset({ legend, hint, error, name, children }: { legend: string; hint?: string; error?: string; name: string; children: React.ReactNode }) {
   return (
@@ -35,13 +35,13 @@ function Fieldset({ legend, hint, error, name, children }: { legend: string; hin
   );
 }
 
-/** The form is a real sequence of three parts, so the parts are numbered. */
+/** Formularz to rzeczywista sekwencja trzech części, dlatego są numerowane. */
 function Part({ n, title, children }: { n: number; title: string; children: React.ReactNode }) {
   return (
     <section className="grid gap-8 border-t border-black pt-8 md:grid-cols-[12rem_1fr] md:gap-12">
       <h2 className="font-serif text-3xl leading-tight">
         <span aria-hidden="true" className="mb-2 block font-sans text-xs font-medium text-rose-deep">
-          {String(n).padStart(2, "0")} of 03
+          {String(n).padStart(2, "0")} z 03
         </span>
         {title}
       </h2>
@@ -61,7 +61,7 @@ export function ConsultationForm({ initialTreatment }: { initialTreatment?: stri
   if (state.status === "sent") {
     return (
       <div role="status" className="border-t border-black pt-10">
-        <p className="font-serif text-5xl leading-tight text-burgundy">Request sent</p>
+        <p className="font-serif text-5xl leading-tight text-burgundy">Zapytanie wysłane</p>
         <p className="mt-5 max-w-lg text-stone">{state.message}</p>
       </div>
     );
@@ -73,8 +73,8 @@ export function ConsultationForm({ initialTreatment }: { initialTreatment?: stri
     <form ref={formRef} action={formAction} onSubmit={onSubmit} onBlur={onBlur} noValidate className="relative space-y-14" aria-describedby="consultation-status">
       <Honeypot />
 
-      <Part n={1} title="Your visit">
-        <Fieldset legend="Area of interest" name="category" error={errors.category}>
+      <Part n={1} title="Twoja wizyta">
+        <Fieldset legend="Obszar" name="category" error={errors.category}>
           <div className="flex flex-wrap gap-2">
             {categoryOptions.map((option) => (
               <label key={option.value} className="chip">
@@ -97,10 +97,10 @@ export function ConsultationForm({ initialTreatment }: { initialTreatment?: stri
 
         <div>
           <label htmlFor="treatment" className="field-label">
-            Treatment <span className="font-normal text-stone">(optional)</span>
+            Zabieg <span className="font-normal text-stone">(opcjonalnie)</span>
           </label>
           <span id="treatment-hint" className="field-hint">
-            Not sure? Leave it open – we will choose together at the consultation.
+            Nie masz pewności? Zostaw puste – wybierzemy razem podczas konsultacji.
           </span>
           <select
             id="treatment"
@@ -115,7 +115,7 @@ export function ConsultationForm({ initialTreatment }: { initialTreatment?: stri
             className="field-input"
             {...describe("treatment", errors.treatment, true)}
           >
-            <option value="">To decide at the consultation</option>
+            <option value="">Do ustalenia na konsultacji</option>
             {shownCategories.map((c) => (
               <optgroup key={c.slug} label={c.name}>
                 {treatments
@@ -131,11 +131,11 @@ export function ConsultationForm({ initialTreatment }: { initialTreatment?: stri
           <FieldError id="treatment-error" message={errors.treatment} />
         </div>
 
-        <Fieldset legend="Is this your first visit to VÉRA?" name="firstVisit" error={errors.firstVisit}>
+        <Fieldset legend="Czy to Twoja pierwsza wizyta w VÉRA?" name="firstVisit" error={errors.firstVisit}>
           <div className="flex flex-wrap gap-2" onChange={() => clearError("firstVisit")}>
             {[
-              { value: "yes", label: "Yes, my first" },
-              { value: "no", label: "No, I've been before" },
+              { value: "yes", label: "Tak, pierwsza" },
+              { value: "no", label: "Nie, kolejna" },
             ].map((o) => (
               <label key={o.value} className="chip">
                 <input type="radio" name="firstVisit" value={o.value} />
@@ -146,8 +146,8 @@ export function ConsultationForm({ initialTreatment }: { initialTreatment?: stri
         </Fieldset>
       </Part>
 
-      <Part n={2} title="Preferred time">
-        <Fieldset legend="Days" name="days" hint="Choose any that suit you. Leave all empty if any day works." error={errors.days}>
+      <Part n={2} title="Preferowany termin">
+        <Fieldset legend="Dni tygodnia" name="days" hint="Zaznacz wszystkie, które Ci odpowiadają. Brak wyboru oznacza dowolny dzień." error={errors.days}>
           <div className="flex flex-wrap gap-2">
             {weekdays.map((d) => (
               <label key={d.value} className="chip">
@@ -158,7 +158,7 @@ export function ConsultationForm({ initialTreatment }: { initialTreatment?: stri
           </div>
         </Fieldset>
 
-        <Fieldset legend="Time of day" name="timeOfDay" error={errors.timeOfDay}>
+        <Fieldset legend="Pora dnia" name="timeOfDay" error={errors.timeOfDay}>
           <div className="flex flex-wrap gap-2">
             {timesOfDay.map((t) => (
               <label key={t.value} className="chip">
@@ -175,9 +175,9 @@ export function ConsultationForm({ initialTreatment }: { initialTreatment?: stri
         <TextField
           name="dateFrom"
           type="date"
-          label="Earliest date"
+          label="Najwcześniejsza data"
           optional
-          hint="We take requests up to six months ahead."
+          hint="Przyjmujemy zapytania z wyprzedzeniem do sześciu miesięcy."
           min={todayInWarsaw()}
           max={maxBookingDate()}
           className="max-w-xs"
@@ -185,14 +185,14 @@ export function ConsultationForm({ initialTreatment }: { initialTreatment?: stri
         />
       </Part>
 
-      <Part n={3} title="Your details">
+      <Part n={3} title="Twoje dane">
         <div className="grid gap-9 sm:grid-cols-2 sm:gap-8">
-          <TextField name="name" label="Full name" autoComplete="name" required maxLength={LIMITS.name} error={errors.name} />
-          <TextField name="phone" type="tel" label="Phone" autoComplete="tel" inputMode="tel" required error={errors.phone} />
+          <TextField name="name" label="Imię i nazwisko" autoComplete="name" required maxLength={LIMITS.name} error={errors.name} />
+          <TextField name="phone" type="tel" label="Telefon" autoComplete="tel" inputMode="tel" required error={errors.phone} />
         </div>
         <TextField name="email" type="email" label="E-mail" autoComplete="email" inputMode="email" required maxLength={LIMITS.email} error={errors.email} />
 
-        <Fieldset legend="How should we contact you?" name="contactBy" error={errors.contactBy}>
+        <Fieldset legend="Jak mamy się z Tobą skontaktować?" name="contactBy" error={errors.contactBy}>
           <div className="flex flex-wrap gap-2">
             {contactChannels.map((c) => (
               <label key={c.value} className="chip">
@@ -205,9 +205,9 @@ export function ConsultationForm({ initialTreatment }: { initialTreatment?: stri
 
         <TextAreaField
           name="message"
-          label="Anything we should know"
+          label="Co warto, żebyśmy wiedzieli"
           optional
-          hint="For example what you would like to change. Please leave medical details for the consultation."
+          hint="Na przykład co chcesz zmienić. Szczegóły medyczne prosimy zostawić na konsultację."
           maxLength={LIMITS.consultationMessage}
           rows={4}
           error={errors.message}
@@ -222,23 +222,23 @@ export function ConsultationForm({ initialTreatment }: { initialTreatment?: stri
         <div id="consultation-status" aria-live="polite" className="mb-6 space-y-4">
           {summary && <p className="text-sm text-danger">{summary}</p>}
           {state.status === "error" && <p className="text-sm text-danger">{state.message}</p>}
-          {state.status === "not_configured" && <NotConfiguredNotice what="Your request" />}
+          {state.status === "not_configured" && <NotConfiguredNotice what="Zapytanie nie zostało wysłane" />}
         </div>
-        <SubmitButton pending={pending} label="Send request" pendingLabel="Sending…" />
-        <p className="mt-4 max-w-md text-xs text-stone">Sending this form is a request, not a booking. The studio will contact you to agree a time.</p>
+        <SubmitButton pending={pending} label="Wyślij zapytanie" pendingLabel="Wysyłanie…" />
+        <p className="mt-4 max-w-md text-xs text-stone">Wysłanie formularza to zapytanie, a nie rezerwacja. Studio skontaktuje się z Tobą, aby ustalić termin.</p>
       </div>
     </form>
   );
 }
 
 function WithParams() {
-  const slug = useSearchParams().get("treatment") ?? undefined;
+  const slug = useSearchParams().get("zabieg") ?? undefined;
   return <ConsultationForm key={slug} initialTreatment={slug} />;
 }
 
 /**
- * The form with a treatment preselected from the address (`/book?treatment=…`).
- * The page stays static: the full form is in the HTML and the preselection fills in after load.
+ * Formularz z zabiegiem wybranym na podstawie adresu (`/konsultacja?zabieg=…`).
+ * Strona pozostaje statyczna: w HTML jest pełny formularz, a wybór z adresu uzupełnia się po załadowaniu.
  */
 export function ConsultationFormFromUrl() {
   return (
