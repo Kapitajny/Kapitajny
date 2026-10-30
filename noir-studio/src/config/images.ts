@@ -33,12 +33,12 @@ const portfolio = {
   portraitHands: { file: "portrait-hands.jpg", aspect: "1/1" },
   portraitArtist: { file: "portrait-artist.jpg", aspect: "3/2" },
 
-  fashionCoat: { file: "fashion-coat.jpg", aspect: "2/3" },
+  fashionSummer: { file: "fashion-summer.jpg", aspect: "4/3" },
   fashionMotion: { file: "fashion-motion.jpg", aspect: "4/5" },
   fashionStreet: { file: "fashion-street.jpg", aspect: "3/2" },
   fashionDetail: { file: "fashion-detail.jpg", aspect: "1/1" },
 
-  commercialInterior: { file: "commercial-interior.jpg", aspect: "3/2" },
+  commercialCamera: { file: "commercial-camera.jpg", aspect: "3/2", focus: "45% 50%" },
   commercialProduct: { file: "commercial-product.jpg", aspect: "2/3" },
   commercialCraft: { file: "commercial-craft.jpg", aspect: "2/3" },
   commercialArchitecture: { file: "commercial-architecture.jpg", aspect: "16/9" },
