@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // NOIR STUDIO to osobny projekt z własną konfiguracją.
+    "noir-studio/**",
   ]),
 ]);
 

@@ -1,0 +1,33 @@
+.section {
+  padding-block: var(--section);
+}
+
+.section:focus {
+  outline: none;
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: 1.5rem;
+  align-items: end;
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.title {
+  grid-column: 1 / span 7;
+  font-size: var(--step-4);
+}
+
+.lead {
+  grid-column: 9 / -1;
+  max-width: 34rem;
+}
+
+@media (max-width: 899px) {
+  .title,
+  .lead {
+    grid-column: 1 / -1;
+  }
+}

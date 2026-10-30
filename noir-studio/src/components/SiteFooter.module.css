@@ -1,0 +1,41 @@
+.footer {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1.5rem var(--gutter);
+  padding-block: 2rem 2.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--paper) 18%, transparent);
+}
+
+.logo {
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem 2rem;
+  font-size: var(--step--1);
+}
+
+.note {
+  grid-column: 1 / -1;
+  color: var(--sand);
+  font-size: 0.75rem;
+}
+
+@media (max-width: 599px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+
+  .nav {
+    justify-content: flex-start;
+  }
+}

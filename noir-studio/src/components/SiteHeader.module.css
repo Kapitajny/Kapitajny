@@ -1,0 +1,94 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  color: var(--white);
+  transition:
+    transform 0.6s var(--ease-out),
+    background-color 0.5s var(--ease-out);
+}
+
+.header[data-state="solid"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.header[data-state="hidden"] {
+  transform: translateY(-100%);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(100% - 2 * var(--gutter), var(--max));
+  height: var(--header-h);
+  margin-inline: auto;
+  transition: height 0.5s var(--ease-out);
+}
+
+.header[data-state="solid"] .inner {
+  height: 4.25rem;
+}
+
+.logoLink {
+  display: inline-flex;
+  padding-block: 0.5rem;
+  text-decoration: none;
+}
+
+.menuButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 2.75rem;
+  margin-right: -0.5rem;
+  padding: 0.5rem;
+  border: 0;
+  background: none;
+}
+
+.menuLabel {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.burger {
+  display: grid;
+  gap: 6px;
+  width: 30px;
+}
+
+.burger span {
+  display: block;
+  height: 1px;
+  background: currentColor;
+  transform-origin: right;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.burger span:nth-child(2) {
+  transform: scaleX(0.66);
+}
+
+.burger span:nth-child(3) {
+  transform: scaleX(0.82);
+}
+
+.menuButton:hover .burger span {
+  transform: scaleX(1);
+}
+
+/* Na telefonach napis jest ukryty wizualnie, ale nadal nazywa przycisk dla czytników ekranu. */
+@media (max-width: 599px) {
+  .menuLabel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}

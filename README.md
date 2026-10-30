@@ -6,6 +6,9 @@ odbioru, płatności Stripe Checkout potwierdzane webhookiem oraz projekty dokum
 > **Projekt demonstracyjny.** Adresy lokali, godziny otwarcia, dane sprzedawcy i dokumenty prawne są danymi
 > przykładowymi / wersjami roboczymi i wymagają uzupełnienia przed przyjmowaniem prawdziwych zamówień.
 
+> W katalogu [`noir-studio/`](noir-studio/README.md) znajduje się osobny projekt: strona studia fotograficznego
+> **NOIR STUDIO** (Next.js, port 3100) – uruchamiana i budowana niezależnie od kawiarni.
+
 ## Stack
 
 - **Next.js 16** (App Router, Turbopack, Cache Components), **React 19**, **TypeScript**

@@ -1,0 +1,203 @@
+.hero {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  min-height: max(100svh, 36rem);
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--white);
+  isolation: isolate;
+}
+
+.hero:focus {
+  outline: none;
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  animation: develop 2.6s var(--ease-out) both;
+}
+
+/* Jednolite przyciemnienie – zapewnia kontrast tekstu (biel na zdjęciu ≥ 4.5:1). */
+.media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  opacity: 0.46;
+}
+
+/* Kadr wyłania się z ciemności jak odbitka w wywoływaczu. */
+@keyframes develop {
+  from {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.content {
+  align-self: end;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  width: min(100% - 2 * var(--gutter), var(--max));
+  margin-inline: auto;
+  padding-top: calc(var(--header-h) + 3rem);
+  padding-bottom: clamp(5.5rem, 12vh, 9rem);
+}
+
+.title {
+  grid-column: 6 / -1;
+  display: grid;
+  font-size: clamp(3.25rem, 0.9rem + 7.6vw, 9.25rem);
+  font-weight: 400;
+  line-height: 0.94;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+}
+
+.line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+.line > span {
+  display: block;
+  animation: rise 1.4s var(--ease-out) both;
+  animation-delay: calc(0.7s + var(--i) * 0.14s);
+}
+
+/* Trzy wersy schodzą w prawo – rytm czytania jak na rozkładówce. */
+.line:nth-child(2) {
+  padding-left: 0.9em;
+}
+
+.line:nth-child(3) {
+  padding-left: 0.35em;
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(102%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.after {
+  grid-column: 6 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem 3rem;
+  margin-top: clamp(1.75rem, 4vh, 3rem);
+  padding-left: 0.35em;
+  animation: fade 1.4s var(--ease-out) 1.4s both;
+}
+
+.subtitle {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-style: italic;
+  line-height: 1.25;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.scroll {
+  position: absolute;
+  left: var(--gutter);
+  bottom: clamp(1.5rem, 4vh, 2.5rem);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  color: var(--white);
+  text-decoration: none;
+  animation: fade 1.2s var(--ease-out) 2s both;
+}
+
+.scrollLine {
+  position: relative;
+  width: 1px;
+  height: 3.5rem;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--white) 30%, transparent);
+}
+
+.scrollLine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--white);
+  animation: drip 2.8s var(--ease-in-out) 2.6s infinite;
+  transform: translateY(-100%);
+}
+
+@keyframes drip {
+  0% {
+    transform: translateY(-100%);
+  }
+  55%,
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.scrollText {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+@media (min-width: 1440px) {
+  .content {
+    max-width: var(--max);
+  }
+}
+
+@media (max-width: 899px) {
+  .title,
+  .after {
+    grid-column: 1 / -1;
+  }
+
+  .scroll {
+    left: auto;
+    right: var(--gutter);
+  }
+}
+
+@media (max-width: 599px) {
+  .content {
+    padding-bottom: 7rem;
+  }
+
+  .after {
+    padding-left: 0;
+  }
+
+  .after :global(.button) {
+    width: 100%;
+  }
+}

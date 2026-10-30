@@ -1,0 +1,79 @@
+.section {
+  padding-block: var(--section) clamp(4rem, 8vw, 7rem);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.section:focus {
+  outline: none;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: 4rem;
+}
+
+.aside {
+  grid-column: 1 / span 5;
+  display: grid;
+  align-content: start;
+  gap: 2rem;
+}
+
+.title {
+  font-size: var(--step-4);
+}
+
+.lead {
+  max-width: 30rem;
+  color: var(--paper);
+}
+
+.details {
+  display: grid;
+  gap: 1rem;
+}
+
+.details > div {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid color-mix(in srgb, var(--paper) 18%, transparent);
+}
+
+.details dt {
+  color: var(--sand);
+  font-size: var(--step--1);
+  line-height: 2;
+}
+
+.details dd {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+}
+
+.photo {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  margin-top: 1rem;
+  overflow: hidden;
+}
+
+.formColumn {
+  grid-column: 7 / -1;
+  padding-top: clamp(0rem, 1vw, 1rem);
+}
+
+@media (max-width: 899px) {
+  .aside,
+  .formColumn {
+    grid-column: 1 / -1;
+  }
+
+  .photo {
+    display: none;
+  }
+}

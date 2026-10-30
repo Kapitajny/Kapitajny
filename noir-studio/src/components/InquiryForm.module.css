@@ -1,0 +1,136 @@
+.form {
+  display: grid;
+  gap: 2rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem var(--gutter);
+}
+
+.field {
+  display: grid;
+  gap: 0.375rem;
+  align-content: start;
+}
+
+.field label {
+  color: var(--sand);
+  font-size: var(--step--1);
+}
+
+.optional {
+  opacity: 0.85;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.5rem 0;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--paper) 45%, transparent);
+  border-radius: 0;
+  background: transparent;
+  color: var(--white);
+  font-size: var(--step-1);
+  color-scheme: dark;
+  transition: border-color 0.4s var(--ease-out);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 8rem;
+  line-height: 1.5;
+}
+
+.field select {
+  appearance: none;
+  padding-right: 2rem;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23C6B69F'/%3E%3C/svg%3E") right 0.25rem center / 0.75rem no-repeat;
+}
+
+.field select option {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--sand);
+  opacity: 0.8;
+}
+
+.field input:hover,
+.field select:hover,
+.field textarea:hover {
+  border-bottom-color: var(--sand);
+}
+
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  outline: none;
+  border-bottom-color: var(--white);
+  box-shadow: 0 1px 0 0 var(--white);
+}
+
+.field [aria-invalid="true"] {
+  border-bottom-color: var(--white);
+  border-bottom-style: dashed;
+}
+
+.error {
+  color: var(--white);
+  font-size: var(--step--1);
+}
+
+.error::before {
+  content: "";
+  display: inline-block;
+  width: 0.875rem;
+  height: 1px;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  background: var(--sand);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem 2rem;
+  margin-top: 0.5rem;
+}
+
+.demoNote {
+  flex: 1 1 16rem;
+  color: var(--sand);
+  font-size: var(--step--1);
+}
+
+.status {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  line-height: 1.45;
+}
+
+.status:empty {
+  display: none;
+}
+
+.status:focus {
+  outline: none;
+}
+
+@media (max-width: 599px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .actions :global(.button) {
+    width: 100%;
+  }
+}
