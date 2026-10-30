@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { BrowserFrame, PhoneFrame, leadShots } from "@/components/portfolio/DeviceShots";
 import { DemoTag } from "@/components/portfolio/DemoTag";
+import { LiveLink } from "@/components/portfolio/LiveLink";
 import { ProjectCover } from "@/components/portfolio/ProjectCover";
 import { projects } from "@/data/projects";
 
@@ -52,9 +53,12 @@ export function Portfolio() {
                   </h3>
                   <p className="mt-3 text-[0.9375rem] text-slate">Branża: {project.industry}</p>
                   <p className="mt-5 max-w-[30rem] text-[1.0625rem]">{project.summary}</p>
-                  <Link href={`/portfolio/${project.slug}`} className="btn btn-outline-ink mt-8" aria-label={`Zobacz projekt ${project.name}`}>
-                    Zobacz projekt
-                  </Link>
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <LiveLink project={project} />
+                    <Link href={`/portfolio/${project.slug}`} className="btn btn-outline-ink" aria-label={`Zobacz projekt ${project.name}`}>
+                      Zobacz projekt
+                    </Link>
+                  </div>
                 </div>
               </article>
             );
@@ -81,9 +85,12 @@ export function Portfolio() {
                     </h3>
                     <p className="mt-2 text-[0.9375rem] text-slate">Branża: {project.industry}</p>
                     <p className="mt-4 mb-7 max-w-[32rem]">{project.summary}</p>
-                    <Link href={`/portfolio/${project.slug}`} className="btn btn-outline-ink mt-auto self-start" aria-label={`Zobacz projekt ${project.name}`}>
-                      Zobacz projekt
-                    </Link>
+                    <div className="mt-auto flex flex-wrap gap-3">
+                      <LiveLink project={project} />
+                      <Link href={`/portfolio/${project.slug}`} className="btn btn-outline-ink" aria-label={`Zobacz projekt ${project.name}`}>
+                        Zobacz projekt
+                      </Link>
+                    </div>
                   </div>
                 </article>
               );

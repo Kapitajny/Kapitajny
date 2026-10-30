@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import type { CSSProperties } from "react";
 import { BrowserFrame, PhoneFrame } from "@/components/portfolio/DeviceShots";
 import { DemoTag } from "@/components/portfolio/DemoTag";
+import { LiveLink } from "@/components/portfolio/LiveLink";
 import { ProjectCover } from "@/components/portfolio/ProjectCover";
 import { getProject, projects } from "@/data/projects";
 
@@ -55,11 +56,7 @@ export default async function ProjectPage(props: PageProps<"/portfolio/[slug]">)
           <div className="md:col-span-5">
             <p className="text-[0.9375rem] text-slate">Branża: {project.industry}</p>
             <p className="lead mt-3">{project.summary}</p>
-            {project.liveUrl && (
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn-ink mt-6">
-                Otwórz wersję demonstracyjną<span className="sr-only"> (nowa karta)</span>
-              </a>
-            )}
+            <LiveLink project={project} className="btn btn-ink mt-6" />
           </div>
         </header>
 

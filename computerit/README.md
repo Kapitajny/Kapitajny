@@ -65,10 +65,29 @@ Limit zapytań działa w pamięci procesu; przy kilku instancjach serwera zastą
 - Ceny, zakresy usług, opcje formularza – `src/data/offer.ts`
 - Projekty – `src/data/projects.ts`; zrzuty ekranu w `public/portfolio/<slug>/`. Projekt bez zrzutów
   (`shots: []`) dostaje okładkę typograficzną z własnych haseł – po dodaniu plików wystarczy uzupełnić `shots`.
-  `liveUrl` dodaje na podstronie projektu przycisk do opublikowanej wersji demonstracyjnej.
+
+### Działające wersje demonstracyjne
+
+Klienci mogą wejść na projekty i je przeklikać – przyciski „Otwórz stronę” / „Otwórz sklep” w portfolio
+i na podstronach projektów otwierają w nowej karcie wersje demonstracyjne serwowane razem ze stroną ComputerIT:
+
+| Projekt         | Adres                                 | Źródło                                          |
+| --------------- | ------------------------------------- | ----------------------------------------------- |
+| VANTOR          | `/demo/vantor-automotive/index.html`  | gotowa paczka strony                            |
+| Sklep KAPITAJNY | `/demo/sklep-kapitajny/index.html`    | gotowa paczka sklepu                            |
+| InterPodatki    | `/demo/interpodatki/index.html`       | gotowa paczka strony                            |
+| NOIR COFFEE     | `/demo/noir-coffee`                   | `node scripts/build-noir-demo.mjs` (z repozytorium) |
+
+Nową wersję demonstracyjną dodajesz, kopiując zbudowaną stronę (z `index.html` i ścieżkami względnymi) do
+`public/demo/<slug>/` i ustawiając `liveUrl` oraz `liveLabel` projektu w `src/data/projects.ts`.
+
+NOIR COFFEE w wersji demo działa bez serwera: menu, personalizacja, koszyk i wybór godziny odbioru działają,
+płatności, newsletter i statusy zamówień są wyłączone. Po zmianach w kawiarni przebuduj demo skryptem
+(wymaga `npm install` w katalogu nadrzędnym).
 
 Wszystkie projekty są oznaczone jako koncepcje demonstracyjne. Zrzuty NOIR COFFEE, VANTOR Automotive,
-Sklepu KAPITAJNY i InterPodatki wykonano z działających wersji tych stron.
+Sklepu KAPITAJNY i InterPodatki wykonano z działających wersji tych stron. AUREON HOMES, VÉRA i Piekarnia
+Morelowa nie mają jeszcze plików stron – po ich dodaniu dostaną zrzuty i przycisk do wersji demonstracyjnej.
 
 ## Struktura
 

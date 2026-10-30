@@ -3,7 +3,8 @@
  *
  * Zrzuty ekranu leżą w `public/portfolio/<slug>/`. Projekt bez zrzutów (`shots: []`) dostaje okładkę
  * typograficzną zbudowaną z jego własnych tekstów – po dodaniu plików wystarczy uzupełnić `shots`.
- * `liveUrl` ustaw, gdy wersja demonstracyjna zostanie opublikowana pod własnym adresem.
+ * Działające wersje demonstracyjne leżą w `public/demo/<slug>/` i są serwowane razem ze stroną ComputerIT –
+ * `liveUrl` wskazuje na nie (albo na zewnętrzny adres), a `liveLabel` nazywa przycisk.
  */
 
 export type Shot = {
@@ -24,6 +25,7 @@ export type Project = {
   scope: string[];
   note: string;
   liveUrl: string | null;
+  liveLabel?: "Otwórz stronę" | "Otwórz sklep";
   /** Kolory okładki i ramek – zaczerpnięte z palety samego projektu. */
   palette: { background: string; foreground: string; accent: string };
   /** Cytaty z treści projektu – używane na okładce typograficznej. */
@@ -71,7 +73,8 @@ export const projects: Project[] = [
       "Projekty polityki prywatności i regulaminu",
     ],
     note: "Marka, adres, dane kontaktowe, cennik i przedstawione realizacje są fikcyjne. Formularz działa w trybie demonstracyjnym.",
-    liveUrl: null,
+    liveUrl: "/demo/vantor-automotive/index.html",
+    liveLabel: "Otwórz stronę",
     palette: { background: "#0b0b0b", foreground: "#f3f0e9", accent: "#b8955b" },
     lines: ["Więcej niż serwis.", "Standard, na który zasługuje Twój samochód."],
     shots: [
@@ -133,7 +136,8 @@ export const projects: Project[] = [
       "Regulamin, polityka prywatności, dostawa i zwroty",
     ],
     note: "W wersji podglądowej katalog, filtry, karta produktu, koszyk i zamówienie demonstracyjne działają w przeglądarce. Płatności, konta i wysyłka formularzy działają w pełnej wersji sklepu. Zdjęcia produktów są poglądowe.",
-    liveUrl: null,
+    liveUrl: "/demo/sklep-kapitajny/index.html",
+    liveLabel: "Otwórz sklep",
     palette: { background: "#0b0b0b", foreground: "#f2f2f2", accent: "#ffffff" },
     lines: ["Bluzy. Spodnie. Nic ponad to."],
     shots: [
@@ -171,7 +175,8 @@ export const projects: Project[] = [
       "FAQ i dokumenty prawne",
     ],
     note: "Marka jest fikcyjna, a ceny przykładowe. Formularze i płatność demo działają w przeglądarce – płatności nie są realizowane.",
-    liveUrl: null,
+    liveUrl: "/demo/interpodatki/index.html",
+    liveLabel: "Otwórz stronę",
     palette: { background: "#0d1b33", foreground: "#eef3fb", accent: "#2f7bf6" },
     lines: ["Księgowość, która nadąża za Twoim biznesem."],
     shots: [
@@ -207,8 +212,9 @@ export const projects: Project[] = [
       "Galeria i sekcja lokali z mapą",
       "Projekty dokumentów prawnych",
     ],
-    note: "Kawiarnia jest fikcyjna, a adresy lokali i godziny otwarcia mają charakter przykładowy.",
-    liveUrl: null,
+    note: "Kawiarnia jest fikcyjna, a adresy lokali i godziny otwarcia mają charakter przykładowy. W wersji demonstracyjnej działają menu, koszyk i wybór godziny odbioru – płatności są wyłączone.",
+    liveUrl: "/demo/noir-coffee",
+    liveLabel: "Otwórz stronę",
     palette: { background: "#f5efe6", foreground: "#231812", accent: "#a57f55" },
     lines: ["Dobre poranki zaczynają się od dobrej kawy."],
     shots: [
