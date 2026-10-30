@@ -12,8 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
-    // Osobny projekt w repozytorium – ma własną konfigurację ESLint.
+    // Osobne projekty w repozytorium – mają własną konfigurację ESLint.
     "eloria/**",
+    "vera/**",
   ]),
 ]);
 

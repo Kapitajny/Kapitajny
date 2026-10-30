@@ -1,7 +1,8 @@
 # NOIR COFFEE – strona kawiarni z zamówieniami online
 
 > **W repozytorium są też inne projekty demonstracyjne** – każdy w osobnym katalogu, z własnym `package.json`
-> i README: [`eloria/`](eloria/README.md) – ÉLORIA Aesthetic Medical Clinic (Warszawa).
+> i README: [`eloria/`](eloria/README.md) – ÉLORIA Aesthetic Medical Clinic (Warszawa),
+> [`vera/`](vera/README.md) – VÉRA Aesthetic Studio (Kraków).
 
 Strona fikcyjnej kawiarni NOIR COFFEE z Gdańska: menu 10 kaw z personalizacją, koszyk, wybór lokalu i godziny
 odbioru, płatności Stripe Checkout potwierdzane webhookiem oraz projekty dokumentów prawnych.
