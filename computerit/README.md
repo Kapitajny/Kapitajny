@@ -69,7 +69,8 @@ Limit zapytań działa w pamięci procesu; przy kilku instancjach serwera zastą
 ### Działające wersje demonstracyjne
 
 Klienci mogą wejść na projekty i je przeklikać – przyciski „Otwórz stronę” / „Otwórz sklep” w portfolio
-i na podstronach projektów otwierają w nowej karcie wersje demonstracyjne serwowane razem ze stroną ComputerIT:
+i na podstronach projektów otwierają wersje demonstracyjne serwowane razem ze stroną ComputerIT. Na każdej z nich
+jest przycisk „Wróć do portfolio” (wstawia go `node scripts/add-demo-back-link.mjs` – uruchom po dodaniu nowej wersji demo):
 
 | Projekt         | Adres                                 | Źródło                                          |
 | --------------- | ------------------------------------- | ----------------------------------------------- |

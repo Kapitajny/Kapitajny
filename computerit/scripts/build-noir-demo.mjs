@@ -55,4 +55,6 @@ execSync("npx next build", { cwd: work, stdio: "inherit", env: { ...process.env,
 rmSync(target, { recursive: true, force: true });
 cpSync(join(work, "out"), target, { recursive: true });
 rmSync(work, { recursive: true, force: true });
+// Przycisk powrotu do portfolio – ten sam co w pozostałych wersjach demonstracyjnych.
+execSync("node scripts/add-demo-back-link.mjs", { cwd: join(here, ".."), stdio: "inherit" });
 console.log(`Gotowe: ${target}`);
