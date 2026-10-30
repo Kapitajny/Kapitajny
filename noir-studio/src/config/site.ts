@@ -19,7 +19,7 @@ export const navigation = [
   { id: "portfolio", image: "cameraMountains" },
   { id: "services", image: "cameraSunset" },
   { id: "about", image: "aboutPortrait" },
-  { id: "contact", image: "cameraSunset" },
+  { id: "contact", image: "photographerField" },
 ] as const;
 
 export type SectionId = (typeof navigation)[number]["id"];

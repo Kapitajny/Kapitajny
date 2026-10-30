@@ -15,7 +15,8 @@ i przebuduj projekt (`npm run build`).
 | --- | --- | --- |
 | `hero-dusk.jpg` | pierwszy ekran, menu (Start) | oryginał 588 × 390 px, powiększony do 1800 px |
 | `about-portrait.jpg` | O nas – portret, menu (O nas) | oryginał 669 × 298 px, powiększony do 1800 px |
-| `camera-sunset.jpg` | Kontakt, menu (Usługi, Kontakt) | oryginał 547 × 365 px, powiększony do 1800 px |
+| `camera-sunset.jpg` | menu (Usługi) | oryginał 547 × 365 px, powiększony do 1800 px |
+| `photographer-field.jpg` | Kontakt, menu (Kontakt) | oryginał 650 × 431 px, powiększony 2,5× |
 | `camera-mountains.jpg` | menu (Portfolio) | oryginał 547 × 365 px, powiększony do 1800 px |
 | `wedding-vows.jpg` | portfolio – Śluby, usługa „Fotografia ślubna” | 1130 × 977 px |
 | `portrait-window.jpg` | portfolio – Portrety, usługa „Fotografia portretowa” | 1334 × 2000 px |
@@ -24,17 +25,18 @@ i przebuduj projekt (`npm run build`).
 | `commercial-product.jpg` | portfolio – Dla firm (reprodukcja obrazu), usługa „Fotografia komercyjna” | **oryginał 181 × 278 px**, powiększony 3× |
 | `commercial-camera.jpg` | portfolio – Dla firm (aparat pod słońce) | 1600 × 1067 px |
 | `fashion-summer.jpg` | portfolio – Moda (trzy kobiety w okularach) | **oryginał 197 × 148 px**, powiększony 3× |
+| `portrait-retro.jpg` | portfolio – Portrety (kobieta w kapeluszu z kociakiem) | **oryginał 299 × 168 px**, powiększony 3× |
 
 Usługi używają tych samych plików co pierwsze zdjęcie danej kategorii w portfolio (`src/config/images.ts`).
 Pliki oznaczone pogrubieniem to miniatury – na stronie są wyraźnie miękkie. Przed prezentacją warto podmienić je
 (i powiększone zdjęcia z pierwszych czterech wierszy) na oryginały w pełnej rozdzielczości, pod tymi samymi nazwami.
 
-## Do uzupełnienia – portfolio (13 kadrów)
+## Do uzupełnienia – portfolio (12 kadrów)
 
 | Kategoria | Pliki (proporcje) |
 | --- | --- |
 | Śluby | `wedding-first-dance.jpg` (3:2), `wedding-details.jpg` (2:3), `wedding-walk.jpg` (16:9) |
-| Portrety | `portrait-studio.jpg` (4:5), `portrait-hands.jpg` (1:1), `portrait-artist.jpg` (3:2) |
+| Portrety | `portrait-studio.jpg` (4:5), `portrait-hands.jpg` (1:1) |
 | Moda | `fashion-motion.jpg` (4:5), `fashion-detail.jpg` (1:1) |
 | Dla firm | `commercial-craft.jpg` (2:3), `commercial-architecture.jpg` (16:9) |
 | Historie osobiste | `story-kitchen.jpg` (3:2), `story-sea.jpg` (16:9), `story-letters.jpg` (1:1) |

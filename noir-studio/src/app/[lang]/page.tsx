@@ -44,7 +44,7 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
         <Portfolio dict={dict} locale={lang} />
         <About portrait={resolveImage("aboutPortrait", dict)} t={dict.about} />
         <Services dict={dict} />
-        <Contact image={resolveImage("cameraSunset", dict)} inquiriesEnabled={Boolean(process.env.INQUIRY_WEBHOOK_URL?.trim())} dict={dict} locale={lang} />
+        <Contact image={resolveImage("photographerField", dict)} inquiriesEnabled={Boolean(process.env.INQUIRY_WEBHOOK_URL?.trim())} dict={dict} locale={lang} />
       </main>
       <SiteFooter dict={dict} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />

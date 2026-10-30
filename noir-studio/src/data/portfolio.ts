@@ -26,7 +26,7 @@ export const PORTFOLIO: PortfolioItem[] = [
 
   { image: "weddingWalk", category: "weddings", year: 2024 },
   { image: "fashionSummer", category: "fashion", year: 2025 },
-  { image: "portraitStudio", category: "portraits", year: 2026 },
+  { image: "portraitRetro", category: "portraits", year: 2024 },
   { image: "storyKitchen", category: "stories", year: 2025 },
   { image: "weddingDetails", category: "weddings", year: 2026 },
   { image: "storySea", category: "stories", year: 2025 },
@@ -38,6 +38,6 @@ export const PORTFOLIO: PortfolioItem[] = [
   { image: "storyLetters", category: "stories", year: 2026 },
   { image: "commercialArchitecture", category: "commercial", year: 2024 },
 
-  { image: "portraitArtist", category: "portraits", year: 2026 },
+  { image: "portraitStudio", category: "portraits", year: 2026 },
   { image: "fashionDetail", category: "fashion", year: 2026 },
 ];

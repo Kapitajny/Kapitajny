@@ -31,7 +31,7 @@ const portfolio = {
   portraitStudio: { file: "portrait-studio.jpg", aspect: "4/5" },
   portraitWindow: { file: "portrait-window.jpg", aspect: "2/3", focus: "50% 30%" },
   portraitHands: { file: "portrait-hands.jpg", aspect: "1/1" },
-  portraitArtist: { file: "portrait-artist.jpg", aspect: "3/2" },
+  portraitRetro: { file: "portrait-retro.jpg", aspect: "16/9", focus: "40% 40%" },
 
   fashionSummer: { file: "fashion-summer.jpg", aspect: "4/3" },
   fashionMotion: { file: "fashion-motion.jpg", aspect: "4/5" },
@@ -74,6 +74,7 @@ export const IMAGES = {
   },
   cameraSunset: { file: "camera-sunset.jpg", aspect: "3/2", focus: "45% 50%" },
   cameraMountains: { file: "camera-mountains.jpg", aspect: "3/2", focus: "62% 50%" },
+  photographerField: { file: "photographer-field.jpg", aspect: "3/2", focus: "35% 50%" },
 
   ...portfolio,
   ...services,
