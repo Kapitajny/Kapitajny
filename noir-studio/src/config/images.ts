@@ -34,18 +34,19 @@ const portfolio = {
   portraitRetro: { file: "portrait-retro.jpg", aspect: "16/9", focus: "40% 40%" },
 
   fashionSummer: { file: "fashion-summer.jpg", aspect: "4/3" },
-  fashionMotion: { file: "fashion-motion.jpg", aspect: "4/5" },
+  fashionGown: { file: "fashion-gown.jpg", aspect: "2/3", focus: "50% 30%" },
   fashionStreet: { file: "fashion-street.jpg", aspect: "3/2" },
-  fashionDetail: { file: "fashion-detail.jpg", aspect: "1/1" },
+  fashionJewelry: { file: "fashion-jewelry.jpg", aspect: "16/9" },
 
   commercialCamera: { file: "commercial-camera.jpg", aspect: "3/2", focus: "45% 50%" },
   commercialProduct: { file: "commercial-product.jpg", aspect: "2/3" },
-  commercialCraft: { file: "commercial-craft.jpg", aspect: "2/3" },
-  commercialArchitecture: { file: "commercial-architecture.jpg", aspect: "16/9" },
+  commercialTools: { file: "commercial-tools.jpg", aspect: "1/1" },
+  commercialPainting: { file: "commercial-painting.jpg", aspect: "4/5" },
+  commercialFood: { file: "commercial-food.jpg", aspect: "3/2" },
 
   storyKitchen: { file: "story-kitchen.jpg", aspect: "3/2" },
   storyMorning: { file: "story-morning.jpg", aspect: "3/4", focus: "50% 40%" },
-  storySea: { file: "story-sea.jpg", aspect: "16/9" },
+  storySea: { file: "story-sea.jpg", aspect: "3/2" },
   storyLetters: { file: "story-letters.jpg", aspect: "1/1" },
 } satisfies Record<string, ImageDefinition>;
 

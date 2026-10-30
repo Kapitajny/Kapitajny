@@ -16,7 +16,7 @@ export type PortfolioImageKey = keyof Dictionary["portfolio"]["items"];
 
 /** Kolejność odpowiada układowi galerii w widoku „Wszystkie”. */
 export const PORTFOLIO: PortfolioItem[] = [
-  // Pierwsze rzędy: kadry, które już mają zdjęcia.
+  // Najpierw kadry, które już mają zdjęcia; kategorie przeplatają się.
   { image: "weddingVows", category: "weddings", year: 2025 },
   { image: "portraitWindow", category: "portraits", year: 2025 },
   { image: "storyMorning", category: "stories", year: 2026 },
@@ -24,20 +24,21 @@ export const PORTFOLIO: PortfolioItem[] = [
   { image: "commercialProduct", category: "commercial", year: 2026 },
   { image: "commercialCamera", category: "commercial", year: 2026 },
 
-  { image: "weddingWalk", category: "weddings", year: 2024 },
+  { image: "fashionGown", category: "fashion", year: 2026 },
   { image: "fashionSummer", category: "fashion", year: 2025 },
   { image: "portraitRetro", category: "portraits", year: 2024 },
+  { image: "storySea", category: "stories", year: 2025 },
+  { image: "commercialTools", category: "commercial", year: 2025 },
+  { image: "fashionJewelry", category: "fashion", year: 2025 },
+
+  { image: "commercialFood", category: "commercial", year: 2024 },
+  { image: "commercialPainting", category: "commercial", year: 2025 },
+  { image: "weddingWalk", category: "weddings", year: 2024 },
+  { image: "portraitStudio", category: "portraits", year: 2026 },
   { image: "storyKitchen", category: "stories", year: 2025 },
   { image: "weddingDetails", category: "weddings", year: 2026 },
-  { image: "storySea", category: "stories", year: 2025 },
 
   { image: "portraitHands", category: "portraits", year: 2024 },
-  { image: "fashionMotion", category: "fashion", year: 2025 },
-  { image: "commercialCraft", category: "commercial", year: 2025 },
   { image: "weddingDance", category: "weddings", year: 2025 },
   { image: "storyLetters", category: "stories", year: 2026 },
-  { image: "commercialArchitecture", category: "commercial", year: 2024 },
-
-  { image: "portraitStudio", category: "portraits", year: 2026 },
-  { image: "fashionDetail", category: "fashion", year: 2026 },
 ];

@@ -26,20 +26,26 @@ i przebuduj projekt (`npm run build`).
 | `commercial-camera.jpg` | portfolio – Dla firm (aparat pod słońce) | 1600 × 1067 px |
 | `fashion-summer.jpg` | portfolio – Moda (trzy kobiety w okularach) | **oryginał 197 × 148 px**, powiększony 3× |
 | `portrait-retro.jpg` | portfolio – Portrety (kobieta w kapeluszu z kociakiem) | **oryginał 299 × 168 px**, powiększony 3× |
+| `fashion-gown.jpg` | portfolio – Moda (czarna suknia) | oryginał 600 × 901 px, powiększony 1,6× |
+| `fashion-jewelry.jpg` | portfolio – Moda (biżuteria, dwa kadry) | oryginał 588 × 333 px, powiększony 2,5× |
+| `commercial-tools.jpg` | portfolio – Dla firm (przecinaki kaletnicze) | oryginał 400 × 400 px, powiększony 2,5× |
+| `commercial-painting.jpg` | portfolio – Dla firm (reprodukcja obrazu) | oryginał 399 × 501 px, powiększony 2,5× |
+| `commercial-food.jpg` | portfolio – Dla firm (fotografia kulinarna) | oryginał 588 × 408 px, powiększony 2,5× |
+| `story-sea.jpg` | portfolio – Historie osobiste (Bałtyk zimą) | oryginał 588 × 390 px, powiększony 2,5× |
 
 Usługi używają tych samych plików co pierwsze zdjęcie danej kategorii w portfolio (`src/config/images.ts`).
 Pliki oznaczone pogrubieniem to miniatury – na stronie są wyraźnie miękkie. Przed prezentacją warto podmienić je
 (i powiększone zdjęcia z pierwszych czterech wierszy) na oryginały w pełnej rozdzielczości, pod tymi samymi nazwami.
 
-## Do uzupełnienia – portfolio (12 kadrów)
+## Do uzupełnienia – portfolio (7 kadrów)
 
 | Kategoria | Pliki (proporcje) |
 | --- | --- |
 | Śluby | `wedding-first-dance.jpg` (3:2), `wedding-details.jpg` (2:3), `wedding-walk.jpg` (16:9) |
 | Portrety | `portrait-studio.jpg` (4:5), `portrait-hands.jpg` (1:1) |
-| Moda | `fashion-motion.jpg` (4:5), `fashion-detail.jpg` (1:1) |
-| Dla firm | `commercial-craft.jpg` (2:3), `commercial-architecture.jpg` (16:9) |
-| Historie osobiste | `story-kitchen.jpg` (3:2), `story-sea.jpg` (16:9), `story-letters.jpg` (1:1) |
+| Historie osobiste | `story-kitchen.jpg` (3:2), `story-letters.jpg` (1:1) |
+
+Kategorie Moda i Dla firm są już kompletne.
 
 Tytuły i miejsca pod zdjęciami są w słownikach (`portfolio.items`), lata – w `src/data/portfolio.ts`.
 Po wgraniu zdjęcia zmień też jego tytuł, miejsce i `alt` w `src/i18n/pl.ts` oraz `src/i18n/en.ts`.
