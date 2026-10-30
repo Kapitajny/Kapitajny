@@ -58,6 +58,8 @@ Limit zapytań działa w pamięci procesu; przy kilku instancjach serwera zastą
   „do uzupełnienia”.
 - **Polityka prywatności** – `src/app/polityka-prywatnosci/page.tsx`: dane administratora, dostawcy usług
   i okres przechowywania (fragmenty oznaczone na stronie). Treść warto skonsultować z prawnikiem.
+- **Regulamin** – `src/app/regulamin/page.tsx`: dane usługodawcy, forma zawarcia umowy, informacja, czy cena pakietu
+  promocyjnego jest kwotą netto czy brutto, termin odpowiedzi na reklamację i data wejścia w życie.
 - **Adres strony** – `NEXT_PUBLIC_SITE_URL` (linki kanoniczne, mapa strony, Open Graph).
 
 ## Oferta i portfolio

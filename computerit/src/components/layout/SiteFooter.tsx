@@ -73,9 +73,18 @@ export function SiteFooter() {
           <p>
             © {year} {siteConfig.name}. Wszelkie prawa zastrzeżone.
           </p>
-          <Link href="/polityka-prywatnosci" className="link-underline hover:text-white">
-            Polityka prywatności
-          </Link>
+          <ul className="flex flex-wrap gap-x-8 gap-y-2">
+            <li>
+              <Link href="/regulamin" className="link-underline hover:text-white">
+                Regulamin
+              </Link>
+            </li>
+            <li>
+              <Link href="/polityka-prywatnosci" className="link-underline hover:text-white">
+                Polityka prywatności
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </footer>
