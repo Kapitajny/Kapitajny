@@ -14,6 +14,7 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Osobny projekt w repozytorium – ma własną konfigurację ESLint.
     "vera/**",
+    "vera-2/**",
   ]),
 ]);
 
