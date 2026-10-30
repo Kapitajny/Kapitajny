@@ -23,38 +23,39 @@ export interface ImageDefinition {
 }
 
 const portfolio = {
-  weddingVows: { file: "wedding-vows.jpg", aspect: "4/5" },
+  weddingVows: { file: "wedding-vows.jpg", aspect: "7/6", focus: "40% 50%" },
   weddingDance: { file: "wedding-first-dance.jpg", aspect: "3/2" },
   weddingDetails: { file: "wedding-details.jpg", aspect: "2/3" },
   weddingWalk: { file: "wedding-walk.jpg", aspect: "16/9" },
 
   portraitStudio: { file: "portrait-studio.jpg", aspect: "4/5" },
-  portraitWindow: { file: "portrait-window.jpg", aspect: "2/3" },
+  portraitWindow: { file: "portrait-window.jpg", aspect: "2/3", focus: "50% 30%" },
   portraitHands: { file: "portrait-hands.jpg", aspect: "1/1" },
   portraitArtist: { file: "portrait-artist.jpg", aspect: "3/2" },
 
   fashionCoat: { file: "fashion-coat.jpg", aspect: "2/3" },
   fashionMotion: { file: "fashion-motion.jpg", aspect: "4/5" },
-  fashionStreet: { file: "fashion-street.jpg", aspect: "16/9" },
+  fashionStreet: { file: "fashion-street.jpg", aspect: "3/2" },
   fashionDetail: { file: "fashion-detail.jpg", aspect: "1/1" },
 
   commercialInterior: { file: "commercial-interior.jpg", aspect: "3/2" },
-  commercialProduct: { file: "commercial-product.jpg", aspect: "4/5" },
+  commercialProduct: { file: "commercial-product.jpg", aspect: "2/3" },
   commercialCraft: { file: "commercial-craft.jpg", aspect: "2/3" },
   commercialArchitecture: { file: "commercial-architecture.jpg", aspect: "16/9" },
 
   storyKitchen: { file: "story-kitchen.jpg", aspect: "3/2" },
-  storyMorning: { file: "story-morning.jpg", aspect: "4/5" },
+  storyMorning: { file: "story-morning.jpg", aspect: "3/4", focus: "50% 40%" },
   storySea: { file: "story-sea.jpg", aspect: "16/9" },
   storyLetters: { file: "story-letters.jpg", aspect: "1/1" },
 } satisfies Record<string, ImageDefinition>;
 
+/** Usługi korzystają ze zdjęć z portfolio tej samej kategorii. */
 const services = {
-  serviceWeddings: { file: "service-weddings.jpg", aspect: "4/5" },
-  servicePortraits: { file: "service-portraits.jpg", aspect: "3/4" },
-  serviceFashion: { file: "service-fashion.jpg", aspect: "4/5" },
-  serviceCommercial: { file: "service-commercial.jpg", aspect: "3/2" },
-  servicePersonal: { file: "service-personal.jpg", aspect: "4/5" },
+  serviceWeddings: { file: "wedding-vows.jpg", aspect: "7/6", focus: "40% 50%" },
+  servicePortraits: { file: "portrait-window.jpg", aspect: "4/5", focus: "50% 25%" },
+  serviceFashion: { file: "fashion-street.jpg", aspect: "3/2" },
+  serviceCommercial: { file: "commercial-product.jpg", aspect: "2/3" },
+  servicePersonal: { file: "story-morning.jpg", aspect: "3/4", focus: "50% 40%" },
 } satisfies Record<string, ImageDefinition>;
 
 export const IMAGES = {

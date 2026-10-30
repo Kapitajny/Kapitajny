@@ -16,16 +16,17 @@ export type PortfolioImageKey = keyof Dictionary["portfolio"]["items"];
 
 /** Kolejność odpowiada układowi galerii w widoku „Wszystkie”. */
 export const PORTFOLIO: PortfolioItem[] = [
+  // Pierwszy rząd: kadry, które już mają zdjęcia – po jednym z każdej kategorii.
   { image: "weddingVows", category: "weddings", year: 2025 },
+  { image: "portraitWindow", category: "portraits", year: 2025 },
+  { image: "storyMorning", category: "stories", year: 2026 },
+  { image: "fashionStreet", category: "fashion", year: 2026 },
+  { image: "commercialProduct", category: "commercial", year: 2026 },
+  { image: "weddingWalk", category: "weddings", year: 2024 },
+
   { image: "portraitStudio", category: "portraits", year: 2026 },
   { image: "fashionCoat", category: "fashion", year: 2025 },
   { image: "commercialInterior", category: "commercial", year: 2025 },
-  { image: "storyMorning", category: "stories", year: 2024 },
-  { image: "weddingWalk", category: "weddings", year: 2024 },
-
-  { image: "portraitWindow", category: "portraits", year: 2025 },
-  { image: "fashionStreet", category: "fashion", year: 2026 },
-  { image: "commercialProduct", category: "commercial", year: 2026 },
   { image: "storyKitchen", category: "stories", year: 2025 },
   { image: "weddingDetails", category: "weddings", year: 2026 },
   { image: "storySea", category: "stories", year: 2025 },
