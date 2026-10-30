@@ -1,0 +1,31 @@
+import type { NextConfig } from "next";
+
+const securityHeaders = [
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=()" },
+];
+
+const nextConfig: NextConfig = {
+  poweredByHeader: false,
+  images: {
+    qualities: [75, 85],
+    formats: ["image/avif", "image/webp"],
+  },
+  async headers() {
+    return [{ source: "/:path*", headers: securityHeaders }];
+  },
+  turbopack: {
+    // Repozytorium zawiera też drugi projekt (NOIR COFFEE) – katalogiem głównym tej aplikacji jest `eloria/`.
+    root: import.meta.dirname,
+    rules: {
+      "*.css": {
+        loaders: ["@tailwindcss/turbopack"],
+        as: "*.css",
+      },
+    },
+  },
+};
+
+export default nextConfig;

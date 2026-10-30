@@ -1,0 +1,496 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+ * ÉLORIA – system wizualny
+ *
+ * Paleta marki: ivory, blush, champagne, espresso, biel.
+ * Champagne (#B69B87) ma kontrast 2,3:1 na ivory – służy wyłącznie do linii,
+ * detali i dużych elementów graficznych. Drobny tekst w akcencie korzysta
+ * z przyciemnionego odcienia `champagne-deep` (5,2:1), tekst pomocniczy z `taupe` (6:1).
+ * ------------------------------------------------------------------------- */
+
+@theme {
+  --color-ivory: #f5f0e9;
+  --color-blush: #e7d8d0;
+  --color-champagne: #b69b87;
+  --color-champagne-deep: #76604f;
+  --color-champagne-light: #c9b3a3;
+  --color-espresso: #403630;
+  --color-espresso-deep: #2f2723;
+  --color-taupe: #655850;
+  --color-white: #ffffff;
+  --color-line: rgb(64 54 48 / 0.14);
+  --color-danger: #8e3a2c;
+  --color-success: #3f5e45;
+
+  --font-serif: var(--font-cormorant), "Cormorant", "Times New Roman", serif;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+
+  /* Skala typograficzna (klasyczna skala Bringhursta): 12 · 14 · 16 · 18 · 21 · 24 · 36 · 48 · 60 · 72 */
+  --text-2xs: 0.75rem;
+  --text-2xs--line-height: 1.5;
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.55;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.6;
+  --text-base: 1rem;
+  --text-base--line-height: 1.7;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.7;
+  --text-xl: 1.3125rem;
+  --text-xl--line-height: 1.5;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 1.35;
+  --text-3xl: 2.25rem;
+  --text-3xl--line-height: 1.12;
+  --text-4xl: 3rem;
+  --text-4xl--line-height: 1.04;
+  --text-5xl: 3.75rem;
+  --text-5xl--line-height: 1;
+  --text-6xl: 4.5rem;
+  --text-6xl--line-height: 0.98;
+
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-silk: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --breakpoint-xs: 26rem;
+  --breakpoint-3xl: 112rem;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    /* Margines boczny strony – rośnie płynnie od 20 px (360 px) do 96 px (1920 px). */
+    --gutter: clamp(1.25rem, 4.2vw, 6rem);
+    --header-h: 4.5rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 1.5rem);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-espresso);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    font-feature-settings: "kern", "liga";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-blush);
+    color: var(--color-espresso);
+  }
+
+  :focus-visible {
+    outline: 1.5px solid var(--color-espresso);
+    outline-offset: 4px;
+  }
+
+  [data-surface="dark"] :focus-visible {
+    outline-color: var(--color-ivory);
+  }
+
+  /* Blokada przewijania tła przy otwartym oknie modalnym (menu mobilne, podgląd galerii). */
+  html:has(dialog[open]:modal) {
+    overflow: hidden;
+  }
+
+  dialog::backdrop {
+    background: rgb(47 39 35 / 0.55);
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    font: inherit;
+    color: inherit;
+  }
+}
+
+@layer components {
+  /* Kontener z marginesami bocznymi. */
+  .frame {
+    width: 100%;
+    max-width: 100rem;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* Tekst ciągły – miara do ~68 znaków, szeryfowe treści mają większą interlinię. */
+  .prose-body > * + * {
+    margin-top: 1.1em;
+  }
+
+  .prose-body {
+    max-width: 38rem;
+    color: var(--color-taupe);
+  }
+
+  /* Przyciski – pigułka zarezerwowana wyłącznie dla działań. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 3.25rem;
+    padding: 0.85rem 1.85rem;
+    border-radius: 999px;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    text-align: center;
+    transition:
+      background-color 300ms var(--ease-soft),
+      color 300ms var(--ease-soft),
+      border-color 300ms var(--ease-soft);
+  }
+
+  .btn-primary {
+    background: var(--color-espresso);
+    color: var(--color-ivory);
+  }
+
+  .btn-primary:hover {
+    background: var(--color-espresso-deep);
+  }
+
+  .btn-outline {
+    border: 1px solid rgb(64 54 48 / 0.35);
+    color: var(--color-espresso);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--color-espresso);
+    background: rgb(255 255 255 / 0.45);
+  }
+
+  .btn-light {
+    background: var(--color-ivory);
+    color: var(--color-espresso);
+  }
+
+  .btn-light:hover {
+    background: var(--color-white);
+  }
+
+  .btn-outline-light {
+    border: 1px solid rgb(245 240 233 / 0.4);
+    color: var(--color-ivory);
+  }
+
+  .btn-outline-light:hover {
+    border-color: var(--color-ivory);
+  }
+
+  .btn[aria-disabled="true"],
+  .btn:disabled {
+    opacity: 0.55;
+    cursor: progress;
+  }
+
+  /* Link tekstowy z cienkim podkreśleniem, które przy najechaniu zmienia grubość. */
+  .link-quiet {
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--color-champagne);
+    text-underline-offset: 0.35em;
+    transition: text-decoration-color 250ms var(--ease-soft);
+  }
+
+  .link-quiet:hover {
+    text-decoration-color: currentColor;
+  }
+
+  /* Link w gęstych listach (stopka) – podkreślenie dopiero przy najechaniu. */
+  .link-hover {
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.35em;
+    transition: text-decoration-color 250ms var(--ease-soft);
+  }
+
+  .link-hover:hover,
+  .link-hover:focus-visible {
+    text-decoration-color: var(--color-champagne);
+  }
+
+  /* Wyróżniony akapit wprowadzający (lead) – szeryf, większa interlinia. */
+  .lead {
+    font-family: var(--font-serif);
+    font-size: clamp(1.375rem, 1.1rem + 0.9vw, 1.875rem);
+    line-height: 1.38;
+    font-weight: 400;
+    color: var(--color-espresso);
+  }
+
+  /* Pola formularzy */
+  .field-label {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-espresso);
+  }
+
+  .field-hint {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: var(--text-xs);
+    color: var(--color-taupe);
+  }
+
+  .field-input {
+    display: block;
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.85rem 0;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid rgb(64 54 48 / 0.32);
+    border-radius: 0;
+    font-size: 1rem;
+    transition: border-color 200ms var(--ease-soft);
+    appearance: none;
+  }
+
+  .field-input::placeholder {
+    color: rgb(101 88 80 / 0.7);
+  }
+
+  .field-input:hover {
+    border-bottom-color: rgb(64 54 48 / 0.6);
+  }
+
+  .field-input:focus-visible {
+    outline: none;
+    border-bottom: 1.5px solid var(--color-espresso);
+    box-shadow: 0 1px 0 0 var(--color-espresso);
+  }
+
+  .field-input[aria-invalid="true"] {
+    border-bottom-color: var(--color-danger);
+  }
+
+  select.field-input {
+    padding-right: 2rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%23403630' stroke-width='1.2'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.25rem center;
+  }
+
+  textarea.field-input {
+    min-height: 7.5rem;
+    resize: vertical;
+  }
+
+  .field-error {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: var(--text-xs);
+    color: var(--color-danger);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Ruch
+ * Jedna zaaranżowana sekwencja przy wejściu na stronę główną (hero).
+ * Pozostałe animacje odpowiadają wyłącznie na działania użytkownika.
+ * ------------------------------------------------------------------------- */
+
+@keyframes rise {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes unveil {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes settle {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hero-line {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  /* Zapas na ogonki i descendery (ę, ą, j, y), które inaczej ucięłaby maska animacji. */
+  padding-bottom: 0.24em;
+  margin-bottom: -0.24em;
+}
+
+.hero-line > span {
+  display: block;
+  animation: rise 1100ms var(--ease-silk) both;
+  animation-delay: calc(120ms + var(--i, 0) * 110ms);
+}
+
+.hero-unveil {
+  animation: unveil 1400ms var(--ease-silk) 200ms both;
+}
+
+.hero-unveil > * {
+  animation: settle 2200ms var(--ease-soft) 200ms both;
+}
+
+.hero-after {
+  animation: appear 900ms var(--ease-soft) 900ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 1ms !important;
+  }
+}
+
+/* Plansza zastępcza zdjęcia – miękkie światło z okna i delikatne ziarno, jak na odbitce. */
+.photo-placeholder {
+  background-image:
+    radial-gradient(120% 85% at 16% 8%, rgb(255 255 255 / 0.5), transparent 62%),
+    linear-gradient(180deg, transparent 55%, rgb(64 54 48 / 0.06)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.25 0 0 0 0 0.21 0 0 0 0 0.19 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.photo-placeholder.text-champagne-light {
+  background-image:
+    radial-gradient(110% 80% at 80% 10%, rgb(201 179 163 / 0.22), transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Pola wyboru (checkbox / radio) w stylistyce marki. */
+.field-check {
+  appearance: none;
+  flex-shrink: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  border: 1px solid rgb(64 54 48 / 0.45);
+  background: rgb(255 255 255 / 0.6) center / 0.75rem no-repeat;
+  cursor: pointer;
+  transition:
+    background-color 200ms var(--ease-soft),
+    border-color 200ms var(--ease-soft);
+}
+
+.field-check[type="radio"] {
+  border-radius: 999px;
+}
+
+.field-check:checked {
+  border-color: var(--color-espresso);
+  background-color: var(--color-espresso);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='10' fill='none'%3E%3Cpath d='M1 5.2 4.3 8.5 11 1.5' stroke='%23F5F0E9' stroke-width='1.6'/%3E%3C/svg%3E");
+}
+
+.field-check[type="radio"]:checked {
+  background-image: radial-gradient(circle, var(--color-ivory) 0 2.5px, transparent 3px);
+  background-size: auto;
+}
+
+.field-check[aria-invalid="true"] {
+  border-color: var(--color-danger);
+}
+
+/* Wybór w formie „kafelka” – ukryty natywny input, stylowana etykieta (zachowuje klawiaturę i czytniki ekranu). */
+.choice {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+
+.choice > input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+
+.choice > span {
+  display: flex;
+  min-height: 3rem;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgb(64 54 48 / 0.22);
+  background: rgb(255 255 255 / 0.45);
+  transition:
+    border-color 200ms var(--ease-soft),
+    background-color 200ms var(--ease-soft),
+    color 200ms var(--ease-soft);
+}
+
+.choice:hover > span {
+  border-color: rgb(64 54 48 / 0.5);
+}
+
+.choice > input:checked + span {
+  border-color: var(--color-espresso);
+  background: var(--color-espresso);
+  color: var(--color-ivory);
+}
+
+.choice > input:checked + span .choice-hint {
+  color: rgb(245 240 233 / 0.75);
+}
+
+.choice > input:focus-visible + span {
+  outline: 1.5px solid var(--color-espresso);
+  outline-offset: 3px;
+}
