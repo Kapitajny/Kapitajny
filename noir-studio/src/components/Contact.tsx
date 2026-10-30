@@ -1,36 +1,36 @@
 import type { ResolvedImage } from "@/config/images";
 import { siteConfig } from "@/config/site";
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/dictionaries";
 import { InquiryForm } from "./InquiryForm";
 import { Photo } from "./Photo";
 import styles from "./Contact.module.css";
 
-export function Contact({ image, inquiriesEnabled }: { image: ResolvedImage; inquiriesEnabled: boolean }) {
+export function Contact({ image, inquiriesEnabled, dict, locale }: { image: ResolvedImage; inquiriesEnabled: boolean; dict: Dictionary; locale: Locale }) {
+  const t = dict.contact;
   return (
     <section id="contact" tabIndex={-1} className={styles.section} aria-labelledby="contact-title">
       <div className={`container ${styles.layout}`}>
         <div className={styles.aside}>
           <h2 id="contact-title" className={styles.title}>
-            Let&apos;s plan your photographs.
+            {t.title}
           </h2>
-          <p className={styles.lead}>
-            Tell us what you have in mind, roughly when, and who will be in front of the camera. We reply with available dates, an outline of the session
-            and a quote.
-          </p>
+          <p className={styles.lead}>{t.lead}</p>
 
           <dl className={styles.details}>
             <div>
-              <dt>Studio</dt>
+              <dt>{t.studio}</dt>
               <dd>
-                {siteConfig.city}, {siteConfig.country}
+                {dict.common.city}, {dict.common.country}
               </dd>
             </div>
             <div>
-              <dt>Visits</dt>
-              <dd>By appointment</dd>
+              <dt>{t.visits}</dt>
+              <dd>{t.visitsValue}</dd>
             </div>
             {siteConfig.email && (
               <div>
-                <dt>Email</dt>
+                <dt>{t.email}</dt>
                 <dd>
                   <a className="text-link" href={`mailto:${siteConfig.email}`}>
                     {siteConfig.email}
@@ -46,7 +46,7 @@ export function Contact({ image, inquiriesEnabled }: { image: ResolvedImage; inq
         </div>
 
         <div className={styles.formColumn}>
-          <InquiryForm enabled={inquiriesEnabled} email={siteConfig.email} />
+          <InquiryForm enabled={inquiriesEnabled} email={siteConfig.email} locale={locale} t={dict.form} />
         </div>
       </div>
     </section>

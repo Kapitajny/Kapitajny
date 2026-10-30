@@ -2,6 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { ResolvedImage } from "@/config/images";
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/pl";
+import { LanguageSwitch } from "./LanguageSwitch";
 import { Logo } from "./Logo";
 import { MenuOverlay } from "./MenuOverlay";
 import styles from "./SiteHeader.module.css";
@@ -13,7 +16,23 @@ type HeaderState = "over-hero" | "solid" | "hidden";
  * Nad zdjęciem otwierającym jest przezroczysty; niżej chowa się przy przewijaniu w dół
  * i wraca jako ciemny pasek przy przewijaniu w górę.
  */
-export function SiteHeader({ menuImages, email }: { menuImages: Record<string, ResolvedImage>; email: string | null }) {
+export interface HeaderTexts {
+  common: Pick<Dictionary["common"], "backToTop" | "city" | "country" | "visitsByAppointment">;
+  nav: Dictionary["nav"];
+  language: Dictionary["language"];
+}
+
+export function SiteHeader({
+  menuImages,
+  email,
+  locale,
+  t,
+}: {
+  menuImages: Record<string, ResolvedImage>;
+  email: string | null;
+  locale: Locale;
+  t: HeaderTexts;
+}) {
   const [state, setState] = useState<HeaderState>("over-hero");
   const [menuOpen, setMenuOpen] = useState(false);
   const lastY = useRef(0);
@@ -50,9 +69,10 @@ export function SiteHeader({ menuImages, email }: { menuImages: Record<string, R
     <>
       <header className={styles.header} data-state={state} onFocusCapture={() => state === "hidden" && setState("solid")}>
         <div className={styles.inner}>
-          <a href="#top" className={styles.logoLink} aria-label="NOIR STUDIO, back to the top">
+          <a href="#top" className={styles.logoLink} aria-label={t.common.backToTop}>
             <Logo />
           </a>
+          <LanguageSwitch locale={locale} label={t.language.label} names={t.language.names} className={styles.language} />
           <button
             type="button"
             className={styles.menuButton}
@@ -61,7 +81,7 @@ export function SiteHeader({ menuImages, email }: { menuImages: Record<string, R
             aria-controls="site-menu"
             onClick={() => setMenuOpen(true)}
           >
-            <span className={styles.menuLabel}>Menu</span>
+            <span className={styles.menuLabel}>{t.nav.menu}</span>
             <span className={styles.burger} aria-hidden="true">
               <span />
               <span />
@@ -70,7 +90,7 @@ export function SiteHeader({ menuImages, email }: { menuImages: Record<string, R
           </button>
         </div>
       </header>
-      <MenuOverlay open={menuOpen} onClose={() => setMenuOpen(false)} images={menuImages} email={email} />
+      <MenuOverlay open={menuOpen} onClose={() => setMenuOpen(false)} images={menuImages} email={email} locale={locale} t={t} />
     </>
   );
 }

@@ -43,7 +43,7 @@ export function Photo({ image, sizes, preload, fit = "cover", label, tone = "lig
         <path d="M24 3 L33 21 M45 24 L27 33 M24 45 L15 27 M3 24 L21 15 M39 9 L30 27 M9 39 L18 21" />
       </svg>
       {label && <span className={styles.label}>{label}</span>}
-      <span className={styles.note}>Photograph to be added</span>
+      <span className={styles.note}>{image.placeholder}</span>
       {process.env.NODE_ENV === "development" && <span className={styles.path}>{image.expectedPath}</span>}
     </div>
   );

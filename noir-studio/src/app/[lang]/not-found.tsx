@@ -1,17 +1,17 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { getDictionary } from "@/i18n/dictionaries";
 
-export const metadata: Metadata = { title: "Page not found" };
-
+// Wywoływana tylko w obrębie istniejącej wersji językowej; nieznane adresy obsługuje global-not-found.tsx.
 // Style w globals.css: moduł CSS strony 404 byłby wstępnie ładowany na każdej stronie.
 export default function NotFound() {
+  const t = getDictionary("pl").notFound;
   return (
     <main id="main" className="not-found">
       <div className="container">
-        <h1 className="not-found__title">This frame is empty.</h1>
-        <p className="not-found__text">The page you were looking for doesn&apos;t exist or has moved.</p>
+        <h1 className="not-found__title">{t.title}</h1>
+        <p className="not-found__text">{t.text}</p>
         <Link href="/" className="button button--light">
-          Back to the studio
+          {t.back}
         </Link>
       </div>
     </main>

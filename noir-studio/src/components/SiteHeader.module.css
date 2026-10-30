@@ -33,8 +33,13 @@
 
 .logoLink {
   display: inline-flex;
+  margin-right: auto;
   padding-block: 0.5rem;
   text-decoration: none;
+}
+
+.language {
+  margin-right: clamp(0.5rem, 2.5vw, 2.25rem);
 }
 
 .menuButton {

@@ -2,10 +2,13 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ResolvedImage } from "@/config/images";
-import { navigation, siteConfig } from "@/config/site";
+import { navigation } from "@/config/site";
+import type { Locale } from "@/i18n/config";
+import { LanguageSwitch } from "./LanguageSwitch";
 import { Logo } from "./Logo";
 import { Photo } from "./Photo";
 import { scrollToSection } from "./scroll";
+import type { HeaderTexts } from "./SiteHeader";
 import styles from "./MenuOverlay.module.css";
 
 const CLOSE_MS = 650;
@@ -19,11 +22,15 @@ export function MenuOverlay({
   onClose,
   images,
   email,
+  locale,
+  t,
 }: {
   open: boolean;
   onClose: () => void;
   images: Record<string, ResolvedImage>;
   email: string | null;
+  locale: Locale;
+  t: HeaderTexts;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
   const [phase, setPhase] = useState<"closed" | "open" | "closing">("closed");
@@ -70,7 +77,7 @@ export function MenuOverlay({
       id="site-menu"
       className={styles.menu}
       data-phase={phase}
-      aria-label="Site menu"
+      aria-label={t.nav.menuDialog}
       onCancel={(event) => {
         event.preventDefault();
         close();
@@ -80,7 +87,7 @@ export function MenuOverlay({
         <a
           href="#top"
           className={styles.logoLink}
-          aria-label="NOIR STUDIO, back to the top"
+          aria-label={t.common.backToTop}
           onClick={(event) => {
             event.preventDefault();
             close(() => scrollToSection("#top"));
@@ -89,28 +96,28 @@ export function MenuOverlay({
           <Logo />
         </a>
         <button type="button" className={styles.close} onClick={() => close()} ref={closeButton}>
-          <span className={styles.closeLabel}>Close</span>
+          <span className={styles.closeLabel}>{t.nav.close}</span>
           <span className={styles.cross} aria-hidden="true" />
         </button>
       </div>
 
       <div className={styles.body}>
-        <nav aria-label="Main" className={styles.nav}>
+        <nav aria-label={t.nav.label} className={styles.nav}>
           <ul role="list" className={styles.list} onMouseLeave={() => setActive(0)}>
             {navigation.map((item, index) => (
-              <li key={item.href} className={styles.item} style={{ ["--i" as string]: index }}>
+              <li key={item.id} className={styles.item} style={{ ["--i" as string]: index }}>
                 <a
-                  href={item.href}
+                  href={`#${item.id}`}
                   className={styles.link}
                   data-active={active === index}
                   onMouseEnter={() => setActive(index)}
                   onFocus={() => setActive(index)}
                   onClick={(event) => {
                     event.preventDefault();
-                    close(() => scrollToSection(item.href));
+                    close(() => scrollToSection(`#${item.id}`));
                   }}
                 >
-                  <span className={styles.linkText}>{item.label}</span>
+                  <span className={styles.linkText}>{t.nav.items[item.id]}</span>
                 </a>
               </li>
             ))}
@@ -120,7 +127,7 @@ export function MenuOverlay({
         <div className={styles.aside} aria-hidden="true">
           <div className={styles.frame}>
             {navigation.map((item, index) => (
-              <div key={item.href} className={styles.slide} data-active={active === index}>
+              <div key={item.id} className={styles.slide} data-active={active === index}>
                 <Photo image={images[item.image]} sizes="(min-width: 900px) 34vw, 1px" tone="dark" />
               </div>
             ))}
@@ -129,14 +136,15 @@ export function MenuOverlay({
 
         <footer className={styles.footer}>
           <p>
-            {siteConfig.city}, {siteConfig.country}
+            {t.common.city}, {t.common.country}
           </p>
+          <LanguageSwitch locale={locale} label={t.language.label} names={t.language.names} className={styles.language} />
           {email ? (
             <a className="text-link" href={`mailto:${email}`}>
               {email}
             </a>
           ) : (
-            <p>Studio visits by appointment</p>
+            <p>{t.common.visitsByAppointment}</p>
           )}
         </footer>
       </div>

@@ -2,7 +2,7 @@
 
 Demonstracyjny projekt agencji **ComputerIT**: strona fikcyjnego studia fotograficznego premium z Warszawy.
 Jedna strona z pełnoekranowym menu, asymetryczną galerią z filtrami i lightboksem, sekcją o studiu, ofertą
-pięciu usług i formularzem zapytania.
+pięciu usług i formularzem zapytania – **po polsku (domyślnie) i po angielsku**.
 
 > **Projekt demonstracyjny.** Studio, fotografka, opisy sesji i podpisy zdjęć są fikcyjne. Strona nie zawiera
 > referencji, nagród ani certyfikatów. Formularz nie wysyła wiadomości, dopóki nie podłączysz skrzynki (niżej).
@@ -47,25 +47,42 @@ podłączony, zapisuje się w niej podczas budowania.
 Bez `INQUIRY_WEBHOOK_URL` formularz waliduje dane, ale **nie wysyła ich** – pod przyciskiem widać informację
 o wersji demonstracyjnej, a po kliknięciu „Send inquiry” komunikat, że zapytanie nie zostało wysłane.
 
+## Wersje językowe
+
+| Adres | Język |
+| --- | --- |
+| `/` | polski (domyślny) |
+| `/en` | angielski |
+
+`/pl` przekierowuje na `/`. Przełącznik z flagami (Polska, Wielka Brytania) jest w nagłówku i w menu
+pełnoekranowym; zachowuje sekcję, na której jest odwiedzający (np. `/#services` → `/en#services`). Obie wersje
+są generowane statycznie, mają własne `<html lang>`, tytuły, opisy, `hreflang` i wpisy w `sitemap.xml`.
+Komunikaty formularza i API (`/api/inquiry`) też są w języku strony.
+
+Wszystkie teksty są w `src/i18n/pl.ts` i `src/i18n/en.ts` (także teksty alternatywne zdjęć). Typ `Dictionary`
+pilnuje, żeby wersja angielska miała dokładnie te same klucze co polska – brak tłumaczenia zatrzyma build.
+
 ## Struktura
 
 ```
 src/
-  app/                  layout (fonty, metadane, nagłówek), strona główna, 404, robots, sitemap
-    api/inquiry         odbiór zapytania: walidacja + przekazanie na INQUIRY_WEBHOOK_URL
+  app/[lang]/           layout (fonty, metadane, nagłówek) i strona główna dla /pl (= /) i /en
+  app/global-not-found  dwujęzyczna strona 404
+  app/api/inquiry       odbiór zapytania: walidacja + przekazanie na INQUIRY_WEBHOOK_URL
+  i18n/                 ★ słowniki pl.ts / en.ts, konfiguracja języków, odmiana liczebników
   config/site.ts        nazwa, adres, nawigacja
-  config/images.ts      ★ mapa zdjęć: plik → sekcja, alt, proporcje, punkt ostrości
-  data/portfolio.ts     ★ kategorie i kadry galerii (tytuł, miejsce, rok)
-  data/services.ts      ★ usługi: opis, zakres, przycisk zapytania; rodzaje sesji w formularzu
+  config/images.ts      ★ mapa zdjęć: plik → sekcja, proporcje, punkt ostrości
+  data/portfolio.ts     kolejność kadrów galerii, kategorie, lata (tytuły i miejsca – w słownikach)
+  data/services.ts      lista usług i rodzajów sesji (opisy – w słownikach)
   lib/inquiry.ts        walidacja formularza (wspólna dla przeglądarki i serwera)
-  components/           Hero, SiteHeader + MenuOverlay, Portfolio + Gallery + Lightbox, About, Services, Contact
+  components/           Hero, SiteHeader + MenuOverlay + LanguageSwitch, Portfolio + Gallery + Lightbox, About, Services, Contact
 public/images/studio/   ★ zdjęcia – lista plików w README.md w tym katalogu
 ```
 
 ## Zdjęcia
 
 Obecnie strona ma 4 zdjęcia od klienta (hero, portret, dwa kadry w menu i kontakcie). Pozostałe 25 miejsc
-(portfolio i usługi) pokazuje passe-partout „Photograph to be added” w barwach marki. Wystarczy wgrać pliki pod
+(portfolio i usługi) pokazuje passe-partout „Zdjęcie zostanie dodane” / „Photograph to be added” w barwach marki. Wystarczy wgrać pliki pod
 nazwami z `public/images/studio/README.md` – układ, proporcje i podpisy są gotowe.
 
 ## Dostępność i zachowanie

@@ -16,6 +16,17 @@ const nextConfig: NextConfig = {
     qualities: [75, 85],
     formats: ["image/avif", "image/webp"],
   },
+  experimental: {
+    // Jedna strona 404 dla adresów spoza wersji językowych (layout główny leży w app/[lang]).
+    globalNotFound: true,
+  },
+  // Polski (domyślny) mieszka pod „/”, angielski pod „/en”. Strony są generowane jako /pl i /en.
+  async redirects() {
+    return [{ source: "/pl", destination: "/", permanent: true }];
+  },
+  async rewrites() {
+    return { beforeFiles: [{ source: "/", destination: "/pl" }], afterFiles: [], fallback: [] };
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

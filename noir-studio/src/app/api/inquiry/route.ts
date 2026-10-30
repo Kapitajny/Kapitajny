@@ -1,7 +1,11 @@
+import { DEFAULT_LOCALE, isLocale } from "@/i18n/config";
+import { getDictionary } from "@/i18n/dictionaries";
 import { toInquiryInput, validateInquiry } from "@/lib/inquiry";
 
 /**
- * POST /api/inquiry  { name, email, session, date, message }
+ * POST /api/inquiry  { name, email, session, date, message, lang }
+ *
+ * `lang` („pl” albo „en”) wybiera język komunikatów zwracanych formularzowi.
  *
  * Zapytanie jest przekazywane na INQUIRY_WEBHOOK_URL (np. scenariusz Make/Zapier albo własny endpoint).
  * Bez tej konfiguracji NIE wysyłamy wiadomości i jasno informujemy o tym odwiedzającego.
@@ -25,24 +29,30 @@ function error(status: number, code: string, message: string, fields?: Record<st
 }
 
 export async function POST(request: Request) {
-  if (rateLimited(request)) return error(429, "RATE_LIMITED", "Too many attempts. Wait a minute and try again.");
+  // Język z nagłówka, dopóki nie odczytamy treści – błędy przed jej odczytaniem też są przetłumaczone.
+  const headerLang = request.headers.get("x-site-lang");
+  let form = getDictionary(isLocale(headerLang) ? headerLang : DEFAULT_LOCALE).form;
+  if (rateLimited(request)) return error(429, "RATE_LIMITED", form.api.rateLimited);
 
   let body: unknown;
   try {
     const text = await request.text();
-    if (text.length > 10_000) return error(413, "TOO_LARGE", "Your message is too long.");
+    if (text.length > 10_000) return error(413, "TOO_LARGE", form.api.tooLarge);
     body = JSON.parse(text);
   } catch {
-    return error(400, "BAD_REQUEST", "The inquiry could not be read. Reload the page and try again.");
+    return error(400, "BAD_REQUEST", form.api.badRequest);
   }
 
+  const lang = (body as { lang?: unknown } | null)?.lang;
+  if (isLocale(lang)) form = getDictionary(lang).form;
+
   const input = toInquiryInput(body);
-  const fields = validateInquiry(input);
-  if (Object.keys(fields).length > 0) return error(422, "VALIDATION_ERROR", "Some fields need your attention.", fields);
+  const fields = validateInquiry(input, form.errors);
+  if (Object.keys(fields).length > 0) return error(422, "VALIDATION_ERROR", form.api.validation, fields);
 
   const webhookUrl = process.env.INQUIRY_WEBHOOK_URL?.trim();
   if (!webhookUrl) {
-    return error(503, "NOT_CONFIGURED", "This demo form is not connected to the studio inbox yet, so your inquiry was not sent.");
+    return error(503, "NOT_CONFIGURED", form.notConfigured);
   }
 
   try {
@@ -57,6 +67,7 @@ export async function POST(request: Request) {
         date: input.date || null,
         message: input.message.trim(),
         receivedAt: new Date().toISOString(),
+        lang: isLocale(lang) ? lang : DEFAULT_LOCALE,
         source: "noir-studio-website",
       }),
       signal: AbortSignal.timeout(8_000),
@@ -65,6 +76,6 @@ export async function POST(request: Request) {
     return Response.json({ ok: true });
   } catch (cause) {
     console.error("[inquiry]", cause);
-    return error(502, "DELIVERY_FAILED", "Your inquiry could not be delivered. Try again in a few minutes.");
+    return error(502, "DELIVERY_FAILED", form.api.deliveryFailed);
   }
 }

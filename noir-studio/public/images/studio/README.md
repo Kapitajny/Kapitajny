@@ -1,11 +1,12 @@
 # Zdjęcia NOIR STUDIO
 
 Wgraj tutaj pliki o poniższych nazwach. Mapowanie zdjęć na sekcje jest w `src/config/images.ts` – tam zmienisz
-nazwę pliku, tekst alternatywny (`alt`), proporcje kadru (`aspect`) i punkt ostrości (`focus`).
-Brakujący plik zastępuje passe-partout w barwach marki z napisem „Photograph to be added”.
+nazwę pliku, proporcje kadru (`aspect`) i punkt ostrości (`focus`). Teksty alternatywne (`alt`) są w słownikach
+`src/i18n/pl.ts` i `src/i18n/en.ts` (klucz `images`). Brakujący plik zastępuje passe-partout w barwach marki
+z napisem „Zdjęcie zostanie dodane”.
 
 Zalecenia: JPG lub WebP, **min. 2000 px po dłuższym boku**, kadr w podanych proporcjach (zdjęcie jest przycinane
-przez `object-fit: cover`). Po wgraniu zdjęć zaktualizuj `alt`, aby opisywał to, co faktycznie jest na zdjęciu,
+przez `object-fit: cover`). Po wgraniu zdjęć zaktualizuj `alt` w obu językach, aby opisywał to, co faktycznie jest na zdjęciu,
 i przebuduj projekt (`npm run build`).
 
 ## Obecne pliki (przekazane przez klienta)
@@ -30,7 +31,7 @@ przed prezentacją warto podmienić je na pliki w pełnej rozdzielczości (te sa
 | Commercial | `commercial-interior.jpg` (3:2), `commercial-product.jpg` (4:5), `commercial-craft.jpg` (2:3), `commercial-architecture.jpg` (16:9) |
 | Personal Stories | `story-kitchen.jpg` (3:2), `story-morning.jpg` (4:5), `story-sea.jpg` (16:9), `story-letters.jpg` (1:1) |
 
-Tytuły, miejsca i lata pod zdjęciami są w `src/data/portfolio.ts`.
+Tytuły i miejsca pod zdjęciami są w słownikach (`portfolio.items`), lata – w `src/data/portfolio.ts`.
 
 ## Do uzupełnienia – usługi (5 kadrów)
 

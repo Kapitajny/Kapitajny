@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import type { ResolvedImage } from "@/config/images";
+import { format } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/pl";
 import { Photo } from "./Photo";
 import styles from "./Lightbox.module.css";
 
@@ -15,7 +17,17 @@ export interface LightboxItem {
  * Pełnoekranowy podgląd zdjęć na natywnym <dialog>.
  * Klawiatura: ← → przełączają kadry, Esc zamyka. Na ekranach dotykowych – przesunięcie palcem.
  */
-export function Lightbox({ items, index, onIndexChange }: { items: LightboxItem[]; index: number | null; onIndexChange: (index: number | null) => void }) {
+export function Lightbox({
+  items,
+  index,
+  onIndexChange,
+  t,
+}: {
+  items: LightboxItem[];
+  index: number | null;
+  onIndexChange: (index: number | null) => void;
+  t: Dictionary["lightbox"];
+}) {
   const ref = useRef<HTMLDialogElement>(null);
   const touchStart = useRef<{ x: number; y: number } | null>(null);
   const open = index !== null && items.length > 0;
@@ -40,7 +52,7 @@ export function Lightbox({ items, index, onIndexChange }: { items: LightboxItem[
     <dialog
       ref={ref}
       className={styles.lightbox}
-      aria-label={current ? `Photograph: ${current.title}` : "Photograph viewer"}
+      aria-label={current ? format(t.photo, { title: current.title }) : t.dialog}
       onCancel={(event) => {
         event.preventDefault();
         onIndexChange(null);
@@ -62,13 +74,13 @@ export function Lightbox({ items, index, onIndexChange }: { items: LightboxItem[
         <div className={styles.layout}>
           <div className={styles.top}>
             <p className={styles.counter} aria-live="polite">
-              <span className="visually-hidden">Photograph </span>
+              <span className="visually-hidden">{t.counter} </span>
               {String(index + 1).padStart(2, "0")}
               <span className={styles.of}> / </span>
               {String(items.length).padStart(2, "0")}
             </p>
             <button type="button" className={styles.close} onClick={() => onIndexChange(null)}>
-              <span>Close</span>
+              <span>{t.close}</span>
               <span className={styles.cross} aria-hidden="true" />
             </button>
           </div>
@@ -101,18 +113,18 @@ export function Lightbox({ items, index, onIndexChange }: { items: LightboxItem[
           </div>
 
           <div className={styles.bottom}>
-            <button type="button" className={styles.nav} onClick={() => go(-1)} aria-label="Previous photograph">
+            <button type="button" className={styles.nav} onClick={() => go(-1)} aria-label={t.prevLabel}>
               <svg viewBox="0 0 40 12" aria-hidden="true">
                 <path d="M40 6H1M6 1L1 6l5 5" />
               </svg>
-              <span>Prev</span>
+              <span>{t.prev}</span>
             </button>
             <div className={styles.caption}>
               <p className={styles.title}>{current.title}</p>
               <p className={styles.meta}>{current.meta}</p>
             </div>
-            <button type="button" className={`${styles.nav} ${styles.next}`} onClick={() => go(1)} aria-label="Next photograph">
-              <span>Next</span>
+            <button type="button" className={`${styles.nav} ${styles.next}`} onClick={() => go(1)} aria-label={t.nextLabel}>
+              <span>{t.next}</span>
               <svg viewBox="0 0 40 12" aria-hidden="true">
                 <path d="M0 6h39M34 1l5 5-5 5" />
               </svg>

@@ -52,10 +52,15 @@
   padding-bottom: clamp(5.5rem, 12vh, 9rem);
 }
 
-.title {
+/* Kontener mierzy dostępną szerokość – nagłówek skaluje się do najdłuższego wersu (--fit, w em). */
+.titleBox {
   grid-column: 6 / -1;
+  container-type: inline-size;
+}
+
+.title {
   display: grid;
-  font-size: clamp(3.25rem, 0.9rem + 7.6vw, 9.25rem);
+  font-size: min(9.25rem, 100cqi / var(--fit, 6.5));
   font-weight: 400;
   line-height: 0.94;
   letter-spacing: -0.005em;
@@ -72,15 +77,6 @@
   display: block;
   animation: rise 1.4s var(--ease-out) both;
   animation-delay: calc(0.7s + var(--i) * 0.14s);
-}
-
-/* Trzy wersy schodzą w prawo – rytm czytania jak na rozkładówce. */
-.line:nth-child(2) {
-  padding-left: 0.9em;
-}
-
-.line:nth-child(3) {
-  padding-left: 0.35em;
 }
 
 @keyframes rise {
@@ -177,7 +173,7 @@
 }
 
 @media (max-width: 899px) {
-  .title,
+  .titleBox,
   .after {
     grid-column: 1 / -1;
   }
