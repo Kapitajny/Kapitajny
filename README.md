@@ -1,5 +1,8 @@
 # NOIR COFFEE – strona kawiarni z zamówieniami online
 
+> W katalogu [`computerit/`](computerit/README.md) znajduje się osobny projekt: strona studia ComputerIT
+> (własne `package.json`, uruchamianie z poziomu tego katalogu).
+
 Strona fikcyjnej kawiarni NOIR COFFEE z Gdańska: menu 10 kaw z personalizacją, koszyk, wybór lokalu i godziny
 odbioru, płatności Stripe Checkout potwierdzane webhookiem oraz projekty dokumentów prawnych.
 
