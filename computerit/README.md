@@ -79,8 +79,7 @@ i na podstronach projektów otwierają w nowej karcie wersje demonstracyjne serw
 | NOIR COFFEE     | `/demo/noir-coffee`                   | `node scripts/build-noir-demo.mjs` (z repozytorium) |
 | AUREON HOMES    | `/demo/aureon-homes/index.html`       | strona z artefaktu claude.ai                    |
 | VÉRA Aesthetic Studio | `/demo/vera-aesthetic-studio/index.html` | strona z artefaktu claude.ai          |
-| Piekarnia Morelowa | `/demo/piekarnia-morelowa/index.html` | strona z artefaktu claude.ai (koncepcja 1)   |
-| Piekarnia Morelowa II | `/demo/piekarnia-morelowa-ii/index.html` | strona z artefaktu claude.ai (koncepcja 2) |
+| Piekarnia Morelowa | `/demo/piekarnia-morelowa/index.html` | strona z artefaktu claude.ai                 |
 
 Nową wersję demonstracyjną dodajesz, kopiując zbudowaną stronę (z `index.html` i ścieżkami względnymi) do
 `public/demo/<slug>/` i ustawiając `liveUrl` oraz `liveLabel` projektu w `src/data/projects.ts`.
@@ -90,7 +89,7 @@ płatności, newsletter i statusy zamówień są wyłączone. Po zmianach w kawi
 (wymaga `npm install` w katalogu nadrzędnym).
 
 Wszystkie projekty są oznaczone jako koncepcje demonstracyjne. Zrzuty NOIR COFFEE, VANTOR Automotive,
-Sklepu KAPITAJNY, InterPodatki, AUREON HOMES, VÉRA i obu koncepcji Piekarni Morelowej wykonano z działających
+Sklepu KAPITAJNY, InterPodatki, AUREON HOMES, VÉRA i Piekarni Morelowej wykonano z działających
 wersji tych stron (tych samych, które są w `public/demo/`).
 
 ## Struktura
