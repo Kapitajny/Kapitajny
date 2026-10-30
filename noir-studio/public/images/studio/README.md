@@ -37,19 +37,18 @@ i przebuduj projekt (`npm run build`).
 | `portrait-studio.jpg` | portfolio – Portrety (sesja na czerwonym tle) | oryginał 678 × 452 px, powiększony 2× |
 | `story-kitchen.jpg` | portfolio – Historie osobiste (ciasto w ogrodzie) | **oryginał 201 × 251 px**, powiększony 3× |
 | `story-torun.jpg` | portfolio – Historie osobiste (Rynek w Toruniu) | oryginał 588 × 441 px, powiększony 2,5× |
+| `wedding-details.jpg` | portfolio – Śluby (kolczyki, przygotowania) | oryginał 411 × 486 px, powiększony 2,5× |
+| `portrait-hands.jpg` | portfolio – Portrety (dłonie pianisty) | oryginał 738 × 415 px, powiększony 2× |
 
 Usługi używają tych samych plików co pierwsze zdjęcie danej kategorii w portfolio (`src/config/images.ts`).
 Pliki oznaczone pogrubieniem to miniatury – na stronie są wyraźnie miękkie. Przed prezentacją warto podmienić je
 (i powiększone zdjęcia z pierwszych czterech wierszy) na oryginały w pełnej rozdzielczości, pod tymi samymi nazwami.
 
-## Do uzupełnienia – portfolio (2 kadry)
+## Portfolio jest kompletne
 
-| Kategoria | Pliki (proporcje) |
-| --- | --- |
-| Śluby | `wedding-details.jpg` (2:3) – detal przed ceremonią, np. dłonie, biżuteria, buty |
-| Portrety | `portrait-hands.jpg` (1:1) – zbliżenie dłoni (np. muzyka przy instrumencie) |
-
-Pozostałe kategorie są kompletne.
+Wszystkie 21 kadrów ma zdjęcia. Aby dodać kolejny kadr, dopisz go w `src/config/images.ts` (plik, proporcje),
+w `src/data/portfolio.ts` (kategoria, rok) oraz w słownikach (tytuł, miejsce, `alt`). Brakujący plik nadal
+zastępuje passe-partout „Zdjęcie zostanie dodane”, więc strona się nie psuje.
 
 Tytuły i miejsca pod zdjęciami są w słownikach (`portfolio.items`), lata – w `src/data/portfolio.ts`.
 Po wgraniu zdjęcia zmień też jego tytuł, miejsce i `alt` w `src/i18n/pl.ts` oraz `src/i18n/en.ts`.

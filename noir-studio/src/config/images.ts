@@ -25,12 +25,12 @@ export interface ImageDefinition {
 const portfolio = {
   weddingVows: { file: "wedding-vows.jpg", aspect: "7/6", focus: "40% 50%" },
   weddingDance: { file: "wedding-first-dance.jpg", aspect: "8/5" },
-  weddingDetails: { file: "wedding-details.jpg", aspect: "2/3" },
+  weddingDetails: { file: "wedding-details.jpg", aspect: "5/6" },
   weddingWalk: { file: "wedding-walk.jpg", aspect: "3/2" },
 
   portraitStudio: { file: "portrait-studio.jpg", aspect: "3/2" },
   portraitWindow: { file: "portrait-window.jpg", aspect: "2/3", focus: "50% 30%" },
-  portraitHands: { file: "portrait-hands.jpg", aspect: "1/1" },
+  portraitHands: { file: "portrait-hands.jpg", aspect: "16/9", focus: "45% 50%" },
   portraitRetro: { file: "portrait-retro.jpg", aspect: "16/9", focus: "40% 40%" },
 
   fashionSummer: { file: "fashion-summer.jpg", aspect: "4/3" },

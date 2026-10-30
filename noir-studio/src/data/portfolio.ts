@@ -16,7 +16,7 @@ export type PortfolioImageKey = keyof Dictionary["portfolio"]["items"];
 
 /** Kolejność odpowiada układowi galerii w widoku „Wszystkie”. */
 export const PORTFOLIO: PortfolioItem[] = [
-  // Najpierw kadry, które już mają zdjęcia; kategorie przeplatają się.
+  // Kategorie przeplatają się, a format kadru pasuje do miejsca w siatce.
   { image: "weddingVows", category: "weddings", year: 2025 },
   { image: "portraitWindow", category: "portraits", year: 2025 },
   { image: "storyMorning", category: "stories", year: 2026 },
@@ -39,7 +39,6 @@ export const PORTFOLIO: PortfolioItem[] = [
   { image: "storyTorun", category: "stories", year: 2024 },
 
   { image: "weddingWalk", category: "weddings", year: 2025 },
-  // Kadry czekające na zdjęcia.
   { image: "weddingDetails", category: "weddings", year: 2026 },
   { image: "portraitHands", category: "portraits", year: 2024 },
 ];

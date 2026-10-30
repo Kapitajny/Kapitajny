@@ -106,9 +106,12 @@
     margin-top: clamp(8rem, 16vw, 16rem);
   }
 
-  /* Pojedynczy ostatni kadr nie zostaje przy krawędzi. */
-  .item:last-child:nth-child(6n + 1) {
+  /* Ostatni kadr, który zostaje sam w rzędzie, dostaje szeroką, wyśrodkowaną ramkę. */
+  .item:last-child:nth-child(6n + 1),
+  .item:last-child:nth-child(6n + 3),
+  .item:last-child:nth-child(6n + 5) {
     grid-column: 3 / span 8;
+    margin-top: 0;
   }
 }
 

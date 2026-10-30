@@ -81,9 +81,9 @@ public/images/studio/   ★ zdjęcia – lista plików w README.md w tym katalog
 
 ## Zdjęcia
 
-Obecnie strona ma 24 zdjęcia od klienta: hero, portret, kadry w menu i kontakcie oraz 19 z 21 kadrów portfolio
-(pierwsze zdjęcie kategorii ilustruje też usługę). Pozostałe 2 miejsca w portfolio pokazują passe-partout „Zdjęcie zostanie dodane” / „Photograph to be added” w barwach marki. Wystarczy wgrać pliki pod
-nazwami z `public/images/studio/README.md` – układ, proporcje i podpisy są gotowe.
+Obecnie strona ma 26 zdjęć od klienta: hero, portret, kadry w menu i kontakcie oraz wszystkie 21 kadrów portfolio
+(pierwsze zdjęcie kategorii ilustruje też usługę). Brakujący plik zastępuje passe-partout „Zdjęcie zostanie dodane”
+– lista plików i ich rozmiarów jest w `public/images/studio/README.md`.
 
 ## Dostępność i zachowanie
 
