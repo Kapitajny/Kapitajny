@@ -41,7 +41,10 @@ export default function OfferPage() {
           Każdą wycenę przygotowujemy indywidualnie.
         </p>
       </PageIntro>
-      <section aria-label="Usługi" className="shell pb-[var(--section)]">
+      <section aria-labelledby="uslugi" className="shell pb-[var(--section)]">
+        <h2 id="uslugi" className="sr-only">
+          Usługi
+        </h2>
         <OfferList initial={null} />
       </section>
       <section aria-labelledby="pytania" className="bg-beige py-[var(--section)]">

@@ -19,7 +19,7 @@ export default function ContactPage() {
       <div className="shell grid grid-cols-12 gap-x-6 gap-y-16 pt-[calc(var(--header-h)+5rem)] pb-[var(--section)] md:pt-[calc(var(--header-h)+8rem)]">
         <div className="col-span-12 lg:col-span-4">
           <Reveal>
-            <h1 className="t-display">Porozmawiajmy o projekcie.</h1>
+            <h1 className="t-h2 max-w-[12ch] lg:text-[clamp(2.5rem,1.4rem+2.2vw,4rem)]">Porozmawiajmy o projekcie.</h1>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="t-body mt-8 max-w-[24rem] text-[1.0625rem]">

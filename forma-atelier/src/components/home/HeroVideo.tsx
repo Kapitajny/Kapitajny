@@ -11,6 +11,7 @@ import poster from "@/assets/film/hero-poster.jpg";
 const SOURCES = {
   webm: "/video/forma-atelier-hero-1080.webm",
   mp4: "/video/forma-atelier-hero-1080.mp4",
+  mobileWebm: "/video/forma-atelier-hero-720.webm",
   mobile: "/video/forma-atelier-hero-720.mp4",
 };
 
@@ -25,9 +26,12 @@ function connectionAllowsVideo() {
 }
 
 function pickSource(video: HTMLVideoElement) {
-  if (window.matchMedia("(max-width: 820px)").matches) return SOURCES.mobile;
-  if (video.canPlayType('video/webm; codecs="vp9"')) return SOURCES.webm;
-  return SOURCES.mp4;
+  const small = window.matchMedia("(max-width: 820px)").matches;
+  // H.264 MP4 działa wszędzie poza przeglądarkami bez kodeków własnościowych — tam wybieramy VP9
+  const h264 = video.canPlayType('video/mp4; codecs="avc1.640028"') !== "";
+  const vp9 = video.canPlayType('video/webm; codecs="vp9"') !== "";
+  if (small) return h264 ? SOURCES.mobile : SOURCES.mobileWebm;
+  return vp9 ? SOURCES.webm : SOURCES.mp4;
 }
 
 const ease = [0.22, 1, 0.36, 1] as const;

@@ -107,12 +107,12 @@ export function MenuOverlay({ open, onClose, returnFocusTo }: Props) {
                           onMouseEnter={() => setActive(item.href)}
                           onFocus={() => setActive(item.href)}
                           aria-current={current ? "page" : undefined}
-                          className="group flex items-baseline gap-4 py-1.5 font-serif text-[clamp(2.25rem,1.6rem+2.6vw,4.25rem)] leading-[1.08] transition-colors duration-500 hover:text-sand focus-visible:text-sand"
+                          className="group flex items-baseline py-1.5 font-serif text-[clamp(2.25rem,1.6rem+2.6vw,4.25rem)] leading-[1.08] transition-colors duration-500 hover:text-sand focus-visible:text-sand"
                         >
                           <span
                             aria-hidden="true"
                             className={`mb-[0.35em] h-px shrink-0 bg-current transition-all duration-700 ease-[var(--ease-out-soft)] ${
-                              current ? "w-10" : "w-0 group-hover:w-10 group-focus-visible:w-10"
+                              current ? "mr-4 w-10" : "mr-0 w-0 group-hover:mr-4 group-hover:w-10 group-focus-visible:mr-4 group-focus-visible:w-10"
                             }`}
                           />
                           {item.label}

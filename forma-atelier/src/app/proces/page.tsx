@@ -29,7 +29,10 @@ export default function ProcessPage() {
           Dobry proces daje spokój. Na każdym etapie wiesz, nad czym pracujemy, co otrzymasz i jakie decyzje są przed Tobą.
         </p>
       </PageIntro>
-      <section aria-label="Etapy" className="shell pb-[var(--section)]">
+      <section aria-labelledby="etapy" className="shell pb-[var(--section)]">
+        <h2 id="etapy" className="sr-only">
+          Etapy współpracy
+        </h2>
         <ProcessTimeline detailed />
       </section>
       <section aria-labelledby="co-otrzymasz" className="bg-beige py-[var(--section)]">

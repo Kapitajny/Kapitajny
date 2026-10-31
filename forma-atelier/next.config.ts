@@ -1,3 +1,5 @@
+import path from "node:path";
+
 import type { NextConfig } from "next";
 
 const securityHeaders = [
@@ -9,6 +11,8 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // aplikacja żyje w podkatalogu repozytorium, obok innego projektu z własnym package-lock.json
+  turbopack: { root: path.join(__dirname) },
   images: {
     formats: ["image/avif", "image/webp"],
     qualities: [70, 82],

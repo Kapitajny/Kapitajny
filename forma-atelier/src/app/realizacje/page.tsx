@@ -19,7 +19,7 @@ const layout = [
   { col: "md:col-span-5 md:col-start-2", ratio: "4 / 5" },
   { col: "md:col-span-6 md:col-start-7 md:mt-32", ratio: "3 / 2" },
   { col: "md:col-span-8 md:col-start-3", ratio: "16 / 9" },
-  { col: "md:col-span-6", ratio: "3 / 2" },
+  { col: "md:col-span-6 md:col-start-7", ratio: "3 / 2" },
 ];
 
 export default function ProjectsPage() {
@@ -31,6 +31,7 @@ export default function ProjectsPage() {
           projekt ma osobną stronę z opisem idei, materiałami i galerią.
         </p>
       </PageIntro>
+      <h2 className="sr-only">Lista realizacji</h2>
       <div className="shell grid grid-cols-12 gap-x-6 gap-y-20 pb-[var(--section)] md:gap-y-28">
         {projects.map((p, i) => (
           <ProjectCard
