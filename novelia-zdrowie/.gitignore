@@ -1,0 +1,27 @@
+# zależności
+/node_modules
+
+# testy i build
+/coverage
+/.next/
+/out/
+/build
+*.tsbuildinfo
+next-env.d.ts
+
+# misc
+.DS_Store
+*.pem
+npm-debug.log*
+
+# zmienne środowiskowe (przykład jest w repozytorium)
+.env*
+!.env.example
+
+# baza zamówień, skrzynka testowa e-maili
+/data/
+
+# PLIKI PRYWATNE – pełne PDF-y e-booków i ich źródła. NIGDY nie commituj ich do repozytorium
+# (repozytorium może być publiczne). Wgraj je na serwer osobno.
+/private/*
+!/private/README.md

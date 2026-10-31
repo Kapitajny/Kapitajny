@@ -1,0 +1,316 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+ * NOVELIA ZDROWIE – system wizualny
+ * Leśna zieleń, kremowa biel, naturalny beż, oliwka. Playfair Display + Jost.
+ * ------------------------------------------------------------------------- */
+
+@theme {
+  --color-forest: #1f3a2b;
+  --color-forest-deep: #152a1e;
+  --color-forest-soft: #2c4a37;
+  --color-cream: #f6f1e6;
+  --color-paper: #fbf8f1;
+  --color-beige: #ebe1cf;
+  --color-sand: #d9c9ad;
+  --color-olive: #6f7746;
+  --color-olive-soft: #a3a77d;
+  --color-sage: #c9cbb0;
+  --color-gold: #b0975a;
+  --color-gold-soft: #e4d6b3;
+  --color-ink: #23271f;
+  --color-muted: #5e6455;
+  --color-line: #ddd3bf;
+  --color-success: #2f5d43;
+  --color-danger: #9b2c22;
+
+  --font-serif: var(--font-playfair), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --shadow-soft: 0 1px 2px rgb(21 42 30 / 0.05), 0 10px 30px -14px rgb(21 42 30 / 0.25);
+  --shadow-lift: 0 2px 6px rgb(21 42 30 / 0.06), 0 30px 60px -28px rgb(21 42 30 / 0.45);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    color: var(--color-forest);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-forest);
+    color: var(--color-cream);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  html:has(dialog[open]:modal) {
+    overflow: hidden;
+  }
+
+  summary {
+    cursor: pointer;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 640px) {
+    .container-x {
+      padding-inline: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container-x {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-olive);
+  }
+
+  .gold-rule {
+    display: block;
+    width: 3.5rem;
+    height: 1px;
+    background: var(--color-gold);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3.25rem;
+    padding: 0.85rem 1.75rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition:
+      background-color 200ms var(--ease-soft),
+      color 200ms var(--ease-soft),
+      border-color 200ms var(--ease-soft),
+      transform 200ms var(--ease-soft);
+    cursor: pointer;
+  }
+  .btn:active {
+    transform: translateY(1px);
+  }
+  .btn:disabled,
+  .btn[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+  .btn-primary {
+    background: var(--color-forest);
+    color: var(--color-cream);
+  }
+  .btn-primary:hover:not(:disabled) {
+    background: var(--color-forest-deep);
+  }
+  .btn-gold {
+    background: var(--color-gold-soft);
+    color: var(--color-forest-deep);
+  }
+  .btn-gold:hover:not(:disabled) {
+    background: #efe3c4;
+  }
+  .btn-outline {
+    border: 1px solid color-mix(in oklab, var(--color-forest) 45%, transparent);
+    color: var(--color-forest);
+  }
+  .btn-outline:hover:not(:disabled) {
+    border-color: var(--color-forest);
+    background: color-mix(in oklab, var(--color-forest) 6%, transparent);
+  }
+  .btn-outline-light {
+    border: 1px solid color-mix(in oklab, var(--color-cream) 45%, transparent);
+    color: var(--color-cream);
+  }
+  .btn-outline-light:hover {
+    border-color: var(--color-cream);
+  }
+  .btn-sm {
+    min-height: 2.75rem;
+    padding: 0.6rem 1.15rem;
+    font-size: 0.75rem;
+  }
+
+  .link {
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, currentColor 35%, transparent);
+    text-underline-offset: 0.2em;
+    transition: text-decoration-color 200ms;
+  }
+  .link:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .field {
+    display: block;
+    width: 100%;
+    min-height: 3.25rem;
+    padding: 0.8rem 1rem;
+    background: #fff;
+    border: 1px solid var(--color-line);
+    color: var(--color-ink);
+    font-size: 1rem;
+    transition: border-color 150ms;
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--color-forest);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-forest) 14%, transparent);
+  }
+  .field[aria-invalid="true"] {
+    border-color: var(--color-danger);
+  }
+  .label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-forest);
+  }
+
+  /* Dokumenty prawne */
+  .prose-legal {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-ink);
+  }
+  .prose-legal h2 {
+    font-size: 1.6rem;
+    margin: 3rem 0 1rem;
+  }
+  .prose-legal section:first-child h2 {
+    margin-top: 0;
+  }
+  .prose-legal h3 {
+    font-size: 1.2rem;
+    margin: 1.8rem 0 0.6rem;
+  }
+  .prose-legal p {
+    margin: 0 0 1rem;
+  }
+  .prose-legal ol,
+  .prose-legal ul {
+    margin: 0 0 1.2rem;
+    padding-left: 1.4rem;
+  }
+  .prose-legal ol {
+    list-style: decimal;
+  }
+  .prose-legal ul {
+    list-style: disc;
+  }
+  .prose-legal li {
+    margin-bottom: 0.45rem;
+    padding-left: 0.2rem;
+  }
+  .prose-legal a {
+    color: var(--color-forest);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .prose-legal table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 1.4rem;
+    font-size: 0.95rem;
+  }
+  .prose-legal th,
+  .prose-legal td {
+    text-align: left;
+    vertical-align: top;
+    padding: 0.6rem 0.75rem 0.6rem 0;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  /* Podgląd okładki – delikatny grzbiet i cień książki */
+  .book-shadow {
+    box-shadow:
+      0 1px 1px rgb(0 0 0 / 0.08),
+      0 18px 40px -18px rgb(21 42 30 / 0.55),
+      0 40px 80px -40px rgb(21 42 30 / 0.45);
+  }
+}
+
+/* Delikatne pojawianie się sekcji (tylko z JS, bez ruchu przy prefers-reduced-motion) */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 700ms var(--ease-soft),
+      transform 700ms var(--ease-soft);
+  }
+  .js .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}

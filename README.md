@@ -1,3 +1,6 @@
+> **Nowy projekt: sklep NOVELIA ZDROWIE** – znajduje się w katalogu [`novelia-zdrowie/`](novelia-zdrowie/README.md)
+> (uruchamianie: `URUCHOM-NOVELIA-WINDOWS.bat` / `URUCHOM-NOVELIA-MAC.command`, raport: [`novelia-zdrowie/RAPORT.md`](novelia-zdrowie/RAPORT.md)).
+
 # NOIR COFFEE – strona kawiarni z zamówieniami online
 
 Strona fikcyjnej kawiarni NOIR COFFEE z Gdańska: menu 10 kaw z personalizacją, koszyk, wybór lokalu i godziny
