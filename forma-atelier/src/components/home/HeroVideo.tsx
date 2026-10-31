@@ -124,7 +124,6 @@ export function HeroVideo() {
           playsInline
           autoPlay
           preload="none"
-          poster={poster.src}
           aria-hidden="true"
           tabIndex={-1}
           disablePictureInPicture

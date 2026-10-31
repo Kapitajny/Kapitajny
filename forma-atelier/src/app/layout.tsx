@@ -78,6 +78,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="pl" className={`${cormorant.variable} ${manrope.variable}`}>
       <body>
+        <noscript>
+          {/* bez JavaScriptu animacje wejścia się nie uruchomią — treść musi być widoczna od razu */}
+          <style>{`[style*="opacity:0"]{opacity:1!important;transform:none!important}[style*="clip-path"]{clip-path:none!important}`}</style>
+        </noscript>
         <a
           href="#tresc"
           className="t-meta fixed top-3 left-3 z-[200] -translate-y-24 rounded-full bg-graphite px-5 py-3 text-paper transition-transform focus:translate-y-0"

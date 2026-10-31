@@ -43,7 +43,6 @@ const axeSrc = fs.readFileSync(require.resolve("axe-core/axe.min.js"), "utf8");
       const cls = await page.evaluate(() => window.__cls);
       await page.addScriptTag({ content: axeSrc });
       const res = await page.evaluate(async () => {
-        // eslint-disable-next-line no-undef
         const r = await axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "best-practice"] } });
         return r.violations.map((v) => ({ id: v.id, impact: v.impact, n: v.nodes.length, help: v.help, target: v.nodes.slice(0, 3).map((n) => n.target.join(" ")) }));
       });
