@@ -15,13 +15,13 @@ politykę sieci. Generatory wideo (Figma Weave) nie były połączone z kontem, 
 na koncie klienta nie wykonywaliśmy bez jego zgody. Zamiast podstawiać zdjęcie z efektem zoomu, wyrenderowaliśmy
 prawdziwy przejazd kamery przez wnętrze.
 
-## Scenopis (ok. 21 s, pętla)
+## Scenopis (17,5 s, pętla)
 | # | Ujęcie | Ruch kamery |
 | --- | --- | --- |
-| A | Wejście z tarasu przez przeszklenie do salonu | powolny dolly-in, 26–27 mm |
-| B | Obok sofy, zbliżenie na trawertyn i dąb | boczny przejazd w dół, 34→40 mm, głębia ostrości f/3.2 |
-| C | Jadalnia z lampionami | boczny tracking wzdłuż stołu, 30 mm |
-| D | Szerokie ujęcie całej strefy dziennej | odjazd z uniesieniem, 25→22 mm |
+| A | Wejście z tarasu przez przeszklenie do salonu (7 s) | powolny dolly-in, 26–27 mm |
+| B | Obok sofy, zbliżenie na trawertyn i dąb (5 s) | boczny przejazd w dół, 34→40 mm, głębia ostrości f/3.2–4 |
+| C | Jadalnia z lampionami (5 s) | boczny tracking wzdłuż stołu, 30 mm |
+| D | Szerokie ujęcie całej strefy dziennej (5 s) | odjazd z uniesieniem, 25→22 mm |
 
 Między ujęciami są miękkie, jednosekundowe przenikania, bez cięć. Ostatnia sekunda przenika w pierwsze klatki, więc
 pętla nie ma widocznego przeskoku.
@@ -29,12 +29,13 @@ pętla nie ma widocznego przeskoku.
 ## Parametry techniczne
 | Plik | Format | Rozdzielczość | Zastosowanie |
 | --- | --- | --- | --- |
-| `public/video/forma-atelier-hero-1080.webm` | VP9, bez dźwięku | 1920×1080, 24 kl./s | desktop (Chrome, Firefox, Edge) |
-| `public/video/forma-atelier-hero-1080.mp4` | H.264 High, faststart | 1920×1080, 24 kl./s | desktop (Safari) |
-| `public/video/forma-atelier-hero-720.mp4` | H.264, faststart | 1280×720 | telefony i tablety do 820 px |
+| `public/video/forma-atelier-hero-1080.webm` | VP9, bez dźwięku, 4,0 MB | 1920×1080, 24 kl./s | desktop (Chrome, Firefox, Edge) |
+| `public/video/forma-atelier-hero-1080.mp4` | H.264 High, faststart, 8,9 MB | 1920×1080, 24 kl./s | desktop (Safari) |
+| `public/video/forma-atelier-hero-720.mp4` | H.264, faststart, 2,9 MB | 1280×720 | telefony i tablety do 820 px |
+| `public/video/forma-atelier-hero-720.webm` | VP9, 1,8 MB | 1280×720 | telefony bez kodeka H.264 |
 | `src/assets/film/hero-poster.jpg` | JPEG | 1920×1080 | plakat / LCP / fallback |
 
-Klatki renderowano w 1280×720 przy 12 kl./s. Do 24 kl./s doprowadziła interpolacja ruchu (`minterpolate`), a do
+Wyrenderowano 264 klatki w 1280×720 przy 12 kl./s (ok. 40 s na klatkę na 4 rdzeniach CPU). Do 24 kl./s doprowadziła interpolacja ruchu (`minterpolate`), a do
 1080p skalowanie Lanczos. Plakat to pierwsza klatka pętli, wyrenderowana natywnie w 1920×1080.
 
 ## Zachowanie na stronie
