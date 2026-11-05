@@ -30,5 +30,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules", "burger-house"]
+  "exclude": ["node_modules", "burger-house", "burger-house-concept-2"]
 }
