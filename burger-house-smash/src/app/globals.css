@@ -2297,7 +2297,9 @@ address {
     overflow-wrap: break-word;
   }
   .hero__title {
-    --w: 86cqw;
+    --w: 80cqw;
+    min-width: 0;
+    max-width: 100%;
   }
   .hero__lead {
     font-size: 1rem;
@@ -2409,7 +2411,7 @@ address {
 }
 @media (max-width: 360px) {
   .hero__title {
-    --w: 84cqw;
+    --w: 78cqw;
   }
   .btn,
   .btn--lg {

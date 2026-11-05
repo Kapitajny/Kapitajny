@@ -3,6 +3,7 @@ import { IconPhone } from "@/components/Icons";
 import { STICKER } from "@/components/Logo";
 import { FROM_PRICE, formatPrice } from "@/data/menu";
 import { SITE } from "@/data/site";
+import { FitTitle } from "./FitTitle";
 import { PlacePicker } from "./PlacePicker";
 
 export function Hero() {
@@ -45,6 +46,7 @@ export function Hero() {
           </p>
         </figure>
       </div>
+      <FitTitle />
       <PlacePicker />
     </section>
   );
