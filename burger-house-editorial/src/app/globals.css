@@ -411,14 +411,23 @@ button {
 .hero {
   container-type: inline-size;
 }
+/* --hero: rozmiar „DOBRY”. Ograniczony szerokością kolumny i wysokością ekranu,
+   żeby cały napis oraz opis z przyciskiem mieściły się na pierwszym ekranie laptopa. */
+.hero {
+  --hero: min(27.3cqw, calc((100svh - var(--header-h) - 13.75rem) / 1.72));
+}
+.hero__title {
+  display: inline-block; /* „bez kompromisów.” wyrównuje się do szerokości napisu */
+  max-width: 100%;
+}
 .hero__l1 {
-  font-size: 27.3cqw;
+  font-size: var(--hero);
 }
 .hero__l2 {
-  font-size: 24.7cqw; /* „BURGER” o ok. 6% szerszy niż kolumna – ucieka za prawą krawędź */
+  font-size: calc(var(--hero) * 0.843);
 }
 .hero__l3 {
-  font-size: 9.55cqw;
+  font-size: calc(var(--hero) * 0.348);
   letter-spacing: -0.05em;
   text-align: right;
   margin-top: 0.08em;
@@ -1400,6 +1409,9 @@ button {
     position: static;
   }
 
+  .hero {
+    --hero: 27.3cqw;
+  }
   /* telefon: ogromne napisy liczone od szerokości kolumny, żeby najdłuższe słowo zawsze się mieściło */
   .big {
     font-size: calc((100vw - 2 * var(--pad)) / 8.6);
@@ -1415,9 +1427,6 @@ button {
   }
   .place__city--two {
     font-size: calc((100vw - 2 * var(--pad)) / 8.8);
-  }
-  .hero__l2 {
-    font-size: 23.1cqw; /* na telefonie „BURGER” mieści się w całości */
   }
   .map {
     aspect-ratio: auto;
