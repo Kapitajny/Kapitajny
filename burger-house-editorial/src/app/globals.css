@@ -1229,9 +1229,10 @@ button {
 .map__place {
   position: absolute;
   inset: 0;
-  display: grid;
-  place-content: center;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
   text-align: center;
   padding: 1.5rem;
@@ -1397,5 +1398,36 @@ button {
   }
   .doc__toc {
     position: static;
+  }
+
+  /* telefon: ogromne napisy liczone od szerokości kolumny, żeby najdłuższe słowo zawsze się mieściło */
+  .big {
+    font-size: calc((100vw - 2 * var(--pad)) / 8.6);
+  }
+  .page-title {
+    font-size: calc((100vw - 2 * var(--pad)) / 9.4);
+  }
+  .cat__name {
+    font-size: calc((100vw - 2 * var(--pad)) / 8);
+  }
+  .place__city {
+    font-size: calc((100vw - 2 * var(--pad)) / 7.4);
+  }
+  .place__city--two {
+    font-size: calc((100vw - 2 * var(--pad)) / 8.8);
+  }
+  .hero__l2 {
+    font-size: 23.1cqw; /* na telefonie „BURGER” mieści się w całości */
+  }
+  .map {
+    aspect-ratio: auto;
+    min-height: 0;
+  }
+  .map__place {
+    position: static;
+    padding: 2rem 0;
+  }
+  .map__place .title {
+    font-size: 1.25rem;
   }
 }
