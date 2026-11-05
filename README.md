@@ -1,5 +1,8 @@
 # NOIR COFFEE – strona kawiarni z zamówieniami online
 
+> **W tym repozytorium jest też drugi, niezależny projekt:** strona burgerowni **BUŁA burger house** w katalogu
+> [`burger-house/`](burger-house/README.md) (własne `package.json`, uruchamiana osobno na porcie 3001).
+
 Strona fikcyjnej kawiarni NOIR COFFEE z Gdańska: menu 10 kaw z personalizacją, koszyk, wybór lokalu i godziny
 odbioru, płatności Stripe Checkout potwierdzane webhookiem oraz projekty dokumentów prawnych.
 

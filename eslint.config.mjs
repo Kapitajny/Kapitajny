@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Osobny projekt (BUŁA burger house) ma własną konfigurację.
+    "burger-house/**",
   ]),
 ]);
 
