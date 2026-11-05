@@ -15,6 +15,7 @@ const eslintConfig = defineConfig([
     // Osobny projekt (BUŁA burger house) ma własną konfigurację.
     "burger-house/**",
     "burger-house-concept-2/**",
+    "burger-house-editorial/**",
   ]),
 ]);
 
