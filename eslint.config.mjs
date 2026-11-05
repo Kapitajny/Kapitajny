@@ -16,6 +16,7 @@ const eslintConfig = defineConfig([
     "burger-house/**",
     "burger-house-concept-2/**",
     "burger-house-editorial/**",
+    "burger-house-smash/**",
   ]),
 ]);
 
