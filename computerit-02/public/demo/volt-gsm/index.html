@@ -1,0 +1,876 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VOLT GSM — serwis, sprzedaż i skup telefonów w Warszawie</title>
+  <meta name="description" content="VOLT GSM: serwis smartfonów, sprzedaż nowych i używanych telefonów, skup telefonów oraz akcesoria GSM. Wymiana wyświetlaczy i baterii, diagnostyka, wstępna wycena online.">
+  <!-- Projekt demonstracyjny z przykładowymi adresami: noindex chroni przed indeksowaniem fikcyjnych danych.
+       Usuń tę linię przed publikacją strony prawdziwej firmy. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0e0f11">
+
+  <!-- Open Graph — po publikacji zamień adresy na pełne, absolutne URL-e domeny -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pl_PL">
+  <meta property="og:site_name" content="VOLT GSM">
+  <meta property="og:title" content="VOLT GSM — Twój telefon. Nasza specjalność.">
+  <meta property="og:description" content="Serwis, sprzedaż i skup telefonów oraz akcesoria GSM w jednym miejscu.">
+  <meta property="og:image" content="assets/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/images/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/images/hero-phone.webp" as="image" type="image/webp">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+
+<!-- Biblioteka ikon SVG (używana przez <use href="#i-...">) -->
+<svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path d="M7 17 17 7M8.5 7H17v8.5"/></symbol>
+  <symbol id="i-screen" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 5.3h3M9 10.5l2.6 1.8-1.3 2.4 3.2 2.8"/></symbol>
+  <symbol id="i-battery" viewBox="0 0 24 24"><rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 10.5v3M7 10v4M10.5 10v4"/></symbol>
+  <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v4M15 3v4M6.5 7h11v3.5a5.5 5.5 0 0 1-11 0zM12 16v5"/></symbol>
+  <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M3 12h4l2.5-6 4 12 2.5-6H21"/></symbol>
+  <symbol id="i-chip" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M11 18.5h2"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M4 8h14l-3.5-3.5M20 16H6l3.5 3.5"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12.5H6zM9 8V6.5a3 3 0 0 1 6 0V8"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.5 7 8.5 6.5L20.5 7"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5M12 7.7v.1"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.5 3.2 8 7.5 9.5 4.3-1.5 7.5-5 7.5-9.5V6z"/><path d="m9 12 2.2 2.2L15.5 10"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3.5 12.2V4.5a1 1 0 0 1 1-1h7.7l8.3 8.3a1 1 0 0 1 0 1.4l-7.1 7.1a1 1 0 0 1-1.4 0z"/><circle cx="8" cy="8" r="1.4"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3.5 8.5 4.5L12 12.5 3.5 8zM3.5 12l8.5 4.5 8.5-4.5M3.5 16l8.5 4.5 8.5-4.5"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18.5h10a4 4 0 0 0 .6-7.95A5.5 5.5 0 0 0 7 9.5a4.5 4.5 0 0 0 0 9zM12 16v-5M9.8 13l2.2-2.2 2.2 2.2"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><path d="M14 4.5h4a1.5 1.5 0 0 1 1.5 1.5v12a1.5 1.5 0 0 1-1.5 1.5h-4M10 16.5 5.5 12 10 7.5M5.5 12H15"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></symbol>
+  <symbol id="i-sim" viewBox="0 0 24 24"><path d="M7.5 2.5h7L19 7v12.5a2 2 0 0 1-2 2H7.5a2 2 0 0 1-2-2v-15a2 2 0 0 1 2-2z"/><rect x="9" y="11" width="6" height="7" rx="1"/></symbol>
+  <symbol id="i-reset" viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3L4.5 9M4.5 4.5V9H9"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4.5 5.5h15v10h-8l-4.5 3.5v-3.5H4.5z"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><circle cx="9" cy="9.5" r="1.6"/><path d="m4 17.5 5-5 4 4 2.5-2.5 5 5"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M3.5 7.5 12 3.5l8.5 4v9L12 20.5l-8.5-4zM3.5 7.5 12 11.5l8.5-4M12 11.5v9"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 4.5 3.5 6.5v13L9 17.5l6 2 5.5-2v-13L15 6.5zM9 4.5v13M15 6.5v13"/></symbol>
+
+  <!-- Wektorowe ilustracje urządzeń do kart produktów demonstracyjnych (nie są jednym z 5 miejsc na zdjęcia) -->
+  <symbol id="d-phone-a" viewBox="0 0 120 200"><rect x="10" y="4" width="100" height="192" rx="18" class="d-body"/><rect x="18" y="12" width="44" height="44" rx="10" class="d-module"/><circle cx="31" cy="25" r="8" class="d-lens"/><circle cx="31" cy="44" r="8" class="d-lens"/><circle cx="49" cy="34" r="8" class="d-lens"/><circle cx="52" cy="18" r="2.5" class="d-flash"/></symbol>
+  <symbol id="d-phone-b" viewBox="0 0 120 200"><rect x="10" y="4" width="100" height="192" rx="18" class="d-body"/><rect x="18" y="12" width="40" height="40" rx="10" class="d-module"/><circle cx="30" cy="24" r="7" class="d-lens"/><circle cx="46" cy="40" r="7" class="d-lens"/><circle cx="47" cy="22" r="2.5" class="d-flash"/></symbol>
+  <symbol id="d-phone-c" viewBox="0 0 120 200"><rect x="10" y="4" width="100" height="192" rx="16" class="d-body"/><circle cx="30" cy="24" r="8" class="d-lens"/><circle cx="30" cy="46" r="8" class="d-lens"/><circle cx="30" cy="68" r="8" class="d-lens"/><circle cx="46" cy="24" r="2.5" class="d-flash"/></symbol>
+  <symbol id="d-phone-d" viewBox="0 0 120 200"><rect x="10" y="4" width="100" height="192" rx="20" class="d-body"/><rect x="10" y="34" width="100" height="24" class="d-module"/><rect x="24" y="39" width="34" height="14" rx="7" class="d-lens"/><circle cx="70" cy="46" r="5" class="d-lens"/><circle cx="84" cy="46" r="2.5" class="d-flash"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main">Przejdź do treści</a>
+
+<div class="demo-bar" role="note">
+  <div class="container demo-bar__inner">
+    <span class="demo-bar__dot" aria-hidden="true"></span>
+    <p><strong>Projekt demonstracyjny.</strong> Adresy, dane kontaktowe i produkty na tej stronie są przykładowe.</p>
+  </div>
+</div>
+
+<header class="site-header" data-header>
+  <div class="container site-header__inner">
+    <a class="brand" href="#top" aria-label="VOLT GSM — strona główna">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#cbf542"/><path d="M18.4 5 8.6 18.2h6.1L13 27l10.4-13.6h-6.2z" fill="#0e0f11"/></svg>
+      <span class="brand__name">VOLT<span class="brand__suffix">GSM</span></span>
+    </a>
+
+    <nav class="nav" id="site-nav" aria-label="Główna nawigacja" data-nav>
+      <ul class="nav__list">
+        <li><a class="nav__link" href="#uslugi">Usługi</a></li>
+        <li><a class="nav__link" href="#kupno-sprzedaz">Kupno i sprzedaż</a></li>
+        <li><a class="nav__link" href="#o-nas">O nas</a></li>
+        <li><a class="nav__link" href="#lokale">Lokale</a></li>
+        <li><a class="nav__link" href="#kontakt">Kontakt</a></li>
+      </ul>
+      <a class="btn btn--primary btn--sm nav__cta" href="#wycena">Wyceń telefon</a>
+    </nav>
+
+    <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" data-nav-toggle>
+      <svg class="i" aria-hidden="true"><use href="#i-menu"/></svg>
+      <span class="nav-toggle__label">Menu</span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ================================================================
+       HERO
+       ================================================================ -->
+  <section class="hero theme-dark" id="top" aria-labelledby="hero-title">
+    <div class="container hero__grid">
+      <div class="hero__copy">
+        <p class="eyebrow">Serwis · Sprzedaż · Skup · Akcesoria GSM</p>
+        <h1 class="hero__title" id="hero-title"><span class="hero__line">Twój telefon.</span> <span class="hero__line">Nasza <span class="hero__accent">specjalność.</span></span></h1>
+        <p class="hero__lead">Naprawiamy smartfony, sprzedajemy nowe i&nbsp;używane urządzenia oraz odkupujemy telefony, których już nie potrzebujesz. Wszystko w&nbsp;jednym miejscu — z&nbsp;jasną wyceną przed każdą decyzją.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#uslugi">Sprawdź nasze usługi <svg class="i" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+          <a class="btn btn--ghost" href="#wycena">Wyceń swój telefon</a>
+        </div>
+        <ul class="hero__facts">
+          <li><svg class="i" aria-hidden="true"><use href="#i-pulse"/></svg> Diagnoza przed naprawą</li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg> iPhone i Android</li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg> Śródmieście · Mokotów</li>
+        </ul>
+      </div>
+
+      <div class="hero__media">
+        <!-- ============================================================
+             ZDJĘCIE 01 / 05 — GŁÓWNA FOTOGRAFIA SMARTFONA (HERO)
+             Plik:       assets/images/hero-phone.webp
+             Proporcje:  5:4 (kadr przycinany przez object-fit: cover)
+             Zalecane:   min. 1500 × 1200 px, WebP, do ok. 250 KB
+             Podmiana:   zastąp plik o tej samej nazwie i zaktualizuj alt,
+                         width i height poniżej. Placeholder ukrywa się
+                         automatycznie, gdy zdjęcie się wczyta.
+             ============================================================ -->
+        <div class="photo-slot photo-slot--hero" data-slot="01">
+          <img src="assets/images/hero-phone.webp" alt="Smartfon w niebieskiej obudowie trzymany w dłoni, widok tylnego panelu z potrójnym aparatem" width="618" height="465" fetchpriority="high" decoding="async">
+          <div class="photo-slot__placeholder" aria-hidden="true">
+            <svg class="i"><use href="#i-image"/></svg>
+            <span>Miejsce na zdjęcie 01</span>
+            <small>Główna fotografia smartfona · 5:4</small>
+          </div>
+        </div>
+
+        <a class="hero__note" href="#wycena">
+          <span class="hero__note-label">Skup telefonów</span>
+          <span class="hero__note-text">Wstępna wycena online — bez zobowiązań</span>
+          <svg class="i" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Krótkie przedstawienie trzech głównych usług -->
+    <div class="container">
+      <ol class="service-index" aria-label="Główne usługi">
+        <li class="service-index__item">
+          <span class="service-index__num">01</span>
+          <h2 class="service-index__title">Serwis</h2>
+          <p>Wyświetlacze, baterie, gniazda ładowania i&nbsp;diagnostyka usterek.</p>
+          <a class="link-arrow" href="#serwis">Zakres napraw <svg class="i" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </li>
+        <li class="service-index__item">
+          <span class="service-index__num">02</span>
+          <h2 class="service-index__title">Sprzedaż</h2>
+          <p>Nowe i&nbsp;używane smartfony — iPhone oraz Android, z&nbsp;opisanym stanem.</p>
+          <a class="link-arrow" href="#sprzedaz">Jak sprzedajemy <svg class="i" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </li>
+        <li class="service-index__item">
+          <span class="service-index__num">03</span>
+          <h2 class="service-index__title">Skup</h2>
+          <p>Odkupujemy używane telefony. Zacznij od wstępnej wyceny przez formularz.</p>
+          <a class="link-arrow" href="#skup">Jak działa skup <svg class="i" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </li>
+      </ol>
+      <a class="scroll-cue" href="#zasady">
+        <svg class="i" aria-hidden="true"><use href="#i-arrow-down"/></svg>
+        <span>Przewiń dalej</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       ZALETY / ZASADY OBSŁUGI
+       ================================================================ -->
+  <section class="section principles" id="zasady" aria-labelledby="principles-title">
+    <div class="container principles__grid">
+      <div class="principles__intro" data-reveal>
+        <p class="eyebrow eyebrow--dark">Dlaczego VOLT GSM</p>
+        <h2 class="section-title" id="principles-title">Obsługa, w&nbsp;której wiesz, na czym stoisz.</h2>
+        <p class="section-lead">Telefon to dziś portfel, aparat i&nbsp;skrzynka pocztowa w&nbsp;jednym. Dlatego każdą sprawę prowadzimy według kilku prostych zasad.</p>
+      </div>
+      <ol class="principles__list">
+        <li data-reveal>
+          <span class="principles__num">01</span>
+          <h3>Fachowa diagnoza</h3>
+          <p>Zanim cokolwiek wymienimy, ustalamy przyczynę usterki. Dostajesz konkretną informację, co trzeba zrobić i&nbsp;dlaczego.</p>
+        </li>
+        <li data-reveal>
+          <span class="principles__num">02</span>
+          <h3>Zgoda przed naprawą</h3>
+          <p>Zakres i&nbsp;koszt naprawy przedstawiamy przed rozpoczęciem prac. Bez Twojej akceptacji nie idziemy dalej.</p>
+        </li>
+        <li data-reveal>
+          <span class="principles__num">03</span>
+          <h3>Przejrzyste zasady</h3>
+          <p>Stan telefonów na sprzedaż opisujemy według jednej skali, a&nbsp;zasady kupna, sprzedaży i&nbsp;skupu są dostępne na stronie.</p>
+        </li>
+        <li data-reveal>
+          <span class="principles__num">04</span>
+          <h3>Wygodna wycena</h3>
+          <p>Wstępną wycenę skupu zamówisz przez formularz. Ostateczną kwotę poznasz po sprawdzeniu telefonu w&nbsp;punkcie.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       USŁUGI — WSZYSTKO DLA TWOJEGO TELEFONU
+       ================================================================ -->
+  <section class="services" id="uslugi" aria-labelledby="services-title">
+    <div class="container services__head" data-reveal>
+      <p class="eyebrow eyebrow--dark">Usługi GSM</p>
+      <h2 class="section-title" id="services-title">Wszystko dla Twojego telefonu</h2>
+      <p class="section-lead">Serwis, sprzedaż i&nbsp;skup to trzy obszary, którymi zajmujemy się na co dzień. Każdy ma własne zasady — opisujemy je poniżej, bez drobnego druku.</p>
+    </div>
+
+    <!-- 01 — SERWIS -->
+    <article class="service service--repair" id="serwis" aria-labelledby="repair-title">
+      <div class="container service__grid">
+        <div class="service__media" data-reveal>
+          <!-- ============================================================
+               ZDJĘCIE 02 / 05 — SERWIS I NAPRAWA URZĄDZEŃ
+               Plik:       assets/images/service.webp
+               Proporcje:  1:1 (kwadrat), object-fit: cover
+               Zalecane:   min. 1200 × 1200 px, WebP
+               ============================================================ -->
+          <div class="photo-slot photo-slot--square" data-slot="02">
+            <img src="assets/images/service.webp" alt="Rozebrany smartfon z widocznymi podzespołami, wyjęta bateria oraz narzędzia serwisowe" width="816" height="816" loading="lazy" decoding="async">
+            <div class="photo-slot__placeholder" aria-hidden="true">
+              <svg class="i"><use href="#i-image"/></svg>
+              <span>Miejsce na zdjęcie 02</span>
+              <small>Serwis i naprawa urządzeń · 1:1</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="service__body">
+          <p class="service__label"><span>01</span> Serwis telefonów</p>
+          <h3 class="service__title" id="repair-title">Naprawa, która zaczyna się od diagnozy</h3>
+          <p class="service__text">Przyjmujemy smartfony z&nbsp;najczęstszymi usterkami. Najpierw ustalamy przyczynę problemu, potem przedstawiamy zakres i&nbsp;koszt naprawy.</p>
+
+          <ul class="repair-list">
+            <li>
+              <svg class="i" aria-hidden="true"><use href="#i-screen"/></svg>
+              <div><h4>Wymiana wyświetlaczy</h4><p>Pęknięte szkło, linie lub plamy na ekranie, brak reakcji na dotyk.</p></div>
+            </li>
+            <li>
+              <svg class="i" aria-hidden="true"><use href="#i-battery"/></svg>
+              <div><h4>Wymiana baterii</h4><p>Szybkie rozładowywanie, nagłe wyłączanie się, spuchnięte ogniwo.</p></div>
+            </li>
+            <li>
+              <svg class="i" aria-hidden="true"><use href="#i-plug"/></svg>
+              <div><h4>Naprawa gniazd ładowania</h4><p>Luźna wtyczka, przerywane ładowanie, brak połączenia z&nbsp;komputerem.</p></div>
+            </li>
+            <li>
+              <svg class="i" aria-hidden="true"><use href="#i-pulse"/></svg>
+              <div><h4>Diagnostyka usterek</h4><p>Gdy nie wiesz, co się stało — sprawdzamy telefon i&nbsp;wskazujemy przyczynę.</p></div>
+            </li>
+            <li>
+              <svg class="i" aria-hidden="true"><use href="#i-chip"/></svg>
+              <div><h4>Inne typowe naprawy</h4><p>Aparaty, głośniki, mikrofony, przyciski, tylne panele i&nbsp;skutki zalania.</p></div>
+            </li>
+          </ul>
+
+          <p class="note"><svg class="i" aria-hidden="true"><use href="#i-info"/></svg> Czas i&nbsp;koszt naprawy zależą od modelu, rodzaju usterki i&nbsp;dostępności części. Podajemy je po diagnozie.</p>
+
+          <a class="btn btn--dark" href="#kontakt" data-prefill-subject="serwis">Zapytaj o naprawę <svg class="i" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 02 — SPRZEDAŻ -->
+    <article class="service service--sale theme-dark" id="sprzedaz" aria-labelledby="sale-title">
+      <div class="container service__grid service__grid--reverse">
+        <div class="service__body">
+          <p class="service__label"><span>02</span> Sprzedaż telefonów</p>
+          <h3 class="service__title" id="sale-title">Nowe i&nbsp;używane smartfony z&nbsp;jasno opisanym stanem</h3>
+          <p class="service__text">Oferujemy telefony Apple iPhone oraz urządzenia z&nbsp;Androidem. Przy każdym modelu podajemy stan, pojemność i&nbsp;cenę, a&nbsp;w&nbsp;punkcie możesz obejrzeć telefon przed zakupem.</p>
+
+          <dl class="sale-specs">
+            <div><dt>Urządzenia</dt><dd>Nowe i&nbsp;używane</dd></div>
+            <div><dt>Systemy</dt><dd>iOS i&nbsp;Android</dd></div>
+            <div><dt>Opis stanu</dt><dd>Jedna, stała skala</dd></div>
+            <div><dt>Przed zakupem</dt><dd>Oględziny i&nbsp;test w&nbsp;punkcie</dd></div>
+          </dl>
+
+          <div class="accessories">
+            <p class="accessories__title"><svg class="i" aria-hidden="true"><use href="#i-box"/></svg> Akcesoria GSM w&nbsp;punktach</p>
+            <ul class="tag-list">
+              <li>Etui i&nbsp;pokrowce</li>
+              <li>Szkła i&nbsp;folie ochronne</li>
+              <li>Ładowarki</li>
+              <li>Kable</li>
+              <li>Słuchawki</li>
+              <li>Uchwyty samochodowe</li>
+            </ul>
+          </div>
+
+          <a class="btn btn--primary" href="#oferta">Zobacz ofertę <svg class="i" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
+
+        <div class="service__media" data-reveal>
+          <!-- ============================================================
+               ZDJĘCIE 03 / 05 — TELEFONY PRZEZNACZONE NA SPRZEDAŻ
+               Plik:       assets/images/sale.webp
+               Proporcje:  4:5 (pionowo), object-fit: cover
+               Zalecane:   min. 1200 × 1500 px, WebP
+               ============================================================ -->
+          <div class="photo-slot photo-slot--portrait" data-slot="03">
+            <img src="assets/images/sale.webp" alt="Smartfon z systemem Android prezentowany w szklanej gablocie, widok przodu i tyłu urządzenia" width="768" height="880" loading="lazy" decoding="async">
+            <div class="photo-slot__placeholder" aria-hidden="true">
+              <svg class="i"><use href="#i-image"/></svg>
+              <span>Miejsce na zdjęcie 03</span>
+              <small>Telefony na sprzedaż · 4:5</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 03 — SKUP -->
+    <article class="service service--buyback" id="skup" aria-labelledby="buyback-title">
+      <div class="container">
+        <div class="buyback">
+          <div class="buyback__media" data-reveal>
+            <!-- ============================================================
+                 ZDJĘCIE 04 / 05 — TELEFON PRZYJMOWANY DO SKUPU
+                 Plik:       assets/images/buyback.webp
+                 Proporcje:  4:3 (desktop), object-fit: cover
+                 Zalecane:   min. 1400 × 1050 px, WebP
+                 ============================================================ -->
+            <div class="photo-slot photo-slot--landscape" data-slot="04">
+              <img src="assets/images/buyback.webp" alt="Używany smartfon z pękniętym wyświetlaczem trzymany w dłoni" width="944" height="704" loading="lazy" decoding="async">
+              <div class="photo-slot__placeholder" aria-hidden="true">
+                <svg class="i"><use href="#i-image"/></svg>
+                <span>Miejsce na zdjęcie 04</span>
+                <small>Telefon przyjmowany do skupu · 4:3</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="buyback__body">
+            <p class="service__label"><span>03</span> Skup telefonów</p>
+            <h3 class="service__title" id="buyback-title">Sprzedaj telefon, którego już nie używasz</h3>
+            <p class="service__text">Odkupujemy używane smartfony — także te z&nbsp;widocznymi śladami użytkowania lub uszkodzeniami. Zacznij od zgłoszenia modelu przez formularz.</p>
+
+            <ol class="steps">
+              <li><span class="steps__num">1</span><div><h4>Zgłoś model</h4><p>Podaj markę, model i&nbsp;stan telefonu.</p></div></li>
+              <li><span class="steps__num">2</span><div><h4>Wstępna wycena</h4><p>Odpowiadamy z&nbsp;orientacyjną kwotą na wskazany kontakt.</p></div></li>
+              <li><span class="steps__num">3</span><div><h4>Weryfikacja w&nbsp;punkcie</h4><p>Sprawdzamy telefon i&nbsp;przedstawiamy ostateczną ofertę.</p></div></li>
+            </ol>
+
+            <p class="note note--boxed"><svg class="i" aria-hidden="true"><use href="#i-info"/></svg> <span>Ostateczna cena zależy od modelu, stanu technicznego i&nbsp;wizualnego oraz wyniku weryfikacji urządzenia. Wstępna wycena nie jest wiążącą ofertą.</span></p>
+
+            <a class="btn btn--dark" href="#wycena">Wyceń swój telefon <svg class="i" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================================================================
+       KUPNO I SPRZEDAŻ
+       ================================================================ -->
+  <section class="section trade" id="kupno-sprzedaz" aria-labelledby="trade-title">
+    <div class="container">
+      <header class="trade__head" data-reveal>
+        <p class="eyebrow eyebrow--dark">Kupno i sprzedaż</p>
+        <h2 class="section-title" id="trade-title">Zasady kupna i&nbsp;sprzedaży telefonów</h2>
+        <p class="section-lead">Kupujesz u&nbsp;nas telefon albo sprzedajesz swój — w&nbsp;obu przypadkach obowiązują te same, proste reguły: rzetelny opis stanu, jasna cena i&nbsp;możliwość sprawdzenia urządzenia.</p>
+      </header>
+
+      <!-- KUP TELEFON -->
+      <div class="buy" id="oferta">
+        <div class="buy__info">
+          <h3 class="sub-title">Kup telefon</h3>
+          <ul class="info-list">
+            <li>
+              <svg class="i" aria-hidden="true"><use href="#i-layers"/></svg>
+              <div><h4>Stan urządzenia</h4><p>Każdy telefon opisujemy według skali poniżej. W&nbsp;opisie podajemy też kondycję baterii i&nbsp;zawartość zestawu.</p></div>
+            </li>
+            <li>
+              <svg class="i" aria-hidden="true"><use href="#i-tag"/></svg>
+              <div><h4>Cena</h4><p>Cena przy modelu dotyczy konkretnego egzemplarza w&nbsp;opisanym stanie i&nbsp;konfiguracji pamięci.</p></div>
+            </li>
+            <li>
+              <svg class="i" aria-hidden="true"><use href="#i-eye"/></svg>
+              <div><h4>Sprawdzenie przed zakupem</h4><p>Telefon możesz obejrzeć i&nbsp;przetestować w&nbsp;punkcie, zanim podejmiesz decyzję.</p></div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="grade-scale" aria-labelledby="grade-title">
+          <h4 class="grade-scale__title" id="grade-title">Skala stanu urządzeń</h4>
+          <dl class="grade-scale__list">
+            <div class="grade" data-grade="1"><dt><span class="grade__bar"></span>Nowy</dt><dd>Fabrycznie nowe urządzenie, nieużywane.</dd></div>
+            <div class="grade" data-grade="2"><dt><span class="grade__bar"></span>Jak nowy</dt><dd>Brak widocznych śladów użytkowania.</dd></div>
+            <div class="grade" data-grade="3"><dt><span class="grade__bar"></span>Bardzo dobry</dt><dd>Drobne mikrorysy widoczne z&nbsp;bliska.</dd></div>
+            <div class="grade" data-grade="4"><dt><span class="grade__bar"></span>Dobry</dt><dd>Widoczne ślady użytkowania, pełna sprawność.</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="catalog">
+        <div class="catalog__bar">
+          <div>
+            <h3 class="catalog__title">Przykładowa oferta <span class="badge">Produkty demonstracyjne</span></h3>
+            <p class="catalog__note">Modele, ceny i&nbsp;stany poniżej są przykładowe — to nie jest aktualna dostępność ani sklep internetowy.</p>
+          </div>
+          <div class="filter" role="group" aria-label="Filtruj ofertę">
+            <button type="button" class="filter__btn" aria-pressed="true" data-filter="all">Wszystkie</button>
+            <button type="button" class="filter__btn" aria-pressed="false" data-filter="iphone">iPhone</button>
+            <button type="button" class="filter__btn" aria-pressed="false" data-filter="android">Android</button>
+            <button type="button" class="filter__btn" aria-pressed="false" data-filter="new">Nowe</button>
+            <button type="button" class="filter__btn" aria-pressed="false" data-filter="used">Używane</button>
+          </div>
+        </div>
+
+        <!-- Lista produktów demonstracyjnych. Aby dodać realny produkt: skopiuj <li class="product">,
+             ustaw data-os (iphone|android) i data-type (new|used), a w miejscu <svg class="product__art">
+             możesz wstawić <img> ze zdjęciem urządzenia (opcjonalne, poza pięcioma głównymi zdjęciami). -->
+        <ul class="products" data-products>
+          <li class="product" data-os="iphone" data-type="used">
+            <div class="product__visual product__visual--blue"><svg class="product__art" aria-hidden="true"><use href="#d-phone-a"/></svg></div>
+            <div class="product__body">
+              <p class="product__meta">Apple · 128 GB</p>
+              <h4 class="product__name">iPhone 15 Pro</h4>
+              <p class="product__grade"><span class="dot dot--3" aria-hidden="true"></span> Używany · stan bardzo dobry</p>
+              <p class="product__price">3 899 zł <small>cena przykładowa</small></p>
+              <a class="product__cta" href="#kontakt" data-prefill-subject="zakup" data-prefill-message="Dzień dobry, interesuje mnie model iPhone 15 Pro 128 GB (używany, stan bardzo dobry). Czy jest dostępny?">Zapytaj o ten model <svg class="i" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+            </div>
+          </li>
+          <li class="product" data-os="android" data-type="new">
+            <div class="product__visual product__visual--graphite"><svg class="product__art" aria-hidden="true"><use href="#d-phone-c"/></svg></div>
+            <div class="product__body">
+              <p class="product__meta">Samsung · 256 GB</p>
+              <h4 class="product__name">Galaxy S24</h4>
+              <p class="product__grade"><span class="dot dot--1" aria-hidden="true"></span> Nowy</p>
+              <p class="product__price">3 299 zł <small>cena przykładowa</small></p>
+              <a class="product__cta" href="#kontakt" data-prefill-subject="zakup" data-prefill-message="Dzień dobry, interesuje mnie model Samsung Galaxy S24 256 GB (nowy). Czy jest dostępny?">Zapytaj o ten model <svg class="i" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+            </div>
+          </li>
+          <li class="product" data-os="iphone" data-type="used">
+            <div class="product__visual product__visual--sand"><svg class="product__art" aria-hidden="true"><use href="#d-phone-b"/></svg></div>
+            <div class="product__body">
+              <p class="product__meta">Apple · 128 GB</p>
+              <h4 class="product__name">iPhone 13</h4>
+              <p class="product__grade"><span class="dot dot--4" aria-hidden="true"></span> Używany · stan dobry</p>
+              <p class="product__price">1 549 zł <small>cena przykładowa</small></p>
+              <a class="product__cta" href="#kontakt" data-prefill-subject="zakup" data-prefill-message="Dzień dobry, interesuje mnie model iPhone 13 128 GB (używany, stan dobry). Czy jest dostępny?">Zapytaj o ten model <svg class="i" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+            </div>
+          </li>
+          <li class="product" data-os="android" data-type="used">
+            <div class="product__visual product__visual--mint"><svg class="product__art" aria-hidden="true"><use href="#d-phone-d"/></svg></div>
+            <div class="product__body">
+              <p class="product__meta">Google · 128 GB</p>
+              <h4 class="product__name">Pixel 8</h4>
+              <p class="product__grade"><span class="dot dot--2" aria-hidden="true"></span> Używany · stan jak nowy</p>
+              <p class="product__price">1 899 zł <small>cena przykładowa</small></p>
+              <a class="product__cta" href="#kontakt" data-prefill-subject="zakup" data-prefill-message="Dzień dobry, interesuje mnie model Google Pixel 8 128 GB (używany, stan jak nowy). Czy jest dostępny?">Zapytaj o ten model <svg class="i" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+            </div>
+          </li>
+        </ul>
+        <p class="products__empty" data-products-empty hidden>Brak przykładowych modeli w&nbsp;tej kategorii.</p>
+      </div>
+
+      <!-- SPRZEDAJ TELEFON -->
+      <div class="sell theme-dark" id="wycena">
+        <div class="sell__intro">
+          <h3 class="sub-title">Sprzedaj telefon</h3>
+          <p class="sell__lead">Opisz swój telefon, a&nbsp;odpowiemy ze wstępną wyceną. Ostateczną kwotę ustalimy po sprawdzeniu urządzenia w&nbsp;punkcie.</p>
+
+          <h4 class="checklist__title">Zanim oddasz telefon</h4>
+          <ol class="checklist">
+            <li><svg class="i" aria-hidden="true"><use href="#i-cloud"/></svg><div><strong>Zrób kopię zapasową</strong><span>W iCloud, na koncie Google lub na komputerze — zdjęcia, kontakty, wiadomości.</span></div></li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-logout"/></svg><div><strong>Wyloguj się z&nbsp;kont</strong><span>Apple ID, konto Google lub Samsung, komunikatory i&nbsp;aplikacje bankowe.</span></div></li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg><div><strong>Wyłącz blokadę aktywacyjną</strong><span>Dopiero po zabezpieczeniu danych: wyłącz funkcję „Znajdź mój iPhone” lub usuń konto Google z&nbsp;urządzenia.</span></div></li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-sim"/></svg><div><strong>Wyjmij kartę SIM i&nbsp;kartę pamięci</strong><span>Jeśli korzystasz z&nbsp;eSIM, skontaktuj się z&nbsp;operatorem w&nbsp;sprawie jej przeniesienia.</span></div></li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-reset"/></svg><div><strong>Przywróć ustawienia fabryczne</strong><span>Na samym końcu, gdy kopia jest gotowa, a&nbsp;konta wylogowane.</span></div></li>
+          </ol>
+        </div>
+
+        <!-- FORMULARZ WYCENY (SKUP)
+             Formularz nie ma backendu. Aby wysyłał dane, ustaw atrybut data-endpoint
+             na adres usługi przyjmującej POST (np. Formspree, Basin, własne API) — szczegóły w README.md. -->
+        <form class="form form--dark" id="sell-form" data-form="sell" data-endpoint="" novalidate aria-labelledby="sell-form-title">
+          <h4 class="form__title" id="sell-form-title">Formularz wstępnej wyceny</h4>
+          <p class="form__required">Pola oznaczone <span aria-hidden="true">*</span><span class="sr-only">gwiazdką</span> są wymagane.</p>
+
+          <div class="form__row form__row--2">
+            <div class="field">
+              <label for="sell-brand">Marka <span class="req" aria-hidden="true">*</span></label>
+              <select id="sell-brand" name="marka" required data-msg-required="Wybierz markę telefonu.">
+                <option value="">Wybierz markę</option>
+                <option>Apple</option>
+                <option>Samsung</option>
+                <option>Xiaomi</option>
+                <option>Google</option>
+                <option>Motorola</option>
+                <option>OnePlus</option>
+                <option>Oppo</option>
+                <option>Realme</option>
+                <option>Inna</option>
+              </select>
+              <p class="field__error" id="sell-brand-error" hidden></p>
+            </div>
+            <div class="field">
+              <label for="sell-model">Model <span class="req" aria-hidden="true">*</span></label>
+              <input id="sell-model" name="model" type="text" required maxlength="80" autocomplete="off" placeholder="np. iPhone 13, Galaxy S23" data-msg-required="Podaj model telefonu.">
+              <p class="field__error" id="sell-model-error" hidden></p>
+            </div>
+          </div>
+
+          <fieldset class="field field--group" data-group="condition">
+            <legend>Stan urządzenia <span class="req" aria-hidden="true">*</span></legend>
+            <div class="choice-grid">
+              <label class="choice"><input type="radio" name="stan" value="jak-nowy" required data-msg-required="Wybierz stan urządzenia."><span><strong>Jak nowy</strong><small>Bez śladów użytkowania</small></span></label>
+              <label class="choice"><input type="radio" name="stan" value="slady-uzytkowania"><span><strong>Ślady użytkowania</strong><small>Rysy, otarcia, pełna sprawność</small></span></label>
+              <label class="choice"><input type="radio" name="stan" value="uszkodzony"><span><strong>Uszkodzony</strong><small>Np. pęknięte szkło, słaba bateria</small></span></label>
+              <label class="choice"><input type="radio" name="stan" value="niesprawny"><span><strong>Niesprawny</strong><small>Nie włącza się lub nie działa</small></span></label>
+            </div>
+            <p class="field__error" id="sell-condition-error" hidden></p>
+          </fieldset>
+
+          <div class="field">
+            <label for="sell-desc">Opis <span class="field__opt">(opcjonalnie)</span></label>
+            <textarea id="sell-desc" name="opis" rows="3" maxlength="1000" aria-describedby="sell-desc-hint" placeholder="Pojemność, kondycja baterii, uszkodzenia, zawartość zestawu…"></textarea>
+            <p class="field__hint" id="sell-desc-hint">Im dokładniejszy opis, tym trafniejsza wstępna wycena.</p>
+          </div>
+
+          <div class="field">
+            <label for="sell-name">Imię <span class="req" aria-hidden="true">*</span></label>
+            <input id="sell-name" name="imie" type="text" required maxlength="60" autocomplete="given-name" data-msg-required="Podaj imię.">
+            <p class="field__error" id="sell-name-error" hidden></p>
+          </div>
+
+          <fieldset class="field field--group" data-contact-group>
+            <legend>Kontakt <span class="req" aria-hidden="true">*</span> <span class="field__opt">— podaj telefon lub e-mail</span></legend>
+            <div class="form__row form__row--2">
+              <div class="field">
+                <label for="sell-phone">Numer telefonu</label>
+                <input id="sell-phone" name="telefon" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" pattern="\+?[0-9\s\-\(\)]{9,20}" placeholder="np. 600 000 000" data-msg-pattern="Wpisz poprawny numer telefonu (min. 9 cyfr).">
+              </div>
+              <div class="field">
+                <label for="sell-email">Adres e-mail</label>
+                <input id="sell-email" name="email" type="email" autocomplete="email" maxlength="120" placeholder="np. jan@poczta.pl" data-msg-type="Wpisz poprawny adres e-mail.">
+              </div>
+            </div>
+            <p class="field__error" id="sell-contact-error" hidden></p>
+          </fieldset>
+
+          <!-- Pole-pułapka antyspamowe: niewidoczne dla użytkowników, boty często je wypełniają -->
+          <div class="hp" aria-hidden="true"><label for="sell-website">Strona www</label><input id="sell-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+
+          <p class="form__legal">Wysłanie formularza nie oznacza zawarcia umowy sprzedaży. Umowę zawieramy wyłącznie w&nbsp;punkcie, po weryfikacji urządzenia. Dane z&nbsp;formularza wykorzystamy tylko do przygotowania wyceny — szczegóły w&nbsp;<a href="polityka-prywatnosci.html">polityce prywatności</a>.</p>
+
+          <button class="btn btn--primary btn--block" type="submit">Poproś o wycenę <svg class="i" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+          <div class="form__status" role="status" aria-live="polite" data-form-status></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       O NAS
+       ================================================================ -->
+  <section class="section about" id="o-nas" aria-labelledby="about-title">
+    <div class="container">
+      <!-- ============================================================
+           ZDJĘCIE 05 / 05 — WNĘTRZE LOKALU / STANOWISKO OBSŁUGI
+           Plik:       assets/images/store.webp
+           Proporcje:  21:9 na desktopie, 16:9 tablet, 4:3 telefon, object-fit: cover
+           Zalecane:   min. 2100 × 900 px, WebP
+           Podmiana:   zastąp plik o tej samej nazwie i zaktualizuj alt, width i height.
+           ============================================================ -->
+      <div class="photo-slot photo-slot--wide" data-slot="05" data-reveal>
+        <img src="assets/images/store.webp" alt="Wnętrze punktu VOLT GSM: lada obsługi z logo na ścianie, gablota z telefonami, półki z akcesoriami i wejście do stanowiska serwisowego" width="1776" height="896" loading="lazy" decoding="async">
+        <div class="photo-slot__placeholder" aria-hidden="true">
+          <svg class="i"><use href="#i-image"/></svg>
+          <span>Miejsce na zdjęcie 05</span>
+          <small>Wnętrze lokalu lub stanowisko obsługi · 21:9</small>
+        </div>
+      </div>
+
+      <div class="about__grid">
+        <div class="about__head">
+          <p class="eyebrow eyebrow--dark">O nas</p>
+          <h2 class="section-title" id="about-title">Jeden punkt kontaktu dla Twojego telefonu</h2>
+        </div>
+        <div class="about__text">
+          <p>VOLT GSM to miejsce dla osób, które chcą załatwić sprawy związane z&nbsp;telefonem bez krążenia między serwisem, sklepem i&nbsp;skupem. Naprawiamy smartfony, sprzedajemy nowe i&nbsp;używane urządzenia, odkupujemy telefony i&nbsp;doradzamy przy wyborze akcesoriów.</p>
+          <p>Stawiamy na prostą komunikację: mówimy, co jest do zrobienia, ile to kosztuje i&nbsp;od czego zależy cena. Jeśli naprawa się nie opłaca, powiemy to wprost i&nbsp;pokażemy inne możliwości — zakup innego telefonu albo sprzedaż obecnego w&nbsp;skupie.</p>
+          <p>Pomagamy też w&nbsp;wyborze nowego urządzenia. Zamiast porównywać dziesiątki ofert, możesz porozmawiać z&nbsp;nami o&nbsp;tym, do czego potrzebujesz telefonu, i&nbsp;obejrzeć dostępne modele na miejscu.</p>
+        </div>
+      </div>
+
+      <ul class="about__pillars">
+        <li><svg class="i" aria-hidden="true"><use href="#i-chip"/></svg><h3>Serwis</h3><p>Diagnoza i&nbsp;naprawa typowych usterek smartfonów.</p></li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg><h3>Doradztwo</h3><p>Pomoc w&nbsp;wyborze telefonu dopasowanego do potrzeb.</p></li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-swap"/></svg><h3>Sprzedaż i&nbsp;skup</h3><p>Kupisz telefon albo sprzedasz swój — w&nbsp;jednym miejscu.</p></li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg><h3>Jasne zasady</h3><p>Cena i&nbsp;zakres usługi znane przed decyzją.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       NASZE LOKALE — WARSZAWA (dane demonstracyjne)
+       ================================================================ -->
+  <section class="section locations" id="lokale" aria-labelledby="locations-title">
+    <div class="container">
+      <header class="locations__head" data-reveal>
+        <div>
+          <p class="eyebrow eyebrow--dark">Nasze lokale</p>
+          <h2 class="section-title" id="locations-title">Dwa punkty w&nbsp;Warszawie</h2>
+        </div>
+        <p class="demo-note"><svg class="i" aria-hidden="true"><use href="#i-info"/></svg> Adresy i&nbsp;dane lokali są przykładowe. To projekt demonstracyjny — wskazane lokale nie istnieją.</p>
+      </header>
+
+      <div class="locations__grid">
+        <article class="location" aria-labelledby="loc-1-title">
+          <!-- MIEJSCE NA MAPĘ — Śródmieście.
+               Zastąp zawartość tego <div> elementem <iframe> z mapą (Google Maps / OpenStreetMap)
+               z atrybutami title, loading="lazy" i referrerpolicy="no-referrer-when-downgrade".
+               Uwaga: osadzenie map zewnętrznych może wymagać zgody na pliki cookie. -->
+          <div class="map-slot" data-map="srodmiescie">
+            <svg class="i" aria-hidden="true"><use href="#i-map"/></svg>
+            <span>Miejsce na mapę</span>
+          </div>
+          <div class="location__body">
+            <p class="location__district">Śródmieście <span class="badge badge--outline">Dane demonstracyjne</span></p>
+            <h3 class="location__title" id="loc-1-title">VOLT GSM — Warszawa, Śródmieście</h3>
+            <p class="location__address"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg> ul. Marszałkowska 10, Warszawa</p>
+            <dl class="hours">
+              <div><dt>Poniedziałek–piątek</dt><dd class="tbd">do uzupełnienia</dd></div>
+              <div><dt>Sobota</dt><dd class="tbd">do uzupełnienia</dd></div>
+              <div><dt>Niedziela</dt><dd class="tbd">do uzupełnienia</dd></div>
+            </dl>
+            <a class="btn btn--outline" href="https://www.google.com/maps/search/?api=1&amp;query=ul.%20Marsza%C5%82kowska%2010%2C%20Warszawa" target="_blank" rel="noopener">Jak dojechać <svg class="i" aria-hidden="true"><use href="#i-external"/></svg><span class="sr-only"> (Google Maps, otwiera się w nowej karcie)</span></a>
+          </div>
+        </article>
+
+        <article class="location" aria-labelledby="loc-2-title">
+          <!-- MIEJSCE NA MAPĘ — Mokotów (instrukcja jak wyżej) -->
+          <div class="map-slot" data-map="mokotow">
+            <svg class="i" aria-hidden="true"><use href="#i-map"/></svg>
+            <span>Miejsce na mapę</span>
+          </div>
+          <div class="location__body">
+            <p class="location__district">Mokotów <span class="badge badge--outline">Dane demonstracyjne</span></p>
+            <h3 class="location__title" id="loc-2-title">VOLT GSM — Warszawa, Mokotów</h3>
+            <p class="location__address"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg> ul. Puławska 100, Warszawa</p>
+            <dl class="hours">
+              <div><dt>Poniedziałek–piątek</dt><dd class="tbd">do uzupełnienia</dd></div>
+              <div><dt>Sobota</dt><dd class="tbd">do uzupełnienia</dd></div>
+              <div><dt>Niedziela</dt><dd class="tbd">do uzupełnienia</dd></div>
+            </dl>
+            <a class="btn btn--outline" href="https://www.google.com/maps/search/?api=1&amp;query=ul.%20Pu%C5%82awska%20100%2C%20Warszawa" target="_blank" rel="noopener">Jak dojechać <svg class="i" aria-hidden="true"><use href="#i-external"/></svg><span class="sr-only"> (Google Maps, otwiera się w nowej karcie)</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       KONTAKT
+       ================================================================ -->
+  <section class="section contact theme-dark" id="kontakt" aria-labelledby="contact-title">
+    <div class="container contact__grid">
+      <div class="contact__intro">
+        <p class="eyebrow">Kontakt</p>
+        <h2 class="section-title" id="contact-title">Napisz do nas</h2>
+        <p class="section-lead">Zapytaj o&nbsp;naprawę, dostępność telefonu albo zasady skupu. Odpowiemy na adres e-mail podany w&nbsp;formularzu.</p>
+
+        <!-- Dane kontaktowe demonstracyjne. Po uzupełnieniu prawdziwych danych zamień je na linki tel: i mailto:. -->
+        <dl class="contact__data">
+          <div><dt><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg> E-mail</dt><dd>kontakt@voltgsm.example</dd></div>
+          <div><dt><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg> Telefon</dt><dd class="tbd">do uzupełnienia</dd></div>
+          <div><dt><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg> Punkty</dt><dd><a href="#lokale">Śródmieście i&nbsp;Mokotów</a></dd></div>
+        </dl>
+        <p class="contact__demo">Powyższe dane są demonstracyjne.</p>
+      </div>
+
+      <!-- FORMULARZ KONTAKTOWY
+           Brak backendu: ustaw data-endpoint, aby formularz wysyłał dane (patrz README.md). -->
+      <form class="form form--dark contact__form" id="contact-form" data-form="contact" data-endpoint="" novalidate aria-label="Formularz kontaktowy">
+        <p class="form__required">Wszystkie pola są wymagane.</p>
+        <div class="form__row form__row--2">
+          <div class="field">
+            <label for="c-name">Imię</label>
+            <input id="c-name" name="imie" type="text" required maxlength="60" autocomplete="given-name" data-msg-required="Podaj imię.">
+            <p class="field__error" id="c-name-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="c-email">Adres e-mail</label>
+            <input id="c-email" name="email" type="email" required maxlength="120" autocomplete="email" data-msg-required="Podaj adres e-mail." data-msg-type="Wpisz poprawny adres e-mail, np. jan@poczta.pl.">
+            <p class="field__error" id="c-email-error" hidden></p>
+          </div>
+        </div>
+        <div class="field">
+          <label for="c-subject">Temat wiadomości</label>
+          <select id="c-subject" name="temat" required data-msg-required="Wybierz temat wiadomości.">
+            <option value="">Wybierz temat</option>
+            <option value="serwis">Naprawa / serwis</option>
+            <option value="zakup">Zakup telefonu</option>
+            <option value="skup">Skup telefonu</option>
+            <option value="akcesoria">Akcesoria</option>
+            <option value="inne">Inne</option>
+          </select>
+          <p class="field__error" id="c-subject-error" hidden></p>
+        </div>
+        <div class="field">
+          <label for="c-message">Treść wiadomości</label>
+          <textarea id="c-message" name="wiadomosc" rows="5" required minlength="10" maxlength="2000" data-msg-required="Wpisz treść wiadomości." data-msg-short="Wiadomość jest za krótka — napisz co najmniej 10 znaków."></textarea>
+          <p class="field__error" id="c-message-error" hidden></p>
+        </div>
+
+        <div class="hp" aria-hidden="true"><label for="c-website">Strona www</label><input id="c-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+
+        <p class="form__legal">Dane z&nbsp;formularza wykorzystamy wyłącznie do odpowiedzi na Twoją wiadomość. Więcej w&nbsp;<a href="polityka-prywatnosci.html">polityce prywatności</a>.</p>
+        <button class="btn btn--primary" type="submit">Wyślij wiadomość <svg class="i" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+        <div class="form__status" role="status" aria-live="polite" data-form-status></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer theme-dark">
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <a class="brand" href="#top" aria-label="VOLT GSM — na górę strony">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#cbf542"/><path d="M18.4 5 8.6 18.2h6.1L13 27l10.4-13.6h-6.2z" fill="#0e0f11"/></svg>
+        <span class="brand__name">VOLT<span class="brand__suffix">GSM</span></span>
+      </a>
+      <p>Serwis smartfonów, sprzedaż nowych i&nbsp;używanych telefonów, skup urządzeń oraz akcesoria GSM.</p>
+    </div>
+
+    <nav class="site-footer__col" aria-label="Sekcje strony">
+      <h2 class="site-footer__heading">Strona</h2>
+      <ul>
+        <li><a href="#uslugi">Usługi</a></li>
+        <li><a href="#kupno-sprzedaz">Kupno i&nbsp;sprzedaż</a></li>
+        <li><a href="#o-nas">O nas</a></li>
+        <li><a href="#lokale">Lokale</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+
+    <nav class="site-footer__col" aria-label="Informacje">
+      <h2 class="site-footer__heading">Informacje</h2>
+      <ul>
+        <li><a href="regulamin.html">Regulamin</a></li>
+        <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
+        <li><a href="#kupno-sprzedaz">Kupno i&nbsp;sprzedaż</a></li>
+      </ul>
+    </nav>
+
+    <div class="site-footer__col">
+      <h2 class="site-footer__heading">Kontakt <span class="site-footer__demo">(demo)</span></h2>
+      <ul class="site-footer__contact">
+        <li>kontakt@voltgsm.example</li>
+        <li>ul. Marszałkowska 10, Warszawa</li>
+        <li>ul. Puławska 100, Warszawa</li>
+      </ul>
+    </div>
+  </div>
+  <div class="container site-footer__bottom">
+    <p>© <span data-year>2026</span> VOLT GSM. Wszelkie prawa zastrzeżone.</p>
+    <p>Projekt demonstracyjny — dane firmy, adresy i&nbsp;produkty są przykładowe.</p>
+  </div>
+</footer>
+
+</body>
+</html>
+
+<!-- computerit02:demo -->
+<div id="cit-demo" role="region" aria-label="ComputerIT – wersja demonstracyjna">
+<span class="cit-tag"><i aria-hidden="true"></i>Wersja demonstracyjna</span>
+<div class="cit-bar">
+<a class="cit-back" href="/realizacje" aria-label="Wróć do portfolio ComputerIT"><svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4 3 8l4 4"/></svg><span>Portfolio</span></a>
+<a class="cit-cta" href="/kontakt?usluga=strona&amp;projekt=volt-gsm">Chcę podobną stronę<svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+<button type="button" class="cit-min" aria-label="Zwiń pasek ComputerIT"><svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="m4 6 4 4 4-4"/></svg></button>
+</div>
+<button type="button" class="cit-open" aria-label="Pokaż pasek ComputerIT: wersja demonstracyjna, powrót do portfolio"><svg aria-hidden="true" viewBox="0 0 48 52" style="width:20px;height:22px"><rect x="2.25" y="2.25" width="43.5" height="39" rx="6.5" fill="none" stroke="#fff" stroke-width="4.5"/><rect x="31.5" y="27.5" width="7.5" height="7.5" rx="1" fill="#c9a45c"/><rect x="5.5" y="46.25" width="37" height="5" rx="2.5" fill="#fff"/></svg></button>
+</div>
+<style>
+#cit-demo{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:calc(max(12px,env(safe-area-inset-bottom,0px)) + var(--cit-lift,0px));z-index:2147483000;display:flex;flex-direction:column;align-items:flex-end;gap:6px;margin:0;padding:0;font:500 14px/1.2 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:0;text-transform:none;color:#fff;transition:bottom .25s ease}
+#cit-demo *{box-sizing:border-box;margin:0;font:inherit;letter-spacing:inherit;text-transform:none}
+#cit-demo .cit-tag{display:inline-flex;align-items:center;gap:7px;padding:5px 10px;border-radius:999px;background:#0b0b0c;color:#e2c88f;font:600 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 6px 18px -8px rgba(0,0,0,.6)}
+#cit-demo .cit-tag i{width:6px;height:6px;border-radius:1px;background:#c9a45c}
+#cit-demo .cit-bar{display:flex;align-items:center;gap:4px;padding:4px;border-radius:999px;background:#0b0b0c;border:1px solid rgba(255,255,255,.14);box-shadow:0 18px 40px -16px rgba(0,0,0,.7)}
+#cit-demo a,#cit-demo button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:0 14px;border:0;border-radius:999px;background:transparent;color:#fff;font-weight:600;font-size:14px;text-decoration:none;cursor:pointer;white-space:nowrap;transition:background-color .2s ease,color .2s ease}
+#cit-demo a:hover,#cit-demo button:hover{background:rgba(255,255,255,.1)}
+#cit-demo .cit-cta{background:#c9a45c;color:#0b0b0c}
+#cit-demo .cit-cta:hover{background:#e2c88f}
+#cit-demo .cit-min{width:40px;padding:0}
+#cit-demo svg{width:16px;height:16px;flex:none}
+#cit-demo a:focus-visible,#cit-demo button:focus-visible{outline:2px solid #e2c88f;outline-offset:2px}
+#cit-demo .cit-open{display:none;width:48px;height:48px;padding:0;background:#0b0b0c;border:1px solid rgba(255,255,255,.18);box-shadow:0 14px 30px -12px rgba(0,0,0,.7)}
+#cit-demo .cit-open:hover{background:#1b1c1f}
+#cit-demo[data-min="1"] .cit-tag,#cit-demo[data-min="1"] .cit-bar{display:none}
+#cit-demo[data-min="1"] .cit-open{display:inline-flex}
+@media (max-width:420px){#cit-demo a,#cit-demo button{padding:0 11px;font-size:13px}#cit-demo .cit-back span{display:none}#cit-demo .cit-min{width:36px}}
+@media print{#cit-demo{display:none}}
+</style>
+<script>
+(function () {
+  var root = document.getElementById("cit-demo");
+  if (!root) return;
+  var KEY = "cit-demo-min";
+  try { if (sessionStorage.getItem(KEY) === "1") root.setAttribute("data-min", "1"); } catch (e) {}
+  root.querySelector(".cit-min").addEventListener("click", function () {
+    root.setAttribute("data-min", "1");
+    try { sessionStorage.setItem(KEY, "1"); } catch (e) {}
+    root.querySelector(".cit-open").focus();
+  });
+  root.querySelector(".cit-open").addEventListener("click", function () {
+    root.removeAttribute("data-min");
+    try { sessionStorage.removeItem(KEY); } catch (e) {}
+    root.querySelector(".cit-back").focus();
+  });
+  // Gdy klient przyszedł ze strony ComputerIT, „Portfolio” działa jak „Wstecz” i wraca dokładnie tam, skąd przyszedł.
+  root.querySelector(".cit-back").addEventListener("click", function (event) {
+    try {
+      var from = new URL(document.referrer);
+      if (from.origin === location.origin && from.pathname.indexOf("/demo/") === -1 && history.length > 1) {
+        event.preventDefault();
+        history.back();
+      }
+    } catch (e) {}
+  });
+  // Unosimy pasek nad przyklejonymi do dołu elementami dema (np. pasek koszyka na telefonie).
+  var lift = function () {
+    var max = 0, vh = window.innerHeight, vw = window.innerWidth;
+    var nodes = document.body.querySelectorAll("body > *, body > * > *, body > * > * > *");
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      if (el === root || root.contains(el)) continue;
+      var cs = getComputedStyle(el);
+      if (cs.position !== "fixed" && cs.position !== "sticky") continue;
+      if (cs.display === "none" || cs.visibility === "hidden" || +cs.opacity === 0) continue;
+      var r = el.getBoundingClientRect();
+      if (r.height < 20 || r.height > vh * 0.4 || r.width < vw * 0.5) continue;
+      if (r.bottom >= vh - 2 && r.top > vh * 0.5) max = Math.max(max, vh - r.top);
+    }
+    root.style.setProperty("--cit-lift", max ? max + 8 + "px" : "0px");
+  };
+  var timer;
+  var schedule = function () { clearTimeout(timer); timer = setTimeout(lift, 250); };
+  window.addEventListener("load", lift);
+  window.addEventListener("resize", schedule);
+  document.addEventListener("click", schedule, true);
+  window.addEventListener("scroll", schedule, { passive: true });
+  setTimeout(lift, 600);
+})();
+</script>
+<!-- /computerit02:demo -->
+</body></html>
