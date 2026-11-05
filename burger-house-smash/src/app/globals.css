@@ -2274,3 +2274,156 @@ address {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ---------- telefon: mniejsze napisy z zapasem przy krawędziach ---------- */
+@media (max-width: 980px) {
+  .hero__in {
+    container-type: inline-size;
+  }
+  .hero__title {
+    --w: 88cqw;
+  }
+}
+@media (max-width: 760px) {
+  h1,
+  h2,
+  h3,
+  p,
+  dt,
+  dd,
+  li,
+  a,
+  button {
+    overflow-wrap: break-word;
+  }
+  .hero__title {
+    --w: 86cqw;
+  }
+  .hero__lead {
+    font-size: 1rem;
+  }
+  .hero__sticker {
+    width: 80px;
+  }
+  .hero__sticker strong {
+    font-size: 1.15rem;
+  }
+  .hero__sticker span {
+    font-size: 0.62rem;
+  }
+  .btn--lg {
+    min-height: 54px;
+    font-size: 0.92rem;
+    padding-inline: 1.2em;
+  }
+  .h2 {
+    font-size: clamp(1.75rem, 8.2vw, 2.4rem);
+    letter-spacing: -0.03em;
+  }
+  .picker__seg button {
+    font-size: 0.74rem;
+    line-height: 1.15;
+  }
+  .picker__addr,
+  .picker__today,
+  .picker__link {
+    font-size: 0.92rem;
+  }
+  .status {
+    font-size: 0.8rem;
+    white-space: normal;
+  }
+  .menu__intro,
+  .philo__lead,
+  .gallery__lead,
+  .places__lead {
+    font-size: 1rem;
+  }
+  .tabs button {
+    font-size: 0.78rem;
+    min-height: 42px;
+  }
+  .dish__name {
+    font-size: 1.05rem;
+  }
+  .dish[data-wide] .dish__name {
+    font-size: clamp(1.4rem, 6.6vw, 1.9rem);
+  }
+  .dish[data-wide] .price {
+    font-size: 1.35rem;
+  }
+  .price {
+    font-size: 1.1rem;
+  }
+  .dish__desc {
+    font-size: 0.92rem;
+  }
+  .step__n {
+    font-size: 2rem;
+  }
+  .step__title {
+    font-size: 1.05rem;
+  }
+  .sources__title,
+  .talk__title {
+    font-size: 1.3rem;
+  }
+  .place__city {
+    font-size: clamp(1.3rem, 6vw, 1.7rem);
+  }
+  .place__addr {
+    font-size: 1rem;
+  }
+  .talk__num {
+    font-size: calc(100cqw / 12.5);
+  }
+  .sheet__nav a {
+    font-size: clamp(1.6rem, 7.4vw, 2.2rem);
+  }
+  .sheet .btn {
+    font-size: 0.85rem;
+  }
+  .dock a {
+    font-size: 0.82rem;
+    padding: 0 1rem;
+  }
+  .foot__claim {
+    font-size: 1.15rem;
+  }
+  .foot__top .btn {
+    font-size: 0.85rem;
+  }
+  .sub-hero__title {
+    font-size: min(calc(100cqw / 10.5), 3rem);
+  }
+  .sub-hero__lead,
+  .sub-hero__meta {
+    font-size: 1rem;
+  }
+  .doc__body h2 {
+    font-size: 1.15rem;
+  }
+  .mosaic__cap {
+    font-size: 0.82rem;
+  }
+}
+@media (max-width: 360px) {
+  .hero__title {
+    --w: 84cqw;
+  }
+  .btn,
+  .btn--lg {
+    font-size: 0.8rem;
+    padding-inline: 1em;
+  }
+  .btn--sm {
+    font-size: 0.76rem;
+  }
+  .dock a {
+    font-size: 0.76rem;
+    padding: 0 0.75rem;
+  }
+  .logo__word {
+    letter-spacing: -2px;
+  }
+}
