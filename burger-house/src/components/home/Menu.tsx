@@ -69,9 +69,6 @@ export function Menu() {
     select(CATEGORIES[next].id, true);
   };
 
-  const category = CATEGORIES.find((c) => c.id === active)!;
-  const items = MENU.filter((m) => m.category === active);
-
   return (
     <section id="menu" className="section" aria-labelledby="menu-title">
       <div className="container">
@@ -108,20 +105,27 @@ export function Menu() {
           })}
         </div>
 
-        <div
-          id={`panel-${active}`}
-          role="tabpanel"
-          aria-labelledby={`tab-${active}`}
-          tabIndex={0}
-          className={`menu-panel${entering ? " is-entering" : ""}`}
-        >
-          <p className="menu-note muted">{category.note}</p>
-          <div className="menu-grid">
-            {items.map((item) => (
-              <ProductCard key={item.id} id={item.id} item={item} className={target === item.id ? "is-target" : undefined} />
-            ))}
-          </div>
-        </div>
+        {CATEGORIES.map((c) => {
+          const selected = c.id === active;
+          return (
+            <div
+              key={c.id}
+              id={`panel-${c.id}`}
+              role="tabpanel"
+              aria-labelledby={`tab-${c.id}`}
+              tabIndex={0}
+              hidden={!selected}
+              className={`menu-panel${selected && entering ? " is-entering" : ""}`}
+            >
+              <p className="menu-note muted">{c.note}</p>
+              <div className="menu-grid">
+                {MENU.filter((m) => m.category === c.id).map((item) => (
+                  <ProductCard key={item.id} id={item.id} item={item} className={target === item.id ? "is-target" : undefined} />
+                ))}
+              </div>
+            </div>
+          );
+        })}
 
         <p className="menu-allergens muted">
           Burgery podajemy w maślanej bułce brioche; bułka bezglutenowa za dopłatą 4 zł. Informację o alergenach w każdej pozycji przekaże obsługa lokalu.
