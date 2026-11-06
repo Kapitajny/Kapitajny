@@ -4,7 +4,7 @@
  * a przyciski „Zadzwoń” prowadzą wtedy do sekcji Kontakt zamiast wybierać numer.
  */
 window.SITE = {
-  phone: "",          // np. "+48 600 100 200"
+  phone: "500 999 777", // PRZYKŁADOWY numer – podmień na prawdziwy (też w index.html)
   email: "",          // np. "kontakt@uslugibusem.pl"
   companyLegal: "",   // pełna nazwa firmy i NIP – stopka
   formEndpoint: "wycena.php"

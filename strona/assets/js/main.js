@@ -8,11 +8,12 @@
 
   /* Dane kontaktowe z config.js */
   var tel = (SITE.phone || "").replace(/[^\d+]/g, "");
+  if (/^\d{9}$/.test(tel)) tel = "+48" + tel;
   $$("[data-call]").forEach(function (a) {
     a.href = tel ? "tel:" + tel : "#kontakt";
     if (!tel && a.hasAttribute("data-call-optional")) a.hidden = true;
     var num = a.querySelector("[data-phone-text]");
-    if (tel && num) num.textContent = SITE.phone;
+    if (tel && num) num.textContent = (num.getAttribute("data-prefix") || "") + SITE.phone;
   });
   $$("[data-phone]").forEach(function (el) {
     if (!SITE.phone) return;
