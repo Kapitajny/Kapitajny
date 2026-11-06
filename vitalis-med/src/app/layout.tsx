@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, Source_Sans_3 } from "next/font/google";
+import { Lato } from "next/font/google";
 import { EmergencyBar } from "@/components/layout/EmergencyBar";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -7,16 +7,11 @@ import { organizationJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
-const archivo = Archivo({
-  variable: "--font-archivo",
+// Lato – krój polskiego projektanta (Łukasz Dziedzic), czytelny i spokojny, z pełnymi polskimi znakami.
+const lato = Lato({
+  variable: "--font-lato",
   subsets: ["latin", "latin-ext"],
-  axes: ["wdth"],
-  display: "swap",
-});
-
-const sourceSans = Source_Sans_3({
-  variable: "--font-source-sans",
-  subsets: ["latin", "latin-ext"],
+  weight: ["400", "700", "900"],
   display: "swap",
 });
 
@@ -34,7 +29,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: "Vitalis Med – prywatne pogotowie ratunkowe",
     description: siteConfig.description,
-    images: [{ url: "/images/flota/hero-flota.webp", width: 976, height: 724, alt: "Ambulanse Vitalis Med przed bazą" }],
+    images: [{ url: "/images/flota/baner-ambulans.webp", width: 677, height: 453, alt: "Ambulans Vitalis Med" }],
   },
   robots: siteConfig.allowIndexing ? { index: true, follow: true } : { index: false, follow: false },
   formatDetection: { telephone: false },
@@ -48,7 +43,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pl" className={`${archivo.variable} ${sourceSans.variable}`} suppressHydrationWarning>
+    <html lang="pl" className={lato.variable} suppressHydrationWarning>
       <head>
         {/* Animacje przy przewijaniu włączamy tylko, gdy działa JavaScript. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
@@ -57,7 +52,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-dvh flex-col">
         <a
           href="#tresc"
-          className="sr-only z-50 bg-ink px-4 py-3 font-semibold text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+          className="sr-only z-50 bg-ink px-4 py-3 font-bold text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
         >
           Przejdź do treści
         </a>

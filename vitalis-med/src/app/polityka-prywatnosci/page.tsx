@@ -31,8 +31,8 @@ export default function PrivacyPage() {
         „Administrator”). Kontakt: <a href={`mailto:${contact.email}`}>{contact.email}</a>, tel. <a href={contact.phoneHref}>{contact.phoneDisplay}</a>.
       </p>
       <p>
-        Inspektor ochrony danych: <Fill>imię i nazwisko lub nazwa / adres e-mail IOD – jeżeli został wyznaczony</Fill>. Podmiot leczniczy przetwarzający
-        dane o zdrowiu na dużą skalę jest co do zasady zobowiązany do wyznaczenia IOD <Fill>do weryfikacji</Fill>.
+        Inspektor ochrony danych: <Fill>imię i nazwisko lub nazwa / adres e-mail IOD – jeżeli został wyznaczony</Fill>. Podmiot leczniczy przetwarzający dane
+        o zdrowiu na dużą skalę jest co do zasady zobowiązany do wyznaczenia IOD <Fill>do weryfikacji</Fill>.
       </p>
 
       <h2 id="zakres">2. Jakie dane przetwarzamy</h2>
@@ -46,8 +46,8 @@ export default function PrivacyPage() {
         <li>dane techniczne związane z korzystaniem ze strony (np. adres IP w logach serwera).</li>
       </ul>
       <p>
-        <strong>W formularzu kontaktowym nie prosimy o diagnozę ani szczegóły leczenia.</strong> Prosimy o niewpisywanie takich informacji – o stanie
-        Pacjenta porozmawiamy telefonicznie w niezbędnym zakresie.
+        <strong>W formularzu kontaktowym nie prosimy o diagnozę ani szczegóły leczenia.</strong> Prosimy o niewpisywanie takich informacji – o stanie Pacjenta
+        porozmawiamy telefonicznie w niezbędnym zakresie.
       </p>
 
       <h2 id="cele">3. Cele i podstawy prawne przetwarzania</h2>
@@ -84,14 +84,16 @@ export default function PrivacyPage() {
 
       <h2 id="formularz">4. Formularz kontaktowy</h2>
       <p>
-        Dane z formularza wykorzystujemy wyłącznie do udzielenia odpowiedzi i ewentualnego przygotowania Zlecenia. Podanie danych jest dobrowolne, ale
-        niezbędne do udzielenia odpowiedzi. Wiadomości z formularza są przekazywane do skrzynki Administratora za pośrednictwem{" "}
+        Dane z formularza wykorzystujemy wyłącznie do udzielenia odpowiedzi i ewentualnego przygotowania Zlecenia. Podanie danych jest dobrowolne, ale niezbędne
+        do udzielenia odpowiedzi. Wiadomości z formularza są przekazywane do skrzynki Administratora za pośrednictwem{" "}
         <Fill>nazwa dostawcy poczty / systemu zgłoszeń</Fill>.
       </p>
 
       <h2 id="okres">5. Okres przechowywania danych</h2>
       <ul>
-        <li>zapytania, które nie zakończyły się Zleceniem – do <Fill>12 miesięcy</Fill> od ostatniego kontaktu;</li>
+        <li>
+          zapytania, które nie zakończyły się Zleceniem – do <Fill>12 miesięcy</Fill> od ostatniego kontaktu;
+        </li>
         <li>dane związane z umową – przez okres przedawnienia roszczeń;</li>
         <li>dokumentacja rozliczeniowa – przez okres wymagany przepisami podatkowymi;</li>
         <li>dokumentacja medyczna – przez okres określony w ustawie o prawach pacjenta i Rzeczniku Praw Pacjenta (co do zasady 20 lat).</li>
@@ -99,9 +101,9 @@ export default function PrivacyPage() {
 
       <h2 id="odbiorcy">6. Odbiorcy danych</h2>
       <p>
-        Dane mogą być przekazywane podmiotom przetwarzającym je na zlecenie Administratora (dostawcy usług IT, hostingu i poczty, biuro rachunkowe), a
-        także podmiotom uprawnionym na podstawie przepisów prawa (np. NFZ, placówki przejmujące Pacjenta, organy publiczne). Dane nie są przekazywane poza
-        Europejski Obszar Gospodarczy, chyba że <Fill>opisać ewentualne przekazanie i zabezpieczenia</Fill>.
+        Dane mogą być przekazywane podmiotom przetwarzającym je na zlecenie Administratora (dostawcy usług IT, hostingu i poczty, biuro rachunkowe), a także
+        podmiotom uprawnionym na podstawie przepisów prawa (np. NFZ, placówki przejmujące Pacjenta, organy publiczne). Dane nie są przekazywane poza Europejski
+        Obszar Gospodarczy, chyba że <Fill>opisać ewentualne przekazanie i zabezpieczenia</Fill>.
       </p>
 
       <h2 id="prawa">7. Twoje prawa</h2>

@@ -27,6 +27,9 @@ Kontrole jakości: `npm run lint && npm run typecheck && npm test && npm run bui
 
 Stack: Next.js 16 (App Router, Turbopack), React 19, TypeScript, Tailwind CSS 4, Vitest. Wymagany Node.js 22.13+.
 
+Wygląd: układ wzorowany na polskich serwisach medycznych (baner z kafelkami szybkiego dostępu, jasne panele, karty),
+jeden krój pisma – Lato (`next/font`, z polskimi znakami).
+
 ## Struktura stron
 
 | Adres | Zawartość |
@@ -71,12 +74,11 @@ przebuduj stronę (`npm run build`), aby zniknęła informacja o wersji demonstr
 
 ## Zdjęcia i logo
 
-- Zdjęcia: `public/images/flota/*.webp` (przekonwertowane do WebP; Next.js dodatkowo serwuje AVIF/WebP w rozmiarach
-  dopasowanych do ekranu). Z dostarczonych zdjęć usunięto widoczną tablicę rejestracyjną (Ford, typ T) oraz napis
-  z nazwą innej stacji pogotowia (zdjęcie w sekcji hero i typ P).
+- Zdjęcia: `public/images/flota/*.webp` – wyłącznie prawdziwe fotografie dostarczone przez klienta, przekonwertowane
+  do WebP (Next.js dodatkowo serwuje AVIF/WebP w rozmiarach dopasowanych do ekranu). Z Forda (typ T) usunięto widoczną
+  tablicę rejestracyjną. Grafika wygenerowana przez AI została usunięta ze strony.
 - **Przed publikacją** zastąp zdjęcia fotografiami własnej floty – część dostarczonych zdjęć pokazuje oznakowanie innych
-  podmiotów (np. „Sopot”, oznaczenia szpitali) i może być chroniona prawem autorskim. Zdjęcie hero wygląda na
-  wygenerowane grafiką komputerową – zalecane jest prawdziwe zdjęcie floty.
+  podmiotów (np. „Sopot”, oznaczenia szpitali) i może być chroniona prawem autorskim.
 - **Zdjęcie zespołu:** wgraj `public/images/zespol/zespol.webp` (poziome, min. 1600×900 px) – pojawi się automatycznie
   w sekcji „Nasz zespół”. Do tego czasu sekcja jest zaprojektowana bez zdjęcia.
 - Logo: `src/components/brand/` – wektorowy obrys dostarczonego logo (wersja jasna i ciemna, z hasłem i bez),

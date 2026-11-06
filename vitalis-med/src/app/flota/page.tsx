@@ -18,7 +18,11 @@ export const metadata = pageMetadata({
 });
 
 const fleetStandards = [
-  { title: "Zgodność z wymaganiami", text: "Pojazdy i wyposażenie zgodne z obowiązującymi przepisami oraz normą PN-EN 1789 dla ambulansów.", icon: "shield" as const },
+  {
+    title: "Zgodność z wymaganiami",
+    text: "Pojazdy i wyposażenie zgodne z obowiązującymi przepisami oraz normą PN-EN 1789 dla ambulansów.",
+    icon: "shield" as const,
+  },
   { title: "Gotowość techniczna", text: "Codzienna kontrola przed dyżurem, regularne przeglądy i serwis sprzętu medycznego.", icon: "clipboard" as const },
   { title: "Higiena", text: "Dezynfekcja przedziału medycznego i sprzętu po każdym transporcie pacjenta.", icon: "check" as const },
   { title: "Łączność", text: "Stały kontakt zespołów z dyspozytornią i bieżąca koordynacja przejazdów.", icon: "headset" as const },
@@ -29,9 +33,8 @@ export default function FleetPage() {
     <>
       <PageHero
         crumb="Nasza flota"
-        title="Nowoczesna flota ambulansów"
+        title="Nasza flota"
         lead={`${fleetTotal} ambulansów w trzech kategoriach – od planowego transportu sanitarnego po pojazdy dla zespołów specjalistycznych.`}
-        image={{ src: "/images/flota/hero-flota.webp", alt: "Rząd ambulansów Mercedes-Benz Sprinter przed bazą" }}
       >
         <FleetBar />
       </PageHero>
@@ -45,7 +48,7 @@ export default function FleetPage() {
               id={`typ-${c.type.toLowerCase()}`}
               className="grid scroll-mt-28 items-center gap-10 border-b border-line py-14 last:border-0 lg:grid-cols-12 lg:gap-16 lg:py-20"
             >
-              <div className={`relative aspect-[4/3] overflow-hidden lg:col-span-6 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
+              <div className={`relative aspect-[4/3] overflow-hidden rounded-[10px] lg:col-span-6 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
                 <Image src={c.image.src} alt={c.image.alt} fill sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
               </div>
               <div className="lg:col-span-6">
@@ -53,17 +56,13 @@ export default function FleetPage() {
                   <TypeBadge type={c.type} size="lg" />
                   <div>
                     <h2 className="text-[clamp(1.8rem,1.4rem+1.2vw,2.5rem)]">{c.name}</h2>
-                    <p className="mt-1 font-display text-lg font-semibold text-red" style={{ fontStretch: "90%" }}>
-                      {vehicles(c.count)} we flocie
-                    </p>
+                    <p className="mt-1 font-display text-lg font-bold text-red">{vehicles(c.count)} we flocie</p>
                   </div>
                 </div>
                 <p className="mt-7 text-[1.08rem] leading-relaxed">{c.summary}</p>
                 <p className="mt-4 text-[1rem] leading-relaxed text-muted">{c.description}</p>
 
-                <h3 className="mt-8 text-sm font-semibold text-muted" style={{ fontFamily: "var(--font-sans)" }}>
-                  Wybrane wyposażenie
-                </h3>
+                <h3 className="mt-8 text-sm font-bold text-muted">Wybrane wyposażenie</h3>
                 <ul className="mt-4 grid gap-x-6 gap-y-3 sm:grid-cols-2">
                   {c.equipment.map((e) => (
                     <li key={e} className="flex gap-3 text-[0.98rem]">
@@ -73,32 +72,31 @@ export default function FleetPage() {
                   ))}
                 </ul>
                 <p className="mt-7 border-l-2 border-ink pl-4 text-[0.98rem] leading-relaxed">
-                  <strong className="font-semibold text-ink">Zespół:</strong> {c.crew}
+                  <strong className="font-bold text-ink">Zespół:</strong> {c.crew}
                 </p>
               </div>
             </Reveal>
           ))}
           <p className="pb-6 text-xs text-muted">
-            Liczba pojazdów i wyposażenie są przykładowe (projekt demonstracyjny). Wyposażenie konkretnego pojazdu zależy od jego przeznaczenia i
-            obowiązujących wymagań.
+            Liczba pojazdów i wyposażenie są przykładowe (projekt demonstracyjny). Wyposażenie konkretnego pojazdu zależy od jego przeznaczenia i obowiązujących
+            wymagań.
           </p>
         </div>
       </section>
 
-      <section aria-labelledby="galeria-title" className="section border-t border-line bg-mist">
+      <section aria-labelledby="galeria-title" className="section bg-mist">
         <div className="container-x">
           <Reveal>
-            <SectionHeading title="Pojazdy w gotowości" id="galeria-title" />
+            <SectionHeading title="Galeria" id="galeria-title" />
           </Reveal>
-          <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:grid-rows-2">
-            {fleetGallery.map((g, i) => (
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2">
+            {fleetGallery.map((g) => (
               <Reveal
                 as="li"
                 key={g.src}
-               
-                className={`relative overflow-hidden ${i === 0 ? "aspect-square sm:row-span-2 sm:aspect-auto lg:col-span-3" : "aspect-[3/2] lg:col-span-3"}`}
+                className="relative aspect-[3/2] overflow-hidden rounded-[10px]"
               >
-                <Image src={g.src} alt={g.alt} fill sizes="(min-width: 1024px) 50vw, (min-width: 640px) 50vw, 100vw" className="object-cover" />
+                <Image src={g.src} alt={g.alt} fill sizes="(min-width: 640px) 50vw, 100vw" className="object-cover" />
               </Reveal>
             ))}
           </ul>
@@ -108,14 +106,16 @@ export default function FleetPage() {
       <section aria-labelledby="standardy-floty-title" className="section">
         <div className="container-x">
           <Reveal>
-            <SectionHeading title="Sprawne pojazdy to bezpieczny pacjent" id="standardy-floty-title" />
+            <SectionHeading title="Standardy floty" id="standardy-floty-title" />
           </Reveal>
-          <ul className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {fleetStandards.map((s) => (
-              <li key={s.title}>
-                <Icon name={s.icon} size={30} strokeWidth={1.4} className="text-red" />
-                <h3 className="mt-5 text-[1.3rem]">{s.title}</h3>
-                <p className="mt-3 text-[0.98rem] leading-relaxed">{s.text}</p>
+              <li key={s.title} className="card p-6">
+                <span className="icon-badge">
+                  <Icon name={s.icon} size={22} />
+                </span>
+                <h3 className="mt-4 text-[1.15rem]">{s.title}</h3>
+                <p className="mt-2 text-[0.97rem] leading-relaxed">{s.text}</p>
               </li>
             ))}
           </ul>
@@ -127,7 +127,10 @@ export default function FleetPage() {
         </div>
       </section>
 
-      <CtaBand title="Nie wiesz, jaki ambulans będzie odpowiedni?" text="Opisz sytuację dyspozytorowi – dobierzemy rodzaj pojazdu i skład zespołu do potrzeb pacjenta." />
+      <CtaBand
+        title="Nie wiesz, jaki ambulans będzie odpowiedni?"
+        text="Opisz sytuację dyspozytorowi – dobierzemy rodzaj pojazdu i skład zespołu do potrzeb pacjenta."
+      />
     </>
   );
 }

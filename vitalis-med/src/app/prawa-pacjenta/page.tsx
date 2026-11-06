@@ -58,9 +58,9 @@ export default function PatientRightsPage() {
 
       <h2 id="dokumentacja">3. Dostęp do dokumentacji medycznej</h2>
       <p>
-        Wniosek o udostępnienie dokumentacji medycznej z transportu można złożyć e-mailem na adres <a href={`mailto:${contact.email}`}>{contact.email}</a>{" "}
-        lub pisemnie na adres siedziby. Pierwsza kopia dokumentacji udostępniana jest bezpłatnie. Za kolejne kopie może być pobierana opłata w wysokości
-        określonej w ustawie <Fill>wskazać aktualne stawki</Fill>.
+        Wniosek o udostępnienie dokumentacji medycznej z transportu można złożyć e-mailem na adres <a href={`mailto:${contact.email}`}>{contact.email}</a> lub
+        pisemnie na adres siedziby. Pierwsza kopia dokumentacji udostępniana jest bezpłatnie. Za kolejne kopie może być pobierana opłata w wysokości określonej
+        w ustawie <Fill>wskazać aktualne stawki</Fill>.
       </p>
 
       <h2 id="skargi">4. Skargi i wnioski</h2>
@@ -70,14 +70,13 @@ export default function PatientRightsPage() {
         odpowiedzialna: <Fill>stanowisko / dział jakości</Fill>. Zasady reklamacji usług komercyjnych opisuje <Link href="/regulamin">Regulamin</Link>.
       </p>
       <p>
-        W sprawach świadczeń finansowanych ze środków publicznych można zwrócić się również do właściwego Oddziału Wojewódzkiego Narodowego Funduszu
-        Zdrowia.
+        W sprawach świadczeń finansowanych ze środków publicznych można zwrócić się również do właściwego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia.
       </p>
 
       <h2 id="rpp">5. Rzecznik Praw Pacjenta</h2>
       <p>
-        Pacjent może zwrócić się do Rzecznika Praw Pacjenta: Biuro Rzecznika Praw Pacjenta, ul. Młynarska 46, 01-171 Warszawa, bezpłatna infolinia
-        Telefonicznej Informacji Pacjenta: <a href="tel:800190590">800 190 590</a>, strona:{" "}
+        Pacjent może zwrócić się do Rzecznika Praw Pacjenta: Biuro Rzecznika Praw Pacjenta, ul. Młynarska 46, 01-171 Warszawa, bezpłatna infolinia Telefonicznej
+        Informacji Pacjenta: <a href="tel:800190590">800 190 590</a>, strona:{" "}
         <a href="https://www.gov.pl/web/rpp" target="_blank" rel="noopener noreferrer">
           gov.pl/web/rpp
         </a>

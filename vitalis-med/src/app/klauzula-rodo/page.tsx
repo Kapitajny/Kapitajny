@@ -43,11 +43,17 @@ export default function GdprClausePage() {
       <h2 id="cele">3. Cele i podstawy przetwarzania</h2>
       <ul>
         <li>
-          udzielanie świadczeń zdrowotnych, w tym transportu sanitarnego i medycznego, oraz zarządzanie udzielaniem tych świadczeń – art. 6 ust. 1 lit. c
-          i art. 9 ust. 2 lit. h RODO;
+          udzielanie świadczeń zdrowotnych, w tym transportu sanitarnego i medycznego, oraz zarządzanie udzielaniem tych świadczeń – art. 6 ust. 1 lit. c i art.
+          9 ust. 2 lit. h RODO;
         </li>
-        <li>prowadzenie i przechowywanie dokumentacji medycznej – art. 6 ust. 1 lit. c i art. 9 ust. 2 lit. h RODO w zw. z ustawą o prawach pacjenta i Rzeczniku Praw Pacjenta;</li>
-        <li>rozliczanie świadczeń finansowanych przez NFZ – art. 6 ust. 1 lit. c RODO w zw. z ustawą o świadczeniach opieki zdrowotnej finansowanych ze środków publicznych;</li>
+        <li>
+          prowadzenie i przechowywanie dokumentacji medycznej – art. 6 ust. 1 lit. c i art. 9 ust. 2 lit. h RODO w zw. z ustawą o prawach pacjenta i Rzeczniku
+          Praw Pacjenta;
+        </li>
+        <li>
+          rozliczanie świadczeń finansowanych przez NFZ – art. 6 ust. 1 lit. c RODO w zw. z ustawą o świadczeniach opieki zdrowotnej finansowanych ze środków
+          publicznych;
+        </li>
         <li>zawarcie i wykonanie umowy o usługę komercyjną – art. 6 ust. 1 lit. b RODO;</li>
         <li>kontakt w sprawie realizacji usługi, dochodzenie i obrona roszczeń – art. 6 ust. 1 lit. f RODO;</li>
         <li>obowiązki księgowe i podatkowe – art. 6 ust. 1 lit. c RODO.</li>
@@ -55,20 +61,21 @@ export default function GdprClausePage() {
 
       <h2 id="wymog">4. Obowiązek podania danych</h2>
       <p>
-        Podanie danych jest wymogiem ustawowym w zakresie niezbędnym do udzielenia świadczenia zdrowotnego i prowadzenia dokumentacji medycznej, a w
-        pozostałym zakresie – warunkiem zawarcia umowy lub udzielenia odpowiedzi na zapytanie.
+        Podanie danych jest wymogiem ustawowym w zakresie niezbędnym do udzielenia świadczenia zdrowotnego i prowadzenia dokumentacji medycznej, a w pozostałym
+        zakresie – warunkiem zawarcia umowy lub udzielenia odpowiedzi na zapytanie.
       </p>
 
       <h2 id="odbiorcy">5. Odbiorcy</h2>
       <p>
-        Odbiorcami danych mogą być: Narodowy Fundusz Zdrowia, placówki medyczne przejmujące pacjenta, podmioty uprawnione do dostępu do dokumentacji
-        medycznej na podstawie przepisów, dostawcy usług IT i systemów dokumentacji, biuro rachunkowe oraz ubezpieczyciel OC – w zakresie niezbędnym.
+        Odbiorcami danych mogą być: Narodowy Fundusz Zdrowia, placówki medyczne przejmujące pacjenta, podmioty uprawnione do dostępu do dokumentacji medycznej
+        na podstawie przepisów, dostawcy usług IT i systemów dokumentacji, biuro rachunkowe oraz ubezpieczyciel OC – w zakresie niezbędnym.
       </p>
 
       <h2 id="okres">6. Okres przechowywania</h2>
       <p>
-        Dokumentację medyczną przechowujemy przez okres wynikający z art. 29 ustawy o prawach pacjenta i Rzeczniku Praw Pacjenta. Pozostałe dane – przez
-        okres realizacji umowy, przedawnienia roszczeń oraz wymagany przepisami podatkowymi. Szczegóły: <Link href="/polityka-prywatnosci">Polityka prywatności</Link>.
+        Dokumentację medyczną przechowujemy przez okres wynikający z art. 29 ustawy o prawach pacjenta i Rzeczniku Praw Pacjenta. Pozostałe dane – przez okres
+        realizacji umowy, przedawnienia roszczeń oraz wymagany przepisami podatkowymi. Szczegóły: <Link href="/polityka-prywatnosci">Polityka prywatności</Link>
+        .
       </p>
 
       <h2 id="prawa">7. Prawa osoby, której dane dotyczą</h2>

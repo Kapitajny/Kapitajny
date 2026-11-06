@@ -21,8 +21,8 @@ export default function HomePage() {
       <ServicesSection />
       <NfzSection />
       <PricingSection />
-      <TeamSection />
       <WhyUsSection />
+      <TeamSection />
       <ContactSection />
     </>
   );

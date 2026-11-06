@@ -10,8 +10,8 @@ export function EmergencyBar() {
         <p className="flex items-center gap-2">
           <Icon name="alert" size={16} className="shrink-0 text-[#ff4d55]" />
           <span>
-            W stanie zagrożenia życia dzwoń <strong className="font-semibold text-white">112</strong> lub{" "}
-            <strong className="font-semibold text-white">999</strong>
+            W stanie zagrożenia życia dzwoń <strong className="font-bold text-white">112</strong> lub{" "}
+            <strong className="font-bold text-white">999</strong>
           </span>
         </p>
         <div className="hidden items-center gap-6 md:flex">
@@ -19,7 +19,7 @@ export function EmergencyBar() {
             <Icon name="clock" size={16} className="text-white/60" />
             Dyspozytornia transportu 24/7
           </span>
-          <a href={contact.phoneHref} className="flex items-center gap-2 font-semibold text-white hover:underline">
+          <a href={contact.phoneHref} className="flex items-center gap-2 font-bold text-white hover:underline">
             <Icon name="phone" size={16} className="text-white/60" />
             {contact.phoneDisplay}
           </a>

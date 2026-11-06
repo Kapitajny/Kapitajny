@@ -20,8 +20,8 @@ export default function CookiesPage() {
     <LegalPage title="Polityka cookies" path="/polityka-cookies" updated="06.11.2026" toc={toc}>
       <h2 id="czym-sa">1. Czym są pliki cookies</h2>
       <p>
-        Pliki cookies to niewielkie pliki tekstowe zapisywane w urządzeniu użytkownika. Podobnie działa pamięć lokalna przeglądarki (localStorage), w
-        której strona może zapisać proste ustawienia.
+        Pliki cookies to niewielkie pliki tekstowe zapisywane w urządzeniu użytkownika. Podobnie działa pamięć lokalna przeglądarki (localStorage), w której
+        strona może zapisać proste ustawienia.
       </p>
 
       <h2 id="uzywane">2. Z czego korzysta strona</h2>
@@ -46,7 +46,9 @@ export default function CookiesPage() {
           </tr>
         </tbody>
       </table>
-      <p>Jeżeli w przyszłości dodamy narzędzia analityczne lub marketingowe, uruchomimy je wyłącznie po uzyskaniu zgody, a ta polityka zostanie zaktualizowana.</p>
+      <p>
+        Jeżeli w przyszłości dodamy narzędzia analityczne lub marketingowe, uruchomimy je wyłącznie po uzyskaniu zgody, a ta polityka zostanie zaktualizowana.
+      </p>
 
       <h2 id="mapa">3. Mapa Google</h2>
       <p>

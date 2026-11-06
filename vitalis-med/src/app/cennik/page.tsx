@@ -26,7 +26,7 @@ export default function PricingPage() {
     <>
       <PageHero
         crumb="Cennik"
-        title="Przejrzyste ceny usług komercyjnych"
+        title="Cennik usług"
         lead="Poniższe ceny mają charakter orientacyjny. Przed każdym przejazdem podajemy wycenę dopasowaną do trasy i potrzeb pacjenta."
       >
         <Link href={orderHref()} className="btn btn-primary">
@@ -36,7 +36,7 @@ export default function PricingPage() {
 
       <section aria-labelledby="tabela-title" className="section">
         <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-8">
+          <div className="min-w-0 lg:col-span-8">
             <h2 id="tabela-title" className="sr-only">
               Tabela cen
             </h2>
@@ -50,8 +50,8 @@ export default function PricingPage() {
           <Reveal as="aside" className="self-start border border-line bg-mist p-7 lg:sticky lg:top-28 lg:col-span-4">
             <h2 className="text-[1.4rem]">Świadczenia NFZ nie są objęte cennikiem</h2>
             <p className="mt-3 text-[0.98rem] leading-relaxed">
-              Transport finansowany przez NFZ realizujemy na podstawie zlecenia lekarza i w zakresie zawartej umowy. Jeśli przejazd nie spełnia tych
-              warunków, poinformujemy Cię o tym przed realizacją.
+              Transport finansowany przez NFZ realizujemy na podstawie zlecenia lekarza i w zakresie zawartej umowy. Jeśli przejazd nie spełnia tych warunków,
+              poinformujemy Cię o tym przed realizacją.
             </p>
             <Link href="/nfz" className="link-arrow mt-6">
               Zasady świadczeń NFZ
@@ -63,15 +63,11 @@ export default function PricingPage() {
       <section aria-labelledby="czynniki-title" className="section border-t border-line bg-mist">
         <div className="container-x">
           <Reveal>
-            <SectionHeading
-              title="Od czego zależy ostateczna cena"
-              id="czynniki-title"
-              lead="Każdy transport jest inny. Na wycenę wpływają przede wszystkim cztery czynniki."
-            />
+            <SectionHeading title="Od czego zależy cena" id="czynniki-title" lead="Na wycenę wpływają przede wszystkim cztery czynniki." />
           </Reveal>
-          <ul className="mt-14 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {priceFactors.map((f) => (
-              <li key={f.title} className="bg-white p-7">
+              <li key={f.title} className="card p-6">
                 <h3 className="text-[1.3rem]">{f.title}</h3>
                 <p className="mt-3 text-[0.98rem] leading-relaxed">{f.text}</p>
               </li>
@@ -100,7 +96,7 @@ export default function PricingPage() {
             </ul>
             <p className="mt-6 text-[0.95rem]">
               Zasady płatności i odwoływania usług opisuje{" "}
-              <Link href="/regulamin" className="link-quiet font-semibold text-ink">
+              <Link href="/regulamin" className="link-quiet font-bold text-ink">
                 Regulamin świadczenia usług
               </Link>
               .

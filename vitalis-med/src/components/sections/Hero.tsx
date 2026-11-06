@@ -1,64 +1,80 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Icon } from "@/components/ui/Icons";
-import { siteConfig } from "@/config/site";
+import { Icon, type IconName } from "@/components/ui/Icons";
+import { orderHref, siteConfig } from "@/config/site";
+
+const quickLinks: { href: string; title: string; text: string; icon: IconName }[] = [
+  { href: orderHref(), title: "Zamów transport", text: "Formularz zapytania", icon: "ambulance" },
+  { href: "/cennik", title: "Cennik usług", text: "Ceny usług prywatnych", icon: "card" },
+  { href: "/nfz", title: "Świadczenia NFZ", text: "Zasady i zakres umowy", icon: "document" },
+  { href: "/flota", title: "Nasza flota", text: "Typy T, S i P", icon: "shield" },
+];
 
 export function Hero() {
   const { contact } = siteConfig;
   return (
-    <section aria-labelledby="hero-title" className="relative overflow-hidden border-b border-line bg-white">
-      {/* Zdjęcie: na dużych ekranach wypełnia prawą połowę aż do krawędzi okna */}
-      <div className="relative aspect-[4/3] w-full sm:aspect-[16/9] lg:absolute lg:inset-y-0 lg:right-0 lg:aspect-auto lg:w-[52%]">
-        <Image
-          src="/images/flota/hero-flota.webp"
-          alt="Nowoczesne ambulanse Mercedes-Benz Sprinter z włączonymi sygnałami świetlnymi przed bazą"
-          fill
-          sizes="(min-width: 1024px) 52vw, 100vw"
-          loading="eager"
-          fetchPriority="high"
-          quality={85}
-          className="object-cover object-[62%_50%]"
-        />
-      </div>
-
-      <div className="container-x relative">
-        <div className="max-w-xl py-14 sm:py-16 lg:w-[44%] lg:max-w-none lg:py-24 xl:py-28">
-          <h1 id="hero-title" className="h-display hero-in">
-            Profesjonalna pomoc medyczna. Bezpieczeństwo, na którym możesz polegać.
-          </h1>
-          <p className="lead hero-in mt-7 max-w-[36rem]" style={{ ["--d" as string]: "100ms" }}>
-            Zapewniamy profesjonalne ratownictwo medyczne, transport sanitarny i medyczny oraz kompleksową obsługę pacjentów. Działamy z myślą
-            o bezpieczeństwie i komforcie każdego pacjenta.
-          </p>
-          <div className="hero-in mt-9 flex flex-col gap-3 sm:flex-row" style={{ ["--d" as string]: "200ms" }}>
-            <Link href="/uslugi" className="btn btn-dark">
-              Poznaj nasze usługi
-            </Link>
-            <Link href="/kontakt" className="btn btn-outline">
-              Skontaktuj się z nami
-            </Link>
+    <section aria-labelledby="hero-title" className="bg-white pt-6 lg:pt-8">
+      <div className="container-x">
+        {/* Baner w obrębie strony: tekst na jasnym panelu, prawdziwe zdjęcie ambulansu po prawej */}
+        <div className="panel grid overflow-hidden lg:grid-cols-2">
+          <div className="order-2 flex flex-col justify-center px-6 py-10 sm:px-10 lg:order-1 lg:px-14 lg:py-16">
+            <h1 id="hero-title" className="h-display hero-in max-w-xl">
+              Profesjonalna pomoc medyczna. Bezpieczeństwo, na którym możesz polegać.
+            </h1>
+            <p className="hero-in mt-5 max-w-xl text-[1.08rem] leading-relaxed" style={{ ["--d" as string]: "80ms" }}>
+              Zapewniamy profesjonalne ratownictwo medyczne, transport sanitarny i&nbsp;medyczny oraz kompleksową obsługę pacjentów. Działamy z&nbsp;myślą
+              o&nbsp;bezpieczeństwie i&nbsp;komforcie każdego pacjenta.
+            </p>
+            <div className="hero-in mt-8 flex flex-col gap-3 sm:flex-row" style={{ ["--d" as string]: "160ms" }}>
+              <Link href="/uslugi" className="btn btn-primary">
+                Poznaj nasze usługi
+              </Link>
+              <Link href="/kontakt" className="btn btn-outline">
+                Skontaktuj się z&nbsp;nami
+              </Link>
+            </div>
           </div>
-
-          {/* Najważniejsza informacja dla osoby szukającej transportu: numer dyspozytorni. */}
-          <a
-            href={contact.phoneHref}
-            className="hero-in group mt-12 flex items-center gap-5 border-t border-line pt-8 lg:mt-16"
-            style={{ ["--d" as string]: "300ms" }}
-          >
-            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-red text-white transition-colors group-hover:bg-red-dark">
-              <Icon name="phone" size={24} />
-            </span>
-            <span>
-              <span className="block text-[0.95rem] text-muted">Dyspozytornia transportu, całą dobę</span>
-              <span
-                className="mt-0.5 block font-display text-[2rem] font-semibold leading-tight tracking-tight text-ink sm:text-[2.4rem]"
-                style={{ fontStretch: "86%" }}
-              >
-                {contact.phoneDisplay}
-              </span>
-            </span>
-          </a>
+          <div className="relative order-1 aspect-[3/2] lg:order-2 lg:aspect-auto lg:min-h-[26rem]">
+            <Image
+              src="/images/flota/baner-ambulans.webp"
+              alt="Ambulans w barwach ratownictwa medycznego"
+              fill
+              sizes="(min-width: 1280px) 640px, (min-width: 1024px) 50vw, 100vw"
+              loading="eager"
+              fetchPriority="high"
+              quality={85}
+              className="object-cover"
+            />
+          </div>
         </div>
+
+        {/* Szybki dostęp – jak w serwisach przychodni i szpitali */}
+        <nav aria-label="Szybki dostęp" className="mt-4">
+          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            <li className="sm:col-span-2 lg:col-span-1">
+              <a href={contact.phoneHref} className="flex h-full items-center gap-4 rounded-[8px] bg-red p-5 text-white transition-colors hover:bg-red-dark">
+                <Icon name="phone" size={26} className="shrink-0" />
+                <span>
+                  <span className="block text-sm text-white/90">Dyspozytornia 24/7</span>
+                  <span className="block text-xl font-black">{contact.phoneDisplay}</span>
+                </span>
+              </a>
+            </li>
+            {quickLinks.map((q) => (
+              <li key={q.href}>
+                <Link href={q.href} className="card card-lift flex h-full items-center gap-3 p-4">
+                  <span className="icon-badge h-11 w-11">
+                    <Icon name={q.icon} size={20} />
+                  </span>
+                  <span>
+                    <span className="block whitespace-nowrap font-bold text-ink">{q.title}</span>
+                    <span className="block text-sm text-muted">{q.text}</span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </section>
   );

@@ -2,33 +2,34 @@
 
 /* ---------------------------------------------------------------------------
  * VITALIS MED – system wizualny
- * Biel jako tło, grafit dla tekstu i wybranych sekcji, czerwień wyłącznie jako akcent.
+ * Układ wzorowany na polskich serwisach medycznych: białe tło, jasnoszare panele,
+ * karty z lekkim zaokrągleniem, jeden krój (Lato), czerwień wyłącznie w akcjach.
  * ------------------------------------------------------------------------- */
 
 @theme {
   --color-white: #ffffff;
-  --color-mist: #f5f5f3;
-  --color-fog: #ebebe8;
-  --color-line: #e2e2df;
-  --color-line-strong: #c9cac6;
+  --color-mist: #f3f5f7;
+  --color-fog: #e8ebef;
+  --color-line: #e1e5ea;
+  --color-line-strong: #c5cbd2;
   /* Ramki pól formularza – kontrast min. 3:1 z tłem (WCAG 1.4.11). */
   --color-field: #868a8e;
-  --color-ink: #15181b;
-  --color-graphite: #1f2326;
-  --color-graphite-2: #2b2f33;
-  --color-body: #3a3f44;
-  --color-muted: #5b6167;
+  --color-ink: #1f2429;
+  --color-graphite: #262b31;
+  --color-graphite-2: #353b42;
+  --color-body: #3c434a;
+  --color-muted: #5c646d;
   --color-red: #cc0510;
   --color-red-dark: #a3040c;
   --color-red-soft: #fbeeee;
   --color-success: #1d6a43;
   --color-success-soft: #ecf5ef;
 
-  --font-display: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
-  --font-sans: var(--font-source-sans), "Segoe UI", system-ui, sans-serif;
+  --font-display: var(--font-lato), "Segoe UI", Arial, sans-serif;
+  --font-sans: var(--font-lato), "Segoe UI", Arial, sans-serif;
 
   --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
-  --shadow-soft: 0 1px 2px rgb(21 24 27 / 0.04), 0 10px 30px -18px rgb(21 24 27 / 0.28);
+  --shadow-soft: 0 1px 3px rgb(31 36 41 / 0.06), 0 6px 20px -8px rgb(31 36 41 / 0.14);
 }
 
 @layer base {
@@ -57,11 +58,10 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    font-stretch: 92%;
     color: var(--color-ink);
-    font-weight: 600;
-    line-height: 1.08;
-    letter-spacing: -0.02em;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0;
     text-wrap: balance;
   }
 
@@ -108,12 +108,43 @@
   }
 
   .h-display {
-    font-size: clamp(2.3rem, 1.45rem + 2.9vw, 3.65rem);
-    line-height: 1.03;
-    letter-spacing: -0.028em;
+    font-size: clamp(1.85rem, 1.5rem + 1.4vw, 2.6rem);
+    font-weight: 900;
+    line-height: 1.15;
   }
   .h-section {
-    font-size: clamp(2rem, 1.45rem + 2vw, 3rem);
+    font-size: clamp(1.6rem, 1.4rem + 0.8vw, 2.1rem);
+    font-weight: 900;
+  }
+  /* Karta: biała, z obramowaniem i lekkim zaokrągleniem */
+  .card {
+    background: var(--color-white);
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+  }
+  .card-lift {
+    transition:
+      box-shadow 200ms var(--ease-soft),
+      border-color 200ms var(--ease-soft);
+  }
+  .card-lift:hover {
+    border-color: var(--color-line-strong);
+    box-shadow: var(--shadow-soft);
+  }
+  .panel {
+    background: var(--color-mist);
+    border-radius: 10px;
+  }
+  .icon-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    flex-shrink: 0;
+    border-radius: 999px;
+    background: var(--color-red-soft);
+    color: var(--color-red);
   }
   .lead {
     font-size: clamp(1.08rem, 1rem + 0.3vw, 1.22rem);
@@ -128,12 +159,12 @@
     gap: 0.6rem;
     min-height: 3.1rem;
     padding: 0.8rem 1.45rem;
-    border-radius: 4px;
+    border-radius: 6px;
     border: 1px solid transparent;
     font-family: var(--font-sans);
     font-size: 0.98rem;
-    font-weight: 600;
-    letter-spacing: 0.005em;
+    font-weight: 700;
+    letter-spacing: 0;
     line-height: 1.2;
     white-space: nowrap;
     transition:
@@ -193,7 +224,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--color-ink);
     text-decoration: none;
     border-bottom: 1px solid var(--color-line-strong);
@@ -255,7 +286,7 @@
     display: block;
     margin-bottom: 0.45rem;
     font-size: 0.95rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--color-ink);
   }
   .field-input {
@@ -417,7 +448,7 @@
     vertical-align: top;
   }
   .prose-legal th {
-    font-weight: 600;
+    font-weight: 700;
     color: var(--color-ink);
   }
 }

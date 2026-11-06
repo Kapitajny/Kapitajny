@@ -27,14 +27,17 @@ export default function ServicesPage() {
     <>
       <PageHero
         crumb="Nasze usługi"
-        title="Transport medyczny i opieka nad pacjentem w każdej sytuacji"
+        title="Nasze usługi"
         lead="Usługi realizujemy komercyjnie dla klientów indywidualnych, firm i placówek, a w zakresie kontraktu – także w ramach NFZ."
       >
         <nav aria-label="Lista usług">
           <ul className="flex flex-wrap gap-2">
             {services.map((s) => (
               <li key={s.slug}>
-                <a href={`#${s.slug}`} className="inline-block rounded-[4px] border border-line px-3 py-1.5 text-sm text-body transition-colors hover:border-ink hover:text-ink">
+                <a
+                  href={`#${s.slug}`}
+                  className="inline-block rounded-[4px] border border-line px-3 py-1.5 text-sm text-body transition-colors hover:border-ink hover:text-ink"
+                >
                   {s.title}
                 </a>
               </li>
@@ -46,7 +49,12 @@ export default function ServicesPage() {
       <section aria-label="Opis usług" className="py-6 lg:py-10">
         <div className="container-x">
           {services.map((s) => (
-            <Reveal as="article" key={s.slug} id={s.slug} className="grid scroll-mt-28 gap-8 border-b border-line py-14 last:border-0 lg:grid-cols-12 lg:gap-16 lg:py-20">
+            <Reveal
+              as="article"
+              key={s.slug}
+              id={s.slug}
+              className="grid scroll-mt-28 gap-8 border-b border-line py-14 last:border-0 lg:grid-cols-12 lg:gap-16 lg:py-20"
+            >
               <div className="lg:col-span-5">
                 <div className="flex items-center gap-4">
                   <span className="flex h-14 w-14 items-center justify-center rounded-full bg-red-soft text-red">
@@ -80,19 +88,19 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section aria-labelledby="jak-title" className="section bg-graphite">
+      <section aria-labelledby="jak-title" className="section bg-mist">
         <div className="container-x">
           <Reveal>
-            <SectionHeading title="Cztery kroki do bezpiecznego transportu" id="jak-title" tone="dark" />
+            <SectionHeading title="Jak zamówić transport" id="jak-title" />
           </Reveal>
-          <ol className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((step, i) => (
-              <li key={step.title} className="border-t border-white/20 pt-6">
-                <span className="font-display text-5xl font-semibold leading-none text-white/55" style={{ fontStretch: "85%" }} aria-hidden="true">
+              <li key={step.title} className="card p-6">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-red text-lg font-black text-white" aria-hidden="true">
                   {i + 1}
                 </span>
-                <h3 className="mt-5 text-[1.35rem] text-white">{step.title}</h3>
-                <p className="mt-3 text-[0.98rem] leading-relaxed text-white/70">{step.text}</p>
+                <h3 className="mt-4 text-[1.15rem]">{step.title}</h3>
+                <p className="mt-3 text-[0.98rem] leading-relaxed">{step.text}</p>
               </li>
             ))}
           </ol>

@@ -52,7 +52,7 @@ export function SiteHeader() {
                     <Link
                       href={item.href}
                       aria-current={active ? "page" : undefined}
-                      className={`relative block px-3 py-2 text-[0.97rem] font-semibold transition-colors duration-200 after:absolute after:inset-x-3 after:-bottom-0.5 after:h-0.5 after:origin-left after:bg-red after:transition-transform after:duration-300 ${
+                      className={`relative block px-3 py-2 text-[0.97rem] font-bold transition-colors duration-200 after:absolute after:inset-x-3 after:-bottom-0.5 after:h-0.5 after:origin-left after:bg-red after:transition-transform after:duration-300 ${
                         active ? "text-ink after:scale-x-100" : "text-body after:scale-x-0 hover:text-ink hover:after:scale-x-100"
                       }`}
                     >
@@ -109,8 +109,7 @@ export function SiteHeader() {
                       href={item.href}
                       onClick={closeMenu}
                       aria-current={active ? "page" : undefined}
-                      className="flex items-center justify-between py-4 font-display text-[1.6rem] font-semibold tracking-tight text-ink"
-                      style={{ fontStretch: "92%" }}
+                      className="flex items-center justify-between py-4 font-display text-[1.6rem] font-bold tracking-tight text-ink"
                     >
                       <span className="flex items-center gap-3">
                         {active && <span aria-hidden="true" className="h-2 w-2 rounded-full bg-red" />}

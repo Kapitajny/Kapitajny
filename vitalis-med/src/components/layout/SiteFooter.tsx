@@ -11,7 +11,7 @@ export function SiteFooter() {
   return (
     <footer className="bg-graphite text-white/75">
       <div className="container-x grid gap-12 pb-14 pt-16 md:grid-cols-2 lg:grid-cols-12 lg:gap-10 lg:pt-20">
-        <div className="lg:col-span-4">
+        <div className="lg:col-span-3">
           <Link href="/" aria-label={`${siteConfig.name} – strona główna`} className="inline-block">
             <Logo tone="dark" withTagline className="h-14 w-auto" />
           </Link>
@@ -20,7 +20,7 @@ export function SiteFooter() {
             placówek medycznych i instytucji.
           </p>
           <div className="mt-8 rounded-[6px] border border-white/12 p-5">
-            <p className="text-sm font-semibold text-white">Usługi prywatne i świadczenia NFZ</p>
+            <p className="text-sm font-bold text-white">Usługi prywatne i świadczenia NFZ</p>
             <p className="mt-2 text-sm leading-relaxed text-white/70">
               Usługi komercyjne realizujemy odpłatnie według cennika. Świadczenia finansowane przez NFZ wykonujemy wyłącznie w zakresie zawartej umowy i na
               podstawie zlecenia lekarza.{" "}
@@ -32,7 +32,7 @@ export function SiteFooter() {
         </div>
 
         <nav aria-labelledby="footer-nav" className="lg:col-span-2">
-          <h2 id="footer-nav" className="text-sm font-semibold text-white" style={{ fontFamily: "var(--font-sans)" }}>
+          <h2 id="footer-nav" className="text-sm font-bold text-white">
             Na skróty
           </h2>
           <ul className="mt-5 space-y-2.5 text-[0.98rem]">
@@ -47,7 +47,7 @@ export function SiteFooter() {
         </nav>
 
         <nav aria-labelledby="footer-services" className="lg:col-span-3">
-          <h2 id="footer-services" className="text-sm font-semibold text-white" style={{ fontFamily: "var(--font-sans)" }}>
+          <h2 id="footer-services" className="text-sm font-bold text-white">
             Usługi
           </h2>
           <ul className="mt-5 space-y-2.5 text-[0.98rem]">
@@ -61,8 +61,8 @@ export function SiteFooter() {
           </ul>
         </nav>
 
-        <div className="lg:col-span-3">
-          <h2 className="text-sm font-semibold text-white" style={{ fontFamily: "var(--font-sans)" }}>
+        <div className="lg:col-span-4">
+          <h2 className="text-sm font-bold text-white">
             Kontakt
           </h2>
           <ul className="mt-5 space-y-4 text-[0.98rem]">
@@ -70,7 +70,7 @@ export function SiteFooter() {
               <a href={contact.phoneHref} className="group flex items-start gap-3">
                 <Icon name="phone" size={20} className="mt-0.5 shrink-0 text-[#ff4d55]" />
                 <span>
-                  <span className="block font-display text-xl font-semibold text-white group-hover:underline" style={{ fontStretch: "92%" }}>
+                  <span className="block font-display text-xl font-bold text-white group-hover:underline">
                     {contact.phoneDisplay}
                   </span>
                   <span className="text-sm text-white/60">Dyspozytornia 24/7</span>
@@ -78,7 +78,7 @@ export function SiteFooter() {
               </a>
             </li>
             <li>
-              <a href={`mailto:${contact.email}`} className="flex items-start gap-3 break-all hover:text-white">
+              <a href={`mailto:${contact.email}`} className="flex items-start gap-3 [overflow-wrap:anywhere] hover:text-white">
                 <Icon name="mail" size={20} className="mt-0.5 shrink-0 text-white/50" />
                 {contact.email}
               </a>

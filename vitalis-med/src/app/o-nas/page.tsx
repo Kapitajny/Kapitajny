@@ -19,7 +19,11 @@ const values = [
   { title: "Bezpieczeństwo", text: "Procedury, sprawny sprzęt i przeszkolony personel – w każdym przejeździe, bez wyjątków.", icon: "shield" as const },
   { title: "Szacunek", text: "Dbamy o godność i komfort pacjenta oraz jasno informujemy jego bliskich.", icon: "users" as const },
   { title: "Gotowość", text: "Dyspozytornia, zespoły i pojazdy pracują w trybie całodobowym, 7 dni w tygodniu.", icon: "clock" as const },
-  { title: "Przejrzystość", text: "Jasne zasady zamawiania i rozliczeń. Usługi prywatne i świadczenia NFZ są wyraźnie rozdzielone.", icon: "document" as const },
+  {
+    title: "Przejrzystość",
+    text: "Jasne zasady zamawiania i rozliczeń. Usługi prywatne i świadczenia NFZ są wyraźnie rozdzielone.",
+    icon: "document" as const,
+  },
 ];
 
 const standards = [
@@ -36,9 +40,9 @@ export default function AboutPage() {
     <>
       <PageHero
         crumb="O nas"
-        title="Doświadczenie, zaplecze i ludzie, na których można polegać"
+        title="O firmie Vitalis Med"
         lead="Vitalis Med to prywatne pogotowie ratunkowe realizujące transport sanitarny i medyczny, zabezpieczenia wydarzeń oraz obsługę placówek medycznych."
-        image={{ src: "/images/flota/flota-crafter.webp", alt: "Ambulans z włączonymi sygnałami świetlnymi przed budynkiem bazy" }}
+        image={{ src: "/images/flota/ambulans-typ-t.webp", alt: "Ambulans transportu sanitarnego Vitalis Med" }}
       />
 
       <section aria-labelledby="poznaj-title" className="section">
@@ -59,13 +63,15 @@ export default function AboutPage() {
       <section aria-labelledby="wartosci-title" className="section border-t border-line bg-mist">
         <div className="container-x">
           <Reveal>
-            <SectionHeading title="Na czym opieramy naszą pracę" id="wartosci-title" />
+            <SectionHeading title="Nasze wartości" id="wartosci-title" />
           </Reveal>
-          <ul className="mt-14 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((v) => (
-              <li key={v.title} className="bg-white p-7 lg:p-8">
-                <Icon name={v.icon} size={30} strokeWidth={1.4} className="text-red" />
-                <h3 className="mt-6 text-[1.35rem]">{v.title}</h3>
+              <li key={v.title} className="card p-6">
+                <span className="icon-badge">
+                  <Icon name={v.icon} size={22} />
+                </span>
+                <h3 className="mt-4 text-[1.15rem]">{v.title}</h3>
                 <p className="mt-3 text-[0.98rem] leading-relaxed">{v.text}</p>
               </li>
             ))}
@@ -76,11 +82,7 @@ export default function AboutPage() {
       <section aria-labelledby="standardy-title" className="section">
         <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-5">
-            <SectionHeading
-              title="Jakość, którą da się sprawdzić"
-              id="standardy-title"
-              lead="Organizacja pracy w ratownictwie medycznym wymaga dyscypliny. Poniższe zasady obowiązują każdy zespół i każdy pojazd."
-            />
+            <SectionHeading title="Standardy pracy" id="standardy-title" lead="Zasady, które obowiązują każdy zespół i każdy pojazd." />
             <Link href="/flota" className="link-arrow mt-8">
               Poznaj naszą flotę
             </Link>

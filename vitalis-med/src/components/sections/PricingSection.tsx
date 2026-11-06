@@ -7,40 +7,40 @@ import { SectionHeading } from "./SectionHeading";
 
 export function PriceTable({ caption = true }: { caption?: boolean }) {
   return (
-    <table className="w-full border-collapse text-left">
-      {caption && <caption className="sr-only">Cennik usług komercyjnych – ceny przykładowe</caption>}
-      <thead>
-        <tr className="border-b-2 border-ink text-sm  text-muted">
-          <th scope="col" className="pb-3 font-semibold">
-            Usługa
-          </th>
-          <th scope="col" className="hidden pb-3 font-semibold md:table-cell">
-            Zakres
-          </th>
-          <th scope="col" className="pb-3 text-right font-semibold">
-            Cena przykładowa
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {priceList.map((item) => (
-          <tr key={item.service} className="group border-b border-line transition-colors hover:bg-mist">
-            <th scope="row" className="py-5 pr-4 align-top font-normal">
-              <Link href={orderHref(item.serviceSlug)} className="target-expand font-display text-[1.15rem] font-semibold text-ink group-hover:text-red-dark" style={{ fontStretch: "92%" }}>
-                {item.service}
-              </Link>
-              <span className="mt-1 block text-sm text-muted md:hidden">{item.scope}</span>
+    <div className="card overflow-hidden">
+      <table className="w-full border-collapse text-left">
+        {caption && <caption className="sr-only">Cennik usług komercyjnych – ceny przykładowe</caption>}
+        <thead>
+          <tr className="bg-mist text-sm text-ink">
+            <th scope="col" className="px-3 py-3.5 sm:px-5 font-bold">
+              Usługa
             </th>
-            <td className="hidden py-5 pr-4 align-top text-[0.98rem] md:table-cell">{item.scope}</td>
-            <td className="whitespace-nowrap py-5 text-right align-top">
-              <span className={item.priceFrom === null ? "text-[0.98rem] text-muted" : "font-display text-xl font-semibold text-ink"} style={{ fontStretch: "90%" }}>
-                {formatPrice(item)}
-              </span>
-            </td>
+            <th scope="col" className="hidden py-3.5 pr-3 sm:pr-5 font-bold md:table-cell">
+              Zakres
+            </th>
+            <th scope="col" className="px-3 py-3.5 sm:px-5 text-right font-bold">
+              Cena przykładowa
+            </th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {priceList.map((item) => (
+            <tr key={item.service} className="group border-t border-line transition-colors hover:bg-mist/60">
+              <th scope="row" className="px-3 py-4 align-top font-normal sm:px-5">
+                <Link href={orderHref(item.serviceSlug)} className="target-expand text-[1.05rem] font-bold text-ink group-hover:text-red-dark">
+                  {item.service}
+                </Link>
+                <span className="mt-1 block text-sm text-muted md:hidden">{item.scope}</span>
+              </th>
+              <td className="hidden py-4 pr-5 align-top text-[0.97rem] md:table-cell">{item.scope}</td>
+              <td className="px-3 py-4 text-right align-top sm:px-5">
+                <span className={item.priceFrom === null ? "text-[0.95rem] text-muted" : "whitespace-nowrap text-lg font-black text-ink"}>{formatPrice(item)}</span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
@@ -50,7 +50,7 @@ export function PricingNotes() {
       <li className="flex gap-3">
         <Icon name="info" size={18} className="mt-0.5 shrink-0 text-ink" />
         <span>
-          <strong className="font-semibold text-ink">Wszystkie ceny są przykładowe</strong> i wymagają weryfikacji przed publikacją.
+          <strong className="font-bold text-ink">Wszystkie ceny są przykładowe</strong> i wymagają weryfikacji przed publikacją.
         </span>
       </li>
       <li className="flex gap-3">
@@ -87,7 +87,7 @@ export function PricingSection() {
             </Link>
           </div>
         </Reveal>
-        <Reveal className="lg:col-span-8">
+        <Reveal className="min-w-0 lg:col-span-8">
           <PriceTable />
           <div className="mt-8">
             <PricingNotes />
