@@ -36,7 +36,6 @@
   }
   if (menuBtn && nav) {
     menuBtn.addEventListener("click", function () { setMenu(!nav.classList.contains("open")); });
-    $$("a", nav).forEach(function (a) { a.addEventListener("click", function () { if (nav.classList.contains("open")) setMenu(false); }); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && nav.classList.contains("open")) { setMenu(false); menuBtn.focus(); } });
     window.addEventListener("resize", function () { if (window.innerWidth > 900 && nav.classList.contains("open")) setMenu(false); });
   }
@@ -56,16 +55,26 @@
     Object.keys(map).forEach(function (id) { var s = document.getElementById(id); if (s) io.observe(s); });
   }
 
-  /* Przyciski usług wybierają usługę w formularzu */
+  /* Linki do sekcji: przewijanie obsługuje skrypt, więc działa też w osadzonym podglądzie */
   var form = $("#quote-form");
-  $$("[data-service]").forEach(function (a) {
-    a.addEventListener("click", function (e) {
-      if (!form) return;
-      e.preventDefault();
-      form.elements.service.value = a.getAttribute("data-service");
-      $("#kontakt").scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
-      setTimeout(function () { $("#f-name").focus({ preventScroll: true }); }, reduce ? 0 : 600);
-    });
+  function goTo(id) {
+    var target = document.getElementById(id);
+    if (!target) return false;
+    if (nav && nav.classList.contains("open")) setMenu(false);
+    target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    try { history.replaceState(null, "", "#" + id); } catch (err) {}
+    if (id === "wycena") {
+      setTimeout(function () { var f = $("#f-name"); if (f && !form.hidden) f.focus({ preventScroll: true }); }, reduce ? 0 : 650);
+    }
+    return true;
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    var id = a.getAttribute("href").slice(1);
+    if (!id) return;
+    if (form && a.hasAttribute("data-service")) form.elements.service.value = a.getAttribute("data-service");
+    if (goTo(id)) e.preventDefault();
   });
 
   /* Formularz */
