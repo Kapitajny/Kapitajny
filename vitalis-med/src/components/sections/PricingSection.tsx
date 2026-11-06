@@ -10,7 +10,7 @@ export function PriceTable({ caption = true }: { caption?: boolean }) {
     <table className="w-full border-collapse text-left">
       {caption && <caption className="sr-only">Cennik usług komercyjnych – ceny przykładowe</caption>}
       <thead>
-        <tr className="border-b-2 border-ink text-xs uppercase tracking-[0.14em] text-muted">
+        <tr className="border-b-2 border-ink text-sm  text-muted">
           <th scope="col" className="pb-3 font-semibold">
             Usługa
           </th>
@@ -26,7 +26,7 @@ export function PriceTable({ caption = true }: { caption?: boolean }) {
         {priceList.map((item) => (
           <tr key={item.service} className="group border-b border-line transition-colors hover:bg-mist">
             <th scope="row" className="py-5 pr-4 align-top font-normal">
-              <Link href={orderHref(item.serviceSlug)} className="font-display text-[1.15rem] font-semibold text-ink group-hover:text-red-dark" style={{ fontStretch: "92%" }}>
+              <Link href={orderHref(item.serviceSlug)} className="target-expand font-display text-[1.15rem] font-semibold text-ink group-hover:text-red-dark" style={{ fontStretch: "92%" }}>
                 {item.service}
               </Link>
               <span className="mt-1 block text-sm text-muted md:hidden">{item.scope}</span>
@@ -75,8 +75,8 @@ export function PricingSection() {
   return (
     <section aria-labelledby="cennik-title" className="section">
       <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-16">
-        <Reveal className="lg:col-span-4">
-          <SectionHeading eyebrow="Cennik" title="Przejrzyste zasady rozliczeń" id="cennik-title" />
+        <Reveal className="self-start lg:sticky lg:top-28 lg:col-span-4">
+          <SectionHeading title="Cennik usług prywatnych" id="cennik-title" />
           <p className="mt-6 text-[1.05rem] leading-relaxed">Ceny orientacyjne usług komercyjnych. Dokładną wycenę przygotujemy po rozmowie z dyspozytorem.</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
             <Link href={orderHref()} className="btn btn-primary">
@@ -87,7 +87,7 @@ export function PricingSection() {
             </Link>
           </div>
         </Reveal>
-        <Reveal className="lg:col-span-8" delay={100}>
+        <Reveal className="lg:col-span-8">
           <PriceTable />
           <div className="mt-8">
             <PricingNotes />

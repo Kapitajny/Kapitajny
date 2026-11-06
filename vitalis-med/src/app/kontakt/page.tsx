@@ -20,12 +20,12 @@ export default function ContactPage() {
       <section aria-labelledby="dane-title" className="section">
         <div className="container-x grid gap-10 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-5">
-            <SectionHeading eyebrow="Dane firmy" title="Dane rejestrowe" id="dane-title" />
+            <SectionHeading title="Dane rejestrowe" id="dane-title" />
             <p className="mt-5 text-[1rem] text-muted">
               Dane rejestrowe zostaną uzupełnione przed publikacją strony. Projekt demonstracyjny nie zawiera fikcyjnych numerów rejestrowych.
             </p>
           </Reveal>
-          <Reveal className="lg:col-span-7" delay={80}>
+          <Reveal className="lg:col-span-7">
             <dl className="divide-y divide-line border-y border-line">
               {[
                 ["Nazwa", siteConfig.legalName],

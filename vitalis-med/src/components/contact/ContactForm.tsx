@@ -314,7 +314,7 @@ export function ContactForm({ configured }: { configured: boolean }) {
             onBlur={blur("consent")}
             aria-invalid={touched.consent && errors.consent ? true : undefined}
             aria-describedby={touched.consent && errors.consent ? `${id("consent")}-error` : undefined}
-            className="mt-1 h-5 w-5 shrink-0 accent-[var(--color-red)]"
+            className="mt-0.5 h-6 w-6 shrink-0 accent-[var(--color-red)]"
           />
           <label htmlFor={id("consent")} className="text-[0.95rem] leading-relaxed text-body">
             Zapoznałem/-am się z{" "}
@@ -334,7 +334,6 @@ export function ContactForm({ configured }: { configured: boolean }) {
       <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
         <button type="submit" className="btn btn-primary min-w-[14rem]" disabled={status.kind === "submitting"} aria-busy={status.kind === "submitting"}>
           {status.kind === "submitting" ? "Wysyłanie…" : "Wyślij zapytanie"}
-          {status.kind !== "submitting" && <Icon name="arrowRight" size={18} />}
         </button>
         <p className="text-sm text-muted">Wysłanie formularza nie jest równoznaczne z potwierdzeniem transportu.</p>
       </div>

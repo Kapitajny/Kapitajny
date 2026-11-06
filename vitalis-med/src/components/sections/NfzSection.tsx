@@ -10,7 +10,7 @@ export function NfzComparison({ headingLevel = "h3" }: { headingLevel?: "h2" | "
   return (
     <div className="grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2">
       <div className="bg-white p-7 lg:p-8">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">Finansowanie publiczne</p>
+        <p className="text-sm font-semibold  text-muted">Finansowanie publiczne</p>
         <H className="mt-2 text-[1.35rem]">Świadczenia w ramach NFZ</H>
         <ul className="mt-6 space-y-3.5">
           {nfzVsPrivate.nfz.map((t) => (
@@ -22,7 +22,7 @@ export function NfzComparison({ headingLevel = "h3" }: { headingLevel?: "h2" | "
         </ul>
       </div>
       <div className="bg-white p-7 lg:p-8">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-red-dark">Usługi komercyjne</p>
+        <p className="text-sm font-semibold  text-red-dark">Usługi komercyjne</p>
         <H className="mt-2 text-[1.35rem]">Transport prywatny</H>
         <ul className="mt-6 space-y-3.5">
           {nfzVsPrivate.private.map((t) => (
@@ -34,7 +34,6 @@ export function NfzComparison({ headingLevel = "h3" }: { headingLevel?: "h2" | "
         </ul>
         <Link href="/cennik" className="link-arrow mt-7 text-[0.95rem]">
           Cennik usług prywatnych
-          <Icon name="arrowRight" size={16} />
         </Link>
       </div>
     </div>
@@ -46,7 +45,7 @@ export function NfzSection() {
     <section aria-labelledby="nfz-title" className="section border-y border-line bg-mist">
       <div className="container-x grid gap-14 lg:grid-cols-12 lg:gap-16">
         <Reveal className="lg:col-span-5">
-          <SectionHeading eyebrow="Narodowy Fundusz Zdrowia" title="Świadczenia medyczne w ramach NFZ" id="nfz-title" />
+          <SectionHeading title="Świadczenia medyczne w ramach NFZ" id="nfz-title" />
           <p className="mt-7 text-[1.08rem] leading-relaxed">
             Realizujemy również świadczenia zdrowotne finansowane ze środków Narodowego Funduszu Zdrowia w zakresie objętym zawartym kontraktem. Naszym
             priorytetem jest zapewnienie pacjentom profesjonalnej obsługi, bezpieczeństwa oraz wysokiej jakości świadczeń.
@@ -65,11 +64,10 @@ export function NfzSection() {
 
           <Link href="/nfz" className="btn btn-dark mt-9">
             Dowiedz się więcej
-            <Icon name="arrowRight" size={18} />
           </Link>
         </Reveal>
 
-        <Reveal className="lg:col-span-7" delay={100}>
+        <Reveal className="lg:col-span-7">
           <h3 className="sr-only">Zasady korzystania z usług</h3>
           <NfzComparison />
           <div className="mt-6 grid gap-6 sm:grid-cols-2">

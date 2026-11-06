@@ -116,7 +116,6 @@ export function SiteHeader() {
                         {active && <span aria-hidden="true" className="h-2 w-2 rounded-full bg-red" />}
                         {item.label}
                       </span>
-                      <Icon name="arrowRight" size={20} className="text-muted" />
                     </Link>
                   </li>
                 );

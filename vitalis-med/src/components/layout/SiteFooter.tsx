@@ -32,7 +32,7 @@ export function SiteFooter() {
         </div>
 
         <nav aria-labelledby="footer-nav" className="lg:col-span-2">
-          <h2 id="footer-nav" className="text-sm font-semibold uppercase tracking-[0.14em] text-white" style={{ fontFamily: "var(--font-sans)" }}>
+          <h2 id="footer-nav" className="text-sm font-semibold text-white" style={{ fontFamily: "var(--font-sans)" }}>
             Na skróty
           </h2>
           <ul className="mt-5 space-y-2.5 text-[0.98rem]">
@@ -47,7 +47,7 @@ export function SiteFooter() {
         </nav>
 
         <nav aria-labelledby="footer-services" className="lg:col-span-3">
-          <h2 id="footer-services" className="text-sm font-semibold uppercase tracking-[0.14em] text-white" style={{ fontFamily: "var(--font-sans)" }}>
+          <h2 id="footer-services" className="text-sm font-semibold text-white" style={{ fontFamily: "var(--font-sans)" }}>
             Usługi
           </h2>
           <ul className="mt-5 space-y-2.5 text-[0.98rem]">
@@ -62,7 +62,7 @@ export function SiteFooter() {
         </nav>
 
         <div className="lg:col-span-3">
-          <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-white" style={{ fontFamily: "var(--font-sans)" }}>
+          <h2 className="text-sm font-semibold text-white" style={{ fontFamily: "var(--font-sans)" }}>
             Kontakt
           </h2>
           <ul className="mt-5 space-y-4 text-[0.98rem]">

@@ -29,7 +29,6 @@ export default function FleetPage() {
     <>
       <PageHero
         crumb="Nasza flota"
-        eyebrow="Nasza flota"
         title="Nowoczesna flota ambulansów"
         lead={`${fleetTotal} ambulansów w trzech kategoriach – od planowego transportu sanitarnego po pojazdy dla zespołów specjalistycznych.`}
         image={{ src: "/images/flota/hero-flota.webp", alt: "Rząd ambulansów Mercedes-Benz Sprinter przed bazą" }}
@@ -62,7 +61,7 @@ export default function FleetPage() {
                 <p className="mt-7 text-[1.08rem] leading-relaxed">{c.summary}</p>
                 <p className="mt-4 text-[1rem] leading-relaxed text-muted">{c.description}</p>
 
-                <h3 className="mt-8 text-sm font-semibold uppercase tracking-[0.14em] text-muted" style={{ fontFamily: "var(--font-sans)" }}>
+                <h3 className="mt-8 text-sm font-semibold text-muted" style={{ fontFamily: "var(--font-sans)" }}>
                   Wybrane wyposażenie
                 </h3>
                 <ul className="mt-4 grid gap-x-6 gap-y-3 sm:grid-cols-2">
@@ -89,14 +88,14 @@ export default function FleetPage() {
       <section aria-labelledby="galeria-title" className="section border-t border-line bg-mist">
         <div className="container-x">
           <Reveal>
-            <SectionHeading eyebrow="Galeria" title="Pojazdy w gotowości" id="galeria-title" />
+            <SectionHeading title="Pojazdy w gotowości" id="galeria-title" />
           </Reveal>
           <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:grid-rows-2">
             {fleetGallery.map((g, i) => (
               <Reveal
                 as="li"
                 key={g.src}
-                delay={i * 80}
+               
                 className={`relative overflow-hidden ${i === 0 ? "aspect-square sm:row-span-2 sm:aspect-auto lg:col-span-3" : "aspect-[3/2] lg:col-span-3"}`}
               >
                 <Image src={g.src} alt={g.alt} fill sizes="(min-width: 1024px) 50vw, (min-width: 640px) 50vw, 100vw" className="object-cover" />
@@ -109,21 +108,20 @@ export default function FleetPage() {
       <section aria-labelledby="standardy-floty-title" className="section">
         <div className="container-x">
           <Reveal>
-            <SectionHeading eyebrow="Standardy floty" title="Sprawne pojazdy to bezpieczny pacjent" id="standardy-floty-title" />
+            <SectionHeading title="Sprawne pojazdy to bezpieczny pacjent" id="standardy-floty-title" />
           </Reveal>
           <ul className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            {fleetStandards.map((s, i) => (
-              <Reveal as="li" key={s.title} delay={i * 70}>
+            {fleetStandards.map((s) => (
+              <li key={s.title}>
                 <Icon name={s.icon} size={30} strokeWidth={1.4} className="text-red" />
                 <h3 className="mt-5 text-[1.3rem]">{s.title}</h3>
                 <p className="mt-3 text-[0.98rem] leading-relaxed">{s.text}</p>
-              </Reveal>
+              </li>
             ))}
           </ul>
           <div className="mt-14">
             <Link href={orderHref()} className="btn btn-primary">
               Zamów transport medyczny
-              <Icon name="arrowRight" size={18} />
             </Link>
           </div>
         </div>

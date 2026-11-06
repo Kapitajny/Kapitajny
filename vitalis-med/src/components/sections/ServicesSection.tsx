@@ -10,18 +10,13 @@ export function ServicesGrid({ headingLevel = "h3" }: { headingLevel?: "h2" | "h
   const H = headingLevel;
   return (
     <ul className="grid border-l border-t border-line sm:grid-cols-2 lg:grid-cols-4">
-      {services.map((s, i) => (
+      {services.map((s) => (
         <li key={s.slug} className="group relative flex flex-col border-b border-r border-line bg-white p-7 transition-colors duration-300 hover:bg-mist lg:p-8">
           <span
             aria-hidden="true"
             className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-red transition-transform duration-500 ease-[var(--ease-soft)] group-hover:scale-x-100"
           />
-          <div className="flex items-start justify-between">
-            <Icon name={s.icon} size={34} strokeWidth={1.4} className="text-red" />
-            <span className="font-display text-sm font-semibold text-muted" aria-hidden="true">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-          </div>
+          <Icon name={s.icon} size={34} strokeWidth={1.4} className="text-red" />
           <H className="mt-7 text-[1.3rem] leading-tight">
             <Link href={`/uslugi#${s.slug}`} className="hover:text-red-dark">
               {s.title}
@@ -30,7 +25,6 @@ export function ServicesGrid({ headingLevel = "h3" }: { headingLevel?: "h2" | "h
           <p className="mt-3 flex-1 text-[0.98rem] leading-relaxed">{s.summary}</p>
           <Link href={orderHref(s.slug)} className="link-arrow mt-6 self-start text-[0.95rem]" aria-label={`Zapytaj o usługę: ${s.title}`}>
             Zapytaj o usługę
-            <Icon name="arrowRight" size={16} />
           </Link>
         </li>
       ))}
@@ -45,16 +39,14 @@ export function ServicesSection() {
         <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
           <Reveal className="lg:col-span-7">
             <SectionHeading
-              eyebrow="Nasze usługi"
-              title="Kompleksowa opieka w transporcie medycznym"
+              title="Nasze usługi"
               id="uslugi-title"
               lead="Od planowego transportu sanitarnego po zabezpieczenie dużych wydarzeń – każdą usługę organizujemy z tą samą starannością."
             />
           </Reveal>
-          <Reveal className="lg:col-span-5 lg:text-right" delay={80}>
+          <Reveal className="lg:col-span-5 lg:text-right">
             <Link href="/uslugi" className="link-arrow">
-              Wszystkie usługi i szczegóły
-              <Icon name="arrowRight" size={18} />
+              Opis wszystkich usług
             </Link>
           </Reveal>
         </div>

@@ -34,8 +34,7 @@ export function LegalPage({
               </li>
             </ol>
           </nav>
-          <p className="eyebrow mt-10">Dokumenty</p>
-          <h1 className="mt-5 max-w-4xl text-[clamp(2.1rem,1.5rem+2.4vw,3.4rem)]">{title}</h1>
+          <h1 className="mt-10 max-w-4xl text-[clamp(2.1rem,1.5rem+2.4vw,3.4rem)]">{title}</h1>
           <p className="mt-5 text-sm text-muted">Wersja robocza z dnia {updated}</p>
           <div className="mt-8 flex max-w-3xl gap-3 rounded-[4px] border border-line-strong bg-white p-5 text-[0.97rem] text-ink">
             <Icon name="alert" size={22} className="mt-0.5 shrink-0 text-red" />
@@ -48,10 +47,10 @@ export function LegalPage({
       </section>
 
       <div className="container-x grid gap-12 py-14 lg:grid-cols-12 lg:gap-16 lg:py-20">
-        <aside className="lg:col-span-4">
+        <aside className="min-w-0 lg:col-span-4">
           <div className="lg:sticky lg:top-28">
             <nav aria-labelledby="toc-title">
-              <h2 id="toc-title" className="text-sm font-semibold uppercase tracking-[0.14em] text-muted" style={{ fontFamily: "var(--font-sans)" }}>
+              <h2 id="toc-title" className="text-sm font-semibold text-muted" style={{ fontFamily: "var(--font-sans)" }}>
                 Spis treści
               </h2>
               <ol className="mt-4 space-y-2 border-l border-line text-[0.97rem]">
@@ -65,7 +64,7 @@ export function LegalPage({
               </ol>
             </nav>
             <nav aria-labelledby="docs-title" className="mt-10 hidden lg:block">
-              <h2 id="docs-title" className="text-sm font-semibold uppercase tracking-[0.14em] text-muted" style={{ fontFamily: "var(--font-sans)" }}>
+              <h2 id="docs-title" className="text-sm font-semibold text-muted" style={{ fontFamily: "var(--font-sans)" }}>
                 Inne dokumenty
               </h2>
               <ul className="mt-4 space-y-2 text-[0.97rem]">
@@ -82,7 +81,7 @@ export function LegalPage({
             </nav>
           </div>
         </aside>
-        <article className="prose-legal max-w-3xl lg:col-span-8">{children}</article>
+        <article className="prose-legal min-w-0 max-w-3xl lg:col-span-8">{children}</article>
       </div>
     </>
   );

@@ -44,10 +44,10 @@ export const siteConfig = {
 
   /** ★ Statystyki z sekcji „O nas” – założenia projektu demonstracyjnego. */
   stats: [
-    { value: "20", label: "ambulansów we flocie", note: "4 typu T, 5 typu S, 11 typu P" },
+    { value: "20", label: "ambulansów we flocie", note: "4 typu T, 5 typu S, 11 typu P" },
     { value: "ok. 200", label: "pracowników", note: "personel medyczny, kierowcy i zespół organizacyjny" },
     { value: "24/7", label: "gotowość operacyjna", note: "dyspozytornia transportu czynna całą dobę" },
-    { value: "3", label: "rodzaje ambulansów", note: "typ T, typ S i typ P" },
+    { value: "3", label: "rodzaje ambulansów", note: "typ T, typ S i typ P" },
   ],
 
   /** Numery alarmowe – pokazywane w pasku ostrzegawczym. */

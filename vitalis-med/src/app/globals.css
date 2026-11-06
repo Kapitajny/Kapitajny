@@ -11,6 +11,8 @@
   --color-fog: #ebebe8;
   --color-line: #e2e2df;
   --color-line-strong: #c9cac6;
+  /* Ramki pól formularza – kontrast min. 3:1 z tłem (WCAG 1.4.11). */
+  --color-field: #868a8e;
   --color-ink: #15181b;
   --color-graphite: #1f2326;
   --color-graphite-2: #2b2f33;
@@ -103,28 +105,6 @@
     .section {
       padding-block: 7.5rem;
     }
-  }
-
-  /* Mały nagłówek sekcji z czerwoną kreską */
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-family: var(--font-sans);
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--color-muted);
-  }
-  .eyebrow::before {
-    content: "";
-    width: 1.75rem;
-    height: 2px;
-    background: var(--color-red);
-  }
-  .eyebrow-light {
-    color: rgb(255 255 255 / 0.72);
   }
 
   .h-display {
@@ -226,6 +206,17 @@
     border-color: var(--color-red);
     color: var(--color-red-dark);
   }
+  /* Większy obszar kliknięcia linków tekstowych (cel dotykowy ≥ 44 px) bez zmiany wyglądu. */
+  .link-arrow,
+  .target-expand {
+    position: relative;
+  }
+  .link-arrow::after,
+  .target-expand::after {
+    content: "";
+    position: absolute;
+    inset: -0.7rem -0.25rem;
+  }
   .link-arrow svg {
     transition: transform 250ms var(--ease-soft);
   }
@@ -271,7 +262,7 @@
     width: 100%;
     min-height: 3.1rem;
     padding: 0.7rem 0.95rem;
-    border: 1px solid var(--color-line-strong);
+    border: 1px solid var(--color-field);
     border-radius: 4px;
     background: var(--color-white);
     color: var(--color-ink);
@@ -281,10 +272,10 @@
       box-shadow 200ms var(--ease-soft);
   }
   .field-input::placeholder {
-    color: #80868b;
+    color: #686e74;
   }
   .field-input:hover {
-    border-color: #a9aba7;
+    border-color: var(--color-ink);
   }
   .field-input:focus {
     outline: none;
@@ -419,6 +410,7 @@
   }
   .prose-legal th,
   .prose-legal td {
+    overflow-wrap: anywhere;
     padding: 0.75rem 0.8rem;
     border-bottom: 1px solid var(--color-line);
     text-align: left;

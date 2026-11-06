@@ -28,7 +28,6 @@ export default function NfzPage() {
     <>
       <PageHero
         crumb="NFZ"
-        eyebrow="Narodowy Fundusz Zdrowia"
         title="Świadczenia medyczne w ramach NFZ"
         lead="Realizujemy również świadczenia zdrowotne finansowane ze środków Narodowego Funduszu Zdrowia w zakresie objętym zawartym kontraktem. Naszym priorytetem jest zapewnienie pacjentom profesjonalnej obsługi, bezpieczeństwa oraz wysokiej jakości świadczeń."
       />
@@ -36,12 +35,12 @@ export default function NfzPage() {
       <section aria-labelledby="zakres-title" className="section">
         <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-5">
-            <SectionHeading eyebrow="Zakres umowy" title="Jakie świadczenia realizujemy w ramach NFZ" id="zakres-title" />
+            <SectionHeading title="Jakie świadczenia realizujemy w ramach NFZ" id="zakres-title" />
             <p className="mt-6 text-[1.05rem] leading-relaxed">
               Świadczenia finansowane ze środków publicznych wykonujemy wyłącznie w zakresie, na obszarze i w okresie wynikającym z umowy z NFZ.
             </p>
           </Reveal>
-          <Reveal className="lg:col-span-7" delay={80}>
+          <Reveal className="lg:col-span-7">
             <ul className="divide-y divide-line border-y-2 border-ink">
               {nfzContract.scopes.map((s) => (
                 <li key={s.title} className="py-6">
@@ -79,14 +78,14 @@ export default function NfzPage() {
       <section aria-labelledby="zasady-title" className="section border-y border-line bg-mist">
         <div className="container-x">
           <Reveal>
-            <SectionHeading eyebrow="Zasady" title="Zasady korzystania ze świadczeń" id="zasady-title" />
+            <SectionHeading title="Zasady korzystania ze świadczeń" id="zasady-title" />
           </Reveal>
           <ul className="mt-14 grid gap-px border border-line bg-line sm:grid-cols-2">
-            {nfzRules.map((r, i) => (
-              <Reveal as="li" key={r.title} delay={(i % 2) * 80} className="bg-white p-7 lg:p-9">
+            {nfzRules.map((r) => (
+              <li key={r.title} className="bg-white p-7 lg:p-9">
                 <h3 className="text-[1.35rem]">{r.title}</h3>
                 <p className="mt-3 text-[1rem] leading-relaxed">{r.text}</p>
-              </Reveal>
+              </li>
             ))}
           </ul>
         </div>
@@ -96,13 +95,12 @@ export default function NfzPage() {
         <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-4">
             <SectionHeading
-              eyebrow="NFZ czy usługa prywatna?"
               title="Dwie ścieżki, jasno rozdzielone"
               id="porownanie-title"
               lead="Nie każdy transport medyczny jest finansowany przez NFZ. Przed realizacją zawsze informujemy, na jakiej podstawie odbywa się przejazd."
             />
           </Reveal>
-          <Reveal className="lg:col-span-8" delay={80}>
+          <Reveal className="lg:col-span-8">
             <NfzComparison />
           </Reveal>
         </div>
@@ -111,17 +109,17 @@ export default function NfzPage() {
       <section aria-labelledby="kroki-nfz-title" className="section bg-graphite">
         <div className="container-x">
           <Reveal>
-            <SectionHeading eyebrow="Krok po kroku" title="Jak skorzystać z transportu w ramach NFZ" id="kroki-nfz-title" tone="dark" />
+            <SectionHeading title="Jak skorzystać z transportu w ramach NFZ" id="kroki-nfz-title" tone="dark" />
           </Reveal>
           <ol className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
             {steps.map((step, i) => (
-              <Reveal as="li" key={step.title} delay={i * 80} className="border-t border-white/20 pt-6">
-                <span className="font-display text-5xl font-semibold leading-none text-white/25" style={{ fontStretch: "85%" }} aria-hidden="true">
+              <li key={step.title} className="border-t border-white/20 pt-6">
+                <span className="font-display text-5xl font-semibold leading-none text-white/55" style={{ fontStretch: "85%" }} aria-hidden="true">
                   {i + 1}
                 </span>
                 <h3 className="mt-5 text-[1.3rem] text-white">{step.title}</h3>
                 <p className="mt-3 text-[0.98rem] leading-relaxed text-white/70">{step.text}</p>
-              </Reveal>
+              </li>
             ))}
           </ol>
         </div>
@@ -130,7 +128,7 @@ export default function NfzPage() {
       <section aria-labelledby="faq-title" className="section">
         <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-4">
-            <SectionHeading eyebrow="Pytania" title="Najczęstsze pytania" id="faq-title" />
+            <SectionHeading title="Najczęstsze pytania" id="faq-title" />
           </Reveal>
           <div className="lg:col-span-8">
             <div className="divide-y divide-line border-y border-line">

@@ -27,7 +27,6 @@ export default function ServicesPage() {
     <>
       <PageHero
         crumb="Nasze usługi"
-        eyebrow="Nasze usługi"
         title="Transport medyczny i opieka nad pacjentem w każdej sytuacji"
         lead="Usługi realizujemy komercyjnie dla klientów indywidualnych, firm i placówek, a w zakresie kontraktu – także w ramach NFZ."
       >
@@ -46,15 +45,12 @@ export default function ServicesPage() {
 
       <section aria-label="Opis usług" className="py-6 lg:py-10">
         <div className="container-x">
-          {services.map((s, i) => (
+          {services.map((s) => (
             <Reveal as="article" key={s.slug} id={s.slug} className="grid scroll-mt-28 gap-8 border-b border-line py-14 last:border-0 lg:grid-cols-12 lg:gap-16 lg:py-20">
               <div className="lg:col-span-5">
                 <div className="flex items-center gap-4">
                   <span className="flex h-14 w-14 items-center justify-center rounded-full bg-red-soft text-red">
                     <Icon name={s.icon} size={28} strokeWidth={1.5} />
-                  </span>
-                  <span className="font-display text-sm font-semibold tracking-[0.12em] text-muted" aria-hidden="true">
-                    {String(i + 1).padStart(2, "0")} / {String(services.length).padStart(2, "0")}
                   </span>
                 </div>
                 <h2 className="mt-6 text-[clamp(1.7rem,1.3rem+1.2vw,2.4rem)]">{s.title}</h2>
@@ -87,17 +83,17 @@ export default function ServicesPage() {
       <section aria-labelledby="jak-title" className="section bg-graphite">
         <div className="container-x">
           <Reveal>
-            <SectionHeading eyebrow="Jak zamówić" title="Cztery kroki do bezpiecznego transportu" id="jak-title" tone="dark" />
+            <SectionHeading title="Cztery kroki do bezpiecznego transportu" id="jak-title" tone="dark" />
           </Reveal>
           <ol className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
             {steps.map((step, i) => (
-              <Reveal as="li" key={step.title} delay={i * 80} className="border-t border-white/20 pt-6">
-                <span className="font-display text-5xl font-semibold leading-none text-white/25" style={{ fontStretch: "85%" }} aria-hidden="true">
+              <li key={step.title} className="border-t border-white/20 pt-6">
+                <span className="font-display text-5xl font-semibold leading-none text-white/55" style={{ fontStretch: "85%" }} aria-hidden="true">
                   {i + 1}
                 </span>
                 <h3 className="mt-5 text-[1.35rem] text-white">{step.title}</h3>
                 <p className="mt-3 text-[0.98rem] leading-relaxed text-white/70">{step.text}</p>
-              </Reveal>
+              </li>
             ))}
           </ol>
         </div>

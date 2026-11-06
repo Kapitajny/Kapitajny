@@ -26,13 +26,11 @@ export default function PricingPage() {
     <>
       <PageHero
         crumb="Cennik"
-        eyebrow="Cennik usług prywatnych"
         title="Przejrzyste ceny usług komercyjnych"
         lead="Poniższe ceny mają charakter orientacyjny. Przed każdym przejazdem podajemy wycenę dopasowaną do trasy i potrzeb pacjenta."
       >
         <Link href={orderHref()} className="btn btn-primary">
           Zapytaj o wycenę
-          <Icon name="arrowRight" size={18} />
         </Link>
       </PageHero>
 
@@ -49,7 +47,7 @@ export default function PricingPage() {
               <PricingNotes />
             </div>
           </div>
-          <Reveal as="aside" className="self-start border border-line bg-mist p-7 lg:sticky lg:top-28 lg:col-span-4" delay={80}>
+          <Reveal as="aside" className="self-start border border-line bg-mist p-7 lg:sticky lg:top-28 lg:col-span-4">
             <h2 className="text-[1.4rem]">Świadczenia NFZ nie są objęte cennikiem</h2>
             <p className="mt-3 text-[0.98rem] leading-relaxed">
               Transport finansowany przez NFZ realizujemy na podstawie zlecenia lekarza i w zakresie zawartej umowy. Jeśli przejazd nie spełnia tych
@@ -57,7 +55,6 @@ export default function PricingPage() {
             </p>
             <Link href="/nfz" className="link-arrow mt-6">
               Zasady świadczeń NFZ
-              <Icon name="arrowRight" size={18} />
             </Link>
           </Reveal>
         </div>
@@ -67,33 +64,29 @@ export default function PricingPage() {
         <div className="container-x">
           <Reveal>
             <SectionHeading
-              eyebrow="Wycena"
               title="Od czego zależy ostateczna cena"
               id="czynniki-title"
               lead="Każdy transport jest inny. Na wycenę wpływają przede wszystkim cztery czynniki."
             />
           </Reveal>
-          <ol className="mt-14 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-            {priceFactors.map((f, i) => (
-              <Reveal as="li" key={f.title} delay={i * 70} className="bg-white p-7">
-                <span className="font-display text-sm font-semibold tracking-[0.12em] text-red" aria-hidden="true">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-3 text-[1.3rem]">{f.title}</h3>
+          <ul className="mt-14 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+            {priceFactors.map((f) => (
+              <li key={f.title} className="bg-white p-7">
+                <h3 className="text-[1.3rem]">{f.title}</h3>
                 <p className="mt-3 text-[0.98rem] leading-relaxed">{f.text}</p>
-              </Reveal>
+              </li>
             ))}
-          </ol>
+          </ul>
         </div>
       </section>
 
       <section aria-labelledby="platnosci-title" className="section">
         <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-5">
-            <SectionHeading eyebrow="Płatności" title="Formy płatności" id="platnosci-title" />
+            <SectionHeading title="Formy płatności" id="platnosci-title" />
             <p className="mt-6 text-[1rem] text-muted">Dostępne formy płatności są przykładowe – do potwierdzenia przed publikacją strony.</p>
           </Reveal>
-          <Reveal className="lg:col-span-7" delay={80}>
+          <Reveal className="lg:col-span-7">
             <ul className="divide-y divide-line border-y border-line">
               {payments.map((p) => (
                 <li key={p.title} className="flex gap-4 py-6">

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Icon } from "@/components/ui/Icons";
 import { Reveal } from "@/components/ui/Reveal";
 import { fleet, fleetTotal, type AmbulanceType } from "@/data/fleet";
 import { vehicles } from "@/lib/plural";
@@ -30,7 +29,7 @@ export function FleetBar() {
         {ordered.map((c) => (
           <span key={c.type} className="flex items-center gap-2">
             <span aria-hidden="true" className={`h-2.5 w-2.5 ${tones[c.type]}`} />
-            <strong className="font-semibold text-ink">Typ {c.type}</strong> – {vehicles(c.count)}
+            <strong className="font-semibold text-ink">Typ {c.type}:</strong> {vehicles(c.count)}
           </span>
         ))}
         <span className="text-muted">Łącznie: {fleetTotal} ambulansów</span>
@@ -46,27 +45,26 @@ export function FleetSection() {
         <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
           <Reveal className="lg:col-span-7">
             <SectionHeading
-              eyebrow="Nasza flota"
               title="Nowoczesna flota ambulansów"
               id="flota-title"
               lead="Dysponujemy 20 ambulansami w trzech kategoriach. Rodzaj pojazdu i skład zespołu dobieramy do stanu pacjenta i charakteru przewozu."
             />
           </Reveal>
-          <Reveal className="lg:col-span-5" delay={100}>
+          <Reveal className="lg:col-span-5">
             <FleetBar />
           </Reveal>
         </div>
 
         <ul className="mt-14 grid gap-8 md:grid-cols-3 lg:mt-16 lg:gap-10">
-          {fleet.map((c, i) => (
-            <Reveal as="li" key={c.type} delay={i * 90} className="group flex flex-col bg-white">
+          {fleet.map((c) => (
+            <li key={c.type} className="group flex flex-col bg-white">
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
                   src={c.image.src}
                   alt={c.image.alt}
                   fill
                   sizes="(min-width: 768px) 33vw, 100vw"
-                  className="object-cover transition-transform duration-700 ease-[var(--ease-soft)] group-hover:scale-[1.03]"
+                  className="object-cover"
                 />
               </div>
               <div className="relative flex flex-1 flex-col px-6 pb-7 pt-10 sm:px-7">
@@ -80,12 +78,11 @@ export function FleetSection() {
                   </p>
                 </div>
                 <p className="mt-3 flex-1 text-[1rem] leading-relaxed">{c.summary}</p>
-                <Link href={`/flota#typ-${c.type.toLowerCase()}`} className="link-arrow mt-6 self-start" aria-label={`Szczegóły: ${c.name}`}>
+                <Link href={`/flota#typ-${c.type.toLowerCase()}`} className="link-arrow mt-6 self-start" aria-label={`Wyposażenie i zespół: ${c.name}`}>
                   Wyposażenie i zespół
-                  <Icon name="arrowRight" size={18} />
                 </Link>
               </div>
-            </Reveal>
+            </li>
           ))}
         </ul>
       </div>

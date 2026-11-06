@@ -5,7 +5,7 @@ import { siteConfig } from "@/config/site";
 export function EmergencyBar() {
   const { contact } = siteConfig;
   return (
-    <div className="bg-ink text-[0.88rem] text-white/80">
+    <aside aria-label="Numery alarmowe i dyspozytornia" className="bg-ink text-[0.88rem] text-white/80">
       <div className="container-x flex min-h-10 flex-wrap items-center justify-between gap-x-6 gap-y-1 py-2">
         <p className="flex items-center gap-2">
           <Icon name="alert" size={16} className="shrink-0 text-[#ff4d55]" />
@@ -29,6 +29,6 @@ export function EmergencyBar() {
           </a>
         </div>
       </div>
-    </div>
+    </aside>
   );
 }

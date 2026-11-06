@@ -11,7 +11,7 @@ export function ContactDetails() {
   return (
     <div>
       <a href={contact.phoneHref} className="group block border-b border-line pb-6">
-        <span className="text-sm font-semibold uppercase tracking-[0.14em] text-muted">Dyspozytornia 24/7</span>
+        <span className="text-sm font-semibold text-muted">Dyspozytornia 24/7</span>
         <span className="mt-2 flex items-center gap-3 font-display text-[2.1rem] font-semibold leading-none text-ink group-hover:text-red-dark" style={{ fontStretch: "88%" }}>
           <Icon name="phone" size={26} className="text-red" />
           {contact.phoneDisplay}
@@ -61,30 +61,33 @@ export function ContactDetails() {
 
 export function ContactSection({ headingAs = "h2" }: { headingAs?: "h1" | "h2" }) {
   const configured = contactChannel() !== null;
+  const FormTitle = headingAs === "h1" ? "h2" : "h3";
   return (
     <section aria-labelledby="kontakt-title" className="section border-t border-line bg-mist">
       <div className="container-x">
         <Reveal>
           <SectionHeading
             as={headingAs}
-            eyebrow="Kontakt"
             title="Zamów transport lub zapytaj o usługę"
             id="kontakt-title"
             lead="Najszybciej ustalimy szczegóły telefonicznie. Możesz też wysłać zapytanie przez formularz – koordynator oddzwoni, aby potwierdzić termin i wycenę."
           />
         </Reveal>
-        <div className="mt-14 grid gap-12 lg:grid-cols-12 lg:gap-14">
-          <Reveal className="flex flex-col gap-8 lg:col-span-5">
+        {/* Na telefonie: dane kontaktowe → formularz → mapa. Na komputerze: dane i mapa po lewej, formularz po prawej. */}
+        <Reveal className="mt-14 grid gap-12 lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-x-14 lg:gap-y-8">
+          <div className="lg:col-span-5">
             <ContactDetails />
-            <MapEmbed className="h-80 lg:h-[24rem]" />
-          </Reveal>
-          <Reveal id="formularz" className="scroll-mt-28 border border-line bg-white p-6 sm:p-9 lg:col-span-7 lg:p-11" delay={80}>
-            <h3 className="text-[1.6rem]">Formularz zapytania</h3>
+          </div>
+          <div id="formularz" className="scroll-mt-28 border border-line bg-white p-6 sm:p-9 lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1 lg:p-11">
+            <FormTitle className="text-[1.6rem]">Formularz zapytania</FormTitle>
             <div className="mt-4">
               <ContactForm configured={configured} />
             </div>
-          </Reveal>
-        </div>
+          </div>
+          <div className="lg:col-span-5 lg:col-start-1 lg:row-start-2">
+            <MapEmbed className="h-80 lg:h-[24rem]" />
+          </div>
+        </Reveal>
       </div>
     </section>
   );

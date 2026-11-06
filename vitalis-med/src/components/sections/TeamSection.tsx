@@ -24,22 +24,11 @@ export function TeamSection({ id = "zespol" }: { id?: string }) {
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-5">
             <SectionHeading
-              eyebrow="Nasz zespół"
               title="Ludzie, którym możesz zaufać"
               id={`${id}-title`}
               tone="dark"
-              lead="Za każdym przejazdem stoi zespół, który zna swoje zadanie: od dyspozytora przyjmującego zgłoszenie po ratowników przekazujących pacjenta w placówce."
+              lead="Zatrudniamy około 200 osób: ratowników medycznych, lekarzy, pielęgniarki, kierowców i personel organizacyjny. Każdy przejazd prowadzi zespół, który zna swoje zadanie – od przyjęcia zgłoszenia po przekazanie pacjenta w placówce."
             />
-            <div className="mt-12 flex items-end gap-5 border-t border-white/15 pt-8">
-              <p className="font-display text-7xl font-semibold leading-[0.85] tracking-tight text-white" style={{ fontStretch: "82%" }}>
-                ~200
-              </p>
-              <p className="pb-1 text-[0.98rem] leading-snug text-white/70">
-                pracowników medycznych,
-                <br />
-                transportowych i organizacyjnych
-              </p>
-            </div>
           </Reveal>
 
           <div className="lg:col-span-7">
@@ -49,12 +38,12 @@ export function TeamSection({ id = "zespol" }: { id?: string }) {
               </Reveal>
             )}
             <ul className="grid gap-px bg-white/12 sm:grid-cols-2">
-              {teamRoles.map((role, i) => (
-                <Reveal as="li" key={role.title} delay={i * 60} className="bg-graphite p-6 sm:p-7">
+              {teamRoles.map((role) => (
+                <li key={role.title} className="bg-graphite p-6 sm:p-7">
                   <Icon name={role.icon} size={28} strokeWidth={1.4} className="text-[#ff4d55]" />
                   <h3 className="mt-4 text-[1.25rem] text-white">{role.title}</h3>
                   <p className="mt-2 text-[0.97rem] leading-relaxed text-white/70">{role.text}</p>
-                </Reveal>
+                </li>
               ))}
             </ul>
           </div>

@@ -5,14 +5,12 @@ import { siteConfig } from "@/config/site";
 
 /** Nagłówek podstrony: okruszki, H1, lead i opcjonalne zdjęcie po prawej. */
 export function PageHero({
-  eyebrow,
   title,
   lead,
   crumb,
   image,
   children,
 }: {
-  eyebrow: string;
   title: ReactNode;
   lead?: ReactNode;
   crumb: string;
@@ -50,10 +48,7 @@ export function PageHero({
               </li>
             </ol>
           </nav>
-          <p className="eyebrow hero-in mt-10" style={{ ["--d" as string]: "60ms" }}>
-            {eyebrow}
-          </p>
-          <h1 className="h-display hero-in mt-5" style={{ ["--d" as string]: "120ms" }}>
+          <h1 className="h-display hero-in mt-10" style={{ ["--d" as string]: "120ms" }}>
             {title}
           </h1>
           {lead && (

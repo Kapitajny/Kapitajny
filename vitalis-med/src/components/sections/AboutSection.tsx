@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Icon } from "@/components/ui/Icons";
 import { Reveal } from "@/components/ui/Reveal";
 import { siteConfig } from "@/config/site";
 import { SectionHeading } from "./SectionHeading";
@@ -28,10 +27,10 @@ export function StatsGrid({ tone = "light" }: { tone?: "light" | "dark" }) {
   return (
     <dl className={`grid grid-cols-2 border-t ${dark ? "border-white/15" : "border-line"}`}>
       {siteConfig.stats.map((stat, i) => (
-        <Reveal
+        <div
           key={stat.label}
-          delay={i * 80}
-          className={`flex flex-col border-b py-8 ${dark ? "border-white/15" : "border-line"} ${i % 2 === 1 ? `border-l pl-6 sm:pl-10 ${dark ? "border-white/15" : "border-line"}` : "pr-6 sm:pr-10"}`}
+         
+          className={`flex flex-col border-b py-8 ${dark ? "border-white/15" : "border-line"} ${i % 2 === 1 ? `border-l pl-4 sm:pl-10 ${dark ? "border-white/15" : "border-line"}` : "pr-4 sm:pr-10"}`}
         >
           <dt className="order-2 mt-3">
             <span className={`block text-[1.02rem] font-semibold ${dark ? "text-white" : "text-ink"}`}>{stat.label}</span>
@@ -43,7 +42,7 @@ export function StatsGrid({ tone = "light" }: { tone?: "light" | "dark" }) {
           >
             {stat.value}
           </dd>
-        </Reveal>
+        </div>
       ))}
     </dl>
   );
@@ -54,13 +53,12 @@ export function AboutSection() {
     <section aria-labelledby="o-nas-title" className="section">
       <div className="container-x grid gap-14 lg:grid-cols-12 lg:gap-16">
         <Reveal className="lg:col-span-5">
-          <SectionHeading eyebrow="O nas" title="Poznaj nas bliżej" id="o-nas-title" />
+          <SectionHeading title="Poznaj nas bliżej" id="o-nas-title" />
           <div className="mt-8">
             <AboutText />
           </div>
           <Link href="/o-nas" className="link-arrow mt-9">
             Więcej o firmie
-            <Icon name="arrowRight" size={18} />
           </Link>
         </Reveal>
         <div className="lg:col-span-6 lg:col-start-7 lg:pt-3">

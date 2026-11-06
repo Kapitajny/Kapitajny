@@ -36,7 +36,6 @@ export default function AboutPage() {
     <>
       <PageHero
         crumb="O nas"
-        eyebrow="O nas"
         title="Doświadczenie, zaplecze i ludzie, na których można polegać"
         lead="Vitalis Med to prywatne pogotowie ratunkowe realizujące transport sanitarny i medyczny, zabezpieczenia wydarzeń oraz obsługę placówek medycznych."
         image={{ src: "/images/flota/flota-crafter.webp", alt: "Ambulans z włączonymi sygnałami świetlnymi przed budynkiem bazy" }}
@@ -45,7 +44,7 @@ export default function AboutPage() {
       <section aria-labelledby="poznaj-title" className="section">
         <div className="container-x grid gap-14 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-5">
-            <SectionHeading eyebrow="Kim jesteśmy" title="Poznaj nas bliżej" id="poznaj-title" />
+            <SectionHeading title="Poznaj nas bliżej" id="poznaj-title" />
             <div className="mt-8">
               <AboutText />
             </div>
@@ -60,15 +59,15 @@ export default function AboutPage() {
       <section aria-labelledby="wartosci-title" className="section border-t border-line bg-mist">
         <div className="container-x">
           <Reveal>
-            <SectionHeading eyebrow="Wartości" title="Na czym opieramy naszą pracę" id="wartosci-title" />
+            <SectionHeading title="Na czym opieramy naszą pracę" id="wartosci-title" />
           </Reveal>
           <ul className="mt-14 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-            {values.map((v, i) => (
-              <Reveal as="li" key={v.title} delay={i * 70} className="bg-white p-7 lg:p-8">
+            {values.map((v) => (
+              <li key={v.title} className="bg-white p-7 lg:p-8">
                 <Icon name={v.icon} size={30} strokeWidth={1.4} className="text-red" />
                 <h3 className="mt-6 text-[1.35rem]">{v.title}</h3>
                 <p className="mt-3 text-[0.98rem] leading-relaxed">{v.text}</p>
-              </Reveal>
+              </li>
             ))}
           </ul>
         </div>
@@ -78,17 +77,15 @@ export default function AboutPage() {
         <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-5">
             <SectionHeading
-              eyebrow="Standardy"
               title="Jakość, którą da się sprawdzić"
               id="standardy-title"
               lead="Organizacja pracy w ratownictwie medycznym wymaga dyscypliny. Poniższe zasady obowiązują każdy zespół i każdy pojazd."
             />
             <Link href="/flota" className="link-arrow mt-8">
               Poznaj naszą flotę
-              <Icon name="arrowRight" size={18} />
             </Link>
           </Reveal>
-          <Reveal className="lg:col-span-7" delay={80}>
+          <Reveal className="lg:col-span-7">
             <ul className="divide-y divide-line border-y border-line">
               {standards.map((s) => (
                 <li key={s} className="flex gap-4 py-5 text-[1.03rem]">
