@@ -11,6 +11,8 @@
   $$("[data-call]").forEach(function (a) {
     a.href = tel ? "tel:" + tel : "#kontakt";
     if (!tel && a.hasAttribute("data-call-optional")) a.hidden = true;
+    var num = a.querySelector("[data-phone-text]");
+    if (tel && num) num.textContent = SITE.phone;
   });
   $$("[data-phone]").forEach(function (el) {
     if (!SITE.phone) return;
