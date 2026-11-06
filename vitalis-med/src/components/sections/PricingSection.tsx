@@ -12,13 +12,13 @@ export function PriceTable({ caption = true }: { caption?: boolean }) {
         {caption && <caption className="sr-only">Cennik usług komercyjnych – ceny przykładowe</caption>}
         <thead>
           <tr className="bg-mist text-sm text-ink">
-            <th scope="col" className="px-3 py-3.5 sm:px-5 font-bold">
+            <th scope="col" className="px-3 py-3.5 sm:px-5 font-semibold">
               Usługa
             </th>
-            <th scope="col" className="hidden py-3.5 pr-3 sm:pr-5 font-bold md:table-cell">
+            <th scope="col" className="hidden py-3.5 pr-3 sm:pr-5 font-semibold md:table-cell">
               Zakres
             </th>
-            <th scope="col" className="px-3 py-3.5 sm:px-5 text-right font-bold">
+            <th scope="col" className="px-3 py-3.5 sm:px-5 text-right font-semibold">
               Cena przykładowa
             </th>
           </tr>
@@ -27,14 +27,14 @@ export function PriceTable({ caption = true }: { caption?: boolean }) {
           {priceList.map((item) => (
             <tr key={item.service} className="group border-t border-line transition-colors hover:bg-mist/60">
               <th scope="row" className="px-3 py-4 align-top font-normal sm:px-5">
-                <Link href={orderHref(item.serviceSlug)} className="target-expand text-[1.05rem] font-bold text-ink group-hover:text-red-dark">
+                <Link href={orderHref(item.serviceSlug)} className="target-expand text-[1.05rem] font-semibold text-ink group-hover:text-red-dark">
                   {item.service}
                 </Link>
                 <span className="mt-1 block text-sm text-muted md:hidden">{item.scope}</span>
               </th>
               <td className="hidden py-4 pr-5 align-top text-[0.97rem] md:table-cell">{item.scope}</td>
               <td className="px-3 py-4 text-right align-top sm:px-5">
-                <span className={item.priceFrom === null ? "text-[0.95rem] text-muted" : "whitespace-nowrap text-lg font-black text-ink"}>{formatPrice(item)}</span>
+                <span className={item.priceFrom === null ? "text-[0.95rem] text-muted" : "whitespace-nowrap text-lg font-semibold text-ink"}>{formatPrice(item)}</span>
               </td>
             </tr>
           ))}
@@ -50,7 +50,7 @@ export function PricingNotes() {
       <li className="flex gap-3">
         <Icon name="info" size={18} className="mt-0.5 shrink-0 text-ink" />
         <span>
-          <strong className="font-bold text-ink">Wszystkie ceny są przykładowe</strong> i wymagają weryfikacji przed publikacją.
+          <strong className="font-semibold text-ink">Wszystkie ceny są przykładowe</strong> i wymagają weryfikacji przed publikacją.
         </span>
       </li>
       <li className="flex gap-3">
@@ -73,7 +73,7 @@ export function PricingNotes() {
 
 export function PricingSection() {
   return (
-    <section aria-labelledby="cennik-title" className="section">
+    <section aria-labelledby="cennik-title" className="section bg-mist">
       <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-16">
         <Reveal className="self-start lg:sticky lg:top-28 lg:col-span-4">
           <SectionHeading title="Cennik usług prywatnych" id="cennik-title" />

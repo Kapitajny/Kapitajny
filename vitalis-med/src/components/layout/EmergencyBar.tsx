@@ -1,32 +1,48 @@
+import Link from "next/link";
 import { Icon } from "@/components/ui/Icons";
 import { siteConfig } from "@/config/site";
+import { AccessibilityControls } from "./AccessibilityControls";
 
-/** Górny pasek: informacja o numerach alarmowych i całodobowa dyspozytornia transportu. */
+/**
+ * Górny pasek serwisu (wzorem dużych placówek): ścieżki dla pacjentów i dla firm,
+ * informacja o numerach alarmowych oraz ustawienia dostępności.
+ */
 export function EmergencyBar() {
   const { contact } = siteConfig;
   return (
-    <aside aria-label="Numery alarmowe i dyspozytornia" className="bg-ink text-[0.88rem] text-white/80">
-      <div className="container-x flex min-h-10 flex-wrap items-center justify-between gap-x-6 gap-y-1 py-2">
-        <p className="flex items-center gap-2">
-          <Icon name="alert" size={16} className="shrink-0 text-[#ff4d55]" />
+    <aside aria-label="Informacje i ustawienia strony" className="border-b border-line bg-white text-[0.875rem]">
+      <div className="container-x flex min-h-11 items-center justify-between gap-x-6 gap-y-1 py-1.5">
+        <nav aria-label="Dla kogo" className="hidden md:block">
+          <ul className="flex items-center gap-5 text-muted">
+            <li>
+              <Link href="/uslugi" className="hover:text-ink">
+                Dla pacjentów
+              </Link>
+            </li>
+            <li>
+              <Link href="/uslugi#obsluga-firm-i-instytucji" className="hover:text-ink">
+                Dla firm i&nbsp;placówek
+              </Link>
+            </li>
+            <li>
+              <Link href="/nfz" className="hover:text-ink">
+                Pacjenci NFZ
+              </Link>
+            </li>
+          </ul>
+        </nav>
+        <p className="flex items-center gap-2 text-ink">
+          <Icon name="alert" size={16} className="shrink-0 text-red" />
           <span>
-            W stanie zagrożenia życia dzwoń <strong className="font-bold text-white">112</strong> lub{" "}
-            <strong className="font-bold text-white">999</strong>
+            Zagrożenie życia: dzwoń <strong>112</strong> lub <strong>999</strong>
           </span>
         </p>
-        <div className="hidden items-center gap-6 md:flex">
-          <span className="flex items-center gap-2">
-            <Icon name="clock" size={16} className="text-white/60" />
-            Dyspozytornia transportu 24/7
-          </span>
-          <a href={contact.phoneHref} className="flex items-center gap-2 font-bold text-white hover:underline">
-            <Icon name="phone" size={16} className="text-white/60" />
-            {contact.phoneDisplay}
-          </a>
-          <a href={`mailto:${contact.email}`} className="hidden items-center gap-2 hover:text-white lg:flex">
-            <Icon name="mail" size={16} className="text-white/60" />
+        <div className="hidden items-center gap-5 lg:flex">
+          <a href={`mailto:${contact.email}`} className="text-muted hover:text-ink">
             {contact.email}
           </a>
+          <span aria-hidden="true" className="h-4 w-px bg-line-strong" />
+          <AccessibilityControls />
         </div>
       </div>
     </aside>

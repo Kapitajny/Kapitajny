@@ -42,7 +42,7 @@ export function MapEmbed({ className = "" }: { className?: string }) {
             <MapSketch />
             <div className="relative max-w-sm rounded-[6px] border border-line bg-white p-6 text-center shadow-[var(--shadow-soft)]">
               <Icon name="pin" size={28} className="mx-auto text-red" />
-              <p className="mt-3 font-display text-xl font-bold text-ink">
+              <p className="mt-3 font-display text-xl font-semibold text-ink">
                 {contact.street}, {contact.city}
               </p>
               <p className="mt-2 text-sm leading-relaxed text-muted">

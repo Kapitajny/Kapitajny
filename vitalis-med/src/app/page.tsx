@@ -4,6 +4,7 @@ import { FleetSection } from "@/components/sections/FleetSection";
 import { Hero } from "@/components/sections/Hero";
 import { NfzSection } from "@/components/sections/NfzSection";
 import { PricingSection } from "@/components/sections/PricingSection";
+import { SeoSection } from "@/components/sections/SeoSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { TeamSection } from "@/components/sections/TeamSection";
 import { WhyUsSection } from "@/components/sections/WhyUsSection";
@@ -24,6 +25,7 @@ export default function HomePage() {
       <WhyUsSection />
       <TeamSection />
       <ContactSection />
+      <SeoSection />
     </>
   );
 }

@@ -39,7 +39,7 @@ export function LegalPage({
           <div className="mt-8 flex max-w-3xl gap-3 rounded-[4px] border border-line-strong bg-white p-5 text-[0.97rem] text-ink">
             <Icon name="alert" size={22} className="mt-0.5 shrink-0 text-red" />
             <p>
-              <strong className="font-bold">Projekt dokumentu – wymaga weryfikacji prawnej przed publikacją.</strong> Treść jest przykładowa, a pola w
+              <strong className="font-semibold">Projekt dokumentu – wymaga weryfikacji prawnej przed publikacją.</strong> Treść jest przykładowa, a pola w
               nawiasach kwadratowych należy uzupełnić prawdziwymi danymi. Dokument nie stanowi porady prawnej.
             </p>
           </div>
@@ -50,7 +50,7 @@ export function LegalPage({
         <aside className="min-w-0 lg:col-span-4">
           <div className="lg:sticky lg:top-28">
             <nav aria-labelledby="toc-title">
-              <h2 id="toc-title" className="text-sm font-bold text-muted">
+              <h2 id="toc-title" className="text-sm font-semibold text-muted">
                 Spis treści
               </h2>
               <ol className="mt-4 space-y-2 border-l border-line text-[0.97rem]">
@@ -64,7 +64,7 @@ export function LegalPage({
               </ol>
             </nav>
             <nav aria-labelledby="docs-title" className="mt-10 hidden lg:block">
-              <h2 id="docs-title" className="text-sm font-bold text-muted">
+              <h2 id="docs-title" className="text-sm font-semibold text-muted">
                 Inne dokumenty
               </h2>
               <ul className="mt-4 space-y-2 text-[0.97rem]">

@@ -20,7 +20,7 @@ export function organizationJsonLd() {
     name: siteConfig.name,
     url: siteConfig.url,
     logo: `${siteConfig.url}/icon.svg`,
-    image: `${siteConfig.url}/images/flota/baner-ambulans.webp`,
+    image: `${siteConfig.url}/images/flota/zdjecie-fiat.webp`,
     description: siteConfig.description,
     telephone: contact.phoneDisplay.replace(/\s/g, ""),
     email: contact.email,

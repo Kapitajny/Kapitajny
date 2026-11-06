@@ -27,8 +27,11 @@ Kontrole jakości: `npm run lint && npm run typecheck && npm test && npm run bui
 
 Stack: Next.js 16 (App Router, Turbopack), React 19, TypeScript, Tailwind CSS 4, Vitest. Wymagany Node.js 22.13+.
 
-Wygląd: układ wzorowany na polskich serwisach medycznych (baner z kafelkami szybkiego dostępu, jasne panele, karty),
-jeden krój pisma – Lato (`next/font`, z polskimi znakami).
+Wygląd: koncepcja oparta na analizie serwisów CMP, AMEDS i LUX MED (zrzuty i pomiary z przeglądarki): duży panel hero
+z wyciętym z tła ambulansem i paskiem akcji, prezentacja floty z zakładkami T/S/P, usługi z ceną orientacyjną, pasek
+„Dla pacjentów / Dla firm” z ustawieniami dostępności (powiększenie tekstu, wysoki kontrast), przycisk szybkiego kontaktu.
+Typografia: Albert Sans (nagłówki 700, tekst 300/400). Zdjęcia powiększone 4× modelem Real-ESRGAN, pojazdy wycięte z tła
+(rembg) – skrypty nie są częścią projektu.
 
 ## Struktura stron
 

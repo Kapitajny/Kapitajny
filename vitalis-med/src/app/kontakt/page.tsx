@@ -37,7 +37,7 @@ export default function ContactPage() {
               ].map(([k, v]) => (
                 <div key={k} className="grid gap-1 py-4 sm:grid-cols-3">
                   <dt className="text-sm text-muted sm:text-base">{k}</dt>
-                  <dd className="font-bold text-ink sm:col-span-2">{v}</dd>
+                  <dd className="font-semibold text-ink sm:col-span-2">{v}</dd>
                 </div>
               ))}
             </dl>

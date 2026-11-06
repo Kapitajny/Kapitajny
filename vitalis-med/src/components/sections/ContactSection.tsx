@@ -11,8 +11,8 @@ export function ContactDetails() {
   return (
     <div>
       <a href={contact.phoneHref} className="group block border-b border-line pb-6">
-        <span className="text-sm font-bold text-muted">Dyspozytornia 24/7</span>
-        <span className="mt-2 flex items-center gap-3 font-display text-[2.1rem] font-bold leading-none text-ink group-hover:text-red-dark">
+        <span className="text-sm font-semibold text-muted">Dyspozytornia 24/7</span>
+        <span className="mt-2 flex items-center gap-3 font-display text-[2.1rem] font-semibold leading-none text-ink group-hover:text-red-dark">
           <Icon name="phone" size={26} className="text-red" />
           {contact.phoneDisplay}
         </span>
@@ -23,7 +23,7 @@ export function ContactDetails() {
           <div>
             <p className="text-sm text-muted">E-mail</p>
             <p>
-              <a href={`mailto:${contact.email}`} className="link-quiet break-all font-bold text-ink">
+              <a href={`mailto:${contact.email}`} className="link-quiet break-all font-semibold text-ink">
                 {contact.email}
               </a>
             </p>
@@ -33,7 +33,7 @@ export function ContactDetails() {
           <Icon name="pin" size={22} className="mt-0.5 shrink-0 text-muted" />
           <div>
             <p className="text-sm text-muted">Adres bazy</p>
-            <div className="font-bold text-ink">
+            <div className="font-semibold text-ink">
               <address className="not-italic">
                 {contact.street}, {contact.postalCode} {contact.city}
               </address>
@@ -52,7 +52,7 @@ export function ContactDetails() {
       <p className="mt-2 flex gap-3 rounded-[4px] bg-red-soft p-4 text-[0.95rem] leading-relaxed text-ink">
         <Icon name="alert" size={20} className="mt-0.5 shrink-0 text-red" />
         <span>
-          <strong className="font-bold">Stan zagrożenia życia?</strong> Nie wypełniaj formularza – zadzwoń pod numer alarmowy 112 lub 999.
+          <strong className="font-semibold">Stan zagrożenia życia?</strong> Nie wypełniaj formularza – zadzwoń pod numer alarmowy 112 lub 999.
         </span>
       </p>
     </div>
@@ -63,7 +63,7 @@ export function ContactSection({ headingAs = "h2" }: { headingAs?: "h1" | "h2" }
   const configured = contactChannel() !== null;
   const FormTitle = headingAs === "h1" ? "h2" : "h3";
   return (
-    <section aria-labelledby="kontakt-title" className="section bg-mist">
+    <section aria-labelledby="kontakt-title" className="section">
       <div className="container-x">
         <Reveal>
           <SectionHeading
@@ -78,7 +78,7 @@ export function ContactSection({ headingAs = "h2" }: { headingAs?: "h1" | "h2" }
           <div className="lg:col-span-5">
             <ContactDetails />
           </div>
-          <div id="formularz" className="card scroll-mt-28 p-6 sm:p-9 lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1 lg:p-11">
+          <div id="formularz" className="card scroll-mt-28 bg-mist/40 p-6 sm:p-9 lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1 lg:p-11">
             <FormTitle className="text-[1.6rem]">Formularz zapytania</FormTitle>
             <div className="mt-4">
               <ContactForm configured={configured} />

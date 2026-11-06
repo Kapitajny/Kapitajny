@@ -132,12 +132,12 @@ export function ContactForm({ configured }: { configured: boolean }) {
         </div>
         <h3 className="mt-6 text-2xl">Dziękujemy – zapytanie zostało wysłane</h3>
         <p className="mt-3 text-body">
-          Numer zapytania: <strong className="font-bold text-ink">{status.reference}</strong>. Koordynator skontaktuje się z Tobą telefonicznie, aby
+          Numer zapytania: <strong className="font-semibold text-ink">{status.reference}</strong>. Koordynator skontaktuje się z Tobą telefonicznie, aby
           potwierdzić szczegóły i termin. Zapytanie nie jest jeszcze potwierdzeniem realizacji transportu.
         </p>
         <p className="mt-3 text-body">
           Jeśli sprawa jest pilna, zadzwoń:{" "}
-          <a href={siteConfig.contact.phoneHref} className="link-quiet font-bold text-ink">
+          <a href={siteConfig.contact.phoneHref} className="link-quiet font-semibold text-ink">
             {siteConfig.contact.phoneDisplay}
           </a>
           .
@@ -163,9 +163,9 @@ export function ContactForm({ configured }: { configured: boolean }) {
         <div className="mt-5 flex gap-3 rounded-[4px] border border-line-strong bg-mist p-4 text-sm text-body">
           <Icon name="info" size={20} className="mt-0.5 shrink-0 text-ink" />
           <p>
-            <strong className="font-bold text-ink">Wersja demonstracyjna.</strong> Formularz nie jest jeszcze podłączony do skrzynki odbiorczej – po
+            <strong className="font-semibold text-ink">Wersja demonstracyjna.</strong> Formularz nie jest jeszcze podłączony do skrzynki odbiorczej – po
             kliknięciu „Wyślij zapytanie” zobaczysz informację, że wiadomość nie została wysłana. Aby zamówić transport, zadzwoń:{" "}
-            <a href={siteConfig.contact.phoneHref} className="link-quiet font-bold text-ink">
+            <a href={siteConfig.contact.phoneHref} className="link-quiet font-semibold text-ink">
               {siteConfig.contact.phoneDisplay}
             </a>
             .
@@ -175,7 +175,7 @@ export function ContactForm({ configured }: { configured: boolean }) {
 
       {showSummary && (
         <div ref={summaryRef} tabIndex={-1} role="alert" className="mt-5 rounded-[4px] border border-red/40 bg-red-soft p-4 text-sm text-ink outline-none">
-          <p className="font-bold">Popraw {errorList.length === 1 ? "zaznaczone pole" : `zaznaczone pola (${errorList.length})`}:</p>
+          <p className="font-semibold">Popraw {errorList.length === 1 ? "zaznaczone pole" : `zaznaczone pola (${errorList.length})`}:</p>
           <ul className="mt-2 list-disc space-y-1 pl-5">
             {errorList.map((f) => (
               <li key={f}>
@@ -189,7 +189,7 @@ export function ContactForm({ configured }: { configured: boolean }) {
       )}
 
       <fieldset className="mt-7">
-        <legend className="mb-4 font-display text-lg font-bold text-ink">
+        <legend className="mb-4 font-display text-lg font-semibold text-ink">
           Dane kontaktowe
         </legend>
         <div className="grid gap-5 sm:grid-cols-2">
@@ -232,7 +232,7 @@ export function ContactForm({ configured }: { configured: boolean }) {
       </fieldset>
 
       <fieldset className="mt-9">
-        <legend className="mb-4 font-display text-lg font-bold text-ink">
+        <legend className="mb-4 font-display text-lg font-semibold text-ink">
           Szczegóły usługi
         </legend>
         <div className="grid gap-5 sm:grid-cols-2">
@@ -318,7 +318,7 @@ export function ContactForm({ configured }: { configured: boolean }) {
           />
           <label htmlFor={id("consent")} className="text-[0.95rem] leading-relaxed text-body">
             Zapoznałem/-am się z{" "}
-            <Link href="/polityka-prywatnosci" className="link-quiet font-bold text-ink" target="_blank">
+            <Link href="/polityka-prywatnosci" className="link-quiet font-semibold text-ink" target="_blank">
               Polityką prywatności
             </Link>{" "}
             i akceptuję ją. Rozumiem, że podane dane zostaną wykorzystane do udzielenia odpowiedzi na zapytanie. <span className="text-red">*</span>

@@ -2,34 +2,39 @@
 
 /* ---------------------------------------------------------------------------
  * VITALIS MED – system wizualny
- * Układ wzorowany na polskich serwisach medycznych: białe tło, jasnoszare panele,
- * karty z lekkim zaokrągleniem, jeden krój (Lato), czerwień wyłącznie w akcjach.
+ *
+ * Kierunek: europejska prywatna placówka medyczna. Biel, jasny panel, mocne czarne
+ * nagłówki i lekki szary tekst (kontrast grubości zamiast koloru). Czerwień z logo
+ * wyłącznie w głównych akcjach, oznaczeniach T/S/P i stanach aktywnych.
+ * Typografia: Albert Sans – nagłówki 700, tekst 300/400.
+ * Wzorce branżowe: duży panel hero z wyciętym obiektem (CMP), pasek akcji pod hero
+ * (LUX MED), pasek dostępności (AMEDS), usługi z ceną „od” (CMP).
  * ------------------------------------------------------------------------- */
 
 @theme {
   --color-white: #ffffff;
-  --color-mist: #f3f5f7;
-  --color-fog: #e8ebef;
-  --color-line: #e1e5ea;
-  --color-line-strong: #c5cbd2;
+  --color-mist: #f4f5f6;
+  --color-fog: #e9ebee;
+  --color-line: #e6e8eb;
+  --color-line-strong: #c9cdd2;
   /* Ramki pól formularza – kontrast min. 3:1 z tłem (WCAG 1.4.11). */
   --color-field: #868a8e;
-  --color-ink: #1f2429;
-  --color-graphite: #262b31;
-  --color-graphite-2: #353b42;
-  --color-body: #3c434a;
-  --color-muted: #5c646d;
-  --color-red: #cc0510;
-  --color-red-dark: #a3040c;
-  --color-red-soft: #fbeeee;
+  --color-ink: #111417;
+  --color-graphite: #1b1f23;
+  --color-graphite-2: #2a2f34;
+  --color-body: #4a5056;
+  --color-muted: #646b72;
+  --color-red: #c8102e;
+  --color-red-dark: #a00d24;
+  --color-red-soft: #fcf0f2;
   --color-success: #1d6a43;
   --color-success-soft: #ecf5ef;
 
-  --font-display: var(--font-lato), "Segoe UI", Arial, sans-serif;
-  --font-sans: var(--font-lato), "Segoe UI", Arial, sans-serif;
+  --font-display: var(--font-albert), "Segoe UI", Arial, sans-serif;
+  --font-sans: var(--font-albert), "Segoe UI", Arial, sans-serif;
 
   --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
-  --shadow-soft: 0 1px 3px rgb(31 36 41 / 0.06), 0 6px 20px -8px rgb(31 36 41 / 0.14);
+  --shadow-soft: 0 1px 2px rgb(17 20 23 / 0.04), 0 12px 32px -16px rgb(17 20 23 / 0.18);
 }
 
 @layer base {
@@ -39,8 +44,15 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 6rem;
+    scroll-padding-top: 7rem;
     -webkit-text-size-adjust: 100%;
+  }
+  /* Pasek dostępności: powiększenie tekstu (wzorem serwisów medycznych) */
+  html[data-text-size="1"] {
+    font-size: 112.5%;
+  }
+  html[data-text-size="2"] {
+    font-size: 125%;
   }
 
   body {
@@ -48,6 +60,7 @@
     color: var(--color-body);
     font-family: var(--font-sans);
     font-size: 1.0625rem;
+    font-weight: 400;
     line-height: 1.65;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -60,13 +73,18 @@
     font-family: var(--font-display);
     color: var(--color-ink);
     font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: 0;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
     text-wrap: balance;
   }
 
   p {
     text-wrap: pretty;
+  }
+
+  strong,
+  b {
+    font-weight: 600;
   }
 
   ::selection {
@@ -83,12 +101,24 @@
   html:has(dialog[open]:modal) {
     overflow: hidden;
   }
+
+  /* Tryb wysokiego kontrastu (pasek dostępności) */
+  html[data-contrast="high"] {
+    --color-body: #111417;
+    --color-muted: #2a2f34;
+    --color-line: #8a9097;
+    --color-line-strong: #4a5056;
+    --color-mist: #ffffff;
+  }
+  html[data-contrast="high"] a:not(.btn) {
+    text-decoration: underline;
+  }
 }
 
 @layer components {
   .container-x {
     width: 100%;
-    max-width: 82rem;
+    max-width: 84rem;
     margin-inline: auto;
     padding-inline: 1.25rem;
   }
@@ -103,51 +133,48 @@
   }
   @media (min-width: 1024px) {
     .section {
-      padding-block: 7.5rem;
+      padding-block: 7rem;
     }
   }
 
   .h-display {
-    font-size: clamp(1.85rem, 1.5rem + 1.4vw, 2.6rem);
-    font-weight: 900;
-    line-height: 1.15;
+    font-size: clamp(2.1rem, 1.6rem + 1.9vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.06;
+    letter-spacing: -0.03em;
   }
   .h-section {
-    font-size: clamp(1.6rem, 1.4rem + 0.8vw, 2.1rem);
-    font-weight: 900;
+    font-size: clamp(1.85rem, 1.5rem + 1.2vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
   }
-  /* Karta: biała, z obramowaniem i lekkim zaokrągleniem */
+
+  /* Miękki cień pod wyciętym pojazdem */
+  .vehicle-shadow {
+    position: absolute;
+    left: 6%;
+    right: 4%;
+    bottom: -3%;
+    height: 11%;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgb(17 20 23 / 0.28), rgb(17 20 23 / 0));
+  }
+
+  /* Karta: tylko dla obiektów (pojazdy, usługi z ceną) */
   .card {
     background: var(--color-white);
     border: 1px solid var(--color-line);
-    border-radius: 8px;
-  }
-  .card-lift {
-    transition:
-      box-shadow 200ms var(--ease-soft),
-      border-color 200ms var(--ease-soft);
-  }
-  .card-lift:hover {
-    border-color: var(--color-line-strong);
-    box-shadow: var(--shadow-soft);
+    border-radius: 14px;
   }
   .panel {
     background: var(--color-mist);
-    border-radius: 10px;
+    border-radius: 24px;
   }
-  .icon-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 3rem;
-    height: 3rem;
-    flex-shrink: 0;
-    border-radius: 999px;
-    background: var(--color-red-soft);
-    color: var(--color-red);
-  }
+
   .lead {
-    font-size: clamp(1.08rem, 1rem + 0.3vw, 1.22rem);
+    font-size: clamp(1.08rem, 1rem + 0.35vw, 1.25rem);
+    font-weight: 300;
     line-height: 1.6;
     color: var(--color-body);
   }
@@ -157,13 +184,13 @@
     align-items: center;
     justify-content: center;
     gap: 0.6rem;
-    min-height: 3.1rem;
-    padding: 0.8rem 1.45rem;
-    border-radius: 6px;
+    min-height: 3.25rem;
+    padding: 0.85rem 1.6rem;
+    border-radius: 999px;
     border: 1px solid transparent;
     font-family: var(--font-sans);
-    font-size: 0.98rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 600;
     letter-spacing: 0;
     line-height: 1.2;
     white-space: nowrap;
@@ -172,12 +199,6 @@
       color 200ms var(--ease-soft),
       border-color 200ms var(--ease-soft);
     cursor: pointer;
-  }
-  .btn svg {
-    transition: transform 250ms var(--ease-soft);
-  }
-  .btn:hover svg {
-    transform: translateX(3px);
   }
   .btn:disabled {
     cursor: not-allowed;
@@ -224,7 +245,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--color-ink);
     text-decoration: none;
     border-bottom: 1px solid var(--color-line-strong);

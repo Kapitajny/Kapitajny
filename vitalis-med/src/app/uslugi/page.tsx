@@ -57,9 +57,7 @@ export default function ServicesPage() {
             >
               <div className="lg:col-span-5">
                 <div className="flex items-center gap-4">
-                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-red-soft text-red">
-                    <Icon name={s.icon} size={28} strokeWidth={1.5} />
-                  </span>
+                  <Icon name={s.icon} size={34} strokeWidth={1.4} className="text-ink" />
                 </div>
                 <h2 className="mt-6 text-[clamp(1.7rem,1.3rem+1.2vw,2.4rem)]">{s.title}</h2>
               </div>
@@ -93,10 +91,10 @@ export default function ServicesPage() {
           <Reveal>
             <SectionHeading title="Jak zamówić transport" id="jak-title" />
           </Reveal>
-          <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <ol className="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((step, i) => (
-              <li key={step.title} className="card p-6">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-red text-lg font-black text-white" aria-hidden="true">
+              <li key={step.title} className="border-t-2 border-ink pt-5">
+                <span className="block text-[2.4rem] font-semibold leading-none tracking-tight text-red" aria-hidden="true">
                   {i + 1}
                 </span>
                 <h3 className="mt-4 text-[1.15rem]">{step.title}</h3>

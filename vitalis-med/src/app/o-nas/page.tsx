@@ -42,7 +42,7 @@ export default function AboutPage() {
         crumb="O nas"
         title="O firmie Vitalis Med"
         lead="Vitalis Med to prywatne pogotowie ratunkowe realizujące transport sanitarny i medyczny, zabezpieczenia wydarzeń oraz obsługę placówek medycznych."
-        image={{ src: "/images/flota/ambulans-typ-t.webp", alt: "Ambulans transportu sanitarnego Vitalis Med" }}
+        image={{ src: "/images/flota/zdjecie-crafter.webp", alt: "Ambulans Vitalis Med przed bazą" }}
       />
 
       <section aria-labelledby="poznaj-title" className="section">
@@ -65,12 +65,10 @@ export default function AboutPage() {
           <Reveal>
             <SectionHeading title="Nasze wartości" id="wartosci-title" />
           </Reveal>
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((v) => (
-              <li key={v.title} className="card p-6">
-                <span className="icon-badge">
-                  <Icon name={v.icon} size={22} />
-                </span>
+              <li key={v.title} className="border-t border-line-strong pt-6">
+                <Icon name={v.icon} size={28} strokeWidth={1.5} className="text-ink" />
                 <h3 className="mt-4 text-[1.15rem]">{v.title}</h3>
                 <p className="mt-3 text-[0.98rem] leading-relaxed">{v.text}</p>
               </li>

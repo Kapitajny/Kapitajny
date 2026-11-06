@@ -20,7 +20,7 @@ export function SiteFooter() {
             placówek medycznych i instytucji.
           </p>
           <div className="mt-8 rounded-[6px] border border-white/12 p-5">
-            <p className="text-sm font-bold text-white">Usługi prywatne i świadczenia NFZ</p>
+            <p className="text-sm font-semibold text-white">Usługi prywatne i świadczenia NFZ</p>
             <p className="mt-2 text-sm leading-relaxed text-white/70">
               Usługi komercyjne realizujemy odpłatnie według cennika. Świadczenia finansowane przez NFZ wykonujemy wyłącznie w zakresie zawartej umowy i na
               podstawie zlecenia lekarza.{" "}
@@ -32,7 +32,7 @@ export function SiteFooter() {
         </div>
 
         <nav aria-labelledby="footer-nav" className="lg:col-span-2">
-          <h2 id="footer-nav" className="text-sm font-bold text-white">
+          <h2 id="footer-nav" className="text-sm font-semibold text-white">
             Na skróty
           </h2>
           <ul className="mt-5 space-y-2.5 text-[0.98rem]">
@@ -47,7 +47,7 @@ export function SiteFooter() {
         </nav>
 
         <nav aria-labelledby="footer-services" className="lg:col-span-3">
-          <h2 id="footer-services" className="text-sm font-bold text-white">
+          <h2 id="footer-services" className="text-sm font-semibold text-white">
             Usługi
           </h2>
           <ul className="mt-5 space-y-2.5 text-[0.98rem]">
@@ -62,7 +62,7 @@ export function SiteFooter() {
         </nav>
 
         <div className="lg:col-span-4">
-          <h2 className="text-sm font-bold text-white">
+          <h2 className="text-sm font-semibold text-white">
             Kontakt
           </h2>
           <ul className="mt-5 space-y-4 text-[0.98rem]">
@@ -70,7 +70,7 @@ export function SiteFooter() {
               <a href={contact.phoneHref} className="group flex items-start gap-3">
                 <Icon name="phone" size={20} className="mt-0.5 shrink-0 text-[#ff4d55]" />
                 <span>
-                  <span className="block font-display text-xl font-bold text-white group-hover:underline">
+                  <span className="block font-display text-xl font-semibold text-white group-hover:underline">
                     {contact.phoneDisplay}
                   </span>
                   <span className="text-sm text-white/60">Dyspozytornia 24/7</span>

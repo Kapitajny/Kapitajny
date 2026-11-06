@@ -65,9 +65,9 @@ export default function PricingPage() {
           <Reveal>
             <SectionHeading title="Od czego zależy cena" id="czynniki-title" lead="Na wycenę wpływają przede wszystkim cztery czynniki." />
           </Reveal>
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
             {priceFactors.map((f) => (
-              <li key={f.title} className="card p-6">
+              <li key={f.title} className="border-t border-line-strong pt-6">
                 <h3 className="text-[1.3rem]">{f.title}</h3>
                 <p className="mt-3 text-[0.98rem] leading-relaxed">{f.text}</p>
               </li>
@@ -96,7 +96,7 @@ export default function PricingPage() {
             </ul>
             <p className="mt-6 text-[0.95rem]">
               Zasady płatności i odwoływania usług opisuje{" "}
-              <Link href="/regulamin" className="link-quiet font-bold text-ink">
+              <Link href="/regulamin" className="link-quiet font-semibold text-ink">
                 Regulamin świadczenia usług
               </Link>
               .
