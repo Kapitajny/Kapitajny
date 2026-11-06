@@ -1,41 +1,34 @@
-# Usługi Busem – strona internetowa
+# Usługi Busem – strona internetowa (wersja 3)
 
-Statyczna strona (HTML, CSS, JS) z obsługą formularza wyceny w PHP. Działa na każdym hostingu z PHP 8,
-w tym na Hostingerze, bez bazy danych i bez wtyczek.
+Jedna strona (one-page) z czterema sekcjami w menu: Strona główna, O nas, Cennik, Kontakt.
+Regulamin to osobna podstrona dostępna tylko ze stopki. Formularz wyceny obsługuje `wycena.php`.
+Działa na każdym hostingu z PHP 8 (np. Hostinger), bez bazy danych i wtyczek.
 
-## Struktura
+## Pliki
 
 | Plik | Do czego służy |
 |---|---|
-| `index.html` | Strona główna |
-| `polityka-prywatnosci.html` | Polityka prywatności (wersja robocza, do uzupełnienia danymi firmy) |
-| `wycena.php` | Odbiera formularz wyceny i wysyła e-mail ze zdjęciami w załącznikach |
-| `assets/js/config.js` | **Dane firmy**: telefon, e-mail, adres, linki do Google, opinie |
-| `assets/js/main.js` | Menu, mapa, opinie, walidacja i wysyłka formularza |
-| `assets/js/map-data.js` | Granice 16 województw (GUGiK, Państwowy Rejestr Granic) |
-| `assets/css/style.css` | Wszystkie style, kolory i typografia |
-| `assets/fonts/` | Czcionka Archivo (licencja OFL) przycięta do polskich znaków |
-| `assets/img/` | Zdjęcia WebP, logo SVG, favicon |
+| `index.html` | Strona główna ze wszystkimi sekcjami |
+| `regulamin.html` | Projekt regulaminu z miejscami do uzupełnienia (żółte) i weryfikacji (niebieskie) |
+| `wycena.php` | Odbiera formularz, sprawdza dane, wysyła e-mail ze zdjęciami w załącznikach |
+| `assets/js/config.js` | **Dane firmy**: telefon, e-mail, nazwa i NIP |
+| `assets/js/main.js` | Menu, podświetlanie sekcji, walidacja i wysyłka formularza |
+| `assets/css/style.css` | Wszystkie style |
+| `assets/fonts/` | Anton i Figtree (licencja OFL), przycięte do polskich znaków |
+| `assets/img/bus-uslugi-busem*.webp` | Grafika busa w HERO (wygenerowana w Canvie na podstawie materiałów firmy), 3 rozmiary |
+| `assets/img/rozladunek.webp` | Zdjęcie z grafiki „Rozładunek busa” bez napisu |
+| `assets/img/nowe-*.svg` | Logo odtworzone wektorowo z pliku firmy |
 
-## Przed publikacją uzupełnij
+## Przed publikacją
 
-1. `assets/js/config.js`: `phone`, `email`, opcjonalnie `address`, `companyLegal`,
-   `googleReviewUrl`, `googleProfileUrl`. Puste pola są na stronie opisane jako „do uzupełnienia”.
-2. `wycena.php`: `RECIPIENT` (adres, na który przychodzą zapytania) i `SENDER`
-   (skrzynka w Twojej domenie, np. `formularz@twojadomena.pl`). Dopóki są puste, formularz
-   odpowiada komunikatem, że wysyłka nie jest skonfigurowana.
-3. `polityka-prywatnosci.html`: fragmenty oznaczone tłem.
+1. `assets/js/config.js`: wpisz `phone` i `email`. Bez numeru przyciski „Zadzwoń” prowadzą do sekcji Kontakt.
+2. `wycena.php`: wpisz `RECIPIENT` (adres na zapytania) i `SENDER` (skrzynka w Twojej domenie).
+   Dopóki są puste, formularz odpowiada, że wysyłka nie jest skonfigurowana.
+3. `regulamin.html`: uzupełnij dane firmy i daj tekst do sprawdzenia prawnikowi.
 
 ## Wdrożenie na Hostingerze
 
-1. W hPanelu utwórz skrzynkę e-mail dla adresu nadawcy (`SENDER`).
-2. Menedżer plików, katalog `public_html`: wgraj całą zawartość folderu `strona/`.
-3. Otwórz stronę, wyślij testowe zapytanie ze zdjęciem i sprawdź skrzynkę `RECIPIENT`
-   (także folder spam).
-4. Jeśli wiadomości trafiają do spamu, w hPanelu włącz rekordy SPF i DKIM dla domeny.
-
-## Opinie Google
-
-Prawdziwe opinie wpisz w `config.js` w tablicy `reviews` (autor, ocena, data, treść).
-Strona pokaże je automatycznie w miejscu zaproszenia do wystawienia opinii.
-Automatyczne pobieranie wymaga klucza Google Places API i identyfikatora wizytówki.
+1. W hPanelu utwórz skrzynkę e-mail dla adresu `SENDER`.
+2. Menedżer plików, katalog `public_html`: wgraj zawartość folderu `strona/`.
+3. Wyślij testowe zapytanie ze zdjęciem i sprawdź skrzynkę `RECIPIENT` (także spam).
+4. Jeśli wiadomości trafiają do spamu, włącz w hPanelu rekordy SPF i DKIM.

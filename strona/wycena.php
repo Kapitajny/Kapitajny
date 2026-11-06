@@ -56,9 +56,8 @@ if (field('website') !== '' || ($started > 0 && (time() * 1000 - $started) < MIN
 }
 
 $services = [
-    'Przeprowadzki mieszkań i domów', 'Przeprowadzki biur i firm', 'Transport mebli', 'Transport sprzętu AGD i RTV',
-    'Demontaż i montaż mebli', 'Wnoszenie i znoszenie mebli', 'Opróżnianie mieszkań i domów', 'Opróżnianie piwnic',
-    'Opróżnianie garaży i strychów', 'Wywóz starych mebli i gabarytów', 'Inna usługa',
+    'Przeprowadzka', 'Transport mebli i przedmiotów', 'Opróżnianie mieszkania, domu lub pomieszczenia',
+    'Demontaż i montaż mebli', 'Inna usługa',
 ];
 
 $data = [
@@ -68,10 +67,6 @@ $data = [
     'service' => oneLine(field('service', 80)),
     'from' => oneLine(field('from', 200)),
     'to' => oneLine(field('to', 200)),
-    'date' => oneLine(field('date', 10)),
-    'flexible' => field('flexible', 3) === 'tak',
-    'floor' => oneLine(field('floor', 40)),
-    'lift' => field('lift', 3) === 'tak',
     'details' => field('details', 3000),
     'consent' => field('consent', 3) === 'tak',
 ];
@@ -83,10 +78,6 @@ if (!preg_match('/^\d{9}$/', (string) $digits)) $errors['phone'] = 'Wpisz 9-cyfr
 if ($data['email'] !== '' && !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) $errors['email'] = 'Sprawdź adres e-mail.';
 if (!in_array($data['service'], $services, true)) $errors['service'] = 'Wybierz rodzaj usługi.';
 if (mb_strlen($data['from']) < 2) $errors['from'] = 'Wpisz miejsce odbioru.';
-if ($data['date'] !== '') {
-    $d = DateTime::createFromFormat('Y-m-d', $data['date']);
-    if (!$d || $d->format('Y-m-d') !== $data['date'] || $data['date'] < date('Y-m-d')) $errors['date'] = 'Wybierz dzisiejszą lub późniejszą datę.';
-}
 if (!$data['consent']) $errors['consent'] = 'Zaznacz zgodę, żeby wysłać zapytanie.';
 
 // Zdjęcia
@@ -130,10 +121,8 @@ $lines = [
     'Usługa: ' . $data['service'],
     'Miejsce odbioru: ' . $data['from'],
     'Miejsce dostawy: ' . ($data['to'] !== '' ? $data['to'] : 'nie podano'),
-    'Preferowany termin: ' . ($data['date'] !== '' ? $data['date'] : 'nie podano') . ($data['flexible'] ? ' (termin elastyczny)' : ''),
-    'Piętro: ' . ($data['floor'] !== '' ? $data['floor'] : 'nie podano') . ($data['lift'] ? ', jest winda' : ''),
     '',
-    'Szczegóły zlecenia:',
+    'Opis zlecenia:',
     $data['details'] !== '' ? $data['details'] : 'brak',
     '',
     'Zdjęcia w załącznikach: ' . count($attachments),
