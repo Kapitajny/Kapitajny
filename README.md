@@ -1,5 +1,8 @@
 # NOIR COFFEE – strona kawiarni z zamówieniami online
 
+> **W tym repozytorium:** katalog [`vitalis-med/`](vitalis-med/README.md) zawiera osobny projekt – stronę prywatnego
+> pogotowia ratunkowego VITALIS MED (uruchamiany niezależnie, z własnym `package.json`).
+
 Strona fikcyjnej kawiarni NOIR COFFEE z Gdańska: menu 10 kaw z personalizacją, koszyk, wybór lokalu i godziny
 odbioru, płatności Stripe Checkout potwierdzane webhookiem oraz projekty dokumentów prawnych.
 
