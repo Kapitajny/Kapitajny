@@ -132,6 +132,7 @@ p { text-wrap: pretty; }
   color: rgba(198, 182, 156, .085);
   transform: translateX(var(--gx, 0));
 }
+.hero-ghost::before { content: "Luxury"; } /* dekoracja: tekst w pseudoelemencie, poza drzewem dostępności */
 .hero-side { position: relative; z-index: 2; max-width: 25rem; padding-bottom: clamp(44px, 7vh, 88px); }
 .hero-lead { font-size: clamp(1.02rem, .95rem + .3vw, 1.2rem); color: var(--on-dark-2); }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
@@ -230,9 +231,10 @@ p { text-wrap: pretty; }
   padding: 5.4cqi 6cqi 4.6cqi 4cqi;
   border-radius: 1.2cqi;
   color: var(--ink);
-  background:
-    radial-gradient(80% 120% at 18% 50%, rgba(242, 238, 230, .55), transparent 60%),
-    radial-gradient(70% 90% at 85% 60%, rgba(129, 121, 109, .18), transparent 70%),
+  background-color: var(--sand);
+  background-image:
+    radial-gradient(80% 120% at 18% 50%, rgba(242, 238, 230, .55), rgba(242, 238, 230, 0) 60%),
+    radial-gradient(70% 90% at 85% 60%, rgba(129, 121, 109, .18), rgba(129, 121, 109, 0) 70%),
     linear-gradient(105deg, #D3C5AE, #C6B69C 48%, #CDBFA7);
   box-shadow: 0 1px 0 rgba(255, 255, 255, .35) inset, 0 34px 60px -26px rgba(0, 0, 0, .85), 0 8px 18px -10px rgba(0, 0, 0, .6);
   transform: rotate(var(--r)) rotateX(var(--rx)) rotateY(var(--ry));
