@@ -100,7 +100,7 @@ p { text-wrap: pretty; }
    ========================================================================= */
 .hero {
   position: relative; z-index: 3;
-  min-height: 100svh; display: flex; flex-direction: column;
+  min-height: clamp(560px, 100svh, 1100px); display: flex; flex-direction: column;
   background: var(--black);
   padding-top: clamp(20px, 3vw, 36px);
 }
@@ -192,7 +192,7 @@ p { text-wrap: pretty; }
 .services-intro h2 { max-width: 13ch; }
 .services-intro p { margin-top: 22px; color: var(--on-light-2); max-width: 46ch; }
 
-.services-stage { grid-column: 1; grid-row: 1 / span 2; position: sticky; top: 9vh; align-self: start; height: 82vh; display: flex; flex-direction: column; }
+.services-stage { grid-column: 1; grid-row: 1 / span 2; position: sticky; top: 9vh; align-self: start; height: clamp(480px, 82vh, 780px); display: flex; flex-direction: column; }
 .stage-frame { position: relative; flex: 1; overflow: hidden; background: var(--graphite); clip-path: inset(0 0 0 0); }
 .js .stage-frame { clip-path: inset(100% 0 0 0); transition: clip-path 1.4s var(--ease-io); }
 .js .services-stage.in .stage-frame { clip-path: inset(0 0 0 0); }
@@ -493,6 +493,18 @@ p { text-wrap: pretty; }
 .dock-tel svg { width: 18px; height: 18px; color: var(--sand); }
 .dock-quote { background: var(--sand); color: var(--black); }
 .dock-quote:hover { background: var(--cream); }
+
+/* Tryb osadzony (ramka bez własnego przewijania): zdjęcie przy każdej usłudze zamiast przyklejonej ramki */
+.is-static .services-stage { display: none; }
+.is-static .services-intro, .is-static .svc-list { grid-column: 1 / -1; }
+.is-static .services-intro { max-width: 52rem; }
+.is-static .svc { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); grid-template-rows: 1fr auto auto auto 1fr; column-gap: clamp(32px, 5vw, 88px); }
+.is-static .svc-photo { display: block; grid-column: 1; grid-row: 1 / -1; aspect-ratio: 4 / 3; overflow: hidden; background: var(--graphite); clip-path: none; }
+.is-static .svc-photo img { width: 100%; height: 100%; object-fit: cover; }
+.is-static .svc h3 { grid-column: 2; grid-row: 2; color: var(--black); }
+.is-static .svc p { grid-column: 2; grid-row: 3; }
+.is-static .svc-link { grid-column: 2; grid-row: 4; }
+.is-static .prices-head, .is-static .quote-copy { position: static; }
 
 /* =========================================================================
    Regulamin

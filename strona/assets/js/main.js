@@ -168,8 +168,20 @@
     if (cap && svcs[i]) text(cap, $("h3", svcs[i]).textContent);
   }
 
+  /* Strona osadzona w ramce o wysokości całej treści (np. podgląd) nie przewija się sama:
+     wtedy efekty zależne od przewijania pokazują stan końcowy. */
+  function staticMode() { return document.documentElement.scrollHeight - window.innerHeight < 40 || window.innerHeight > 2400; }
   function frame() {
     ticking = false;
+    document.documentElement.classList.toggle("is-static", staticMode());
+    if (staticMode()) {
+      words.forEach(function (w) { w.classList.add("lit"); });
+      if (track) { track.style.setProperty("--p", "1"); stops.forEach(function (s) { s.classList.add("on"); }); }
+      if (bar) bar.style.setProperty("--p", 0);
+      if (dock) dock.classList.remove("show");
+      setService(activeSvc < 0 ? 0 : activeSvc);
+      return;
+    }
     var vh = window.innerHeight, sy = window.pageYOffset || document.documentElement.scrollTop;
     var max = document.documentElement.scrollHeight - vh;
     if (bar) bar.style.setProperty("--p", max > 0 ? (sy / max).toFixed(4) : 0);
