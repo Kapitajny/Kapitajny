@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "buried-raster",
+        "value": "*",
+        "files": [
+          "strona/index.html"
+        ],
+        "createdAt": "2026-11-07T01:54:39.451Z",
+        "reason": "Stos zdjęć usług z przenikaniem: nieaktywne kadry mają opacity 0 celowo"
+      }
+    ]
+  }
+}

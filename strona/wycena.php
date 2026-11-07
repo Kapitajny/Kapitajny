@@ -1,15 +1,17 @@
 <?php
 /**
- * Usługi Busem – obsługa formularza wyceny.
+ * Luxury Moving – obsługa formularza wyceny.
  *
  * Konfiguracja: wpisz adres, na który mają przychodzić zapytania (RECIPIENT),
  * oraz adres nadawcy w Twojej domenie (SENDER), np. formularz@twojadomena.pl.
  * Na Hostingerze adres nadawcy powinien istnieć jako skrzynka w panelu hPanel,
  * inaczej wiadomości mogą trafiać do spamu.
+ * Zamiast edytować plik możesz też ustawić zmienne środowiskowe
+ * WYCENA_RECIPIENT i WYCENA_SENDER (mają pierwszeństwo, gdy są ustawione).
  */
-const RECIPIENT = '';
-const SENDER = '';
-const SITE_NAME = 'Usługi Busem';
+define('RECIPIENT', getenv('WYCENA_RECIPIENT') ?: '');
+define('SENDER', getenv('WYCENA_SENDER') ?: '');
+const SITE_NAME = 'Luxury Moving';
 
 const MAX_FILES = 6;
 const MAX_FILE_BYTES = 8 * 1024 * 1024;
@@ -56,9 +58,14 @@ if (field('website') !== '' || ($started > 0 && (time() * 1000 - $started) < MIN
 }
 
 $services = [
-    'Przeprowadzka mieszkania lub domu', 'Przeprowadzka firmy lub biura',
-    'Transport mebli i rzeczy wielkogabarytowych', 'Opróżnianie mieszkania, domu lub pomieszczenia',
-    'Demontaż i montaż mebli', 'Inna usługa',
+    'Przeprowadzka mieszkania lub domu', 'Przeprowadzka biura lub firmy', 'Transport mebli',
+    'Transport rzeczy wielkogabarytowych', 'Przewóz wyposażenia', 'Pomoc przy załadunku i rozładunku',
+    'Inna usługa',
+];
+$noDestination = ['Pomoc przy załadunku i rozładunku', 'Inna usługa'];
+$volumes = [
+    'Kilka przedmiotów', 'Kawalerka (do ok. 35 m²)', 'Mieszkanie 2–3 pokoje',
+    'Duże mieszkanie lub dom', 'Biuro lub lokal firmy', 'Trudno powiedzieć',
 ];
 
 $data = [
@@ -66,6 +73,8 @@ $data = [
     'phone' => oneLine(field('phone', 40)),
     'email' => oneLine(field('email', 160)),
     'service' => oneLine(field('service', 80)),
+    'volume' => oneLine(field('volume', 60)),
+    'date' => oneLine(field('date', 10)),
     'from' => oneLine(field('from', 200)),
     'to' => oneLine(field('to', 200)),
     'details' => field('details', 3000),
@@ -78,7 +87,14 @@ $digits = preg_replace('/^(\+48|0048)/', '', preg_replace('/[\s().-]/', '', $dat
 if (!preg_match('/^\d{9}$/', (string) $digits)) $errors['phone'] = 'Wpisz 9-cyfrowy numer telefonu.';
 if ($data['email'] !== '' && !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) $errors['email'] = 'Sprawdź adres e-mail.';
 if (!in_array($data['service'], $services, true)) $errors['service'] = 'Wybierz rodzaj usługi.';
-if (mb_strlen($data['from']) < 2) $errors['from'] = 'Wpisz miejsce odbioru.';
+if (!in_array($data['volume'], $volumes, true)) $errors['volume'] = 'Wybierz przybliżoną ilość rzeczy.';
+if (mb_strlen($data['from']) < 2) $errors['from'] = 'Wpisz adres załadunku.';
+if (!in_array($data['service'], $noDestination, true) && mb_strlen($data['to']) < 2) $errors['to'] = 'Wpisz adres rozładunku.';
+if ($data['date'] !== '') {
+    $d = DateTimeImmutable::createFromFormat('!Y-m-d', $data['date'], new DateTimeZone('Europe/Warsaw'));
+    $today = new DateTimeImmutable('today', new DateTimeZone('Europe/Warsaw'));
+    if (!$d || $d->format('Y-m-d') !== $data['date'] || $d < $today) $errors['date'] = 'Wybierz dzisiejszą lub późniejszą datę albo zostaw pole puste.';
+}
 if (!$data['consent']) $errors['consent'] = 'Zaznacz zgodę, żeby wysłać zapytanie.';
 
 // Zdjęcia
@@ -120,10 +136,12 @@ $lines = [
     'E-mail: ' . ($data['email'] !== '' ? $data['email'] : 'nie podano'),
     '',
     'Usługa: ' . $data['service'],
-    'Miejsce odbioru: ' . $data['from'],
-    'Miejsce dostawy: ' . ($data['to'] !== '' ? $data['to'] : 'nie podano'),
+    'Przybliżona ilość rzeczy: ' . $data['volume'],
+    'Adres załadunku: ' . $data['from'],
+    'Adres rozładunku: ' . ($data['to'] !== '' ? $data['to'] : 'nie podano'),
+    'Preferowany termin: ' . ($data['date'] !== '' ? $data['date'] : 'elastyczny / nie podano'),
     '',
-    'Opis zlecenia:',
+    'Dodatkowe informacje:',
     $data['details'] !== '' ? $data['details'] : 'brak',
     '',
     'Zdjęcia w załącznikach: ' . count($attachments),
@@ -133,7 +151,7 @@ $body = implode("\r\n", $lines);
 
 $enc = fn(string $s) => '=?UTF-8?B?' . base64_encode($s) . '?=';
 $subject = $enc('Wycena: ' . $data['service'] . ' – ' . $data['name']);
-$boundary = 'ub_' . bin2hex(random_bytes(12));
+$boundary = 'lm_' . bin2hex(random_bytes(12));
 
 $headers = [
     'From: ' . $enc(SITE_NAME) . ' <' . SENDER . '>',

@@ -1,4 +1,4 @@
-# Usługi Busem – ustawienia serwera (Hostinger: LiteSpeed/Apache)
+# Luxury Moving – ustawienia serwera (Hostinger: LiteSpeed/Apache)
 
 # Kompresja tekstu
 <IfModule mod_deflate.c>

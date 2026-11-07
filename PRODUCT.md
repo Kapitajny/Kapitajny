@@ -2,7 +2,7 @@
 
 <!-- impeccable:product-schema 1 -->
 
-Dotyczy strony firmowej w katalogu `strona/` (Usługi Busem). Pozostałe pliki repozytorium (aplikacja Next.js „noir-coffee”) to osobny projekt.
+Dotyczy strony firmowej w katalogu `strona/` (marka robocza LUXURY MOVING, wcześniej Usługi Busem). Pozostałe pliki repozytorium (aplikacja Next.js „noir-coffee”) to osobny projekt.
 
 ## Platform
 
@@ -33,14 +33,17 @@ Klient opisuje zlecenie: co przewozi, skąd, dokąd, piętro, winda, termin; do�
 - Usługi: przeprowadzki mieszkań, domów, biur i firm (w mieście i między miastami); transport mebli, AGD/RTV i innych przedmiotów; opróżnianie mieszkań, domów, piwnic, garaży i strychów z wywozem gabarytów; demontaż i montaż mebli.
 - Ceny (brutto): przeprowadzki od 1000 zł; transport mebli i innych przedmiotów od 150 zł; opróżnianie mieszkań i domów – wycena indywidualna. Cena końcowa zależy od zakresu zlecenia i szczegółów transportu. Wycena bezpłatna.
 - Obszar: cała Polska, 16 województw; mapa z największym miastem każdego województwa (element do zachowania).
-- Formularz: imię, telefon, e-mail (opcjonalnie), usługa, skąd, dokąd, opis, do 6 zdjęć, zgoda; honeypot i limit czasu.
+- Formularz (4 kroki): imię i nazwisko, telefon, e-mail (opcjonalnie), rodzaj usługi, przybliżona ilość rzeczy, adres załadunku, adres rozładunku, preferowany termin (opcjonalnie), dodatkowe informacje, do 6 zdjęć, zgoda; honeypot i limit czasu.
 - Otwarte decyzje (do uzupełnienia przez właściciela): prawdziwy numer telefonu (obecnie przykładowy 500 999 777), e-mail, dane firmy (NIP, adres), domena, adresy RECIPIENT/SENDER w `wycena.php`.
 
 ## Brand Commitments
 
-- Nazwa: Usługi Busem. Logo: sylwetka busa w czerni i niebieskim z liniami ruchu i napisem „USŁUGI BUSEM” (`strona/assets/img/nowe-*.svg`, oryginał `materialy/grafiki/logo-uslugi-busem-bus.png`).
-- Grafika „Rozładunek busa” (`materialy/grafiki/rozladunek-busa.png`) i grafika busa w barwach firmy (`materialy/grafiki/bus-hero-2x.png`).
-- Ton: konkretny, rzeczowy, po polsku, na „Ty”.
+- Nazwa robocza: LUXURY MOVING (wersja 6 strony, „Black & Sand”). Poprzednia nazwa i logo „Usługi Busem” zostały w `materialy/logo/` i w kopii `materialy/kopie/strona-v5-przed-przebudowa.zip`.
+- Logo: monogram „LM” w podwójnym okręgu + napis LUXURY MOVING w Bodoni Moda (symbol `#i-mark` w `strona/index.html`, favicon `strona/assets/img/favicon.svg`).
+- Paleta Black & Sand: #171615, #24211F, #C6B69C, #F2EEE6, #81796D, #E8E3DA.
+- Bus w hero: grafika `materialy/grafiki/bus-hero-2x.png` z usuniętym logo „Usługi Busem” i pasami przemalowanymi z niebieskiego na piaskowy (`strona/assets/img/van-*.webp`).
+- Zdjęcia usług: kadry z grafik klienta w jednolitej tonacji sepii (`strona/assets/img/*-NNN.webp`).
+- Ton: konkretny, rzeczowy, spokojny, po polsku, na „Ty”; premium bez przesady i bez zmyślonych obietnic.
 - Referencje wskazane przez właściciela (inspiracja, nie kopia): dawidpiatkowski.com, rydvan.pl.
 
 ## Evidence on Hand
