@@ -157,16 +157,20 @@
   });
 
   /* Tablica trasy w hero */
-  var routeForm = $("#route-form");
-  routeForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    var from = routeForm.elements["r-from"].value.trim(), to = routeForm.elements["r-to"].value.trim();
+  /* Bez zdarzenia „submit”: w osadzonym podglądzie (iframe bez allow-forms) przeglądarka blokuje wysyłkę formularzy */
+  var routeForm = $("#route-form"), rFrom = $("#r-from"), rTo = $("#r-to");
+  function routeGo() {
+    var from = rFrom.value.trim(), to = rTo.value.trim();
     if (from) form.elements.from.value = from;
     if (to) form.elements.to.value = to;
     var cf = findCity(from), ct = findCity(to);
     if (cf && ct && cf !== ct) { pick = [cf, ct]; drawRoute(); }
     goTo("wycena");
-  });
+  }
+  $("#route-go").addEventListener("click", routeGo);
+  routeForm.addEventListener("submit", function (e) { e.preventDefault(); routeGo(); });
+  rFrom.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); rTo.focus(); } });
+  rTo.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); routeGo(); } });
 
   /* Formularz wyceny */
   var MAX_FILES = 6, MAX_FILE = 8 * 1024 * 1024, MAX_TOTAL = 20 * 1024 * 1024;
@@ -236,7 +240,7 @@
   function plural(k) { return k === 1 ? "1 pole zaznaczone" : k + (k < 5 ? " pola zaznaczone" : " pól zaznaczonych"); }
   function show(t, bad) { msgEl.textContent = t; msgEl.classList.toggle("bad", !!bad); }
 
-  form.addEventListener("submit", function (e) {
+  function sendQuote(e) {
     e.preventDefault(); tried = true;
     var bad = Object.keys(rules).filter(function (n) { return !check(n); });
     if (!checkConsent()) bad.push("consent");
@@ -255,7 +259,10 @@
         show(j.message || "Nie udało się wysłać zapytania. Spróbuj ponownie albo zadzwoń do nas.", true);
       })
       .catch(function () { btn.disabled = false; btn.textContent = "Wyślij zapytanie"; show("Nie udało się połączyć z serwerem. Spróbuj ponownie albo zadzwoń do nas.", true); });
-  });
+  }
+  /* Kliknięcie przycisku obsługujemy wprost (działa też w podglądzie, gdzie „submit” jest blokowany); Enter w polu – przez „submit” */
+  btn.addEventListener("click", sendQuote);
+  form.addEventListener("submit", sendQuote);
   $("#form-again").addEventListener("click", function () {
     form.reset(); files = []; renderThumbs(); tried = false;
     $$(".err", form).forEach(function (p) { p.textContent = ""; });

@@ -73,36 +73,18 @@
         <form class="route" id="route-form" action="#wycena" novalidate>
           <div class="route-field">
             <label for="r-from">Skąd</label>
-            <input id="r-from" name="r-from" list="cities" placeholder="np. Kraków" autocomplete="address-level2">
+            <input id="r-from" name="r-from" type="text" placeholder="Miejscowość" autocomplete="address-level2" enterkeyhint="next">
           </div>
           <svg class="route-arrow" aria-hidden="true"><use href="#i-route"/></svg>
           <div class="route-field">
             <label for="r-to">Dokąd</label>
-            <input id="r-to" name="r-to" list="cities" placeholder="np. Gdańsk" autocomplete="address-level2">
+            <input id="r-to" name="r-to" type="text" placeholder="Miejscowość" autocomplete="address-level2" enterkeyhint="go">
           </div>
-          <button class="plate plate-inv route-go" type="submit">Wyceń trasę</button>
+          <button class="plate plate-inv route-go" id="route-go" type="button">Wyceń trasę</button>
         </form>
         <p class="hero-call">Wolisz porozmawiać? <a data-call href="tel:+48500999777">Zadzwoń: <span data-phone-text>500 999 777</span></a></p>
       </div>
     </div>
-    <datalist id="cities">
-      <option value="Warszawa">
-      <option value="Kraków">
-      <option value="Wrocław">
-      <option value="Łódź">
-      <option value="Poznań">
-      <option value="Gdańsk">
-      <option value="Szczecin">
-      <option value="Bydgoszcz">
-      <option value="Lublin">
-      <option value="Białystok">
-      <option value="Katowice">
-      <option value="Kielce">
-      <option value="Rzeszów">
-      <option value="Olsztyn">
-      <option value="Opole">
-      <option value="Zielona Góra">
-    </datalist>
   </section>
 
   <section class="sec intro" id="o-nas" aria-labelledby="h-intro">
@@ -366,12 +348,12 @@
             </div>
             <div class="field">
               <label for="f-from">Skąd <span class="req" aria-hidden="true">*</span></label>
-              <input id="f-from" name="from" type="text" list="cities" placeholder="Miejscowość, ulica" required aria-describedby="e-from">
+              <input id="f-from" name="from" type="text" placeholder="Miejscowość, ulica" required aria-describedby="e-from">
               <p class="err" id="e-from"></p>
             </div>
             <div class="field">
               <label for="f-to">Dokąd <span class="opt">(jeśli dotyczy)</span></label>
-              <input id="f-to" name="to" type="text" list="cities" placeholder="Miejscowość, ulica">
+              <input id="f-to" name="to" type="text" placeholder="Miejscowość, ulica">
             </div>
             <div class="field wide">
               <label for="f-details">Opis zlecenia</label>
