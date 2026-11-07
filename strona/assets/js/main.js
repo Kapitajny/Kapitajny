@@ -88,25 +88,41 @@
     for (var i = 0; i < order.length; i++) { var el = form.elements[order[i]]; if (!el.value.trim()) return el; }
     return form.elements.details;
   }
+  /* Czy cel jest już na ekranie (górna część widoku) */
+  function arrived(el) { var r = el.getBoundingClientRect(); return r.top > -40 && r.top < window.innerHeight * 0.6; }
+  function jump(el) {
+    var y = el.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop) - (top.offsetHeight || 0) - 12;
+    try { window.scrollTo(0, y); } catch (err) {}
+    (document.scrollingElement || document.documentElement).scrollTop = y;
+    if (!arrived(el)) { try { el.scrollIntoView(true); } catch (err) {} }
+  }
   function goTo(id) {
     var target = document.getElementById(id);
     if (!target) return false;
     if (nav.classList.contains("open")) setMenu(false);
-    target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    /* 1) płynne przewinięcie; 2) jeśli nie dojechało (niektóre przeglądarki w osadzonym podglądzie) – skok bez animacji;
+       3) w ostateczności natywny skok do kotwicy */
+    try { target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" }); } catch (err) { jump(target); }
+    setTimeout(function () {
+      if (arrived(target)) return;
+      jump(target);
+      setTimeout(function () { if (!arrived(target)) { try { location.hash = id; } catch (err) {} } }, 120);
+    }, reduce ? 60 : 1000);
     try { history.replaceState(null, "", "#" + id); } catch (err) {}
     if (id === "wycena") {
-      setTimeout(function () { if (!form.hidden) firstEmpty().focus({ preventScroll: true }); }, reduce ? 0 : 700);
+      setTimeout(function () { if (!form.hidden) { try { firstEmpty().focus({ preventScroll: true }); } catch (err) { firstEmpty().focus(); } } }, reduce ? 0 : 1150);
     }
     return true;
   }
-  document.addEventListener("click", function (e) {
+  /* Faza przechwytywania: link obsługujemy zanim cokolwiek innego zdąży zablokować kliknięcie */
+  window.addEventListener("click", function (e) {
     var a = e.target.closest && e.target.closest('a[href^="#"]');
-    if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    if (!a || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
     var id = a.getAttribute("href").slice(1);
     if (!id) return;
     if (a.hasAttribute("data-service")) form.elements.service.value = a.getAttribute("data-service");
     if (goTo(id)) e.preventDefault();
-  });
+  }, true);
 
   /* Trasa: mapa Polski */
   var CITY = {};
