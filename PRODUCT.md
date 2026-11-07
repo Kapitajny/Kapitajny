@@ -4,6 +4,8 @@
 
 Dotyczy strony firmowej w katalogu `strona/` (Usługi Busem). Pozostałe pliki repozytorium (aplikacja Next.js „noir-coffee”) to osobny projekt.
 
+Strona jest **demonstracyjna**: przygotowuje ją agencja ComputerIT jako przykład dla klientów z branży przeprowadzkowej. Marka „Usługi Busem” i dane kontaktowe są przykładowe.
+
 ## Platform
 
 web
@@ -41,11 +43,12 @@ Klient opisuje zlecenie: co przewozi, skąd, dokąd, piętro, winda, termin; do�
 - Nazwa: Usługi Busem. Logo: sylwetka busa w czerni i niebieskim z liniami ruchu i napisem „USŁUGI BUSEM” (`strona/assets/img/nowe-*.svg`, oryginał `materialy/grafiki/logo-uslugi-busem-bus.png`).
 - Grafika „Rozładunek busa” (`materialy/grafiki/rozladunek-busa.png`) i grafika busa w barwach firmy (`materialy/grafiki/bus-hero-2x.png`).
 - Ton: konkretny, rzeczowy, po polsku, na „Ty”.
-- Referencje wskazane przez właściciela (inspiracja, nie kopia): dawidpiatkowski.com, rydvan.pl.
+- Paleta wskazana przez właściciela: szałwiowa zieleń, ciepły beż, złamana biel, grafit, czerń. Cennik w motywie banknotu (bez imitacji prawdziwej waluty). Menu: O nas, Usługi, Cennik, Formularz, Kontakt.
 
 ## Evidence on Hand
 
-- Grafiki: bus w barwach firmy (wycięty, 2832 px), rozładunek busa (1080×1350), wnętrze busa z kartonami (794×523), bus z innym logo (z górami – niezgodny z obecnym logo).
+- Zdjęcia: stockowe z Pexels (licencja Pexels), spis w `strona/README.md`. Osoby na zdjęciach nie są pracownikami firmy – w wersji produkcyjnej zdjęcia trzeba zastąpić własnymi.
+- Starsze grafiki (bus z Canvy, rozładunek, wnętrze busa) zostały w `materialy/grafiki/`, na stronie v6 nie są używane.
 - Brak: opinii klientów, zdjęć z prawdziwych realizacji, liczby zleceń, lat działania, certyfikatów, ubezpieczeń, danych rejestrowych. Nie wolno ich wymyślać. Sekcja opinii i realizacji może pokazywać tylko materiały dostarczone przez właściciela.
 - Numer 694 796 560 należy do innej firmy – nie używać.
 

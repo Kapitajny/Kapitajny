@@ -1,6 +1,6 @@
 <?php
 /**
- * Usługi Busem – obsługa formularza wyceny.
+ * Usługi Busem – obsługa formularza wyceny (wersja 6).
  *
  * Konfiguracja: wpisz adres, na który mają przychodzić zapytania (RECIPIENT),
  * oraz adres nadawcy w Twojej domenie (SENDER), np. formularz@twojadomena.pl.
@@ -15,6 +15,8 @@ const MAX_FILES = 6;
 const MAX_FILE_BYTES = 8 * 1024 * 1024;
 const MAX_TOTAL_BYTES = 20 * 1024 * 1024;
 const MIN_FILL_SECONDS = 3;
+const RATE_LIMIT = 5;          // najwięcej zapytań z jednego adresu IP...
+const RATE_WINDOW = 3600;      // ...w ciągu godziny
 
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
@@ -39,6 +41,13 @@ function oneLine(string $v): string
     return trim(preg_replace('/[\r\n]+/', ' ', $v) ?? '');
 }
 
+/** Wartość z listy dozwolonych albo pusty tekst. */
+function choice(string $name, array $allowed): string
+{
+    $v = oneLine(field($name, 120));
+    return in_array($v, $allowed, true) ? $v : '';
+}
+
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     header('Allow: POST');
     respond(405, ['ok' => false, 'message' => 'Formularz przyjmuje tylko wysyłkę metodą POST.']);
@@ -55,19 +64,50 @@ if (field('website') !== '' || ($started > 0 && (time() * 1000 - $started) < MIN
     respond(200, ['ok' => true]);
 }
 
-$services = [
-    'Przeprowadzka mieszkania lub domu', 'Przeprowadzka firmy lub biura',
-    'Transport mebli i rzeczy wielkogabarytowych', 'Opróżnianie mieszkania, domu lub pomieszczenia',
-    'Demontaż i montaż mebli', 'Inna usługa',
-];
+// Limit zapytań z jednego adresu IP (plik w katalogu tymczasowym serwera).
+$ip = (string) ($_SERVER['REMOTE_ADDR'] ?? '');
+$rateFile = rtrim(sys_get_temp_dir(), '/') . '/ub_rate_' . hash('sha256', $ip . '|' . __FILE__);
+$hits = [];
+if (is_file($rateFile)) {
+    $hits = array_filter(array_map('intval', explode(',', (string) file_get_contents($rateFile))), fn($t) => $t > time() - RATE_WINDOW);
+}
+if (count($hits) >= RATE_LIMIT) {
+    respond(429, ['ok' => false, 'message' => 'Wysłano już kilka zapytań z tego urządzenia. Spróbuj za godzinę albo zadzwoń do nas.']);
+}
+
+$KINDS = ['Przeprowadzka mieszkania', 'Przeprowadzka domu', 'Przeprowadzka biura lub firmy', 'Transport mebli',
+    'Transport rzeczy wielkogabarytowych', 'Transport busem (inne rzeczy)', 'Opróżnianie i wywóz'];
+$SIZES = ['Kawalerka', '2 pokoje', '3 pokoje', '4 pokoje i więcej', 'Dom', 'Biuro', 'Pojedyncze meble lub rzeczy'];
+$FLOORS = ['Parter', '1. piętro', '2. piętro', '3. piętro', '4. piętro', '5. piętro', '6.–10. piętro', 'Powyżej 10. piętra'];
+$LIFTS = ['W obu miejscach', 'Tylko przy załadunku', 'Tylko przy rozładunku', 'Nigdzie nie ma windy', 'Nie wiem'];
+$HELP = ['Tak', 'Nie', 'Nie wiem'];
+$EXTRAS = ['Demontaż i montaż mebli', 'Wywóz niepotrzebnych rzeczy', 'Transport rzeczy wielkogabarytowych', 'Inne – opiszę w uwagach'];
+
+$date = oneLine(field('date', 10));
+if ($date !== '' && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $date)) $date = '';
+
+$extras = [];
+if (isset($_POST['extras']) && is_array($_POST['extras'])) {
+    foreach ($_POST['extras'] as $e) {
+        if (is_string($e) && in_array($e, $EXTRAS, true) && !in_array($e, $extras, true)) $extras[] = $e;
+    }
+}
 
 $data = [
     'name' => oneLine(field('name', 120)),
     'phone' => oneLine(field('phone', 40)),
     'email' => oneLine(field('email', 160)),
-    'service' => oneLine(field('service', 80)),
     'from' => oneLine(field('from', 200)),
     'to' => oneLine(field('to', 200)),
+    'date' => $date,
+    'flexible' => field('flexible', 3) === 'tak',
+    'kind' => choice('kind', $KINDS),
+    'size' => choice('size', $SIZES),
+    'floor_from' => choice('floor_from', $FLOORS),
+    'floor_to' => choice('floor_to', $FLOORS),
+    'lift' => choice('lift', $LIFTS),
+    'help' => choice('help', $HELP),
+    'extras' => $extras,
     'details' => field('details', 3000),
     'consent' => field('consent', 3) === 'tak',
 ];
@@ -77,8 +117,8 @@ if (mb_strlen($data['name']) < 3) $errors['name'] = 'Wpisz imię i nazwisko.';
 $digits = preg_replace('/^(\+48|0048)/', '', preg_replace('/[\s().-]/', '', $data['phone']) ?? '');
 if (!preg_match('/^\d{9}$/', (string) $digits)) $errors['phone'] = 'Wpisz 9-cyfrowy numer telefonu.';
 if ($data['email'] !== '' && !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) $errors['email'] = 'Sprawdź adres e-mail.';
-if (!in_array($data['service'], $services, true)) $errors['service'] = 'Wybierz rodzaj usługi.';
-if (mb_strlen($data['from']) < 2) $errors['from'] = 'Wpisz miejsce odbioru.';
+if (mb_strlen($data['from']) < 2) $errors['from'] = 'Wpisz adres załadunku.';
+if ($data['kind'] === '') $errors['kind'] = 'Wybierz rodzaj przeprowadzki lub transportu.';
 if (!$data['consent']) $errors['consent'] = 'Zaznacz zgodę, żeby wysłać zapytanie.';
 
 // Zdjęcia
@@ -111,19 +151,32 @@ if ($errors) {
     respond(422, ['ok' => false, 'errors' => $errors, 'message' => 'Popraw pola zaznaczone na czerwono.']);
 }
 
+$or = fn(string $v, string $empty = 'nie podano') => $v !== '' ? $v : $empty;
+$term = $data['date'] !== '' ? $data['date'] : 'nie podano';
+if ($data['flexible']) $term .= ' (termin elastyczny)';
+
 // Treść wiadomości
 $lines = [
     'Nowe zapytanie o wycenę ze strony ' . SITE_NAME,
     '',
+    'DANE KLIENTA',
     'Imię i nazwisko: ' . $data['name'],
     'Telefon: ' . $data['phone'],
-    'E-mail: ' . ($data['email'] !== '' ? $data['email'] : 'nie podano'),
+    'E-mail: ' . $or($data['email']),
     '',
-    'Usługa: ' . $data['service'],
-    'Miejsce odbioru: ' . $data['from'],
-    'Miejsce dostawy: ' . ($data['to'] !== '' ? $data['to'] : 'nie podano'),
+    'PRZEPROWADZKA',
+    'Rodzaj: ' . $data['kind'],
+    'Wielkość: ' . $or($data['size']),
+    'Adres załadunku: ' . $data['from'],
+    'Piętro załadunku: ' . $or($data['floor_from']),
+    'Adres rozładunku: ' . $or($data['to']),
+    'Piętro rozładunku: ' . $or($data['floor_to']),
+    'Winda: ' . $or($data['lift']),
+    'Preferowany termin: ' . $term,
+    'Pomoc przy załadunku i rozładunku: ' . $or($data['help']),
+    'Usługi dodatkowe: ' . ($data['extras'] ? implode(', ', $data['extras']) : 'brak'),
     '',
-    'Opis zlecenia:',
+    'OPIS ZLECENIA',
     $data['details'] !== '' ? $data['details'] : 'brak',
     '',
     'Zdjęcia w załącznikach: ' . count($attachments),
@@ -132,7 +185,7 @@ $lines = [
 $body = implode("\r\n", $lines);
 
 $enc = fn(string $s) => '=?UTF-8?B?' . base64_encode($s) . '?=';
-$subject = $enc('Wycena: ' . $data['service'] . ' – ' . $data['name']);
+$subject = $enc('Wycena: ' . $data['kind'] . ' – ' . $data['name']);
 $boundary = 'ub_' . bin2hex(random_bytes(12));
 
 $headers = [
@@ -156,4 +209,6 @@ $sent = mail(RECIPIENT, $subject, $message, implode("\r\n", $headers), '-f' . SE
 if (!$sent) {
     respond(502, ['ok' => false, 'message' => 'Serwer nie wysłał wiadomości. Spróbuj ponownie za chwilę albo zadzwoń do nas.']);
 }
+$hits[] = time();
+@file_put_contents($rateFile, implode(',', $hits), LOCK_EX);
 respond(200, ['ok' => true]);
