@@ -179,7 +179,7 @@
       var li = document.createElement("li"), img = document.createElement("img"), x = document.createElement("button");
       img.alt = "Podgląd: " + f.name; img.width = 76; img.height = 76;
       img.src = URL.createObjectURL(f); img.onload = function () { URL.revokeObjectURL(img.src); };
-      x.type = "button"; x.textContent = "×"; x.setAttribute("aria-label", "Usuń zdjęcie " + f.name);
+      x.type = "button"; x.innerHTML = '<svg aria-hidden="true"><use href="#i-close"/></svg>'; x.setAttribute("aria-label", "Usuń zdjęcie " + f.name);
       x.addEventListener("click", function () { files.splice(i, 1); renderThumbs(); fileIn.focus(); });
       li.appendChild(img); li.appendChild(x); thumbs.appendChild(li);
     });

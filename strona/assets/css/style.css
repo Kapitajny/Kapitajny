@@ -301,7 +301,8 @@ h3 { font: 700 clamp(1.45rem, 1.2rem + .9vw, 1.9rem)/1.08 var(--f-szyld); letter
 .thumbs:empty { display: none; }
 .thumbs li { position: relative; }
 .thumbs img { width: 76px; height: 76px; object-fit: cover; border-radius: 8px; }
-.thumbs button { position: absolute; top: -10px; right: -10px; width: 30px; height: 30px; border: 2px solid var(--lakier); border-radius: 50%; background: var(--tekst); color: var(--bialy); font-size: 1.1rem; line-height: 1; }
+.thumbs button { position: absolute; top: -10px; right: -10px; display: grid; place-items: center; width: 30px; height: 30px; padding: 0; border: 2px solid var(--lakier); border-radius: 50%; background: var(--tekst); color: var(--bialy); }
+.thumbs button svg { width: 16px; height: 16px; }
 .check { grid-template-columns: 26px minmax(0, 1fr); column-gap: 12px; align-items: start; }
 .check input { width: 26px; height: 26px; margin: 0; accent-color: var(--znak); }
 .check label { font-weight: 400; font-size: .9375rem; color: var(--tekst-2); }
