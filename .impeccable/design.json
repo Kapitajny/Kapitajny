@@ -1,0 +1,482 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-07T14:46:32Z",
+  "title": "Design System: Usługi Busem",
+  "scope": "Tylko strona Usługi Busem w strona/ (v6); nie dotyczy aplikacji Next.js noir-coffee w tym repozytorium. Zastępuje system v5.",
+  "extensions": {
+    "colorMeta": {
+      "sage-deep": {
+        "role": "primary",
+        "displayName": "Ciemna szałwia",
+        "canonical": "#4E6452",
+        "tonalRamp": [
+          "#232924",
+          "#3A463C",
+          "#506353",
+          "#65806A",
+          "#88A08C",
+          "#B1BFB3",
+          "#D6DCD7",
+          "#F1F3F2"
+        ]
+      },
+      "sage": {
+        "role": "primary",
+        "displayName": "Szałwia",
+        "canonical": "#8C9D85",
+        "tonalRamp": [
+          "#252923",
+          "#3E453A",
+          "#566251",
+          "#6E7F67",
+          "#8F9F89",
+          "#B5BEB1",
+          "#D8DCD6",
+          "#F2F3F1"
+        ]
+      },
+      "sage-soft": {
+        "role": "primary",
+        "displayName": "Jasna szałwia",
+        "canonical": "#C9D3C3",
+        "tonalRamp": [
+          "#252A22",
+          "#3E4738",
+          "#56654D",
+          "#6F8462",
+          "#90A385",
+          "#B5C0AF",
+          "#D8DDD5",
+          "#F2F3F1"
+        ]
+      },
+      "beige": {
+        "role": "secondary",
+        "displayName": "Ciepły beż",
+        "canonical": "#E2D5BF",
+        "tonalRamp": [
+          "#30291C",
+          "#52452D",
+          "#76613C",
+          "#9C7D4A",
+          "#B99E6E",
+          "#CDBDA2",
+          "#E3DBCF",
+          "#F5F3EF"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Złamana biel",
+        "canonical": "#F1F2EC",
+        "tonalRamp": [
+          "#2A2B21",
+          "#464936",
+          "#63684B",
+          "#80875E",
+          "#A0A781",
+          "#BFC2AD",
+          "#DCDED4",
+          "#F3F4F1"
+        ]
+      },
+      "paper-2": {
+        "role": "neutral",
+        "displayName": "Szary papier",
+        "canonical": "#E7E8DF",
+        "tonalRamp": [
+          "#2A2B22",
+          "#464838",
+          "#63664D",
+          "#818561",
+          "#A1A484",
+          "#BFC1AE",
+          "#DCDDD4",
+          "#F3F3F1"
+        ]
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Karta",
+        "canonical": "#FBFBF8",
+        "tonalRamp": [
+          "#2D2D1F",
+          "#4D4D32",
+          "#6E6E44",
+          "#919155",
+          "#AFAF79",
+          "#C7C7A8",
+          "#E0E0D2",
+          "#F4F4F0"
+        ]
+      },
+      "graphite": {
+        "role": "neutral",
+        "displayName": "Grafit",
+        "canonical": "#2A2F2C",
+        "tonalRamp": [
+          "#252826",
+          "#3D433F",
+          "#555E58",
+          "#6D7972",
+          "#8E9993",
+          "#B4BBB7",
+          "#D7DAD8",
+          "#F2F3F2"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Czerń",
+        "canonical": "#121412",
+        "tonalRamp": [
+          "#252825",
+          "#3D423D",
+          "#555D55",
+          "#6D796D",
+          "#8F998F",
+          "#B5BBB5",
+          "#D7DAD7",
+          "#F2F3F2"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Szary tekst",
+        "canonical": "#565C57",
+        "tonalRamp": [
+          "#252726",
+          "#3E413F",
+          "#575C58",
+          "#6F7670",
+          "#919792",
+          "#B6BAB6",
+          "#D8DAD8",
+          "#F2F3F2"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Linia",
+        "canonical": "#D6CEBF",
+        "tonalRamp": [
+          "#2C2821",
+          "#4B4335",
+          "#6A5E48",
+          "#8B7A5B",
+          "#AA9B7E",
+          "#C4BBAB",
+          "#DEDAD3",
+          "#F4F3F1"
+        ]
+      },
+      "field": {
+        "role": "neutral",
+        "displayName": "Obrys pola",
+        "canonical": "#B9B1A2",
+        "tonalRamp": [
+          "#2A2723",
+          "#474239",
+          "#645D4E",
+          "#827763",
+          "#A29886",
+          "#C0BAB0",
+          "#DCDAD5",
+          "#F3F3F1"
+        ]
+      },
+      "err": {
+        "role": "error",
+        "displayName": "Błąd",
+        "canonical": "#A32A1E",
+        "tonalRamp": [
+          "#381714",
+          "#62241E",
+          "#8E2E24",
+          "#BE3527",
+          "#D85C4F",
+          "#DF9790",
+          "#EBCAC7",
+          "#F7EEED"
+        ]
+      },
+      "note-paper": {
+        "role": "neutral",
+        "displayName": "Papier banknotu",
+        "canonical": "#EFE9DC",
+        "tonalRamp": [
+          "#302A1C",
+          "#52472D",
+          "#76643C",
+          "#9C824A",
+          "#B9A26F",
+          "#CDBFA2",
+          "#E3DCCF",
+          "#F5F3EF"
+        ]
+      },
+      "note-ink": {
+        "role": "neutral",
+        "displayName": "Tusz banknotu",
+        "canonical": "#17211A",
+        "tonalRamp": [
+          "#222B24",
+          "#37493C",
+          "#4B6754",
+          "#5F866B",
+          "#82A68D",
+          "#ADC2B4",
+          "#D4DDD7",
+          "#F1F4F2"
+        ]
+      },
+      "note-label": {
+        "role": "neutral",
+        "displayName": "Podpis banknotu",
+        "canonical": "#3B4C3F",
+        "tonalRamp": [
+          "#232A25",
+          "#3A463C",
+          "#506354",
+          "#65816B",
+          "#87A08D",
+          "#B0BFB4",
+          "#D5DCD7",
+          "#F1F3F2"
+        ]
+      },
+      "on-dark-muted": {
+        "role": "neutral",
+        "displayName": "Szary na ciemnym",
+        "canonical": "#C4C2BA",
+        "tonalRamp": [
+          "#282724",
+          "#44423C",
+          "#5F5D53",
+          "#7B786A",
+          "#9C998C",
+          "#BCBAB3",
+          "#DBDAD7",
+          "#F3F3F2"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "H1 hero."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "H2 każdej sekcji."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "H3 usług i kroków."
+      },
+      "title-sm": {
+        "displayName": "Title small",
+        "purpose": "H4 usług dodatkowych, legendy, punkty Dlaczego my."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Akapity, 38–60ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Etykiety pól, przyciski, menu."
+      },
+      "numeral": {
+        "displayName": "Numeral",
+        "purpose": "Numery kroków, ceny, telefony; cyfry tabelaryczne."
+      },
+      "note-caps": {
+        "displayName": "Note caps",
+        "purpose": "Wyłącznie cennik-banknot: nazwa usługi i liczby narożne."
+      }
+    },
+    "shadows": [
+      {
+        "name": "header-edge",
+        "value": "0 1px 0 var(--line)",
+        "purpose": "Krawędź sticky nagłówka po przewinięciu (i -1px nad paskiem połączeń)."
+      },
+      {
+        "name": "form-lift",
+        "value": "0 0 0 1px var(--line), 0 24px 50px -36px rgba(30, 36, 30, .45)",
+        "purpose": "Karta formularza wyceny."
+      },
+      {
+        "name": "note-on-ink",
+        "value": "0 1px 0 rgba(255, 255, 255, .06), 0 18px 34px -24px rgba(0, 0, 0, .9)",
+        "purpose": "Banknoty w cenniku na czarnym pasie."
+      },
+      {
+        "name": "inset-stroke",
+        "value": "inset 0 0 0 1.5px var(--ink)",
+        "purpose": "Obrys przycisków konturowych i telefonu w pasku połączeń."
+      },
+      {
+        "name": "focus-field",
+        "value": "0 0 0 3px rgba(78, 100, 82, .25)",
+        "purpose": "Poświata fokusu pól formularza."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Jedyna krzywa: kreska menu, przesunięcie przycisku, zoom zdjęć, pasek połączeń, wejście hero."
+      },
+      {
+        "name": "state",
+        "value": ".2s",
+        "purpose": "Zmiany koloru tła, obrysu i cienia."
+      },
+      {
+        "name": "photo-hover",
+        "value": "transform .8s, scale(1.025)",
+        "purpose": "Delikatne powiększenie zdjęć usług na hover."
+      },
+      {
+        "name": "hero-reveal",
+        "value": "clip-path inset(0 0 0 38%) -> 0, 1.1s; scale(1.07) -> 1, 1.8s",
+        "purpose": "Wejście zdjęcia hero (desktop, bez reduced-motion)."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide-tablet",
+        "value": "1100px"
+      },
+      {
+        "name": "tablet",
+        "value": "980px"
+      },
+      {
+        "name": "phone",
+        "value": "600px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Przycisk ciemny",
+      "kind": "button",
+      "refersTo": "button-dark",
+      "description": "Główna akcja: czerń, hover w ciemnej szałwii.",
+      "html": "<a class=\"ds-btn ds-btn-dark\" href=\"#\">Wyceń przeprowadzkę</a>",
+      "css": ":host{--paper:#F1F2EC;--paper-2:#E7E8DF;--card:#FBFBF8;--beige:#E2D5BF;--sage:#8C9D85;--sage-deep:#4E6452;--sage-soft:#C9D3C3;--graphite:#2A2F2C;--ink:#121412;--muted:#565C57;--line:#D6CEBF;--field:#B9B1A2;--err:#A32A1E;--f:\"Bricolage Grotesque\",\"Segoe UI\",Arial,sans-serif;--f-note:\"Cinzel\",Georgia,serif;--ease:cubic-bezier(.16,1,.3,1);} .ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border:0;border-radius:6px;font:600 1rem/1 var(--f);letter-spacing:.005em;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color .2s,color .2s,box-shadow .2s,transform .2s var(--ease);} .ds-btn:active{transform:translateY(1px);} .ds-btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px;} .ds-btn-dark{background:var(--ink);color:var(--paper);} .ds-btn-dark:hover{background:var(--sage-deep);}"
+    },
+    {
+      "name": "Przycisk konturowy",
+      "kind": "button",
+      "refersTo": "button-line",
+      "description": "Akcja drugorzędna na jasnym tle, np. telefon.",
+      "html": "<a class=\"ds-btn ds-btn-line\" href=\"#\"><svg width=\"19\" height=\"19\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6.6 3.5h3l1.5 4-2 1.3a11 11 0 0 0 6.1 6.1l1.3-2 4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linejoin=\"round\"/></svg>Zadzwoń do nas</a>",
+      "css": ":host{--paper:#F1F2EC;--paper-2:#E7E8DF;--card:#FBFBF8;--beige:#E2D5BF;--sage:#8C9D85;--sage-deep:#4E6452;--sage-soft:#C9D3C3;--graphite:#2A2F2C;--ink:#121412;--muted:#565C57;--line:#D6CEBF;--field:#B9B1A2;--err:#A32A1E;--f:\"Bricolage Grotesque\",\"Segoe UI\",Arial,sans-serif;--f-note:\"Cinzel\",Georgia,serif;--ease:cubic-bezier(.16,1,.3,1);} .ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border:0;border-radius:6px;font:600 1rem/1 var(--f);letter-spacing:.005em;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color .2s,color .2s,box-shadow .2s,transform .2s var(--ease);} .ds-btn:active{transform:translateY(1px);} .ds-btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px;} .ds-btn-line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink);} .ds-btn-line:hover{background:var(--ink);color:var(--paper);}"
+    },
+    {
+      "name": "Przycisk jasny na ciemnym",
+      "kind": "button",
+      "refersTo": "button-light",
+      "description": "Akcja na czarnym lub grafitowym pasie.",
+      "html": "<div class=\"ds-dark\"><a class=\"ds-btn ds-btn-light\" href=\"#\">Wyceń przeprowadzkę</a></div>",
+      "css": ":host{--paper:#F1F2EC;--paper-2:#E7E8DF;--card:#FBFBF8;--beige:#E2D5BF;--sage:#8C9D85;--sage-deep:#4E6452;--sage-soft:#C9D3C3;--graphite:#2A2F2C;--ink:#121412;--muted:#565C57;--line:#D6CEBF;--field:#B9B1A2;--err:#A32A1E;--f:\"Bricolage Grotesque\",\"Segoe UI\",Arial,sans-serif;--f-note:\"Cinzel\",Georgia,serif;--ease:cubic-bezier(.16,1,.3,1);} .ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border:0;border-radius:6px;font:600 1rem/1 var(--f);letter-spacing:.005em;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color .2s,color .2s,box-shadow .2s,transform .2s var(--ease);} .ds-btn:active{transform:translateY(1px);} .ds-btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px;} .ds-dark{background:var(--ink);padding:24px;} .ds-btn-light{background:var(--paper);color:var(--ink);} .ds-btn-light:hover{background:var(--sage-soft);} .ds-btn-light:focus-visible{outline-color:var(--paper);}"
+    },
+    {
+      "name": "Pole tekstowe",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Pole formularza wyceny z etykietą.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-label\">Skąd <span class=\"ds-req\">*</span></span><input class=\"ds-input\" placeholder=\"np. Kraków, Długa 5\"></label>",
+      "css": ":host{--paper:#F1F2EC;--paper-2:#E7E8DF;--card:#FBFBF8;--beige:#E2D5BF;--sage:#8C9D85;--sage-deep:#4E6452;--sage-soft:#C9D3C3;--graphite:#2A2F2C;--ink:#121412;--muted:#565C57;--line:#D6CEBF;--field:#B9B1A2;--err:#A32A1E;--f:\"Bricolage Grotesque\",\"Segoe UI\",Arial,sans-serif;--f-note:\"Cinzel\",Georgia,serif;--ease:cubic-bezier(.16,1,.3,1);} .ds-field{display:grid;gap:8px;font-family:var(--f);color:var(--ink);max-width:360px;} .ds-label{font-weight:600;font-size:.95rem;} .ds-req{color:var(--err);} .ds-input{width:100%;box-sizing:border-box;min-height:52px;padding:12px 14px;border:1px solid var(--field);border-radius:6px;background:#FFFFFF;color:var(--ink);font:400 1rem var(--f);transition:border-color .2s,box-shadow .2s;} .ds-input::placeholder{color:#6C716B;} .ds-input:hover{border-color:#8E8778;} .ds-input:focus{outline:none;border-color:var(--sage-deep);box-shadow:0 0 0 3px rgba(78,100,82,.25);}"
+    },
+    {
+      "name": "Pigułki wyboru",
+      "kind": "chip",
+      "refersTo": "pill",
+      "description": "Wybór usługi w formularzu (radio).",
+      "html": "<div class=\"ds-pills\"><label><input type=\"radio\" name=\"s\" checked><span>Przeprowadzka</span></label><label><input type=\"radio\" name=\"s\"><span>Transport mebli</span></label><label><input type=\"radio\" name=\"s\"><span>Opróżnianie</span></label></div>",
+      "css": ":host{--paper:#F1F2EC;--paper-2:#E7E8DF;--card:#FBFBF8;--beige:#E2D5BF;--sage:#8C9D85;--sage-deep:#4E6452;--sage-soft:#C9D3C3;--graphite:#2A2F2C;--ink:#121412;--muted:#565C57;--line:#D6CEBF;--field:#B9B1A2;--err:#A32A1E;--f:\"Bricolage Grotesque\",\"Segoe UI\",Arial,sans-serif;--f-note:\"Cinzel\",Georgia,serif;--ease:cubic-bezier(.16,1,.3,1);} .ds-pills{display:flex;flex-wrap:wrap;gap:8px;font-family:var(--f);} .ds-pills label{position:relative;display:inline-flex;cursor:pointer;} .ds-pills input{position:absolute;opacity:0;width:1px;height:1px;} .ds-pills span{display:inline-flex;align-items:center;min-height:44px;padding:8px 16px;border:1px solid var(--field);border-radius:6px;background:#FFFFFF;color:var(--ink);font-size:.95rem;font-weight:500;transition:background-color .15s,border-color .15s,color .15s;} .ds-pills label:hover span{border-color:var(--ink);} .ds-pills input:checked+span{background:var(--ink);border-color:var(--ink);color:var(--paper);} .ds-pills input:focus-visible+span{outline:2px solid var(--ink);outline-offset:2px;}"
+    },
+    {
+      "name": "Nawigacja",
+      "kind": "nav",
+      "refersTo": "nav-cta",
+      "description": "Sticky nagłówek: menu z kreską hover, Kontakt jako przycisk.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\">O nas</a><a href=\"#\" aria-current=\"true\">Usługi</a><a href=\"#\">Cennik</a><a href=\"#\">Formularz</a><a class=\"ds-nav-cta\" href=\"#\">Kontakt</a></nav>",
+      "css": ":host{--paper:#F1F2EC;--paper-2:#E7E8DF;--card:#FBFBF8;--beige:#E2D5BF;--sage:#8C9D85;--sage-deep:#4E6452;--sage-soft:#C9D3C3;--graphite:#2A2F2C;--ink:#121412;--muted:#565C57;--line:#D6CEBF;--field:#B9B1A2;--err:#A32A1E;--f:\"Bricolage Grotesque\",\"Segoe UI\",Arial,sans-serif;--f-note:\"Cinzel\",Georgia,serif;--ease:cubic-bezier(.16,1,.3,1);} .ds-nav{display:flex;align-items:center;gap:28px;padding:0 24px;height:72px;background:var(--paper);box-shadow:0 1px 0 var(--line);font-family:var(--f);} .ds-nav>a{position:relative;display:inline-flex;align-items:center;min-height:44px;font-weight:500;font-size:.98rem;color:var(--graphite);text-decoration:none;} .ds-nav>a:not(.ds-nav-cta)::after{content:\"\";position:absolute;left:0;right:0;bottom:8px;height:1.5px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease);} .ds-nav>a:not(.ds-nav-cta):hover::after,.ds-nav>a[aria-current]::after{transform:scaleX(1);} .ds-nav>a[aria-current]{color:var(--ink);} .ds-nav .ds-nav-cta{padding:0 20px;border-radius:6px;background:var(--ink);color:var(--paper);font-weight:600;transition:background-color .2s;} .ds-nav .ds-nav-cta:hover{background:var(--sage-deep);} .ds-nav a:focus-visible{outline:2px solid var(--ink);outline-offset:3px;}"
+    },
+    {
+      "name": "Karta formularza",
+      "kind": "card",
+      "refersTo": "form-card",
+      "description": "Jedyna karta w świecie: formularz wyceny.",
+      "html": "<div class=\"ds-card\"><p class=\"ds-legend\"><span>1</span>Co przewozimy?</p><p class=\"ds-muted\">Pola oznaczone gwiazdką są wymagane.</p></div>",
+      "css": ":host{--paper:#F1F2EC;--paper-2:#E7E8DF;--card:#FBFBF8;--beige:#E2D5BF;--sage:#8C9D85;--sage-deep:#4E6452;--sage-soft:#C9D3C3;--graphite:#2A2F2C;--ink:#121412;--muted:#565C57;--line:#D6CEBF;--field:#B9B1A2;--err:#A32A1E;--f:\"Bricolage Grotesque\",\"Segoe UI\",Arial,sans-serif;--f-note:\"Cinzel\",Georgia,serif;--ease:cubic-bezier(.16,1,.3,1);} .ds-card{background:var(--card);border-radius:8px;box-shadow:0 0 0 1px var(--line),0 24px 50px -36px rgba(30,36,30,.45);padding:clamp(22px,3.6vw,48px);font-family:var(--f);color:var(--ink);max-width:520px;} .ds-legend{display:flex;align-items:center;gap:12px;margin:0 0 12px;font:600 1.3rem/1.2 var(--f);letter-spacing:-.015em;} .ds-legend span{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--sage-deep);color:var(--paper);font-size:.95rem;font-weight:700;} .ds-muted{margin:0;color:var(--muted);font-size:.9rem;}"
+    },
+    {
+      "name": "Cennik-banknot",
+      "kind": "custom",
+      "refersTo": "price-note",
+      "description": "Sygnatura: cena jako banknot; w produkcji ramka gilosz rysowana na kanwie (main.js), tu przybliżona obramowaniem.",
+      "html": "<div class=\"ds-note\"><span class=\"ds-corner\">150</span><div class=\"ds-note-in\"><p class=\"ds-note-svc\">Transport mebli</p><p class=\"ds-note-val\"><small>od</small> 150 <small>zł</small></p><p class=\"ds-note-fine\">i innych przedmiotów, cena brutto</p></div></div>",
+      "css": ":host{--paper:#F1F2EC;--paper-2:#E7E8DF;--card:#FBFBF8;--beige:#E2D5BF;--sage:#8C9D85;--sage-deep:#4E6452;--sage-soft:#C9D3C3;--graphite:#2A2F2C;--ink:#121412;--muted:#565C57;--line:#D6CEBF;--field:#B9B1A2;--err:#A32A1E;--f:\"Bricolage Grotesque\",\"Segoe UI\",Arial,sans-serif;--f-note:\"Cinzel\",Georgia,serif;--ease:cubic-bezier(.16,1,.3,1);} .ds-note{container-type:inline-size;position:relative;aspect-ratio:2.25/1;width:420px;max-width:100%;overflow:hidden;border-radius:3px;background:#EFE9DC;color:#1E2A21;box-shadow:inset 0 0 0 10px #EFE9DC,inset 0 0 0 11px rgba(78,100,82,.9),inset 0 0 0 15px #EFE9DC,inset 0 0 0 16px rgba(78,100,82,.5),0 18px 34px -24px rgba(0,0,0,.9);} .ds-note-in{position:absolute;inset:12cqw 10cqw 10cqw;display:grid;align-content:center;gap:1.6cqw;} .ds-note p{margin:0;} .ds-note-svc{font:600 3.6cqw/1.15 var(--f-note);letter-spacing:.16em;text-transform:uppercase;color:#3B4C3F;} .ds-note-val{font:800 12.5cqw/.9 var(--f);letter-spacing:-.045em;font-variant-numeric:tabular-nums;white-space:nowrap;color:#17211A;} .ds-note-val small{font-size:.3em;font-weight:600;letter-spacing:0;vertical-align:.9em;} .ds-note-fine{font:400 max(12px,2.9cqw)/1.3 var(--f);color:#4E5A50;} .ds-corner{position:absolute;right:9cqw;top:7.4cqw;font:600 3.6cqw/1 var(--f-note);color:#3B4C3F;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Ekipa w jasnym mieszkaniu",
+    "overview": "**Creative North Star: \"Ekipa w jasnym mieszkaniu\"**\n\nŚwiat v6 jest prowadzony fotografią: ekipa w strojach roboczych, biały bus z otwartymi drzwiami, zielona kanapa niesiona przez jasny salon. Zdjęcia zajmują dużą, nieprzyciętą powierzchnię (7/12 kolumny w hero i w głównych usługach), a tekst stoi obok nich spokojnie, na złamanej bieli. Paleta jest stonowana i domowa: szałwia, ciepły beż, złamana biel, grafit, czerń. Nie ma tu żadnego krzyku „transportowego”; konkret niosą ceny, numer telefonu i jasny przebieg zlecenia.\n\nSekcje zmieniają tło pełną szerokością, tworząc rytm materiałów: papier (hero, O nas, Formularz), jaśniejszy szary papier (Usługi), szałwia (Realizacja), czerń (Cennik), beż (Dlaczego my), grafit (Kontakt), czerń (stopka). Jedynym ornamentem w całym świecie jest cennik w formie banknotu: własna ramka gilosz rysowana na kanwie, mikrodruk i rozeta, podpisy kapitalikami Cinzel, kwoty w PLN. To świadomie jedyne miejsce, w którym pojawia się drugi krój i dekoracja.\n\nGęstość jest umiarkowana: szerokie odstępy między sekcjami (`sek`), gęste, rzeczowe listy z liniami podziału zamiast kart. Ruch jest krótki i miękki (jedna krzywa `cubic-bezier(.16, 1, .3, 1)`), wyłączany przy `prefers-reduced-motion`.",
+    "keyCharacteristics": [
+      "Fotografia w roli głównej, zdjęcia przycięte do stałych proporcji (3/2, 4/5) z zaokrągleniem 4px.",
+      "Jeden krój (Bricolage Grotesque, 400–800) dla całej strony; Cinzel wyłącznie w cenniku-banknocie.",
+      "Pełnoszerokie pasy tła w kolorach palety jako podział sekcji.",
+      "Listy i wartości oddzielone cienkimi liniami (`line`, 1px) lub grafitowymi kreskami 1.5px, bez kart.",
+      "Czarne przyciski główne, które na hover przechodzą w ciemną szałwię.",
+      "Cyfry tabelaryczne we wszystkich cenach i numerach telefonu."
+    ],
+    "rules": [
+      {
+        "name": "The One Accent Rule",
+        "body": "Szałwia jest jedynym akcentem. Nie dodawaj niebieskiego, pomarańczowego ani żółtego jako koloru interfejsu; jedyne wyjątki to robocze wyróżnienia w regulaminie (`.fill` żółte, `.verify` szałwiowe), które są znacznikami redakcyjnymi, nie kolorem marki.",
+        "section": "colors"
+      },
+      {
+        "name": "The Band Rule",
+        "body": "Sekcje różnicuje kolor tła na pełną szerokość, nie karty ani cienie. Sąsiednie sekcje nie mają tego samego tła, z wyjątkiem hero i O nas, które są jednym papierem.",
+        "section": "colors"
+      },
+      {
+        "name": "The Single Family Rule",
+        "body": "Cała strona używa Bricolage Grotesque. Cinzel istnieje tylko w obrębie `.note` (i mikrodruku na kanwie); nigdy w nagłówkach, menu ani przyciskach.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Price Rule",
+        "body": "Każda kwota i każdy numer telefonu ma `font-variant-numeric: tabular-nums`.",
+        "section": "typography"
+      },
+      {
+        "name": "The Paper-Flat Rule",
+        "body": "Powierzchnie leżą płasko. Nie dodawaj cieni kartom, zdjęciom ani przyciskom; jedyne uniesione obiekty to karta formularza i banknoty.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** prowadź każdą nową sekcję zdjęciem ekipy, busa lub mebli w stałej proporcji (3/2, 4/5, 4/3 na mobile) z zaokrągleniem 4px.",
+      "**Do** dziel sekcje pełnoszerokim kolorem tła z palety (`paper`, `paper-2`, `sage`, `beige`, `graphite`, `ink`).",
+      "**Do** używaj czarnego przycisku z hoverem w ciemnej szałwii jako jedynej głównej akcji w danym miejscu.",
+      "**Do** zapisuj ceny jako „od 150 zł” / PLN brutto, cyframi tabelarycznymi.",
+      "**Do** rysuj ramki banknotów własnym giloszem na kanwie, w tuszu ciemnej szałwii.",
+      "**Do** utrzymuj cele dotykowe min. 44px i fokus 2px czerni z odsunięciem."
+    ],
+    "donts": [
+      "**Don't** wracaj do świata v5: Barlow, asfalt, niebieski znaków drogowych.",
+      "**Don't** używaj Cinzel ani ornamentu gilosz poza cennikiem.",
+      "**Don't** naśladuj prawdziwych banknotów (wizerunki, godła, nominały i układ NBP); banknot jest własną formą cennika.",
+      "**Don't** zamieniaj list z liniami podziału na siatki kart z cieniem.",
+      "**Don't** stosuj twardych cieni z przesunięciem ani nowych akcentów kolorystycznych."
+    ]
+  }
+}
