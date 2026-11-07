@@ -77,6 +77,7 @@
       });
     }, { rootMargin: "-45% 0px -50% 0px" });
     Object.keys(byId).forEach(function (id) { var s = document.getElementById(id); if (s) io.observe(s); });
+    $$("main > section").forEach(function (s) { if (!byId[s.id]) io.observe(s); });
     new IntersectionObserver(function (en) { callbar.classList.toggle("show", !en[0].isIntersecting); }, { threshold: 0.05 }).observe(hero);
   } else { callbar.classList.add("show"); }
 
