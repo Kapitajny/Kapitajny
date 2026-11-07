@@ -40,7 +40,7 @@ Klient opisuje zlecenie: co przewozi, skąd, dokąd, piętro, winda, termin; do�
 
 ## Brand Commitments
 
-- Nazwa: Usługi Busem. Logo: sylwetka busa w czerni i niebieskim z liniami ruchu i napisem „USŁUGI BUSEM” (`strona/assets/img/nowe-*.svg`, oryginał `materialy/grafiki/logo-uslugi-busem-bus.png`).
+- Nazwa: Usługi Busem. Logo: sylwetka busa z liniami ruchu i napisem „USŁUGI BUSEM” (oryginał czarno-niebieski: `strona/assets/img/nowe-*.svg`, `materialy/grafiki/logo-uslugi-busem-bus.png`). Na stronie v6 używane są wersje w kolorach palety: `logo-grafit.svg` (grafit i szałwia) oraz `logo-jasne.svg` – sam znak bez zmian.
 - Grafika „Rozładunek busa” (`materialy/grafiki/rozladunek-busa.png`) i grafika busa w barwach firmy (`materialy/grafiki/bus-hero-2x.png`).
 - Ton: konkretny, rzeczowy, po polsku, na „Ty”.
 - Paleta wskazana przez właściciela: szałwiowa zieleń, ciepły beż, złamana biel, grafit, czerń. Cennik w motywie banknotu (bez imitacji prawdziwej waluty). Menu: O nas, Usługi, Cennik, Formularz, Kontakt.
