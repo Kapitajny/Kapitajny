@@ -1,5 +1,6 @@
 (function () {
   "use strict";
+  document.documentElement.classList.add("js");
   var SITE = window.SITE || {};
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
@@ -10,62 +11,90 @@
   var tel = (SITE.phone || "").replace(/[^\d+]/g, "");
   if (/^\d{9}$/.test(tel)) tel = "+48" + tel;
   $$("[data-call]").forEach(function (a) {
-    a.href = tel ? "tel:" + tel : "#kontakt";
-    if (!tel && a.hasAttribute("data-call-optional")) a.hidden = true;
-    var num = a.querySelector("[data-phone-text]");
-    if (tel && num) num.textContent = (num.getAttribute("data-prefix") || "") + SITE.phone;
-  });
-  $$("[data-phone]").forEach(function (el) {
-    if (!SITE.phone) return;
-    el.textContent = ""; var a = document.createElement("a"); a.href = "tel:" + tel; a.textContent = SITE.phone; el.appendChild(a);
+    a.href = tel ? "tel:" + tel : "#wycena";
+    $$("[data-phone-text]", a).forEach(function (n) { if (SITE.phone) n.textContent = SITE.phone; });
+    if (a.hasAttribute("aria-label") && SITE.phone) a.setAttribute("aria-label", "Zadzwoń: " + SITE.phone);
   });
   $$("[data-email]").forEach(function (el) {
     if (!SITE.email) return;
     el.textContent = ""; var a = document.createElement("a"); a.href = "mailto:" + SITE.email; a.textContent = SITE.email; el.appendChild(a);
   });
+  if (SITE.email) $$("[data-email-row]").forEach(function (el) { el.hidden = false; });
   $$("[data-legal]").forEach(function (el) { if (SITE.companyLegal) el.textContent = SITE.companyLegal; });
   $$("[data-year]").forEach(function (el) { el.textContent = String(new Date().getFullYear()); });
+
+  /* Opinie i realizacje: tylko prawdziwe wpisy z config.js */
+  var reviews = Array.isArray(SITE.reviews) ? SITE.reviews.filter(function (r) { return r && r.text; }) : [];
+  if (reviews.length && $("#reviews-list")) {
+    reviews.forEach(function (r) {
+      var q = document.createElement("blockquote"), p = document.createElement("p"), f = document.createElement("footer");
+      p.textContent = "„" + r.text + "”"; f.textContent = [r.author, r.source].filter(Boolean).join(", ");
+      q.appendChild(p); if (f.textContent) q.appendChild(f); $("#reviews-list").appendChild(q);
+    });
+    $("#opinie").hidden = false;
+  }
+  var gallery = Array.isArray(SITE.gallery) ? SITE.gallery.filter(function (g) { return g && g.src; }) : [];
+  if (gallery.length && $("#gallery-list")) {
+    gallery.forEach(function (g) {
+      var fig = document.createElement("figure"), img = document.createElement("img");
+      img.src = g.src; img.alt = g.alt || g.caption || ""; img.loading = "lazy"; img.width = 640; img.height = 480;
+      fig.appendChild(img);
+      if (g.caption) { var c = document.createElement("figcaption"); c.textContent = g.caption; fig.appendChild(c); }
+      $("#gallery-list").appendChild(fig);
+    });
+    $("#realizacje").hidden = false;
+  }
+
+  /* Nagłówek: tło po zjechaniu z hero */
+  var top = $("#top"), hero = $("#start");
+  function onScroll() { top.classList.toggle("solid", window.scrollY > 24); }
+  onScroll(); window.addEventListener("scroll", onScroll, { passive: true });
 
   /* Menu na telefonie */
   var menuBtn = $("#menu-btn"), nav = $("#nav");
   function setMenu(open) {
     nav.classList.toggle("open", open);
+    top.classList.toggle("menu-open", open);
     menuBtn.setAttribute("aria-expanded", String(open));
     menuBtn.setAttribute("aria-label", open ? "Zamknij menu" : "Otwórz menu");
     $("use", menuBtn).setAttribute("href", open ? "#i-close" : "#i-menu");
     document.documentElement.style.overflow = open ? "hidden" : "";
   }
-  if (menuBtn && nav) {
-    menuBtn.addEventListener("click", function () { setMenu(!nav.classList.contains("open")); });
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && nav.classList.contains("open")) { setMenu(false); menuBtn.focus(); } });
-    window.addEventListener("resize", function () { if (window.innerWidth > 900 && nav.classList.contains("open")) setMenu(false); });
-  }
+  menuBtn.addEventListener("click", function () { setMenu(!nav.classList.contains("open")); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && nav.classList.contains("open")) { setMenu(false); menuBtn.focus(); } });
+  window.addEventListener("resize", function () { if (window.innerWidth > 980 && nav.classList.contains("open")) setMenu(false); });
 
-  /* Podświetlenie aktywnej sekcji w menu */
-  var links = $$(".nav > a[href^='#']");
-  if ("IntersectionObserver" in window && links.length) {
-    var map = {};
-    links.forEach(function (a) { map[a.getAttribute("href").slice(1)] = a; });
+  /* Aktywna sekcja w menu i pasek telefonu na telefonach */
+  var links = $$(".nav > a[href^='#']"), callbar = $("#callbar");
+  if ("IntersectionObserver" in window) {
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute("href").slice(1)] = a; });
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
         links.forEach(function (a) { a.removeAttribute("aria-current"); });
-        var a = map[en.target.id]; if (a) a.setAttribute("aria-current", "true");
+        var a = byId[en.target.id]; if (a) a.setAttribute("aria-current", "true");
       });
     }, { rootMargin: "-45% 0px -50% 0px" });
-    Object.keys(map).forEach(function (id) { var s = document.getElementById(id); if (s) io.observe(s); });
-  }
+    Object.keys(byId).forEach(function (id) { var s = document.getElementById(id); if (s) io.observe(s); });
+    new IntersectionObserver(function (en) { callbar.classList.toggle("show", !en[0].isIntersecting); }, { threshold: 0.05 }).observe(hero);
+  } else { callbar.classList.add("show"); }
 
   /* Linki do sekcji: przewijanie obsługuje skrypt, więc działa też w osadzonym podglądzie */
   var form = $("#quote-form");
+  function firstEmpty() {
+    var order = ["name", "phone", "service", "from"];
+    for (var i = 0; i < order.length; i++) { var el = form.elements[order[i]]; if (!el.value.trim()) return el; }
+    return form.elements.details;
+  }
   function goTo(id) {
     var target = document.getElementById(id);
     if (!target) return false;
-    if (nav && nav.classList.contains("open")) setMenu(false);
+    if (nav.classList.contains("open")) setMenu(false);
     target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
     try { history.replaceState(null, "", "#" + id); } catch (err) {}
     if (id === "wycena") {
-      setTimeout(function () { var f = $("#f-name"); if (f && !form.hidden) f.focus({ preventScroll: true }); }, reduce ? 0 : 650);
+      setTimeout(function () { if (!form.hidden) firstEmpty().focus({ preventScroll: true }); }, reduce ? 0 : 700);
     }
     return true;
   }
@@ -74,12 +103,71 @@
     if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
     var id = a.getAttribute("href").slice(1);
     if (!id) return;
-    if (form && a.hasAttribute("data-service")) form.elements.service.value = a.getAttribute("data-service");
+    if (a.hasAttribute("data-service")) form.elements.service.value = a.getAttribute("data-service");
     if (goTo(id)) e.preventDefault();
   });
 
-  /* Formularz */
-  if (!form) return;
+  /* Trasa: mapa Polski */
+  var CITY = {};
+  $$(".area-map .city").forEach(function (g) {
+    var c = $(".dot", g);
+    CITY[g.getAttribute("data-city")] = { g: g, x: +c.getAttribute("cx"), y: +c.getAttribute("cy") };
+  });
+  var line = $("#route-line"), status = $("#route-status"), routeCta = $("#route-cta");
+  var pick = [];
+  function norm(s) { return (s || "").trim().toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/ł/g, "l"); }
+  function findCity(s) {
+    var n = norm(s); if (!n) return null;
+    var names = Object.keys(CITY);
+    for (var i = 0; i < names.length; i++) { if (norm(names[i]) === n || n.indexOf(norm(names[i])) === 0) return names[i]; }
+    return null;
+  }
+  function drawRoute() {
+    $$(".area-map .city").forEach(function (g) { g.classList.toggle("on", pick.indexOf(g.getAttribute("data-city")) > -1); });
+    $$(".city-list button").forEach(function (b) { b.setAttribute("aria-pressed", String(pick.indexOf(b.getAttribute("data-city")) > -1)); });
+    line.classList.remove("draw");
+    if (pick.length < 2) {
+      line.setAttribute("d", "");
+      text(status, pick.length ? "Początek trasy: " + pick[0] + ". Wybierz miasto docelowe." : "");
+      routeCta.hidden = true;
+      return;
+    }
+    var a = CITY[pick[0]], b = CITY[pick[1]];
+    var mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2, dx = b.x - a.x, dy = b.y - a.y, k = 0.16;
+    line.setAttribute("d", "M" + a.x + " " + a.y + " Q" + (mx - dy * k).toFixed(1) + " " + (my + dx * k).toFixed(1) + " " + b.x + " " + b.y);
+    line.style.setProperty("--len", Math.ceil(line.getTotalLength()));
+    void line.getBBox(); if (!reduce) line.classList.add("draw");
+    text(status, "Trasa: " + pick[0] + " – " + pick[1]);
+    routeCta.textContent = "Wyceń trasę " + pick[0] + " – " + pick[1];
+    routeCta.hidden = false;
+  }
+  function choose(name) {
+    if (!CITY[name]) return;
+    var i = pick.indexOf(name);
+    if (i > -1) pick.splice(i, 1);
+    else if (pick.length >= 2) pick = [name];
+    else pick.push(name);
+    drawRoute();
+  }
+  $$(".city-list button").forEach(function (b) { b.addEventListener("click", function () { choose(b.getAttribute("data-city")); }); });
+  Object.keys(CITY).forEach(function (n) { CITY[n].g.addEventListener("click", function () { choose(n); }); });
+  routeCta.addEventListener("click", function () {
+    if (pick.length === 2) { form.elements.from.value = pick[0]; form.elements.to.value = pick[1]; }
+  });
+
+  /* Tablica trasy w hero */
+  var routeForm = $("#route-form");
+  routeForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var from = routeForm.elements["r-from"].value.trim(), to = routeForm.elements["r-to"].value.trim();
+    if (from) form.elements.from.value = from;
+    if (to) form.elements.to.value = to;
+    var cf = findCity(from), ct = findCity(to);
+    if (cf && ct && cf !== ct) { pick = [cf, ct]; drawRoute(); }
+    goTo("wycena");
+  });
+
+  /* Formularz wyceny */
   var MAX_FILES = 6, MAX_FILE = 8 * 1024 * 1024, MAX_TOTAL = 20 * 1024 * 1024;
   var files = [], thumbs = $("#thumbs"), drop = $("#drop"), fileIn = $("#f-photos");
   form.elements.started.value = String(Date.now());
@@ -122,7 +210,7 @@
     },
     email: function (v) { return !v.trim() || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) ? "" : "Sprawdź adres e-mail, np. jan.kowalski@poczta.pl."; },
     service: function (v) { return v ? "" : "Wybierz rodzaj usługi."; },
-    from: function (v) { return v.trim().length >= 2 ? "" : "Wpisz miejsce odbioru."; }
+    from: function (v) { return v.trim().length >= 2 ? "" : "Wpisz, skąd zabieramy rzeczy."; }
   };
   var tried = false;
   function check(n) {
@@ -156,16 +244,16 @@
     var fd = new FormData(form);
     fd.delete("photos[]");
     files.forEach(function (f) { fd.append("photos[]", f, f.name); });
-    btn.disabled = true; show("Wysyłamy zapytanie…");
+    btn.disabled = true; btn.textContent = "Wysyłamy…"; show("");
     fetch(SITE.formEndpoint, { method: "POST", body: fd, headers: { Accept: "application/json" } })
       .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
       .then(function (j) {
-        btn.disabled = false;
+        btn.disabled = false; btn.textContent = "Wyślij zapytanie";
         if (j.ok) { show(""); form.hidden = true; done.hidden = false; done.focus(); return; }
         if (j.errors) Object.keys(j.errors).forEach(function (n) { text($("#e-" + n), j.errors[n]); if (form.elements[n]) form.elements[n].setAttribute("aria-invalid", "true"); });
         show(j.message || "Nie udało się wysłać zapytania. Spróbuj ponownie albo zadzwoń do nas.", true);
       })
-      .catch(function () { btn.disabled = false; show("Nie udało się połączyć z serwerem. Spróbuj ponownie albo zadzwoń do nas.", true); });
+      .catch(function () { btn.disabled = false; btn.textContent = "Wyślij zapytanie"; show("Nie udało się połączyć z serwerem. Spróbuj ponownie albo zadzwoń do nas.", true); });
   });
   $("#form-again").addEventListener("click", function () {
     form.reset(); files = []; renderThumbs(); tried = false;

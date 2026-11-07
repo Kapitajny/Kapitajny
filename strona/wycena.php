@@ -56,7 +56,8 @@ if (field('website') !== '' || ($started > 0 && (time() * 1000 - $started) < MIN
 }
 
 $services = [
-    'Przeprowadzka', 'Transport mebli i przedmiotów', 'Opróżnianie mieszkania, domu lub pomieszczenia',
+    'Przeprowadzka mieszkania lub domu', 'Przeprowadzka firmy lub biura',
+    'Transport mebli i rzeczy wielkogabarytowych', 'Opróżnianie mieszkania, domu lub pomieszczenia',
     'Demontaż i montaż mebli', 'Inna usługa',
 ];
 
