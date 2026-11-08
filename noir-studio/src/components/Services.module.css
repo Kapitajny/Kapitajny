@@ -1,0 +1,137 @@
+.section {
+  padding-block: var(--section);
+  background: var(--white);
+}
+
+.section:focus {
+  outline: none;
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: 1.5rem;
+  align-items: end;
+  margin-bottom: clamp(3rem, 7vw, 6rem);
+}
+
+.title {
+  grid-column: 1 / span 6;
+  font-size: var(--step-4);
+}
+
+.lead {
+  grid-column: 8 / -1;
+  max-width: 34rem;
+}
+
+.list {
+  border-top: 1px solid var(--ink);
+}
+
+.service {
+  border-bottom: 1px solid color-mix(in srgb, var(--stone) 45%, transparent);
+}
+
+.article {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-areas: "media media media media body body body body body scope scope scope";
+  column-gap: var(--gutter);
+  row-gap: 2rem;
+  align-items: start;
+  padding-block: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+/* Co druga usługa ma kadr po prawej – rytm rozkładówek. */
+.service:nth-child(even) .article {
+  grid-template-areas: "body body body body body scope scope scope media media media media";
+}
+
+.media {
+  grid-area: media;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-height: 34rem;
+}
+
+.body {
+  grid-area: body;
+  display: grid;
+  justify-items: start;
+  gap: 1.5rem;
+}
+
+.name {
+  font-size: var(--step-3);
+  line-height: 1.02;
+}
+
+.description {
+  max-width: 32rem;
+}
+
+.scope {
+  grid-area: scope;
+  padding-top: 0.75rem;
+}
+
+.scopeTitle {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.scopeList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9375rem;
+}
+
+.scopeList li {
+  padding-block: 0.625rem;
+  border-top: 1px solid color-mix(in srgb, var(--stone) 30%, transparent);
+}
+
+@media (max-width: 1099px) {
+  .article,
+  .service:nth-child(even) .article {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "media body"
+      "media scope";
+  }
+
+  .service:nth-child(even) .article {
+    grid-template-areas:
+      "body media"
+      "scope media";
+  }
+}
+
+@media (max-width: 899px) {
+  .title,
+  .lead {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 699px) {
+  .article,
+  .service:nth-child(even) .article {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "media"
+      "body"
+      "scope";
+  }
+
+  .body :global(.button) {
+    width: 100%;
+  }
+}
