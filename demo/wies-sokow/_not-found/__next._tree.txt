@@ -1,0 +1,5 @@
+:HL["/Kapitajny/demo/wies-sokow/_next/static/chunks/2eln-p5ba82yt.css","style"]
+:HL["/Kapitajny/demo/wies-sokow/_next/static/chunks/34x95c0vv99n7.css","style"]
+2:[["children",{"s":"__PAGE__","h":160}]]
+1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
+0:{"b":"wE0wLkyUPvVKvG7pTP6q4","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
