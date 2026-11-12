@@ -68,7 +68,7 @@ async function Details({ searchParams }: { searchParams: PageProps<"/rezerwacja/
             ["Start", formatDateTime(booking.start)],
             ["Zwrot", formatDateTime(booking.end)],
             ["Czas", durationLabelLong(booking.duration)],
-            ["Cena", formatPrice(booking.priceGr)],
+            ["Cena (brutto)", formatPrice(booking.priceGr)],
             ["Kaucja", formatPrice(booking.depositGr)],
             ["Miejsce", `${site.address.street}, ${site.address.city}`],
           ].map(([k, v]) => (

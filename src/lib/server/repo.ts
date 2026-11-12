@@ -184,6 +184,10 @@ export function deleteJetski(id: string): "deleted" | "deactivated" | "not-found
   return "deleted";
 }
 
+export function setDeposit(jetskiId: string, depositGr: number | null): void {
+  getDb().prepare("UPDATE jetskis SET deposit_gr = ?, updated_at = ? WHERE id = ?").run(depositGr, Date.now(), jetskiId);
+}
+
 export function setPrices(jetskiId: string, prices: Partial<Record<Duration, number | null>>): void {
   const db = getDb();
   const del = db.prepare("DELETE FROM prices WHERE jetski_id = ? AND duration_min = ?");

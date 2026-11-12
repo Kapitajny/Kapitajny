@@ -15,7 +15,8 @@ export function Pricing({
   info: { cancelFreeHours: number; depositRules: string; extraFees: string; rentalRules: string };
 }) {
   const [selectedId, setSelectedId] = useState(jetskis[0]?.id ?? "");
-  const [index, setIndex] = useState(2);
+  const firstPriced = (j: Jetski | undefined) => Math.max(0, DURATIONS.findIndex((d) => j?.prices[d] != null));
+  const [index, setIndex] = useState(() => firstPriced(jetskis[0]));
   const jetski = jetskis.find((j) => j.id === selectedId) ?? jetskis[0];
   const duration = DURATIONS[index];
   const price = jetski?.prices[duration] ?? null;
@@ -35,7 +36,10 @@ export function Pricing({
                 key={j.id}
                 type="button"
                 aria-pressed={j.id === jetski.id}
-                onClick={() => setSelectedId(j.id)}
+                onClick={() => {
+                  setSelectedId(j.id);
+                  if (j.prices[DURATIONS[index]] == null && hasAnyPrice(j)) setIndex(firstPriced(j));
+                }}
                 className={`min-h-11 px-4 text-[0.95rem] font-semibold ${j.id === jetski.id ? "bg-graphite text-white" : "shadow-[inset_0_0_0_1.5px_var(--color-graphite)] hover:bg-white"}`}
               >
                 {jetskiTitle(j)}
@@ -72,7 +76,9 @@ export function Pricing({
         <div className="min-w-0 border-t-2 border-graphite pt-5" aria-live="polite">
           <dl className="grid">
             <div className="flex items-baseline justify-between gap-4 border-b border-sand-line pb-4">
-              <dt className="text-muted">Cena za {durationLabelLong(duration)}</dt>
+              <dt className="text-muted">
+                Cena za {durationLabelLong(duration)} <span className="whitespace-nowrap">(brutto)</span>
+              </dt>
               <dd key={`${jetski.id}-${duration}`} className="rise tabular font-display text-5xl font-extrabold leading-none">
                 {price != null ? formatPrice(price) : "—"}
               </dd>
@@ -109,10 +115,11 @@ export function Pricing({
 
       <div>
         <h3 className="font-display text-3xl font-extrabold uppercase">Wszystkie stawki</h3>
+        <p className="mt-2 text-muted">Ceny brutto w złotych, z podatkiem VAT.</p>
         {!anyPrices && <p className="mt-3 max-w-2xl text-muted">Cennik sezonu jest w przygotowaniu. Ceny pojawią się tutaj, gdy tylko je ustalimy.</p>}
         <div className="relative mt-5 overflow-x-auto border-t-2 border-graphite" tabIndex={0} role="region" aria-label="Tabela cen wszystkich skuterów">
           <table className="tabular w-full min-w-[46rem] border-collapse text-left">
-            <caption className="sr-only">Ceny wynajmu skuterów wodnych według czasu wynajmu, w złotych</caption>
+            <caption className="sr-only">Ceny brutto wynajmu skuterów wodnych według czasu wynajmu, w złotych</caption>
             <thead>
               <tr className="border-b border-graphite/25 text-sm text-muted">
                 <th scope="col" className="py-3 pr-4 font-semibold">
@@ -145,7 +152,7 @@ export function Pricing({
             </tbody>
           </table>
         </div>
-        <p className="mt-3 text-sm text-muted">„—” oznacza, że cena tego wariantu nie jest jeszcze ustalona.</p>
+        <p className="mt-3 text-sm text-muted">Wszystkie ceny są cenami brutto. „—” oznacza, że cena tego wariantu nie jest jeszcze ustalona.</p>
       </div>
 
       <div className="grid gap-8 md:grid-cols-3">

@@ -134,7 +134,7 @@ function FleetCard({ jetski: j, featured }: { jetski: Jetski; featured: boolean 
         <div>
           <dt className="sr-only">Cena</dt>
           <dd className="font-display text-2xl font-bold leading-none">{from ? `od ${formatPrice(from.price)}` : "Cena wkrótce"}</dd>
-          <dd className="mt-1 text-sm text-mist">{from ? `za ${durationLabel(from.duration)}` : "cennik w przygotowaniu"}</dd>
+          <dd className="mt-1 text-sm text-mist">{from ? `brutto za ${durationLabel(from.duration)}` : "cennik w przygotowaniu"}</dd>
         </div>
       </dl>
       <div className="mt-auto flex flex-wrap gap-2 pt-5">

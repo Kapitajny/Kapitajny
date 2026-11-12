@@ -72,6 +72,7 @@ async function Details({ params }: { params: PageProps<"/flota/[id]">["params"] 
           </div>
           <div>
             <h2 className="display-md">Cennik</h2>
+            <p className="mt-2 text-muted">Ceny brutto w złotych, z podatkiem VAT.</p>
             <dl className="tabular mt-6 border-t-2 border-graphite">
               {DURATIONS.map((d) => (
                 <div key={d} className="flex justify-between gap-6 border-b border-line py-3">

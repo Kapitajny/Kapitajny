@@ -1,9 +1,12 @@
-import { parseJetski, parsePrices } from "@/lib/server/admin-input";
+import { parseJetski, parseMoney, parsePrices } from "@/lib/server/admin-input";
 import { requireAdmin } from "@/lib/server/auth";
 import { errorResponse, readJson } from "@/lib/server/http";
-import { deleteJetski, getJetski, setPrices, updateJetski } from "@/lib/server/repo";
+import { deleteJetski, getJetski, setDeposit, setPrices, updateJetski } from "@/lib/server/repo";
 
-/** PUT – zapis danych skutera; jeśli w treści jest `prices`, zapisuje też cennik. */
+/**
+ * PUT – zapis danych skutera.
+ * `{ prices, deposit }` bez `details` zapisuje tylko cennik (ceny brutto w zł) i kaucję.
+ */
 export async function PUT(request: Request, ctx: RouteContext<"/api/admin/jetskis/[id]">) {
   const denied = requireAdmin(request);
   if (denied) return denied;
@@ -12,10 +15,14 @@ export async function PUT(request: Request, ctx: RouteContext<"/api/admin/jetski
   const body = (await readJson(request)) as Record<string, unknown> | undefined;
   if (!body) return errorResponse(400, "invalid", "Nieprawidłowe dane.");
 
-  if (body.prices !== undefined) {
-    const prices = parsePrices(body.prices);
-    if (!prices.value) return Response.json({ error: { code: "validation", message: "Popraw ceny.", fields: prices.errors } }, { status: 422 });
+  if (body.prices !== undefined || (body.deposit !== undefined && body.details === undefined)) {
+    const prices = body.prices !== undefined ? parsePrices(body.prices) : { value: {}, errors: {} };
+    const deposit = body.deposit !== undefined ? parseMoney(body.deposit) : undefined;
+    const fields = { ...prices.errors, ...(deposit === "invalid" ? { deposit: "Kaucję podaj w złotych, np. 1000." } : {}) };
+    if (!prices.value || deposit === "invalid")
+      return Response.json({ error: { code: "validation", message: "Popraw zaznaczone kwoty.", fields } }, { status: 422 });
     setPrices(id, prices.value);
+    if (deposit !== undefined) setDeposit(id, deposit);
     if (body.details === undefined) return Response.json({ jetski: getJetski(id) });
   }
   const parsed = parseJetski((body.details as Record<string, unknown>) ?? body);

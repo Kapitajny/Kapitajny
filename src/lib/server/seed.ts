@@ -6,8 +6,9 @@ import type { DatabaseSync } from "node:sqlite";
  * Dane startowe, wstawiane tylko do pustej bazy.
  *
  * Flota: modele rozpoznane na zdjęciach dostarczonych przez właściciela. Są oznaczone
- * `needs_review = 1` – parametry, ceny, kaucje i wymagane uprawnienia celowo NIE są wpisane.
- * Uzupełnia je administrator w panelu (/panel).
+ * `needs_review = 1` – parametry, kaucje i wymagane uprawnienia celowo NIE są wpisane.
+ * Ceny: właściciel podał cenę wynajmu na całą dobę (24 h) – 1500 zł brutto. Pozostałe czasy
+ * uzupełnia administrator w panelu (/panel → Ceny i kaucje). Wszystkie ceny są cenami brutto.
  *
  * Godziny otwarcia i ustawienia rezerwacji to wartości przykładowe do potwierdzenia w panelu.
  */
@@ -18,6 +19,9 @@ const FLEET = [
   { id: "yamaha-vx", manufacturer: "Yamaha", model: "VX", image: "/images/kilwater/yamaha-vx.jpg", alt: "Kierowca na biało-niebieskim skuterze Yamaha VX na zielonej wodzie" },
   { id: "sea-doo-spark", manufacturer: "Sea-Doo", model: "Spark", image: "/images/kilwater/sea-doo-spark.jpg", alt: "Kierowca w kamizelce na turkusowym skuterze Sea-Doo Spark w zakręcie" },
 ];
+
+/** Ceny startowe w groszach brutto, według czasu wynajmu w minutach. */
+export const SEED_PRICES: Record<number, number> = { 1440: 150_000 };
 
 export const DEFAULT_SETTINGS: Record<string, string> = {
   prep_minutes: "15",
@@ -54,6 +58,10 @@ export function seedDatabase(db: DatabaseSync): void {
       `INSERT INTO jetskis (id, manufacturer, model, name, image, image_alt, license, active, needs_review, sort, created_at, updated_at)
        VALUES (?, ?, ?, ?, ?, ?, 'unknown', 1, 1, ?, ?, ?)`,
     );
-    FLEET.forEach((j, i) => insert.run(j.id, j.manufacturer, j.model, `${j.manufacturer} ${j.model}`, j.image, j.alt, i, now, now));
+    const price = db.prepare("INSERT INTO prices (jetski_id, duration_min, price_gr) VALUES (?, ?, ?)");
+    FLEET.forEach((j, i) => {
+      insert.run(j.id, j.manufacturer, j.model, `${j.manufacturer} ${j.model}`, j.image, j.alt, i, now, now);
+      for (const [duration, gr] of Object.entries(SEED_PRICES)) price.run(j.id, Number(duration), gr);
+    });
   }
 }

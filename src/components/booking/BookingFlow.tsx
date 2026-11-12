@@ -372,7 +372,7 @@ export function BookingFlow({ jetskis, rules, initialJetski, initialDuration }: 
         </dl>
         <dl className="mt-6 grid gap-3 border-t border-slate-line pt-5">
           <div className="flex items-baseline justify-between gap-4">
-            <dt className="text-white/70">Cena wynajmu</dt>
+            <dt className="text-white/70">Cena wynajmu (brutto)</dt>
             <dd className="tabular font-display text-4xl font-extrabold leading-none">{formatPrice(price)}</dd>
           </div>
           <div className="flex items-baseline justify-between gap-4">
