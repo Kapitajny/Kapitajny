@@ -8,7 +8,7 @@ export const site = {
   shortName: "MOLO/JET",
   city: "Sopot",
   description:
-    "Wynajem skuterów wodnych w Sopocie – od 30 minut do pełnej doby. Rezerwacja online, instruktaż przed startem i wypłynięcie prosto na Zatokę Gdańską.",
+    "Wynajem skuterów wodnych w Sopocie – od godziny do pełnej doby. Rezerwacja online, instruktaż przed startem i wypłynięcie prosto na Zatokę Gdańską.",
   url: process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") || "http://localhost:3000",
   allowIndexing: process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true",
   address: {

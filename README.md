@@ -33,7 +33,7 @@ Pulpit pokazuje listę rzeczy do uzupełnienia. Zalecana kolejność:
 1. **Flota** – potwierdź modele. Startowa baza zawiera 4 modele rozpoznane na dostarczonych zdjęciach
    (Yamaha GP1800R, FX, VX, Sea-Doo Spark) z oznaczeniem „Dane do potwierdzenia”. Wpisz moc, liczbę miejsc,
    opis i **wymagane uprawnienia**. Usuń modele, których nie ma we flocie, albo dodaj nowe (ze zdjęciem).
-2. **Ceny i kaucje** – cena dla każdego z 8 czasów (30 min … 24 h) i kaucja. Bez ceny dany wariant nie jest dostępny online.
+2. **Ceny i kaucje** – cena dla każdego z 7 czasów (1 h … 24 h, minimum 1 godzina) i kaucja. Bez ceny dany wariant nie jest dostępny online.
 3. **Godziny otwarcia** – domyślnie przykładowe 10:00–20:00 codziennie.
 4. **Ustawienia** – telefon, e-mail, parking, teksty o kaucji i opłatach, zasady rezerwacji (bufor przygotowania,
    minimalne wyprzedzenie, krok godzin, horyzont, bezpłatne anulowanie) i tryb sekcji „Bez patentu”.

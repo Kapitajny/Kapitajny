@@ -9,7 +9,7 @@ import { pricesFromHourly } from "@/lib/rental";
  * Flota: modele rozpoznane na zdjęciach dostarczonych przez właściciela. Są oznaczone
  * `needs_review = 1` – parametry, kaucje i wymagane uprawnienia celowo NIE są wpisane.
  * Ceny: właściciel podał stawkę 170 zł brutto za godzinę, liczoną za każdą godzinę wynajmu
- * (30 min 85 zł … 24 h 4080 zł). Zmienia się je w panelu (/panel → Ceny i kaucje). Ceny są brutto.
+ * (1 h 170 zł … 24 h 4080 zł, minimum 1 godzina). Zmienia się je w panelu (/panel → Ceny i kaucje). Ceny są brutto.
  *
  * Godziny otwarcia i ustawienia rezerwacji to wartości przykładowe do potwierdzenia w panelu.
  */

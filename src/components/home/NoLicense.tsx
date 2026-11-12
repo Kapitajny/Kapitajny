@@ -7,7 +7,7 @@ import { Photo } from "@/components/ui/Photo";
 const POINTS = [
   { Icon: ShieldIcon, title: "Instruktaż przed startem", text: "Na pomoście pokażemy obsługę skutera, zasady na wodzie i granice akwenu." },
   { Icon: VestIcon, title: "Kamizelka w cenie", text: "Dobieramy kamizelkę asekuracyjną do Twojego wzrostu i wagi." },
-  { Icon: ClockIcon, title: "Od 30 minut", text: "Krótki wynajem na pierwszy raz albo dłuższy, gdy złapiesz rytm." },
+  { Icon: ClockIcon, title: "Od 1 godziny", text: "Godzina na pierwszy raz albo dłużej, gdy złapiesz rytm." },
 ];
 
 /**
@@ -60,9 +60,9 @@ export function NoLicense({ data }: { data: PublicData }) {
               </li>
             ))}
             <li className="border-t-2 border-graphite pt-4">
-              <span className="font-display text-3xl font-extrabold leading-none">30′–24 h</span>
+              <span className="font-display text-3xl font-extrabold leading-none">1–24 h</span>
               <h3 className="mt-3 font-sans text-lg font-bold normal-case leading-snug tracking-normal">Wynajem na różny czas</h3>
-              <p className="mt-1 text-muted">Osiem wariantów czasu, od pół godziny do pełnej doby.</p>
+              <p className="mt-1 text-muted">Siedem wariantów czasu, od godziny do pełnej doby.</p>
             </li>
           </ul>
 

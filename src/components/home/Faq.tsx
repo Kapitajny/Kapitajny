@@ -64,7 +64,7 @@ export function Faq({ data }: { data: PublicData }) {
         </>
       ),
     },
-    { q: "Jak długo można wynająć skuter?", a: <>Od 30 minut do 24 godzin. Do wyboru masz 30 minut, 1, 2, 3, 4, 6, 12 i 24 godziny. Każdy czas ma osobną cenę.</> },
+    { q: "Jak długo można wynająć skuter?", a: <>Od 1 do 24 godzin. Do wyboru masz 1, 2, 3, 4, 6, 12 i 24 godziny. Minimalny czas wynajmu to godzina.</> },
     {
       q: "Czy można wynająć skuter na całą dobę?",
       a: <>Tak. Przy wynajmie na 12 i 24 godziny zwrot musi przypaść w godzinach otwarcia przystani, dlatego system pokaże tylko pasujące godziny startu.</>,

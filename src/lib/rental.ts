@@ -4,7 +4,8 @@
  */
 import { addDays, fromLocal, toLocal, toMinutes, weekdayOf } from "@/lib/time";
 
-export const DURATIONS = [30, 60, 120, 180, 240, 360, 720, 1440] as const;
+/** Dostępne czasy wynajmu w minutach. Minimum to 1 godzina. */
+export const DURATIONS = [60, 120, 180, 240, 360, 720, 1440] as const;
 export type Duration = (typeof DURATIONS)[number];
 
 export function isDuration(value: unknown): value is Duration {
@@ -80,7 +81,7 @@ export function emptyPrices(): Record<Duration, number | null> {
 
 /**
  * Cennik liniowy ze stawki za godzinę (w groszach): każdy czas = stawka × liczba godzin,
- * np. 170 zł/h → 30 min 85 zł, 1 h 170 zł … 24 h 4080 zł.
+ * np. 170 zł/h → 1 h 170 zł, 2 h 340 zł … 24 h 4080 zł.
  */
 export function pricesFromHourly(hourlyGr: number): Record<Duration, number> {
   return Object.fromEntries(DURATIONS.map((d) => [d, Math.round((hourlyGr * d) / 60)])) as Record<Duration, number>;

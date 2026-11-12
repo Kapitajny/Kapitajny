@@ -34,7 +34,7 @@ describe("reguły dostępności", () => {
   });
 
   it("odrzuca termin zbyt bliski lub zbyt odległy", () => {
-    expect(checkSlot("2027-07-01", 8 * 60 + 30, 30, { ...ctx, hours: [{ weekday: 4, open: "08:00", close: "20:00" }] })).toBe("past");
+    expect(checkSlot("2027-07-01", 8 * 60 + 30, 60, { ...ctx, hours: [{ weekday: 4, open: "08:00", close: "20:00" }] })).toBe("past");
     expect(checkSlot("2027-12-01", 10 * 60, 60, ctx)).toBe("too-far");
   });
 
@@ -65,16 +65,22 @@ describe("formatowanie", () => {
   it("formatuje ceny i czasy", () => {
     expect(formatPrice(null)).toBe("—");
     expect(formatPrice(25000).replace(/\s/g, " ")).toBe("250 zł");
-    expect(durationLabelLong(30)).toBe("30 minut");
+    expect(durationLabelLong(60)).toBe("1 godzina");
     expect(durationLabelLong(120)).toBe("2 godziny");
     expect(durationLabelLong(360)).toBe("6 godzin");
   });
 });
 
 describe("cennik godzinowy", () => {
+  it("minimalny czas wynajmu to 1 godzina", async () => {
+    const { DURATIONS, isDuration } = await import("@/lib/rental");
+    expect(DURATIONS[0]).toBe(60);
+    expect(isDuration(30)).toBe(false);
+  });
+
   it("liczy każdą godzinę po 170 zł brutto", async () => {
     const { pricesFromHourly, hourlyRate } = await import("@/lib/rental");
-    expect(pricesFromHourly(17_000)).toEqual({ 30: 8_500, 60: 17_000, 120: 34_000, 180: 51_000, 240: 68_000, 360: 102_000, 720: 204_000, 1440: 408_000 });
+    expect(pricesFromHourly(17_000)).toEqual({ 60: 17_000, 120: 34_000, 180: 51_000, 240: 68_000, 360: 102_000, 720: 204_000, 1440: 408_000 });
     expect(hourlyRate(408_000, 1440)).toBe(17_000);
   });
 });

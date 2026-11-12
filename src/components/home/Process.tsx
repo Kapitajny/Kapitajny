@@ -1,7 +1,7 @@
 const STEPS = [
   { title: "Wybierz skuter", text: "Porównaj modele, moc i ceny." },
   { title: "Wybierz datę i godzinę", text: "Widzisz tylko wolne terminy." },
-  { title: "Określ czas wynajmu", text: "Od 30 minut do 24 godzin." },
+  { title: "Określ czas wynajmu", text: "Od 1 do 24 godzin." },
   { title: "Zarezerwuj termin", text: "Dostajesz numer i link do rezerwacji." },
   { title: "Przyjedź na przystań", text: "Z dokumentem tożsamości, kwadrans wcześniej." },
   { title: "Przejdź instruktaż", text: "Obsługa skutera, zasady, granice akwenu." },

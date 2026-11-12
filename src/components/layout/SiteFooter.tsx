@@ -51,7 +51,7 @@ export function SiteFooter() {
         <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
           <div>
             <Logo />
-            <p className="mt-4 max-w-xs text-white/70">Wynajem skuterów wodnych w Sopocie. Od 30 minut do pełnej doby.</p>
+            <p className="mt-4 max-w-xs text-white/70">Wynajem skuterów wodnych w Sopocie. Od godziny do pełnej doby.</p>
             {socials.length > 0 && (
               <ul className="mt-6 flex gap-2">
                 {socials.map(({ href, label, Icon }) => (

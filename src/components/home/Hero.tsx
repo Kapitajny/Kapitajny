@@ -21,7 +21,7 @@ export function Hero() {
 
         <div className="mt-8 grid gap-6 md:mt-10 md:grid-cols-[minmax(0,26rem)_auto_1fr] md:items-end md:gap-10">
           <p className="max-w-md text-[1.1rem] leading-relaxed text-white/85 md:text-lg">
-            Skutery wodne od 30 minut do pełnej doby. Wypływasz z przystani w Sopocie, a przed Tobą otwarta Zatoka Gdańska.
+            Skutery wodne od godziny do pełnej doby. Wypływasz z przystani w Sopocie, a przed Tobą otwarta Zatoka Gdańska.
           </p>
           <div className="hidden flex-wrap gap-3 md:flex">
             <Link href="/rezerwacja" className="btn btn-primary">
@@ -34,7 +34,7 @@ export function Hero() {
           <dl className="hidden grid-cols-2 gap-x-8 justify-self-end md:grid">
             <div>
               <dt className="sr-only">Najkrótszy wynajem</dt>
-              <dd className="font-display text-5xl font-extrabold leading-none">30 min</dd>
+              <dd className="font-display text-5xl font-extrabold leading-none">1 h</dd>
               <dd className="mt-1 text-sm text-white/65">najkrótszy wynajem</dd>
             </div>
             <div>

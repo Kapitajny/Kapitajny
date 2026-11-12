@@ -116,7 +116,7 @@ function HourlyCalculator({ id, initial }: { id: string; initial?: number | null
         Przelicz wszystkie czasy
       </button>
       <p id={`${id}-hint`} className="basis-full text-sm text-muted">
-        Każda godzina po tej samej stawce: 30 min = połowa stawki, 24 h = stawka × 24. Sprawdź wyliczone kwoty i zapisz.
+        Każda godzina po tej samej stawce: 1 h = stawka, 24 h = stawka × 24. Sprawdź wyliczone kwoty i zapisz.
       </p>
       {error && (
         <p id={`${id}-err`} className="field-error basis-full text-sm">
@@ -166,7 +166,7 @@ function BulkPrices({ jetskis, onDone }: { jetskis: Jetski[]; onDone: (msg: stri
         wszystkich skuterów, puste pola zostaną bez zmian.
       </p>
       <HourlyCalculator id="bulk-hourly" />
-      <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-9">
+      <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-8">
         {DURATIONS.map((d) => (
           <MoneyInput key={d} id={`bulk-p-${d}`} name={`p-${d}`} label={`${durationLabel(d)} brutto`} />
         ))}
@@ -217,7 +217,7 @@ function PriceRow({ jetski, onSaved }: { jetski: Jetski; onSaved: (msg: string, 
         </p>
       </div>
       <HourlyCalculator id={`${jetski.id}-hourly`} initial={jetski.prices[60] ?? (from ? hourlyRate(from.price, from.duration) : null)} />
-      <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-9">
+      <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-8">
         {DURATIONS.map((d) => (
           <MoneyInput key={d} id={`${jetski.id}-p-${d}`} name={`p-${d}`} label={`${durationLabel(d)} brutto`} defaultValue={toZl(jetski.prices[d])} error={errors[String(d)]} />
         ))}
