@@ -1,10 +1,10 @@
 @echo off
 chcp 65001 >nul
-title NOIR COFFEE
+title MOLO Jet Club
 cd /d "%~dp0"
 
 echo.
-echo  NOIR COFFEE - uruchamianie strony
+echo  MOLO Jet Club - uruchamianie strony
 echo  ---------------------------------
 
 where node >nul 2>nul
@@ -31,6 +31,8 @@ if not exist node_modules (
 )
 
 set NEXT_PUBLIC_SITE_URL=http://localhost:3000
+call node scripts/setup-local.mjs
+if errorlevel 1 goto error
 echo  Przygotowuje strone...
 call npm run build
 if errorlevel 1 goto error

@@ -1,92 +1,51 @@
 "use client";
 
 import Link from "next/link";
-import type { Location } from "@/data/locations";
 import { useStoredFlag } from "@/lib/use-stored-flag";
-import { InfoIcon, PinIcon } from "@/components/ui/Icons";
+import { PinIcon } from "@/components/ui/Icons";
 
-const CONSENT_KEY = "noir-maps-consent";
+const CONSENT_KEY = "molo-maps-consent";
 
-/**
- * Mapa Google ładowana dopiero po kliknięciu (Google może zapisywać pliki cookie).
- *
- * - Z kluczem NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY używane jest oficjalne Maps Embed API.
- * - Bez klucza – standardowy, publiczny mechanizm osadzania map Google (bez klucza).
- * - Dopóki lokal nie ma `verified: true`, mapa pokazuje ogólny widok Gdańska, a nie pinezki.
- */
-function buildEmbedUrl(location: Location | undefined): string {
-  const query = location?.verified ? location.mapsQuery : "Gdańsk";
+/** Mapa Google ładowana dopiero po zgodzie (Google może zapisywać pliki cookie i otrzymuje adres IP). */
+export function MapEmbed({ query, label, fictional }: { query: string; label: string; fictional: boolean }) {
+  const [consent, setConsent] = useStoredFlag(CONSENT_KEY);
   const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY;
-  if (key) {
-    return `https://www.google.com/maps/embed/v1/place?key=${encodeURIComponent(key)}&q=${encodeURIComponent(query)}&language=pl&zoom=${location?.verified ? 15 : 12}`;
-  }
-  return `https://maps.google.com/maps?q=${encodeURIComponent(query)}&z=${location?.verified ? 15 : 12}&hl=pl&output=embed`;
-}
-
-export function MapEmbed({ selected, anyUnverified }: { selected: Location | undefined; anyUnverified: boolean }) {
-  const [storedConsent, setConsent] = useStoredFlag(CONSENT_KEY);
-  const consent = storedConsent === true;
-  const accept = () => setConsent(true);
+  const src = key
+    ? `https://www.google.com/maps/embed/v1/place?key=${encodeURIComponent(key)}&q=${encodeURIComponent(query)}&language=pl&zoom=14`
+    : `https://maps.google.com/maps?q=${encodeURIComponent(query)}&z=14&hl=pl&output=embed`;
 
   return (
-    <div className="relative flex flex-col gap-3 lg:block lg:h-full">
-      <div className="relative h-[24rem] overflow-hidden rounded-2xl border border-line bg-sand sm:h-[32rem] lg:h-full lg:min-h-[36rem]">
-        {consent ? (
-          <iframe
-            title={selected?.verified ? `Mapa: ${selected.name}` : "Mapa Gdańska (widok demonstracyjny)"}
-            src={buildEmbedUrl(selected)}
-            className="absolute inset-0 h-full w-full border-0 grayscale-[35%] sepia-[12%]"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            allowFullScreen
-          />
-        ) : (
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-8 text-center">
-            <MapSketch />
-            <div className="relative max-w-sm rounded-2xl bg-sand/90 px-6 py-7">
-              <PinIcon size={28} className="mx-auto text-roast" />
-              <p className="mt-4 font-serif text-2xl text-roast">Mapa Google</p>
-              <p className="mt-3 text-sm leading-relaxed text-muted">
-                Po wczytaniu mapy Google może zapisywać pliki cookie i otrzyma Twój adres IP.{" "}
-                <Link href="/cookies" className="link-quiet text-roast">
-                  Więcej w polityce cookies
-                </Link>
-                .
-              </p>
-              <button type="button" onClick={accept} className="btn btn-primary btn-sm mt-6">
-                Wczytaj mapę
-              </button>
-            </div>
+    <div className="relative h-full min-h-[22rem] overflow-hidden bg-[#dfe6ea]">
+      {consent ? (
+        <iframe title={label} src={src} className="absolute inset-0 h-full w-full border-0 grayscale-[30%]" loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
+      ) : (
+        <div className="absolute inset-0 grid place-items-center p-6 pb-14">
+          <svg aria-hidden="true" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 h-full w-full">
+            <rect width="400" height="300" fill="#dfe6ea" />
+            <path d="M0 0 H175 C160 60 190 120 170 180 S150 260 165 300 H0z" fill="#eef0ea" />
+            <path d="M172 150 H260" stroke="#151d23" strokeWidth="5" />
+            <path d="M0 240 L400 120" stroke="#00b9c7" strokeWidth="3" opacity=".7" />
+          </svg>
+          <div className="relative max-w-sm bg-white p-6 text-center shadow-[0_1px_0_var(--color-line)]">
+            <PinIcon size={28} className="mx-auto text-turq-ink" />
+            <p className="mt-3 font-display text-3xl font-extrabold uppercase">Mapa Google</p>
+            <p className="mt-2 text-[0.95rem] text-muted">
+              Po wczytaniu mapy Google może zapisywać pliki cookie i otrzyma Twój adres IP.{" "}
+              <Link href="/cookies" className="link text-graphite">
+                Więcej o cookies
+              </Link>
+            </p>
+            <button type="button" onClick={() => setConsent(true)} className="btn btn-sm mt-5">
+              Wczytaj mapę
+            </button>
           </div>
-        )}
-      </div>
-
-      {anyUnverified && (
-        <p className="flex items-start gap-2 rounded-xl border border-line bg-paper px-4 py-3 text-xs leading-relaxed text-espresso lg:absolute lg:left-3 lg:top-3 lg:max-w-sm lg:border-0 lg:bg-paper/95 lg:shadow-sm lg:backdrop-blur-sm">
-          <InfoIcon size={16} className="mt-0.5 shrink-0 text-latte" />
-          <span>
-            <strong className="font-semibold">Mapa demonstracyjna.</strong> Pokazuje ogólny widok Gdańska – lokalizacje lokali NOIR wymagają weryfikacji i nie
-            są na niej zaznaczone.
-          </span>
+        </div>
+      )}
+      {fictional && (
+        <p className="absolute inset-x-0 bottom-0 bg-white/95 px-3 py-2 text-sm text-graphite">
+          Adres przystani jest przykładowy, więc mapa pokazuje ogólny widok Sopotu, bez pinezki.
         </p>
       )}
     </div>
-  );
-}
-
-/** Dekoracyjny szkic ulic – tło przed wczytaniem mapy (bez żadnych prawdziwych lokalizacji). */
-function MapSketch() {
-  return (
-    <svg aria-hidden="true" className="absolute inset-0 h-full w-full text-oat" preserveAspectRatio="xMidYMid slice" viewBox="0 0 400 300">
-      <g fill="none" stroke="currentColor" strokeWidth="1">
-        <path d="M-10 220 C 80 200, 120 120, 210 110 S 330 60, 420 40" strokeWidth="14" stroke="var(--color-cream)" />
-        <path d="M-10 60 L 140 90 L 260 200 L 420 230" />
-        <path d="M60 -10 L 90 120 L 70 310" />
-        <path d="M180 -10 L 200 140 L 240 310" />
-        <path d="M300 -10 L 290 150 L 330 310" />
-        <path d="M-10 160 L 420 130" />
-        <path d="M-10 270 L 420 250" />
-      </g>
-    </svg>
   );
 }

@@ -40,7 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# lokalna baza zamówień (SQLite)
+# lokalna baza rezerwacji (SQLite) i zdjęcia wgrane w panelu
 /data/
 
 # przykładowa konfiguracja jest częścią repozytorium

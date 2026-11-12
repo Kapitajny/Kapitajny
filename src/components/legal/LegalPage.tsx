@@ -1,92 +1,23 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
-import { legalNav } from "@/config/site";
-import { AlertIcon, ArrowLeftIcon } from "@/components/ui/Icons";
 
-export interface LegalSection {
-  id: string;
-  title: string;
-  content: ReactNode;
-}
-
-/**
- * Wspólny układ dokumentów prawnych: spis treści, oznaczenie wersji roboczej,
- * nawigacja między dokumentami i powrót na stronę główną.
- */
-export function LegalPage({ title, intro, path, sections }: { title: string; intro: ReactNode; path: string; sections: LegalSection[] }) {
+/** Szablon dokumentów prawnych. Treści są projektami do weryfikacji przez prawnika. */
+export function LegalPage({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <div className="container-x pb-24 pt-10 lg:pb-32 lg:pt-14">
-      <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-roast">
-        <ArrowLeftIcon size={16} /> Strona główna
-      </Link>
-
-      <header className="mt-10 max-w-3xl">
-        <p className="eyebrow">Dokumenty NOIR COFFEE</p>
-        <h1 className="mt-5 text-[clamp(2.3rem,1.4rem+3.2vw,4.2rem)]">{title}</h1>
-        <div className="mt-6 text-lg leading-relaxed text-muted">{intro}</div>
-      </header>
-
-      <div
-        role="note"
-        className="mt-10 flex max-w-3xl gap-3 rounded-xl border border-dashed border-latte/70 bg-paper px-5 py-4 text-sm leading-relaxed text-espresso"
-      >
-        <AlertIcon size={18} className="mt-0.5 shrink-0 text-latte" />
-        <p>
-          <strong className="font-semibold">Projekt dokumentu – wersja robocza.</strong> Treść wymaga uzupełnienia danych sprzedawcy oraz weryfikacji przez
-          prawnika przed uruchomieniem sprzedaży. Nie została zweryfikowana prawnie i nie stanowi porady prawnej. Fragmenty oznaczone „do uzupełnienia” zależą
-          od decyzji właściciela.
+    <div className="on-light bg-white pb-24 pt-28 md:pt-36">
+      <div className="wrap">
+        <h1 className="display-lg max-w-[16ch]">{title}</h1>
+        <span className="wake mt-6 rotate-[-3deg] w-[min(36rem,90%)]" aria-hidden="true" />
+        <p className="mt-8 max-w-2xl border-l-4 border-turq py-1 pl-4 text-muted">
+          Projekt dokumentu dla wersji demonstracyjnej strony. Przed uruchomieniem wypożyczalni wymaga uzupełnienia danych firmy i weryfikacji przez prawnika.
         </p>
-      </div>
-
-      <div className="mt-14 grid gap-12 lg:grid-cols-12 lg:gap-16">
-        <aside className="lg:col-span-4 xl:col-span-3">
-          <div className="lg:sticky lg:top-24">
-            <nav aria-label="Spis treści">
-              <h2 className="eyebrow mb-4">Spis treści</h2>
-              <ol className="space-y-2 border-l border-line text-sm">
-                {sections.map((section, i) => (
-                  <li key={section.id}>
-                    <a
-                      href={`#${section.id}`}
-                      className="-ml-px block border-l border-transparent py-1 pl-4 text-muted transition-colors hover:border-roast hover:text-roast"
-                    >
-                      <span className="tabular-nums">{i + 1}.</span> {section.title}
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            </nav>
-          </div>
-        </aside>
-
-        <article className="prose-legal min-w-0 max-w-3xl lg:col-span-8 xl:col-span-7">
-          {sections.map((section, i) => (
-            <section key={section.id} aria-labelledby={section.id}>
-              <h2 id={section.id}>
-                <span className="mr-2 text-latte tabular-nums">{i + 1}.</span>
-                {section.title}
-              </h2>
-              {section.content}
-            </section>
-          ))}
-
-          <nav aria-label="Pozostałe dokumenty" className="mt-16 border-t border-line pt-8">
-            <h2 className="!mt-0 !mb-4 !text-base font-sans font-semibold">Pozostałe dokumenty</h2>
-            <ul className="!list-none !pl-0">
-              {legalNav
-                .filter((item) => item.href !== path)
-                .map((item) => (
-                  <li key={item.href} className="!pl-0">
-                    <Link href={item.href}>{item.label}</Link>
-                  </li>
-                ))}
-            </ul>
-            <Link href="/" className="btn btn-secondary mt-6 !no-underline">
-              <ArrowLeftIcon size={18} /> Wróć na stronę główną
-            </Link>
-          </nav>
-        </article>
+        <div className="legal mt-10 max-w-[68ch] text-[1.05rem] leading-relaxed [&_h2]:mt-10 [&_h2]:font-sans [&_h2]:text-xl [&_h2]:font-bold [&_h2]:normal-case [&_h2]:tracking-normal [&_li]:mt-2 [&_ol]:list-decimal [&_ol]:pl-6 [&_p]:mt-4 [&_ul]:list-disc [&_ul]:pl-6">
+          {children}
+        </div>
       </div>
     </div>
   );
+}
+
+export function Todo({ children }: { children: ReactNode }) {
+  return <span className="border border-dashed border-warn/60 bg-sand px-1.5 py-0.5 text-[0.92em]">[do uzupełnienia: {children}]</span>;
 }

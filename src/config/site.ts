@@ -1,39 +1,45 @@
 /**
- * Ustawienia marki i dane kontaktowe.
- * Pola oznaczone `null` są do uzupełnienia przed uruchomieniem produkcyjnym –
- * do tego czasu strona pokazuje w ich miejscu informację „do uzupełnienia”.
+ * Marka, adres i stałe treści strony.
+ * Adres jest FIKCYJNY (projekt demonstracyjny) – przed startem wpisz prawdziwe dane.
+ * Telefon, e-mail, parking i zasady wynajmu ustawia administrator w panelu (/panel → Ustawienia).
  */
-
-export const siteConfig = {
-  name: "NOIR COFFEE",
-  city: "Gdańsk",
-  tagline: "Kawa specialty w Gdańsku",
+export const site = {
+  name: "MOLO Jet Club",
+  shortName: "MOLO/JET",
+  city: "Sopot",
   description:
-    "NOIR COFFEE – kawiarnia w Gdańsku. Starannie wyselekcjonowane ziarna, perfekcyjnie przygotowane espresso i zamówienia online z odbiorem w wybranym lokalu.",
-  /** Adres strony bez końcowego ukośnika, np. https://noircoffee.pl */
+    "Wynajem skuterów wodnych w Sopocie – od 30 minut do pełnej doby. Rezerwacja online, instruktaż przed startem i wypłynięcie prosto na Zatokę Gdańską.",
   url: process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") || "http://localhost:3000",
-  /** Link do profilu na Instagramie – ustaw NEXT_PUBLIC_INSTAGRAM_URL. */
-  instagramUrl: process.env.NEXT_PUBLIC_INSTAGRAM_URL || null,
-  /** Indeksowanie w wyszukiwarkach włącz dopiero po uzupełnieniu prawdziwych danych. */
   allowIndexing: process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true",
-  contact: {
-    email: null as string | null,
-    phone: null as string | null,
+  address: {
+    street: "ul. Przystań Kapitańska 7",
+    postal: "81-701",
+    city: "Sopot",
+    /** Adres jest fikcyjny – mapa pokazuje ogólny widok wybrzeża Sopotu, bez pinezki. */
+    fictional: true,
+    mapQuery: "Sopot molo",
   },
-};
+  coordinates: "54°26′N 18°34′E",
+  social: {
+    instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || null,
+    facebook: process.env.NEXT_PUBLIC_FACEBOOK_URL || null,
+    tiktok: process.env.NEXT_PUBLIC_TIKTOK_URL || null,
+    googleReviews: process.env.NEXT_PUBLIC_GOOGLE_REVIEW_URL || null,
+  },
+} as const;
 
 export const mainNav = [
-  { href: "/", label: "Strona główna" },
-  { href: "/#menu", label: "Nasza kawa" },
-  { href: "/#o-nas", label: "O nas" },
-  { href: "/#lokale", label: "Nasze lokale" },
-  { href: "/#kontakt", label: "Kontakt" },
+  { href: "/#flota", label: "Flota" },
+  { href: "/#bez-patentu", label: "Bez patentu" },
+  { href: "/#cennik", label: "Cennik" },
+  { href: "/#jak-to-dziala", label: "Jak to działa" },
+  { href: "/#lokalizacja", label: "Lokalizacja" },
+  { href: "/#faq", label: "FAQ" },
 ] as const;
 
 export const legalNav = [
-  { href: "/regulamin", label: "Regulamin zamawiania kawy online" },
+  { href: "/regulamin", label: "Regulamin" },
+  { href: "/zasady-wynajmu", label: "Zasady wynajmu" },
   { href: "/polityka-prywatnosci", label: "Polityka prywatności" },
-  { href: "/cookies", label: "Polityka plików cookies" },
-  { href: "/platnosci-i-zwroty", label: "Informacje o płatnościach i zwrotach" },
-  { href: "/kontakt", label: "Kontakt i dane sprzedawcy" },
+  { href: "/cookies", label: "Pliki cookies" },
 ] as const;

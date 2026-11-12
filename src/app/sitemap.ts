@@ -1,9 +1,6 @@
 import type { MetadataRoute } from "next";
-import { legalNav, siteConfig } from "@/config/site";
+import { site } from "@/config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    { url: `${siteConfig.url}/`, changeFrequency: "weekly", priority: 1 },
-    ...legalNav.map((item) => ({ url: `${siteConfig.url}${item.href}`, changeFrequency: "yearly" as const, priority: 0.3 })),
-  ];
+  return ["", "/rezerwacja", "/regulamin", "/zasady-wynajmu", "/polityka-prywatnosci", "/cookies"].map((path) => ({ url: `${site.url}${path}` }));
 }

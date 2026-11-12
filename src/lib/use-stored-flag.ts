@@ -2,7 +2,7 @@
 
 import { useCallback, useSyncExternalStore } from "react";
 
-const CHANGE_EVENT = "noir-storage-flag";
+const CHANGE_EVENT = "molo-storage-flag";
 /** Wartości ustawione w tej sesji – działają także, gdy przeglądarka blokuje localStorage. */
 const memory = new Map<string, boolean>();
 

@@ -1,42 +1,33 @@
 import "server-only";
 
-/**
- * Konfiguracja serwera odczytywana ze zmiennych środowiskowych.
- * Klucze Stripe NIGDY nie trafiają do przeglądarki – ten moduł jest dostępny tylko po stronie serwera.
- */
+/** Konfiguracja serwera ze zmiennych środowiskowych. Nic z tego modułu nie trafia do przeglądarki. */
 
-export type PaymentsMode = "test" | "live" | "unconfigured";
-
-export interface StripeConfig {
-  secretKey: string;
-  webhookSecret: string | null;
-  mode: "test" | "live";
+export function getDbPath(): string {
+  return process.env.DB_PATH?.trim() || "data/kilwater.sqlite";
 }
 
-export function getStripeConfig(): StripeConfig | null {
-  const secretKey = process.env.STRIPE_SECRET_KEY?.trim();
-  if (!secretKey) return null;
-  const mode = secretKey.startsWith("sk_live_") || secretKey.startsWith("rk_live_") ? "live" : "test";
-  return { secretKey, webhookSecret: process.env.STRIPE_WEBHOOK_SECRET?.trim() || null, mode };
+/** Hasło do panelu administratora. Bez niego panel jest wyłączony. */
+export function getAdminPassword(): string | null {
+  const value = process.env.ADMIN_PASSWORD?.trim();
+  return value && value.length >= 10 ? value : null;
 }
 
-export function getPaymentsMode(): PaymentsMode {
-  return getStripeConfig()?.mode ?? "unconfigured";
+/** Sekret do podpisywania sesji panelu (min. 32 znaki). */
+export function getSessionSecret(): string | null {
+  const value = process.env.ADMIN_SESSION_SECRET?.trim();
+  return value && value.length >= 32 ? value : null;
 }
 
-/**
- * Adres strony używany w linkach powrotnych ze Stripe.
- * W produkcji ustaw NEXT_PUBLIC_SITE_URL – nie polegamy wtedy na nagłówkach żądania.
- */
-export function getSiteUrl(request: Request): string {
-  const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim();
-  if (configured) return configured.replace(/\/+$/, "");
-  if (process.env.NODE_ENV === "production") {
-    throw new Error("Brak NEXT_PUBLIC_SITE_URL – ustaw adres strony w zmiennych środowiskowych.");
-  }
-  return new URL(request.url).origin;
+/** Adres webhooka, na który trafiają wiadomości z formularza kontaktowego (np. Make, Zapier, n8n). */
+export function getContactWebhook(): { url: string; secret: string | null } | null {
+  const url = process.env.CONTACT_WEBHOOK_URL?.trim();
+  if (!url) return null;
+  return { url, secret: process.env.CONTACT_WEBHOOK_SECRET?.trim() || null };
 }
 
-export function getOrdersDbPath(): string {
-  return process.env.ORDERS_DB_PATH?.trim() || "data/orders.sqlite";
+/** Opinie Google: klucz Places API (New) i identyfikator miejsca. */
+export function getGooglePlaces(): { apiKey: string; placeId: string } | null {
+  const apiKey = process.env.GOOGLE_PLACES_API_KEY?.trim();
+  const placeId = process.env.GOOGLE_PLACE_ID?.trim();
+  return apiKey && placeId ? { apiKey, placeId } : null;
 }

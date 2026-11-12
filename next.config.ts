@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: {
     qualities: [75, 85],
+    localPatterns: [{ pathname: "/images/**", search: "" }],
     formats: ["image/avif", "image/webp"],
   },
   async headers() {

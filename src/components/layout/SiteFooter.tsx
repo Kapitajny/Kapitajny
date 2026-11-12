@@ -1,146 +1,121 @@
 import Link from "next/link";
-import { cacheLife } from "next/cache";
-import { legalNav, siteConfig } from "@/config/site";
-import { LOCATIONS, formatHours } from "@/data/locations";
-import { InstagramIcon } from "@/components/ui/Icons";
-import { Pending } from "@/components/legal/Pending";
+import { Suspense } from "react";
+import { legalNav, mainNav, site } from "@/config/site";
+import { getPublicData } from "@/lib/server/public-data";
+import { FacebookIcon, InstagramIcon, MailIcon, PhoneIcon, PinIcon, TiktokIcon } from "@/components/ui/Icons";
 import { Logo } from "./Logo";
 
-async function currentYear() {
-  "use cache";
-  cacheLife("days");
-  return new Date().getFullYear();
+async function FooterContact() {
+  const { settings } = await getPublicData();
+  const phone = settings.contact_phone.trim();
+  const email = settings.contact_email.trim();
+  return (
+    <ul className="grid gap-3 text-white/85">
+      <li className="flex gap-3">
+        <PhoneIcon className="mt-1 shrink-0 text-turq" />
+        {phone ? (
+          <a className="link" href={`tel:${phone.replace(/\s/g, "")}`}>
+            {phone}
+          </a>
+        ) : (
+          <span className="text-white/55">Telefon wkrótce</span>
+        )}
+      </li>
+      <li className="flex gap-3">
+        <MailIcon className="mt-1 shrink-0 text-turq" />
+        {email ? (
+          <a className="link break-all" href={`mailto:${email}`}>
+            {email}
+          </a>
+        ) : (
+          <span className="text-white/55">E-mail wkrótce</span>
+        )}
+      </li>
+    </ul>
+  );
 }
 
-export async function SiteFooter() {
-  const year = await currentYear();
+const socials = [
+  { href: site.social.instagram, label: "Instagram", Icon: InstagramIcon },
+  { href: site.social.facebook, label: "Facebook", Icon: FacebookIcon },
+  { href: site.social.tiktok, label: "TikTok", Icon: TiktokIcon },
+].filter((s): s is { href: string; label: string; Icon: typeof InstagramIcon } => !!s.href);
 
+export function SiteFooter() {
   return (
-    <footer id="kontakt" className="bg-roast text-oat">
-      <div className="container-x pb-10 pt-20 md:pt-28">
-        <div className="grid gap-14 lg:grid-cols-12">
-          <div className="lg:col-span-4">
-            <Logo tone="light" />
-            <p className="mt-6 max-w-sm leading-relaxed text-oat/80">
-              Kawiarnia z Gdańska. Starannie dobrane ziarna, uważnie przygotowane espresso i zamówienia online z odbiorem w wybranym lokalu.
-            </p>
-            <p className="mt-8 font-serif text-3xl italic leading-tight text-paper">Do zobaczenia przy barze.</p>
+    <footer className="on-dark overflow-hidden bg-navy text-white">
+      <div className="wrap pb-28 pt-20 md:pb-10 md:pt-28">
+        <p className="display-xl max-w-[11ch] text-[clamp(3.2rem,9vw,8.5rem)]">Do zobaczenia na wodzie</p>
+        <span className="wake mt-8 w-[min(46rem,92%)] rotate-[-3deg]" aria-hidden="true" />
+
+        <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
+          <div>
+            <Logo />
+            <p className="mt-4 max-w-xs text-white/70">Wynajem skuterów wodnych w Sopocie. Od 30 minut do pełnej doby.</p>
+            {socials.length > 0 && (
+              <ul className="mt-6 flex gap-2">
+                {socials.map(({ href, label, Icon }) => (
+                  <li key={label}>
+                    <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="grid h-11 w-11 place-items-center border border-slate-line transition-colors hover:border-white">
+                      <Icon />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-
-          <div className="grid gap-10 sm:grid-cols-2 lg:col-span-8 lg:grid-cols-4">
-            <FooterColumn title="Menu">
-              <FooterLink href="/#klasyki">Klasyki</FooterLink>
-              <FooterLink href="/#menu">Pełne menu kaw</FooterLink>
-              <FooterLink href="/#galeria">Galeria</FooterLink>
-              <FooterLink href="/zamowienie">Twoje zamówienie</FooterLink>
-            </FooterColumn>
-
-            <FooterColumn title="Lokale">
-              {LOCATIONS.map((l) => (
-                <li key={l.id} className="text-sm leading-relaxed">
-                  <Link href="/#lokale" className="text-paper hover:underline">
-                    {l.district}
+          <div>
+            <h2 className="font-sans text-base font-bold normal-case tracking-normal">Przystań</h2>
+            <p className="mt-3 flex gap-3 text-white/85">
+              <PinIcon className="mt-1 shrink-0 text-turq" />
+              <span>
+                {site.address.street}
+                <br />
+                {site.address.postal} {site.address.city}
+                {site.address.fictional && <span className="mt-1 block text-sm text-white/50">Adres przykładowy (projekt demonstracyjny)</span>}
+              </span>
+            </p>
+          </div>
+          <div>
+            <h2 className="font-sans text-base font-bold normal-case tracking-normal">Kontakt</h2>
+            <div className="mt-3">
+              <Suspense fallback={<p className="text-white/55">Ładowanie…</p>}>
+                <FooterContact />
+              </Suspense>
+            </div>
+          </div>
+          <nav aria-label="Na skróty">
+            <h2 className="font-sans text-base font-bold normal-case tracking-normal">Na skróty</h2>
+            <ul className="mt-3 grid gap-2 text-white/85">
+              {mainNav.slice(0, 4).map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="link">
+                    {item.label}
                   </Link>
-                  <span className="block text-oat/70">{l.street}</span>
-                  <span className="block text-oat/70">pon.–pt. {formatHours(l.hours.weekdays)}</span>
                 </li>
               ))}
-              <li className="text-xs text-oat/60">Adresy demonstracyjne – wymagają weryfikacji.</li>
-            </FooterColumn>
-
-            <FooterColumn title="Kontakt">
-              <li className="text-sm">
-                <span className="block text-oat/60">E-mail</span>
-                {siteConfig.contact.email ? (
-                  <a href={`mailto:${siteConfig.contact.email}`} className="text-paper hover:underline">
-                    {siteConfig.contact.email}
-                  </a>
-                ) : (
-                  <Pending tone="dark">adres e-mail</Pending>
-                )}
+              <li>
+                <Link href="/rezerwacja" className="link">
+                  Rezerwacja online
+                </Link>
               </li>
-              <li className="text-sm">
-                <span className="block text-oat/60">Telefon</span>
-                {siteConfig.contact.phone ? (
-                  <a href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`} className="text-paper hover:underline">
-                    {siteConfig.contact.phone}
-                  </a>
-                ) : (
-                  <Pending tone="dark">numer telefonu</Pending>
-                )}
-              </li>
-              <li className="text-sm">
-                {siteConfig.instagramUrl ? (
-                  <a
-                    href={siteConfig.instagramUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-paper hover:underline"
-                  >
-                    <InstagramIcon size={18} /> Instagram
-                  </a>
-                ) : (
-                  <>
-                    <span className="flex items-center gap-2 text-oat/60">
-                      <InstagramIcon size={16} /> Instagram
-                    </span>
-                    <Pending tone="dark">link do profilu</Pending>
-                  </>
-                )}
-              </li>
-              <FooterLink href="/kontakt">Kontakt i dane sprzedawcy</FooterLink>
-            </FooterColumn>
-
-            <FooterColumn title="Płatności">
-              <li className="text-sm leading-relaxed text-oat/80">
-                Płatności online obsługuje Stripe. Dostępne metody (np. karta, BLIK, Przelewy24) zależą od konfiguracji konta sprzedawcy.
-              </li>
-              <FooterLink href="/platnosci-i-zwroty">Płatności i zwroty</FooterLink>
-            </FooterColumn>
-          </div>
+            </ul>
+          </nav>
         </div>
 
-        <nav aria-label="Dokumenty prawne" className="mt-20 border-t border-paper/10 pt-8">
-          <h2 className="eyebrow mb-4 text-oat/60">Dokumenty</h2>
-          <ul className="flex flex-col gap-3 text-sm sm:flex-row sm:flex-wrap sm:gap-x-8">
+        <div className="mt-16 flex flex-col gap-4 border-t border-slate-line pt-6 text-sm text-white/60 md:flex-row md:items-center md:justify-between">
+          <p>© {site.name}. Projekt demonstracyjny – dane firmy do uzupełnienia.</p>
+          <ul className="flex flex-wrap gap-x-6 gap-y-2">
             {legalNav.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="link-quiet text-paper/90 hover:text-paper">
+                <Link href={item.href} className="link">
                   {item.label}
                 </Link>
               </li>
             ))}
           </ul>
-        </nav>
-
-        <div className="mt-10 flex flex-col gap-3 text-xs text-oat/60 md:flex-row md:items-center md:justify-between">
-          <p>
-            © {year} {siteConfig.name}. Wszelkie prawa zastrzeżone.
-          </p>
-          <p className="max-w-xl md:text-right">
-            Dane firmy, kontakt i dokumenty prawne są wersją roboczą i wymagają uzupełnienia oraz weryfikacji przed uruchomieniem sprzedaży.
-          </p>
         </div>
       </div>
     </footer>
-  );
-}
-
-function FooterColumn({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div>
-      <h2 className="eyebrow mb-5 text-oat/60">{title}</h2>
-      <ul className="space-y-3">{children}</ul>
-    </div>
-  );
-}
-
-function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
-  return (
-    <li>
-      <Link href={href} className="text-sm text-paper/90 transition-colors hover:text-paper hover:underline">
-        {children}
-      </Link>
-    </li>
   );
 }

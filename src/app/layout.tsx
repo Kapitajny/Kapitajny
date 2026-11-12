@@ -1,78 +1,54 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Fraunces } from "next/font/google";
-import { siteConfig } from "@/config/site";
-import { getImageManifest } from "@/lib/images.server";
-import { CartDrawer } from "@/components/cart/CartDrawer";
-import { CartProvider } from "@/components/cart/CartProvider";
-import { ProductCustomizer } from "@/components/cart/ProductCustomizer";
-import { Toasts } from "@/components/cart/Toasts";
-import { SiteFooter } from "@/components/layout/SiteFooter";
-import { SiteHeader } from "@/components/layout/SiteHeader";
-import { ImagesProvider } from "@/components/ui/ImagesProvider";
+import { Barlow, Big_Shoulders } from "next/font/google";
+import { site } from "@/config/site";
 import "./globals.css";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const display = Big_Shoulders({
+  variable: "--font-big-shoulders",
   subsets: ["latin", "latin-ext"],
-  style: ["normal", "italic"],
-  axes: ["opsz", "SOFT"],
+  weight: ["700", "800", "900"],
   display: "swap",
+  adjustFontFallback: false,
+  fallback: ["Arial Narrow", "Impact", "sans-serif"],
 });
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const body = Barlow({
+  variable: "--font-barlow",
   subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
-
-const manifest = getImageManifest();
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  metadataBase: new URL(site.url),
   title: {
-    default: "NOIR COFFEE – kawiarnia w Gdańsku | Zamów kawę online",
-    template: "%s | NOIR COFFEE",
+    default: `${site.name} – wynajem skuterów wodnych w Sopocie`,
+    template: `%s | ${site.name}`,
   },
-  description: siteConfig.description,
-  applicationName: siteConfig.name,
+  description: site.description,
+  applicationName: site.name,
   openGraph: {
     type: "website",
     locale: "pl_PL",
-    siteName: siteConfig.name,
-    title: "NOIR COFFEE – kawiarnia w Gdańsku",
-    description: siteConfig.description,
-    ...(manifest.hero.src ? { images: [{ url: manifest.hero.src, alt: manifest.hero.alt }] } : {}),
+    siteName: site.name,
+    title: `${site.name} – poczuj wolność na wodzie`,
+    description: site.description,
+    images: [{ url: "/images/kilwater/hero-aerial.jpg", width: 1148, height: 860, alt: "Skuter wodny na turkusowej wodzie, widok z drona" }],
   },
-  robots: siteConfig.allowIndexing ? { index: true, follow: true } : { index: false, follow: false },
+  robots: site.allowIndexing ? { index: true, follow: true } : { index: false, follow: false },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f5efe6",
+  themeColor: "#151d23",
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pl" className={`${fraunces.variable} ${dmSans.variable}`} suppressHydrationWarning>
-      <head>
-        {/* Animacje przy przewijaniu włączamy tylko, gdy działa JavaScript. */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
-      </head>
-      <body className="flex min-h-dvh flex-col">
-        <ImagesProvider manifest={manifest}>
-          <CartProvider>
-            <SiteHeader />
-            <main id="tresc" className="flex-1">
-              {children}
-            </main>
-            <SiteFooter />
-            <CartDrawer />
-            <ProductCustomizer />
-            <Toasts />
-          </CartProvider>
-        </ImagesProvider>
-      </body>
+    <html lang="pl" className={`${display.variable} ${body.variable}`}>
+      <body className="flex min-h-dvh flex-col">{children}</body>
     </html>
   );
 }
