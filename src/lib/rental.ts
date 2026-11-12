@@ -78,6 +78,19 @@ export function emptyPrices(): Record<Duration, number | null> {
   return Object.fromEntries(DURATIONS.map((d) => [d, null])) as Record<Duration, number | null>;
 }
 
+/**
+ * Cennik liniowy ze stawki za godzinę (w groszach): każdy czas = stawka × liczba godzin,
+ * np. 170 zł/h → 30 min 85 zł, 1 h 170 zł … 24 h 4080 zł.
+ */
+export function pricesFromHourly(hourlyGr: number): Record<Duration, number> {
+  return Object.fromEntries(DURATIONS.map((d) => [d, Math.round((hourlyGr * d) / 60)])) as Record<Duration, number>;
+}
+
+/** Stawka za godzinę wynikająca z ceny danego czasu (w groszach). */
+export function hourlyRate(priceGr: number, durationMin: number): number {
+  return Math.round((priceGr * 60) / durationMin);
+}
+
 export function lowestPrice(jetski: Jetski): { duration: Duration; price: number } | null {
   for (const d of DURATIONS) {
     const p = jetski.prices[d];

@@ -1,14 +1,15 @@
 import "server-only";
 
 import type { DatabaseSync } from "node:sqlite";
+import { pricesFromHourly } from "@/lib/rental";
 
 /**
  * Dane startowe, wstawiane tylko do pustej bazy.
  *
  * Flota: modele rozpoznane na zdjęciach dostarczonych przez właściciela. Są oznaczone
  * `needs_review = 1` – parametry, kaucje i wymagane uprawnienia celowo NIE są wpisane.
- * Ceny: właściciel podał cenę wynajmu na całą dobę (24 h) – 1500 zł brutto. Pozostałe czasy
- * uzupełnia administrator w panelu (/panel → Ceny i kaucje). Wszystkie ceny są cenami brutto.
+ * Ceny: właściciel podał stawkę 170 zł brutto za godzinę, liczoną za każdą godzinę wynajmu
+ * (30 min 85 zł … 24 h 4080 zł). Zmienia się je w panelu (/panel → Ceny i kaucje). Ceny są brutto.
  *
  * Godziny otwarcia i ustawienia rezerwacji to wartości przykładowe do potwierdzenia w panelu.
  */
@@ -21,7 +22,8 @@ const FLEET = [
 ];
 
 /** Ceny startowe w groszach brutto, według czasu wynajmu w minutach. */
-export const SEED_PRICES: Record<number, number> = { 1440: 150_000 };
+export const SEED_HOURLY_GR = 17_000;
+export const SEED_PRICES: Record<number, number> = pricesFromHourly(SEED_HOURLY_GR);
 
 export const DEFAULT_SETTINGS: Record<string, string> = {
   prep_minutes: "15",

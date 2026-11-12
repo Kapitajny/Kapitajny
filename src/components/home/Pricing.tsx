@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { DURATIONS, durationLabel, durationLabelLong, formatPrice, hasAnyPrice, jetskiTitle, LONG_RENTAL_MIN, type Jetski } from "@/lib/rental";
+import { DURATIONS, durationLabel, durationLabelLong, formatPrice, hasAnyPrice, hourlyRate, jetskiTitle, LONG_RENTAL_MIN, type Jetski } from "@/lib/rental";
 import { toTime } from "@/lib/time";
 
 const EXAMPLE_START = 12 * 60;
@@ -77,10 +77,11 @@ export function Pricing({
           <dl className="grid">
             <div className="flex items-baseline justify-between gap-4 border-b border-sand-line pb-4">
               <dt className="text-muted">
-                Cena za {durationLabelLong(duration)} <span className="whitespace-nowrap">(brutto)</span>
+                Cena za {durationLabelLong(duration).replace(/^1 godzina$/, "1 godzinę")} <span className="whitespace-nowrap">(brutto)</span>
               </dt>
-              <dd key={`${jetski.id}-${duration}`} className="rise tabular font-display text-5xl font-extrabold leading-none">
-                {price != null ? formatPrice(price) : "—"}
+              <dd key={`${jetski.id}-${duration}`} className="rise tabular text-right">
+                <span className="block font-display text-5xl font-extrabold leading-none">{price != null ? formatPrice(price) : "—"}</span>
+                {price != null && duration >= 60 && <span className="mt-1 block text-sm text-muted">{formatPrice(hourlyRate(price, duration))} za godzinę</span>}
               </dd>
             </div>
             <div className="flex items-baseline justify-between gap-4 border-b border-sand-line py-4">

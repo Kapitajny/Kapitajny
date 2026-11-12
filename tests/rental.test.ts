@@ -70,3 +70,11 @@ describe("formatowanie", () => {
     expect(durationLabelLong(360)).toBe("6 godzin");
   });
 });
+
+describe("cennik godzinowy", () => {
+  it("liczy każdą godzinę po 170 zł brutto", async () => {
+    const { pricesFromHourly, hourlyRate } = await import("@/lib/rental");
+    expect(pricesFromHourly(17_000)).toEqual({ 30: 8_500, 60: 17_000, 120: 34_000, 180: 51_000, 240: 68_000, 360: 102_000, 720: 204_000, 1440: 408_000 });
+    expect(hourlyRate(408_000, 1440)).toBe(17_000);
+  });
+});
