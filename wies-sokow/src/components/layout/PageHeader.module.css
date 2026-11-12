@@ -1,0 +1,38 @@
+.header {
+  padding-top: calc(var(--header-h) + clamp(2.5rem, 7vw, 6rem));
+  padding-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+.inner {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.header h1 {
+  font-size: clamp(3rem, 1.6rem + 6vw, 6.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.compact {
+  padding-top: calc(var(--header-h) + clamp(2rem, 5vw, 4rem));
+  padding-bottom: clamp(1.5rem, 4vw, 2.5rem);
+}
+.compact h1 {
+  font-size: var(--fs-h1);
+  line-height: 1;
+}
+
+@media (min-width: 60rem) {
+  .inner {
+    grid-template-columns: 7fr 5fr;
+    align-items: end;
+    column-gap: 3rem;
+  }
+  .inner > :nth-child(n + 3) {
+    grid-column: 1 / -1;
+  }
+  .compact .inner {
+    grid-template-columns: 1fr;
+  }
+}

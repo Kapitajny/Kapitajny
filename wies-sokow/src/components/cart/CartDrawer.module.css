@@ -1,0 +1,144 @@
+.drawer {
+  position: fixed;
+  inset: 0 0 0 auto;
+  width: min(29rem, 100vw);
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--cream);
+  color: var(--ink);
+  transform: translateX(100%);
+  transition:
+    transform 0.4s var(--ease),
+    overlay 0.4s allow-discrete,
+    display 0.4s allow-discrete;
+}
+.drawer[open] {
+  transform: none;
+}
+@starting-style {
+  .drawer[open] {
+    transform: translateX(100%);
+  }
+}
+
+.drawer::backdrop {
+  background: rgb(24 34 27 / 0);
+  transition:
+    background-color 0.4s var(--ease),
+    overlay 0.4s allow-discrete,
+    display 0.4s allow-discrete;
+}
+.drawer[open]::backdrop {
+  background: rgb(24 34 27 / 0.55);
+}
+@starting-style {
+  .drawer[open]::backdrop {
+    background: rgb(24 34 27 / 0);
+  }
+}
+
+.panel {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1rem 1.1rem clamp(1.25rem, 5vw, 2rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  font-size: 2rem;
+}
+
+.count {
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--ink-soft);
+}
+
+.close {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+}
+.close:hover {
+  color: var(--red);
+}
+
+.scroll {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-inline: clamp(1.25rem, 5vw, 2rem);
+}
+.scroll li:first-child {
+  border-top: 0;
+}
+
+.footer {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1.25rem clamp(1.25rem, 5vw, 2rem) max(1.5rem, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line-strong);
+}
+
+.sum {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.sum dt {
+  font-weight: 500;
+}
+.sum dd {
+  font-family: var(--font-serif);
+  font-size: 1.9rem;
+  font-weight: 500;
+  line-height: 1;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.shipping {
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.toCart {
+  justify-self: center;
+  font-size: var(--fs-small);
+}
+
+.empty {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: 0.9rem;
+  padding: 2.5rem clamp(1.25rem, 5vw, 2rem);
+  color: var(--ink-soft);
+}
+.emptyTitle {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.empty :global(.btn) {
+  margin-top: 0.75rem;
+}

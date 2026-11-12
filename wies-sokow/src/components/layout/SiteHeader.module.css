@@ -1,0 +1,242 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  background: var(--cream);
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  transition:
+    background-color 0.35s var(--ease),
+    color 0.35s var(--ease),
+    border-color 0.35s var(--ease);
+}
+
+.overHero {
+  background: transparent;
+  color: var(--white);
+  border-bottom-color: transparent;
+}
+
+.bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h);
+  padding-inline: var(--pad);
+}
+
+.nav {
+  display: contents;
+}
+
+.brand {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+}
+.brand span {
+  transition: color 0.35s var(--ease);
+}
+
+.group {
+  display: none;
+}
+
+.link {
+  position: relative;
+  display: block;
+  padding: 0.75rem 0;
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0.16em;
+  bottom: 0.35rem;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease);
+}
+.link:hover::after,
+.link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+.menuButton,
+.cart {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+}
+.menuButton {
+  margin-left: -0.75rem;
+}
+.cart {
+  margin-right: -0.75rem;
+}
+
+.badge {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.1rem;
+  display: grid;
+  place-items: center;
+  min-width: 1.2rem;
+  height: 1.2rem;
+  padding-inline: 0.3rem;
+  border-radius: 999px;
+  background: var(--red);
+  color: var(--white);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.badge[data-empty="true"] {
+  background: transparent;
+  color: inherit;
+  border: 1px solid currentColor;
+  opacity: 0.75;
+}
+
+/* ---------- menu mobilne ---------- */
+
+.menu {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--cream);
+  color: var(--ink);
+  opacity: 0;
+  transition:
+    opacity 0.3s var(--ease),
+    overlay 0.3s allow-discrete,
+    display 0.3s allow-discrete;
+}
+.menu[open] {
+  opacity: 1;
+}
+@starting-style {
+  .menu[open] {
+    opacity: 0;
+  }
+}
+.menu::backdrop {
+  background: var(--cream);
+}
+
+.menuPanel {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100%;
+  padding: 0 var(--pad) max(1.75rem, env(safe-area-inset-bottom));
+}
+
+.menuTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h);
+  border-bottom: 1px solid var(--line);
+}
+
+.menuClose {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  margin-right: -0.75rem;
+}
+
+.menuList {
+  display: grid;
+  align-content: center;
+  height: 100%;
+  padding-block: 2rem;
+}
+.menuList a {
+  display: block;
+  padding: 0.55rem 0;
+  font-family: var(--font-serif);
+  font-size: clamp(2.25rem, 10vw, 3rem);
+  font-weight: 500;
+  line-height: 1.1;
+}
+.menuList a[aria-current="page"] {
+  color: var(--red);
+  font-style: italic;
+}
+
+.menuFoot {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+.menuDemo {
+  margin-top: 0.35rem;
+  font-size: 0.8125rem;
+}
+
+/* ---------- desktop: linki po obu stronach logo, koszyk przy prawej krawędzi ---------- */
+
+@media (min-width: 64rem) {
+  .menuButton {
+    display: none;
+  }
+
+  .bar {
+    justify-content: center;
+  }
+
+  .nav {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: clamp(2rem, 4vw, 4.5rem);
+    width: 100%;
+    max-width: 68rem;
+  }
+
+  .brand {
+    position: static;
+    transform: none;
+  }
+
+  .group {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.5rem, 3vw, 3.25rem);
+  }
+  .groupLeft {
+    justify-content: flex-end;
+  }
+  .groupRight {
+    justify-content: flex-start;
+  }
+
+  .cart {
+    position: absolute;
+    right: var(--pad);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

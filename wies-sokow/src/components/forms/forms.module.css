@@ -1,0 +1,37 @@
+.form {
+  display: grid;
+  gap: 1.75rem;
+  align-content: start;
+}
+
+.row {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.submit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.done {
+  display: grid;
+  justify-items: start;
+  align-content: start;
+  gap: 1.1rem;
+  padding: clamp(1.75rem, 4vw, 3rem);
+  border: 1px solid var(--line-strong);
+}
+.done p {
+  max-width: 32rem;
+  color: var(--ink-soft);
+}
+
+@media (min-width: 36rem) {
+  .row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
