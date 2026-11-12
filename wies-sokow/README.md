@@ -17,6 +17,14 @@ npm install
 npm run dev        # http://localhost:3200
 ```
 
+Wersja statyczna (np. GitHub Pages) – wynik w folderze `out/`:
+
+```bash
+npm run export     # domyślnie pod ścieżką /Kapitajny/demo/wies-sokow
+```
+
+Opublikowana wersja: https://kapitajny.github.io/Kapitajny/demo/wies-sokow/
+
 Kontrole jakości:
 
 ```bash

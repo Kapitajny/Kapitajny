@@ -47,7 +47,7 @@ export default async function ProductPage({ params }: Props) {
     "@type": "Product",
     name: `${product.name} ${product.capacity} l`,
     description: flavor.short,
-    image: `${site.url}${flavor.image.src}`,
+    image: new URL(flavor.image.src, site.url).href,
     brand: { "@type": "Brand", name: site.name },
     offers: {
       "@type": "Offer",

@@ -8,7 +8,8 @@
     "start": "next start --port 3200",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "export": "STATIC_EXPORT=1 EXPORT_BASE_PATH=${EXPORT_BASE_PATH:-/Kapitajny/demo/wies-sokow} NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-https://kapitajny.github.io/Kapitajny/demo/wies-sokow} next build"
   },
   "dependencies": {
     "next": "16.4.2",

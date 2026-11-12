@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, useState } from "react";
 import styles from "./forms.module.css";
 
@@ -152,9 +153,9 @@ export function ContactForm() {
           <input type="checkbox" name="consent" required aria-invalid={Boolean(errors.consent)} aria-describedby={describe("consent")} />
           <span>
             Zgadzam się na przetwarzanie moich danych w celu odpowiedzi na wiadomość. Zasady opisuje{" "}
-            <a href="/polityka-prywatnosci" className="text-link">
+            <Link href="/polityka-prywatnosci" className="text-link">
               polityka prywatności
-            </a>
+            </Link>
             .
           </span>
         </label>
