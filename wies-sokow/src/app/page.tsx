@@ -20,6 +20,13 @@ const organizationLd = {
   name: site.name,
   url: site.url,
   description: site.description,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.contact.street,
+    postalCode: site.contact.postalCode,
+    addressLocality: site.contact.city,
+    addressCountry: "PL",
+  },
 };
 
 export default function HomePage() {

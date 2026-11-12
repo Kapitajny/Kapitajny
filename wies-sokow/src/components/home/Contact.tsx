@@ -14,6 +14,12 @@ export function Contact({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" })
           <p className="lead">Masz pytanie o sok, zamówienie albo dostawę? Napisz, odpowiemy.</p>
           <dl className={styles.contactData}>
             <div>
+              <dt>Adres</dt>
+              <dd>
+                {site.contact.street}, {site.contact.postalCode} {site.contact.city}
+              </dd>
+            </div>
+            <div>
               <dt>Telefon</dt>
               <dd>{site.contact.phone}</dd>
             </div>
@@ -23,8 +29,8 @@ export function Contact({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" })
             </div>
           </dl>
           <p className="demo-note">
-            <strong>Dane demonstracyjne.</strong> Numer telefonu i adres e-mail są fikcyjne i nie są prawdziwymi kanałami
-            kontaktu.
+            <strong>Dane demonstracyjne.</strong> Adres, numer telefonu i e-mail są fikcyjne i nie są prawdziwymi danymi
+            kontaktowymi.
           </p>
         </div>
         <ContactForm />

@@ -7,8 +7,12 @@ export const site = {
     "Wieś Soków tłoczy soki z jabłek i gruszek i sprzedaje je bezpośrednio, w opakowaniach 3 i 5 litrów z kranikiem.",
   /** Projekt demonstracyjny: indeksowanie włącza się świadomie zmienną środowiskową. */
   allowIndexing: process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true",
-  /** Dane kontaktowe są fikcyjne. Nie renderujemy ich jako linków tel:/mailto:. */
+  /** Adres i dane kontaktowe są fikcyjne. Nie renderujemy ich jako linków tel:/mailto:. */
   contact: {
+    /* Adres wymyślony na potrzeby demonstracji (prawdziwy jest tylko kod pocztowy Grójca). */
+    street: "ul. Tłoczniowa 7",
+    postalCode: "05-600",
+    city: "Grójec",
     phone: "+48 500 600 700",
     email: "kontakt@wies-sokow.example",
   },

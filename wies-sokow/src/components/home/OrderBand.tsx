@@ -23,7 +23,7 @@ export function OrderBand() {
               <dt>Dostawa</dt>
               <dd>
                 Kurier {courier ? formatPrice(courier.price) : ""}, bezpłatnie od {formatPrice(FREE_SHIPPING_FROM)}. Możliwy
-                odbiór osobisty.
+                odbiór osobisty w Grójcu.
               </dd>
             </div>
             <div>

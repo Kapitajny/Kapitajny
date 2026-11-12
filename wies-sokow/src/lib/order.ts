@@ -13,7 +13,7 @@ export type PaymentId = "przelew" | "pobranie";
 
 export const shippingMethods: { id: ShippingId; label: string; note: string; price: number }[] = [
   { id: "kurier", label: "Kurier", note: "Dostawa pod wskazany adres", price: 1500 },
-  { id: "odbior", label: "Odbiór osobisty", note: "W gospodarstwie, po wcześniejszym umówieniu", price: 0 },
+  { id: "odbior", label: "Odbiór osobisty", note: "W gospodarstwie w Grójcu, po wcześniejszym umówieniu", price: 0 },
 ];
 
 export const paymentMethods: { id: PaymentId; label: string; note: string }[] = [

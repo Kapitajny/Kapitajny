@@ -35,10 +35,15 @@ export function SiteFooter() {
         <div className={styles.contact}>
           <h2 className={styles.heading}>Kontakt</h2>
           <ul className={styles.list}>
+            <li>
+              {site.contact.street}
+              <br />
+              {site.contact.postalCode} {site.contact.city}
+            </li>
             <li>{site.contact.phone}</li>
             <li>{site.contact.email}</li>
           </ul>
-          <p className={styles.small}>Dane demonstracyjne. Numer i adres nie są prawdziwymi kanałami kontaktu.</p>
+          <p className={styles.small}>Dane demonstracyjne. Adres, numer i e-mail są fikcyjne.</p>
         </div>
 
         <nav aria-labelledby="footer-info">

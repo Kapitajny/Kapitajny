@@ -102,6 +102,9 @@ export function SiteHeader() {
             </ul>
           </nav>
           <div className={styles.menuFoot}>
+            <p>
+              {site.contact.street}, {site.contact.postalCode} {site.contact.city}
+            </p>
             <p>{site.contact.phone}</p>
             <p>{site.contact.email}</p>
             <p className={styles.menuDemo}>Dane demonstracyjne</p>
