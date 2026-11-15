@@ -1,0 +1,3 @@
+# Konfiguracja WP-CLI dla lokalnego środowiska ComputerIT.
+path: wordpress
+url: http://localhost:8080

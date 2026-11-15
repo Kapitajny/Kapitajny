@@ -1,0 +1,41 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","style":{"spacing":{"padding":{"top":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group" style="padding-top:var(--wp--preset--spacing--40)"><!-- wp:woocommerce/breadcrumbs {"align":"wide"} /-->
+
+<!-- wp:woocommerce/store-notices /-->
+
+<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|50"}}}} -->
+<div class="wp-block-columns alignwide"><!-- wp:column {"width":"55%"} -->
+<div class="wp-block-column" style="flex-basis:55%"><!-- wp:woocommerce/product-image-gallery /--></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:post-title {"level":1,"__woocommerceNamespace":"woocommerce/product-query/product-title"} /-->
+
+<!-- wp:woocommerce/product-rating /-->
+
+<!-- wp:woocommerce/product-price {"fontSize":"x-large"} /-->
+
+<!-- wp:post-excerpt {"excerptLength":100,"__woocommerceNamespace":"woocommerce/product-query/product-summary"} /-->
+
+<!-- wp:woocommerce/add-to-cart-form /-->
+
+<!-- wp:woocommerce/product-meta -->
+<div class="wp-block-woocommerce-product-meta"><!-- wp:group {"layout":{"type":"flex","orientation":"vertical"}} -->
+<div class="wp-block-group"><!-- wp:woocommerce/product-sku /-->
+
+<!-- wp:post-terms {"term":"product_cat","prefix":"Kategoria: "} /-->
+
+<!-- wp:post-terms {"term":"product_tag","prefix":"Tagi: "} /--></div>
+<!-- /wp:group --></div>
+<!-- /wp:woocommerce/product-meta --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:woocommerce/product-details {"align":"wide","className":"is-style-minimal"} /-->
+
+<!-- wp:pattern {"slug":"woocommerce-blocks/related-products"} /--></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

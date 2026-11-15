@@ -14,6 +14,7 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Osobny projekt z własną konfiguracją.
     "climaro/**",
+    "computerit/**",
   ]),
 ]);
 

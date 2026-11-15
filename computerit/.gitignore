@@ -1,0 +1,10 @@
+# Lokalna instalacja WordPress (rdzeń, wtyczki, baza SQLite, wp-config.php, dane logowania)
+/wordpress/
+# Raporty Lighthouse – generowane, zawierają adresy lokalne
+/reports/
+# WP-CLI pobierany i weryfikowany (SHA-512) przez tools/setup-wordpress.sh
+/bin/wp-cli.phar
+# Sekrety – na wszelki wypadek, gdyby trafiły poza katalog wordpress/
+.admin-credentials
+.env
+.env.*

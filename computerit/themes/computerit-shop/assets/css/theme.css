@@ -1,0 +1,54 @@
+/* Uzupełnienia theme.json: rzeczy, których theme.json nie wyraża. */
+
+/* Widoczny fokus klawiatury na wszystkich elementach interaktywnych (WCAG 2.4.7). */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+	outline: 2px solid var(--wp--preset--color--accent);
+	outline-offset: 2px;
+}
+
+/* Cyfry w cenach i podsumowaniach – stała szerokość, równe kolumny. */
+.wc-block-components-product-price,
+.wc-block-components-totals-item__value,
+.woocommerce-Price-amount {
+	font-variant-numeric: tabular-nums;
+}
+
+/* Pola formularzy: wystarczająca wysokość celu dotykowego (WCAG 2.5.8). */
+.wc-block-components-text-input input,
+.wc-block-components-combobox .components-combobox-control input {
+	min-height: 2.75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/* Nagłówek: wyszukiwarka zwęża się, ikony konta i koszyka zawsze mieszczą się w ekranie. */
+.computerit-header-actions { min-width: 0; }
+.computerit-header-actions .wp-block-search { flex: 1 1 auto; min-width: 0; }
+.computerit-header-actions .wp-block-search__input { min-width: 0; }
+@media (max-width: 781px) {
+	.computerit-header-actions { flex: 1 1 100%; }
+}
+@media (min-width: 782px) {
+	.computerit-header-actions .wp-block-search { flex: 0 1 16rem; }
+}
+
+/* Plakietka promocji (galeria klasyczna i bloki) w kolorze motywu. */
+.woocommerce span.onsale,
+.wc-block-components-product-sale-badge {
+	background: var(--wp--preset--color--sale);
+	border-color: var(--wp--preset--color--sale);
+	color: var(--wp--preset--color--accent-contrast);
+	border-radius: var(--wp--custom--radius);
+	min-height: 0;
+	min-width: 0;
+	line-height: 1.2;
+	padding: 0.35em 0.6em;
+}
