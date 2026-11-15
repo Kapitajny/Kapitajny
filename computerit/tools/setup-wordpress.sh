@@ -116,6 +116,15 @@ else
 fi
 install_plugin_translation woocommerce
 
+step "Motyw ComputerIT Shop"
+if [[ -d "$THEME_SRC" ]]; then
+  target="$WP_DIR/wp-content/themes/computerit-shop"
+  [[ -e "$target" ]] || ln -s "$(pwd)/$THEME_SRC" "$target"
+  $WP theme activate computerit-shop
+else
+  echo "Brak $THEME_SRC – pozostaje motyw domyślny."
+fi
+
 step "Ustawienia sklepu (Polska, PLN)"
 $WP option update woocommerce_default_country 'PL' >/dev/null
 $WP option update woocommerce_currency 'PLN' >/dev/null
@@ -212,15 +221,6 @@ if [[ "$($WP wc product list --user=1 --format=count 2>/dev/null || echo 0)" == 
   echo "Dodano 6 produktów w 3 kategoriach."
 else
   echo "Sklep ma już produkty – pomijam."
-fi
-
-step "Motyw ComputerIT Shop"
-if [[ -d "$THEME_SRC" ]]; then
-  target="$WP_DIR/wp-content/themes/computerit-shop"
-  [[ -e "$target" ]] || ln -s "$(pwd)/$THEME_SRC" "$target"
-  $WP theme activate computerit-shop
-else
-  echo "Brak $THEME_SRC – pozostaje motyw domyślny."
 fi
 
 step "Gotowe"
