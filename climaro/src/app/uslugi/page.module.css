@@ -1,0 +1,219 @@
+/* ---------- Nawigacja kotwicowa w nagłówku strony ---------- */
+
+.jump {
+  margin-top: var(--space-7);
+}
+
+.jump ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--line-strong);
+}
+
+.jump a {
+  display: grid;
+  gap: 0.15rem;
+  min-height: 3.5rem;
+  padding: 0.9rem 0.75rem 0.9rem 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  transition: border-color 200ms ease;
+}
+
+.jump a span:first-child {
+  font-weight: 600;
+}
+
+.jump a span:last-child {
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .jump a:hover {
+    border-bottom-color: var(--c-orange);
+  }
+}
+
+@media (min-width: 48rem) {
+  .jump ul {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Prezentacja usługi ---------- */
+
+.service {
+  padding-block: var(--space-section);
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: var(--header-h);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.body {
+  display: grid;
+  gap: var(--space-5);
+  align-content: start;
+}
+
+.name {
+  font-size: var(--step-3);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variation-settings: "wdth" var(--wdth-display);
+}
+
+.description {
+  max-width: 60ch;
+  color: var(--muted);
+  font-size: var(--step-1);
+  line-height: 1.55;
+}
+
+/* Cennik: jasne wiersze, cyfry o stałej szerokości wyrównane do prawej. */
+.prices {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 2px solid var(--fg);
+}
+
+.prices th,
+.prices td {
+  padding: 0.95rem 0;
+  border-bottom: 1px solid var(--line);
+  vertical-align: baseline;
+}
+
+.prices th {
+  padding-right: var(--space-4);
+  font-weight: 500;
+  text-align: left;
+}
+
+.prices td {
+  font-size: var(--step-1);
+  font-weight: 700;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.prices tbody tr:first-child td {
+  font-size: var(--step-2);
+}
+
+.from {
+  color: var(--muted);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.details {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-2);
+}
+
+.subhead {
+  margin-bottom: var(--space-3);
+  font-size: 1.0625rem;
+  font-variation-settings: "wdth" 100;
+}
+
+.scope {
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.scope li {
+  position: relative;
+  padding-left: 1.25rem;
+  color: var(--muted);
+}
+
+/* Znacznik listy: krótka kreska jak w lamelach znaku. */
+.scope li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.8em;
+  width: 0.6rem;
+  height: 2px;
+  background: var(--c-orange);
+}
+
+.factors {
+  color: var(--muted);
+  max-width: 52ch;
+}
+
+.ask {
+  justify-self: start;
+  margin-top: var(--space-2);
+}
+
+@media (min-width: 48rem) {
+  .details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+}
+
+@media (min-width: 64rem) {
+  .grid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: clamp(3rem, 5vw, 5rem);
+    align-items: start;
+  }
+
+  .media {
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+  }
+
+  .media img {
+    aspect-ratio: 4 / 5;
+  }
+
+  .grid[data-flip] .media {
+    order: 2;
+  }
+}
+
+/* ---------- Informacja o cenach ---------- */
+
+.noteWrap {
+  padding-block: var(--space-7) var(--space-section);
+}
+
+.note {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 62rem;
+  padding: var(--space-5) var(--space-6);
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+}
+
+.note p:first-child {
+  font-size: var(--step-1);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.demo {
+  color: var(--muted);
+  font-size: 0.9375rem;
+}

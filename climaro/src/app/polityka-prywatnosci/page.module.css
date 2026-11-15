@@ -1,0 +1,18 @@
+.doc {
+  max-width: calc(46rem + 2 * var(--gutter));
+  margin-inline: 0;
+}
+
+.doc h2 {
+  margin-top: var(--space-7);
+  font-size: var(--step-1);
+}
+
+.doc h2:first-child {
+  margin-top: 0;
+}
+
+.doc p {
+  margin-top: var(--space-3);
+  color: var(--muted);
+}

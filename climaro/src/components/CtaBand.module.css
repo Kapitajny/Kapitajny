@@ -1,0 +1,48 @@
+.band {
+  position: relative;
+  padding-block: clamp(3.5rem, 2.5rem + 4vw, 6rem);
+  overflow: hidden;
+}
+
+/* Pomarańczowa kreska z łuku logo – jedyny akcent sekcji. */
+.band::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: max(var(--gutter), calc((100% - var(--container)) / 2));
+  width: 4rem;
+  height: 3px;
+  background: var(--c-orange);
+}
+
+.inner {
+  display: grid;
+  gap: var(--space-6);
+  align-items: end;
+}
+
+.title {
+  font-size: var(--step-3);
+  font-variation-settings: "wdth" var(--wdth-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.text {
+  max-width: 52ch;
+  margin-top: var(--space-4);
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+@media (min-width: 60rem) {
+  .inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-8);
+  }
+}
