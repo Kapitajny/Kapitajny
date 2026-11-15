@@ -8,7 +8,11 @@ const securityHeaders = [
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=()" },
 ];
 
+// STATIC_EXPORT=1 buduje statyczną wersję (katalog out/) – np. do podglądu jako artefakt.
+const isStaticExport = process.env.STATIC_EXPORT === "1";
+
 const nextConfig: NextConfig = {
+  ...(isStaticExport ? { output: "export" as const } : {}),
   poweredByHeader: false,
   experimental: {
     // Arkusze są małe – osadzamy je w HTML. Usuwa to blokujące renderowanie żądanie CSS
@@ -18,14 +22,21 @@ const nextConfig: NextConfig = {
   images: {
     qualities: [75, 85],
     formats: ["image/avif", "image/webp"],
+    // Eksport statyczny nie ma serwera optymalizacji obrazów.
+    unoptimized: isStaticExport,
   },
   // Projekt leży w podkatalogu repozytorium z własnym package-lock.json.
   turbopack: {
     root: path.join(__dirname),
   },
-  async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
-  },
+  // Nagłówki bezpieczeństwa ustawia serwer Next.js; w eksporcie statycznym robi to hosting.
+  ...(isStaticExport
+    ? {}
+    : {
+        async headers() {
+          return [{ source: "/:path*", headers: securityHeaders }];
+        },
+      }),
 };
 
 export default nextConfig;

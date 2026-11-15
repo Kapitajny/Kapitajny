@@ -22,7 +22,7 @@ const alt = "Nowoczesny dom z grafitowej cegły; przy betonowej ścianie stoi je
 export function Hero() {
   // Kierunek artystyczny: na szerokich ekranach pełne zdjęcie 3:2, na telefonach pionowy kadr z pompą ciepła.
   const {
-    props: { srcSet: wideSrcSet, sizes: wideSizes },
+    props: { srcSet: wideSrcSet, src: wideSrc, sizes: wideSizes },
   } = getImageProps({
     src: "/images/hero-dom-pompa-ciepla.jpg",
     alt,
@@ -46,7 +46,8 @@ export function Hero() {
   return (
     <section className={`theme-dark ${styles.hero}`} aria-labelledby="hero-tytul">
       <picture>
-        <source media="(min-width: 48rem)" srcSet={wideSrcSet} sizes={wideSizes} />
+        {/* Bez optymalizacji obrazów (eksport statyczny) Next.js nie zwraca srcSet – wtedy wystarczy sam plik. */}
+        <source media="(min-width: 48rem)" srcSet={wideSrcSet ?? wideSrc} sizes={wideSizes} />
         <img {...narrowImg} srcSet={narrowSrcSet} alt={alt} fetchPriority="high" loading="eager" className={styles.photo} />
       </picture>
       <div className={styles.scrim} aria-hidden="true" />

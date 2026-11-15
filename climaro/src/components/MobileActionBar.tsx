@@ -29,7 +29,7 @@ export function MobileActionBar() {
   if (pathname.startsWith("/kontakt")) return null;
 
   return (
-    <div className={styles.bar} data-visible={visible || undefined} inert={!visible}>
+    <div className={styles.bar} data-action-bar data-visible={visible || undefined} inert={!visible}>
       <a href={site.phoneHref} className={`btn btn-secondary ${styles.call}`}>
         <PhoneIcon />
         Zadzwoń
