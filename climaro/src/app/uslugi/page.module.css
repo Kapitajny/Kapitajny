@@ -139,6 +139,15 @@
   letter-spacing: -0.01em;
 }
 
+/* Doprecyzowanie pod nazwą pozycji, np. „bez urządzenia”. */
+.priceNote {
+  display: block;
+  margin-top: 0.15rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
 .from {
   color: var(--muted);
   font-size: 0.9375rem;
@@ -147,8 +156,10 @@
 }
 
 .sheetNote {
+  max-width: 48ch;
   color: var(--muted);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
 }
 
 .ask {

@@ -14,11 +14,13 @@ fotograficzna kompozycja z jasnymi sekcjami do czytania.
 
 | Element | Gdzie | Zasada |
 | --- | --- | --- |
-| Oznaczenia w hero | Strona główna | Pełny znacznik i ciągła linia = urządzenie widoczne na zdjęciu; pusty znacznik i linia przerywana = instalacja wewnątrz budynku. Legenda pod przyciskami. Poniżej 1200 px oznaczenia stają się listą cen. |
+| Oznaczenia w hero | Strona główna | Cztery usługi. Pełny znacznik i ciągła linia = urządzenie widoczne na zdjęciu; pusty znacznik i linia przerywana = instalacja wewnątrz budynku. Legenda na ciemnych podkładkach pod przyciskami. Tylko na ekranach ≥ 1200 × 736 px; mniejsze ekrany nie dublują listy cen, która jest zaraz pod hero. |
 | Zdjęcie z oznaczeniami (`AnnotatedPhoto`) | Usługi | Ramka w proporcjach pliku, numerowane znaczniki (pomarańczowy krążek, biała obwódka) i legenda 1–3. Punkty wskazują wyłącznie rzeczy widoczne na zdjęciu. |
-| Indeks usług (`ServiceIndex`) | Strona główna | Lista z cenami; duże zdjęcie przenika się do usługi wskazanej myszą lub klawiaturą (przenikanie z rozmyciem 4 px). Na telefonie każdy wiersz ma własne zdjęcie. |
+| Indeks usług (`ServiceIndex`) | Strona główna | Lista z cenami; duże zdjęcie (3:2) przenika się do usługi wskazanej myszą lub klawiaturą (przenikanie z rozmyciem 4 px) i ma te same numerowane oznaczenia co strona usług. Na telefonie każdy wiersz ma własne zdjęcie. |
 | Oś czasu | O nas | Pozioma oś z ukośnymi kreskami jak na rysunku technicznym; roczniki, tytuły i opisy na wspólnych liniach (subgrid); „Dziś” w kolorze marki. |
-| Pas fotograficzny | Zachęta do kontaktu, nagłówek „O nas” | Zdjęcie na całą szerokość z funkcjonalnym przyciemnieniem pod tekstem. |
+| Pas fotograficzny | Zachęta do kontaktu, nagłówek „O nas” | Zdjęcie na całą szerokość z funkcjonalnym przyciemnieniem pod tekstem; na każdej stronie inne zdjęcie z instalacji. |
+| Protokół uruchomienia (`CommissioningReport`) | Strona główna | Przykładowy dokument z pomiarami (oznaczony jako dane demonstracyjne); numerowane znaczniki 1–4 przy grupach pomiarów odpowiadają legendzie argumentów obok. |
+| Pasek akcji (`MobileActionBar`) | Telefony, wszystkie strony poza kontaktem | „Zadzwoń” i „Bezpłatna wycena” pod kciukiem; pojawia się po przewinięciu pierwszego ekranu (280 ms, ease-out). |
 
 ## Kolor
 
@@ -34,7 +36,7 @@ fotograficzna kompozycja z jasnymi sekcjami do czytania.
 Zasady:
 
 - Na pomarańczowym przycisku tekst jest czarny (7,6:1). Biały tekst na pomarańczu (2,6:1) jest zabroniony.
-- Pomarańczowego nie używamy jako koloru tekstu na jasnym tle (2,6:1).
+- Pomarańczowego nie używamy jako koloru tekstu na jasnym tle (2,6:1). Tekst akcentu na jasnym tle: `--accent-text` = `#A34700` (5,2–5,6:1).
 - Ciemne lub jasne tło wynika z sytuacji użycia: ciemne do prezentacji (hero, nawigacja, stopka), jasne do czytania cen i formularzy.
 - Motywy sekcji: klasy `.theme-dark`, `.theme-graphite`, `.theme-light`, `.theme-paper` (#EBECED) ustawiają `--bg`, `--fg`, `--muted`, `--line`, `--focus`, `--error`.
 - Rytm: prezentacja (zdjęcia, usługi, ceny) na ciemnym tle, treści do spokojnego czytania (zasady, argumenty, formularz) na jasnym; dwa jasne tony obok siebie, żeby sekcje się nie zlewały.
@@ -90,5 +92,7 @@ fokus 2 px z odstępem 3 px (pomarańczowy na ciemnym, grafitowy na jasnym tle),
 - ≥ 1200 px: oznaczenia na zdjęciu hero. Pozycje liczone w jednostkach kontenera (`cqw`/`cqh`) tą samą formułą co kadr `object-fit: cover`.
 - < 1200 px: oznaczenia stają się listą cen pod przyciskami.
 - ≥ 1100 px: pełna nawigacja; poniżej przycisk „Menu”. ≥ 576 px: przycisk „Bezpłatna wycena” w nagłówku.
+- Telefon w nagłówku zawsze: z numerem od 1280 px, poniżej jako przycisk z ikoną (44 px). < 360 px: „Menu” jako sama ikona.
+- < 768 px: pasek akcji przyklejony do dołu ekranu (z `env(safe-area-inset-bottom)`).
 - Nazwy usług skalują się do kolumny (`container-type: inline-size`, `font-size: min(4.75rem, 12.5cqi)`).
-- Testowane szerokości: 375, 390, 768, 1024, 1200, 1280, 1366, 1440.
+- Testowane szerokości: 320, 360, 375, 390, 768, 1024, 1200, 1280, 1366, 1440, 1920, 2560.

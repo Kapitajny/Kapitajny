@@ -146,6 +146,15 @@
   grid-column: 2;
 }
 
+.demoNote {
+  max-width: 60ch;
+  padding-left: var(--space-4);
+  border-left: 1px solid var(--line-strong);
+  color: var(--muted);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
 .submit {
   justify-self: start;
   min-width: 14rem;
@@ -184,6 +193,10 @@
 .status p {
   color: var(--muted);
   max-width: 60ch;
+}
+
+.statusSmall {
+  font-size: 0.875rem;
 }
 
 .statusActions {

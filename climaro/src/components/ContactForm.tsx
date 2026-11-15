@@ -19,7 +19,7 @@ const labels: Record<FieldName, string> = {
   name: "Imię i nazwisko",
   phone: "Numer telefonu",
   email: "Adres e-mail",
-  service: "Usługa",
+  service: "Interesująca Cię usługa",
   message: "Opis zapytania",
   consent: "Zgoda na przetwarzanie danych",
 };
@@ -29,9 +29,10 @@ function validate(field: FieldName, values: Values): string | undefined {
     case "name":
       return values.name.trim().length < 3 ? "Wpisz imię i nazwisko." : undefined;
     case "phone": {
-      const digits = values.phone.replace(/[\s()-]/g, "");
+      const digits = values.phone.replace(/[\s().-]/g, "");
       if (!digits) return "Wpisz numer telefonu.";
-      return /^(\+?48)?\d{9}$/.test(digits) ? undefined : "Wpisz 9-cyfrowy numer telefonu, np. 517 734 221.";
+      // Akceptujemy zapis krajowy i z prefiksem: +48, 0048 lub 48.
+      return /^(\+48|0048|48)?\d{9}$/.test(digits) ? undefined : "Wpisz 9-cyfrowy numer telefonu, np. 517 734 221.";
     }
     case "email":
       if (!values.email.trim()) return "Wpisz adres e-mail.";
@@ -50,7 +51,7 @@ const plural = new Intl.PluralRules("pl-PL");
 const fieldForms: Partial<Record<Intl.LDMLPluralRule, string>> = { one: "pole", few: "pola", many: "pól" };
 const fieldWord = (count: number) => fieldForms[plural.select(count)] ?? "pól";
 
-const initial: Values ={ name: "", phone: "", email: "", service: "", message: "", consent: false };
+const initial: Values = { name: "", phone: "", email: "", service: "", message: "", consent: false };
 
 export function ContactForm() {
   const [values, setValues] = useState<Values>(initial);
@@ -165,7 +166,7 @@ export function ContactForm() {
           {errorText("email")}
         </div>
         <div className={styles.field}>
-          <label htmlFor="pole-service">Interesująca Cię usługa</label>
+          <label htmlFor="pole-service">{labels.service}</label>
           <div className={styles.selectWrap}>
             <select {...fieldProps("service")} onChange={(e) => update("service", e.target.value)}>
               <option value="" disabled>
@@ -209,26 +210,28 @@ export function ContactForm() {
         {errorText("consent")}
       </div>
 
-      <button type="submit" className={`btn btn-primary ${styles.submit}`}>
+      <p id="formularz-demo" className={styles.demoNote}>
+        To wersja demonstracyjna strony: formularz sprawdzi dane i przygotuje gotową wiadomość e-mail do wysłania z Twojej poczty. Sam niczego nie
+        wysyła.
+      </p>
+
+      <button type="submit" className={`btn btn-primary ${styles.submit}`} aria-describedby="formularz-demo">
         Wyślij zapytanie
       </button>
 
       {submitted && (
         <div ref={statusRef} className={styles.status} role="status" tabIndex={-1}>
-          <h3>Zapytanie nie zostało wysłane</h3>
-          <p>
-            To wersja demonstracyjna strony: formularz sprawdza dane, ale nie jest jeszcze podłączony do systemu wysyłki wiadomości. Twoje dane nigdzie nie
-            trafiły.
-          </p>
-          <p>Aby wysłać to zapytanie, otwórz gotową wiadomość e-mail albo zadzwoń.</p>
+          <h3>Twoje zapytanie jest gotowe do wysłania</h3>
+          <p>Dane są poprawne. Ta strona jest demonstracyjna i nie wysyła wiadomości sama – wyślij ją z własnej poczty albo zadzwoń.</p>
           <div className={styles.statusActions}>
-            <a href={mailto} className="btn btn-secondary btn-small">
-              Otwórz wiadomość e-mail
+            <a href={mailto} className="btn btn-primary btn-small">
+              Wyślij e-mailem
             </a>
             <a href={site.phoneHref} className="btn btn-secondary btn-small">
-              <span className="num">{site.phone}</span>
+              <span className="num">Zadzwoń: {site.phone}</span>
             </a>
           </div>
+          <p className={styles.statusSmall}>Wiadomość e-mail zawiera już Twój opis i dane kontaktowe. Dopóki jej nie wyślesz, dane nigdzie nie trafiają.</p>
         </div>
       )}
     </form>

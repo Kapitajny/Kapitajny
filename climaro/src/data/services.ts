@@ -5,6 +5,8 @@ export type ServiceSlug = "klimatyzacja" | "pompy-ciepla" | "rekuperacja" | "ser
 export type PriceItem = {
   label: string;
   from: number;
+  /** Krótkie doprecyzowanie przy cenie, np. „bez urządzenia”. */
+  note?: string;
 };
 
 /** Oznaczenie na zdjęciu usługi: położenie jako ułamek szerokości i wysokości zdjęcia. */
@@ -23,6 +25,8 @@ export type Service = {
   scope: string[];
   prices: [PriceItem, PriceItem, PriceItem];
   costFactors: string;
+  /** Co obejmuje cena – zdanie wyświetlane przy cenniku usługi. */
+  priceIncludes: string;
   image: { src: string; alt: string; width: number; height: number };
   points: PhotoPoint[];
 };
@@ -42,12 +46,14 @@ export const services: Service[] = [
       "Uruchomienie, pomiary i instruktaż obsługi",
     ],
     prices: [
-      { label: "Montaż klimatyzacji", from: 799 },
+      { label: "Montaż klimatyzacji", from: 799, note: "bez urządzenia" },
       { label: "Serwis klimatyzacji", from: 299 },
       { label: "Konserwacja i czyszczenie", from: 199 },
     ],
     costFactors:
       "Długość i sposób prowadzenia instalacji, typ i moc urządzenia, wysokość montażu jednostki zewnętrznej, liczba jednostek wewnętrznych oraz konieczność wykonania przepustów w ścianach.",
+    priceIncludes:
+      "Cena montażu obejmuje robociznę i materiały instalacyjne. Klimatyzator nie jest wliczony – dobieramy go i wyceniamy osobno w ofercie.",
     image: {
       src: "/images/klimatyzacja-jednostka.jpg",
       alt: "Biała jednostka wewnętrzna klimatyzatora zamontowana pod sufitem jasnego pomieszczenia",
@@ -74,12 +80,14 @@ export const services: Service[] = [
       "Uruchomienie i protokół zgodny z wymaganiami producenta",
     ],
     prices: [
-      { label: "Montaż pompy ciepła", from: 12900 },
+      { label: "Montaż pompy ciepła", from: 12900, note: "bez urządzenia" },
       { label: "Przegląd pompy ciepła", from: 399 },
       { label: "Diagnostyka i serwis", from: 299 },
     ],
     costFactors:
       "Moc i model pompy, stan istniejącej instalacji grzewczej, potrzeba zasobnika lub bufora, odległość jednostki zewnętrznej od budynku oraz zakres prac hydraulicznych i elektrycznych.",
+    priceIncludes:
+      "Cena montażu obejmuje robociznę i materiały instalacyjne. Pompa ciepła i zasobnik nie są wliczone – dobieramy je i wyceniamy osobno w ofercie.",
     image: {
       src: "/images/pompa-ciepla-ogrod.jpg",
       alt: "Jednostka zewnętrzna pompy ciepła na cokole przy ceglanym domu, otoczona krzewami",
@@ -106,12 +114,14 @@ export const services: Service[] = [
       "Instruktaż wymiany filtrów i obsługi sterownika",
     ],
     prices: [
-      { label: "Montaż systemu rekuperacji", from: 8900 },
+      { label: "Montaż systemu rekuperacji", from: 8900, note: "bez urządzenia" },
       { label: "Serwis rekuperacji", from: 299 },
       { label: "Czyszczenie instalacji", from: 499 },
     ],
     costFactors:
       "Powierzchnia i kubatura budynku, etap budowy (stan surowy lub budynek wykończony), rodzaj kanałów, sprawność i wyposażenie centrali oraz liczba punktów nawiewnych i wywiewnych.",
+    priceIncludes:
+      "Cena montażu obejmuje robociznę i materiały instalacyjne. Centrala wentylacyjna nie jest wliczona – dobieramy ją i wyceniamy osobno w ofercie.",
     image: {
       src: "/images/rekuperacja-czerpnie.jpg",
       alt: "Okrągłe wyloty wentylacyjne nad czarną osłoną z lameli przy jasnej elewacji budynku",
@@ -132,8 +142,9 @@ export const services: Service[] = [
     slug: "serwis-hvac",
     name: "Serwis HVAC",
     short: "Przeglądy, diagnostyka i konserwacja klimatyzacji, wentylacji i pomp ciepła – także instalacji, których nie montowaliśmy.",
+    /* HVAC – z ang. heating, ventilation, air conditioning: ogrzewanie, wentylacja i klimatyzacja. */
     description:
-      "Regularny przegląd utrzymuje sprawność urządzeń i zwykle jest warunkiem gwarancji producenta. Po każdej wizycie dostajesz protokół z wykonanymi czynnościami i wynikami pomiarów.",
+      "HVAC to ogrzewanie, wentylacja i klimatyzacja. Regularny przegląd utrzymuje sprawność urządzeń i zwykle jest warunkiem gwarancji producenta. Po każdej wizycie dostajesz protokół z wykonanymi czynnościami i wynikami pomiarów.",
     scope: [
       "Kontrola szczelności i parametrów pracy",
       "Czyszczenie wymienników, filtrów i odpływów skroplin",
@@ -148,6 +159,7 @@ export const services: Service[] = [
     ],
     costFactors:
       "Liczba i rodzaj urządzeń, dostęp do jednostek (np. praca na wysokości), stopień zabrudzenia, konieczność uzupełnienia czynnika chłodniczego oraz koszt części zamiennych.",
+    priceIncludes: "Cena obejmuje wizytę i pracę serwisanta. Części zamienne i uzupełnienie czynnika chłodniczego rozliczamy osobno.",
     image: {
       src: "/images/serwis-technik.jpg",
       alt: "Serwisant podłącza manometry do jednostki zewnętrznej klimatyzacji na dachu budynku",
@@ -172,6 +184,11 @@ export function formatPrice(value: number): string {
 
 export function getService(slug: string): Service | undefined {
   return services.find((service) => service.slug === slug);
+}
+
+/** Zapis ceny z doprecyzowaniem: „od 799 zł, bez urządzenia”. */
+export function formatPriceItem(item: PriceItem): string {
+  return `od ${formatPrice(item.from)}${item.note ? `, ${item.note}` : ""}`;
 }
 
 export const PRICE_NOTE =

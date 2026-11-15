@@ -8,10 +8,13 @@ import styles from "./Hero.module.css";
 // Punkty oznaczeń na zdjęciu (ułamek szerokości i wysokości oryginału 2400 × 1600).
 // "visible" – urządzenie widać na zdjęciu; "inside" – instalacja pracuje wewnątrz budynku
 // (rysowana linią przerywaną, jak element ukryty na rysunku technicznym).
-const annotations: { slug: ServiceSlug; x: number; y: number; kind: "visible" | "inside" }[] = [
-  { slug: "klimatyzacja", x: 0.152, y: 0.215, kind: "inside" },
-  { slug: "pompy-ciepla", x: 0.585, y: 0.39, kind: "visible" },
-  { slug: "rekuperacja", x: 0.4, y: 0.125, kind: "inside" },
+// "verb" – jakiej pozycji cennika dotyczy cena na etykiecie.
+const annotations: { slug: ServiceSlug; x: number; y: number; kind: "visible" | "inside"; verb: string }[] = [
+  { slug: "klimatyzacja", x: 0.152, y: 0.215, kind: "inside", verb: "montaż" },
+  { slug: "pompy-ciepla", x: 0.585, y: 0.39, kind: "visible", verb: "montaż" },
+  { slug: "rekuperacja", x: 0.4, y: 0.155, kind: "inside", verb: "montaż" },
+  // Serwis dotyczy tego samego, widocznego urządzenia – znacznik na dolnej części obudowy.
+  { slug: "serwis-hvac", x: 0.64, y: 0.6, kind: "visible", verb: "przegląd" },
 ];
 
 const alt = "Nowoczesny dom z grafitowej cegły; przy betonowej ścianie stoi jednostka zewnętrzna pompy ciepła";
@@ -78,7 +81,9 @@ export function Hero() {
                 <span className={styles.leader} aria-hidden="true" />
                 <Link href={`/uslugi#${service.slug}`} className={styles.label}>
                   <span className={styles.labelName}>{service.name}</span>
-                  <span className={`num ${styles.labelPrice}`}>montaż od {formatPrice(install.from)}</span>
+                  <span className={`num ${styles.labelPrice}`}>
+                    {item.verb} od {formatPrice(install.from)}
+                  </span>
                   <ChevronIcon className={styles.labelIcon} />
                 </Link>
               </li>
@@ -87,7 +92,7 @@ export function Hero() {
         </ul>
 
         <div className={styles.foot}>
-          <p className={styles.priceNote}>Ceny orientacyjne – ostateczna wycena zależy od instalacji i zakresu prac.</p>
+          <p className={styles.priceNote}>Ceny orientacyjne, montaż bez urządzenia – ostateczna wycena zależy od instalacji i zakresu prac.</p>
           <p className={styles.key} aria-hidden="true">
             <span className={styles.keyVisible}>urządzenie na zdjęciu</span>
             <span className={styles.keyInside}>instalacja wewnątrz budynku</span>

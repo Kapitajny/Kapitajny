@@ -7,16 +7,19 @@ import styles from "./CtaBand.module.css";
 type CtaBandProps = {
   title?: string;
   text?: string;
+  /** Zdjęcie tła – z montażu lub instalacji, różne na różnych stronach. */
+  image?: { src: string; position?: string };
 };
 
-/** Zamknięcie strony: zdjęcie elewacji po zmroku, duży nagłówek i dwie drogi kontaktu. */
+/** Zamknięcie strony: zdjęcie z pracy instalatora, duży nagłówek i dwie drogi kontaktu. */
 export function CtaBand({
   title = "Opisz, czego potrzebujesz",
   text = "Odpowiemy z wstępną wyceną i propozycją terminu wizji lokalnej. Wycena jest bezpłatna i do niczego nie zobowiązuje.",
+  image = { src: "/images/detal-pomiar.jpg", position: "50% 55%" },
 }: CtaBandProps) {
   return (
     <section className={`theme-dark ${styles.band}`} aria-labelledby="cta-tytul">
-      <Image src="/images/elewacja-noc.jpg" alt="" fill sizes="100vw" className={styles.photo} />
+      <Image src={image.src} alt="" fill sizes="100vw" className={styles.photo} style={{ objectPosition: image.position }} />
       <div className={styles.scrim} aria-hidden="true" />
       <div className={`container ${styles.inner}`}>
         <div>

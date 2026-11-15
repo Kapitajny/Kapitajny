@@ -8,14 +8,13 @@ Next.js (`next/image`) serwuje je jako AVIF/WebP w rozmiarze dopasowanym do ekra
 | --- | --- | --- | --- | --- |
 | `hero-dom-pompa-ciepla.jpg` | https://www.pexels.com/photo/20046691/ | alpha innotec | Hero (szerokie ekrany) | Usunięte logo producenta z obudowy |
 | `hero-dom-pompa-ciepla-pion.jpg` | jw. | alpha innotec | Hero (telefony) | Pionowy kadr 1200 × 1600 z powyższego |
-| `pompa-ciepla-ogrod.jpg` | https://www.pexels.com/photo/38067300/ | alpha innotec | Usługa: pompy ciepła | Usunięte logo producenta z panelu |
+| `pompa-ciepla-ogrod.jpg` | https://www.pexels.com/photo/38067300/ | alpha innotec | Usługa: pompy ciepła; tło zachęty na stronie O nas | Usunięte logo producenta z panelu |
 | `klimatyzacja-jednostka.jpg` | https://www.pexels.com/photo/38788452/ | zob. strona zdjęcia | Usługa: klimatyzacja | – |
 | `rekuperacja-czerpnie.jpg` | https://www.pexels.com/photo/6033459/ | zob. strona zdjęcia | Usługa: rekuperacja | – |
-| `serwis-technik.jpg` | https://www.pexels.com/photo/5463575/ | José Andrés Pacheco Cortes | Usługa: serwis HVAC | Usunięte logo producenta z jednostki |
-| `dach-jednostki.jpg` | https://www.pexels.com/photo/13109834/ | zob. strona zdjęcia | Strona główna: o firmie | – |
-| `elewacja-noc.jpg` | https://www.pexels.com/photo/28567008/ | zob. strona zdjęcia | Tło zachęty do kontaktu | – |
-| `rekuperacja-maszynownia.jpg` | https://www.pexels.com/photo/20046689/ | alpha innotec | O nas: nagłówek | – |
-| `detal-pomiar.jpg` | https://www.pexels.com/photo/5463580/ | José Andrés Pacheco Cortes | O nas: zakres działalności | – |
+| `serwis-technik.jpg` | https://www.pexels.com/photo/5463575/ | José Andrés Pacheco Cortes | Usługa: serwis HVAC | Usunięte logo producenta, przycięty kadr (bez anteny), chłodniejsza kolorystyka |
+| `dach-jednostki.jpg` | https://www.pexels.com/photo/13109834/ | zob. strona zdjęcia | O nas: nagłówek | – |
+| `rekuperacja-maszynownia.jpg` | https://www.pexels.com/photo/20046689/ | alpha innotec | Strona główna: o firmie; tło zachęty na stronie usług | – |
+| `detal-pomiar.jpg` | https://www.pexels.com/photo/5463580/ | José Andrés Pacheco Cortes | O nas: zakres działalności; tło zachęty na stronie głównej | – |
 
 Uwagi:
 

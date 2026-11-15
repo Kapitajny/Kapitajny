@@ -54,7 +54,7 @@ export default function AboutPage() {
       <PageIntro
         title="CLIMARO – Twój partner w nowoczesnym klimacie"
         lead={`Od ${site.foundedYear} roku montujemy i serwisujemy instalacje klimatyzacji, pomp ciepła i wentylacji w domach, biurach i obiektach usługowych na terenie województwa mazowieckiego.`}
-        image={{ src: "/images/rekuperacja-maszynownia.jpg", alt: "Pomieszczenie techniczne z jednostką wewnętrzną pompy ciepła i izolowanymi zasobnikami" }}
+        image={{ src: "/images/dach-jednostki.jpg", alt: "Jednostki klimatyzacji i wentylacji na dachu nowoczesnego budynku z płytową elewacją" }}
       />
 
       <section className="theme-graphite section" aria-labelledby="historia-tytul">
@@ -146,7 +146,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <CtaBand />
+      <CtaBand image={{ src: "/images/pompa-ciepla-ogrod.jpg", position: "55% 50%" }} />
     </>
   );
 }

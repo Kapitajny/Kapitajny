@@ -70,8 +70,10 @@
   font-variation-settings: "wdth" var(--wdth-display);
 }
 
+/* Każdy wiersz nagłówka ma szerokość swojego tekstu – nie zachodzi „pudełkiem” na etykiety obok. */
 .title > span {
   display: block;
+  width: fit-content;
 }
 
 .subtitle {
@@ -89,9 +91,12 @@
   margin-top: var(--space-6);
 }
 
-/* ---------- Oznaczenia: tryb listy (wąskie ekrany) ---------- */
+/* ---------- Oznaczenia: poza trybem zdjęcia ukryte ----------
+   Na węższych i niższych ekranach lista cen pojawia się zaraz pod hero (indeks usług),
+   więc hero jej nie powtarza – zostaje nagłówek, przyciski i informacja o cenach. */
 
 .annotations {
+  display: none;
   list-style: none;
   margin-top: var(--space-7);
   border-top: 1px solid var(--line-strong);
@@ -174,6 +179,7 @@
   }
 
   .annotations {
+    display: block;
     margin: 0;
     border: 0;
   }
@@ -186,11 +192,20 @@
     margin-top: var(--space-5);
   }
 
+  /* Legenda na ciemnym podkładzie – czytelna niezależnie od jasności zdjęcia pod spodem. */
   .key {
     display: flex;
-    gap: var(--space-5);
-    color: var(--muted);
+    gap: var(--space-3);
+    color: #d5d8da;
     font-size: 0.875rem;
+  }
+
+  .keyVisible,
+  .keyInside {
+    padding: 0.3rem 0.65rem;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    background: rgb(8 9 9 / 0.85);
   }
 
   .keyVisible,

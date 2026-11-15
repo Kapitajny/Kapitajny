@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { CommissioningReport } from "@/components/CommissioningReport";
 import { CtaBand } from "@/components/CtaBand";
 import { Hero } from "@/components/Hero";
 import { ServiceIndex } from "@/components/ServiceIndex";
@@ -11,25 +12,6 @@ import styles from "./page.module.css";
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
-
-const reasons = [
-  {
-    title: "Ceny znasz przed pierwszą rozmową",
-    text: "Cennik usług jest jawny. Po wizji lokalnej dostajesz pisemną ofertę z ceną końcową, terminem i zakresem prac.",
-  },
-  {
-    title: "Dobór na podstawie pomiarów",
-    text: "Moc klimatyzatora, pompy ciepła czy centrali wentylacyjnej liczymy dla konkretnego budynku i sposobu, w jaki z niego korzystasz.",
-  },
-  {
-    title: "Montaż zgodny z wymaganiami producenta",
-    text: "Próba szczelności, próżniowanie instalacji i protokół uruchomienia to warunki, od których zależy gwarancja urządzenia.",
-  },
-  {
-    title: "Jeden zespół od montażu po serwis",
-    text: "Instalacje, które wykonaliśmy, serwisujemy sami. Znamy je od pierwszego dnia i wiemy, co sprawdzić przy przeglądzie.",
-  },
-];
 
 export default function HomePage() {
   return (
@@ -59,8 +41,8 @@ export default function HomePage() {
       <section className={`theme-light ${styles.about}`} aria-labelledby="firma-tytul">
         <div className={styles.aboutImage}>
           <Image
-            src="/images/dach-jednostki.jpg"
-            alt="Jednostki klimatyzacji i wentylacji na dachu nowoczesnego budynku z płytową elewacją"
+            src="/images/rekuperacja-maszynownia.jpg"
+            alt="Pomieszczenie techniczne z jednostką wewnętrzną pompy ciepła i izolowanymi zasobnikami"
             fill
             sizes="(min-width: 64rem) 85vw, 100vw"
           />
@@ -97,26 +79,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="theme-paper section" aria-labelledby="dlaczego-tytul">
-        <div className="container">
-          <div className={styles.head}>
-            <h2 id="dlaczego-tytul" className={styles.display}>
-              Dlaczego CLIMARO
-            </h2>
-            <div className={styles.headAside}>
-              <p className="lead">Nie obiecujemy rzeczy, których nie da się sprawdzić. Oto, na co możesz liczyć przy każdym zleceniu.</p>
-            </div>
-          </div>
-          <ul className={styles.reasons}>
-            {reasons.map((reason) => (
-              <li key={reason.title}>
-                <h3>{reason.title}</h3>
-                <p>{reason.text}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <CommissioningReport />
 
       <CtaBand />
     </>

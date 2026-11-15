@@ -3,7 +3,7 @@ import Link from "next/link";
 import { AnnotatedPhoto } from "@/components/AnnotatedPhoto";
 import { CtaBand } from "@/components/CtaBand";
 import { PageIntro } from "@/components/PageIntro";
-import { PRICE_NOTE, formatPrice, services } from "@/data/services";
+import { PRICE_NOTE, formatPrice, formatPriceItem, services } from "@/data/services";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -27,7 +27,7 @@ export default function ServicesPage() {
                 <a href={`#${service.slug}`}>
                   <span>{service.name}</span>
                   <span className="num">
-                    {service.prices[0].label.toLowerCase()} od {formatPrice(service.prices[0].from)}
+                    {service.prices[0].label.toLowerCase()} {formatPriceItem(service.prices[0])}
                   </span>
                 </a>
               </li>
@@ -69,7 +69,10 @@ export default function ServicesPage() {
                   <tbody>
                     {service.prices.map((price) => (
                       <tr key={price.label}>
-                        <th scope="row">{price.label}</th>
+                        <th scope="row">
+                          {price.label}
+                          {price.note ? <span className={styles.priceNote}>{price.note}</span> : null}
+                        </th>
                         <td className="num">
                           <span className={styles.from}>od</span> {formatPrice(price.from)}
                         </td>
@@ -77,7 +80,7 @@ export default function ServicesPage() {
                     ))}
                   </tbody>
                 </table>
-                <p className={styles.sheetNote}>Ceny orientacyjne – zależą od instalacji i zakresu prac.</p>
+                <p className={styles.sheetNote}>{service.priceIncludes}</p>
                 <Link href={`/kontakt?usluga=${service.slug}`} className={`btn btn-primary ${styles.ask}`}>
                   Zapytaj o wycenę
                   <span className="visually-hidden"> – {service.name}</span>
@@ -117,7 +120,9 @@ export default function ServicesPage() {
         </div>
       </div>
 
-      <CtaBand title="Nie wiesz, której usługi potrzebujesz?" text="Opisz budynek i to, co chcesz osiągnąć. Doradzimy rozwiązanie i podamy wstępny koszt." />
+      <CtaBand
+        image={{ src: "/images/rekuperacja-maszynownia.jpg", position: "50% 45%" }}
+        title="Nie wiesz, której usługi potrzebujesz?" text="Opisz budynek i to, co chcesz osiągnąć. Doradzimy rozwiązanie i podamy wstępny koszt." />
     </>
   );
 }

@@ -20,8 +20,26 @@ export default function ContactPage() {
         <div className={`container ${styles.grid}`}>
           <ContactForm />
 
-          <section className={styles.aside} aria-labelledby="dane-tytul">
-            <h2 id="dane-tytul" className={styles.asideTitle}>
+          <section className={styles.aside} aria-label="Co dalej i dane kontaktowe">
+            <h2 className={styles.asideTitle} id="co-dalej-tytul">
+              Co dalej
+            </h2>
+            <ol className={styles.next} aria-labelledby="co-dalej-tytul">
+              <li>
+                <span className="num">1</span>
+                <p>Odpowiadamy na zapytanie ze wstępną wyceną opartą na Twoim opisie.</p>
+              </li>
+              <li>
+                <span className="num">2</span>
+                <p>Umawiamy wizję lokalną, żeby zmierzyć pomieszczenia i sprawdzić instalację.</p>
+              </li>
+              <li>
+                <span className="num">3</span>
+                <p>Dostajesz pisemną ofertę z ceną, terminem i zakresem prac. Decyzja należy do Ciebie.</p>
+              </li>
+            </ol>
+
+            <h2 id="dane-tytul" className={`${styles.asideTitle} ${styles.asideTitleSecond}`}>
               Dane kontaktowe
             </h2>
             <dl className={styles.details}>

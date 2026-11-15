@@ -19,9 +19,13 @@ sprawdzalnym, umiarkowanym deklaracjom i poprosić o bezpłatną wycenę (formul
 ## Zobowiązania wobec treści
 
 - Ceny są jawne i widoczne bez klikania. Zawsze jako „od …” z informacją, że wycena końcowa zależy od instalacji.
+- Ceny montażu nie obejmują urządzenia (robocizna i materiały instalacyjne) – mówi to każdy cennik („bez urządzenia”)
+  i zdanie „Cena obejmuje…” przy każdej usłudze. Ceny serwisu obejmują wizytę i pracę; części i czynnik rozliczane osobno.
 - Ceny są przykładowe i nie są przedstawiane jako zweryfikowany cennik rynkowy.
 - Bez przesadnych deklaracji: żadnych liczb klientów, „100% zadowolenia”, nagród czy opinii, których nie można sprawdzić.
-- Formularz nie udaje wysyłki, dopóki nie jest podłączony do systemu obsługi zapytań.
+- Formularz nie udaje wysyłki, dopóki nie jest podłączony do systemu obsługi zapytań. Uprzedza o tym przed wysłaniem,
+  a po sprawdzeniu danych prowadzi do akcji („Wyślij e-mailem”, „Zadzwoń”), nie do komunikatu o porażce.
+- Przykładowy protokół uruchomienia na stronie głównej jest oznaczony jako dane demonstracyjne.
 - Strona nie jest indeksowana, dopóki zawiera dane demonstracyjne.
 
 ## Wymagane treści (z briefu)

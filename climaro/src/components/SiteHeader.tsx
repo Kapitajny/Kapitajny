@@ -23,6 +23,10 @@ export function SiteHeader() {
             <PhoneIcon />
             <span className="num">{site.phone}</span>
           </a>
+          {/* Na węższych ekranach telefon zostaje w nagłówku jako przycisk z ikoną. */}
+          <a href={site.phoneHref} className={styles.phoneCompact} aria-label={`Zadzwoń: ${site.phone}`}>
+            <PhoneIcon />
+          </a>
           <Link href="/kontakt" className={`btn btn-primary btn-small ${styles.cta}`}>
             Bezpłatna wycena
           </Link>

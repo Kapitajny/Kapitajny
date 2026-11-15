@@ -1,0 +1,46 @@
+.bar {
+  display: none;
+}
+
+@media (max-width: 47.99rem) {
+  .bar {
+    --bg: var(--c-graphite);
+    --fg: var(--c-white);
+    --line-strong: #40464b;
+    --focus: var(--c-orange);
+
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--space-3);
+    padding: var(--space-3) var(--gutter) max(var(--space-3), env(safe-area-inset-bottom));
+    border-top: 1px solid var(--line-strong);
+    background: var(--bg);
+    color: var(--fg);
+    transform: translateY(110%);
+    transition: transform 280ms var(--ease-out);
+  }
+
+  .bar[data-visible] {
+    transform: none;
+  }
+
+  .call,
+  .quote {
+    min-height: 3rem;
+  }
+
+  .call svg {
+    color: var(--c-orange);
+  }
+}
+
+@media (max-width: 47.99rem) and (prefers-reduced-motion: reduce) {
+  .bar {
+    transition: none;
+  }
+}

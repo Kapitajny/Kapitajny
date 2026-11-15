@@ -126,3 +126,10 @@
     margin-inline-start: auto;
   }
 }
+
+/* Telefony: miejsce na pasek akcji przyklejony do dołu ekranu. */
+@media (max-width: 47.99rem) {
+  .footer {
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
+  }
+}

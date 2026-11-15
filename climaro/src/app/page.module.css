@@ -105,35 +105,3 @@
     padding-inline: clamp(3rem, 6vw, 6rem) max(var(--gutter), calc((100vw - var(--container)) / 2));
   }
 }
-
-/* ---------- Dlaczego CLIMARO ---------- */
-
-.reasons {
-  list-style: none;
-  display: grid;
-  gap: 0 clamp(2rem, 4vw, 4rem);
-}
-
-.reasons li {
-  display: grid;
-  gap: var(--space-3);
-  align-content: start;
-  padding-block: var(--space-5) var(--space-7);
-  border-top: 2px solid var(--fg);
-}
-
-.reasons h3 {
-  max-width: 20ch;
-  font-size: var(--step-2);
-}
-
-.reasons p {
-  max-width: 48ch;
-  color: var(--muted);
-}
-
-@media (min-width: 48rem) {
-  .reasons {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}

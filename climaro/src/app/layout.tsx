@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo } from "next/font/google";
+import { MobileActionBar } from "@/components/MobileActionBar";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { site } from "@/data/site";
@@ -36,6 +37,8 @@ export const viewport: Viewport = {
   themeColor: "#080909",
   width: "device-width",
   initialScale: 1,
+  // Pasek akcji na telefonach uwzględnia obszar paska systemowego (env(safe-area-inset-bottom)).
+  viewportFit: "cover",
 };
 
 const jsonLd = {
@@ -70,6 +73,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <SiteFooter />
+        <MobileActionBar />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       </body>
     </html>
