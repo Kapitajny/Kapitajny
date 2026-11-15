@@ -41,7 +41,7 @@ export default function ServicesPage() {
         <section
           key={service.slug}
           id={service.slug}
-          className={`${index % 2 === 0 ? "theme-graphite" : "theme-dark"} ${styles.service}`}
+          className={`${index % 2 === 0 ? "theme-graphite" : "theme-light"} ${styles.service}`}
           aria-labelledby={`${service.slug}-tytul`}
         >
           <div className="container">

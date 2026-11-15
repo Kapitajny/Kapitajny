@@ -20,7 +20,7 @@
   }
 }
 
-/* ---------- Historia: linia wymiarowa ---------- */
+/* ---------- Historia: oś czasu ---------- */
 
 .dimension {
   --tick: 0.9rem;
@@ -93,7 +93,7 @@
     padding: 0;
   }
 
-  /* Pozioma linia wymiarowa pod rocznikami, ze strzałkami-kreskami na końcach. */
+  /* Pozioma oś pod rocznikami z kreską zamykającą. */
   .dimension::before {
     left: 0;
     right: 0;
@@ -113,9 +113,22 @@
     background: var(--line-strong);
   }
 
+  /* Wspólne wiersze (subgrid): roczniki, tytuły i opisy stoją na tych samych liniach we wszystkich kolumnach. */
+  .dimension {
+    grid-template-rows: auto auto auto;
+    row-gap: 0;
+  }
+
   .dimension li {
-    gap: var(--space-2);
+    grid-row: span 3;
+    grid-template-rows: subgrid;
+    gap: 0;
     padding-right: var(--space-4);
+  }
+
+  .dimension h3 {
+    margin-top: 0;
+    margin-bottom: var(--space-2);
   }
 
   .dimension li::before {
@@ -155,7 +168,7 @@
 
 .scopeLead {
   max-width: 52ch;
-  color: #c9cdd0;
+  color: color-mix(in srgb, var(--fg) 80%, var(--bg));
   font-size: var(--step-1);
   line-height: 1.55;
 }

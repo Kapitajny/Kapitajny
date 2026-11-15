@@ -62,7 +62,7 @@
 
 .aboutLead {
   max-width: 52ch;
-  color: #c9cdd0;
+  color: color-mix(in srgb, var(--fg) 80%, var(--bg));
   font-size: var(--step-1);
   line-height: 1.55;
 }

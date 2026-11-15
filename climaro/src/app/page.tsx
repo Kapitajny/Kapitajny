@@ -56,13 +56,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className={`theme-dark ${styles.about}`} aria-labelledby="firma-tytul">
+      <section className={`theme-light ${styles.about}`} aria-labelledby="firma-tytul">
         <div className={styles.aboutImage}>
           <Image
             src="/images/dach-jednostki.jpg"
             alt="Jednostki klimatyzacji i wentylacji na dachu nowoczesnego budynku z płytową elewacją"
             fill
-            sizes="(min-width: 64rem) 50vw, 100vw"
+            sizes="(min-width: 64rem) 85vw, 100vw"
           />
         </div>
         <div className={styles.aboutText}>
@@ -97,7 +97,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="theme-light section" aria-labelledby="dlaczego-tytul">
+      <section className="theme-paper section" aria-labelledby="dlaczego-tytul">
         <div className="container">
           <div className={styles.head}>
             <h2 id="dlaczego-tytul" className={styles.display}>

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 const history = [
-  { year: "2010", title: "Początek w Grodzisku Mazowieckim", text: "Montaż klimatyzacji w domach jednorodzinnych i małych biurach." },
+  { year: "2010", title: "Start w Grodzisku", text: "Montaż klimatyzacji w domach jednorodzinnych i małych biurach." },
   { year: "2014", title: "Serwis dla firm", text: "Stała obsługa serwisowa biur, sklepów i lokali usługowych." },
   { year: "2018", title: "Pompy ciepła", text: "Powietrzne pompy ciepła w nowych domach i przy wymianie starych kotłów." },
   { year: "2021", title: "Rekuperacja", text: "Wentylacja z odzyskiem ciepła, projektowana razem z ogrzewaniem budynku." },
@@ -69,7 +69,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* Oś czasu jako linia wymiarowa z rysunku technicznego. */}
+          {/* Oś czasu z kreskami jak na rysunku technicznym. */}
           <ol className={styles.dimension}>
             {history.map((item) => (
               <li key={item.year}>
@@ -88,7 +88,7 @@ export default function AboutPage() {
             src="/images/detal-pomiar.jpg"
             alt="Instalator z miernikiem cęgowym sprawdza przewody jednostki zewnętrznej klimatyzacji"
             fill
-            sizes="(min-width: 64rem) 50vw, 100vw"
+            sizes="(min-width: 64rem) 85vw, 100vw"
           />
         </div>
         <div className={styles.scopeText}>

@@ -63,6 +63,7 @@
   --line-strong: #3a3f43;
   --focus: var(--c-orange);
   --error: var(--c-error-dark);
+  --accent-text: var(--c-orange);
 }
 
 .theme-graphite {
@@ -74,6 +75,7 @@
   --line-strong: #40464b;
   --focus: var(--c-orange);
   --error: var(--c-error-dark);
+  --accent-text: var(--c-orange);
 }
 
 .theme-light {
@@ -85,6 +87,8 @@
   --line-strong: #b9bdc0;
   --focus: var(--c-graphite);
   --error: var(--c-error-light);
+  /* Pomarańcz na jasnym tle nie spełnia kontrastu – tekst akcentu przyciemniony (5,2–5,6:1). */
+  --accent-text: #a34700;
   color-scheme: light;
 }
 
@@ -98,6 +102,8 @@
   --line-strong: #b4b8bb;
   --focus: var(--c-graphite);
   --error: var(--c-error-light);
+  /* Pomarańcz na jasnym tle nie spełnia kontrastu – tekst akcentu przyciemniony (5,2–5,6:1). */
+  --accent-text: #a34700;
   color-scheme: light;
 }
 

@@ -119,9 +119,13 @@ export const services: Service[] = [
       height: 1066,
     },
     points: [
-      { x: 0.206, y: 0.624, title: "Czerpnia", text: "Pobiera świeże powietrze z dala od wyrzutni i źródeł zanieczyszczeń." },
-      { x: 0.75, y: 0.57, title: "Wyrzutnia", text: "Usuwa zużyte powietrze tak, by nie wracało do czerpni." },
-      { x: 0.5, y: 0.86, title: "Osłona akustyczna", text: "Elementy zewnętrzne dobieramy tak, by instalacja nie była słyszalna." },
+      {
+        x: 0.206,
+        y: 0.624,
+        title: "Wyloty kanałów",
+        text: "Czerpnię i wyrzutnię rozmieszczamy tak, by zużyte powietrze nie wracało do budynku.",
+      },
+      { x: 0.5, y: 0.86, title: "Osłona z lamelami", text: "Chroni elementy zewnętrzne i ogranicza hałas słyszalny przy budynku." },
     ],
   },
   {
@@ -148,12 +152,12 @@ export const services: Service[] = [
       src: "/images/serwis-technik.jpg",
       alt: "Serwisant podłącza manometry do jednostki zewnętrznej klimatyzacji na dachu budynku",
       width: 1600,
-      height: 1137,
+      height: 857,
     },
     points: [
-      { x: 0.46, y: 0.72, title: "Pomiar ciśnień", text: "Manometry pokazują, czy ilość czynnika chłodniczego jest prawidłowa." },
-      { x: 0.585, y: 0.62, title: "Izolacja przewodów", text: "Sprawdzamy, czy izolacja jest szczelna i nie przepuszcza wilgoci." },
-      { x: 0.76, y: 0.42, title: "Wymiennik", text: "Czyste lamele to pełna wydajność i niższe zużycie prądu." },
+      { x: 0.46, y: 0.629, title: "Pomiar ciśnień", text: "Manometry pokazują, czy ilość czynnika chłodniczego jest prawidłowa." },
+      { x: 0.585, y: 0.496, title: "Izolacja przewodów", text: "Sprawdzamy, czy izolacja jest szczelna i nie przepuszcza wilgoci." },
+      { x: 0.76, y: 0.3, title: "Wymiennik", text: "Czyste lamele to pełna wydajność i niższe zużycie prądu." },
     ],
   },
 ];

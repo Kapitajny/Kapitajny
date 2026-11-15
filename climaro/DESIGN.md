@@ -7,7 +7,7 @@ Kierunek: **Industrial Engineering**, wariant „Architektura z adnotacjami” (
 Strona to „architektura z adnotacjami”. Najmocniejszy element to hero: prawdziwe zdjęcie nowoczesnego domu z pompą
 ciepła, na którym cienkie linie – jak opisy na rysunku technicznym – wskazują miejsca pracy instalacji i podają cenę
 montażu. Ten sam język ciągnie się przez całą stronę: zdjęcia usług mają numerowane oznaczenia z legendą, historia
-firmy jest narysowana jak linia wymiarowa, a ceny wyglądają jak karta parametrów. Wokół tego – spokojna, ciemna,
+firmy stoi na osi z kreskami jak na rysunku, a ceny wyglądają jak karta parametrów. Wokół tego – spokojna, ciemna,
 fotograficzna kompozycja z jasnymi sekcjami do czytania.
 
 ## Elementy charakterystyczne
@@ -17,7 +17,7 @@ fotograficzna kompozycja z jasnymi sekcjami do czytania.
 | Oznaczenia w hero | Strona główna | Pełny znacznik i ciągła linia = urządzenie widoczne na zdjęciu; pusty znacznik i linia przerywana = instalacja wewnątrz budynku. Legenda pod przyciskami. Poniżej 1200 px oznaczenia stają się listą cen. |
 | Zdjęcie z oznaczeniami (`AnnotatedPhoto`) | Usługi | Ramka w proporcjach pliku, numerowane znaczniki (pomarańczowy krążek, biała obwódka) i legenda 1–3. Punkty wskazują wyłącznie rzeczy widoczne na zdjęciu. |
 | Indeks usług (`ServiceIndex`) | Strona główna | Lista z cenami; duże zdjęcie przenika się do usługi wskazanej myszą lub klawiaturą (przenikanie z rozmyciem 4 px). Na telefonie każdy wiersz ma własne zdjęcie. |
-| Linia wymiarowa | O nas | Oś czasu z ukośnymi znacznikami jak wymiar na rysunku; „Dziś” w kolorze marki. |
+| Oś czasu | O nas | Pozioma oś z ukośnymi kreskami jak na rysunku technicznym; roczniki, tytuły i opisy na wspólnych liniach (subgrid); „Dziś” w kolorze marki. |
 | Pas fotograficzny | Zachęta do kontaktu, nagłówek „O nas” | Zdjęcie na całą szerokość z funkcjonalnym przyciemnieniem pod tekstem. |
 
 ## Kolor
@@ -86,7 +86,9 @@ fokus 2 px z odstępem 3 px (pomarańczowy na ciemnym, grafitowy na jasnym tle),
 
 ## Responsywność
 
+- < 768 px: hero ma zdjęcie jako pas u góry (pionowy kadr, cała pompa widoczna), tekst niżej na czarnym tle.
 - ≥ 1200 px: oznaczenia na zdjęciu hero. Pozycje liczone w jednostkach kontenera (`cqw`/`cqh`) tą samą formułą co kadr `object-fit: cover`.
 - < 1200 px: oznaczenia stają się listą cen pod przyciskami.
 - ≥ 1100 px: pełna nawigacja; poniżej przycisk „Menu”. ≥ 576 px: przycisk „Bezpłatna wycena” w nagłówku.
-- Testowane szerokości: 375, 768, 1024, 1200, 1440.
+- Nazwy usług skalują się do kolumny (`container-type: inline-size`, `font-size: min(4.75rem, 12.5cqi)`).
+- Testowane szerokości: 375, 390, 768, 1024, 1200, 1280, 1366, 1440.

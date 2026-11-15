@@ -66,8 +66,11 @@
   gap: var(--space-6);
 }
 
+/* Kontener szerokości: nazwa usługi skaluje się do swojej kolumny, więc długie słowa nie wychodzą poza siatkę. */
 .head {
   grid-area: head;
+  container-type: inline-size;
+  min-width: 0;
 }
 
 .photo {
@@ -82,7 +85,7 @@
 }
 
 .name {
-  font-size: clamp(2.5rem, 1.3rem + 4.4vw, 4.75rem);
+  font-size: min(4.75rem, 12.5cqi);
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.03em;
@@ -92,7 +95,7 @@
 .description {
   max-width: 50ch;
   margin-top: var(--space-5);
-  color: #c9cdd0;
+  color: color-mix(in srgb, var(--fg) 80%, var(--bg));
   font-size: var(--step-1);
   line-height: 1.55;
 }
@@ -198,7 +201,7 @@
 }
 
 .stepNo {
-  color: var(--c-orange);
+  color: var(--accent-text);
   font-weight: 700;
 }
 

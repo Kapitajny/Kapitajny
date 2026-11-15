@@ -63,7 +63,7 @@ export function ServiceIndex({ services }: { services: Service[] }) {
               src={service.image.src}
               alt=""
               fill
-              sizes="(min-width: 64rem) 40vw, 1px"
+              sizes="(min-width: 64rem) 66vw, 1px"
               className={styles.stageImage}
               data-active={active === index || undefined}
             />

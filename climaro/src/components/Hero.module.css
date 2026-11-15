@@ -41,6 +41,27 @@
   padding-bottom: clamp(2rem, 1rem + 4vw, 4.5rem);
 }
 
+/* Telefony: zdjęcie jako pas u góry (cała pompa ciepła widoczna), tekst niżej na czarnym tle. */
+@media (max-width: 47.99rem) {
+  .hero {
+    display: block;
+    min-height: 0;
+  }
+
+  .photo {
+    height: 56svh;
+    object-position: 50% 30%;
+  }
+
+  .scrim {
+    background: linear-gradient(180deg, rgb(8 9 9 / 0) 0%, rgb(8 9 9 / 0) 34svh, rgb(8 9 9 / 0.85) 50svh, var(--c-black) 56svh);
+  }
+
+  .content {
+    padding-top: calc(56svh - 4.5rem);
+  }
+}
+
 .title {
   font-size: clamp(2.125rem, 1rem + 3.9vw, 4.5rem);
   font-weight: 700;
