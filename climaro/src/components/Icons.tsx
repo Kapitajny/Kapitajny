@@ -80,3 +80,43 @@ export function CheckIcon({ className }: IconProps) {
     </svg>
   );
 }
+
+/* Ikony sekcji zaufania – większe (32 px), ta sama kreska 1,5 px. */
+const large = { ...base, width: 32, height: 32 };
+
+export function CertificateIcon({ className }: IconProps) {
+  return (
+    <svg {...large} className={className}>
+      <path d="M4.5 3.5h15v12h-15z" />
+      <path d="M8 7.5h8M8 10.5h5" />
+      <path d="m9.5 15.5-1.5 5 3-1.5 3 1.5-1.5-5" />
+    </svg>
+  );
+}
+
+export function ShieldIcon({ className }: IconProps) {
+  return (
+    <svg {...large} className={className}>
+      <path d="M12 3 4.5 6v5.5c0 4.6 3.1 8.3 7.5 9.5 4.4-1.2 7.5-4.9 7.5-9.5V6z" />
+      <path d="m8.5 12 2.5 2.5 4.5-5" />
+    </svg>
+  );
+}
+
+export function DocumentIcon({ className }: IconProps) {
+  return (
+    <svg {...large} className={className}>
+      <path d="M6 3.5h8.5l3.5 3.5v13.5H6z" />
+      <path d="M14.5 3.5V7H18" />
+      <path d="M9 11.5h6M9 14.5h6M9 17.5h3.5" />
+    </svg>
+  );
+}
+
+export function WrenchIcon({ className }: IconProps) {
+  return (
+    <svg {...large} className={className}>
+      <path d="M14.5 4a4.5 4.5 0 0 0-4.2 6.1L4 16.4 7.6 20l6.3-6.3A4.5 4.5 0 0 0 20 9.5l-2.9 2.9-2.8-.7-.7-2.8L16.5 6A4.5 4.5 0 0 0 14.5 4z" />
+    </svg>
+  );
+}

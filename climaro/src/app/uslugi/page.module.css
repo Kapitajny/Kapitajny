@@ -1,124 +1,96 @@
-/* ---------- Nawigacja kotwicowa w nagłówku strony ---------- */
+/* ---------- Nawigacja po usługach ---------- */
 
 .jump {
-  margin-top: var(--space-7);
+  margin-top: var(--space-3);
 }
 
 .jump ul {
   list-style: none;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  border-top: 1px solid var(--line-strong);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
 }
 
 .jump a {
-  display: grid;
-  gap: 0.15rem;
-  min-height: 3.5rem;
-  padding: 0.9rem 0.75rem 0.9rem 0;
-  border-bottom: 1px solid var(--line);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  background: #ffffff;
+  font-weight: 500;
   text-decoration: none;
   transition: border-color 200ms ease;
 }
 
-.jump a span:first-child {
-  font-weight: 600;
-}
-
-.jump a span:last-child {
-  color: var(--muted);
-  font-size: 0.9375rem;
+.jump svg {
+  transform: rotate(90deg);
+  color: var(--accent-text);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .jump a:hover {
-    border-bottom-color: var(--c-orange);
+    border-color: var(--fg);
   }
 }
 
-@media (min-width: 48rem) {
-  .jump ul {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
-.introNote {
-  max-width: 62ch;
-  margin-top: var(--space-5);
-  color: var(--muted);
-  font-size: 0.9375rem;
-}
-
-/* ---------- Prezentacja usługi ---------- */
+/* ---------- Usługa ---------- */
 
 .service {
   padding-block: var(--space-section);
-  border-top: 1px solid var(--line);
   scroll-margin-top: var(--header-h);
 }
 
 .grid {
   display: grid;
-  grid-template-areas:
-    "head"
-    "photo"
-    "sheet";
   gap: var(--space-6);
-}
-
-/* Kontener szerokości: nazwa usługi skaluje się do swojej kolumny, więc długie słowa nie wychodzą poza siatkę. */
-.head {
-  grid-area: head;
-  container-type: inline-size;
-  min-width: 0;
+  align-items: start;
 }
 
 .photo {
-  grid-area: photo;
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--c-paper);
 }
 
-.sheet {
-  grid-area: sheet;
+.photo img {
+  object-fit: cover;
+}
+
+.body {
   display: grid;
+  gap: var(--space-5);
   align-content: start;
-  gap: var(--space-4);
+  justify-items: start;
 }
 
-.name {
-  font-size: min(4.75rem, 12.5cqi);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  font-variation-settings: "wdth" var(--wdth-display);
+.priceBox {
+  width: 100%;
+  padding: var(--space-2) var(--space-5) var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface);
 }
 
-.description {
-  max-width: 50ch;
-  margin-top: var(--space-5);
-  color: color-mix(in srgb, var(--fg) 80%, var(--bg));
-  font-size: var(--step-1);
-  line-height: 1.55;
-}
-
-/* Cennik jako karta parametrów: duże cyfry o stałej szerokości, wyrównane do prawej. */
 .prices {
   width: 100%;
   border-collapse: collapse;
 }
 
-.caption {
-  padding-bottom: var(--space-3);
-  border-bottom: 2px solid var(--fg);
-  color: var(--muted);
-  font-size: 0.9375rem;
-  text-align: left;
-}
-
 .prices th,
 .prices td {
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--line-strong);
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--line);
   vertical-align: baseline;
+}
+
+.prices tr:last-child th,
+.prices tr:last-child td {
+  border-bottom: 0;
 }
 
 .prices th {
@@ -128,161 +100,103 @@
 }
 
 .prices td {
-  font-size: var(--step-2);
+  font-size: 1.125rem;
   font-weight: 700;
   text-align: right;
   white-space: nowrap;
 }
 
-.prices tbody tr:first-child td {
-  font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem);
-  letter-spacing: -0.01em;
-}
-
-/* Doprecyzowanie pod nazwą pozycji, np. „bez urządzenia”. */
 .priceNote {
   display: block;
-  margin-top: 0.15rem;
-  color: var(--muted);
-  font-size: 0.875rem;
+  color: var(--fg-2);
+  font-size: 0.9375rem;
   font-weight: 400;
 }
 
-.from {
-  color: var(--muted);
+.includes {
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--line);
+  color: var(--fg-2);
   font-size: 0.9375rem;
-  font-weight: 500;
-  letter-spacing: 0;
-}
-
-.sheetNote {
-  max-width: 48ch;
-  color: var(--muted);
-  font-size: 0.9375rem;
-  line-height: 1.5;
-}
-
-.ask {
-  justify-self: start;
-  margin-top: var(--space-2);
+  line-height: 1.55;
 }
 
 @media (min-width: 64rem) {
   .grid {
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-    grid-template-areas:
-      "photo head"
-      "photo sheet";
-    grid-template-rows: auto 1fr;
-    column-gap: clamp(3rem, 5vw, 5rem);
-    row-gap: var(--space-7);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(3rem, 5vw, 5rem);
   }
 
-  .head {
-    align-self: start;
+  .grid[data-flip] .photo {
+    order: 2;
   }
 }
 
 /* ---------- Zakres prac i czynniki kosztu ---------- */
 
-.lower {
+.details {
   display: grid;
-  gap: var(--space-7);
-  margin-top: var(--space-8);
+  gap: var(--space-6);
+  margin-top: var(--space-7);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--line);
 }
 
-.subhead {
+.details h3 {
   margin-bottom: var(--space-4);
-  font-size: var(--step-1);
 }
 
-/* Zakres prac to kolejność czynności – numeracja niesie informację. */
 .scope {
   list-style: none;
   display: grid;
-  border-top: 1px solid var(--line-strong);
+  gap: var(--space-3);
 }
 
 .scope li {
   display: grid;
-  grid-template-columns: 2.5rem minmax(0, 1fr);
+  grid-template-columns: 1.25rem minmax(0, 1fr);
   gap: var(--space-3);
-  padding-block: 0.85rem;
-  border-bottom: 1px solid var(--line);
+  align-items: start;
 }
 
-.stepNo {
+.scope svg {
+  margin-top: 0.3rem;
   color: var(--accent-text);
-  font-weight: 700;
 }
 
-.factors p {
-  max-width: 56ch;
-  color: var(--muted);
+.factors {
+  max-width: 60ch;
+  color: var(--fg-2);
 }
 
-@media (min-width: 64rem) {
-  /* Kroki zakresu prac na całą szerokość – pięć równych kolumn. */
-  .lower {
-    gap: var(--space-6);
-  }
-
-  .factors {
-    display: grid;
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-    column-gap: clamp(3rem, 5vw, 5rem);
-    padding-top: var(--space-5);
-    border-top: 1px solid var(--line);
-  }
-
-  .factors .subhead {
-    margin: 0;
-  }
-
-  .scope {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    border-top: 0;
-  }
-
-  .scope li {
-    grid-template-columns: none;
-    align-content: start;
-    gap: var(--space-2);
-    padding: var(--space-4) var(--space-4) 0 0;
-    border-top: 1px solid var(--line-strong);
-    border-bottom: 0;
-    font-size: 0.9375rem;
-    line-height: 1.45;
-  }
-
-  .scope li + li {
-    padding-left: var(--space-3);
-    border-left: 1px solid var(--line);
+@media (min-width: 48rem) {
+  .details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(2rem, 5vw, 5rem);
   }
 }
 
 /* ---------- Informacja o cenach ---------- */
 
 .noteWrap {
-  padding-block: var(--space-8);
+  padding-block: var(--space-7);
 }
 
 .note {
   display: grid;
-  gap: var(--space-3);
+  gap: var(--space-2);
   max-width: 62rem;
   padding: var(--space-5) var(--space-6);
-  border: 1px solid var(--line-strong);
-  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #ffffff;
 }
 
 .note p:first-child {
-  font-size: var(--step-1);
   font-weight: 500;
-  line-height: 1.5;
 }
 
 .demo {
-  color: var(--muted);
+  color: var(--fg-2);
   font-size: 0.9375rem;
 }

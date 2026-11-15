@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { AnnotatedPhoto } from "@/components/AnnotatedPhoto";
 import { CtaBand } from "@/components/CtaBand";
+import { CheckIcon, ChevronIcon } from "@/components/Icons";
 import { PageIntro } from "@/components/PageIntro";
-import { PRICE_NOTE, formatPrice, formatPriceItem, services } from "@/data/services";
+import { PRICE_NOTE, formatPrice, services } from "@/data/services";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -25,62 +26,64 @@ export default function ServicesPage() {
             {services.map((service) => (
               <li key={service.slug}>
                 <a href={`#${service.slug}`}>
-                  <span>{service.name}</span>
-                  <span className="num">
-                    {service.prices[0].label.toLowerCase()} {formatPriceItem(service.prices[0])}
-                  </span>
+                  {service.name}
+                  <ChevronIcon />
                 </a>
               </li>
             ))}
           </ul>
         </nav>
-        <p className={styles.introNote}>{PRICE_NOTE}</p>
       </PageIntro>
 
       {services.map((service, index) => (
         <section
           key={service.slug}
           id={service.slug}
-          className={`${index % 2 === 0 ? "theme-graphite" : "theme-light"} ${styles.service}`}
+          className={`${index % 2 === 0 ? "theme-white" : "theme-light"} ${styles.service}`}
           aria-labelledby={`${service.slug}-tytul`}
         >
           <div className="container">
-            <div className={styles.grid}>
-              <header className={styles.head}>
-                <h2 id={`${service.slug}-tytul`} className={styles.name}>
-                  {service.name}
-                </h2>
-                <p className={styles.description}>{service.description}</p>
-              </header>
-
+            <div className={styles.grid} data-flip={index % 2 === 1 || undefined}>
               <div className={styles.photo}>
-                <AnnotatedPhoto image={service.image} points={service.points} sizes="(min-width: 64rem) 56vw, 100vw" eager={index === 0} />
+                <Image
+                  src={service.image.src}
+                  alt={service.image.alt}
+                  fill
+                  sizes="(min-width: 64rem) 45vw, 100vw"
+                  loading={index === 0 ? "eager" : "lazy"}
+                />
               </div>
 
-              <div className={styles.sheet}>
-                <table className={styles.prices}>
-                  <caption className={styles.caption}>Cennik</caption>
-                  <thead className="visually-hidden">
-                    <tr>
-                      <th scope="col">Usługa</th>
-                      <th scope="col">Cena</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {service.prices.map((price) => (
-                      <tr key={price.label}>
-                        <th scope="row">
-                          {price.label}
-                          {price.note ? <span className={styles.priceNote}>{price.note}</span> : null}
-                        </th>
-                        <td className="num">
-                          <span className={styles.from}>od</span> {formatPrice(price.from)}
-                        </td>
+              <div className={styles.body}>
+                <h2 id={`${service.slug}-tytul`} className="h-section">
+                  {service.name}
+                </h2>
+                <p className="lead">{service.description}</p>
+
+                <div className={styles.priceBox}>
+                  <table className={styles.prices}>
+                    <caption className="visually-hidden">Cennik: {service.name}</caption>
+                    <thead className="visually-hidden">
+                      <tr>
+                        <th scope="col">Usługa</th>
+                        <th scope="col">Cena</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-                <p className={styles.sheetNote}>{service.priceIncludes}</p>
+                    </thead>
+                    <tbody>
+                      {service.prices.map((price) => (
+                        <tr key={price.label}>
+                          <th scope="row">
+                            {price.label}
+                            {price.note ? <span className={styles.priceNote}>{price.note}</span> : null}
+                          </th>
+                          <td className="num">od {formatPrice(price.from)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  <p className={styles.includes}>{service.priceIncludes}</p>
+                </div>
+
                 <Link href={`/kontakt?usluga=${service.slug}`} className={`btn btn-primary ${styles.ask}`}>
                   Zapytaj o wycenę
                   <span className="visually-hidden"> – {service.name}</span>
@@ -88,41 +91,41 @@ export default function ServicesPage() {
               </div>
             </div>
 
-            <div className={styles.lower}>
+            <div className={styles.details}>
               <div>
-                <h3 className={styles.subhead}>Zakres prac</h3>
-                <ol className={styles.scope}>
-                  {service.scope.map((item, step) => (
+                <h3 className="h-card">Zakres prac</h3>
+                <ul className={styles.scope}>
+                  {service.scope.map((item) => (
                     <li key={item}>
-                      <span className={`num ${styles.stepNo}`} aria-hidden="true">
-                        {String(step + 1).padStart(2, "0")}
-                      </span>
+                      <CheckIcon />
                       <span>{item}</span>
                     </li>
                   ))}
-                </ol>
+                </ul>
               </div>
-              <div className={styles.factors}>
-                <h3 className={styles.subhead}>Od czego zależy koszt</h3>
-                <p>{service.costFactors}</p>
+              <div>
+                <h3 className="h-card">Od czego zależy koszt</h3>
+                <p className={styles.factors}>{service.costFactors}</p>
               </div>
             </div>
           </div>
         </section>
       ))}
 
-      <div className="theme-light">
+      <section className="theme-light" aria-label="Informacja o cenach">
         <div className={`container ${styles.noteWrap}`}>
           <div className={styles.note} role="note">
             <p>{PRICE_NOTE}</p>
             <p className={styles.demo}>Kwoty na tej stronie są przykładowe – to projekt demonstracyjny, a nie zweryfikowany cennik rynkowy.</p>
           </div>
         </div>
-      </div>
+      </section>
 
       <CtaBand
         image={{ src: "/images/rekuperacja-maszynownia.jpg", position: "50% 45%" }}
-        title="Nie wiesz, której usługi potrzebujesz?" text="Opisz budynek i to, co chcesz osiągnąć. Doradzimy rozwiązanie i podamy wstępny koszt." />
+        title="Nie wiesz, której usługi potrzebujesz?"
+        text="Opisz budynek i to, co chcesz osiągnąć. Doradzimy rozwiązanie i podamy wstępny koszt."
+      />
     </>
   );
 }

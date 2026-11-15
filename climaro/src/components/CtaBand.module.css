@@ -2,7 +2,7 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding-block: clamp(5rem, 3rem + 8vw, 10rem);
+  padding-block: clamp(4rem, 2.5rem + 6vw, 7.5rem);
   border-top: 1px solid var(--line);
 }
 
@@ -27,20 +27,19 @@
 }
 
 .title {
-  max-width: 16ch;
-  font-size: clamp(2.25rem, 1.2rem + 3.8vw, 4.25rem);
-  font-weight: 700;
-  line-height: 1.02;
-  letter-spacing: -0.025em;
-  font-variation-settings: "wdth" var(--wdth-display);
+  max-width: 22ch;
+  font-size: clamp(1.75rem, 1.35rem + 1.5vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
 }
 
 .text {
-  max-width: 50ch;
-  margin-top: var(--space-5);
+  max-width: 52ch;
+  margin-top: var(--space-4);
   color: #d5d8da;
-  font-size: var(--step-1);
-  line-height: 1.5;
+  font-size: 1.125rem;
+  line-height: 1.6;
 }
 
 .actions {

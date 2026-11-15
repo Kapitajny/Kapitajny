@@ -1,288 +1,125 @@
-.display {
-  /* Minimum 1,75rem: najdłuższe słowo („bezpieczeństwo”) mieści się w 320 px. */
-  font-size: clamp(1.75rem, 1rem + 3.6vw, 4rem);
-  font-weight: 700;
-  line-height: 1.02;
-  letter-spacing: -0.025em;
-  font-variation-settings: "wdth" var(--wdth-display);
-}
+/* ---------- Historia ---------- */
 
-.head {
-  display: grid;
-  gap: var(--space-5);
-  margin-bottom: var(--space-8);
-}
-
-@media (min-width: 64rem) {
-  .head {
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-    gap: clamp(3rem, 5vw, 5rem);
-    align-items: end;
-  }
-}
-
-/* ---------- Historia: oś czasu ---------- */
-
-.dimension {
-  --tick: 0.9rem;
+.timeline {
   list-style: none;
-  position: relative;
   display: grid;
-  gap: var(--space-6);
-  padding-left: var(--space-6);
+  gap: var(--space-6) var(--space-5);
 }
 
-/* Linia osi (pionowa na wąskich ekranach). */
-.dimension::before {
-  content: "";
-  position: absolute;
-  left: 0.35rem;
-  top: 0.6rem;
-  bottom: 0.6rem;
-  width: 1px;
-  background: var(--line-strong);
-}
-
-.dimension li {
-  position: relative;
+.timeline li {
   display: grid;
   gap: var(--space-2);
+  align-content: start;
+  padding-top: var(--space-4);
+  border-top: 2px solid var(--line-strong);
 }
 
-/* Ukośny znacznik wymiarowy na osi. */
-.dimension li::before {
-  content: "";
-  position: absolute;
-  left: calc(var(--space-6) * -1 + 0.35rem - var(--tick) / 2);
-  top: 0.95rem;
-  width: var(--tick);
-  height: 2px;
-  background: var(--fg);
-  transform: rotate(-45deg);
-}
-
-.dimension li:last-child::before {
-  background: var(--c-orange);
+/* „Dziś” – obecny stan firmy – oznaczony kolorem marki. */
+.timeline li:last-child {
+  border-top-color: var(--c-orange);
 }
 
 .year {
-  font-size: var(--step-3);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  font-variation-settings: "wdth" var(--wdth-display);
+  color: var(--accent-text);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
-.dimension li:last-child .year {
-  color: var(--c-orange);
+.timeline p {
+  color: var(--fg-2);
 }
 
-.dimension h3 {
-  margin-top: var(--space-2);
-  font-size: var(--step-1);
-}
-
-.dimension p {
-  max-width: 30ch;
-  color: var(--muted);
+@media (min-width: 40rem) {
+  .timeline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (min-width: 64rem) {
-  .dimension {
+  .timeline {
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: var(--space-5);
-    padding: 0;
-  }
-
-  /* Pozioma oś pod rocznikami z kreską zamykającą. */
-  .dimension::before {
-    left: 0;
-    right: 0;
-    top: 4.25rem;
-    bottom: auto;
-    width: auto;
-    height: 1px;
-  }
-
-  .dimension::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: calc(4.25rem - 0.45rem);
-    width: 1px;
-    height: 0.9rem;
-    background: var(--line-strong);
-  }
-
-  /* Wspólne wiersze (subgrid): roczniki, tytuły i opisy stoją na tych samych liniach we wszystkich kolumnach. */
-  .dimension {
-    grid-template-rows: auto auto auto;
-    row-gap: 0;
-  }
-
-  .dimension li {
-    grid-row: span 3;
-    grid-template-rows: subgrid;
-    gap: 0;
-    padding-right: var(--space-4);
-  }
-
-  .dimension h3 {
-    margin-top: 0;
-    margin-bottom: var(--space-2);
-  }
-
-  .dimension li::before {
-    left: calc(var(--tick) / -2 + 0.5px);
-    top: calc(4.25rem - 1px);
-  }
-
-  .year {
-    min-height: 3.5rem;
-    margin-bottom: var(--space-5);
   }
 }
 
-/* ---------- Zakres działalności: zdjęcie do krawędzi ---------- */
+/* ---------- Zakres działalności ---------- */
 
-.scope {
+.split {
   display: grid;
+  gap: var(--space-7);
+  align-items: center;
 }
 
-.scopeImage {
+.photo {
   position: relative;
   aspect-ratio: 4 / 3;
   overflow: hidden;
+  border-radius: 4px;
 }
 
-.scopeImage img {
+.photo img {
   object-fit: cover;
   object-position: 50% 60%;
 }
 
-.scopeText {
+.splitText {
   display: grid;
   gap: var(--space-5);
-  align-content: center;
-  padding: var(--space-section) var(--gutter);
-}
-
-.scopeLead {
-  max-width: 52ch;
-  color: color-mix(in srgb, var(--fg) 80%, var(--bg));
-  font-size: var(--step-1);
-  line-height: 1.55;
-}
-
-.smallHead {
-  margin-top: var(--space-3);
-  color: var(--muted);
-  font-size: 1rem;
-  font-weight: 500;
-  font-variation-settings: "wdth" 100;
+  align-content: start;
 }
 
 .clients {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  max-width: 40rem;
-  border-top: 1px solid var(--line-strong);
+  gap: var(--space-3) var(--space-5);
 }
 
 .clients li {
-  padding-block: 0.8rem;
-  padding-right: var(--space-3);
-  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
 }
 
-@media (min-width: 64rem) {
-  .scope {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  }
-
-  .scopeImage {
-    aspect-ratio: auto;
-    min-height: 44rem;
-  }
-
-  .scopeText {
-    padding-inline: clamp(3rem, 6vw, 6rem) max(var(--gutter), calc((100vw - var(--container)) / 2));
-  }
+.clients svg {
+  flex-shrink: 0;
+  color: var(--accent-text);
 }
 
-/* ---------- Zasady ---------- */
-
-.principles {
-  display: grid;
-  gap: 0 clamp(2rem, 4vw, 4rem);
-}
-
-.principles article {
-  padding-block: var(--space-5) var(--space-7);
-  border-top: 2px solid var(--fg);
-}
-
-.principles h3 {
-  font-size: var(--step-2);
-}
-
-.principles p {
-  max-width: 56ch;
-  margin-top: var(--space-3);
-  color: var(--muted);
-}
-
-@media (min-width: 48rem) {
-  .principles {
+@media (min-width: 40rem) {
+  .clients {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-/* ---------- Proces ---------- */
-
-.stepsTitle {
-  margin-bottom: var(--space-7);
+@media (min-width: 64rem) {
+  .split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(3rem, 6vw, 6rem);
+  }
 }
 
-.steps {
-  list-style: none;
+/* ---------- Standardy ---------- */
+
+.principles {
   display: grid;
-  gap: var(--space-6);
+  gap: var(--space-6) clamp(2rem, 4vw, 4rem);
 }
 
-.steps li {
+.principles article {
   display: grid;
-  gap: var(--space-2);
+  gap: var(--space-3);
   align-content: start;
   padding-top: var(--space-4);
   border-top: 1px solid var(--line-strong);
 }
 
-.stepNo {
-  font-size: var(--step-3);
-  font-weight: 700;
-  line-height: 1;
-  font-variation-settings: "wdth" var(--wdth-display);
-}
-
-.steps h3 {
-  margin-top: var(--space-3);
-  font-size: var(--step-1);
-}
-
-.steps p {
-  color: var(--muted);
+.principles p {
+  max-width: 60ch;
+  color: var(--fg-2);
 }
 
 @media (min-width: 48rem) {
-  .steps {
+  .principles {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 64rem) {
-  .steps {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }

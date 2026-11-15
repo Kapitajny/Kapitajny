@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { CtaBand } from "@/components/CtaBand";
+import { HowWeWork } from "@/components/HowWeWork";
+import { CheckIcon } from "@/components/Icons";
 import { PageIntro } from "@/components/PageIntro";
 import { site } from "@/data/site";
 import styles from "./page.module.css";
@@ -41,13 +43,6 @@ const principles = [
 
 const clients = ["Domy jednorodzinne", "Mieszkania", "Biura", "Sklepy i lokale usługowe", "Wspólnoty mieszkaniowe", "Hale i obiekty lekkiego przemysłu"];
 
-const steps = [
-  { title: "Zapytanie", text: "Opisujesz budynek i potrzebę. Odpowiadamy z wstępną wyceną." },
-  { title: "Wizja lokalna i oferta", text: "Mierzymy, sprawdzamy instalację i przygotowujemy pisemną ofertę." },
-  { title: "Montaż", text: "Pracujemy w uzgodnionym terminie, z zabezpieczeniem pomieszczeń." },
-  { title: "Uruchomienie i serwis", text: "Protokół z pomiarami, instruktaż i przypomnienie o przeglądzie." },
-];
-
 export default function AboutPage() {
   return (
     <>
@@ -57,10 +52,10 @@ export default function AboutPage() {
         image={{ src: "/images/dach-jednostki.jpg", alt: "Jednostki klimatyzacji i wentylacji na dachu nowoczesnego budynku z płytową elewacją" }}
       />
 
-      <section className="theme-graphite section" aria-labelledby="historia-tytul">
+      <section className="theme-white section" aria-labelledby="historia-tytul">
         <div className="container">
-          <div className={styles.head}>
-            <h2 id="historia-tytul" className={styles.display}>
+          <div className="section-head">
+            <h2 id="historia-tytul" className="h-section">
               Historia firmy
             </h2>
             <p className="lead">
@@ -68,13 +63,11 @@ export default function AboutPage() {
               ludzi i doświadczenie, by robić to dobrze.
             </p>
           </div>
-
-          {/* Oś czasu z kreskami jak na rysunku technicznym. */}
-          <ol className={styles.dimension}>
+          <ol className={styles.timeline}>
             {history.map((item) => (
               <li key={item.year}>
                 <span className={`num ${styles.year}`}>{item.year}</span>
-                <h3>{item.title}</h3>
+                <h3 className="h-card">{item.title}</h3>
                 <p>{item.text}</p>
               </li>
             ))}
@@ -82,44 +75,49 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className={`theme-dark ${styles.scope}`} aria-labelledby="zakres-tytul">
-        <div className={styles.scopeImage}>
-          <Image
-            src="/images/detal-pomiar.jpg"
-            alt="Instalator z miernikiem cęgowym sprawdza przewody jednostki zewnętrznej klimatyzacji"
-            fill
-            sizes="(min-width: 64rem) 85vw, 100vw"
-          />
-        </div>
-        <div className={styles.scopeText}>
-          <h2 id="zakres-tytul" className={styles.display}>
-            Zakres działalności
-          </h2>
-          <p className={styles.scopeLead}>
-            Projektujemy, montujemy i serwisujemy klimatyzację, powietrzne pompy ciepła oraz wentylację mechaniczną z odzyskiem ciepła. Obsługujemy też
-            instalacje wykonane przez inne firmy – zaczynając od przeglądu i diagnozy.
-          </p>
-          <h3 className={styles.smallHead}>Dla kogo pracujemy</h3>
-          <ul className={styles.clients}>
-            {clients.map((client) => (
-              <li key={client}>{client}</li>
-            ))}
-          </ul>
+      <section className="theme-light section" aria-labelledby="zakres-tytul">
+        <div className={`container ${styles.split}`}>
+          <div className={styles.photo}>
+            <Image
+              src="/images/detal-pomiar.jpg"
+              alt="Instalator z miernikiem cęgowym sprawdza przewody jednostki zewnętrznej klimatyzacji"
+              fill
+              sizes="(min-width: 64rem) 45vw, 100vw"
+            />
+          </div>
+          <div className={styles.splitText}>
+            <h2 id="zakres-tytul" className="h-section">
+              Zakres działalności
+            </h2>
+            <p className="lead">
+              Projektujemy, montujemy i serwisujemy klimatyzację, powietrzne pompy ciepła oraz wentylację mechaniczną z odzyskiem ciepła. Obsługujemy
+              też instalacje wykonane przez inne firmy – zaczynając od przeglądu i diagnozy.
+            </p>
+            <h3 className="h-card">Dla kogo pracujemy</h3>
+            <ul className={styles.clients}>
+              {clients.map((client) => (
+                <li key={client}>
+                  <CheckIcon />
+                  {client}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
-      <section className="theme-light section" aria-labelledby="zasady-tytul">
+      <section className="theme-white section" aria-labelledby="zasady-tytul">
         <div className="container">
-          <div className={styles.head}>
-            <h2 id="zasady-tytul" className={styles.display}>
-              Jakość i bezpieczeństwo
+          <div className="section-head">
+            <h2 id="zasady-tytul" className="h-section">
+              Nasze standardy
             </h2>
-            <p className="lead">Standardy, które obowiązują przy każdym zleceniu – niezależnie od wielkości instalacji.</p>
+            <p className="lead">Zasady, które obowiązują przy każdym zleceniu – niezależnie od wielkości instalacji.</p>
           </div>
           <div className={styles.principles}>
             {principles.map((item) => (
               <article key={item.title}>
-                <h3>{item.title}</h3>
+                <h3 className="h-card">{item.title}</h3>
                 <p>{item.text}</p>
               </article>
             ))}
@@ -127,24 +125,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="theme-paper section" aria-labelledby="proces-tytul">
-        <div className="container">
-          <h2 id="proces-tytul" className={`${styles.display} ${styles.stepsTitle}`}>
-            Jak wygląda współpraca
-          </h2>
-          <ol className={styles.steps}>
-            {steps.map((step, index) => (
-              <li key={step.title}>
-                <span className={`num ${styles.stepNo}`} aria-hidden="true">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <h3>{step.title}</h3>
-                <p>{step.text}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
+      <HowWeWork title="Jak wygląda współpraca" />
 
       <CtaBand image={{ src: "/images/pompa-ciepla-ogrod.jpg", position: "55% 50%" }} />
     </>

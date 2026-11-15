@@ -64,6 +64,8 @@
   --focus: var(--c-orange);
   --error: var(--c-error-dark);
   --accent-text: var(--c-orange);
+  /* Tekst drugiego planu (opisy, akapity) – jaśniejszy niż stalowa szarość, czytelny w dłuższych blokach. */
+  --fg-2: #c9cdd0;
 }
 
 .theme-graphite {
@@ -76,6 +78,22 @@
   --focus: var(--c-orange);
   --error: var(--c-error-dark);
   --accent-text: var(--c-orange);
+  --fg-2: #c9cdd0;
+}
+
+/* Biel – główne tło sekcji treści (jak na stronach dużych marek); karty na nim mają tło #F5F5F5 lub białe z obrysem. */
+.theme-white {
+  --bg: #ffffff;
+  --surface: var(--c-white);
+  --fg: var(--c-graphite);
+  --muted: var(--c-steel-dark);
+  --fg-2: #3b4146;
+  --line: #dfe2e4;
+  --line-strong: #c4c8cb;
+  --focus: var(--c-graphite);
+  --error: var(--c-error-light);
+  --accent-text: #a34700;
+  color-scheme: light;
 }
 
 .theme-light {
@@ -89,6 +107,7 @@
   --error: var(--c-error-light);
   /* Pomarańcz na jasnym tle nie spełnia kontrastu – tekst akcentu przyciemniony (5,2–5,6:1). */
   --accent-text: #a34700;
+  --fg-2: #3b4146;
   color-scheme: light;
 }
 
@@ -104,11 +123,13 @@
   --error: var(--c-error-light);
   /* Pomarańcz na jasnym tle nie spełnia kontrastu – tekst akcentu przyciemniony (5,2–5,6:1). */
   --accent-text: #a34700;
+  --fg-2: #3b4146;
   color-scheme: light;
 }
 
 .theme-dark,
 .theme-graphite,
+.theme-white,
 .theme-light,
 .theme-paper {
   background-color: var(--bg);
@@ -162,10 +183,11 @@ h2,
 h3,
 h4 {
   margin: 0;
-  font-weight: 650;
-  line-height: 1.1;
+  font-weight: 600;
+  line-height: 1.15;
   text-wrap: balance;
-  font-variation-settings: "wdth" var(--wdth-heading);
+  /* Zwykła szerokość kroju; Expanded tylko tam, gdzie ustawiono go jawnie (hero). */
+  font-variation-settings: "wdth" 100;
 }
 
 p,
@@ -338,22 +360,55 @@ main:focus {
   }
 }
 
-/* Wspólne nagłówki sekcji */
+/* Nagłówki poniżej hero: zwykła szerokość kroju, umiarkowany rozmiar – standard stron korporacyjnych.
+   Krój rozszerzony (Expanded) zostaje wyłącznie w nagłówku hero. */
+.h-page {
+  max-width: 24ch;
+  font-size: clamp(2rem, 1.45rem + 2.2vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-variation-settings: "wdth" 100;
+}
+
+.h-section {
+  max-width: 28ch;
+  font-size: clamp(1.75rem, 1.35rem + 1.5vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  font-variation-settings: "wdth" 100;
+}
+
+.h-card {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.25;
+  font-variation-settings: "wdth" 100;
+}
+
 .section-title {
   font-size: var(--step-3);
   max-width: 22ch;
 }
 
 .lead {
-  font-size: var(--step-1);
-  line-height: 1.55;
-  color: var(--muted);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--fg-2);
   max-width: 62ch;
+}
+
+/* Nagłówek sekcji: tytuł i krótkie wprowadzenie. */
+.section-head {
+  display: grid;
+  gap: var(--space-4);
+  margin-bottom: var(--space-7);
 }
 
 .prose {
   max-width: 66ch;
-  color: var(--muted);
+  color: var(--fg-2);
 }
 
 .prose p + p {

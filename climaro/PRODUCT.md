@@ -28,6 +28,14 @@ sprawdzalnym, umiarkowanym deklaracjom i poprosić o bezpłatną wycenę (formul
 - Przykładowy protokół uruchomienia na stronie głównej jest oznaczony jako dane demonstracyjne.
 - Strona nie jest indeksowana, dopóki zawiera dane demonstracyjne.
 
+## Zobowiązanie marki: styl wzorcowy
+
+Klient wybrał standard kategorii zamiast eksperymentu: poziom wykonania i spokój stron **ORLEN, Viessmann i Daikin**
+jest poprzeczką dla wszystkiego poniżej hero. Oznacza to zwykłą szerokość kroju w nagłówkach, jasne sekcje treści,
+karty usług ze zdjęciem, rzeczowe sekcje „Jak pracujemy” i „Bezpieczeństwo i jakość” – bez ozdobników
+(numerowanych kółek na zdjęciach, przyklejonych galerii, udawanych dokumentów, drobnego szarego tekstu).
+Jedynym autorskim akcentem zostaje hero ze zdjęciem i oznaczeniami usług.
+
 ## Wymagane treści (z briefu)
 
 - Hero: „Komfort. Efektywność. Nowoczesność.”, podtytuł, przyciski „Bezpłatna wycena” i „Poznaj naszą ofertę”, zdjęcie budynku z urządzeniem.

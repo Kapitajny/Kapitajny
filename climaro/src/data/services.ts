@@ -9,14 +9,6 @@ export type PriceItem = {
   note?: string;
 };
 
-/** Oznaczenie na zdjęciu usługi: położenie jako ułamek szerokości i wysokości zdjęcia. */
-export type PhotoPoint = {
-  x: number;
-  y: number;
-  title: string;
-  text: string;
-};
-
 export type Service = {
   slug: ServiceSlug;
   name: string;
@@ -28,7 +20,6 @@ export type Service = {
   /** Co obejmuje cena – zdanie wyświetlane przy cenniku usługi. */
   priceIncludes: string;
   image: { src: string; alt: string; width: number; height: number };
-  points: PhotoPoint[];
 };
 
 export const services: Service[] = [
@@ -60,11 +51,6 @@ export const services: Service[] = [
       width: 1600,
       height: 1067,
     },
-    points: [
-      { x: 0.53, y: 0.27, title: "Jednostka wewnętrzna", text: "Moc dobrana do kubatury i nasłonecznienia pomieszczenia." },
-      { x: 0.5, y: 0.53, title: "Nawiew", text: "Kierunek nawiewu ustawiony poza miejscem stałego przebywania." },
-      { x: 0.885, y: 0.36, title: "Przyłącza", text: "Instalacja chłodnicza i odpływ skroplin ukryte w ścianie lub korytku." },
-    ],
   },
   {
     slug: "pompy-ciepla",
@@ -94,11 +80,6 @@ export const services: Service[] = [
       width: 1600,
       height: 1067,
     },
-    points: [
-      { x: 0.53, y: 0.45, title: "Jednostka zewnętrzna", text: "Moc dobrana do zapotrzebowania budynku na ciepło, nie „na zapas”." },
-      { x: 0.385, y: 0.42, title: "Panel serwisowy", text: "Wolny dostęp do przyłączy przy przeglądach i diagnostyce." },
-      { x: 0.53, y: 0.75, title: "Posadowienie", text: "Stabilny cokół z odpływem skroplin i odstępem od ściany budynku." },
-    ],
   },
   {
     slug: "rekuperacja",
@@ -128,15 +109,6 @@ export const services: Service[] = [
       width: 1600,
       height: 1066,
     },
-    points: [
-      {
-        x: 0.206,
-        y: 0.624,
-        title: "Wyloty kanałów",
-        text: "Czerpnię i wyrzutnię rozmieszczamy tak, by zużyte powietrze nie wracało do budynku.",
-      },
-      { x: 0.5, y: 0.86, title: "Osłona z lamelami", text: "Chroni elementy zewnętrzne i ogranicza hałas słyszalny przy budynku." },
-    ],
   },
   {
     slug: "serwis-hvac",
@@ -166,11 +138,6 @@ export const services: Service[] = [
       width: 1600,
       height: 857,
     },
-    points: [
-      { x: 0.46, y: 0.629, title: "Pomiar ciśnień", text: "Manometry pokazują, czy ilość czynnika chłodniczego jest prawidłowa." },
-      { x: 0.585, y: 0.496, title: "Izolacja przewodów", text: "Sprawdzamy, czy izolacja jest szczelna i nie przepuszcza wilgoci." },
-      { x: 0.76, y: 0.3, title: "Wymiennik", text: "Czyste lamele to pełna wydajność i niższe zużycie prądu." },
-    ],
   },
 ];
 

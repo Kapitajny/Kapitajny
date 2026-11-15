@@ -1,51 +1,48 @@
-/* Duży nagłówek sekcji w kroju Expanded – ten sam głos co hero. */
-.display {
-  font-size: clamp(2.25rem, 1.2rem + 3.6vw, 4rem);
-  font-weight: 700;
-  line-height: 1.02;
-  letter-spacing: -0.025em;
-  font-variation-settings: "wdth" var(--wdth-display);
+/* Nagłówek sekcji z przyciskiem po prawej (na szerokich ekranach). */
+.headRow {
+  align-items: end;
 }
 
-.head {
-  display: grid;
-  gap: var(--space-5);
-  margin-bottom: var(--space-7);
-}
-
-.headAside {
+.headText {
   display: grid;
   gap: var(--space-4);
-  justify-items: start;
+}
+
+.headRow > :global(.btn) {
+  justify-self: start;
 }
 
 @media (min-width: 64rem) {
-  .head {
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-    gap: clamp(3rem, 5vw, 5rem);
-    align-items: end;
-    margin-bottom: var(--space-8);
+  .headRow {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-7);
   }
 }
 
 .priceNote {
-  max-width: 62ch;
-  margin-top: var(--space-6);
-  color: var(--muted);
+  max-width: 70ch;
+  margin-top: var(--space-5);
+  color: var(--fg-2);
   font-size: 0.9375rem;
 }
 
-/* ---------- O firmie: zdjęcie do krawędzi ekranu ---------- */
+/* ---------- O firmie ---------- */
 
 .about {
-  display: grid;
+  padding-block: var(--space-section);
 }
 
-/* Bez min-height na wąskich ekranach – w połączeniu z aspect-ratio poszerzałoby kolumnę. */
+.aboutGrid {
+  display: grid;
+  gap: var(--space-7);
+  align-items: center;
+}
+
 .aboutImage {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
+  border-radius: 4px;
 }
 
 .aboutImage img {
@@ -55,29 +52,19 @@
 .aboutText {
   display: grid;
   gap: var(--space-5);
-  align-content: center;
   justify-items: start;
-  padding: var(--space-section) var(--gutter);
-}
-
-.aboutLead {
-  max-width: 52ch;
-  color: color-mix(in srgb, var(--fg) 80%, var(--bg));
-  font-size: var(--step-1);
-  line-height: 1.55;
 }
 
 .facts {
   display: grid;
   width: 100%;
-  max-width: 40rem;
-  margin: var(--space-2) 0 var(--space-3);
-  border-top: 1px solid var(--line-strong);
+  margin: 0;
+  border-top: 1px solid var(--line);
 }
 
 .facts div {
   display: grid;
-  grid-template-columns: minmax(0, 9rem) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 10rem) minmax(0, 1fr);
   gap: var(--space-4);
   padding-block: 0.85rem;
   border-bottom: 1px solid var(--line);
@@ -89,19 +76,12 @@
 
 .facts dd {
   margin: 0;
+  font-weight: 500;
 }
 
 @media (min-width: 64rem) {
-  .about {
+  .aboutGrid {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  }
-
-  .aboutImage {
-    aspect-ratio: auto;
-    min-height: 44rem;
-  }
-
-  .aboutText {
-    padding-inline: clamp(3rem, 6vw, 6rem) max(var(--gutter), calc((100vw - var(--container)) / 2));
+    gap: clamp(3rem, 6vw, 6rem);
   }
 }

@@ -16,7 +16,7 @@ export default function ContactPage() {
     <>
       <PageIntro title="Kontakt i bezpłatna wycena" lead="Opisz instalację albo problem. Odpowiemy z wstępną wyceną i propozycją terminu wizji lokalnej." />
 
-      <section className="theme-light section" aria-label="Formularz i dane kontaktowe">
+      <section className="theme-white section" aria-label="Formularz i dane kontaktowe">
         <div className={`container ${styles.grid}`}>
           <ContactForm />
 
