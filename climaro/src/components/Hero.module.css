@@ -146,9 +146,10 @@
   display: none;
 }
 
-/* ---------- Oznaczenia na zdjęciu (szerokie ekrany) ---------- */
+/* ---------- Oznaczenia na zdjęciu (szerokie i dość wysokie ekrany) ----------
+   Na niskich laptopach (np. 1280 × 720) nagłówek sięgałby etykiet – wtedy zostaje tryb listy. */
 
-@media (min-width: 75rem) {
+@media (min-width: 75rem) and (min-height: 46rem) {
   .hero {
     /* Kontener rozmiaru: punkty liczone w jednostkach cqw/cqh tak samo jak kadr object-fit: cover. */
     container-type: size;
@@ -320,7 +321,7 @@
     animation-delay: 340ms;
   }
 
-  @media (min-width: 75rem) {
+  @media (min-width: 75rem) and (min-height: 46rem) {
     .marker {
       animation: pop 420ms var(--ease-out) both;
       animation-delay: calc(620ms + var(--i) * 110ms);
