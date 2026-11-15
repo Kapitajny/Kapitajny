@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/data/site";
 import { PhoneIcon } from "./Icons";
@@ -8,12 +9,15 @@ type CtaBandProps = {
   text?: string;
 };
 
+/** Zamknięcie strony: zdjęcie elewacji po zmroku, duży nagłówek i dwie drogi kontaktu. */
 export function CtaBand({
   title = "Opisz, czego potrzebujesz",
   text = "Odpowiemy z wstępną wyceną i propozycją terminu wizji lokalnej. Wycena jest bezpłatna i do niczego nie zobowiązuje.",
 }: CtaBandProps) {
   return (
-    <section className={`theme-graphite ${styles.band}`} aria-labelledby="cta-tytul">
+    <section className={`theme-dark ${styles.band}`} aria-labelledby="cta-tytul">
+      <Image src="/images/elewacja-noc.jpg" alt="" fill sizes="100vw" className={styles.photo} />
+      <div className={styles.scrim} aria-hidden="true" />
       <div className={`container ${styles.inner}`}>
         <div>
           <h2 id="cta-tytul" className={styles.title}>

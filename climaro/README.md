@@ -20,14 +20,14 @@ npm run build
 npm run start
 ```
 
-Kontrola jakości: `npm run typecheck` i `npm run lint`.
+Kontrola jakości: `npm run typecheck` (najpierw generuje typy tras Next.js) i `npm run lint`.
 
 ## Struktura
 
 | Ścieżka | Zawartość |
 | --- | --- |
 | `src/app/` | Strony: `/`, `/o-nas`, `/uslugi`, `/kontakt`, `/polityka-prywatnosci`, strona 404, `sitemap.xml`, `robots.txt`, favicon |
-| `src/components/` | Nagłówek z menu mobilnym, stopka, hero z oznaczeniami, formularz kontaktowy, logo, ikony |
+| `src/components/` | Nagłówek z menu mobilnym, stopka, hero z oznaczeniami, indeks usług, zdjęcie z oznaczeniami, formularz kontaktowy, logo, ikony |
 | `src/data/site.ts` | Dane firmy (telefon, e-mail, lokalizacja) i nawigacja |
 | `src/data/services.ts` | Usługi, zakres prac, ceny i czynniki wpływające na koszt |
 | `src/app/globals.css` | Tokeny (kolory, typografia, odstępy, krzywe ruchu) i style bazowe |
@@ -40,8 +40,8 @@ Kontrola jakości: `npm run typecheck` i `npm run lint`.
 
 - **Ceny i opisy usług** – `src/data/services.ts`. Kwoty formatują się automatycznie („12 900 zł”).
 - **Telefon, e-mail, lokalizacja** – `src/data/site.ts`.
-- **Punkty na zdjęciu w hero** – tablica `annotations` w `src/components/Hero.tsx` (pozycje jako ułamek szerokości i wysokości zdjęcia).
-  Po wymianie zdjęcia hero trzeba je ustawić na nowo.
+- **Punkty na zdjęciach** – w hero: tablica `annotations` w `src/components/Hero.tsx`; na zdjęciach usług: pole `points`
+  w `src/data/services.ts`. Pozycje to ułamek szerokości i wysokości zdjęcia – po wymianie zdjęcia trzeba je ustawić na nowo.
 
 ## Przed publikacją z prawdziwymi danymi
 

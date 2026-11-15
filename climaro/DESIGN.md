@@ -4,9 +4,21 @@ Kierunek: **Industrial Engineering**, wariant „Architektura z adnotacjami” (
 
 ## Teza
 
-Jedyny mocny element strony to hero: prawdziwe zdjęcie nowoczesnego domu z pompą ciepła, na którym cienkie linie
-– jak opisy na rysunku technicznym – wskazują miejsca pracy instalacji i podają cenę montażu. Reszta strony jest
-spokojna i zdyscyplinowana: siatka, rytm ciemnych i jasnych sekcji, cienkie linie, ceny w kolumnach.
+Strona to „architektura z adnotacjami”. Najmocniejszy element to hero: prawdziwe zdjęcie nowoczesnego domu z pompą
+ciepła, na którym cienkie linie – jak opisy na rysunku technicznym – wskazują miejsca pracy instalacji i podają cenę
+montażu. Ten sam język ciągnie się przez całą stronę: zdjęcia usług mają numerowane oznaczenia z legendą, historia
+firmy jest narysowana jak linia wymiarowa, a ceny wyglądają jak karta parametrów. Wokół tego – spokojna, ciemna,
+fotograficzna kompozycja z jasnymi sekcjami do czytania.
+
+## Elementy charakterystyczne
+
+| Element | Gdzie | Zasada |
+| --- | --- | --- |
+| Oznaczenia w hero | Strona główna | Pełny znacznik i ciągła linia = urządzenie widoczne na zdjęciu; pusty znacznik i linia przerywana = instalacja wewnątrz budynku. Legenda pod przyciskami. Poniżej 1200 px oznaczenia stają się listą cen. |
+| Zdjęcie z oznaczeniami (`AnnotatedPhoto`) | Usługi | Ramka w proporcjach pliku, numerowane znaczniki (pomarańczowy krążek, biała obwódka) i legenda 1–3. Punkty wskazują wyłącznie rzeczy widoczne na zdjęciu. |
+| Indeks usług (`ServiceIndex`) | Strona główna | Lista z cenami; duże zdjęcie przenika się do usługi wskazanej myszą lub klawiaturą (przenikanie z rozmyciem 4 px). Na telefonie każdy wiersz ma własne zdjęcie. |
+| Linia wymiarowa | O nas | Oś czasu z ukośnymi znacznikami jak wymiar na rysunku; „Dziś” w kolorze marki. |
+| Pas fotograficzny | Zachęta do kontaktu, nagłówek „O nas” | Zdjęcie na całą szerokość z funkcjonalnym przyciemnieniem pod tekstem. |
 
 ## Kolor
 
@@ -24,7 +36,8 @@ Zasady:
 - Na pomarańczowym przycisku tekst jest czarny (7,6:1). Biały tekst na pomarańczu (2,6:1) jest zabroniony.
 - Pomarańczowego nie używamy jako koloru tekstu na jasnym tle (2,6:1).
 - Ciemne lub jasne tło wynika z sytuacji użycia: ciemne do prezentacji (hero, nawigacja, stopka), jasne do czytania cen i formularzy.
-- Motywy sekcji: klasy `.theme-dark`, `.theme-graphite`, `.theme-light` ustawiają `--bg`, `--fg`, `--muted`, `--line`, `--focus`, `--error`.
+- Motywy sekcji: klasy `.theme-dark`, `.theme-graphite`, `.theme-light`, `.theme-paper` (#EBECED) ustawiają `--bg`, `--fg`, `--muted`, `--line`, `--focus`, `--error`.
+- Rytm: prezentacja (zdjęcia, usługi, ceny) na ciemnym tle, treści do spokojnego czytania (zasady, argumenty, formularz) na jasnym; dwa jasne tony obok siebie, żeby sekcje się nie zlewały.
 
 ## Typografia
 
@@ -61,6 +74,7 @@ Zasady wg Emila Kowalskiego:
 - Krzywe: `--ease-out: cubic-bezier(0.23, 1, 0.32, 1)`, `--ease-in-out: cubic-bezier(0.77, 0, 0.175, 1)`,
   `--ease-drawer: cubic-bezier(0.32, 0.72, 0, 1)`. Nigdy `ease-in`.
 - Jeden zaplanowany moment: wejście hero (wiersze nagłówka wznoszą się co 60–70 ms, potem znaczniki, linie i etykiety).
+- Ruch w odpowiedzi na działanie: przenikanie zdjęć w indeksie usług (320 ms, z rozmyciem), kreska aktywnego wiersza (250 ms).
 - Przyciski: `scale(0.97)` przy wciśnięciu, 160 ms. Efekty najechania tylko dla `(hover: hover) and (pointer: fine)`.
 - Menu mobilne (`<dialog>`): otwarcie 320 ms, zamknięcie 200 ms.
 - `prefers-reduced-motion`: zostaje tylko zanikanie przezroczystości, bez przesunięć.

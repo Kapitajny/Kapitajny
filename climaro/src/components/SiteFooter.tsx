@@ -68,10 +68,12 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div className={`container ${styles.bottom}`}>
-        <p>© {year} CLIMARO</p>
-        <Link href="/polityka-prywatnosci">Polityka prywatności</Link>
-        <p className={styles.demo}>Projekt demonstracyjny: dane kontaktowe i ceny są przykładowe.</p>
+      <div className="container">
+        <div className={styles.bottom}>
+          <p>© {year} CLIMARO</p>
+          <Link href="/polityka-prywatnosci">Polityka prywatności</Link>
+          <p className={styles.demo}>Projekt demonstracyjny: dane kontaktowe i ceny są przykładowe.</p>
+        </div>
       </div>
     </footer>
   );

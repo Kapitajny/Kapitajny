@@ -240,9 +240,9 @@
   border-bottom: 1px solid var(--line);
 }
 
-.drawerTitle {
-  color: var(--muted);
-  font-size: 0.9375rem;
+.drawerLogo {
+  width: 8.5rem;
+  height: auto;
 }
 
 .drawerNav {
@@ -259,8 +259,12 @@
   text-decoration: none;
 }
 
+/* Aktywna pozycja: pomarańczowe podkreślenie, jak w belce nawigacji na komputerze. */
 .drawerLink[aria-current="page"] {
-  color: var(--c-orange);
+  text-decoration: underline;
+  text-decoration-color: var(--c-orange);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.35em;
 }
 
 .drawerContact {

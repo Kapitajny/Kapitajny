@@ -88,9 +88,23 @@
   color-scheme: light;
 }
 
+/* Jasny, chłodny szary – drugi ton do czytania, by jasne sekcje nie zlewały się ze sobą. */
+.theme-paper {
+  --bg: var(--c-paper);
+  --surface: #f7f7f7;
+  --fg: var(--c-graphite);
+  --muted: var(--c-steel-dark);
+  --line: #cfd2d4;
+  --line-strong: #b4b8bb;
+  --focus: var(--c-graphite);
+  --error: var(--c-error-light);
+  color-scheme: light;
+}
+
 .theme-dark,
 .theme-graphite,
-.theme-light {
+.theme-light,
+.theme-paper {
   background-color: var(--bg);
   color: var(--fg);
 }
@@ -216,6 +230,7 @@ main:focus {
   border: 0;
 }
 
+/* Link „Przejdź do treści”: ukryty przez przycięcie, widoczny tylko z fokusem klawiatury. */
 .skip-link {
   position: fixed;
   top: 0.75rem;
@@ -226,11 +241,18 @@ main:focus {
   color: var(--c-black);
   font-weight: 600;
   text-decoration: none;
-  transform: translateY(-200%);
+}
+
+.skip-link:not(:focus-visible) {
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .skip-link:focus-visible {
-  transform: none;
   outline-color: var(--c-white);
 }
 

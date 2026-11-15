@@ -1,158 +1,50 @@
-.sectionHead {
+/* Duży nagłówek sekcji w kroju Expanded – ten sam głos co hero. */
+.display {
+  font-size: clamp(2.25rem, 1.2rem + 3.6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  font-variation-settings: "wdth" var(--wdth-display);
+}
+
+.head {
   display: grid;
-  gap: var(--space-4);
+  gap: var(--space-5);
   margin-bottom: var(--space-7);
 }
 
-@media (min-width: 60rem) {
-  .sectionHead {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    align-items: end;
-    gap: var(--space-6);
-  }
-}
-
-/* ---------- Lista usług z cenami ---------- */
-
-.serviceList {
-  list-style: none;
-  border-top: 1px solid var(--fg);
-}
-
-.serviceRow {
-  position: relative;
+.headAside {
   display: grid;
-  grid-template-columns: 6.5rem minmax(0, 1fr);
-  gap: var(--space-4) var(--space-5);
-  padding-block: var(--space-5);
-  border-bottom: 1px solid var(--line);
-}
-
-.serviceImage {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  background: var(--c-paper);
-}
-
-.serviceImage img {
-  object-fit: cover;
-}
-
-.serviceText p {
-  margin-top: var(--space-2);
-  color: var(--muted);
-  max-width: 48ch;
-}
-
-.serviceName {
-  font-size: var(--step-2);
-}
-
-/* Cały wiersz klikalny przez rozciągnięty link w nagłówku. */
-.serviceLink {
-  text-decoration: none;
-}
-
-.serviceLink::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-}
-
-.serviceLink:focus-visible {
-  outline: none;
-}
-
-.serviceLink:focus-visible::after {
-  outline: 2px solid var(--focus);
-  outline-offset: 2px;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .serviceRow:hover .serviceLink {
-    text-decoration: underline;
-    text-decoration-color: var(--c-orange);
-    text-decoration-thickness: 2px;
-  }
-}
-
-.servicePrices {
-  grid-column: 1 / -1;
-  display: grid;
-  gap: 0.35rem;
-  margin: 0;
-}
-
-.servicePrices div {
-  display: flex;
-  justify-content: space-between;
   gap: var(--space-4);
-  font-size: 0.9375rem;
-}
-
-.servicePrices dt {
-  color: var(--muted);
-}
-
-.servicePrices dd {
-  margin: 0;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-/* Pierwsza pozycja (montaż lub główna usługa) – większa. */
-.servicePrices div:first-child {
-  padding-bottom: 0.35rem;
-  font-size: 1.0625rem;
-}
-
-.servicePrices div:first-child dt {
-  color: var(--fg);
-}
-
-@media (min-width: 48rem) {
-  .serviceRow {
-    grid-template-columns: 11rem minmax(0, 1fr) minmax(16rem, 0.8fr);
-    align-items: start;
-  }
-
-  .servicePrices {
-    grid-column: auto;
-  }
+  justify-items: start;
 }
 
 @media (min-width: 64rem) {
-  .serviceRow {
-    grid-template-columns: 14rem minmax(0, 1fr) minmax(19rem, 0.75fr);
-    gap: var(--space-6);
+  .head {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: clamp(3rem, 5vw, 5rem);
+    align-items: end;
+    margin-bottom: var(--space-8);
   }
 }
 
-.listFoot {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-4);
-  margin-top: var(--space-5);
-}
-
-.note {
+.priceNote {
+  max-width: 62ch;
+  margin-top: var(--space-6);
   color: var(--muted);
   font-size: 0.9375rem;
 }
 
-/* ---------- O firmie ---------- */
+/* ---------- O firmie: zdjęcie do krawędzi ekranu ---------- */
 
 .about {
   display: grid;
-  gap: var(--space-7);
 }
 
+/* Bez min-height na wąskich ekranach – w połączeniu z aspect-ratio poszerzałoby kolumnę. */
 .aboutImage {
   position: relative;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
 }
 
@@ -163,22 +55,31 @@
 .aboutText {
   display: grid;
   gap: var(--space-5);
-  align-content: start;
+  align-content: center;
   justify-items: start;
+  padding: var(--space-section) var(--gutter);
+}
+
+.aboutLead {
+  max-width: 52ch;
+  color: #c9cdd0;
+  font-size: var(--step-1);
+  line-height: 1.55;
 }
 
 .facts {
   display: grid;
   width: 100%;
+  max-width: 40rem;
   margin: var(--space-2) 0 var(--space-3);
   border-top: 1px solid var(--line-strong);
 }
 
 .facts div {
   display: grid;
-  grid-template-columns: minmax(0, 10rem) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 9rem) minmax(0, 1fr);
   gap: var(--space-4);
-  padding-block: 0.8rem;
+  padding-block: 0.85rem;
   border-bottom: 1px solid var(--line);
 }
 
@@ -190,67 +91,49 @@
   margin: 0;
 }
 
-@media (min-width: 60rem) {
+@media (min-width: 64rem) {
   .about {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-    gap: clamp(3rem, 6vw, 6rem);
-    align-items: center;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 
   .aboutImage {
-    aspect-ratio: 4 / 5;
+    aspect-ratio: auto;
+    min-height: 44rem;
+  }
+
+  .aboutText {
+    padding-inline: clamp(3rem, 6vw, 6rem) max(var(--gutter), calc((100vw - var(--container)) / 2));
   }
 }
 
 /* ---------- Dlaczego CLIMARO ---------- */
 
 .reasons {
-  display: grid;
-  gap: var(--space-7);
-}
-
-.reasonsHead {
-  display: grid;
-  gap: var(--space-4);
-  align-content: start;
-}
-
-.reasonList {
   list-style: none;
   display: grid;
-  border-top: 1px solid var(--fg);
+  gap: 0 clamp(2rem, 4vw, 4rem);
 }
 
-.reasonList li {
+.reasons li {
   display: grid;
-  gap: var(--space-2);
-  padding-block: var(--space-5);
-  border-bottom: 1px solid var(--line);
+  gap: var(--space-3);
+  align-content: start;
+  padding-block: var(--space-5) var(--space-7);
+  border-top: 2px solid var(--fg);
 }
 
-.reasonList h3 {
-  font-size: var(--step-1);
+.reasons h3 {
+  max-width: 20ch;
+  font-size: var(--step-2);
 }
 
-.reasonList p {
+.reasons p {
+  max-width: 48ch;
   color: var(--muted);
-  max-width: 60ch;
 }
 
-@media (min-width: 60rem) {
+@media (min-width: 48rem) {
   .reasons {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    gap: clamp(3rem, 6vw, 6rem);
-  }
-
-  .reasonsHead {
-    align-self: start;
-    position: sticky;
-    top: calc(var(--header-h) + 2rem);
-  }
-
-  .reasonList li {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
-    gap: var(--space-6);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

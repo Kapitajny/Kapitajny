@@ -1,6 +1,33 @@
 .intro {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   padding-block: clamp(3rem, 2rem + 4vw, 5.5rem) clamp(2.5rem, 1.5rem + 3vw, 4rem);
   border-bottom: 1px solid var(--line);
+}
+
+.intro[data-photo] {
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(30rem, 72svh, 48rem);
+}
+
+.content {
+  position: relative;
+}
+
+.photo {
+  z-index: -2;
+  object-fit: cover;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(0deg, rgb(8 9 9 / 0.95) 0%, rgb(8 9 9 / 0.7) 40%, rgb(8 9 9 / 0.25) 100%),
+    linear-gradient(90deg, rgb(8 9 9 / 0.55) 0%, rgb(8 9 9 / 0) 70%);
 }
 
 .title {
@@ -14,4 +41,8 @@
 
 .lead {
   margin-top: var(--space-5);
+}
+
+.intro[data-photo] .lead {
+  color: #d5d8da;
 }

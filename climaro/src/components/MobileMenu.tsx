@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { site } from "@/data/site";
 import { CloseIcon, MailIcon, MenuIcon, PhoneIcon } from "./Icons";
+import { Logo } from "./Logo";
 import { NavLinks } from "./NavLinks";
 import styles from "./SiteHeader.module.css";
 
@@ -84,7 +85,7 @@ export function MobileMenu() {
       >
         <div className={styles.drawerPanel}>
           <div className={styles.drawerTop}>
-            <span className={styles.drawerTitle}>Menu</span>
+            <Logo className={styles.drawerLogo} />
             <button type="button" className={styles.closeButton} onClick={closeMenu}>
               <CloseIcon />
               <span>Zamknij</span>

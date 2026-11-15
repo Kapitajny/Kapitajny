@@ -42,57 +42,79 @@
   }
 }
 
+.introNote {
+  max-width: 62ch;
+  margin-top: var(--space-5);
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
 /* ---------- Prezentacja usługi ---------- */
 
 .service {
   padding-block: var(--space-section);
-  border-bottom: 1px solid var(--line);
+  border-top: 1px solid var(--line);
   scroll-margin-top: var(--header-h);
 }
 
 .grid {
   display: grid;
+  grid-template-areas:
+    "head"
+    "photo"
+    "sheet";
   gap: var(--space-6);
 }
 
-.media img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
+.head {
+  grid-area: head;
 }
 
-.body {
+.photo {
+  grid-area: photo;
+}
+
+.sheet {
+  grid-area: sheet;
   display: grid;
-  gap: var(--space-5);
   align-content: start;
+  gap: var(--space-4);
 }
 
 .name {
-  font-size: var(--step-3);
+  font-size: clamp(2.5rem, 1.3rem + 4.4vw, 4.75rem);
   font-weight: 700;
-  letter-spacing: -0.02em;
+  line-height: 1;
+  letter-spacing: -0.03em;
   font-variation-settings: "wdth" var(--wdth-display);
 }
 
 .description {
-  max-width: 60ch;
-  color: var(--muted);
+  max-width: 50ch;
+  margin-top: var(--space-5);
+  color: #c9cdd0;
   font-size: var(--step-1);
   line-height: 1.55;
 }
 
-/* Cennik: jasne wiersze, cyfry o stałej szerokości wyrównane do prawej. */
+/* Cennik jako karta parametrów: duże cyfry o stałej szerokości, wyrównane do prawej. */
 .prices {
   width: 100%;
   border-collapse: collapse;
-  border-top: 2px solid var(--fg);
+}
+
+.caption {
+  padding-bottom: var(--space-3);
+  border-bottom: 2px solid var(--fg);
+  color: var(--muted);
+  font-size: 0.9375rem;
+  text-align: left;
 }
 
 .prices th,
 .prices td {
-  padding: 0.95rem 0;
-  border-bottom: 1px solid var(--line);
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line-strong);
   vertical-align: baseline;
 }
 
@@ -103,60 +125,27 @@
 }
 
 .prices td {
-  font-size: var(--step-1);
+  font-size: var(--step-2);
   font-weight: 700;
   text-align: right;
   white-space: nowrap;
 }
 
 .prices tbody tr:first-child td {
-  font-size: var(--step-2);
+  font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem);
+  letter-spacing: -0.01em;
 }
 
 .from {
   color: var(--muted);
   font-size: 0.9375rem;
   font-weight: 500;
+  letter-spacing: 0;
 }
 
-.details {
-  display: grid;
-  gap: var(--space-5);
-  margin-top: var(--space-2);
-}
-
-.subhead {
-  margin-bottom: var(--space-3);
-  font-size: 1.0625rem;
-  font-variation-settings: "wdth" 100;
-}
-
-.scope {
-  list-style: none;
-  display: grid;
-  gap: 0.45rem;
-}
-
-.scope li {
-  position: relative;
-  padding-left: 1.25rem;
+.sheetNote {
   color: var(--muted);
-}
-
-/* Znacznik listy: krótka kreska jak w lamelach znaku. */
-.scope li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.8em;
-  width: 0.6rem;
-  height: 2px;
-  background: var(--c-orange);
-}
-
-.factors {
-  color: var(--muted);
-  max-width: 52ch;
+  font-size: 0.875rem;
 }
 
 .ask {
@@ -164,38 +153,104 @@
   margin-top: var(--space-2);
 }
 
-@media (min-width: 48rem) {
-  .details {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-6);
+@media (min-width: 64rem) {
+  .grid {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    grid-template-areas:
+      "photo head"
+      "photo sheet";
+    grid-template-rows: auto 1fr;
+    column-gap: clamp(3rem, 5vw, 5rem);
+    row-gap: var(--space-7);
+  }
+
+  .head {
+    align-self: start;
   }
 }
 
+/* ---------- Zakres prac i czynniki kosztu ---------- */
+
+.lower {
+  display: grid;
+  gap: var(--space-7);
+  margin-top: var(--space-8);
+}
+
+.subhead {
+  margin-bottom: var(--space-4);
+  font-size: var(--step-1);
+}
+
+/* Zakres prac to kolejność czynności – numeracja niesie informację. */
+.scope {
+  list-style: none;
+  display: grid;
+  border-top: 1px solid var(--line-strong);
+}
+
+.scope li {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: var(--space-3);
+  padding-block: 0.85rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.stepNo {
+  color: var(--c-orange);
+  font-weight: 700;
+}
+
+.factors p {
+  max-width: 56ch;
+  color: var(--muted);
+}
+
 @media (min-width: 64rem) {
-  .grid {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    gap: clamp(3rem, 5vw, 5rem);
-    align-items: start;
+  /* Kroki zakresu prac na całą szerokość – pięć równych kolumn. */
+  .lower {
+    gap: var(--space-6);
   }
 
-  .media {
-    position: sticky;
-    top: calc(var(--header-h) + 2rem);
+  .factors {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    column-gap: clamp(3rem, 5vw, 5rem);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--line);
   }
 
-  .media img {
-    aspect-ratio: 4 / 5;
+  .factors .subhead {
+    margin: 0;
   }
 
-  .grid[data-flip] .media {
-    order: 2;
+  .scope {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border-top: 0;
+  }
+
+  .scope li {
+    grid-template-columns: none;
+    align-content: start;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-4) 0 0;
+    border-top: 1px solid var(--line-strong);
+    border-bottom: 0;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+  }
+
+  .scope li + li {
+    padding-left: var(--space-3);
+    border-left: 1px solid var(--line);
   }
 }
 
 /* ---------- Informacja o cenach ---------- */
 
 .noteWrap {
-  padding-block: var(--space-7) var(--space-section);
+  padding-block: var(--space-8);
 }
 
 .note {

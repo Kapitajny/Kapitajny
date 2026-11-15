@@ -7,6 +7,14 @@ export type PriceItem = {
   from: number;
 };
 
+/** Oznaczenie na zdjęciu usługi: położenie jako ułamek szerokości i wysokości zdjęcia. */
+export type PhotoPoint = {
+  x: number;
+  y: number;
+  title: string;
+  text: string;
+};
+
 export type Service = {
   slug: ServiceSlug;
   name: string;
@@ -16,6 +24,7 @@ export type Service = {
   prices: [PriceItem, PriceItem, PriceItem];
   costFactors: string;
   image: { src: string; alt: string; width: number; height: number };
+  points: PhotoPoint[];
 };
 
 export const services: Service[] = [
@@ -45,6 +54,11 @@ export const services: Service[] = [
       width: 1600,
       height: 1067,
     },
+    points: [
+      { x: 0.53, y: 0.27, title: "Jednostka wewnętrzna", text: "Moc dobrana do kubatury i nasłonecznienia pomieszczenia." },
+      { x: 0.5, y: 0.53, title: "Nawiew", text: "Kierunek nawiewu ustawiony poza miejscem stałego przebywania." },
+      { x: 0.885, y: 0.36, title: "Przyłącza", text: "Instalacja chłodnicza i odpływ skroplin ukryte w ścianie lub korytku." },
+    ],
   },
   {
     slug: "pompy-ciepla",
@@ -68,10 +82,15 @@ export const services: Service[] = [
       "Moc i model pompy, stan istniejącej instalacji grzewczej, potrzeba zasobnika lub bufora, odległość jednostki zewnętrznej od budynku oraz zakres prac hydraulicznych i elektrycznych.",
     image: {
       src: "/images/pompa-ciepla-ogrod.jpg",
-      alt: "Jednostka zewnętrzna pompy ciepła przy białej ścianie domu, obok rośliny w donicach",
+      alt: "Jednostka zewnętrzna pompy ciepła na cokole przy ceglanym domu, otoczona krzewami",
       width: 1600,
       height: 1067,
     },
+    points: [
+      { x: 0.53, y: 0.45, title: "Jednostka zewnętrzna", text: "Moc dobrana do zapotrzebowania budynku na ciepło, nie „na zapas”." },
+      { x: 0.385, y: 0.42, title: "Panel serwisowy", text: "Wolny dostęp do przyłączy przy przeglądach i diagnostyce." },
+      { x: 0.53, y: 0.75, title: "Posadowienie", text: "Stabilny cokół z odpływem skroplin i odstępem od ściany budynku." },
+    ],
   },
   {
     slug: "rekuperacja",
@@ -95,10 +114,15 @@ export const services: Service[] = [
       "Powierzchnia i kubatura budynku, etap budowy (stan surowy lub budynek wykończony), rodzaj kanałów, sprawność i wyposażenie centrali oraz liczba punktów nawiewnych i wywiewnych.",
     image: {
       src: "/images/rekuperacja-czerpnie.jpg",
-      alt: "Trzy okrągłe wyloty wentylacyjne na dachu nowoczesnego budynku z jasną elewacją",
+      alt: "Okrągłe wyloty wentylacyjne nad czarną osłoną z lameli przy jasnej elewacji budynku",
       width: 1600,
       height: 1066,
     },
+    points: [
+      { x: 0.206, y: 0.624, title: "Czerpnia", text: "Pobiera świeże powietrze z dala od wyrzutni i źródeł zanieczyszczeń." },
+      { x: 0.75, y: 0.57, title: "Wyrzutnia", text: "Usuwa zużyte powietrze tak, by nie wracało do czerpni." },
+      { x: 0.5, y: 0.86, title: "Osłona akustyczna", text: "Elementy zewnętrzne dobieramy tak, by instalacja nie była słyszalna." },
+    ],
   },
   {
     slug: "serwis-hvac",
@@ -126,6 +150,11 @@ export const services: Service[] = [
       width: 1600,
       height: 1137,
     },
+    points: [
+      { x: 0.46, y: 0.72, title: "Pomiar ciśnień", text: "Manometry pokazują, czy ilość czynnika chłodniczego jest prawidłowa." },
+      { x: 0.585, y: 0.62, title: "Izolacja przewodów", text: "Sprawdzamy, czy izolacja jest szczelna i nie przepuszcza wilgoci." },
+      { x: 0.76, y: 0.42, title: "Wymiennik", text: "Czyste lamele to pełna wydajność i niższe zużycie prądu." },
+    ],
   },
 ];
 
