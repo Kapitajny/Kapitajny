@@ -29,7 +29,7 @@ import { Arrow } from "@/components/ui/ContactLink";
 import { Check } from "@/components/ui/Icons";
 import { withBasePath } from "@/lib/paths";
 
-type Status = "editing" | "sending" | "sent" | "error" | "not-configured";
+type Status = "editing" | "sending" | "sent" | "error-network" | "error-rejected" | "not-configured";
 const serverIntent: ContactIntent = { nonce: 0 };
 
 export function ContactForm() {
@@ -39,17 +39,34 @@ export function ContactForm() {
   const [attempted, setAttempted] = useState<Set<StepId>>(new Set());
   const [status, setStatus] = useState<Status>("editing");
   const [copied, setCopied] = useState(false);
+  const [copyFailed, setCopyFailed] = useState(false);
+  const statusRef = useRef<Status>("editing");
+  const sendingRef = useRef(false);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const moved = useRef(false);
 
   const intent = useSyncExternalStore(subscribeIntent, getIntent, () => serverIntent);
   useEffect(() => {
+    statusRef.current = status;
+  }, [status]);
+
+  useEffect(() => {
     if (intent.nonce === 0) return;
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- synchronizacja z zewnętrznym magazynem wyboru
+    const s = statusRef.current;
+    if (s === "sent") {
+      // Po wysłaniu nowy wybór z CTA rozpoczyna nowe zgłoszenie (zamiast ginąć przy „Wyślij kolejne”).
+      setData(applyIntent(emptyForm, intent));
+      setAttempted(new Set());
+      setErrors({});
+      setStep(1);
+      setStatus("editing");
+      return;
+    }
     setData((d) => applyIntent(d, intent));
     setErrors((e) => ({ ...e, services: undefined }));
-    setStatus((s) => (s === "sent" ? s : "editing"));
+    // W trakcie wysyłania stan się nie zmienia: przycisk zostaje zablokowany (brak podwójnych zgłoszeń).
+    if (s !== "sending") setStatus("editing");
   }, [intent]);
 
   useEffect(() => {
@@ -61,12 +78,10 @@ export function ContactForm() {
   }, [step]);
 
   const update = <K extends FieldName>(key: K, value: ContactFormData[K]) => {
-    setData((d) => {
-      const next = { ...d, [key]: value };
-      if (attempted.has(step)) setErrors(validateStep(step, next));
-      return next;
-    });
-    if (status === "error" || status === "not-configured") setStatus("editing");
+    const next = { ...data, [key]: value };
+    setData(next);
+    if (attempted.has(step)) setErrors(validateStep(step, next));
+    if (status === "error-network" || status === "error-rejected" || status === "not-configured") setStatus("editing");
   };
 
   const toggleService = (id: ServiceChoice) => {
@@ -101,6 +116,7 @@ export function ContactForm() {
   };
 
   const submit = async () => {
+    if (sendingRef.current) return;
     const e = validateStep(6, data);
     setAttempted((a) => new Set(a).add(6));
     setErrors(e);
@@ -108,20 +124,29 @@ export function ContactForm() {
     const invalid = firstInvalidStep(data);
     if (invalid) return goTo(invalid);
     if (!contactForm.endpoint) return setStatus("not-configured");
+    sendingRef.current = true;
     setStatus("sending");
-    const res = await submitContact(contactForm.endpoint, data, contactForm.accessKey);
-    if (res.ok) {
-      setStatus("sent");
-      requestAnimationFrame(() => headingRef.current?.focus());
-    } else setStatus(res.reason === "not-configured" ? "not-configured" : "error");
+    try {
+      const res = await submitContact(contactForm.endpoint, data, contactForm.accessKey);
+      if (res.ok) {
+        setStatus("sent");
+        requestAnimationFrame(() => headingRef.current?.focus());
+      } else if (res.reason === "not-configured") setStatus("not-configured");
+      else setStatus(res.reason === "rejected" ? "error-rejected" : "error-network");
+    } finally {
+      sendingRef.current = false;
+    }
   };
 
   const copySummary = async () => {
     try {
       await navigator.clipboard.writeText(summaryText(data));
       setCopied(true);
+      setCopyFailed(false);
     } catch {
+      // Brak dostępu do schowka: pokazujemy podsumowanie do ręcznego skopiowania.
       setCopied(false);
+      setCopyFailed(true);
     }
   };
 
@@ -133,6 +158,7 @@ export function ContactForm() {
     goTo(1);
   };
 
+  const busy = status === "sending";
   const current = steps[step - 1];
   const pkg = packageById(data.package);
   const platformCount = data.services.filter((s) => s !== "unsure").length;
@@ -148,7 +174,7 @@ export function ContactForm() {
           Odezwiemy się na adres <strong className="font-[640] text-ink">{data.email.trim()}</strong> lub telefonicznie, żeby
           umówić konsultację. Do tego czasu nie musisz niczego przygotowywać.
         </p>
-        <button type="button" onClick={reset} className="btn btn-secondary mt-8">
+        <button type="button" onClick={reset} className="btn btn-secondary mt-8" data-autofocus="">
           Wyślij kolejne zgłoszenie
         </button>
       </div>
@@ -165,7 +191,7 @@ export function ContactForm() {
         if (step < 6) next();
         else void submit();
       }}
-      className="scroll-mt-28 rounded-[10px] border border-rule bg-sheet shadow-(--shadow-sheet)"
+      className="relative scroll-mt-28 rounded-[10px] border border-rule bg-sheet shadow-(--shadow-sheet)"
       aria-labelledby="formularz-krok"
     >
       {/* Postęp: kroki jako paski planu */}
@@ -178,7 +204,7 @@ export function ContactForm() {
               <li key={s.id} aria-current={isCurrent ? "step" : undefined}>
                 <button
                   type="button"
-                  disabled={!done}
+                  disabled={!done || busy}
                   onClick={() => goTo(s.id)}
                   className="group flex w-full flex-col gap-2 text-left disabled:cursor-default"
                   aria-label={`Krok ${s.id}: ${s.title}${done ? ", ukończony, wróć do tego kroku" : isCurrent ? ", bieżący" : ""}`}
@@ -405,7 +431,7 @@ export function ContactForm() {
                         </div>
                       ))}
                     </div>
-                    <button type="button" onClick={() => goTo(s)} className="link-ink min-h-11 justify-self-start text-[0.9375rem] font-[600] sm:self-start">
+                    <button type="button" disabled={busy} onClick={() => goTo(s)} className="link-ink min-h-11 justify-self-start text-[0.9375rem] font-[600] sm:self-start">
                       Popraw<span className="sr-only">: {steps[s - 1].title}</span>
                     </button>
                   </div>
@@ -416,6 +442,7 @@ export function ContactForm() {
                 <input
                   type="checkbox"
                   data-field="consent"
+                  data-autofocus=""
                   checked={data.consent}
                   onChange={(e) => update("consent", e.target.checked)}
                   aria-invalid={!!errors.consent}
@@ -444,10 +471,29 @@ export function ContactForm() {
         </div>
 
         <div aria-live="polite">
-          {status === "error" && (
+          {status === "error-network" && (
             <p className="field-error mt-6 rounded-md bg-[#fdecea] px-4 py-3" role="alert">
               Nie udało się wysłać zgłoszenia. Sprawdź połączenie z internetem i spróbuj ponownie. Twoje odpowiedzi są zachowane.
             </p>
+          )}
+          {status === "error-rejected" && (
+            <div className="mt-6 rounded-md bg-[#fdecea] px-4 py-3" role="alert">
+              <p className="field-error">
+                Serwer formularza odrzucił zgłoszenie. Spróbuj ponownie za chwilę albo skopiuj podsumowanie. Twoje odpowiedzi są
+                zachowane.
+              </p>
+              <button type="button" className="btn btn-secondary btn-sm mt-3" onClick={copySummary}>
+                {copied ? "Skopiowano" : "Skopiuj podsumowanie"}
+              </button>
+            </div>
+          )}
+          {copyFailed && (
+            <div className="mt-4">
+              <label htmlFor="podsumowanie-tekst" className="text-[0.9375rem] font-[620]">
+                Podsumowanie do skopiowania
+              </label>
+              <textarea id="podsumowanie-tekst" readOnly rows={8} className="field-input mt-2 font-[inherit] text-[0.9375rem]" value={summaryText(data)} />
+            </div>
           )}
           {status === "not-configured" && (
             <div className="mt-6 rounded-md border-2 border-ink px-4 py-4 text-[0.9375rem]" role="alert">
@@ -473,9 +519,23 @@ export function ContactForm() {
           )}
         </div>
 
+        {/* Pole-pułapka na boty: niewidoczne i niedostępne dla ludzi oraz czytników ekranu. */}
+        <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+          <label htmlFor="pole-website2">Nie wypełniaj tego pola</label>
+          <input
+            id="pole-website2"
+            name="website2"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={data.website2}
+            onChange={(e) => update("website2", e.target.value)}
+          />
+        </div>
+
         <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-rule pt-6">
           {step > 1 ? (
-            <button type="button" className="btn btn-secondary" onClick={() => goTo((step - 1) as StepId)}>
+            <button type="button" className="btn btn-secondary" disabled={busy} onClick={() => goTo((step - 1) as StepId)}>
               <Arrow className="rotate-180" /> Wstecz
             </button>
           ) : (

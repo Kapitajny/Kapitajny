@@ -126,3 +126,17 @@ describe("podsumowanie i wysyłka", () => {
     expect(buildPayload(filled)).not.toHaveProperty("access_key");
   });
 });
+
+describe("pole-pułapka (honeypot)", () => {
+  it("payload przekazuje pułapkę usługom formularzy", () => {
+    expect(buildPayload({ ...filled, website2: "x" })).toMatchObject({ _gotcha: "x", botcheck: "x" });
+    expect(buildPayload(filled)).toMatchObject({ _gotcha: "", botcheck: "" });
+  });
+
+  it("wypełniona pułapka: brak żądania sieciowego", async () => {
+    const fetchMock = vi.fn();
+    const res = await submitContact("https://example.test/f", { ...filled, website2: "spam" }, null, fetchMock as unknown as typeof fetch);
+    expect(res).toEqual({ ok: true });
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+});

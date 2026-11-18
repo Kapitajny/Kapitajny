@@ -133,3 +133,10 @@ New file `tests/contact-form-ui.test.tsx` (6 cases above) + 2 honeypot cases in 
 ## Maintenance notes
 
 If a server-rendered endpoint replaces the third-party one, keep `submitContact`'s result shape so the UI states stay valid.
+
+## Execution notes
+
+- Done on the session branch (no separate branch/PR: the environment restricts pushes to the session branch and no PR was requested).
+- Failing tests first: 5 of 6 new DOM tests failed for the right reasons on the old code; the not-configured guard test passed (as designed).
+- Deviation: the intent effect reads status through a ref (`statusRef`) instead of a functional `setStatus`, because the "sent" branch must also reset data/step — one line justification: it needs the current status before choosing which setters to call.
+- Gates: `npm test` 30/30, typecheck, lint (0 warnings), build — all pass.

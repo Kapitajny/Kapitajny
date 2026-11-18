@@ -38,6 +38,8 @@ export type ContactFormData = {
   phone: string;
   message: string;
   consent: boolean;
+  /** Pole-pułapka na boty (niewidoczne dla ludzi). Wypełnione = zgłoszenie od bota. */
+  website2: string;
 };
 
 export const emptyForm: ContactFormData = {
@@ -54,6 +56,7 @@ export const emptyForm: ContactFormData = {
   phone: "",
   message: "",
   consent: false,
+  website2: "",
 };
 
 export const steps = [
@@ -192,6 +195,9 @@ export function buildPayload(d: ContactFormData, accessKey?: string | null): Rec
     telefon: d.phone.trim(),
     wiadomosc: d.message.trim(),
     zgoda: d.consent,
+    // Pułapka na boty: Formspree (_gotcha) i Web3Forms (botcheck) odrzucają zgłoszenia z wypełnionym polem.
+    _gotcha: d.website2,
+    botcheck: d.website2,
   };
   if (accessKey) payload.access_key = accessKey;
   return payload;
@@ -206,6 +212,8 @@ export async function submitContact(
   fetchImpl: typeof fetch = fetch,
 ): Promise<SubmitResult> {
   if (!endpoint) return { ok: false, reason: "not-configured" };
+  // Bot wypełnił niewidoczne pole: udajemy sukces wobec bota, ale niczego nie wysyłamy.
+  if (d.website2.trim()) return { ok: true };
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 15000);
   try {
