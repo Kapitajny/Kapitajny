@@ -105,10 +105,11 @@ export function CaseStudies() {
   const service = serviceById(c.platform)!;
 
   const onKey = (e: KeyboardEvent) => {
-    const dir = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
-    if (!dir) return;
+    const n = cases.length;
+    const map: Record<string, number> = { ArrowRight: active + 1, ArrowLeft: active - 1, Home: 0, End: n - 1 };
+    if (!(e.key in map)) return;
     e.preventDefault();
-    const next = (active + dir + cases.length) % cases.length;
+    const next = (map[e.key] + n) % n;
     setActive(next);
     tabs.current[next]?.focus();
   };
@@ -160,7 +161,7 @@ export function CaseStudies() {
                 </button>
               ))}
             </div>
-            <span className="stamp-demo text-youtube">Dane demonstracyjne</span>
+            <span className="stamp-demo text-stamp">Dane demonstracyjne</span>
           </div>
 
           <div id="case-panel" role="tabpanel" aria-labelledby={`case-tab-${c.id}`} className="grid lg:grid-cols-12">

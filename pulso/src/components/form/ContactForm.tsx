@@ -420,23 +420,23 @@ export function ContactForm() {
 
           {step === 6 && (
             <div>
-              <dl className="divide-y divide-rule border-y border-rule">
+              <div className="divide-y divide-rule border-y border-rule">
                 {groupRows(summaryRows(data)).map(([s, rows]) => (
                   <div key={s} className="grid gap-x-6 gap-y-1 py-4 sm:grid-cols-[1fr_auto]">
-                    <div className="grid gap-y-1.5 sm:grid-cols-[11rem_1fr] sm:gap-x-4">
+                    <dl className="grid gap-y-1.5">
                       {rows.map((r) => (
-                        <div key={r.label} className="contents">
+                        <div key={r.label} className="grid gap-y-0.5 sm:grid-cols-[11rem_1fr] sm:gap-x-4">
                           <dt className="text-sm text-ink-3">{r.label}</dt>
                           <dd className="text-[0.9875rem] font-[560] break-words">{r.value}</dd>
                         </div>
                       ))}
-                    </div>
+                    </dl>
                     <button type="button" disabled={busy} onClick={() => goTo(s)} className="link-ink min-h-11 justify-self-start text-[0.9375rem] font-[600] sm:self-start">
                       Popraw<span className="sr-only">: {steps[s - 1].title}</span>
                     </button>
                   </div>
                 ))}
-              </dl>
+              </div>
 
               <label className="mt-6 flex items-start gap-3 text-[0.9375rem] leading-relaxed">
                 <input
@@ -454,6 +454,7 @@ export function ContactForm() {
                   na zgłoszenie i przygotowania oferty. Zasady przetwarzania opisuje{" "}
                   <a href={withBasePath("/polityka-prywatnosci/")} className="link-ink" target="_blank" rel="noopener">
                     Polityka prywatności
+                    <span className="sr-only"> (otwiera się w nowej karcie)</span>
                   </a>
                   .
                 </span>

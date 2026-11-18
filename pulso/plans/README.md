@@ -13,7 +13,7 @@ impeccable detector on the live page.
 | 001 | Contact form: DOM tests, no double submit, CTA choice + focus in every state, honeypot | P1 | M | — | DONE |
 | 002 | Deep links like `/#kontakt` land on target on desktop | P1 | S | — | DONE |
 | 003 | Footer links survive basePath; nothing draft gets indexed | P1 | S | — | DONE |
-| 004 | axe clean at desktop and mobile | P1 | S | 001 | TODO |
+| 004 | axe clean at desktop and mobile | P1 | S | 001 | DONE |
 | 005 | Demo content driven by data; no copy implying track record | P2 | S | 004 | TODO |
 | 006 | Impeccable detector findings cleared | P3 | S | 005 | TODO |
 

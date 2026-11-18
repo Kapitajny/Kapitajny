@@ -55,3 +55,9 @@ In scope: `ContactForm.tsx`, `HeroPlan.tsx`, `Portfolio.tsx`, `CaseStudies.tsx`,
 ## Maintenance notes
 
 New red text must use `--color-stamp`, never `--color-youtube` (fill-only colour).
+
+## Execution notes
+
+- Failing check first: `tests/e2e/axe.mjs` (axe-core path via `AXE_CORE`) reported aria-allowed-role, aria-prohibited-attr, color-contrast ×2, definition-list, dlitem ×20 and (mobile) scrollable-region-focusable.
+- After all 7 steps: 0 violations at 1440 and 390 px, form on step 1 and step 6.
+- Gates: typecheck, lint, 30/30 tests, build — pass.

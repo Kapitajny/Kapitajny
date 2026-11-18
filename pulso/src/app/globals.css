@@ -24,6 +24,8 @@
   --color-google-line: #a86c00;
   --color-tiktok-line: #0d8a77;
   --color-field: #80847b;
+  /* Czerwień do tekstu (etykiety DEMO): kontrast >= 4.5:1; --color-youtube służy wyłącznie do wypełnień. */
+  --color-stamp: #c8371f;
 
   --font-sans: var(--font-archivo-latin), var(--font-archivo-ext), ui-sans-serif, system-ui, sans-serif;
 

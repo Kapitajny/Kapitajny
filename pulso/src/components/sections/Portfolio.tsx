@@ -116,7 +116,7 @@ export function Portfolio() {
                 ? `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`
                 : `translateX(${offset * 9}%) translateZ(${-depth * 160}px) rotateY(${offset * -16}deg)`;
               return (
-                <article
+                <div
                   key={p.id}
                   id={`projekt-${p.id}`}
                   role="tabpanel"
@@ -135,7 +135,7 @@ export function Portfolio() {
                   }}
                 >
                   <div className="flex items-start justify-between gap-4">
-                    <span className="stamp-demo text-youtube">Projekt demonstracyjny</span>
+                    <span className="stamp-demo text-stamp">Projekt demonstracyjny</span>
                     <span className="text-right text-sm text-ink-3">{p.industry}</span>
                   </div>
                   <h3 className="t-h3 mt-5">{p.name}</h3>
@@ -153,7 +153,7 @@ export function Portfolio() {
                       Chcę podobny plan <Arrow />
                     </ContactLink>
                   </div>
-                </article>
+                </div>
               );
             })}
           </div>

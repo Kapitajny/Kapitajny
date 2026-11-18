@@ -113,7 +113,12 @@ export function Pricing() {
 
         <div className="mt-14">
           <h3 className="t-h3">Porównanie pakietów</h3>
-          <div className="relative mt-5 overflow-x-auto rounded-[10px] border border-rule bg-sheet">
+          <div
+            className="relative mt-5 overflow-x-auto rounded-[10px] border border-rule bg-sheet"
+            tabIndex={0}
+            role="region"
+            aria-label="Porównanie pakietów (przewijane)"
+          >
             <table className="w-full min-w-[40rem] text-left text-[0.9875rem]">
               <caption className="sr-only">Zakres usług w pakietach START, GROWTH i PROFESSIONAL</caption>
               <thead>

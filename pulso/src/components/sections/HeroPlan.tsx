@@ -85,8 +85,10 @@ export function HeroPlan() {
             );
           })}
           <li className="grid min-h-11 grid-cols-[6.5rem_1fr] items-center gap-3 border-t border-rule sm:grid-cols-[11rem_1fr]">
-            <span className="pl-1 text-[0.9375rem] font-[620]">Raport</span>
-            <span className="week-grid relative block h-11" aria-label="Raport co 4 tygodnie">
+            <span className="pl-1 text-[0.9375rem] font-[620]">
+              Raport<span className="sr-only"> co 4 tygodnie</span>
+            </span>
+            <span className="week-grid relative block h-11" aria-hidden="true">
               {[4, 8, 12].map((w) => (
                 <span
                   key={w}
