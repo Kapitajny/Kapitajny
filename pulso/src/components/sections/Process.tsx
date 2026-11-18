@@ -23,6 +23,19 @@ export function Process() {
     return () => mq.removeEventListener("change", update);
   }, []);
 
+  // Zabezpieczenie: jeśli po przypięciu adres wskazuje sekcję poniżej, przewiń do niej jeszcze raz.
+  const rescrolled = useRef(false);
+  useEffect(() => {
+    if (!pinned || rescrolled.current) return;
+    rescrolled.current = true;
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    const target = id ? document.getElementById(id) : null;
+    const section = wrap.current;
+    if (target && section && section.compareDocumentPosition(target) & Node.DOCUMENT_POSITION_FOLLOWING) {
+      target.scrollIntoView();
+    }
+  }, [pinned]);
+
   useEffect(() => {
     if (!pinned) return;
     let raf = 0;
@@ -101,8 +114,9 @@ export function Process() {
 
   return (
     <section id="proces" aria-labelledby="proces-tytul" className="border-t border-rule bg-paper-2">
-      <div ref={wrap} style={pinned ? { height: "320vh" } : undefined}>
-        <div className={pinned ? "sticky top-0 flex h-screen flex-col justify-center pt-[calc(var(--nav-h)+1rem)]" : "section"}>
+      {/* Wysokość i przypięcie są w CSS (.process-track/.process-stage), żeby układ nie zmieniał się po hydratacji. */}
+      <div ref={wrap} className="process-track">
+        <div className="process-stage section">
           <div className="container-plan">
             <div className="flex flex-wrap items-end justify-between gap-6">
               <h2 id="proces-tytul" className="t-h2 max-w-[16ch]">
@@ -142,7 +156,7 @@ export function Process() {
                 )}
               </div>
             ) : (
-              <ol className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3" aria-label="Opis etapów">
+              <ol className="process-static-list mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3" aria-label="Opis etapów">
                 {processSteps.map((s, i) => (
                   <li key={s.id} className="border-t border-ink pt-4">
                     <h3 className="t-h3">

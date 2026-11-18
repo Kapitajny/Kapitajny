@@ -405,3 +405,24 @@
     }
   }
 }
+
+/* Proces: przypięty harmonogram na dużych ekranach. To samo zapytanie co w Process.tsx — wysokość jest
+   zarezerwowana już w statycznym HTML, więc głębokie linki (#kontakt) nie przesuwają się po hydratacji. */
+@media (min-width: 1024px) and (min-height: 640px) and (prefers-reduced-motion: no-preference) {
+  .process-track {
+    height: 320vh;
+  }
+  .process-stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: calc(var(--nav-h) + 1rem);
+    padding-bottom: 0;
+  }
+  .process-static-list {
+    display: none;
+  }
+}

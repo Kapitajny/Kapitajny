@@ -80,3 +80,9 @@ At 390×844 and with `reducedMotion: 'reduce'`, the static 6-item list must be v
 ## Maintenance notes
 
 The 320vh value appears once in CSS; if the number of steps changes, tune it there.
+
+## Execution notes
+
+- Failing check first: `tests/e2e/deeplink.mjs` reported `top=2060` before the fix, `top=385` after.
+- Implemented as planned: `.process-track` / `.process-stage` / `.process-static-list` under the same media query as the JS; plus a one-time re-scroll to a hash target below the section after pinning.
+- Gates: typecheck, lint, 30/30 unit tests, build, deeplink.mjs (4/4) — all pass.
