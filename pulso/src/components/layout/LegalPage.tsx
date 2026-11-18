@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { withBasePath } from "@/lib/paths";
 import type { ReactNode } from "react";
 import { Logo } from "@/components/brand/Logo";
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -9,12 +9,12 @@ export function LegalPage({ title, updated, children }: { title: string; updated
     <>
       <header className="border-b border-rule">
         <div className="container-plan flex h-20 items-center justify-between gap-4">
-          <Link href="/" aria-label="PULSO, strona główna" className="rounded-full">
+          <a href={withBasePath("/")} aria-label="PULSO, strona główna" className="rounded-full">
             <Logo />
-          </Link>
-          <Link href="/#kontakt" className="btn btn-primary btn-sm">
+          </a>
+          <a href={withBasePath("/#kontakt")} className="btn btn-primary btn-sm">
             Kontakt
-          </Link>
+          </a>
         </div>
       </header>
       <main id="tresc" className="container-plan py-16 sm:py-24">

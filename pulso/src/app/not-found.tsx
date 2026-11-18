@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { withBasePath } from "@/lib/paths";
 import { Logo } from "@/components/brand/Logo";
 
 export default function NotFound() {
@@ -7,9 +7,9 @@ export default function NotFound() {
       <Logo />
       <h1 className="t-h2 max-w-[18ch]">Tej strony nie ma w planie.</h1>
       <p className="t-lead max-w-[48ch]">Adres mógł się zmienić albo zawiera literówkę. Wróć na stronę główną.</p>
-      <Link href="/" className="btn btn-primary">
+      <a href={withBasePath("/")} className="btn btn-primary">
         Strona główna
-      </Link>
+      </a>
     </main>
   );
 }

@@ -1,10 +1,10 @@
-import Link from "next/link";
+import { withBasePath } from "@/lib/paths";
 import { legalLinks, nav, site } from "@/config/site";
 import { services } from "@/data/services";
 import { Logo } from "@/components/brand/Logo";
 import { ContactLink, Arrow } from "@/components/ui/ContactLink";
 
-/** Na stronie głównej zwykła kotwica; na podstronach next/link (dodaje basePath, np. /demo/pulso). */
+/** Na stronie głównej kotwica w obrębie strony; na podstronach pełny adres z basePath (np. /demo/pulso). */
 function SectionLink({ home, hash, children }: { home: boolean; hash: string; children: React.ReactNode }) {
   const cls = "text-[0.9375rem] text-paper/90 underline-offset-4 hover:underline";
   return home ? (
@@ -12,9 +12,9 @@ function SectionLink({ home, hash, children }: { home: boolean; hash: string; ch
       {children}
     </a>
   ) : (
-    <Link href={`/${hash}`} className={cls}>
+    <a href={withBasePath(`/${hash}`)} className={cls}>
       {children}
-    </Link>
+    </a>
   );
 }
 
@@ -85,9 +85,9 @@ export function SiteFooter({ showCta = true, home = true }: { showCta?: boolean;
               {home ? (
                 <ContactLink className="text-paper/90 underline underline-offset-4">Formularz kontaktowy</ContactLink>
               ) : (
-                <Link href="/#kontakt" className="text-paper/90 underline underline-offset-4">
+                <a href={withBasePath("/#kontakt")} className="text-paper/90 underline underline-offset-4">
                   Formularz kontaktowy
-                </Link>
+                </a>
               )}
             </li>
             {email && (
@@ -123,9 +123,9 @@ export function SiteFooter({ showCta = true, home = true }: { showCta?: boolean;
         <ul className="flex flex-wrap gap-x-5 gap-y-1">
           {legalLinks.map((l) => (
             <li key={l.href}>
-              <Link href={l.href} className="underline-offset-4 hover:text-paper hover:underline">
+              <a href={withBasePath(l.href)} className="underline-offset-4 hover:text-paper hover:underline">
                 {l.label}
-              </Link>
+              </a>
             </li>
           ))}
         </ul>
