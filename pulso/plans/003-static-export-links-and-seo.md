@@ -55,3 +55,10 @@ When `home` is false, render `next/link` `<Link href={\`/${hash}\`}>` (Link adds
 ## Maintenance notes
 
 Before launch: set `site.url`, rebuild, confirm `robots.txt` allows and the sitemap lists absolute URLs.
+
+## Execution notes
+
+- Reproduced before the fix with `PAGES_BASE_PATH=/demo/pulso`: footer `href="/#uslugi"`, `Allow: /`, relative `<loc>`, no noindex.
+- After: `href="/demo/pulso/#uslugi"`, `Disallow: /`, 0 `<loc>`, `noindex` present while `site.url` is null.
+- Small deviation: footer link rendering moved into a module-level `SectionLink` component (instead of an inline ternary at each call site) to avoid duplicating classes.
+- Gates: typecheck, lint, 30/30 tests, build — pass.

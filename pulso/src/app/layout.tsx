@@ -48,7 +48,8 @@ export const metadata: Metadata = {
     description: site.description,
   },
   twitter: { card: "summary_large_image", title, description: site.description },
-  robots: { index: true, follow: true },
+  // Indeksowanie dopiero po ustawieniu prawdziwego adresu strony (site.url) — do tego czasu szkice nie trafiają do wyszukiwarek.
+  robots: site.url ? { index: true, follow: true } : { index: false, follow: false },
   formatDetection: { telephone: false },
 };
 

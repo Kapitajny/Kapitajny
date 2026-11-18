@@ -10,7 +10,11 @@ export const site = {
   tagline: "Your growth. Our strategy.",
   description:
     "PULSO planuje, uruchamia i optymalizuje kampanie reklamowe w Meta, Google, YouTube i TikToku. Stała, jawna opłata za obsługę, budżet reklamowy płacony bezpośrednio platformom.",
-  /** Pełny adres strony po publikacji, np. "https://pulso.pl". Używany w sitemap i metadanych. */
+  /**
+   * Pełny adres strony po publikacji, np. "https://pulso.pl" (bez podkatalogu i ukośnika na końcu).
+   * Dopóki jest pusty, strona blokuje indeksowanie (robots.txt, meta robots) i nie generuje mapy strony.
+   * Ustaw go dopiero, gdy dokumenty prawne i ceny są zatwierdzone.
+   */
   url: null as string | null,
   locale: "pl_PL",
 

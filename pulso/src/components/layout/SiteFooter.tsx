@@ -4,11 +4,24 @@ import { services } from "@/data/services";
 import { Logo } from "@/components/brand/Logo";
 import { ContactLink, Arrow } from "@/components/ui/ContactLink";
 
+/** Na stronie głównej zwykła kotwica; na podstronach next/link (dodaje basePath, np. /demo/pulso). */
+function SectionLink({ home, hash, children }: { home: boolean; hash: string; children: React.ReactNode }) {
+  const cls = "text-[0.9375rem] text-paper/90 underline-offset-4 hover:underline";
+  return home ? (
+    <a href={hash} className={cls}>
+      {children}
+    </a>
+  ) : (
+    <Link href={`/${hash}`} className={cls}>
+      {children}
+    </Link>
+  );
+}
+
 export function SiteFooter({ showCta = true, home = true }: { showCta?: boolean; home?: boolean }) {
   const year = new Date().getFullYear();
   const { email, phone } = site.contact;
   const c = site.company;
-  const hrefFor = (hash: string) => (home ? hash : `/${hash}`);
   return (
     <footer className="on-ink bg-ink text-paper">
       {showCta && (
@@ -48,9 +61,7 @@ export function SiteFooter({ showCta = true, home = true }: { showCta?: boolean;
           <ul className="mt-3 space-y-1.5">
             {nav.map((n) => (
               <li key={n.id}>
-                <a href={hrefFor(n.href)} className="text-[0.9375rem] text-paper/90 underline-offset-4 hover:underline">
-                  {n.label}
-                </a>
+                <SectionLink home={home} hash={n.href}>{n.label}</SectionLink>
               </li>
             ))}
           </ul>
@@ -61,9 +72,7 @@ export function SiteFooter({ showCta = true, home = true }: { showCta?: boolean;
           <ul className="mt-3 space-y-1.5">
             {services.map((s) => (
               <li key={s.id}>
-                <a href={hrefFor(`#usluga-${s.id}`)} className="text-[0.9375rem] text-paper/90 underline-offset-4 hover:underline">
-                  {s.name}
-                </a>
+                <SectionLink home={home} hash={`#usluga-${s.id}`}>{s.name}</SectionLink>
               </li>
             ))}
           </ul>
