@@ -3,6 +3,13 @@ import localFont from "next/font/local";
 import { site } from "@/config/site";
 import "./globals.css";
 
+/*
+ * Archivo (variable: wght 100–900, wdth 62–125), przycięte narzędziem pyftsubset z @fontsource-variable/archivo:
+ *  - archivo-latin.woff2: U+0020-007E, U+00A0-00FF, U+2010-2027, U+2030-203A, U+20AC, U+2122, U+2212
+ *  - archivo-pl.woff2:    polskie litery ą ć ę ł ń ś ź ż (wielkie i małe)
+ * Gdy treść zacznie używać innych znaków, wygeneruj podzbiory ponownie (lub wróć do plików z @fontsource).
+ */
+
 const archivoLatin = localFont({
   src: "./archivo-latin.woff2",
   variable: "--font-archivo-latin",
@@ -13,13 +20,13 @@ const archivoLatin = localFont({
     {
       prop: "unicode-range",
       value:
-        "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD",
+        "U+0020-007E,U+00A0-00FF,U+2010-2027,U+2030-203A,U+20AC,U+2122,U+2212",
     },
   ],
 });
 
 const archivoExt = localFont({
-  src: "./archivo-latin-ext.woff2",
+  src: "./archivo-pl.woff2",
   variable: "--font-archivo-ext",
   weight: "100 900",
   display: "swap",
@@ -28,7 +35,7 @@ const archivoExt = localFont({
     {
       prop: "unicode-range",
       value:
-        "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF",
+        "U+0104-0107,U+0118-0119,U+0141-0144,U+015A-015B,U+0179-017C",
     },
   ],
 });
