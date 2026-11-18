@@ -132,8 +132,13 @@ export function CaseStudies() {
             Raport, który czytasz bez tłumacza.
           </h2>
           <p className="t-lead lg:col-span-5 lg:col-start-8 lg:self-end">
-            Tak wygląda podsumowanie kampanii w PULSO: wydatki, wyniki i wnioski w jednym miejscu. Poniższe liczby są{" "}
-            <strong className="font-[660] text-ink">demonstracyjne</strong>, nie są wynikami klientów.
+            Tak wygląda podsumowanie kampanii w PULSO: wydatki, wyniki i wnioski w jednym miejscu.
+            {cases.some((x) => x.isDemo) && (
+              <>
+                {" "}
+                Poniższe liczby są <strong className="font-[660] text-ink">demonstracyjne</strong>, nie są wynikami klientów.
+              </>
+            )}
           </p>
         </div>
 
@@ -161,7 +166,7 @@ export function CaseStudies() {
                 </button>
               ))}
             </div>
-            <span className="stamp-demo text-stamp">Dane demonstracyjne</span>
+            {c.isDemo ? <span className="stamp-demo text-stamp">Dane demonstracyjne</span> : null}
           </div>
 
           <div id="case-panel" role="tabpanel" aria-labelledby={`case-tab-${c.id}`} className="grid lg:grid-cols-12">
@@ -231,7 +236,7 @@ export function CaseStudies() {
                 </div>
               </details>
 
-              <h4 className="t-col mt-6 !text-ink">Co zrobiliśmy w tej kampanii</h4>
+              <h4 className="t-col mt-6 !text-ink">{c.isDemo ? "Co zrobilibyśmy w takiej kampanii (przykład)" : "Co zrobiliśmy w tej kampanii"}</h4>
               <ul className="mt-3 space-y-2">
                 {c.whatWeDid.map((s) => {
                   const [when, what] = s.split(": ");

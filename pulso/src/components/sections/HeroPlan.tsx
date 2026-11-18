@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { formatPrice, packageForPlatformCount, priceSuffix, currency } from "@/config/pricing";
-import { services, type ServiceId } from "@/data/services";
+import { serviceById, type ServiceId } from "@/data/services";
 import { channelStyle } from "@/lib/channels";
 import { ContactLink, Arrow } from "@/components/ui/ContactLink";
 import { PlatformIcon } from "@/components/ui/PlatformIcon";
@@ -23,7 +23,7 @@ export function HeroPlan() {
   const toggle = (id: ServiceId) =>
     setBooked((b) => (b.includes(id) ? b.filter((x) => x !== id) : order.filter((x) => x === id || b.includes(x))));
   const pkg = booked.length ? packageForPlatformCount(booked.length) : null;
-  const names = booked.map((id) => services.find((s) => s.id === id)!.channel);
+  const names = booked.map((id) => serviceById(id)!.channel);
 
   return (
     <figure className="rounded-[10px] border border-rule bg-sheet shadow-(--shadow-sheet)" aria-labelledby="plan-tytul">
@@ -49,7 +49,7 @@ export function HeroPlan() {
 
         <ul className="relative" aria-label="Kanały w planie">
           {order.map((id, i) => {
-            const s = services.find((x) => x.id === id)!;
+            const s = serviceById(id)!;
             const on = booked.includes(id);
             const [start, span] = plan[id];
             return (

@@ -57,3 +57,10 @@ Files listed above plus `tests/pricing-and-data.test.ts`. Out of scope: visual l
 ## Maintenance notes
 
 When real projects arrive: set `isDemo: false`; stamps disappear automatically.
+
+## Execution notes
+
+- Repro first: the grep found all 5 patterns; new test "żaden pakiet nie jest oznaczony jako „najczęstszy wybór”" failed before removing `featured`.
+- Deviation: the done-criteria grep still matches `Co zrobiliśmy w tej kampanii` once, intentionally — it is the label used only when `c.isDemo === false` (real data); demo cases show "Co zrobilibyśmy w takiej kampanii (przykład)".
+- STOP condition checked: "Wybieram pakiet" still hands the package to the form (Playwright, desktop + mobile).
+- Gates: typecheck, lint, 31/31 tests, build — pass.

@@ -14,8 +14,6 @@ export type PricingPackage = {
   platforms: { min: number; max: number };
   platformsLabel: string;
   summary: string;
-  /** Pakiet wyróżniony jako najczęstszy wybór (najwyżej jeden). */
-  featured?: boolean;
 };
 
 export const currency = "zł";
@@ -38,7 +36,6 @@ export const packages: PricingPackage[] = [
     platforms: { min: 2, max: 2 },
     platformsLabel: "2 platformy reklamowe",
     summary: "Dla firm, które łączą np. wyszukiwarkę z social media i chcą porównywać kanały.",
-    featured: true,
   },
   {
     id: "professional",

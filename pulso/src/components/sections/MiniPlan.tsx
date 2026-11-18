@@ -1,4 +1,4 @@
-import { services, type ServiceId } from "@/data/services";
+import { serviceById, type ServiceId } from "@/data/services";
 import { channelStyle } from "@/lib/channels";
 
 /** Mały plan emisji: kanały w wierszach, tygodnie w kolumnach. */
@@ -16,7 +16,7 @@ export function MiniPlan({ flights, weeks = 8, label }: { flights: [ServiceId, n
         </div>
         {flights.map(([id, start, span]) => (
           <div key={id} className="contents">
-            <span className="truncate text-xs font-[620]">{services.find((s) => s.id === id)!.channel}</span>
+            <span className="truncate text-xs font-[620]">{serviceById(id)!.channel}</span>
             <span className="week-grid relative block h-5" style={{ "--weeks": weeks } as React.CSSProperties}>
               <span className="absolute inset-y-1" style={{ left: `${((start - 1) / weeks) * 100}%`, width: `${(span / weeks) * 100}%` }}>
                 <span className="flight block" data-state="booked" style={channelStyle(id)} />

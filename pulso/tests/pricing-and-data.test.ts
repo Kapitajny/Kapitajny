@@ -62,3 +62,9 @@ describe("dane demonstracyjne", () => {
     }
   });
 });
+
+describe("brak nieudokumentowanych wyróżnień", () => {
+  it("żaden pakiet nie jest oznaczony jako „najczęstszy wybór”", () => {
+    for (const p of packages) expect(p).not.toHaveProperty("featured");
+  });
+});

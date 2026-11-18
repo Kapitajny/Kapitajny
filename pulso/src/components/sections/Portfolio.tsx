@@ -2,13 +2,13 @@
 
 import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 import { portfolio } from "@/data/demo";
-import { services } from "@/data/services";
+import { serviceById } from "@/data/services";
 import { ContactLink, Arrow } from "@/components/ui/ContactLink";
 import { MiniPlan } from "./MiniPlan";
 
 /**
  * Portfolio jako stos arkuszy planu w przestrzeni 3D. Aktywny arkusz jest z przodu, pozostałe
- * odsunięte w głąb. Wszystkie projekty są demonstracyjne i tak oznaczone.
+ * odsunięte w głąb. Projekty z `isDemo: true` dostają etykietę „Projekt demonstracyjny”.
  */
 export function Portfolio() {
   const [active, setActive] = useState(0);
@@ -16,6 +16,7 @@ export function Portfolio() {
   const [motionOk, setMotionOk] = useState(false);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const n = portfolio.length;
+  const anyDemo = portfolio.some((p) => p.isDemo);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: no-preference) and (hover: hover)");
@@ -55,12 +56,18 @@ export function Portfolio() {
             Tak wygląda plan, zanim ruszy kampania.
           </h2>
           <p className="mt-5 text-[1.0625rem] leading-relaxed text-ink-2">
-            PULSO dopiero buduje portfolio. Zamiast wymyślonych realizacji pokazujemy trzy{" "}
-            <strong className="font-[660] text-ink">projekty demonstracyjne</strong>: przykłady planów, jakie przygotowujemy dla
-            różnych branż.
+            {anyDemo ? (
+              <>
+                PULSO dopiero buduje portfolio. Zamiast wymyślonych realizacji pokazujemy{" "}
+                <strong className="font-[660] text-ink">projekty demonstracyjne</strong>: przykłady planów, jakie przygotowujemy
+                dla różnych branż.
+              </>
+            ) : (
+              "Wybrane realizacje i plany kampanii przygotowane dla naszych klientów."
+            )}
           </p>
 
-          <div role="tablist" aria-label="Projekty demonstracyjne" className="mt-8 flex flex-col border-t border-rule">
+          <div role="tablist" aria-label={anyDemo ? "Projekty demonstracyjne" : "Realizacje"} className="mt-8 flex flex-col border-t border-rule">
             {portfolio.map((p, i) => (
               <button
                 key={p.id}
@@ -123,7 +130,6 @@ export function Portfolio() {
                   aria-labelledby={`projekt-tab-${p.id}`}
                   aria-hidden={!isActive}
                   inert={!isActive}
-                  onClick={() => !isActive && go(i)}
                   className="absolute inset-0 flex flex-col rounded-[10px] border border-rule bg-sheet p-5 shadow-(--shadow-sheet) transition-[transform,opacity,filter] duration-700 ease-(--ease-out-expo) sm:p-7"
                   style={{
                     transform,
@@ -135,7 +141,7 @@ export function Portfolio() {
                   }}
                 >
                   <div className="flex items-start justify-between gap-4">
-                    <span className="stamp-demo text-stamp">Projekt demonstracyjny</span>
+                    {p.isDemo ? <span className="stamp-demo text-stamp">Projekt demonstracyjny</span> : <span />}
                     <span className="text-right text-sm text-ink-3">{p.industry}</span>
                   </div>
                   <h3 className="t-h3 mt-5">{p.name}</h3>
@@ -143,7 +149,7 @@ export function Portfolio() {
                     <dt className="t-col pt-0.5">Cel kampanii</dt>
                     <dd className="leading-snug text-ink-2">{p.goal}</dd>
                     <dt className="t-col pt-0.5">Platformy</dt>
-                    <dd className="leading-snug text-ink-2">{p.platforms.map((id) => services.find((s) => s.id === id)!.name).join(", ")}</dd>
+                    <dd className="leading-snug text-ink-2">{p.platforms.map((id) => serviceById(id)!.name).join(", ")}</dd>
                     <dt className="t-col pt-0.5">Strategia</dt>
                     <dd className="leading-snug text-ink-2">{p.strategy}</dd>
                   </dl>

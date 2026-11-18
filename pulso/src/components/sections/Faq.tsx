@@ -29,7 +29,7 @@ export function Faq() {
       <div className="container-plan grid gap-10 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <h2 id="faq-tytul" className="t-h2">
-            Pytania, które słyszymy najczęściej
+            Pytania, które warto zadać przed współpracą
           </h2>
           <div
             role="tablist"

@@ -17,8 +17,9 @@ import { Check, Dash } from "@/components/ui/Icons";
 const counts = [1, 2, 3, 4] as const;
 
 export function Pricing() {
-  const [count, setCount] = useState<number>(2);
-  const selected = packageForPlatformCount(count);
+  // Bez domyślnego wyboru: żaden pakiet nie jest wyróżniony, dopóki odwiedzający sam nie zaznaczy liczby platform.
+  const [count, setCount] = useState<number | null>(null);
+  const selected = count ? packageForPlatformCount(count) : null;
 
   return (
     <section id="cennik" aria-labelledby="cennik-tytul" className="section border-t border-rule">
@@ -56,13 +57,19 @@ export function Pricing() {
             ))}
           </div>
           <p className="text-[0.9375rem] text-ink-2" aria-live="polite">
-            Pasuje pakiet <strong className="font-[680] text-ink">{selected.name}</strong>
+            {selected ? (
+              <>
+                Pasuje pakiet <strong className="font-[680] text-ink">{selected.name}</strong>
+              </>
+            ) : (
+              "Zaznacz, ile platform chcesz prowadzić, a podświetlimy pasujący pakiet."
+            )}
           </p>
         </div>
 
         <ul className="mt-8 grid gap-4 lg:grid-cols-3">
           {packages.map((p) => {
-            const isSel = p.id === selected.id;
+            const isSel = p.id === selected?.id;
             return (
               <li
                 key={p.id}
@@ -74,7 +81,7 @@ export function Pricing() {
                   <h3 className="text-[1.25rem] font-[780] tracking-[0.02em]" style={{ fontVariationSettings: '"wdth" 120' }}>
                     {p.name}
                   </h3>
-                  {isSel && <span className="rounded-full bg-ink px-3 py-1 text-xs font-[640] text-paper">Twój wybór</span>}
+                  {isSel && <span className="rounded-full bg-ink px-3 py-1 text-xs font-[640] text-paper">Pasuje do Twojego wyboru</span>}
                 </div>
                 <p className="mt-1 text-[0.9375rem] font-[600] text-ink-2">{p.platformsLabel}</p>
                 <p className="mt-6 flex items-baseline gap-2">
@@ -130,7 +137,7 @@ export function Pricing() {
                     <th
                       key={p.id}
                       scope="col"
-                      className={`px-5 py-4 text-center font-[760] tracking-[0.02em] transition-colors ${p.id === selected.id ? "bg-ink text-paper" : ""}`}
+                      className={`px-5 py-4 text-center font-[760] tracking-[0.02em] transition-colors ${p.id === selected?.id ? "bg-ink text-paper" : ""}`}
                     >
                       {p.name}
                     </th>
@@ -144,7 +151,7 @@ export function Pricing() {
                       {row.feature}
                     </th>
                     {row.values.map((v, i) => (
-                      <td key={i} className={`px-5 py-3.5 text-center ${packages[i].id === selected.id ? "bg-paper-2" : ""}`}>
+                      <td key={i} className={`px-5 py-3.5 text-center ${packages[i].id === selected?.id ? "bg-paper-2" : ""}`}>
                         {v === true ? (
                           <>
                             <Check className="mx-auto h-5 w-5" />

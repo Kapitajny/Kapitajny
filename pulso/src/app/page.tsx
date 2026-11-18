@@ -3,7 +3,6 @@ import { packages } from "@/config/pricing";
 import { services } from "@/data/services";
 import { SiteNav } from "@/components/layout/SiteNav";
 import { SiteFooter } from "@/components/layout/SiteFooter";
-import { RevealObserver } from "@/components/ui/RevealObserver";
 import { Hero } from "@/components/sections/Hero";
 import { Mission } from "@/components/sections/Mission";
 import { Services } from "@/components/sections/Services";
@@ -61,7 +60,6 @@ export default function Home() {
         <Contact />
       </main>
       <SiteFooter />
-      <RevealObserver />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
     </>
   );
