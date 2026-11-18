@@ -88,7 +88,7 @@ export function Services() {
                 <p className="mt-5 max-w-[56ch] text-[1.1875rem] leading-[1.6] text-ink-2">{s.description}</p>
 
                 <div className="mt-8 lg:hidden" aria-hidden="true">
-                  <div className="grid place-items-center rounded-[10px] border border-rule bg-paper-2 px-5 py-8">
+                  <div className="week-grid -mx-[var(--gutter)] grid place-items-center bg-paper-2 px-5 py-8" style={{ "--weeks": 8 } as React.CSSProperties}>
                     <Placement id={s.id} />
                   </div>
                 </div>

@@ -4,7 +4,7 @@ import { channelStyle } from "@/lib/channels";
 /** Mały plan emisji: kanały w wierszach, tygodnie w kolumnach. */
 export function MiniPlan({ flights, weeks = 8, label }: { flights: [ServiceId, number, number][]; weeks?: number; label: string }) {
   return (
-    <div role="img" aria-label={label} className="rounded-md border border-rule bg-paper/60 p-3">
+    <div role="img" aria-label={label} className="border-t border-rule pt-3">
       <div className="grid grid-cols-[4.5rem_1fr] gap-2" aria-hidden="true">
         <span />
         <div className="grid" style={{ gridTemplateColumns: `repeat(${weeks}, minmax(0, 1fr))` }}>

@@ -40,7 +40,7 @@ export function Placement({ id }: { id: ServiceId }) {
             </svg>
             <span className="text-sm text-ink-2">fizjoterapeuta mokotów</span>
           </div>
-          <div className="mt-4 rounded-md border-[1.5px] p-3" style={{ borderColor: "var(--color-google-line)" }}>
+          <div className="mt-4 rounded-md bg-google/15 p-3">
             <span className="text-[0.6875rem] font-[700] tracking-wide text-ink">Sponsorowane</span>
             <span className="mt-1.5 block h-3 w-4/5 rounded-full" style={{ background: c }} />
             <span className="mt-2 block h-2 w-full rounded-full bg-rule" />

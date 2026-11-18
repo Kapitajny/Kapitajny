@@ -147,11 +147,11 @@ export function Portfolio() {
                   <h3 className="t-h3 mt-5">{p.name}</h3>
                   <dl className="mt-4 grid gap-3 text-[0.9375rem] sm:grid-cols-[7rem_1fr]">
                     <dt className="t-col pt-0.5">Cel kampanii</dt>
-                    <dd className="leading-snug text-ink-2">{p.goal}</dd>
+                    <dd className="leading-snug text-pretty text-ink-2">{p.goal}</dd>
                     <dt className="t-col pt-0.5">Platformy</dt>
-                    <dd className="leading-snug text-ink-2">{p.platforms.map((id) => serviceById(id)!.name).join(", ")}</dd>
+                    <dd className="leading-snug text-pretty text-ink-2">{p.platforms.map((id) => serviceById(id)!.name).join(", ")}</dd>
                     <dt className="t-col pt-0.5">Strategia</dt>
-                    <dd className="leading-snug text-ink-2">{p.strategy}</dd>
+                    <dd className="leading-snug text-pretty text-ink-2">{p.strategy}</dd>
                   </dl>
                   <div className="mt-auto pt-5">
                     <MiniPlan flights={p.flights} label={`Plan emisji projektu ${p.name} na 8 tygodni`} />

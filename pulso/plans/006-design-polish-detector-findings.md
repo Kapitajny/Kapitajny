@@ -48,3 +48,10 @@ The four files above. Out of scope: colours, copy.
 ## STOP conditions
 
 - Removing a container makes the Services mobile illustration unreadable on paper (report with a screenshot).
+
+## Execution notes
+
+- Repro: detector found `nested-cards` ×3 (desktop) / ×6 (mobile), `line-length` ×1, `straggler` ×1 before the change; 0 findings at both viewports after.
+- Step 5 (Portfolio tilt) NOT implemented — needs repro: `tests/e2e/stable-cta.mjs` clicks "Chcę podobny plan" without `force` and passes on the unchanged code. The original "not stable" report came from clicking an `inert` back sheet (misattributed during the audit).
+- Extra change within scope: the Google placement illustration's bordered "Sponsorowane" box (the last nested-card hit on mobile) became a tinted block (`bg-google/15`).
+- Gates: typecheck, lint, 31/31 tests, build — pass.

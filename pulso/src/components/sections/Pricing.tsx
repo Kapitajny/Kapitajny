@@ -107,10 +107,12 @@ export function Pricing() {
         </ul>
 
         <div className="mt-6 grid gap-4 lg:grid-cols-12">
-          <p className="rounded-[10px] border-2 border-ink bg-sheet p-5 text-[1rem] leading-relaxed lg:col-span-8">
-            <span className="font-[700]">Budżet reklamowy nie jest wliczony. </span>
+          <div className="rounded-[10px] border-2 border-ink bg-sheet p-5 text-[1rem] leading-relaxed lg:col-span-8">
+            <p className="max-w-[68ch]">
+              <span className="font-[700]">Budżet reklamowy nie jest wliczony. </span>
             <span className="text-ink-2">{budgetNote.replace("Budżet reklamowy nie jest wliczony w cenę obsługi. ", "")}</span>
-          </p>
+            </p>
+          </div>
           {pricingIsDraft && (
             <p className="self-center text-[0.9375rem] text-ink-3 lg:col-span-4">
               Ceny są robocze. Zakres i cenę zawsze potwierdzamy na piśmie przed startem współpracy.
