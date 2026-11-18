@@ -1,0 +1,125 @@
+/* ---------- Historia ---------- */
+
+.timeline {
+  list-style: none;
+  display: grid;
+  gap: var(--space-6) var(--space-5);
+}
+
+.timeline li {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+  padding-top: var(--space-4);
+  border-top: 2px solid var(--line-strong);
+}
+
+/* „Dziś” – obecny stan firmy – oznaczony kolorem marki. */
+.timeline li:last-child {
+  border-top-color: var(--c-orange);
+}
+
+.year {
+  color: var(--accent-text);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.timeline p {
+  color: var(--fg-2);
+}
+
+@media (min-width: 40rem) {
+  .timeline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .timeline {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Zakres działalności ---------- */
+
+.split {
+  display: grid;
+  gap: var(--space-7);
+  align-items: center;
+}
+
+.photo {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.photo img {
+  object-fit: cover;
+  object-position: 50% 60%;
+}
+
+.splitText {
+  display: grid;
+  gap: var(--space-5);
+  align-content: start;
+}
+
+.clients {
+  list-style: none;
+  display: grid;
+  gap: var(--space-3) var(--space-5);
+}
+
+.clients li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.clients svg {
+  flex-shrink: 0;
+  color: var(--accent-text);
+}
+
+@media (min-width: 40rem) {
+  .clients {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(3rem, 6vw, 6rem);
+  }
+}
+
+/* ---------- Standardy ---------- */
+
+.principles {
+  display: grid;
+  gap: var(--space-6) clamp(2rem, 4vw, 4rem);
+}
+
+.principles article {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line-strong);
+}
+
+.principles p {
+  max-width: 60ch;
+  color: var(--fg-2);
+}
+
+@media (min-width: 48rem) {
+  .principles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

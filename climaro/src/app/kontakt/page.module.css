@@ -1,0 +1,120 @@
+.grid {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.aside {
+  align-self: start;
+  padding: var(--space-6);
+  border-radius: 4px;
+  background: var(--c-graphite);
+  color: var(--c-white);
+
+  --fg: var(--c-white);
+  --muted: var(--c-steel);
+  --line: #2c3034;
+  --focus: var(--c-orange);
+}
+
+.asideTitle {
+  font-size: 1.5rem;
+}
+
+.asideTitleSecond {
+  margin-top: var(--space-7);
+}
+
+/* Kolejne kroki po wysłaniu zapytania – to sekwencja, więc numeracja niesie informację. */
+.next {
+  list-style: none;
+  display: grid;
+  margin-top: var(--space-5);
+  border-top: 1px solid var(--line);
+}
+
+.next li {
+  display: grid;
+  grid-template-columns: 1.75rem minmax(0, 1fr);
+  gap: var(--space-3);
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--line);
+}
+
+.next span {
+  color: var(--c-orange);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.next p {
+  color: #d5d8da;
+  line-height: 1.5;
+}
+
+.details {
+  display: grid;
+  margin: var(--space-5) 0 0;
+}
+
+.details div {
+  display: grid;
+  gap: 0.3rem;
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--line);
+}
+
+.details div:first-child {
+  border-top: 1px solid var(--line);
+}
+
+.details dt {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.details dt svg {
+  color: var(--c-orange);
+}
+
+.details dd {
+  margin: 0;
+  font-size: 1.0625rem;
+}
+
+.big {
+  display: inline-block;
+  padding-block: 0.2rem;
+  font-size: var(--step-1);
+  font-weight: 600;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .big:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--c-orange);
+  }
+}
+
+.demo {
+  margin-top: var(--space-5);
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+@media (min-width: 64rem) {
+  .grid {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+    gap: clamp(3rem, 6vw, 6rem);
+  }
+
+  .aside {
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+  }
+}

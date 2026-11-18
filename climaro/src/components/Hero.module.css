@@ -1,0 +1,398 @@
+/* Hero z oznaczeniami: zdjęcie budynku, na którym cienkie linie wskazują instalacje,
+   jak opisy na rysunku technicznym. Na wąskich ekranach oznaczenia stają się listą cen. */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: calc(100svh - var(--header-h));
+  display: flex;
+  align-items: flex-end;
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 45%;
+  filter: saturate(0.82) brightness(0.92);
+}
+
+@media (min-width: 48rem) {
+  .photo {
+    object-position: 62% 30%;
+  }
+}
+
+/* Przyciemnienie pod tekstem – funkcjonalne, nie ozdobne: zapewnia kontrast. */
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgb(8 9 9 / 0.15) 0%, rgb(8 9 9 / 0.55) 38%, rgb(8 9 9 / 0.9) 62%, rgb(8 9 9 / 0.97) 100%);
+}
+
+.content {
+  padding-top: 42svh;
+  padding-bottom: clamp(2rem, 1rem + 4vw, 4.5rem);
+}
+
+/* Telefony: zdjęcie jako pas u góry (cała pompa ciepła widoczna), tekst niżej na czarnym tle. */
+@media (max-width: 47.99rem) {
+  .hero {
+    display: block;
+    min-height: 0;
+  }
+
+  .photo {
+    height: 56svh;
+    object-position: 50% 30%;
+  }
+
+  .scrim {
+    background: linear-gradient(180deg, rgb(8 9 9 / 0) 0%, rgb(8 9 9 / 0) 34svh, rgb(8 9 9 / 0.85) 50svh, var(--c-black) 56svh);
+  }
+
+  .content {
+    padding-top: calc(56svh - 4.5rem);
+  }
+}
+
+.title {
+  font-size: clamp(2.125rem, 1rem + 3.9vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  font-variation-settings: "wdth" var(--wdth-display);
+}
+
+/* Każdy wiersz nagłówka ma szerokość swojego tekstu – nie zachodzi „pudełkiem” na etykiety obok. */
+.title > span {
+  display: block;
+  width: fit-content;
+}
+
+.subtitle {
+  max-width: 44ch;
+  margin-top: var(--space-5);
+  color: #d5d8da;
+  font-size: var(--step-1);
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+/* ---------- Oznaczenia: poza trybem zdjęcia ukryte ----------
+   Na węższych i niższych ekranach lista cen pojawia się zaraz pod hero (indeks usług),
+   więc hero jej nie powtarza – zostaje nagłówek, przyciski i informacja o cenach. */
+
+.annotations {
+  display: none;
+  list-style: none;
+  margin-top: var(--space-7);
+  border-top: 1px solid var(--line-strong);
+}
+
+.annotation {
+  border-bottom: 1px solid var(--line);
+}
+
+.marker,
+.leader {
+  display: none;
+}
+
+.label {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: var(--space-4);
+  min-height: 3.5rem;
+  padding-block: 0.7rem;
+  text-decoration: none;
+}
+
+.labelName {
+  font-weight: 600;
+}
+
+.labelPrice {
+  grid-row: 2;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.labelIcon {
+  grid-row: 1 / span 2;
+  grid-column: 2;
+  color: var(--c-orange);
+}
+
+.foot {
+  margin-top: var(--space-4);
+}
+
+.priceNote {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* Legenda oznaczeń (tylko gdy oznaczenia leżą na zdjęciu). */
+.key {
+  display: none;
+}
+
+/* ---------- Oznaczenia na zdjęciu (szerokie i dość wysokie ekrany) ----------
+   Na niskich laptopach (np. 1280 × 720) nagłówek sięgałby etykiet – wtedy zostaje tryb listy. */
+
+@media (min-width: 75rem) and (min-height: 46rem) {
+  .hero {
+    /* Kontener rozmiaru: punkty liczone w jednostkach cqw/cqh tak samo jak kadr object-fit: cover. */
+    container-type: size;
+    height: clamp(40rem, calc(100svh - var(--header-h)), 62rem);
+    min-height: 0;
+
+    --fx: 0.62;
+    --fy: 0.3;
+    --stage-w: max(100cqw, 150cqh);
+    --stage-h: max(66.667cqw, 100cqh);
+  }
+
+  .scrim {
+    background:
+      linear-gradient(90deg, rgb(8 9 9 / 0.9) 0%, rgb(8 9 9 / 0.78) 28%, rgb(8 9 9 / 0.25) 55%, rgb(8 9 9 / 0.05) 80%),
+      linear-gradient(0deg, rgb(8 9 9 / 0.55) 0%, rgb(8 9 9 / 0) 40%);
+  }
+
+  .content {
+    padding-top: 0;
+    padding-bottom: clamp(3rem, 7cqh, 5.5rem);
+  }
+
+  .annotations {
+    display: block;
+    margin: 0;
+    border: 0;
+  }
+
+  .foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-6);
+    margin-top: var(--space-5);
+  }
+
+  /* Legenda na ciemnym podkładzie – czytelna niezależnie od jasności zdjęcia pod spodem. */
+  .key {
+    display: flex;
+    gap: var(--space-3);
+    color: #d5d8da;
+    font-size: 0.875rem;
+  }
+
+  .keyVisible,
+  .keyInside {
+    padding: 0.3rem 0.65rem;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    background: rgb(8 9 9 / 0.85);
+  }
+
+  .keyVisible,
+  .keyInside {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .keyVisible::before,
+  .keyInside::before {
+    content: "";
+    width: 0.625rem;
+    height: 0.625rem;
+    border: 2px solid var(--c-white);
+    border-radius: 50%;
+    background: var(--c-orange);
+  }
+
+  .keyInside::before {
+    border-color: var(--c-orange);
+    background: transparent;
+  }
+
+  .annotation {
+    position: absolute;
+    left: calc((100cqw - var(--stage-w)) * var(--fx) + var(--x) * var(--stage-w));
+    top: calc((100cqh - var(--stage-h)) * var(--fy) + var(--y) * var(--stage-h));
+    display: flex;
+    align-items: center;
+    border: 0;
+  }
+
+  .marker {
+    display: block;
+    flex-shrink: 0;
+    width: 0.875rem;
+    height: 0.875rem;
+    margin-left: -0.4375rem;
+    border: 2px solid var(--c-white);
+    border-radius: 50%;
+    background: var(--c-orange);
+  }
+
+  .leader {
+    display: block;
+    width: 2.75rem;
+    height: 1px;
+    background: var(--c-white);
+    transform-origin: left center;
+  }
+
+  /* Instalacja wewnątrz budynku: pusty znacznik i linia przerywana, jak element niewidoczny na rysunku. */
+  .annotation[data-kind="inside"] .marker {
+    border-color: var(--c-orange);
+    background: rgb(8 9 9 / 0.6);
+  }
+
+  .annotation[data-kind="inside"] .leader {
+    height: 0;
+    border-top: 1px dashed var(--c-white);
+    background: none;
+  }
+
+  .label {
+    grid-template-columns: auto auto;
+    min-height: 0;
+    padding: 0.55rem 0.8rem 0.6rem;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    background: rgb(8 9 9 / 0.88);
+    white-space: nowrap;
+    transition:
+      border-color 200ms ease,
+      transform 160ms var(--ease-out);
+  }
+
+  .label:active {
+    transform: scale(0.97);
+  }
+
+  .labelPrice {
+    font-size: 0.875rem;
+  }
+
+  .labelIcon {
+    margin-left: 0.15rem;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .label:hover {
+      border-color: var(--c-orange);
+    }
+  }
+}
+
+/* ---------- Jedyny zaplanowany moment ruchu: wejście hero ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .title > span,
+  .subtitle,
+  .actions,
+  .foot {
+    animation: rise 900ms var(--ease-out) both;
+  }
+
+  .foot {
+    animation-delay: 420ms;
+  }
+
+  .title > span:nth-child(1) {
+    animation-delay: 60ms;
+  }
+
+  .title > span:nth-child(2) {
+    animation-delay: 130ms;
+  }
+
+  .title > span:nth-child(3) {
+    animation-delay: 190ms;
+  }
+
+  .subtitle {
+    animation-delay: 280ms;
+  }
+
+  .actions {
+    animation-delay: 340ms;
+  }
+
+  @media (min-width: 75rem) and (min-height: 46rem) {
+    .marker {
+      animation: pop 420ms var(--ease-out) both;
+      animation-delay: calc(620ms + var(--i) * 110ms);
+    }
+
+    .leader {
+      animation: draw 480ms var(--ease-in-out) both;
+      animation-delay: calc(700ms + var(--i) * 110ms);
+    }
+
+    .label {
+      animation: settle 520ms var(--ease-out) both;
+      animation-delay: calc(900ms + var(--i) * 110ms);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title,
+  .subtitle,
+  .actions,
+  .annotations,
+  .foot {
+    animation: fade 300ms ease both;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.45em);
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+
+@keyframes draw {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateX(-0.5rem);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}

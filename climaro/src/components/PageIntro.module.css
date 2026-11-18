@@ -1,0 +1,34 @@
+.intro {
+  padding-block: clamp(2.5rem, 1.8rem + 3vw, 4.5rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.text {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+
+.photo {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.photo img {
+  object-fit: cover;
+}
+
+@media (min-width: 64rem) {
+  .grid[data-photo] {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(3rem, 6vw, 6rem);
+  }
+}

@@ -1,0 +1,438 @@
+/* CLIMARO – tokeny i style bazowe.
+   Paleta z briefu: głęboka czerń, grafit, stalowa szarość, biel, pomarańczowy akcent. */
+
+:root {
+  --c-black: #080909;
+  --c-graphite: #111315;
+  --c-graphite-2: #1a1d20;
+  --c-steel: #92989d;
+  --c-steel-dark: #4a5056;
+  --c-white: #f5f5f5;
+  --c-paper: #ebeced;
+  --c-orange: #ff7900;
+  --c-orange-hover: #ff8f2e;
+  --c-error-dark: #ff9b8f;
+  --c-error-light: #b3261e;
+
+  --font-sans: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
+
+  /* Szerokość kroju Archivo (oś wdth). */
+  --wdth-display: 125;
+  --wdth-heading: 112;
+
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: clamp(1.5rem, 1.2rem + 1vw, 1.875rem);
+  --step-3: clamp(1.875rem, 1.3rem + 2.2vw, 2.875rem);
+  --step-4: clamp(2.5rem, 1.4rem + 4.6vw, 5.5rem);
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-section: clamp(4rem, 2.5rem + 6vw, 7.5rem);
+
+  --container: 80rem;
+  --gutter: clamp(1rem, 0.4rem + 2.6vw, 2.5rem);
+  --header-h: 4.5rem;
+
+  --radius: 2px;
+
+  /* Krzywe ruchu (wg zasad Emila Kowalskiego). */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  color-scheme: dark;
+  scrollbar-color: #3a3f43 var(--c-black);
+}
+
+/* Motywy sekcji: ciemne do prezentacji, jasne do czytania cen i formularzy. */
+.theme-dark,
+:root {
+  --bg: var(--c-black);
+  --surface: var(--c-graphite);
+  --fg: var(--c-white);
+  --muted: var(--c-steel);
+  --line: #2a2e31;
+  --line-strong: #3a3f43;
+  --focus: var(--c-orange);
+  --error: var(--c-error-dark);
+  --accent-text: var(--c-orange);
+  /* Tekst drugiego planu (opisy, akapity) – jaśniejszy niż stalowa szarość, czytelny w dłuższych blokach. */
+  --fg-2: #c9cdd0;
+}
+
+.theme-graphite {
+  --bg: var(--c-graphite);
+  --surface: var(--c-graphite-2);
+  --fg: var(--c-white);
+  --muted: var(--c-steel);
+  --line: #2c3034;
+  --line-strong: #40464b;
+  --focus: var(--c-orange);
+  --error: var(--c-error-dark);
+  --accent-text: var(--c-orange);
+  --fg-2: #c9cdd0;
+}
+
+/* Biel – główne tło sekcji treści (jak na stronach dużych marek); karty na nim mają tło #F5F5F5 lub białe z obrysem. */
+.theme-white {
+  --bg: #ffffff;
+  --surface: var(--c-white);
+  --fg: var(--c-graphite);
+  --muted: var(--c-steel-dark);
+  --fg-2: #3b4146;
+  --line: #dfe2e4;
+  --line-strong: #c4c8cb;
+  --focus: var(--c-graphite);
+  --error: var(--c-error-light);
+  --accent-text: #a34700;
+  color-scheme: light;
+}
+
+.theme-light {
+  --bg: var(--c-white);
+  --surface: #ffffff;
+  --fg: var(--c-graphite);
+  --muted: var(--c-steel-dark);
+  --line: #d6d9db;
+  --line-strong: #b9bdc0;
+  --focus: var(--c-graphite);
+  --error: var(--c-error-light);
+  /* Pomarańcz na jasnym tle nie spełnia kontrastu – tekst akcentu przyciemniony (5,2–5,6:1). */
+  --accent-text: #a34700;
+  --fg-2: #3b4146;
+  color-scheme: light;
+}
+
+/* Jasny, chłodny szary – drugi ton do czytania, by jasne sekcje nie zlewały się ze sobą. */
+.theme-paper {
+  --bg: var(--c-paper);
+  --surface: #f7f7f7;
+  --fg: var(--c-graphite);
+  --muted: var(--c-steel-dark);
+  --line: #cfd2d4;
+  --line-strong: #b4b8bb;
+  --focus: var(--c-graphite);
+  --error: var(--c-error-light);
+  /* Pomarańcz na jasnym tle nie spełnia kontrastu – tekst akcentu przyciemniony (5,2–5,6:1). */
+  --accent-text: #a34700;
+  --fg-2: #3b4146;
+  color-scheme: light;
+}
+
+.theme-dark,
+.theme-graphite,
+.theme-white,
+.theme-light,
+.theme-paper {
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Otwarte menu mobilne blokuje przewijanie strony pod spodem. */
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--c-black);
+  color: var(--c-white);
+  font-family: var(--font-sans);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  font-variation-settings: "wdth" 100;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  caret-color: var(--c-orange);
+}
+
+::selection {
+  background: var(--c-orange);
+  color: var(--c-black);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.15;
+  text-wrap: balance;
+  /* Zwykła szerokość kroju; Expanded tylko tam, gdzie ustawiono go jawnie (hero). */
+  font-variation-settings: "wdth" 100;
+}
+
+p,
+li,
+dd {
+  text-wrap: pretty;
+}
+
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+main:focus {
+  outline: none;
+}
+
+/* Liczby w cenach i danych – stała szerokość cyfr. */
+.num {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--space-section);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Link „Przejdź do treści”: ukryty przez przycięcie, widoczny tylko z fokusem klawiatury. */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--c-orange);
+  color: var(--c-black);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip-link:not(:focus-visible) {
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link:focus-visible {
+  outline-color: var(--c-white);
+}
+
+/* ---------- Przyciski ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3rem;
+  padding: 0.75rem 1.4rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    transform 160ms var(--ease-out),
+    background-color 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--c-orange);
+  color: var(--c-black);
+}
+
+.btn-secondary {
+  border-color: var(--line-strong);
+  background: transparent;
+  color: var(--fg);
+}
+
+.btn-small {
+  min-height: 2.75rem;
+  padding: 0.55rem 1rem;
+  font-size: 0.9375rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover {
+    background: var(--c-orange-hover);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--fg);
+  }
+}
+
+/* Link tekstowy z akcentem w podkreśleniu (tekst zachowuje kontrast). */
+.text-link {
+  font-weight: 600;
+  text-decoration-line: underline;
+  text-decoration-color: var(--c-orange);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+  transition: text-decoration-color 200ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .text-link:hover {
+    text-decoration-color: currentColor;
+  }
+}
+
+/* Nagłówki poniżej hero: zwykła szerokość kroju, umiarkowany rozmiar – standard stron korporacyjnych.
+   Krój rozszerzony (Expanded) zostaje wyłącznie w nagłówku hero. */
+.h-page {
+  max-width: 24ch;
+  font-size: clamp(2rem, 1.45rem + 2.2vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-variation-settings: "wdth" 100;
+}
+
+.h-section {
+  max-width: 28ch;
+  font-size: clamp(1.75rem, 1.35rem + 1.5vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  font-variation-settings: "wdth" 100;
+}
+
+.h-card {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.25;
+  font-variation-settings: "wdth" 100;
+}
+
+.section-title {
+  font-size: var(--step-3);
+  max-width: 22ch;
+}
+
+.lead {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--fg-2);
+  max-width: 62ch;
+}
+
+/* Nagłówek sekcji: tytuł i krótkie wprowadzenie. */
+.section-head {
+  display: grid;
+  gap: var(--space-4);
+  margin-bottom: var(--space-7);
+}
+
+.prose {
+  max-width: 66ch;
+  color: var(--fg-2);
+}
+
+.prose p + p {
+  margin-top: 1em;
+}
+
+/* Strona 404 */
+.not-found {
+  min-height: 60svh;
+}
+
+.not-found-title {
+  max-width: 20ch;
+  margin-bottom: var(--space-5);
+  font-size: clamp(2.25rem, 1.4rem + 3.6vw, 4.25rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-variation-settings: "wdth" var(--wdth-display);
+}
+
+.not-found-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
