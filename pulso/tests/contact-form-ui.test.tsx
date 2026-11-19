@@ -24,6 +24,7 @@ import { setIntent } from "@/lib/contact-intent";
 beforeEach(() => {
   cfg.endpoint = null;
   Element.prototype.scrollIntoView = vi.fn();
+  window.scrollTo = vi.fn() as unknown as typeof window.scrollTo;
 });
 afterEach(() => {
   cleanup();

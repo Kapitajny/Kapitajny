@@ -1,9 +1,7 @@
-"use client";
-
 import type { ReactNode } from "react";
 import type { PackageId } from "@/config/pricing";
 import type { ServiceId } from "@/data/services";
-import { CONTACT_ID, contactClickHandler } from "@/lib/contact-intent";
+import { CONTACT_ID } from "@/lib/contact-intent";
 
 type Props = {
   children: ReactNode;
@@ -12,21 +10,24 @@ type Props = {
   package?: PackageId;
   /** Dodatkowy opis dla czytników ekranu, gdy tekst przycisku jest krótki. */
   ariaLabel?: string;
+  /** Dodatkowa akcja przy kliknięciu (np. zamknięcie menu mobilnego). Nawigację obsługuje installPageNavigation(). */
   onNavigate?: () => void;
 };
 
-/** Każdy przycisk kontaktowy na stronie: jedna funkcja nawigacji, jeden formularz (#kontakt). */
+/**
+ * Każdy przycisk kontaktowy na stronie: jeden formularz (#kontakt), jedna funkcja nawigacji
+ * (`installPageNavigation` w `src/lib/contact-intent.ts`). Wybór usług i pakietu jedzie w atrybutach data-*.
+ */
 export function ContactLink({ children, className = "btn btn-primary", services, package: pkg, ariaLabel, onNavigate }: Props) {
-  const handler = contactClickHandler(services || pkg ? { services, package: pkg } : undefined);
   return (
     <a
       href={`#${CONTACT_ID}`}
       className={className}
       aria-label={ariaLabel}
-      onClick={(e) => {
-        onNavigate?.();
-        handler(e);
-      }}
+      data-contact=""
+      data-services={services?.length ? services.join(",") : undefined}
+      data-package={pkg}
+      onClick={onNavigate}
     >
       {children}
     </a>

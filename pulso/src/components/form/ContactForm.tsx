@@ -22,7 +22,7 @@ import {
   type ServiceChoice,
   type StepId,
 } from "@/lib/contact-form";
-import { CONTACT_FORM_ID, getIntent, subscribeIntent, type ContactIntent } from "@/lib/contact-intent";
+import { CONTACT_FORM_ID, getIntent, scrollToElement, subscribeIntent, type ContactIntent } from "@/lib/contact-intent";
 import { channelStyle } from "@/lib/channels";
 import { PlatformIcon } from "@/components/ui/PlatformIcon";
 import { Arrow } from "@/components/ui/ContactLink";
@@ -74,7 +74,7 @@ export function ContactForm() {
     moved.current = false;
     headingRef.current?.focus({ preventScroll: true });
     const top = formRef.current?.getBoundingClientRect().top ?? 0;
-    if (top < 0) formRef.current?.scrollIntoView({ block: "start", behavior: "smooth" });
+    if (top < 0 && formRef.current) scrollToElement(formRef.current);
   }, [step]);
 
   const update = <K extends FieldName>(key: K, value: ContactFormData[K]) => {

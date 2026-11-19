@@ -82,6 +82,11 @@
     border-radius: 4px;
   }
 
+  /* Cele nawigacji w obrębie strony dostają fokus programowo (tabindex="-1"): bez obramowania. */
+  [tabindex="-1"]:focus {
+    outline: none;
+  }
+
   .on-ink :focus-visible {
     outline-color: var(--color-paper);
   }

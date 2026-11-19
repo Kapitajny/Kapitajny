@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { processSteps } from "@/data/content";
+import { scrollToElement } from "@/lib/contact-intent";
 
 const WEEKS = 9;
 
@@ -32,7 +33,7 @@ export function Process() {
     const target = id ? document.getElementById(id) : null;
     const section = wrap.current;
     if (target && section && section.compareDocumentPosition(target) & Node.DOCUMENT_POSITION_FOLLOWING) {
-      target.scrollIntoView();
+      scrollToElement(target, "auto");
     }
   }, [pinned]);
 

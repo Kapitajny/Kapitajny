@@ -14,6 +14,7 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { Pricing } from "@/components/sections/Pricing";
 import { Faq } from "@/components/sections/Faq";
 import { Contact } from "@/components/sections/Contact";
+import { PageNavigation } from "@/components/ui/PageNavigation";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -60,6 +61,7 @@ export default function Home() {
         <Contact />
       </main>
       <SiteFooter />
+      <PageNavigation />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
     </>
   );
