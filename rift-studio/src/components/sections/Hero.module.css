@@ -45,6 +45,8 @@
 
 .inner {
   display: grid;
+  /* fala ma 100vw – nie może rozpychać kolumny z tekstem */
+  grid-template-columns: minmax(0, 1fr);
   align-content: end;
   gap: var(--s-7);
 }

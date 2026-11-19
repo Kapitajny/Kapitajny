@@ -12,6 +12,11 @@ import type { Booking } from "./store/types";
 
 /** Logika rezerwacji: jedyne miejsce, które łączy reguły terminów, bazę i powiadomienia. */
 
+/** Powiadomienia nigdy nie unieważniają zapisanej już zmiany – błąd wysyłki tylko logujemy. */
+async function settle(tasks: Promise<unknown>[]) {
+  for (const r of await Promise.allSettled(tasks)) if (r.status === "rejected") console.error("[notify]", r.reason);
+}
+
 export async function getAvailability(service: ServiceId, durationMin: number, from: string, days: number, opts: { excludeBookingId?: string; now?: Date } = {}): Promise<Day[]> {
   const now = opts.now ?? new Date();
   const today = utcToZoned(now).date;
@@ -58,7 +63,7 @@ export async function createBooking(input: BookingInput, now = new Date()): Prom
   });
   if (!result.ok) return { ok: false, reason: "slot_unavailable" };
 
-  await Promise.all([notifyClient("created", result.value, token), notifyStudio("created", result.value)]);
+  await settle([notifyClient("created", result.value, token), notifyStudio("created", result.value)]);
   return { ok: true, booking: result.value, manageToken: token };
 }
 
@@ -79,7 +84,7 @@ export async function cancelByToken(token: string, now = new Date()): Promise<Ma
   if (!canSelfManage(booking, now)) return { ok: false, reason: "too_late" };
   const result = await getStore().setStatus(booking.id, "cancelled", CLIENT_CANCEL_REASON);
   if (!result.ok) return { ok: false, reason: "not_found" };
-  await Promise.all([notifyClient("cancelled", result.value), notifyStudio("cancelled_by_client", result.value)]);
+  await settle([notifyClient("cancelled", result.value), notifyStudio("cancelled_by_client", result.value)]);
   return { ok: true, booking: result.value };
 }
 
@@ -95,7 +100,7 @@ export async function rescheduleByToken(token: string, date: string, time: strin
 
   const result = await store.reschedule(booking.id, new Date(interval.start).toISOString(), new Date(interval.end).toISOString());
   if (!result.ok) return { ok: false, reason: result.reason === "conflict" ? "slot_unavailable" : "not_found" };
-  await Promise.all([notifyClient("rescheduled", result.value, token), notifyStudio("rescheduled_by_client", result.value)]);
+  await settle([notifyClient("rescheduled", result.value, token), notifyStudio("rescheduled_by_client", result.value)]);
   return { ok: true, booking: result.value };
 }
 
@@ -104,6 +109,6 @@ export async function rescheduleByToken(token: string, date: string, time: strin
 export async function adminSetStatus(id: string, action: "confirm" | "cancel", reason = "") {
   const store = getStore();
   const result = await store.setStatus(id, action === "confirm" ? "confirmed" : "cancelled", reason.slice(0, 300));
-  if (result.ok) await notifyClient(action === "confirm" ? "confirmed" : "cancelled", result.value);
+  if (result.ok) await settle([notifyClient(action === "confirm" ? "confirmed" : "cancelled", result.value)]);
   return result;
 }

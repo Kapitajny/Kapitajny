@@ -17,7 +17,12 @@ export interface Mail {
 export async function sendMail(mail: Mail): Promise<boolean> {
   const key = env.resendKey();
   if (!key) {
-    console.info(`[mail:dev] → ${mail.to}\n  Temat: ${mail.subject}\n${mail.text.replace(/^/gm, "  ")}`);
+    if (process.env.NODE_ENV === "production") {
+      // W produkcji nie logujemy treści: zawiera dane osobowe i link do zarządzania rezerwacją (token).
+      console.warn("[mail] RESEND_API_KEY nie jest ustawiony – wiadomość nie została wysłana.");
+    } else {
+      console.info(`[mail:dev] → ${mail.to}\n  Temat: ${mail.subject}\n${mail.text.replace(/^/gm, "  ")}`);
+    }
     return false;
   }
   try {

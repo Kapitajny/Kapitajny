@@ -15,8 +15,6 @@ export interface Service {
   hourlyRate: number;
   /** ★ Cena bloku 4 h (jeśli usługa ma pakiet) – wartość demonstracyjna. */
   blockRate4h?: number;
-  image: string;
-  imageAlt: Localized;
   /** Parametry techniczne pokazywane w module usługi. */
   params: { label: Localized; value: Localized }[];
   scope: Localized<string[]>;
@@ -32,11 +30,6 @@ export const services: Service[] = [
     defaultDuration: 120,
     hourlyRate: 120,
     blockRate4h: 420,
-    image: "/images/service-vocal.jpg",
-    imageAlt: {
-      pl: "Mikrofon pojemnościowy z filtrem pop w kabinie wokalnej wyłożonej pianką akustyczną",
-      en: "Condenser microphone with a pop filter in a vocal booth lined with acoustic foam",
-    },
     params: [
       { label: { pl: "Format", en: "Format" }, value: { pl: "WAV 24 bit / 48 kHz", en: "WAV 24-bit / 48 kHz" } },
       { label: { pl: "Kabina", en: "Booth" }, value: { pl: "wygłuszona, z odsłuchem", en: "treated, with monitoring" } },
@@ -61,11 +54,6 @@ export const services: Service[] = [
     durations: [120, 180, 240],
     defaultDuration: 180,
     hourlyRate: 150,
-    image: "/images/service-production.jpg",
-    imageAlt: {
-      pl: "Klawiatura sterująca z podświetlonymi przyciskami w studiu produkcyjnym",
-      en: "Controller keyboard with lit buttons in a production room",
-    },
     params: [
       { label: { pl: "Tempo", en: "Tempo" }, value: { pl: "60–180 BPM", en: "60–180 BPM" } },
       { label: { pl: "Pliki", en: "Files" }, value: { pl: "ślady + wersja instrumentalna", en: "stems + instrumental" } },
@@ -90,11 +78,6 @@ export const services: Service[] = [
     durations: [60, 120, 240],
     defaultDuration: 120,
     hourlyRate: 120,
-    image: "/images/service-mix.jpg",
-    imageAlt: {
-      pl: "Realizator przy konsolecie mikserskiej z podświetlonymi tłumikami",
-      en: "Engineer at a mixing console with lit faders",
-    },
     params: [
       { label: { pl: "Głośność", en: "Loudness" }, value: { pl: "pod streaming, ok. −14 LUFS", en: "streaming-ready, about −14 LUFS" } },
       { label: { pl: "Poprawki", en: "Revisions" }, value: { pl: "2 rundy w cenie", en: "2 rounds included" } },
@@ -119,11 +102,6 @@ export const services: Service[] = [
     durations: [60, 120, 180],
     defaultDuration: 60,
     hourlyRate: 140,
-    image: "/images/service-podcast.jpg",
-    imageAlt: {
-      pl: "Mikrofon studyjny z filtrem pop w ciepłym świetle",
-      en: "Studio microphone with a pop filter in warm light",
-    },
     params: [
       { label: { pl: "Mikrofony", en: "Microphones" }, value: { pl: "do 3 osób jednocześnie", en: "up to 3 people at once" } },
       { label: { pl: "Plik", en: "File" }, value: { pl: "WAV + MP3 −16 LUFS", en: "WAV + MP3 −16 LUFS" } },

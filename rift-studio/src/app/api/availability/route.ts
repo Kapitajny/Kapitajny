@@ -20,11 +20,9 @@ export async function GET(req: Request) {
   if (!isDateString(from)) return json({ error: "invalid_from" }, 400);
   const days = Math.min(Math.max(Number(q.get("days") ?? 35) || 35, 1), BOOKING_RULES.horizonDays + 1);
 
-  let excludeBookingId: string | undefined;
   const token = req.headers.get("x-manage-token");
-  if (token) excludeBookingId = (await findByToken(token))?.id;
-
   try {
+    const excludeBookingId = token ? (await findByToken(token))?.id : undefined;
     const result = await getAvailability(service, duration, from, days, { excludeBookingId });
     return json({ timeZone: BOOKING_RULES.timeZone, days: result });
   } catch (error) {
