@@ -1,0 +1,340 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  transition:
+    background-color var(--t-ui) var(--ease),
+    border-color var(--t-ui) var(--ease);
+  border-bottom: 1px solid transparent;
+}
+
+.scrolled {
+  background: rgb(3 4 7 / 0.82);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  border-bottom-color: var(--line);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: var(--s-5);
+  height: var(--header-h);
+  max-width: calc(var(--max) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.home {
+  display: inline-flex;
+  padding: var(--s-2) 0;
+  text-decoration: none;
+  flex: none;
+}
+
+.nav {
+  display: none;
+  margin-left: auto;
+}
+
+.links {
+  display: flex;
+  gap: 2px;
+}
+
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 40px;
+  padding: 0 11px;
+  border-radius: var(--r-sm);
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  font-stretch: 108%;
+  text-decoration: none;
+  transition:
+    color var(--t-micro) var(--ease),
+    background-color var(--t-micro) var(--ease);
+}
+.link:hover {
+  color: var(--text);
+  background: rgb(255 255 255 / 0.04);
+}
+
+/* dioda kanału – świeci przy aktywnej sekcji */
+.led {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--signal);
+  opacity: 0;
+  transition:
+    background-color var(--t-ui) var(--ease),
+    box-shadow var(--t-ui) var(--ease);
+}
+.link[aria-current] {
+  color: var(--text);
+}
+.link[aria-current] .led {
+  opacity: 1;
+  box-shadow: 0 0 8px var(--signal);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-left: auto;
+}
+
+.lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  color: var(--muted);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+}
+.lang:hover {
+  border-color: var(--line-strong);
+  color: var(--text-2);
+}
+.langOn {
+  color: var(--signal);
+}
+.langSep {
+  opacity: 0.4;
+}
+
+.book {
+  flex: none;
+}
+.bookShort {
+  display: none;
+}
+
+.menuBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  height: 40px;
+  padding: 0 var(--s-3);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  background: transparent;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+@media (max-width: 520px) {
+  .bookLong {
+    display: none;
+  }
+  .bookShort {
+    display: inline;
+  }
+  .lang {
+    display: none;
+  }
+  .menuBtn span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  .actions {
+    gap: var(--s-2);
+  }
+}
+
+@media (min-width: 1180px) {
+  .nav {
+    display: block;
+  }
+  .actions {
+    margin-left: 0;
+  }
+  .menuBtn {
+    display: none;
+  }
+}
+
+/* ─────────── oś czasu strony ─────────── */
+.timeline {
+  --p: 0;
+  position: relative;
+  height: 2px;
+  background: var(--line);
+}
+
+.progress {
+  position: absolute;
+  inset: 0;
+  transform-origin: 0 50%;
+  transform: scaleX(var(--p));
+  background: linear-gradient(90deg, var(--signal), var(--ultra));
+}
+
+/* głowica odtwarzania */
+.head {
+  position: absolute;
+  top: -3px;
+  left: calc(var(--p) * 100%);
+  width: 2px;
+  height: 8px;
+  margin-left: -1px;
+  background: var(--text);
+  box-shadow: 0 0 8px var(--signal);
+}
+
+/* obszar kliknięcia 24 × 18 px, widoczny tylko cienki znacznik */
+.marker {
+  position: absolute;
+  top: -8px;
+  width: 24px;
+  height: 18px;
+  margin-left: -12px;
+  display: flex;
+  justify-content: center;
+}
+.marker::before {
+  content: "";
+  margin-top: 4px;
+  width: 1px;
+  height: 10px;
+  background: var(--graphite-3);
+}
+.marker[data-active]::before {
+  background: var(--signal);
+}
+
+.markerLabel {
+  position: absolute;
+  top: 18px;
+  padding: 3px 7px;
+  border-radius: var(--r-sm);
+  background: var(--graphite);
+  border: 1px solid var(--line);
+  color: var(--text-2);
+  font-size: 11px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t-micro) var(--ease);
+}
+.marker:hover .markerLabel {
+  opacity: 1;
+}
+
+@media (max-width: 1179px) {
+  .marker {
+    display: none;
+  }
+}
+
+/* ─────────── menu mobilne ─────────── */
+.sheet {
+  width: 100%;
+  max-width: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--void);
+  color: var(--text);
+}
+.sheet::backdrop {
+  background: rgb(0 0 0 / 0.6);
+}
+.sheet[open] {
+  animation: sheet-in var(--t-ui) var(--ease);
+}
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.sheetInner {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 0 var(--gutter) var(--s-6);
+}
+
+.sheetTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h);
+  border-bottom: 1px solid var(--line);
+}
+
+.close {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  background: transparent;
+}
+
+.sheetList {
+  display: grid;
+  margin-top: var(--s-5);
+  border-left: 1px solid var(--line-strong);
+}
+
+.sheetList a {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  min-height: 52px;
+  padding-left: var(--s-5);
+  font-size: var(--fs-xl);
+  font-weight: 650;
+  font-stretch: 118%;
+  text-decoration: none;
+  color: var(--text-2);
+}
+.sheetList a[aria-current] {
+  color: var(--text);
+}
+
+.sheetTick {
+  width: 12px;
+  height: 1px;
+  margin-left: calc(-1 * var(--s-5));
+  background: var(--graphite-3);
+}
+.sheetList a[aria-current] .sheetTick {
+  height: 2px;
+  background: var(--signal);
+  box-shadow: 0 0 10px var(--signal);
+}
+
+.sheetFoot {
+  display: grid;
+  gap: var(--s-4);
+  margin-top: auto;
+  padding-top: var(--s-6);
+}
+
+.sheetLang {
+  justify-self: start;
+  padding: var(--s-2) 0;
+  color: var(--text-2);
+}

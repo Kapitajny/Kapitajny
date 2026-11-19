@@ -1,0 +1,366 @@
+/* SEKCJA 5 – DIGITAL SHOWCASE */
+.section {
+  background:
+    radial-gradient(70% 50% at 85% 10%, rgb(138 99 255 / 0.1), transparent 70%),
+    radial-gradient(60% 40% at 10% 80%, rgb(59 232 255 / 0.06), transparent 70%),
+    var(--void);
+}
+
+.notice {
+  margin-bottom: var(--s-5);
+  max-width: 56em;
+}
+
+/* ─────────── odtwarzacz ─────────── */
+.player {
+  display: grid;
+  gap: var(--s-4);
+  padding: clamp(var(--s-4), 3vw, var(--s-6));
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-lg);
+  background: linear-gradient(180deg, rgb(20 23 28 / 0.9), rgb(10 12 16 / 0.95));
+  box-shadow: 0 30px 80px rgb(0 0 0 / 0.45);
+}
+
+.deck {
+  display: grid;
+  gap: var(--s-5);
+}
+
+.coverLarge {
+  width: min(100%, 240px);
+  aspect-ratio: 1;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgb(0 0 0 / 0.5);
+}
+.coverLarge svg {
+  width: 100%;
+  height: 100%;
+}
+
+.info {
+  display: grid;
+  gap: var(--s-4);
+  align-content: center;
+  min-width: 0;
+}
+
+.now {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--muted);
+  font-size: var(--fs-sm);
+}
+
+.led {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--graphite-3);
+}
+.ledOn {
+  background: var(--signal);
+  box-shadow: 0 0 10px var(--signal);
+}
+
+.badge {
+  padding: 1px 7px;
+  border: 1px solid rgb(251 191 36 / 0.5);
+  border-radius: 999px;
+  color: #f5d48a;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+}
+
+.title {
+  font-size: var(--fs-2xl);
+  font-weight: 750;
+  font-stretch: 125%;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-3) var(--s-5);
+  font-size: var(--fs-sm);
+}
+.meta dt {
+  color: var(--muted);
+  font-size: var(--fs-xs);
+}
+.meta dd {
+  font-weight: 600;
+}
+
+@media (min-width: 760px) {
+  .deck {
+    grid-template-columns: 240px minmax(0, 1fr);
+    align-items: center;
+  }
+  .meta {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+}
+
+.transport {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.tbtn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  transition:
+    border-color var(--t-micro) var(--ease),
+    background-color var(--t-micro) var(--ease);
+}
+.tbtn:hover {
+  border-color: var(--text-2);
+  background: rgb(255 255 255 / 0.04);
+}
+
+.playBtn {
+  width: 56px;
+  height: 56px;
+  border-color: var(--signal);
+  background: var(--signal);
+  color: var(--void);
+}
+.playBtn:hover {
+  background: #8ff3ff;
+  border-color: #8ff3ff;
+  box-shadow: 0 0 0 6px var(--signal-dim);
+}
+
+.time {
+  min-width: 7.5em;
+  margin-inline: var(--s-3);
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+}
+
+.volume {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-left: auto;
+}
+.volume .tbtn {
+  border-color: transparent;
+}
+
+/* ─────────── suwaki ─────────── */
+.range {
+  width: 110px;
+  height: 24px;
+  margin: 0;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  accent-color: var(--signal);
+}
+.range::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--graphite-3);
+}
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -5px;
+  border-radius: 50%;
+  background: var(--signal);
+}
+.range::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--graphite-3);
+}
+.range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--signal);
+}
+
+/* ─────────── spektrum i fala ─────────── */
+.spectrum {
+  width: 100%;
+  height: 96px;
+  border-radius: var(--r-sm);
+  background:
+    repeating-linear-gradient(0deg, rgb(233 237 243 / 0.04) 0 1px, transparent 1px 24px),
+    #07090c;
+}
+
+.seek {
+  position: relative;
+  height: 48px;
+}
+
+.peaks {
+  width: 100%;
+  height: 100%;
+}
+.peak {
+  fill: var(--graphite-3);
+}
+.peakOn {
+  fill: var(--signal);
+}
+
+/* przezroczysty suwak nad falą – dostępny z klawiatury i czytnika ekranu */
+.seekInput {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.seek:has(.seekInput:focus-visible) {
+  outline: 2px solid var(--signal);
+  outline-offset: 4px;
+  border-radius: var(--r-sm);
+}
+.seek::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  left: calc(var(--progress) * 100%);
+  width: 2px;
+  background: var(--text);
+  box-shadow: 0 0 8px var(--signal);
+  pointer-events: none;
+}
+
+.error {
+  color: var(--danger);
+  font-size: var(--fs-sm);
+}
+
+/* ─────────── siatka realizacji ─────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-4);
+  margin-top: var(--s-6);
+}
+
+@media (min-width: 960px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--s-5);
+  }
+}
+
+.card {
+  display: grid;
+  align-content: start;
+  gap: var(--s-3);
+  padding: var(--s-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: rgb(20 23 28 / 0.6);
+  transition: border-color var(--t-ui) var(--ease);
+}
+.card[data-active] {
+  border-color: rgb(59 232 255 / 0.5);
+  box-shadow: 0 0 0 1px rgb(59 232 255 / 0.15), 0 10px 40px rgb(59 232 255 / 0.08);
+}
+
+.cardCover {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+}
+.cardCover svg {
+  width: 100%;
+  height: 100%;
+}
+
+.cardPlay {
+  position: absolute;
+  right: var(--s-3);
+  bottom: var(--s-3);
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(3 4 7 / 0.78);
+  color: var(--text);
+  backdrop-filter: blur(6px);
+  transition:
+    background-color var(--t-micro) var(--ease),
+    color var(--t-micro) var(--ease);
+}
+.cardPlay:hover,
+.cardPlay[aria-pressed="true"] {
+  background: var(--signal);
+  color: var(--void);
+}
+
+.cardBody {
+  display: grid;
+  gap: 2px;
+  padding: 0 var(--s-2) var(--s-2);
+}
+
+.cardTitle {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  font-stretch: 118%;
+}
+
+.cardType {
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+}
+
+.cardMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px var(--s-3);
+  margin-top: var(--s-1);
+  color: var(--muted);
+  font-size: var(--fs-xs);
+}
+
+@media (max-width: 520px) {
+  .time {
+    margin-inline: var(--s-2);
+    min-width: 0;
+  }
+  .volume {
+    width: 100%;
+    margin-left: 0;
+  }
+  .range {
+    flex: 1;
+  }
+  .cardPlay {
+    width: 44px;
+    height: 44px;
+    right: var(--s-2);
+    bottom: var(--s-2);
+  }
+}

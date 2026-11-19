@@ -1,0 +1,35 @@
+.logo {
+  --h: 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1;
+  color: var(--text);
+}
+
+.lg {
+  --h: clamp(44px, 6vw, 68px);
+  gap: 14px;
+}
+
+.mark {
+  height: var(--h);
+  width: auto;
+  overflow: visible;
+}
+
+.text {
+  font-family: var(--font);
+  font-size: 34px;
+  font-weight: 850;
+  font-stretch: 125%;
+  fill: currentColor;
+}
+
+.sub {
+  margin-top: calc(var(--h) * 0.22);
+  font-size: calc(var(--h) * 0.42);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}

@@ -1,0 +1,84 @@
+.card {
+  position: relative;
+  display: grid;
+  gap: var(--s-2);
+  padding: var(--s-5);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-md);
+  background: rgb(7 9 14 / 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  min-width: min(100%, 300px);
+}
+
+/* znacznik narożny jak w wyświetlaczu sprzętu */
+.card::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 18px;
+  height: 18px;
+  border-top: 2px solid var(--signal);
+  border-left: 2px solid var(--signal);
+  border-top-left-radius: var(--r-md);
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--muted);
+  font-size: var(--fs-sm);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--graphite-3);
+}
+.dotOn {
+  background: var(--ok);
+  box-shadow: 0 0 10px var(--ok);
+  animation: blink 2.4s ease-in-out infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.value {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-1) var(--s-4);
+}
+
+.day {
+  font-size: var(--fs-md);
+  font-weight: 600;
+  font-stretch: 112%;
+}
+.day::first-letter {
+  text-transform: uppercase;
+}
+
+.time {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  font-stretch: 125%;
+  color: var(--signal);
+}
+
+.sub {
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+}
+
+.cta {
+  margin-top: var(--s-2);
+  justify-self: start;
+}

@@ -1,0 +1,204 @@
+/* SEKCJA 4 – DIGITAL AUDIO INTERFACE */
+.section {
+  background-color: #0a0c10;
+  /* siatka taktów jak w oknie aranżacji */
+  background-image:
+    linear-gradient(90deg, rgb(233 237 243 / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(233 237 243 / 0.018) 1px, transparent 1px);
+  background-size:
+    160px 100%,
+    40px 100%;
+  border-top: 1px solid var(--line);
+}
+
+/* linijka taktów (dekoracja) */
+.ruler {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  height: 22px;
+  border-bottom: 1px solid var(--line);
+  background: rgb(20 23 28 / 0.8);
+  overflow: hidden;
+}
+.ruler span {
+  flex: 0 0 160px;
+  padding-left: 6px;
+  border-left: 1px solid var(--line-strong);
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 22px;
+  font-variant-numeric: tabular-nums;
+}
+
+.rack {
+  display: grid;
+  gap: var(--s-4);
+}
+
+@media (min-width: 960px) {
+  .rack {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.module {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  border: 1px solid var(--graphite-3);
+  border-radius: var(--r-md);
+  background: linear-gradient(180deg, #171a20 0%, #111318 100%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.05),
+    0 20px 40px rgb(0 0 0 / 0.35);
+  overflow: hidden;
+  transition: border-color var(--t-ui) var(--ease);
+}
+.module:hover,
+.module:focus-within {
+  border-color: rgb(59 232 255 / 0.4);
+}
+
+/* pasek tytułu okna wtyczki */
+.titlebar {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  min-height: 48px;
+  padding: 0 var(--s-4);
+  border-bottom: 1px solid var(--graphite-3);
+  background: linear-gradient(180deg, #1d2128, #16191e);
+}
+
+.power {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--graphite-3);
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.4);
+  transition:
+    background-color var(--t-ui) var(--ease),
+    box-shadow var(--t-ui) var(--ease);
+}
+.module:hover .power,
+.module:focus-within .power {
+  background: var(--signal);
+  box-shadow: 0 0 10px var(--signal);
+}
+
+.name {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  font-stretch: 118%;
+  letter-spacing: -0.01em;
+}
+
+.rate {
+  margin-left: auto;
+  padding: 3px 8px;
+  border: 1px solid var(--graphite-3);
+  border-radius: var(--r-sm);
+  background: #0c0e12;
+  color: var(--signal);
+  font-size: var(--fs-sm);
+  white-space: nowrap;
+}
+
+/* wyświetlacz wizualizacji */
+.viz {
+  height: 132px;
+  margin: var(--s-4);
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--r-sm);
+  background:
+    radial-gradient(120% 140% at 50% 0%, rgb(59 232 255 / 0.06), transparent 60%),
+    #07090c;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.05), inset 0 8px 24px rgb(0 0 0 / 0.6);
+}
+
+.content {
+  display: grid;
+  gap: var(--s-5);
+  align-content: start;
+  padding: var(--s-2) var(--s-5) var(--s-5);
+}
+
+.desc {
+  color: var(--text-2);
+}
+
+.columns {
+  display: grid;
+  gap: var(--s-5);
+}
+@media (min-width: 560px) {
+  .columns {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+.label {
+  display: block;
+  margin-bottom: var(--s-2);
+  color: var(--muted);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.params {
+  display: grid;
+  border-top: 1px solid var(--graphite-3);
+}
+.params div {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+  gap: var(--s-3);
+  padding: 7px 0;
+  border-bottom: 1px solid var(--graphite-2);
+  font-size: var(--fs-sm);
+}
+.params dt {
+  color: var(--muted);
+}
+.params dd {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.scope {
+  display: grid;
+  gap: 7px;
+  font-size: var(--fs-sm);
+}
+.scope li {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  gap: var(--s-2);
+  align-items: start;
+}
+.scope svg {
+  margin-top: 3px;
+  color: var(--signal);
+}
+
+.forWhom {
+  padding: var(--s-3) var(--s-4);
+  border-left: 2px solid var(--ultra);
+  background: rgb(138 99 255 / 0.06);
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+.forWhom .label {
+  display: inline;
+  margin: 0 var(--s-1) 0 0;
+  color: var(--text);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
