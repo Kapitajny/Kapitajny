@@ -1,0 +1,153 @@
+/* Wspólny układ podstron: dokumenty, zarządzanie rezerwacją, panel, 404 */
+.page {
+  min-height: 80vh;
+  padding: calc(var(--header-h) + var(--s-8)) 0 var(--s-9);
+  background:
+    radial-gradient(50% 30% at 80% 0%, rgb(138 99 255 / 0.08), transparent 70%),
+    var(--void);
+}
+
+.narrow {
+  display: grid;
+  gap: var(--s-5);
+  max-width: calc(46rem + var(--gutter) * 2);
+}
+
+.wide {
+  display: grid;
+  gap: var(--s-5);
+}
+
+.back {
+  justify-self: start;
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  text-underline-offset: 3px;
+}
+.back:hover {
+  color: var(--signal);
+}
+
+.title {
+  font-size: var(--fs-3xl);
+  font-weight: 750;
+  font-stretch: 125%;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+}
+
+.meta {
+  color: var(--muted);
+  font-size: var(--fs-sm);
+}
+
+.prose {
+  display: grid;
+  gap: var(--s-6);
+  margin-top: var(--s-4);
+}
+.prose section {
+  display: grid;
+  gap: var(--s-3);
+}
+.prose h2 {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  font-stretch: 112%;
+}
+.prose p,
+.prose li {
+  color: var(--text-2);
+}
+.prose ul {
+  display: grid;
+  gap: var(--s-2);
+  padding-left: 1.2em;
+}
+.prose li::marker {
+  color: var(--signal);
+}
+
+.panel {
+  display: grid;
+  gap: var(--s-5);
+  padding: var(--s-6) clamp(var(--s-4), 4vw, var(--s-7));
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-lg);
+  background: linear-gradient(180deg, #10131a, #0b0d12);
+}
+
+.status {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+.status[data-status="pending"] {
+  border-color: rgb(251 191 36 / 0.5);
+  color: #f5d48a;
+}
+.status[data-status="confirmed"] {
+  border-color: rgb(74 222 128 / 0.5);
+  color: #9ff0bd;
+}
+.status[data-status="cancelled"] {
+  border-color: rgb(255 107 94 / 0.5);
+  color: #ffb3ab;
+}
+
+.details {
+  display: grid;
+  gap: var(--s-3);
+}
+.details div {
+  display: grid;
+  grid-template-columns: 9em minmax(0, 1fr);
+  gap: var(--s-3);
+  padding-bottom: var(--s-3);
+  border-bottom: 1px solid var(--line);
+}
+.details dt {
+  color: var(--muted);
+}
+.details dd {
+  font-weight: 600;
+}
+.details dd::first-letter {
+  text-transform: uppercase;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+}
+
+.message {
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line-strong);
+  color: var(--text-2);
+}
+.message[data-tone="ok"] {
+  border-color: rgb(74 222 128 / 0.45);
+  color: #b4f2cb;
+}
+.message[data-tone="error"] {
+  border-color: rgb(255 107 94 / 0.5);
+  color: #ffb3ab;
+}
+
+.btnDanger {
+  --btn-bd: rgb(255 107 94 / 0.6);
+  --btn-fg: #ffb3ab;
+}
+.btnDanger:hover {
+  --btn-bd: var(--danger);
+  --btn-bg: rgb(255 107 94 / 0.1);
+}

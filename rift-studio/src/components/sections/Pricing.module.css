@@ -1,0 +1,114 @@
+/* SEKCJA 6 – FUTURISTIC PRICING: ciemne tło, błękitne akcenty, cennik w wierszach */
+.section {
+  background: linear-gradient(180deg, #050812 0%, var(--void) 100%);
+  border-top: 1px solid rgb(46 91 255 / 0.35);
+}
+
+.list {
+  display: grid;
+  border-top: 1px solid rgb(138 163 255 / 0.35);
+}
+
+.row {
+  display: grid;
+  gap: var(--s-3) var(--s-6);
+  padding: var(--s-5) 0;
+  border-bottom: 1px solid rgb(138 163 255 / 0.18);
+  transition: background-color var(--t-ui) var(--ease);
+}
+
+@media (min-width: 900px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) 10rem 13rem 9.5rem;
+    align-items: baseline;
+    padding-inline: var(--s-4);
+  }
+  .row:hover {
+    background: rgb(46 91 255 / 0.06);
+  }
+}
+
+/* wyróżniony wiersz: pasek błękitu po lewej */
+.row[data-featured] {
+  box-shadow: inset 3px 0 0 var(--volt);
+  background: rgb(46 91 255 / 0.08);
+  padding-left: var(--s-4);
+}
+
+.what {
+  display: grid;
+  gap: var(--s-2);
+  min-width: 0;
+}
+
+.name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s-1) var(--s-3);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  font-stretch: 112%;
+}
+
+.flag {
+  color: var(--volt-text);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  font-stretch: 100%;
+}
+
+.inc {
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  max-width: 46em;
+}
+
+.extras {
+  color: var(--muted);
+  font-size: var(--fs-sm);
+  max-width: 46em;
+}
+.extras span {
+  color: var(--text-2);
+}
+
+.time {
+  color: var(--volt-text);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.price {
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.amount {
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  font-stretch: 125%;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.small {
+  color: var(--muted);
+  font-size: var(--fs-sm);
+}
+
+.cta {
+  justify-self: start;
+}
+@media (min-width: 900px) {
+  .cta {
+    justify-self: end;
+  }
+}
+
+.footnote {
+  margin-top: var(--s-5);
+  color: var(--muted);
+  font-size: var(--fs-sm);
+  max-width: 60em;
+}

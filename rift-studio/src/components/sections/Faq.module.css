@@ -1,0 +1,108 @@
+/* SEKCJA 8 – FAQ */
+.section {
+  background: var(--void);
+  border-top: 1px solid var(--line);
+}
+
+.layout {
+  display: grid;
+  gap: var(--s-7);
+}
+
+@media (min-width: 960px) {
+  .layout {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--s-9);
+    align-items: start;
+  }
+  .head {
+    position: sticky;
+    top: calc(var(--header-h) + var(--s-6));
+  }
+}
+
+.head {
+  display: grid;
+  gap: var(--s-5);
+}
+
+.contact {
+  display: grid;
+  gap: var(--s-2);
+}
+.contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  min-height: 44px;
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+}
+.contact a:hover {
+  color: var(--signal);
+}
+.contact svg {
+  color: var(--signal);
+}
+
+.list {
+  border-top: 1px solid var(--line-strong);
+}
+
+.item {
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding: var(--s-5) 0;
+  font-size: var(--fs-md);
+  font-weight: 650;
+  font-stretch: 108%;
+  cursor: pointer;
+  list-style: none;
+}
+.q::-webkit-details-marker {
+  display: none;
+}
+.q:hover {
+  color: var(--signal);
+}
+
+/* wskaźnik poziomu po lewej przy otwartej odpowiedzi */
+.item[open] .q {
+  color: var(--text);
+}
+
+.icon {
+  flex: none;
+  color: var(--signal);
+  transition: transform var(--t-ui) var(--ease);
+}
+.item[open] .icon {
+  transform: rotate(45deg);
+}
+
+.a {
+  padding: 0 0 var(--s-5) var(--s-4);
+  margin-left: 1px;
+  border-left: 2px solid var(--signal);
+  color: var(--text-2);
+  max-width: 44em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .item[open] .a {
+    animation: open var(--t-ui) var(--ease);
+  }
+}
+@keyframes open {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}

@@ -1,0 +1,186 @@
+.panel {
+  display: grid;
+  gap: var(--s-5);
+  align-content: start;
+  padding: var(--s-6) var(--s-5);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: rgb(20 23 28 / 0.55);
+}
+
+.title {
+  font-size: var(--fs-xl);
+  font-weight: 750;
+  font-stretch: 125%;
+}
+
+.lines {
+  display: grid;
+  gap: var(--s-4);
+}
+.lines li {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  column-gap: var(--s-3);
+  row-gap: 2px;
+}
+.lines svg {
+  grid-row: span 2;
+  margin-top: 2px;
+  color: var(--signal);
+}
+.k {
+  color: var(--muted);
+  font-size: var(--fs-xs);
+}
+.v {
+  font-style: normal;
+  font-weight: 600;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+a.v:hover {
+  color: var(--signal);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.commute {
+  margin-top: calc(-1 * var(--s-2));
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+}
+
+.sub {
+  margin-bottom: var(--s-2);
+  color: var(--muted);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.hours {
+  display: grid;
+  border-top: 1px solid var(--line);
+}
+.hours div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: 7px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: var(--fs-sm);
+}
+.hours dt {
+  color: var(--text-2);
+}
+.hours dd {
+  font-weight: 600;
+}
+
+/* ─────────── mapa ─────────── */
+.map {
+  position: relative;
+  height: 260px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: #0c0f14;
+}
+
+.mapFrame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: grayscale(0.4) invert(0.92) hue-rotate(180deg) contrast(0.9);
+}
+
+.mapPlaceholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: end;
+}
+
+.mapArt {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.mapRoad {
+  fill: none;
+  stroke: rgb(233 237 243 / 0.18);
+  stroke-width: 10;
+}
+.mapRoadThin {
+  fill: none;
+  stroke: rgb(233 237 243 / 0.1);
+  stroke-width: 4;
+}
+.mapRail {
+  fill: none;
+  stroke: rgb(59 232 255 / 0.35);
+  stroke-width: 2;
+  stroke-dasharray: 8 6;
+}
+
+.mapPin {
+  position: absolute;
+  left: 50%;
+  top: 18%;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-left: -22px;
+  border-radius: 50%;
+  background: var(--signal);
+  color: var(--void);
+}
+
+.mapCopy {
+  position: relative;
+  display: grid;
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-4);
+  background: linear-gradient(0deg, rgb(7 9 12 / 0.96) 60%, rgb(7 9 12 / 0));
+  color: var(--text-2);
+  font-size: var(--fs-xs);
+}
+
+.mapActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+}
+
+.mapLink {
+  color: var(--signal);
+  font-size: var(--fs-sm);
+  text-underline-offset: 3px;
+}
+
+/* ─────────── social ─────────── */
+.social {
+  display: flex;
+  gap: var(--s-2);
+}
+
+.socialBtn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  color: var(--text-2);
+}
+a.socialBtn:hover {
+  border-color: var(--signal);
+  color: var(--signal);
+}
+span.socialBtn {
+  opacity: 0.55;
+}

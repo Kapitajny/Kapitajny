@@ -1,0 +1,56 @@
+.h1 {
+  --chars: 8;
+  /* rozmiar dopasowany do najdłuższej linii, maks. 9rem */
+  font-size: min(9rem, calc((100vw - 2 * var(--gutter)) / (var(--chars) * 0.72)));
+  font-weight: 800;
+  font-stretch: 125%;
+  letter-spacing: -0.035em;
+  line-height: 0.86;
+  display: grid;
+  margin: 0;
+}
+
+.top,
+.bottom {
+  display: block;
+  animation: split var(--t-enter) var(--ease) 650ms both;
+}
+
+.top {
+  --dir: 1;
+}
+
+.bottom {
+  --dir: -1;
+  /* dolna połowa przesunięta w prawo – jak w znaku RIFT */
+  padding-left: 0.42em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--text);
+}
+
+@keyframes split {
+  from {
+    transform: translateY(calc(var(--dir) * 0.18em));
+  }
+}
+
+.wave {
+  position: relative;
+  display: block;
+  height: clamp(52px, 0.5em, 104px);
+  margin-block: 0.02em;
+  /* fala wychodzi poza kontener na całą szerokość ekranu */
+  width: 100vw;
+  margin-left: calc(-1 * var(--gutter));
+}
+
+@media (min-width: 1416px) {
+  .wave {
+    margin-left: calc((100vw - var(--max)) / -2);
+  }
+}
+
+.wave canvas {
+  width: 100%;
+  height: 100%;
+}

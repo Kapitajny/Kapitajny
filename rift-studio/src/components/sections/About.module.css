@@ -1,0 +1,332 @@
+/* SEKCJA 3 – UNDERGROUND CULTURE: czerń, biel, czerwień pieczątki, ziarno ksero */
+.about {
+  position: relative;
+  padding-block: var(--section-y);
+  background-color: #070707;
+  color: var(--paper);
+  overflow: hidden;
+}
+
+/* ziarno na całej sekcji */
+.about::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.16;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* rozdarta krawędź – szczelina między światem sygnału a ulicą */
+.about::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 18px;
+  background: var(--void-2);
+  clip-path: polygon(0 0, 100% 0, 100% 40%, 96% 90%, 91% 35%, 86% 75%, 80% 20%, 74% 85%, 69% 45%, 63% 95%, 57% 30%, 51% 70%, 46% 15%, 40% 80%, 34% 40%, 28% 100%, 22% 35%, 17% 75%, 11% 25%, 6% 85%, 0 45%);
+}
+
+.inner {
+  position: relative;
+  display: grid;
+  gap: var(--s-9);
+}
+
+/* ─────────── nagłówek-plakat ─────────── */
+.head {
+  position: relative;
+  display: grid;
+  gap: var(--s-4);
+}
+
+.kicker {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  font-stretch: 75%;
+  color: var(--stamp-text);
+}
+
+.title {
+  max-width: 11ch;
+  font-size: clamp(3.5rem, 1.2rem + 10vw, 10rem);
+  font-weight: 900;
+  font-stretch: 62%;
+  line-height: 0.84;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--paper);
+}
+
+.stamp {
+  position: absolute;
+  right: 0;
+  top: -16px;
+  width: clamp(110px, 16vw, 200px);
+  color: var(--stamp);
+  transform: rotate(-12deg);
+  opacity: 0.92;
+  mix-blend-mode: screen;
+}
+
+.stampRing {
+  font-size: 15px;
+  font-weight: 800;
+  font-stretch: 75%;
+  letter-spacing: 0.14em;
+  fill: currentColor;
+}
+
+.stampCore {
+  font-size: 34px;
+  font-weight: 900;
+  font-stretch: 125%;
+  fill: currentColor;
+}
+
+/* ─────────── kolaż i tekst ─────────── */
+.grid {
+  display: grid;
+  gap: var(--s-8);
+}
+
+.collage {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: start;
+}
+
+.photo {
+  position: relative;
+  padding: 8px 8px 0;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 18px 40px rgb(0 0 0 / 0.55);
+}
+
+.photo img {
+  width: 100%;
+  height: auto;
+  filter: grayscale(1) contrast(1.35) brightness(0.95);
+}
+
+.photo figcaption {
+  padding: 6px 2px 8px;
+  font-size: var(--fs-sm);
+  font-weight: 800;
+  font-stretch: 62%;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* taśma klejąca */
+.photo::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  z-index: 1;
+  width: 86px;
+  height: 24px;
+  background: rgb(222 214 190 / 0.72);
+  transform: translateX(-50%) rotate(-3deg);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.25);
+}
+
+.photoBooth {
+  grid-column: 1 / 11;
+  grid-row: 1;
+  transform: rotate(-1.2deg);
+}
+
+.photoPortrait {
+  grid-column: 6 / 13;
+  grid-row: 1;
+  margin-top: 58%;
+  transform: rotate(2.4deg);
+}
+
+.photoRoom {
+  grid-column: 1 / 6;
+  grid-row: 2;
+  margin-top: -10%;
+  transform: rotate(-3deg);
+}
+.photoRoom img {
+  filter: grayscale(1) contrast(1.25);
+}
+
+.copy {
+  display: grid;
+  gap: var(--s-5);
+  align-content: start;
+  font-size: var(--fs-md);
+  line-height: 1.55;
+  color: #d8d6d0;
+  max-width: 34em;
+}
+
+.copy p:first-child {
+  color: var(--paper);
+  font-size: var(--fs-lg);
+  line-height: 1.45;
+}
+
+@media (min-width: 960px) {
+  .grid {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--s-9);
+    align-items: center;
+  }
+}
+
+/* ─────────── historia ─────────── */
+.subTitle {
+  margin-bottom: var(--s-6);
+  font-size: var(--fs-xl);
+  font-weight: 900;
+  font-stretch: 62%;
+  text-transform: uppercase;
+}
+
+.timeline {
+  display: grid;
+  gap: var(--s-6);
+  border-left: 2px solid var(--stamp);
+  padding-left: var(--s-5);
+}
+
+.timeline li {
+  position: relative;
+  display: grid;
+  gap: var(--s-1);
+}
+
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--s-5) - 7px);
+  top: 0.55em;
+  width: 12px;
+  height: 12px;
+  background: var(--stamp);
+}
+
+.year {
+  font-size: var(--fs-3xl);
+  font-weight: 900;
+  font-stretch: 62%;
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+}
+
+.event {
+  font-weight: 700;
+  font-size: var(--fs-md);
+}
+
+.eventText {
+  color: #b9b6ae;
+  font-size: var(--fs-sm);
+  max-width: 28em;
+}
+
+@media (min-width: 960px) {
+  .timeline {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border-left: 0;
+    border-top: 2px solid var(--stamp);
+    padding: var(--s-6) 0 0;
+    gap: var(--s-5);
+  }
+  .timeline li::before {
+    left: 0;
+    top: calc(-1 * var(--s-6) - 7px);
+  }
+}
+
+/* ─────────── wkładka kasety (J-card) ─────────── */
+.jcard {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: 2px;
+  box-shadow: 0 24px 60px rgb(0 0 0 / 0.5);
+}
+
+.spine {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-3);
+  background: var(--ink);
+  color: var(--paper);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: var(--fs-sm);
+  font-weight: 900;
+  font-stretch: 62%;
+  letter-spacing: 0.12em;
+}
+.spine span {
+  color: var(--stamp-text);
+}
+
+.jcardBody {
+  padding: var(--s-6) clamp(var(--s-5), 4vw, var(--s-8)) var(--s-7);
+}
+
+.jcardTitle {
+  font-size: var(--fs-2xl);
+  font-weight: 900;
+  font-stretch: 62%;
+  text-transform: uppercase;
+  line-height: 1;
+  padding-bottom: var(--s-4);
+  margin-bottom: var(--s-5);
+  border-bottom: 3px solid var(--ink);
+}
+
+.sides {
+  display: grid;
+  gap: var(--s-6);
+}
+
+@media (min-width: 760px) {
+  .sides {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-8);
+  }
+}
+
+.sideLabel {
+  margin-bottom: var(--s-3);
+  font-size: var(--fs-sm);
+  font-weight: 800;
+  font-stretch: 75%;
+  color: var(--stamp-ink);
+}
+
+.tracklist {
+  display: grid;
+}
+
+.tracklist li {
+  display: grid;
+  grid-template-columns: 2.5em minmax(0, 1fr);
+  gap: var(--s-3);
+  padding: var(--s-3) 0;
+  border-bottom: 1px dashed rgb(13 13 12 / 0.35);
+  font-weight: 500;
+}
+
+.trackNo {
+  font-weight: 900;
+  font-stretch: 62%;
+  font-size: var(--fs-md);
+  line-height: 1.2;
+}

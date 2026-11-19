@@ -1,0 +1,126 @@
+.svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.axis {
+  stroke: rgb(233 237 243 / 0.12);
+  stroke-width: 1;
+}
+.grid {
+  stroke: rgb(233 237 243 / 0.07);
+  stroke-width: 1;
+}
+.label,
+.laneLabel {
+  fill: var(--muted);
+  font-size: 11px;
+  font-family: var(--font);
+}
+.laneLabel {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.bar {
+  fill: var(--signal);
+  opacity: 0.85;
+}
+.barAlt {
+  fill: var(--ultra);
+  opacity: 0.9;
+}
+
+.playhead {
+  fill: var(--text);
+  opacity: 0;
+}
+
+/* sekwencer */
+.step {
+  fill: var(--graphite-2);
+}
+.stepBeat {
+  fill: var(--graphite-3);
+}
+.stepOn {
+  fill: var(--signal);
+}
+.sweep {
+  fill: rgb(59 232 255 / 0.1);
+  stroke: var(--signal);
+  stroke-width: 1;
+  opacity: 0;
+}
+
+/* EQ */
+.curve {
+  fill: none;
+  stroke: var(--signal);
+  stroke-width: 2;
+}
+.curveFill {
+  fill: rgb(59 232 255 / 0.08);
+  stroke: none;
+}
+.node {
+  fill: var(--void);
+  stroke: var(--signal);
+  stroke-width: 2;
+}
+.meter {
+  fill: #1f7a52;
+}
+.meterWarm {
+  fill: #c9a227;
+}
+.meterHot {
+  fill: #d8483c;
+}
+.meterMask {
+  fill: #07090c;
+  transform-box: fill-box;
+  transform-origin: 0 0;
+  transform: scaleY(0.42);
+}
+
+/* Ruch tylko w odpowiedzi na działanie: najechanie lub fokus w module usługi. */
+@media (prefers-reduced-motion: no-preference) {
+  :global([data-module]:hover) .playhead,
+  :global([data-module]:focus-within) .playhead {
+    opacity: 0.9;
+    animation: play 3.2s linear infinite;
+  }
+  :global([data-module]:hover) .sweep,
+  :global([data-module]:focus-within) .sweep {
+    opacity: 1;
+    animation: sweep 2.4s steps(16) infinite;
+  }
+  :global([data-module]:hover) .meterMask,
+  :global([data-module]:focus-within) .meterMask {
+    animation: meter 1.1s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes play {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(560px);
+  }
+}
+@keyframes sweep {
+  to {
+    transform: translateX(584px);
+  }
+}
+@keyframes meter {
+  from {
+    transform: scaleY(0.5);
+  }
+  to {
+    transform: scaleY(0.18);
+  }
+}

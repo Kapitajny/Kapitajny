@@ -1,0 +1,61 @@
+.card {
+  position: relative;
+  display: grid;
+  gap: var(--s-2);
+  padding: var(--s-5);
+  border-top: 2px solid var(--signal);
+  background: var(--graphite);
+  min-width: min(100%, 300px);
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--muted);
+  font-size: var(--fs-sm);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--graphite-3);
+}
+.dotOn {
+  background: var(--ok);
+}
+
+.value {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-1) var(--s-4);
+}
+
+.day {
+  font-size: var(--fs-md);
+  font-weight: 600;
+  font-stretch: 112%;
+}
+.day::first-letter {
+  text-transform: uppercase;
+}
+
+.time {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  font-stretch: 125%;
+  color: var(--signal);
+}
+
+.sub {
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+}
+
+.cta {
+  margin-top: var(--s-2);
+  justify-self: start;
+}
