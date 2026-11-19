@@ -97,7 +97,7 @@ export function RiftHeadline({ top, bottom }: { top: string; bottom: string }) {
       // fiolet – szeroka poświata
       ctx!.save();
       ctx!.shadowColor = "rgba(138,99,255,0.9)";
-      ctx!.shadowBlur = 18;
+      ctx!.shadowBlur = 6;
       ctx!.strokeStyle = "rgba(138,99,255,0.55)";
       ctx!.lineWidth = 2;
       path(-1.25);
@@ -107,7 +107,7 @@ export function RiftHeadline({ top, bottom }: { top: string; bottom: string }) {
       // cyjan – główny sygnał
       ctx!.save();
       ctx!.shadowColor = "rgba(59,232,255,0.85)";
-      ctx!.shadowBlur = 12;
+      ctx!.shadowBlur = 3;
       const grad = ctx!.createLinearGradient(0, 0, w, 0);
       grad.addColorStop(0, "rgba(59,232,255,0)");
       grad.addColorStop(0.12, "rgba(59,232,255,1)");

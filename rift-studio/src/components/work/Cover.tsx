@@ -7,11 +7,6 @@ import type { Track } from "@/data/tracks";
 export function Cover({ track, uid }: { track: Track; uid: string }) {
   const id = `${uid}-${track.id}`;
   const title = track.title.toUpperCase();
-  const tag = (fill: string) => (
-    <text x="186" y="17" textAnchor="end" fontSize="8" fontWeight="700" letterSpacing="1.5" fill={fill} style={{ fontStretch: "125%" }}>
-      RIFT DEMO
-    </text>
-  );
 
   const art: Record<Track["id"], React.ReactNode> = {
     "neon-drift": (
@@ -29,7 +24,6 @@ export function Cover({ track, uid }: { track: Track; uid: string }) {
         <text x="16" y="44" fontSize="18" fontWeight="800" fill="#e9edf3" style={{ fontStretch: "125%" }}>
           {title}
         </text>
-        {tag("#3be8ff")}
       </>
     ),
     beton: (
@@ -46,7 +40,6 @@ export function Cover({ track, uid }: { track: Track; uid: string }) {
           {title}
         </text>
         <rect x="0" y="0" width="200" height="200" fill="none" stroke="#0b0b0b" strokeWidth="10" />
-        {tag("#0b0b0b")}
       </>
     ),
     velvet: (
@@ -57,7 +50,6 @@ export function Cover({ track, uid }: { track: Track; uid: string }) {
         <text x="100" y="170" textAnchor="middle" fontSize="15" fontWeight="200" letterSpacing="7" fill="#d9bf86" style={{ fontStretch: "125%" }}>
           {title}
         </text>
-        {tag("#d9bf86")}
       </>
     ),
     "tasma-13": (
@@ -72,7 +64,6 @@ export function Cover({ track, uid }: { track: Track; uid: string }) {
         <text x="16" y="80" fontSize="10" fontWeight="600" fill="#8a5a3b" letterSpacing="1">
           C-60
         </text>
-        {tag("#5b2a10")}
       </>
     ),
     "pusty-pokoj": (
@@ -82,7 +73,6 @@ export function Cover({ track, uid }: { track: Track; uid: string }) {
         <text x="16" y="186" fontSize="11" fontWeight="500" fill="#111">
           {track.title.toLowerCase()}
         </text>
-        {tag("#777")}
       </>
     ),
     horyzont: (
@@ -101,7 +91,6 @@ export function Cover({ track, uid }: { track: Track; uid: string }) {
         <text x="100" y="112" textAnchor="middle" fontSize="13" fontWeight="300" letterSpacing="9" fill="#fff" style={{ fontStretch: "125%" }}>
           {title}
         </text>
-        {tag("#f2a65a")}
       </>
     ),
   };

@@ -147,7 +147,6 @@
 }
 .strip[data-open] .toggle::before {
   background: var(--accent);
-  box-shadow: 0 0 10px var(--accent);
 }
 .stripName {
   margin-right: auto;

@@ -11,7 +11,7 @@ export function Booking({ lang, t }: { lang: Locale; t: Dictionary }) {
   return (
     <section id="rezerwacja" className={`section ${styles.section}`} aria-labelledby="booking-title">
       <div className="container">
-        <header className="section-head section-head--split">
+        <header className="section-head">
           <h2 id="booking-title" className="section-title" tabIndex={-1} data-focus-target>
             {t.booking.title}
           </h2>

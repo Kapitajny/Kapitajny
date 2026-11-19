@@ -32,9 +32,9 @@ const pl = {
     switchTo: "English version",
   },
   hero: {
-    titleTop: "Przetnij",
-    titleBottom: "ciszę.",
-    lead: "Studio nagrań rapu i hip-hopu w Pruszkowie. Od 2013 roku nagrywamy wokale, produkujemy bity i miksujemy numery, które brzmią dobrze w słuchawkach, w aucie i na scenie.",
+    titleTop: "Nagrywamy rap",
+    titleBottom: "w Pruszkowie.",
+    lead: "Studio nagrań, produkcja bitów, mix i mastering. Działamy od 2013 roku, około 20 minut pociągiem od centrum Warszawy.",
     ctaBook: "Zarezerwuj sesję",
     ctaAbout: "Poznaj studio",
     nextSlot: "Najbliższy wolny termin",
@@ -46,8 +46,8 @@ const pl = {
     imageAlt: "Mikrofon studyjny w ciemnej kabinie wokalnej RIFT Studio",
   },
   sounds: {
-    title: "Wybierz brzmienie",
-    lead: "Sześć kierunków, z którymi pracujemy najczęściej. Posłuchaj demo i wybierz klimat – zapiszemy go w rezerwacji, żeby realizator wiedział, od czego zacząć.",
+    title: "Brzmienia",
+    lead: "Sześć kierunków, w których pracujemy najczęściej. Każdy ma krótkie demo. Jeśli wybierzesz kierunek, dopiszemy go do rezerwacji.",
     listLabel: "Kierunki brzmienia",
     tempo: "Tempo",
     traits: "Charakter",
@@ -58,11 +58,11 @@ const pl = {
     chosen: "Wybrane – zapisane w formularzu rezerwacji",
   },
   about: {
-    kicker: "Pruszków, od 2013 roku",
-    title: "Rap to nie usługa. To kultura.",
+    kicker: "O nas",
+    title: "Pruszków od 2013",
     body: [
       "RIFT zaczynał jako jedna kabina i komputer w niewielkim pomieszczeniu w Pruszkowie. Nagrywali u nas znajomi z dzielnicy, potem znajomi znajomych. Dziś pracujemy z artystami z całego Mazowsza – od debiutantów po ludzi z wydanymi płytami.",
-      "Znamy tę muzykę od środka: wiemy, jak powinna siedzieć stopa pod bitem, kiedy wokal ma być suchy, a kiedy potrzebuje przestrzeni. Nie poprawiamy tekstów i nie zmieniamy Twojego stylu – pomagamy mu zabrzmieć.",
+      "Realizator przez całą sesję pilnuje dykcji, timingu i poziomów, a ślady dostajesz tego samego dnia. Tekstów nie poprawiamy i nie zmieniamy Twojego stylu.",
     ],
     stamp: "Pruszków 2013",
     historyTitle: "Historia studia",
@@ -93,7 +93,7 @@ const pl = {
   },
   services: {
     title: "Usługi",
-    lead: "Cztery moduły jednego toru sygnału. Każda usługa ma jasny zakres, czas i cenę – wybierz, od czego zaczynasz.",
+    lead: "Co robimy, w jakim formacie i ile to trwa. Ceny są w cenniku poniżej.",
     params: "Parametry",
     scope: "Zakres",
     forWhom: "Dla kogo",
@@ -104,7 +104,7 @@ const pl = {
   },
   work: {
     title: "Realizacje",
-    lead: "Posłuchaj, jak brzmią różne kierunki w naszym torze. Wybierz utwór z siatki albo steruj odtwarzaczem.",
+    lead: "Sześć krótkich dem, po jednym na każdy kierunek brzmienia.",
     demoNotice:
       "Materiały demonstracyjne: utwory przygotowane przez studio na potrzeby prezentacji (syntezowane, bez udziału zewnętrznych artystów). Nie są realizacjami dla klientów – w tym miejscu pojawią się prawdziwe numery po uzyskaniu zgody artystów.",
     demoBadge: "Demo",
@@ -130,7 +130,7 @@ const pl = {
   },
   pricing: {
     title: "Cennik",
-    lead: "Płacisz za czas w studiu albo za gotowy efekt. Każda pozycja ma zakres, czas i dopłaty – bez niespodzianek przy rozliczeniu.",
+    lead: "Sesje w studiu rozliczamy za godzinę, a produkcję, mix i mastering za utwór. Dopłaty są wypisane przy każdej pozycji.",
     demoNotice: "Ceny przykładowe – do potwierdzenia przez studio przed publikacją.",
     includes: "W cenie",
     extras: "Dopłaty",
@@ -144,7 +144,7 @@ const pl = {
   },
   booking: {
     title: "Zarezerwuj sesję",
-    lead: "Wybierz usługę i termin. Wolne godziny pobieramy na żywo z kalendarza studia – zajęte terminy są zablokowane, więc nikt nie zarezerwuje ich drugi raz.",
+    lead: "Wybierz usługę, dzień i godzinę. Kalendarz pokazuje tylko wolne terminy. Potwierdzimy rezerwację mailem w ciągu 24 godzin.",
     formLabel: "Formularz rezerwacji sesji",
     preferCall: "Wolisz zadzwonić lub napisać?",
     steps: { service: "Usługa", day: "Dzień", time: "Godzina", details: "Twoje dane" },
@@ -233,7 +233,7 @@ const pl = {
   },
   faq: {
     title: "Pytania i odpowiedzi",
-    lead: "Nie ma tu odpowiedzi na Twoje pytanie? Napisz albo zadzwoń – odpisujemy tego samego dnia.",
+    lead: "Nie ma tu Twojego pytania? Napisz albo zadzwoń.",
     items: [
       {
         q: "Jak przygotować się do pierwszej sesji?",

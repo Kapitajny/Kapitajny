@@ -4,7 +4,6 @@ import type { Locale } from "@/i18n/config";
 import { fmt, type Dictionary } from "@/i18n/dictionaries";
 import { ServiceViz } from "@/components/services/ServiceViz";
 import { BookServiceButton } from "@/components/services/ServiceActions";
-import { CheckIcon } from "@/components/ui/Icons";
 import styles from "./Services.module.css";
 
 /** SEKCJA 4 – DIGITAL AUDIO INTERFACE: usługi jako moduły wtyczek w programie DAW. */
@@ -17,7 +16,7 @@ export function Services({ lang, t }: { lang: Locale; t: Dictionary["services"] 
         ))}
       </div>
       <div className="container">
-        <header className="section-head section-head--split">
+        <header className="section-head">
           <h2 id="services-title" className="section-title" tabIndex={-1} data-focus-target>
             {t.title}
           </h2>
@@ -58,10 +57,7 @@ export function Services({ lang, t }: { lang: Locale; t: Dictionary["services"] 
                     <h4 className={styles.label}>{t.scope}</h4>
                     <ul role="list" className={styles.scope}>
                       {s.scope[lang].map((item) => (
-                        <li key={item}>
-                          <CheckIcon size={16} />
-                          {item}
-                        </li>
+                        <li key={item}>{item}</li>
                       ))}
                     </ul>
                   </div>

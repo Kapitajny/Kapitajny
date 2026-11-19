@@ -30,9 +30,9 @@ const en: Dictionary = {
     switchTo: "Wersja polska",
   },
   hero: {
-    titleTop: "Cut through",
-    titleBottom: "the silence.",
-    lead: "Rap and hip-hop recording studio in Pruszków, near Warsaw. Since 2013 we have been recording vocals, producing beats and mixing tracks that sound right on headphones, in the car and on stage.",
+    titleTop: "We record rap",
+    titleBottom: "in Pruszków.",
+    lead: "Recording studio, beat production, mixing and mastering. Open since 2013, about 20 minutes by train from central Warsaw.",
     ctaBook: "Book a session",
     ctaAbout: "Meet the studio",
     nextSlot: "Next free slot",
@@ -44,8 +44,8 @@ const en: Dictionary = {
     imageAlt: "Studio microphone in the dark vocal booth at RIFT Studio",
   },
   sounds: {
-    title: "Pick your sound",
-    lead: "The six directions we work in most. Play the demo and pick a vibe: we will add it to your booking so the engineer knows where to start.",
+    title: "Sounds",
+    lead: "The six directions we work in most. Each has a short demo. If you pick one, we add it to your booking.",
     listLabel: "Sound directions",
     tempo: "Tempo",
     traits: "Character",
@@ -56,11 +56,11 @@ const en: Dictionary = {
     chosen: "Picked: added to your booking form",
   },
   about: {
-    kicker: "Pruszków, since 2013",
-    title: "Rap is not a service. It is a culture.",
+    kicker: "About",
+    title: "Pruszków since 2013",
     body: [
       "RIFT started as one booth and one computer in a small room in Pruszków. Friends from the neighbourhood recorded here first, then their friends. Today we work with artists from all over the Mazovia region, from first-timers to people with released albums.",
-      "We know this music from the inside: how the kick should sit under the beat, when a vocal should stay dry and when it needs space. We never rewrite lyrics or change your style. We help it sound the way it should.",
+      "The engineer watches delivery, timing and levels for the whole session, and you get your stems the same day. We do not rewrite lyrics or change your style.",
     ],
     stamp: "Pruszków 2013",
     historyTitle: "Studio history",
@@ -91,7 +91,7 @@ const en: Dictionary = {
   },
   services: {
     title: "Services",
-    lead: "Four modules on one signal path. Every service has a clear scope, time and price. Pick where you want to start.",
+    lead: "What we do, in what format and how long it takes. Prices are in the price list below.",
     params: "Parameters",
     scope: "Scope",
     forWhom: "Who it is for",
@@ -102,7 +102,7 @@ const en: Dictionary = {
   },
   work: {
     title: "Work",
-    lead: "Hear how different directions sound on our signal path. Pick a track from the grid or use the player.",
+    lead: "Six short demos, one for each sound direction.",
     demoNotice:
       "Demo material: tracks made by the studio for this presentation (synthesised, with no outside artists involved). They are not client productions. Real tracks will appear here once artists give their consent.",
     demoBadge: "Demo",
@@ -128,7 +128,7 @@ const en: Dictionary = {
   },
   pricing: {
     title: "Pricing",
-    lead: "Pay for studio time or for the finished result. Every item lists its scope, time and extras, so there are no surprises at checkout.",
+    lead: "Studio sessions are billed by the hour; production, mixing and mastering per track. Extras are listed with each item.",
     demoNotice: "Sample prices, to be confirmed by the studio before publishing.",
     includes: "Included",
     extras: "Extras",
@@ -142,7 +142,7 @@ const en: Dictionary = {
   },
   booking: {
     title: "Book a session",
-    lead: "Pick a service and a time. Free slots come live from the studio calendar, and booked slots are locked so nobody can book them twice.",
+    lead: "Pick a service, a day and a time. The calendar shows only free slots. We confirm your booking by email within 24 hours.",
     formLabel: "Session booking form",
     preferCall: "Prefer to call or email?",
     steps: { service: "Service", day: "Day", time: "Time", details: "Your details" },
@@ -231,7 +231,7 @@ const en: Dictionary = {
   },
   faq: {
     title: "Questions and answers",
-    lead: "Can't find your question? Message or call us. We reply the same day.",
+    lead: "Can't find your question? Message or call us.",
     items: [
       {
         q: "How do I prepare for my first session?",

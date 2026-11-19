@@ -25,7 +25,7 @@ export const sounds: Sound[] = [
     trackId: "neon-drift",
     image: "/images/sound-futuristic.jpg",
     imageAlt: { pl: "Kontroler z padami podświetlonymi na niebiesko i fioletowo", en: "Pad controller lit in blue and violet" },
-    tagline: { pl: "Sub, który czujesz w klatce.", en: "Sub you feel in your chest." },
+    tagline: { pl: "Trap, 808 i syntezatory.", en: "Trap, 808s and synths." },
     description: {
       pl: "Szerokie syntezatory, ślizgające się 808 i hi-hat w trioli. Wokal czysty, blisko, z dużą ilością przestrzeni za nim.",
       en: "Wide synths, sliding 808s and triplet hi-hats. The vocal stays clean and close, with plenty of space behind it.",
@@ -40,7 +40,7 @@ export const sounds: Sound[] = [
     trackId: "beton",
     image: "/images/sound-underground.jpg",
     imageAlt: { pl: "Czarno-białe zdjęcie trzech mężczyzn na tle graffiti", en: "Black-and-white photo of three men in front of graffiti" },
-    tagline: { pl: "Bęben, sampel, prawda.", en: "Drums, a sample and the truth." },
+    tagline: { pl: "Boom-bap z sampla.", en: "Boom bap built on samples." },
     description: {
       pl: "Brudne bębny z kompresją, pocięty sampel i bas, który siedzi pod stopą. Wokal na pierwszym planie – bez wygładzania.",
       en: "Dirty, compressed drums, a chopped sample and bass sitting under the kick. The vocal stays up front, with nothing smoothed over.",
@@ -55,7 +55,7 @@ export const sounds: Sound[] = [
     trackId: "velvet",
     image: "/images/sound-luxury.jpg",
     imageAlt: { pl: "Złoty mikrofon pojemnościowy z filtrem pop", en: "Gold condenser microphone with a pop filter" },
-    tagline: { pl: "Gładko, ciepło, drogo.", en: "Smooth, warm, expensive." },
+    tagline: { pl: "R&B z elektrycznym pianinem.", en: "R&B with electric piano." },
     description: {
       pl: "Akordy elektrycznego pianina, miękka stopa, rimshot i dużo powietrza. Wokal z warstwami harmonii i delikatnym pogłosem.",
       en: "Electric piano chords, a soft kick, rimshots and lots of air. Vocals with layered harmonies and a gentle reverb.",
@@ -70,7 +70,7 @@ export const sounds: Sound[] = [
     trackId: "tasma-13",
     image: "/images/sound-analog.jpg",
     imageAlt: { pl: "Ramię gramofonu nad wirującą płytą winylową w ciepłym świetle", en: "Turntable tonearm over a spinning vinyl record in warm light" },
-    tagline: { pl: "Taśma, która lekko pływa.", en: "Tape that drifts a little." },
+    tagline: { pl: "Lo-fi z nasyceniem taśmy.", en: "Lo-fi with tape saturation." },
     description: {
       pl: "Wow & flutter, nasycenie i przycięta góra. Akordy jazzowe, leniwy swing – brzmienie jak z kasety znalezionej w szufladzie.",
       en: "Wow and flutter, saturation and a rolled-off top end. Jazz chords and a lazy swing, like a tape found in a drawer.",
@@ -85,7 +85,7 @@ export const sounds: Sound[] = [
     trackId: "pusty-pokoj",
     image: "/images/sound-minimal.jpg",
     imageAlt: { pl: "Srebrny mikrofon na jasnym tle", en: "Silver microphone on a light background" },
-    tagline: { pl: "Mniej dźwięków, więcej słów.", en: "Fewer sounds, more words." },
+    tagline: { pl: "Pusty bit pod gęsty tekst.", en: "Sparse beats for dense lyrics." },
     description: {
       pl: "Kilka dźwięków, dużo ciszy i bas, który pojawia się wtedy, gdy trzeba. Każde słowo słychać – tekst gra pierwsze skrzypce.",
       en: "A handful of sounds, lots of silence and bass that arrives only when needed. Every word is heard: the lyrics lead.",
@@ -100,7 +100,7 @@ export const sounds: Sound[] = [
     trackId: "horyzont",
     image: "/images/sound-cinematic.jpg",
     imageAlt: { pl: "Ciemne studio z konsolą i sylwetką realizatora", en: "Dark studio with a console and the silhouette of an engineer" },
-    tagline: { pl: "Numer jak napisy końcowe.", en: "A track that rolls like end credits." },
+    tagline: { pl: "Pady, dęciaki i duże bębny.", en: "Pads, brass and big drums." },
     description: {
       pl: "Pady, dęciaki i wielkie uderzenia. Narracja, która narasta – na intro albumu, outro albo numer o czymś ważnym.",
       en: "Pads, brass and huge hits. A story that builds: for an album intro, an outro or a song about something that matters.",

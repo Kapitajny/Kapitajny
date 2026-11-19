@@ -66,11 +66,9 @@
 
 /* dioda kanału – świeci przy aktywnej sekcji */
 .led {
+  display: none;
   width: 5px;
   height: 5px;
-  border-radius: 50%;
-  background: var(--signal);
-  opacity: 0;
   transition:
     background-color var(--t-ui) var(--ease),
     box-shadow var(--t-ui) var(--ease);
@@ -78,9 +76,11 @@
 .link[aria-current] {
   color: var(--text);
 }
-.link[aria-current] .led {
-  opacity: 1;
-  box-shadow: 0 0 8px var(--signal);
+.link[aria-current] {
+  text-decoration: underline;
+  text-decoration-color: var(--signal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 8px;
 }
 
 .actions {
@@ -194,7 +194,6 @@
   height: 8px;
   margin-left: -1px;
   background: var(--text);
-  box-shadow: 0 0 8px var(--signal);
 }
 
 /* obszar kliknięcia 24 × 18 px, widoczny tylko cienki znacznik */
@@ -323,7 +322,6 @@
 .sheetList a[aria-current] .sheetTick {
   height: 2px;
   background: var(--signal);
-  box-shadow: 0 0 10px var(--signal);
 }
 
 .sheetFoot {

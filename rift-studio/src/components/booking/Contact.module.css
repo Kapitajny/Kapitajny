@@ -137,7 +137,6 @@ a.v:hover {
   border-radius: 50%;
   background: var(--signal);
   color: var(--void);
-  box-shadow: 0 0 0 10px rgb(59 232 255 / 0.15);
 }
 
 .mapCopy {

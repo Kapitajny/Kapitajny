@@ -85,7 +85,6 @@
 .module:hover .power,
 .module:focus-within .power {
   background: var(--signal);
-  box-shadow: 0 0 10px var(--signal);
 }
 
 .name {
@@ -174,20 +173,11 @@
   font-size: var(--fs-sm);
 }
 .scope li {
-  display: grid;
-  grid-template-columns: 16px minmax(0, 1fr);
-  gap: var(--s-2);
-  align-items: start;
-}
-.scope svg {
-  margin-top: 3px;
-  color: var(--signal);
+  padding-left: var(--s-3);
+  border-left: 1px solid var(--graphite-3);
 }
 
 .forWhom {
-  padding: var(--s-3) var(--s-4);
-  border-left: 2px solid var(--ultra);
-  background: rgb(138 99 255 / 0.06);
   font-size: var(--fs-sm);
   color: var(--text-2);
 }

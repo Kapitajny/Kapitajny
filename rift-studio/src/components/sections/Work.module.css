@@ -19,7 +19,6 @@
   border: 1px solid var(--line-strong);
   border-radius: var(--r-lg);
   background: linear-gradient(180deg, rgb(20 23 28 / 0.9), rgb(10 12 16 / 0.95));
-  box-shadow: 0 30px 80px rgb(0 0 0 / 0.45);
 }
 
 .deck {
@@ -62,7 +61,6 @@
 }
 .ledOn {
   background: var(--signal);
-  box-shadow: 0 0 10px var(--signal);
 }
 
 .badge {
@@ -141,7 +139,6 @@
 .playBtn:hover {
   background: #8ff3ff;
   border-color: #8ff3ff;
-  box-shadow: 0 0 0 6px var(--signal-dim);
 }
 
 .time {
@@ -246,7 +243,6 @@
   left: calc(var(--progress) * 100%);
   width: 2px;
   background: var(--text);
-  box-shadow: 0 0 8px var(--signal);
   pointer-events: none;
 }
 
@@ -282,7 +278,6 @@
 }
 .card[data-active] {
   border-color: rgb(59 232 255 / 0.5);
-  box-shadow: 0 0 0 1px rgb(59 232 255 / 0.15), 0 10px 40px rgb(59 232 255 / 0.08);
 }
 
 .cardCover {

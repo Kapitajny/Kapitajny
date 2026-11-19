@@ -117,7 +117,7 @@ export function Work({ lang, t }: { lang: Locale; t: Dictionary["work"] }) {
   return (
     <section id="realizacje" className={`section ${styles.section}`} aria-labelledby="work-title">
       <div className="container">
-        <header className="section-head section-head--split">
+        <header className="section-head">
           <h2 id="work-title" className="section-title" tabIndex={-1} data-focus-target>
             {t.title}
           </h2>

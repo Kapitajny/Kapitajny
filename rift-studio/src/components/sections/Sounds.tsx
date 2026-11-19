@@ -20,7 +20,7 @@ export function Sounds({ lang, t }: { lang: Locale; t: Dictionary["sounds"] }) {
   return (
     <section id="brzmienia" className={`section ${styles.section}`} aria-labelledby="sounds-title">
       <div className="container">
-        <header className="section-head section-head--split">
+        <header className="section-head">
           <h2 id="sounds-title" className="section-title" tabIndex={-1} data-focus-target>
             {t.title}
           </h2>
