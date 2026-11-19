@@ -20,7 +20,11 @@ export const site = {
 
   /** Dane kontaktowe: uzupełnij, gdy będą znane. Puste pola nie są wyświetlane. */
   contact: {
-    email: null as string | null,
+    /**
+     * Adres zaproponowany roboczo (na prośbę właściciela). Przed publikacją: zarejestruj domenę
+     * pulsoagency.pl i skrzynkę kontakt@ albo wpisz tu adres, który już działa.
+     */
+    email: "kontakt@pulsoagency.pl" as string | null,
     phone: null as string | null,
     hours: null as string | null,
   },

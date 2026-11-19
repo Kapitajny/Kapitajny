@@ -1,6 +1,7 @@
 import { site } from "@/config/site";
 import { CONTACT_ID } from "@/lib/contact-intent";
 import { ContactForm } from "@/components/form/ContactForm";
+import { CopyEmail } from "@/components/ui/CopyEmail";
 
 const next = [
   { title: "Czytamy zgłoszenie", body: "Sprawdzamy, czego potrzebujesz i czy możemy realnie pomóc." },
@@ -37,11 +38,7 @@ export function Contact() {
           {(email || phone) && (
             <div className="mt-10 border-t border-rule pt-6 text-[0.9875rem]">
               <p className="t-col">Wolisz bezpośrednio?</p>
-              {email && (
-                <a className="link-ink mt-2 block text-[1.0625rem] font-[600]" href={`mailto:${email}`}>
-                  {email}
-                </a>
-              )}
+              {email && <CopyEmail email={email} />}
               {phone && (
                 <a className="link-ink mt-1 block text-[1.0625rem] font-[600]" href={`tel:${phone.replace(/\s/g, "")}`}>
                   {phone}
