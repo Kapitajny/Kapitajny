@@ -41,8 +41,18 @@ export function estimatePrice(selection: PricingSelection): PriceEstimate {
   return { min, max, currency: PRICING.currency };
 }
 
-export function formatPrice(value: number): string {
-  return new Intl.NumberFormat("pl-PL", { maximumFractionDigits: 0 }).format(value).replace(/ /g, " ");
+/** Liczba sformatowana według zwyczajów danego języka (np. „1700” po polsku, „1,700” po angielsku). */
+export function formatPrice(value: number, intlLocale = "pl-PL"): string {
+  return new Intl.NumberFormat(intlLocale, { maximumFractionDigits: 0 }).format(value).replace(/\u00a0/g, "\u202f");
+}
+
+/** Mnożniki składające się na wynik — do czytelnego wyjaśnienia w kalkulatorze. */
+export function priceFactors(selection: PricingSelection): { placement: number; detail: number; character: number } {
+  return {
+    placement: find(PRICING.placements, selection.placement).factor,
+    detail: find(PRICING.detail, selection.detail).factor,
+    character: find(PRICING.character, selection.character).factor,
+  };
 }
 
 /** Parametry przekazywane do formularza rezerwacji (wstępne wypełnienie). */

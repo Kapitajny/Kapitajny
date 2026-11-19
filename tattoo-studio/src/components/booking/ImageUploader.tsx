@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type DragEvent } from "react";
 import { UPLOAD_LIMITS } from "@/config/booking";
 import { formatBytes } from "@/lib/booking/files";
+import { useI18n } from "@/i18n/I18nProvider";
 import { prepareImage } from "@/lib/booking/compress";
 import { CloseIcon, PlusIcon } from "@/components/ui/Icons";
 
@@ -24,6 +25,8 @@ export function ImageUploader({
   images: UploadedImage[];
   onChange: (update: (current: UploadedImage[]) => UploadedImage[]) => void;
 }) {
+  const { t } = useI18n();
+  const u = t.booking.upload;
   const inputRef = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
   const [messages, setMessages] = useState<string[]>([]);
@@ -43,11 +46,11 @@ export function ImageUploader({
 
     for (const file of files) {
       if (!ACCEPTED.has(file.type) && !EXT_RE.test(file.name)) {
-        problems.push(`${file.name}: only JPG, JPEG, PNG and WEBP images are accepted.`);
+        problems.push(u.errorType(file.name));
       } else if (file.size > UPLOAD_LIMITS.maxSourceBytes) {
-        problems.push(`${file.name}: the file is larger than ${formatBytes(UPLOAD_LIMITS.maxSourceBytes)}.`);
+        problems.push(u.errorSize(file.name));
       } else if (accepted.length >= slots) {
-        problems.push(`${file.name}: you can add up to ${UPLOAD_LIMITS.maxFiles} images.`);
+        problems.push(u.errorCount(file.name));
       } else {
         accepted.push(file);
       }
@@ -65,7 +68,7 @@ export function ImageUploader({
         },
         () => {
           onChange((current) => current.filter((img) => img.id !== id));
-          setMessages((m) => [...m, `${file.name}: this image couldn't be read. Try saving it as JPG or PNG.`]);
+          setMessages((m) => [...m, u.errorUnreadable(file.name)]);
         },
       );
     }
@@ -81,7 +84,7 @@ export function ImageUploader({
         urls.current.delete(url);
       }, 1000);
     }
-    setMessages([`${image.name} removed.`]);
+    setMessages([u.removed(image.name)]);
   }
 
   const full = images.length >= UPLOAD_LIMITS.maxFiles;
@@ -101,14 +104,14 @@ export function ImageUploader({
         }}
         onDragLeave={() => setDragging(false)}
         onDrop={full ? (event) => event.preventDefault() : onDrop}
-        className={`relative flex flex-col items-center justify-center gap-4 rounded-[2px] border border-dashed px-6 py-12 text-center transition-colors duration-200 ${
+        className={`relative flex flex-col items-center justify-center gap-4 rounded-2xl border border-dashed px-6 py-12 text-center transition-colors duration-200 ${
           dragging ? "border-sumi bg-kinari/60" : "border-sumi/35 bg-washi/60"
         } ${full ? "opacity-60" : ""}`}
       >
         <span className="font-mincho text-4xl text-sumi/40" aria-hidden="true">
           写
         </span>
-        <p className="font-mincho text-lg">{full ? "Image limit reached" : "Drag images here"}</p>
+        <p className="font-mincho text-lg">{full ? u.limitReached : u.dropTitle}</p>
         <button
           type="button"
           onClick={() => inputRef.current?.click()}
@@ -117,11 +120,10 @@ export function ImageUploader({
           aria-describedby="upload-rules"
         >
           <PlusIcon className="h-4 w-4" />
-          Choose images
+          {u.choose}
         </button>
-        <p id="upload-rules" className="max-w-[26rem] font-gothic text-xs leading-relaxed text-nezumi">
-          JPG, JPEG, PNG or WEBP. Up to {UPLOAD_LIMITS.maxFiles} images, {formatBytes(UPLOAD_LIMITS.maxSourceBytes)} each. Images are
-          resized and stripped of location data before sending.
+        <p id="upload-rules" className="max-w-[28rem] font-gothic text-xs leading-relaxed text-nezumi">
+          {u.rules}
         </p>
         <input
           ref={inputRef}
@@ -145,16 +147,16 @@ export function ImageUploader({
       </div>
 
       {images.length > 0 && (
-        <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3" aria-label="Attached images">
+        <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3" aria-label={u.listLabel}>
           {images.map((image, index) => (
             <li key={image.id} className="relative">
               <div className="relative aspect-square overflow-hidden bg-washi-2">
                 {image.url ? (
                   // eslint-disable-next-line @next/next/no-img-element -- lokalny podgląd (blob:), bez optymalizacji
-                  <img src={image.url} alt={`Reference image ${index + 1}: ${image.name}`} className="h-full w-full object-cover" />
+                  <img src={image.url} alt={u.imageAlt(index + 1, image.name)} className="h-full w-full object-cover" />
                 ) : (
                   <div className="flex h-full items-center justify-center font-gothic text-xs text-nezumi" role="status">
-                    Preparing…
+                    {u.preparing}
                   </div>
                 )}
               </div>
@@ -166,8 +168,8 @@ export function ImageUploader({
                 <button
                   type="button"
                   onClick={() => remove(image)}
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[2px] border border-sumi/20 hover:border-sumi"
-                  aria-label={`Remove ${image.name}`}
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-sumi/20 hover:border-sumi"
+                  aria-label={u.remove(image.name)}
                 >
                   <CloseIcon className="h-4 w-4" />
                 </button>

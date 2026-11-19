@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export function ErrorText({ id, children }: { id: string; children?: string }) {
   if (!children) return null;
@@ -16,7 +17,7 @@ export function ErrorText({ id, children }: { id: string; children?: string }) {
 }
 
 const inputBase =
-  "w-full rounded-[2px] border bg-washi/70 px-4 font-gothic text-base text-sumi transition-colors duration-200 placeholder:text-nezumi/60 focus:border-sumi focus:bg-washi focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sumi";
+  "w-full rounded-xl border bg-washi/70 px-4 font-gothic text-base text-sumi transition-colors duration-200 placeholder:text-nezumi/60 focus:border-sumi focus:bg-washi focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sumi";
 
 export function TextField({
   name,
@@ -49,13 +50,14 @@ export function TextField({
   min?: string;
   max?: string;
 }) {
+  const { t } = useI18n();
   const id = `field-${name}`;
   const describedBy = [hint && `${id}-hint`, error && `${id}-error`].filter(Boolean).join(" ") || undefined;
   return (
     <div>
       <label htmlFor={id} className="flex items-baseline justify-between gap-3 font-gothic text-sm font-medium">
         {label}
-        {optional && <span className="font-normal text-nezumi">Optional</span>}
+        {optional && <span className="font-normal text-nezumi">{t.common.optional}</span>}
       </label>
       {hint && (
         <p id={`${id}-hint`} className="mt-1 font-gothic text-xs text-nezumi">
@@ -109,6 +111,7 @@ export function TextArea({
   rows?: number;
   placeholder?: string;
 }) {
+  const { t } = useI18n();
   const id = `field-${name}`;
   const describedBy = [hint && `${id}-hint`, `${id}-count`, error && `${id}-error`].filter(Boolean).join(" ");
   const near = value.length > maxLength * 0.9;
@@ -116,7 +119,7 @@ export function TextArea({
     <div>
       <label htmlFor={id} className="flex items-baseline justify-between gap-3 font-gothic text-sm font-medium">
         {label}
-        {optional && <span className="font-normal text-nezumi">Optional</span>}
+        {optional && <span className="font-normal text-nezumi">{t.common.optional}</span>}
       </label>
       {hint && (
         <p id={`${id}-hint`} className="mt-1 font-gothic text-xs text-nezumi">
@@ -140,7 +143,7 @@ export function TextArea({
       <div className="flex items-start justify-between gap-4">
         <ErrorText id={`${id}-error`}>{error}</ErrorText>
         <p id={`${id}-count`} className={`ml-auto mt-2 font-gothic text-xs tabular-nums ${near ? "text-sumi" : "text-nezumi"}`}>
-          <span className="sr-only">Characters used: </span>
+          <span className="sr-only">{t.booking.fields.charactersUsed} </span>
           {value.length} / {maxLength}
         </p>
       </div>
@@ -195,7 +198,7 @@ export function ChoiceGroup<T extends string>({
               className="peer sr-only"
             />
             <span
-              className={`flex h-full flex-col justify-center rounded-[2px] border px-4 transition-colors duration-200 peer-checked:border-sumi peer-checked:bg-sumi peer-checked:text-washi peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-sumi ${
+              className={`flex h-full flex-col justify-center rounded-xl border px-4 transition-colors duration-200 peer-checked:border-sumi peer-checked:bg-sumi peer-checked:text-washi peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-sumi ${
                 size === "sm" ? "min-h-12 py-2" : "min-h-14 py-3"
               } ${error ? "border-bengara/70" : "border-sumi/20 hover:border-sumi/55"}`}
             >
@@ -239,7 +242,7 @@ export function CheckboxField({
         />
         <span
           aria-hidden="true"
-          className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-[2px] border transition-colors peer-checked:border-sumi peer-checked:bg-sumi peer-checked:text-washi peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-sumi ${
+          className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md border transition-colors peer-checked:border-sumi peer-checked:bg-sumi peer-checked:text-washi peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-sumi ${
             error ? "border-bengara" : "border-sumi/40"
           } ${checked ? "" : "text-transparent"}`}
         >

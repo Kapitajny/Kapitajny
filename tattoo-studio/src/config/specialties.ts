@@ -1,75 +1,23 @@
+import type { WorkId, WorkStyle } from "./work";
+
 /**
- * SPECJALIZACJE (sekcja „Our Specialties”).
- * `image` wskazuje id z `config/work.ts`. Brak `image` = elegancki panel-zastępnik
- * z oznaczeniem „miejsce na zdjęcie” — wstaw zdjęcie, gdy studio będzie mieć realizację w danym stylu.
+ * SPECJALIZACJE — dane techniczne (nazwy i opisy w słownikach: `specialties.items`).
+ * Brak `image` = panel „miejsce na zdjęcie”. `galleryFilter` dodaje link filtrujący galerię.
  */
-
-export interface Specialty {
+export const SPECIALTIES = [
+  { id: "japanese-traditional", kanji: "和彫", reading: "wabori", pattern: "seigaiha" },
+  { id: "japanese-neo-traditional", kanji: "新和", reading: "shin-wa", pattern: "asanoha" },
+  { id: "black-grey", kanji: "墨", reading: "sumi", pattern: "kumiko", image: "skull-anubis", galleryFilter: "black-grey" },
+  { id: "fine-line", kanji: "線", reading: "sen", pattern: "asanoha", image: "lotus-spine", galleryFilter: "fine-line" },
+  { id: "japanese-symbolism", kanji: "象", reading: "shō", pattern: "seigaiha", image: "tiger-chest" },
+  { id: "custom", kanji: "創", reading: "sō", pattern: "kumiko", image: "lotus-hip", galleryFilter: "ornamental" },
+] as const satisfies readonly {
   id: string;
-  name: string;
-  /** Znak/wyraz w panelu zastępczym. */
   kanji: string;
-  kanjiReading: string;
-  description: string;
-  image?: string;
+  reading: string;
   pattern: "seigaiha" | "asanoha" | "kumiko";
-}
+  image?: WorkId;
+  galleryFilter?: WorkStyle;
+}[];
 
-export const SPECIALTIES: Specialty[] = [
-  {
-    id: "japanese-traditional",
-    name: "Japanese Traditional",
-    kanji: "和彫",
-    kanjiReading: "wabori",
-    description:
-      "Klasyczne motywy irezumi: wyraźny kontur, płaskie wypełnienia i tło z fal, chmur lub wiatru, które spaja całą kompozycję z linią ciała.",
-    pattern: "seigaiha",
-  },
-  {
-    id: "japanese-neo-traditional",
-    name: "Japanese Neo-Traditional",
-    kanji: "新和",
-    kanjiReading: "shin-wa",
-    description:
-      "Tradycyjne japońskie motywy w świeższej formie — bogatsze przejścia tonalne, swobodniejsza paleta i współczesne proporcje.",
-    pattern: "asanoha",
-  },
-  {
-    id: "black-grey",
-    name: "Black & Grey",
-    kanji: "墨",
-    kanjiReading: "sumi",
-    description: "Praca samą czernią i jej rozcieńczeniami. Miękkie cieniowanie, głęboki kontrast i światło budowane odcieniem szarości.",
-    image: "wolf-peony",
-    pattern: "kumiko",
-  },
-  {
-    id: "fine-line",
-    name: "Fine Line",
-    kanji: "線",
-    kanjiReading: "sen",
-    description: "Cienka, precyzyjna linia i dużo oddechu wokół motywu. Dla subtelnych projektów, liternictwa i drobnych form.",
-    image: "lotus-spine",
-    pattern: "asanoha",
-  },
-  {
-    id: "japanese-symbolism",
-    name: "Japanese Symbolism",
-    kanji: "象",
-    kanjiReading: "shō",
-    description:
-      "Tygrys, smok, karp koi, kwiat wiśni, maska Hannya. Motywy dobierane świadomie — z uwagą na ich znaczenie i wzajemne relacje w kompozycji.",
-    image: "tiger-chest",
-    pattern: "seigaiha",
-  },
-  {
-    id: "custom",
-    name: "Custom Tattoo Designs",
-    kanji: "創",
-    kanjiReading: "sō",
-    description:
-      "Projekt rysowany od zera na podstawie Twojej historii. Kompozycja, skala i umiejscowienie dopasowane do konkretnej osoby i konkretnego miejsca na ciele.",
-    image: "lotus-hip",
-    pattern: "kumiko",
-  },
-];
+export type SpecialtyId = (typeof SPECIALTIES)[number]["id"];

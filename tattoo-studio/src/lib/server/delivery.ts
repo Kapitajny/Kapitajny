@@ -4,16 +4,10 @@ import { createHmac } from "node:crypto";
 import { mkdir, writeFile } from "node:fs/promises";
 import { isAbsolute, join, resolve } from "node:path";
 import nodemailer from "nodemailer";
-import {
-  BUDGET_OPTIONS,
-  PLACEMENT_OPTIONS,
-  SIDE_OPTIONS,
-  SIZE_OPTIONS,
-  STYLE_OPTIONS,
-  TIME_OPTIONS,
-} from "@/config/booking";
 import { siteConfig } from "@/config/site";
-import { labelOf, type BookingData } from "@/lib/booking/schema";
+import type { Locale } from "@/i18n/config";
+import { pl } from "@/i18n/dictionaries/pl";
+import type { BookingData } from "@/lib/booking/schema";
 import type { DeliveryConfig } from "./env";
 
 export interface Attachment {
@@ -25,6 +19,8 @@ export interface Attachment {
 export interface BookingSubmission {
   reference: string;
   submittedAt: string;
+  /** Język, w którym klient wypełnił formularz. */
+  locale: Locale;
   data: BookingData;
   attachments: Attachment[];
 }
@@ -35,55 +31,63 @@ export interface DeliveryResult {
   error?: string;
 }
 
-/** Czytelne podsumowanie zgłoszenia (pary etykieta–wartość) — wspólne dla e-maila i webhooka. */
+/**
+ * Czytelne podsumowanie zgłoszenia dla studia — po polsku, niezależnie od języka klienta
+ * (język klienta jest podany w polu „Język klienta”, aby odpowiedzieć w tym samym języku).
+ */
 export function summarize(submission: BookingSubmission): { section: string; rows: [string, string][] }[] {
   const d = submission.data;
+  const b = pl.booking;
+  const o = b.options;
+  const l = b.review.labels;
+  const g = b.review.groups;
   const dash = "—";
   return [
     {
-      section: "Personal Details",
+      section: g[0],
       rows: [
-        ["Full name", d.fullName],
-        ["Email", d.email],
-        ["Phone", d.phone || dash],
-        ["Preferred contact", d.contactMethod === "phone" ? "Phone" : "Email"],
+        [l.fullName, d.fullName],
+        [l.email, d.email],
+        [l.phone, d.phone || dash],
+        [l.contactMethod, d.contactMethod === "phone" ? b.fields.contactPhone : b.fields.contactEmail],
+        ["Język klienta", submission.locale === "en" ? "angielski (EN)" : "polski (PL)"],
       ],
     },
     {
-      section: "Tattoo Concept",
+      section: g[1],
       rows: [
-        ["Description", d.description],
-        ["Meaning", d.meaning || dash],
-        ["First tattoo", d.firstTattoo === "yes" ? "Yes" : "No"],
-        ["Design", d.designType === "new" ? "New design" : "Existing concept"],
+        [l.description, d.description],
+        [l.meaning, d.meaning || dash],
+        [l.firstTattoo, d.firstTattoo === "yes" ? b.fields.yes : b.fields.no],
+        [l.design, d.designType === "new" ? b.fields.designNew : b.fields.designExisting],
       ],
     },
     {
-      section: "Style & Placement",
+      section: g[2],
       rows: [
-        ["Styles", d.styles.map((s) => labelOf(STYLE_OPTIONS, s)).join(", ")],
-        ["Placement", labelOf(PLACEMENT_OPTIONS, d.placement) + (d.placementNote ? ` (${d.placementNote})` : "")],
-        ["Side", labelOf(SIDE_OPTIONS, d.side)],
+        [l.styles, d.styles.map((s) => o.styles[s].label).join(", ")],
+        [l.placement, (d.placement ? o.placements[d.placement] : dash) + (d.placementNote ? ` (${d.placementNote})` : "")],
+        [l.side, d.side ? o.sides[d.side] : dash],
       ],
     },
     {
-      section: "Size & Budget",
+      section: g[3],
       rows: [
-        ["Size", labelOf(SIZE_OPTIONS, d.size)],
-        ["Budget", labelOf(BUDGET_OPTIONS, d.budget)],
-        ["Preferred date", d.preferredDate || "No preference"],
-        ["Preferred time", labelOf(TIME_OPTIONS, d.preferredTime)],
+        [l.size, d.size ? o.sizes[d.size].label : dash],
+        [l.budget, d.budget ? o.budgets[d.budget] : dash],
+        [l.date, d.preferredDate || b.review.noPreference],
+        [b.fields.preferredTime, o.times[d.preferredTime]],
       ],
     },
     {
-      section: "Reference Images",
-      rows: [["Attached", submission.attachments.length ? `${submission.attachments.length} image(s)` : "None"]],
+      section: g[4],
+      rows: [[l.images, submission.attachments.length ? String(submission.attachments.length) : b.review.noImages]],
     },
     {
-      section: "Consents",
+      section: "Zgody",
       rows: [
-        ["Privacy Policy acknowledged", d.privacyAccepted ? `Yes (${submission.submittedAt})` : "No"],
-        ["Details confirmed as correct", d.accuracyConfirmed ? "Yes" : "No"],
+        ["Zapoznanie z Polityką prywatności", d.privacyAccepted ? `Tak (${submission.submittedAt})` : "Nie"],
+        ["Potwierdzenie prawdziwości danych", d.accuracyConfirmed ? "Tak" : "Nie"],
       ],
     },
   ];
@@ -97,18 +101,18 @@ const singleLine = (value: string) => value.replace(/[\r\n\t]+/g, " ").slice(0, 
 function emailBodies(submission: BookingSubmission): { text: string; html: string } {
   const sections = summarize(submission);
   const text = [
-    `New tattoo project ${submission.reference}`,
-    `Submitted: ${submission.submittedAt}`,
+    `Nowe zgłoszenie projektu tatuażu ${submission.reference}`,
+    `Wysłano: ${submission.submittedAt}`,
     "",
     ...sections.flatMap(({ section, rows }) => [section.toUpperCase(), ...rows.map(([k, v]) => `${k}: ${v}`), ""]),
-    "This request is not a confirmed appointment. Reply to this email to contact the client.",
+    "To zgłoszenie nie jest potwierdzoną rezerwacją. Odpowiedz na tę wiadomość, aby skontaktować się z klientem.",
   ].join("\n");
 
   const html = `<!doctype html><html><body style="font-family:Georgia,serif;color:#1a1612;background:#ede8dd;padding:24px">
 <div style="max-width:640px;margin:0 auto;background:#f6f2ea;padding:28px">
-<p style="font-family:Arial,sans-serif;font-size:12px;letter-spacing:.2em;color:#5e574d;margin:0">${escapeHtml(siteConfig.name)} · BOOK YOUR TATTOO</p>
-<h1 style="font-weight:normal;font-size:24px;margin:8px 0 4px">New tattoo project ${escapeHtml(submission.reference)}</h1>
-<p style="font-family:Arial,sans-serif;font-size:13px;color:#5e574d;margin:0 0 20px">Submitted ${escapeHtml(submission.submittedAt)}</p>
+<p style="font-family:Arial,sans-serif;font-size:12px;letter-spacing:.2em;color:#5e574d;margin:0">${escapeHtml(siteConfig.name)}</p>
+<h1 style="font-weight:normal;font-size:24px;margin:8px 0 4px">Nowe zgłoszenie ${escapeHtml(submission.reference)}</h1>
+<p style="font-family:Arial,sans-serif;font-size:13px;color:#5e574d;margin:0 0 20px">Wysłano ${escapeHtml(submission.submittedAt)}</p>
 ${sections
   .map(
     ({ section, rows }) => `<h2 style="font-weight:normal;font-size:17px;border-top:1px solid #d8cdb8;padding-top:14px;margin:18px 0 8px">${escapeHtml(section)}</h2>
@@ -120,7 +124,7 @@ ${sections
       .join("")}</table>`,
   )
   .join("")}
-<p style="font-family:Arial,sans-serif;font-size:12px;color:#5e574d;margin-top:24px">This request is not a confirmed appointment. Reply to this email to contact the client.</p>
+<p style="font-family:Arial,sans-serif;font-size:12px;color:#5e574d;margin-top:24px">To zgłoszenie nie jest potwierdzoną rezerwacją. Odpowiedz na tę wiadomość, aby skontaktować się z klientem.</p>
 </div></body></html>`;
 
   return { text, html };
@@ -143,7 +147,7 @@ async function sendEmail(config: NonNullable<DeliveryConfig["smtp"]>, submission
     from: config.from,
     to: config.to,
     replyTo: { name: singleLine(submission.data.fullName), address: submission.data.email },
-    subject: `New tattoo project ${submission.reference}: ${singleLine(submission.data.fullName)}`,
+    subject: `Nowe zgłoszenie ${submission.reference}: ${singleLine(submission.data.fullName)}`,
     text,
     html,
     attachments: submission.attachments.map((a) => ({ filename: a.filename, content: a.content, contentType: a.contentType })),
@@ -156,6 +160,7 @@ async function sendWebhook(config: NonNullable<DeliveryConfig["webhook"]>, submi
     type: "tattoo_booking_request",
     reference: submission.reference,
     submittedAt: submission.submittedAt,
+    locale: submission.locale,
     data: submission.data,
     summary: summarize(submission),
     attachments: submission.attachments.map((a) => ({
@@ -192,6 +197,7 @@ async function store(dir: string, submission: BookingSubmission): Promise<void> 
       {
         reference: submission.reference,
         submittedAt: submission.submittedAt,
+        locale: submission.locale,
         data: submission.data,
         attachments: submission.attachments.map((a) => ({ filename: a.filename, contentType: a.contentType, size: a.content.length })),
       },

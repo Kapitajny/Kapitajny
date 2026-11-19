@@ -1,28 +1,40 @@
-import Link from "next/link";
-import { LEGAL_LINKS, siteConfig } from "@/config/site";
+"use client";
+
+import { siteConfig } from "@/config/site";
+import { LanguageSwitcher } from "@/i18n/LanguageSwitcher";
+import { LocalizedLink } from "@/i18n/LocalizedLink";
+import { useI18n } from "@/i18n/I18nProvider";
+import { BrandTagline } from "@/components/ui/BrandTagline";
 import { Pattern } from "@/components/ui/Pattern";
 import { Seal } from "@/components/ui/Seal";
 
-const FOOTER_NAV = [
-  { label: "About Us", href: "/#about" },
-  { label: "Gallery", href: "/#gallery" },
-  { label: "Specialties", href: "/#specialties" },
-  { label: "Pricing", href: "/#pricing" },
-  { label: "FAQ", href: "/#faq" },
-  { label: "Contact", href: "/#contact" },
-];
-
-function Todo({ children }: { children: string }) {
-  return <span className="todo">{children}: do uzupełnienia</span>;
+function Todo({ label, suffix }: { label: string; suffix: string }) {
+  return (
+    <span className="todo">
+      {label}: {suffix}
+    </span>
+  );
 }
 
 export function Footer() {
+  const { t, lang } = useI18n();
+  const f = t.footer;
   const { contact, social } = siteConfig;
+  const hours = contact.hours[lang];
   const socials = [
     { label: "Instagram", href: social.instagram },
     { label: "Facebook", href: social.facebook },
     { label: "TikTok", href: social.tiktok },
   ].filter((s) => s.href);
+
+  const nav = [
+    { label: f.links.about, hash: "about" },
+    { label: f.links.gallery, hash: "gallery" },
+    { label: f.links.specialties, hash: "specialties" },
+    { label: f.links.pricing, hash: "pricing" },
+    { label: f.links.faq, hash: "faq" },
+    { label: f.links.contact, hash: "contact" },
+  ];
 
   return (
     <footer className="on-dark relative isolate flex min-h-svh flex-col overflow-hidden bg-sumi pb-[var(--dock-space)] text-washi">
@@ -40,34 +52,37 @@ export function Footer() {
         >
           {siteConfig.name}
         </p>
-        <p className="mt-8 font-gothic text-sm font-medium tracking-[0.28em] text-kinari">{siteConfig.tagline}</p>
+        <div className="mt-10 flex flex-wrap items-center gap-5">
+          <span aria-hidden="true" className="h-px w-10 bg-kin" />
+          <BrandTagline className="font-gothic text-xs font-medium tracking-[0.28em] text-kinari sm:text-sm" />
+        </div>
       </div>
 
-      <div className="page-x relative mt-16 grid gap-12 border-t border-washi/15 pt-12 sm:grid-cols-2 lg:grid-cols-12">
-        <nav aria-label="Stopka" className="lg:col-span-3">
-          <h2 className="font-gothic text-xs text-usuzumi">Studio</h2>
+      <div className="page-x relative mt-16 grid gap-12 border-t border-washi/12 pt-12 sm:grid-cols-2 lg:grid-cols-12">
+        <nav aria-label={f.navLabel} className="lg:col-span-3">
+          <h2 className="font-gothic text-xs text-usuzumi">{f.studio}</h2>
           <ul className="mt-5 space-y-2.5 font-mincho text-lg">
-            {FOOTER_NAV.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} className="hover:text-kinari">
+            {nav.map((item) => (
+              <li key={item.hash}>
+                <LocalizedLink route="home" hash={item.hash} className="hover:text-kin">
                   {item.label}
-                </Link>
+                </LocalizedLink>
               </li>
             ))}
           </ul>
         </nav>
 
         <div id="contact" className="scroll-mt-10 lg:col-span-4">
-          <h2 className="font-gothic text-xs text-usuzumi">Contact</h2>
+          <h2 className="font-gothic text-xs text-usuzumi">{f.contact}</h2>
           <address className="mt-5 space-y-2.5 font-mincho text-lg not-italic">
-            <p>{contact.address || <Todo>Adres studia</Todo>}</p>
+            <p>{contact.address || <Todo label={f.todo.address} suffix={t.common.todo} />}</p>
             <p>
               {contact.email ? (
                 <a href={`mailto:${contact.email}`} className="ink-link">
                   {contact.email}
                 </a>
               ) : (
-                <Todo>E-mail</Todo>
+                <Todo label={f.todo.email} suffix={t.common.todo} />
               )}
             </p>
             <p>
@@ -76,61 +91,66 @@ export function Footer() {
                   {contact.phone}
                 </a>
               ) : (
-                <Todo>Telefon</Todo>
+                <Todo label={f.todo.phone} suffix={t.common.todo} />
               )}
             </p>
-            <p className="font-gothic text-sm text-usuzumi">{contact.hours || <Todo>Godziny pracy</Todo>}</p>
+            <p className="font-gothic text-sm text-usuzumi">{hours || <Todo label={f.todo.hours} suffix={t.common.todo} />}</p>
             {contact.mapUrl && (
               <p>
                 <a href={contact.mapUrl} target="_blank" rel="noopener noreferrer" className="ink-link font-gothic text-sm">
-                  Open in maps
+                  {f.openMaps}
                 </a>
               </p>
             )}
           </address>
-          <Link href="/rezerwacja" className="btn btn-paper mt-8">
-            Book your tattoo
-          </Link>
+          <LocalizedLink route="booking" className="btn btn-paper mt-8">
+            {t.nav.bookLong}
+          </LocalizedLink>
         </div>
 
         <div className="lg:col-span-2">
-          <h2 className="font-gothic text-xs text-usuzumi">Social</h2>
+          <h2 className="font-gothic text-xs text-usuzumi">{f.social}</h2>
           <ul className="mt-5 space-y-2.5 font-mincho text-lg">
             {socials.length ? (
               socials.map((s) => (
                 <li key={s.label}>
-                  <a href={s.href} target="_blank" rel="noopener noreferrer" className="hover:text-kinari">
+                  <a href={s.href} target="_blank" rel="noopener noreferrer" className="hover:text-kin">
                     {s.label}
                   </a>
                 </li>
               ))
             ) : (
               <li>
-                <Todo>Profile społecznościowe</Todo>
+                <Todo label={f.todo.socials} suffix={t.common.todo} />
               </li>
             )}
           </ul>
         </div>
 
         <div className="lg:col-span-3">
-          <h2 className="font-gothic text-xs text-usuzumi">Informacje</h2>
+          <h2 className="font-gothic text-xs text-usuzumi">{f.info}</h2>
           <ul className="mt-5 space-y-2.5 font-mincho text-lg">
-            {LEGAL_LINKS.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href} className="hover:text-kinari">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+            <li>
+              <LocalizedLink route="terms" className="hover:text-kin">
+                {t.legal.links.terms}
+              </LocalizedLink>
+            </li>
+            <li>
+              <LocalizedLink route="privacy" className="hover:text-kin">
+                {t.legal.links.privacy}
+              </LocalizedLink>
+            </li>
           </ul>
+          <div className="mt-8">
+            <p className="mb-3 font-gothic text-xs text-usuzumi">{t.common.language.label}</p>
+            <LanguageSwitcher />
+          </div>
         </div>
       </div>
 
-      <div className="page-x relative mt-14 flex flex-col gap-2 border-t border-washi/15 py-6 font-gothic text-xs text-usuzumi sm:flex-row sm:justify-between">
-        <p>
-          © {new Date().getFullYear()} {siteConfig.legal.companyName || siteConfig.name}. Wszelkie prawa zastrzeżone.
-        </p>
-        <p>Projekty i zdjęcia prac chronione prawem autorskim.</p>
+      <div className="page-x relative mt-14 flex flex-col gap-2 border-t border-washi/12 py-6 font-gothic text-xs text-usuzumi sm:flex-row sm:justify-between">
+        <p>{f.rights(new Date().getFullYear(), siteConfig.legal.companyName || siteConfig.name)}</p>
+        <p>{f.copyright}</p>
       </div>
     </footer>
   );

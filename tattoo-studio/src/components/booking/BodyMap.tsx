@@ -1,4 +1,7 @@
+"use client";
+
 import type { PlacementId, SideId } from "@/config/booking";
+import { useI18n } from "@/i18n/I18nProvider";
 
 type Zone = "neck" | "chest" | "torso" | "upperArm" | "forearm" | "hand" | "thigh" | "calf";
 
@@ -29,7 +32,19 @@ const SHAPES: Record<Zone, { r?: string; l?: string; center?: string }> = {
   calf: { r: "M43 166h14l-2 50H46z", l: "M63 166h14l-3 50H65z" },
 };
 
-export function BodyMap({ placement, side }: { placement: PlacementId | ""; side: SideId | "" }) {
+export function BodyMap({
+  placement,
+  side,
+  caption = true,
+  tone = "light",
+}: {
+  placement: PlacementId | "";
+  side: SideId | "";
+  caption?: boolean;
+  tone?: "light" | "dark";
+}) {
+  const { t } = useI18n();
+  const ink = tone === "dark" ? "var(--color-washi)" : "var(--color-sumi)";
   const active = new Set(placement ? PLACEMENT_ZONES[placement] : []);
   const showRight = side === "right" || side === "both" || side === "not-sure" || side === "";
   const showLeft = side === "left" || side === "both" || side === "not-sure" || side === "";
@@ -39,7 +54,7 @@ export function BodyMap({ placement, side }: { placement: PlacementId | ""; side
     <figure className="flex flex-col items-center">
       <svg viewBox="0 0 120 232" className="h-auto w-full max-w-[12rem]" aria-hidden="true">
         {/* sylwetka */}
-        <g fill="var(--color-sumi)" fillOpacity="0.07" stroke="var(--color-sumi)" strokeOpacity="0.35" strokeWidth="0.8">
+        <g fill={ink} fillOpacity="0.07" stroke={ink} strokeOpacity="0.35" strokeWidth="0.8">
           <circle cx="60" cy="19" r="12" />
           {Object.entries(SHAPES).map(([zone, shape]) =>
             zone === "chest" ? null : (
@@ -52,7 +67,7 @@ export function BodyMap({ placement, side }: { placement: PlacementId | ""; side
           )}
         </g>
         {/* zaznaczenie */}
-        <g fill="var(--color-sumi)" stroke="var(--color-sumi)" strokeWidth="0.8">
+        <g fill={ink} stroke={ink} strokeWidth="0.8">
           {[...active].map((zone) => {
             const shape = SHAPES[zone];
             const style = { fillOpacity: tentative && !shape.center ? 0.45 : 0.9 };
@@ -66,10 +81,12 @@ export function BodyMap({ placement, side }: { placement: PlacementId | ""; side
           })}
         </g>
       </svg>
-      <figcaption className="mt-3 text-center font-gothic text-2xs leading-relaxed text-nezumi">
-        Front view: your right side is on the left.
-        {placement === "back" && <span className="block">Back shown as a dashed area.</span>}
-      </figcaption>
+      {caption && (
+        <figcaption className="mt-3 text-center font-gothic text-2xs leading-relaxed text-nezumi">
+          {t.booking.bodyMap.caption}
+          {placement === "back" && <span className="block">{t.booking.bodyMap.back}</span>}
+        </figcaption>
+      )}
     </figure>
   );
 }

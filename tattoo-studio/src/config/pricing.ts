@@ -1,12 +1,11 @@
 /**
- * KALKULATOR CENY — WARTOŚCI DO UZUPEŁNIENIA PRZEZ STUDIO.
+ * KALKULATOR CENY — WARTOŚCI DO UZUPEŁNIENIA PRZEZ STUDIO (etykiety w słownikach: `pricing`).
  *
- * Poniższe liczby są PRZYKŁADOWE i nie są cennikiem studia. Dopóki `PRICING_CONFIRMED`
- * ma wartość `false`, kalkulator wyraźnie oznacza wynik jako wartości poglądowe.
+ * Liczby są PRZYKŁADOWE i nie są cennikiem studia. Dopóki `PRICING_CONFIRMED` = false,
+ * kalkulator wyraźnie oznacza wynik jako poglądowy.
  *
- * Jak liczony jest przedział:
- *   bazowy przedział dla rozmiaru × mnożnik miejsca × mnożnik szczegółowości × mnożnik charakteru,
- *   zaokrąglony do `roundTo`, nie niższy niż `minimumPrice`.
+ * Przedział = bazowy przedział rozmiaru × mnożnik miejsca × mnożnik szczegółowości × mnożnik charakteru,
+ * zaokrąglony do `roundTo`, nie niższy niż `minimumPrice`.
  */
 
 export const PRICING_CONFIRMED = false;
@@ -15,36 +14,32 @@ export const PRICING = {
   currency: "PLN",
   roundTo: 50,
   minimumPrice: 300,
-
   sizes: [
-    { id: "small", label: "Small", detail: "do 5 cm", base: [300, 500], bookingSize: "small" },
-    { id: "medium", label: "Medium", detail: "5–15 cm", base: [600, 1200], bookingSize: "medium" },
-    { id: "large", label: "Large", detail: "15–30 cm", base: [1300, 2600], bookingSize: "large" },
-    { id: "extra-large", label: "Extra Large", detail: "ponad 30 cm", base: [2800, 5000], bookingSize: "extra-large" },
+    { id: "small", maxCm: 5, base: [300, 500], bookingSize: "small" },
+    { id: "medium", maxCm: 15, base: [600, 1200], bookingSize: "medium" },
+    { id: "large", maxCm: 30, base: [1300, 2600], bookingSize: "large" },
+    { id: "extra-large", maxCm: 40, base: [2800, 5000], bookingSize: "extra-large" },
   ],
-
   placements: [
-    { id: "forearm", label: "Przedramię", factor: 1, bookingPlacement: "forearm" },
-    { id: "upper-arm", label: "Ramię", factor: 1, bookingPlacement: "upper-arm" },
-    { id: "thigh", label: "Udo", factor: 1, bookingPlacement: "thigh" },
-    { id: "calf", label: "Łydka", factor: 1.05, bookingPlacement: "calf" },
-    { id: "back", label: "Plecy", factor: 1.05, bookingPlacement: "back" },
-    { id: "chest", label: "Klatka piersiowa", factor: 1.1, bookingPlacement: "chest" },
-    { id: "neck", label: "Szyja", factor: 1.2, bookingPlacement: "neck" },
-    { id: "hand", label: "Dłoń", factor: 1.2, bookingPlacement: "hand" },
+    { id: "forearm", factor: 1, bookingPlacement: "forearm" },
+    { id: "upper-arm", factor: 1, bookingPlacement: "upper-arm" },
+    { id: "thigh", factor: 1, bookingPlacement: "thigh" },
+    { id: "calf", factor: 1.05, bookingPlacement: "calf" },
+    { id: "back", factor: 1.05, bookingPlacement: "back" },
+    { id: "chest", factor: 1.1, bookingPlacement: "chest" },
+    { id: "neck", factor: 1.2, bookingPlacement: "neck" },
+    { id: "hand", factor: 1.2, bookingPlacement: "hand" },
   ],
-
   detail: [
-    { id: "simple", label: "Prosty", description: "Kontur, niewiele wypełnień", factor: 1 },
-    { id: "detailed", label: "Szczegółowy", description: "Cieniowanie, więcej elementów", factor: 1.3 },
-    { id: "intricate", label: "Bardzo szczegółowy", description: "Gęsta kompozycja, drobny detal", factor: 1.65 },
+    { id: "simple", factor: 1 },
+    { id: "detailed", factor: 1.3 },
+    { id: "intricate", factor: 1.65 },
   ],
-
   character: [
-    { id: "fine-line", label: "Fine line / liternictwo", factor: 0.9, bookingStyle: "fine-line" },
-    { id: "black-grey", label: "Black & grey", factor: 1.1, bookingStyle: "black-grey" },
-    { id: "japanese", label: "Japoński tradycyjny", factor: 1.2, bookingStyle: "japanese-traditional" },
-    { id: "color", label: "Kolor / neo-traditional", factor: 1.3, bookingStyle: "japanese-neo-traditional" },
+    { id: "fine-line", factor: 0.9, bookingStyle: "fine-line" },
+    { id: "black-grey", factor: 1.1, bookingStyle: "black-grey" },
+    { id: "japanese", factor: 1.2, bookingStyle: "japanese-traditional" },
+    { id: "color", factor: 1.3, bookingStyle: "japanese-neo-traditional" },
   ],
 } as const;
 

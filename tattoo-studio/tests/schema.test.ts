@@ -26,7 +26,7 @@ describe("validateBooking", () => {
   });
 
   it("requires a meaningful description", () => {
-    expect(validateBooking({ ...VALID, description: "koi" }, ["description"], NOW).description).toMatch(/at least/);
+    expect(validateBooking({ ...VALID, description: "koi" }, ["description"], NOW).description).toBe("tooShort");
   });
 
   it("validates option lists", () => {

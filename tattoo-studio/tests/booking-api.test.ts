@@ -122,7 +122,7 @@ describe("POST /api/booking", () => {
     try {
       const secret = "test-secret";
       const ok = await handleBookingRequest(
-        makeRequest({ files: [{ bytes: JPEG, name: "a.jpg", type: "image/jpeg" }] }),
+        makeRequest({ files: [{ bytes: JPEG, name: "a.jpg", type: "image/jpeg" }], meta: { lang: "en" } }),
         { ...NONE, webhook: { url: `http://localhost:${port}/hook`, secret } },
       );
       expect(ok.status).toBe(201);
@@ -131,6 +131,10 @@ describe("POST /api/booking", () => {
       expect(hit.headers["x-booking-signature"]).toBe(`sha256=${expected}`);
       const payload = JSON.parse(hit.body);
       expect(payload.attachments[0]).toMatchObject({ filename: "reference-1.jpg", contentType: "image/jpeg" });
+      // Podsumowanie dla studia jest po polsku, z informacją o języku klienta.
+      expect(payload.locale).toBe("en");
+      expect(payload.summary[0].section).toBe("Dane osobowe");
+      expect(payload.summary[0].rows).toContainEqual(["Język klienta", "angielski (EN)"]);
 
       // Webhook nieosiągalny: zapis w archiwum nie wystarcza, bo studio nie dostałoby powiadomienia.
       const storage = await storageConfig();

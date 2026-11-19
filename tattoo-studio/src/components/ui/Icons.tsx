@@ -1,7 +1,7 @@
 import type { NavIcon } from "@/config/site";
 
 /** Ikony doku rysowane jedną, cienką linią — jak szkic pędzelkiem. */
-export function DockIcon({ name, className = "" }: { name: NavIcon; className?: string }) {
+export function DockIcon({ name, className = "" }: { name: NavIcon | "book"; className?: string }) {
   const common = {
     fill: "none",
     stroke: "currentColor",
@@ -64,6 +64,14 @@ export function DockIcon({ name, className = "" }: { name: NavIcon; className?: 
           <path d="M12 20h8" />
         </g>
       )}
+    </svg>
+  );
+}
+
+export function MenuIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" focusable="false">
+      <path d="M4 8h16M4 16h10" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
     </svg>
   );
 }

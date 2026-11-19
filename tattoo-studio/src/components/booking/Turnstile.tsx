@@ -18,7 +18,7 @@ declare global {
  * Cloudflare Turnstile — opcjonalna weryfikacja antyspamowa (bez obrazkowych CAPTCHA).
  * Ładowana tylko, gdy ustawiono NEXT_PUBLIC_TURNSTILE_SITE_KEY i TURNSTILE_SECRET_KEY.
  */
-export function Turnstile({ siteKey, onToken }: { siteKey: string; onToken: (token: string) => void }) {
+export function Turnstile({ siteKey, language, onToken }: { siteKey: string; language: string; onToken: (token: string) => void }) {
   const container = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(() => typeof window !== "undefined" && !!window.turnstile);
 
@@ -27,12 +27,13 @@ export function Turnstile({ siteKey, onToken }: { siteKey: string; onToken: (tok
     const id = window.turnstile.render(container.current, {
       sitekey: siteKey,
       theme: "light",
+      language,
       callback: (token: string) => onToken(token),
       "expired-callback": () => onToken(""),
       "error-callback": () => onToken(""),
     });
     return () => window.turnstile?.remove(id);
-  }, [ready, siteKey, onToken]);
+  }, [ready, siteKey, language, onToken]);
 
   return (
     <div>

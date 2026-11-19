@@ -13,7 +13,7 @@
  *   sourceUrl: "https://…",
  *   date: "2026-10-01",
  *   image: "lotus-spine", // opcjonalnie — id pracy z config/work.ts
- *   tattoo: "Lotos, plecy",
+ *   lang: "pl", // język oryginału opinii — opinie wyświetlamy w oryginalnym brzmieniu
  * }
  */
 
@@ -26,8 +26,10 @@ export interface Review {
   sourceUrl?: string;
   /** RRRR-MM-DD */
   date?: string;
+  /** id pracy z config/work.ts — opcjonalne zdjęcie. */
   image?: string;
-  tattoo?: string;
+  /** Język, w którym napisano opinię (pokazujemy ją w oryginale). */
+  lang: "pl" | "en";
 }
 
 export const REVIEWS: Review[] = [];

@@ -24,7 +24,7 @@ export function Seal({ size = 44, className = "" }: { size?: number; className?:
         textAnchor="middle"
         dominantBaseline="central"
         fontFamily="var(--font-shippori), serif"
-        fontWeight="700"
+        fontWeight="500"
         fontSize="26"
         fill="var(--color-washi)"
       >
@@ -38,7 +38,7 @@ export function Wordmark({ className = "" }: { className?: string }) {
   return (
     <span className={`inline-flex items-center gap-3 ${className}`}>
       <Seal size={34} />
-      <span className="font-mincho text-lg font-semibold tracking-[0.32em]">{siteConfig.name}</span>
+      <span className="font-mincho text-lg font-medium tracking-[0.32em]">{siteConfig.name}</span>
     </span>
   );
 }

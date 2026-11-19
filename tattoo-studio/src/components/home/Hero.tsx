@@ -1,100 +1,128 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
+import { useEffect, useRef } from "react";
 import { siteConfig } from "@/config/site";
-import { PORTFOLIO_IS_SAMPLE, workById, workSrc } from "@/config/work";
+import { PORTFOLIO_IS_SAMPLE, workById, workSrc, type WorkId } from "@/config/work";
+import { LanguageSwitcher } from "@/i18n/LanguageSwitcher";
+import { LocalizedLink } from "@/i18n/LocalizedLink";
+import { useI18n } from "@/i18n/I18nProvider";
+import { BrandTagline } from "@/components/ui/BrandTagline";
 import { ArrowIcon } from "@/components/ui/Icons";
 import { Pattern } from "@/components/ui/Pattern";
 import { Wordmark } from "@/components/ui/Seal";
 
-const SCROLLS = [
-  { id: "lotus-spine", className: "mt-16 sm:mt-24", delay: 250 },
-  { id: "tiger-chest", className: "", delay: 0 },
-  { id: "floral-mandala", className: "mt-10 sm:mt-14", delay: 450 },
+/** Panele parawanu byōbu — kąt złożenia na przemian, jak w prawdziwym parawanie. */
+const PANELS: { id: WorkId; fold: number }[] = [
+  { id: "lotus-spine", fold: 14 },
+  { id: "candle-lantern", fold: -14 },
+  { id: "floral-mandala", fold: 14 },
+  { id: "skull-anubis", fold: -14 },
 ];
 
-/** Zwój kakejiku: sznurek, górny drążek, oprawa z papieru i dolny wałek z gałkami. */
-function HangingScroll({ id, className, delay, preload }: { id: string; className: string; delay: number; preload?: boolean }) {
-  const work = workById(id);
-  return (
-    <figure className={`kakejiku flex w-full flex-col items-center ${className}`} style={{ ["--unroll-delay" as string]: `${delay}ms` }}>
-      <svg viewBox="0 0 100 22" className="h-auto w-[62%] text-usuzumi" aria-hidden="true">
-        <path d="M8 22 50 2 92 22" fill="none" stroke="currentColor" strokeWidth="0.9" />
-        <circle cx="50" cy="2" r="1.6" fill="currentColor" />
-      </svg>
-      <div className="h-[7px] w-[104%] rounded-[1px] bg-[#3d342a] shadow-[0_2px_0_rgba(0,0,0,0.25)]" />
-      <div className="kakejiku-roll w-full">
-        <div className="overflow-hidden">
-          <div className="bg-kinari px-[7%] pb-[22%] pt-[9%] shadow-[0_30px_50px_-30px_rgba(0,0,0,0.9)]">
-            <div className="relative aspect-[3/5] w-full overflow-hidden bg-sumi-3">
-              <Image
-                src={workSrc(work)}
-                alt={work.alt}
-                fill
-                preload={preload}
-                quality={85}
-                sizes="(min-width: 1024px) 15vw, 30vw"
-                className="object-cover"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="relative h-[11px] w-[112%] rounded-full bg-[#2c251e]">
-        <span className="absolute -left-[3px] top-1/2 h-[15px] w-[9px] -translate-y-1/2 rounded-[3px] bg-[#4a3f33]" />
-        <span className="absolute -right-[3px] top-1/2 h-[15px] w-[9px] -translate-y-1/2 rounded-[3px] bg-[#4a3f33]" />
-      </div>
-    </figure>
-  );
-}
-
 export function Hero() {
+  const { t } = useI18n();
+  const screenRef = useRef<HTMLDivElement>(null);
+
+  // Delikatne pochylenie parawanu w stronę kursora (tylko precyzyjny wskaźnik, bez reduced motion).
+  useEffect(() => {
+    const screen = screenRef.current;
+    if (!screen) return;
+    const query = window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)");
+    if (!query.matches) return;
+    const section = screen.closest("section");
+    const onMove = (event: PointerEvent) => {
+      const x = event.clientX / window.innerWidth - 0.5;
+      screen.style.setProperty("--tilt", (x * 2).toFixed(3));
+    };
+    const onLeave = () => screen.style.setProperty("--tilt", "0");
+    section?.addEventListener("pointermove", onMove);
+    section?.addEventListener("pointerleave", onLeave);
+    return () => {
+      section?.removeEventListener("pointermove", onMove);
+      section?.removeEventListener("pointerleave", onLeave);
+    };
+  }, []);
+
   return (
-    <section id="top" aria-labelledby="hero-title" className="on-dark relative isolate flex min-h-svh flex-col overflow-hidden bg-sumi text-washi">
-      <div className="page-x relative z-10 flex items-center justify-between pt-6 sm:pt-8">
-        <Link href="/" aria-label={`${siteConfig.name} — strona główna`} className="rounded-sm">
+    <section id="top" aria-labelledby="hero-title" className="on-dark relative isolate overflow-hidden bg-sumi text-washi lg:min-h-svh">
+      <div className="page-x relative z-10 flex items-center justify-between gap-4 pt-5 sm:pt-7">
+        <LocalizedLink route="home" aria-label={t.common.homeLink(siteConfig.name)} className="rounded-sm">
           <Wordmark />
-        </Link>
-        <p className="hidden font-gothic text-xs tracking-[0.2em] text-usuzumi sm:block">{siteConfig.city}</p>
+        </LocalizedLink>
+        <LanguageSwitcher />
       </div>
 
-      <div className="page-x relative z-10 grid flex-1 items-center gap-y-14 pb-36 pt-14 lg:grid-cols-12 lg:gap-x-10 lg:pb-40 lg:pt-6">
-        <div className="lg:col-span-7">
+      <div className="page-x relative z-10 grid items-center gap-y-16 pb-36 pt-14 lg:grid-cols-12 lg:gap-x-12 lg:pb-40 lg:pt-10">
+        <div className="lg:col-span-6">
           <h1 id="hero-title" className="hero-in">
-            <span className="display block text-[clamp(5.25rem,19vw,15.5rem)] font-normal leading-[0.86] tracking-[0.06em]">
-              {siteConfig.name}
-            </span>
-            <span className="mt-7 block max-w-[24rem] font-gothic text-sm font-medium leading-relaxed tracking-[0.28em] text-kinari sm:max-w-none">
-              {siteConfig.tagline}
+            <span className="display block text-[clamp(5rem,15vw,12.5rem)] font-normal leading-[0.84] tracking-[0.04em]">{siteConfig.name}</span>
+            <span className="mt-6 block max-w-[16ch] font-mincho text-[clamp(1.6rem,3vw,2.5rem)] font-normal leading-[1.15] text-washi">
+              {t.hero.title}
             </span>
           </h1>
-          <p className="hero-in mt-8 max-w-[30rem] font-mincho text-lg leading-[1.85] text-washi/85 [--hero-delay:150ms]">
-            Autorskie projekty tatuaży inspirowane japońską sztuką — jej symboliką, proporcjami i harmonią. Każdy projekt
-            zaczynamy od rozmowy o Twojej historii.
-          </p>
-          <div className="hero-in mt-10 flex flex-wrap gap-3 [--hero-delay:300ms]">
-            <Link href="/rezerwacja" className="btn btn-paper">
-              Book your tattoo
-            </Link>
-            <Link href="#gallery" className="btn btn-line text-washi">
-              See the work
-              <ArrowIcon direction="down" className="h-4 w-4" />
-            </Link>
+          <div className="hero-in mt-8 flex items-center gap-4 [--hero-delay:120ms]">
+            <span aria-hidden="true" className="h-px w-10 bg-kin" />
+            <BrandTagline className="font-gothic text-2xs font-medium tracking-[0.28em] text-kinari sm:text-xs" />
+          </div>
+          <p className="lead hero-in mt-8 text-washi/80 [--hero-delay:240ms]">{t.hero.lead}</p>
+          <div className="hero-in mt-10 flex flex-wrap gap-3 [--hero-delay:360ms]">
+            <LocalizedLink route="booking" className="btn btn-paper">
+              {t.hero.ctaPrimary}
+              <ArrowIcon className="btn-arrow h-4 w-4" />
+            </LocalizedLink>
+            <LocalizedLink route="home" hash="gallery" className="btn btn-line text-washi">
+              {t.hero.ctaSecondary}
+            </LocalizedLink>
           </div>
         </div>
 
-        <div className="relative lg:col-span-5">
-          <div className="mx-auto grid max-w-[34rem] grid-cols-3 items-start gap-[5%]">
-            {SCROLLS.map((scroll, index) => (
-              <HangingScroll key={scroll.id} {...scroll} preload={index === 1} />
-            ))}
+        <figure className="relative lg:col-span-6">
+          <div
+            ref={screenRef}
+            role="group"
+            aria-label={t.hero.screenLabel}
+            className="mx-auto flex max-w-[40rem] items-stretch justify-center [perspective:1400px]"
+          >
+            {PANELS.map((panel, index) => {
+              const work = workById(panel.id);
+              return (
+                <div
+                  key={panel.id}
+                  className="byobu-panel relative w-1/4 border-x-[3px] border-y-[5px] border-[#0c0a08] bg-[#0c0a08] shadow-[0_40px_60px_-35px_rgba(0,0,0,0.95)]"
+                  style={{
+                    ["--fold" as string]: `${panel.fold}deg`,
+                    ["--i" as string]: index,
+                    transformOrigin: index % 2 === 0 ? "right center" : "left center",
+                  }}
+                >
+                  <div className="relative aspect-[1/2.5] overflow-hidden outline outline-1 -outline-offset-4 outline-kin/50">
+                    <Image
+                      src={workSrc(work)}
+                      alt={t.work.items[panel.id].alt}
+                      fill
+                      preload={index === 1}
+                      quality={85}
+                      sizes="(min-width: 1024px) 12vw, 24vw"
+                      className="object-cover"
+                    />
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/0 via-black/0 to-black/35"
+                      style={{ transform: panel.fold < 0 ? "scaleX(-1)" : undefined }}
+                    />
+                  </div>
+                </div>
+              );
+            })}
           </div>
           {PORTFOLIO_IS_SAMPLE && (
-            <p className="mt-6 text-center font-gothic text-2xs tracking-[0.12em] text-usuzumi">Zdjęcia poglądowe</p>
+            <figcaption className="mt-8 text-center font-gothic text-2xs tracking-[0.12em] text-usuzumi">{t.common.samplePhotos}</figcaption>
           )}
-        </div>
+        </figure>
       </div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 text-washi/[0.13] [mask-image:linear-gradient(to_top,black_30%,transparent)]">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 text-washi/[0.12] [mask-image:linear-gradient(to_top,black_30%,transparent)]">
         <Pattern kind="seigaiha" bg="var(--color-sumi)" scale={1.1} strokeWidth={0.8} />
       </div>
     </section>

@@ -1,11 +1,13 @@
-import Link from "next/link";
+"use client";
+
 import { siteConfig } from "@/config/site";
+import { LocalizedLink } from "@/i18n/LocalizedLink";
+import { useI18n } from "@/i18n/I18nProvider";
 import type { BookingData } from "@/lib/booking/schema";
-import { ArrowIcon } from "@/components/ui/Icons";
-import { Wordmark } from "@/components/ui/Seal";
+import { SubpageHeader } from "@/components/layout/SubpageHeader";
 import { BookingBuilder } from "./BookingBuilder";
 
-/** Widok strony „Book your tattoo” — bez zależności serwerowych (konfigurację przekazuje strona). */
+/** Widok strony formularza — bez zależności serwerowych (konfigurację przekazuje strona). */
 export function BookingPageView({
   prefill,
   deliveryConfigured,
@@ -15,87 +17,70 @@ export function BookingPageView({
   deliveryConfigured: boolean;
   turnstileSiteKey: string | null;
 }) {
+  const { t } = useI18n();
+  const b = t.booking;
   const { email, phone } = siteConfig.contact;
 
   return (
     <>
-      <header className="on-dark bg-sumi text-washi">
-        <div className="page-x flex items-center justify-between py-5">
-          <Link href="/" aria-label={`${siteConfig.name} — strona główna`} className="rounded-sm">
-            <Wordmark />
-          </Link>
-          <Link href="/" className="flex min-h-11 items-center gap-2 font-gothic text-sm hover:text-kinari">
-            <ArrowIcon direction="left" className="h-4 w-4" />
-            Back to the studio
-          </Link>
-        </div>
-      </header>
-
+      <SubpageHeader />
       <main id="main" className="page-x pb-24 pt-14 sm:pt-20">
-        <div className="mx-auto max-w-[62rem]">
-          <h1 className="display display-xl">BOOK YOUR TATTOO</h1>
-          <p className="mt-6 font-gothic text-sm font-medium tracking-[0.2em] text-nezumi">
-            YOUR IDEA. OUR ARTISTRY. LET&apos;S CREATE SOMETHING UNIQUE.
-          </p>
-          <p className="mt-8 max-w-[36rem] font-mincho text-lg leading-[1.85]">
-            Tell us about your tattoo step by step: your idea, style, placement, size and inspiration. We&apos;ll use it to prepare
-            your consultation.
-          </p>
-          <p className="mt-4 font-gothic text-sm text-nezumi">Takes about 5–7 minutes. Six short steps.</p>
-
-          <div className="mt-14">
-            <BookingBuilder
-              prefill={prefill}
-              deliveryConfigured={deliveryConfigured}
-              turnstileSiteKey={turnstileSiteKey}
-              contact={{ email, phone }}
-            />
+        <div className="mx-auto max-w-[80rem]">
+          <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-8">
+              <h1 className="display display-xl">{b.title}</h1>
+              <p className="mt-6 flex items-center gap-4 font-mincho text-xl text-nezumi">
+                <span aria-hidden="true" className="h-px w-10 shrink-0 bg-kin" />
+                {b.subtitle}
+              </p>
+            </div>
+            <div className="lg:col-span-4">
+              <p className="font-gothic text-base leading-relaxed">{b.intro}</p>
+              <p className="mt-3 font-gothic text-sm text-nezumi">{b.duration}</p>
+            </div>
           </div>
 
-          <aside className="mt-14 grid gap-8 border-t border-sumi/15 pt-10 font-gothic text-sm leading-relaxed text-nezumi sm:grid-cols-3">
+          <div className="mt-14">
+            <BookingBuilder prefill={prefill} deliveryConfigured={deliveryConfigured} turnstileSiteKey={turnstileSiteKey} contact={{ email, phone }} />
+          </div>
+
+          <aside className="mt-16 grid gap-8 border-t border-sumi/12 pt-10 font-gothic text-sm leading-relaxed text-nezumi sm:grid-cols-3">
             <div>
-              <h2 className="font-mincho text-lg text-sumi">Your privacy</h2>
+              <h2 className="font-mincho text-lg text-sumi">{b.aside.privacyTitle}</h2>
               <p className="mt-2">
-                We use your details only to respond to this request. Read the{" "}
-                <Link href="/polityka-prywatnosci" className="ink-link text-sumi">
-                  Privacy Policy
-                </Link>
-                .
+                {b.aside.privacyBefore}
+                <LocalizedLink route="privacy" className="ink-link text-sumi">
+                  {b.aside.privacyLink}
+                </LocalizedLink>
+                {b.aside.privacyAfter}
               </p>
             </div>
             <div>
-              <h2 className="font-mincho text-lg text-sumi">Questions first?</h2>
+              <h2 className="font-mincho text-lg text-sumi">{b.aside.questionsTitle}</h2>
               <p className="mt-2">
                 {email || phone ? (
                   <>
-                    Contact the studio directly
+                    {b.aside.questionsText}{" "}
                     {email && (
-                      <>
-                        {" "}
-                        at{" "}
-                        <a href={`mailto:${email}`} className="ink-link text-sumi">
-                          {email}
-                        </a>
-                      </>
+                      <a href={`mailto:${email}`} className="ink-link text-sumi">
+                        {email}
+                      </a>
                     )}
+                    {email && phone ? ", " : ""}
                     {phone && (
-                      <>
-                        {email ? " or " : " "}
-                        <a href={`tel:${phone.replace(/\s/g, "")}`} className="ink-link text-sumi">
-                          {phone}
-                        </a>
-                      </>
+                      <a href={`tel:${phone.replace(/\s/g, "")}`} className="ink-link text-sumi">
+                        {phone}
+                      </a>
                     )}
-                    .
                   </>
                 ) : (
-                  <span className="todo">Dane kontaktowe studia: do uzupełnienia</span>
+                  <span className="todo">{b.aside.contactTodo}</span>
                 )}
               </p>
             </div>
             <div>
-              <h2 className="font-mincho text-lg text-sumi">Not a confirmation</h2>
-              <p className="mt-2">Sending this form doesn&apos;t book an appointment. The studio will contact you to agree on a date.</p>
+              <h2 className="font-mincho text-lg text-sumi">{b.aside.confirmationTitle}</h2>
+              <p className="mt-2">{b.aside.confirmationText}</p>
             </div>
           </aside>
         </div>

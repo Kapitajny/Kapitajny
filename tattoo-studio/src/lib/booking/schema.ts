@@ -1,10 +1,10 @@
 import {
-  BUDGET_OPTIONS,
-  PLACEMENT_OPTIONS,
-  SIDE_OPTIONS,
-  SIZE_OPTIONS,
+  BUDGET_IDS,
+  PLACEMENT_IDS,
+  SIDE_IDS,
+  SIZE_IDS,
   STYLE_OPTIONS,
-  TIME_OPTIONS,
+  TIME_IDS,
   type BudgetId,
   type PlacementId,
   type SideId,
@@ -15,7 +15,8 @@ import {
 
 /**
  * Model i walidacja zgłoszenia — WSPÓLNE dla przeglądarki i serwera.
- * Przeglądarka używa ich do blokowania przejścia między krokami, serwer — do ostatecznej weryfikacji.
+ * Walidacja zwraca KODY błędów (np. "required", "tooShort"); ich treść w danym języku jest w słownikach
+ * (`booking.errors`). Dzięki temu te same reguły działają po polsku i po angielsku.
  */
 
 export interface BookingData {
@@ -75,7 +76,30 @@ export const LIMITS = {
 };
 
 export type BookingField = keyof BookingData;
-export type FieldErrors = Partial<Record<BookingField, string>>;
+
+/** Kody błędów dla każdego pola. */
+export interface FieldErrorCodes {
+  fullName: "required" | "tooShort" | "tooLong";
+  email: "required" | "invalid";
+  phone: "invalid" | "requiredForPhone";
+  contactMethod: "required";
+  description: "required" | "tooShort" | "tooLong";
+  meaning: "tooLong";
+  firstTattoo: "required";
+  designType: "required";
+  styles: "required" | "invalid";
+  placement: "required";
+  placementNote: "tooLong";
+  side: "required";
+  size: "required";
+  budget: "required";
+  preferredDate: "invalid" | "past" | "tooFar";
+  preferredTime: "required";
+  privacyAccepted: "required";
+  accuracyConfirmed: "required";
+}
+
+export type FieldErrors = { [K in BookingField]?: FieldErrorCodes[K] };
 
 /** Kroki kreatora i pola, które każdy z nich weryfikuje. */
 export const STEP_FIELDS: BookingField[][] = [
@@ -91,12 +115,12 @@ const EMAIL_RE = /^[^\s@"<>()[\],;:]+@[^\s@"<>()[\],;:]+\.[a-z]{2,}$/i;
 const PHONE_CHARS_RE = /^\+?[\d\s()\-.]+$/;
 
 const ids = <T extends { id: string }>(list: readonly T[]) => new Set(list.map((o) => o.id));
-const STYLE_IDS = ids(STYLE_OPTIONS);
-const PLACEMENT_IDS = ids(PLACEMENT_OPTIONS);
-const SIDE_IDS = ids(SIDE_OPTIONS);
-const SIZE_IDS = ids(SIZE_OPTIONS);
-const BUDGET_IDS = ids(BUDGET_OPTIONS);
-const TIME_IDS = ids(TIME_OPTIONS);
+const STYLE_SET = ids(STYLE_OPTIONS);
+const PLACEMENT_SET = new Set<string>(PLACEMENT_IDS);
+const SIDE_SET = new Set<string>(SIDE_IDS);
+const SIZE_SET = new Set<string>(SIZE_IDS);
+const BUDGET_SET = new Set<string>(BUDGET_IDS);
+const TIME_SET = new Set<string>(TIME_IDS);
 
 /** Dzisiejsza data w strefie Europe/Warsaw w formacie RRRR-MM-DD. */
 export function todayInWarsaw(now: Date = new Date()): string {
@@ -119,94 +143,64 @@ export function phoneDigits(phone: string): number {
   return phone.replace(/\D/g, "").length;
 }
 
-/** Waliduje wskazane pola (domyślnie wszystkie). Zwraca komunikaty błędów do wyświetlenia przy polach. */
+/** Waliduje wskazane pola (domyślnie wszystkie). Zwraca kody błędów przy polach. */
 export function validateBooking(data: BookingData, fields?: BookingField[], now: Date = new Date()): FieldErrors {
   const errors: FieldErrors = {};
   const check = (field: BookingField) => !fields || fields.includes(field);
 
   const name = data.fullName.trim();
   if (check("fullName")) {
-    if (!name) errors.fullName = "Please enter your full name.";
-    else if (name.length < LIMITS.fullName.min) errors.fullName = "Your name looks too short.";
-    else if (name.length > LIMITS.fullName.max) errors.fullName = `Please use at most ${LIMITS.fullName.max} characters.`;
+    if (!name) errors.fullName = "required";
+    else if (name.length < LIMITS.fullName.min) errors.fullName = "tooShort";
+    else if (name.length > LIMITS.fullName.max) errors.fullName = "tooLong";
   }
 
   const email = data.email.trim();
   if (check("email")) {
-    if (!email) errors.email = "Please enter your email address.";
-    else if (email.length > LIMITS.email.max || !EMAIL_RE.test(email)) errors.email = "Enter an email address like name@example.com.";
+    if (!email) errors.email = "required";
+    else if (email.length > LIMITS.email.max || !EMAIL_RE.test(email)) errors.email = "invalid";
   }
 
   const phone = data.phone.trim();
   if (check("phone")) {
-    if (phone && (!PHONE_CHARS_RE.test(phone) || phoneDigits(phone) < 7 || phoneDigits(phone) > 15)) {
-      errors.phone = "Enter a phone number with 7–15 digits, e.g. +48 600 000 000.";
-    } else if (!phone && data.contactMethod === "phone") {
-      errors.phone = "Add a phone number, or choose email as your contact method.";
-    }
+    if (phone && (!PHONE_CHARS_RE.test(phone) || phoneDigits(phone) < 7 || phoneDigits(phone) > 15)) errors.phone = "invalid";
+    else if (!phone && data.contactMethod === "phone") errors.phone = "requiredForPhone";
   }
 
-  if (check("contactMethod") && data.contactMethod !== "email" && data.contactMethod !== "phone") {
-    errors.contactMethod = "Choose how we should contact you.";
-  }
+  if (check("contactMethod") && data.contactMethod !== "email" && data.contactMethod !== "phone") errors.contactMethod = "required";
 
   const description = data.description.trim();
   if (check("description")) {
-    if (!description) errors.description = "Please describe your tattoo idea.";
-    else if (description.length < LIMITS.description.min)
-      errors.description = `Tell us a little more — at least ${LIMITS.description.min} characters.`;
-    else if (description.length > LIMITS.description.max)
-      errors.description = `Please shorten your description to ${LIMITS.description.max} characters.`;
+    if (!description) errors.description = "required";
+    else if (description.length < LIMITS.description.min) errors.description = "tooShort";
+    else if (description.length > LIMITS.description.max) errors.description = "tooLong";
   }
 
-  if (check("meaning") && data.meaning.trim().length > LIMITS.meaning.max) {
-    errors.meaning = `Please shorten this to ${LIMITS.meaning.max} characters.`;
-  }
-
-  if (check("firstTattoo") && data.firstTattoo !== "yes" && data.firstTattoo !== "no") {
-    errors.firstTattoo = "Let us know if this is your first tattoo.";
-  }
-
-  if (check("designType") && data.designType !== "new" && data.designType !== "existing") {
-    errors.designType = "Choose a new design or an existing concept.";
-  }
+  if (check("meaning") && data.meaning.trim().length > LIMITS.meaning.max) errors.meaning = "tooLong";
+  if (check("firstTattoo") && data.firstTattoo !== "yes" && data.firstTattoo !== "no") errors.firstTattoo = "required";
+  if (check("designType") && data.designType !== "new" && data.designType !== "existing") errors.designType = "required";
 
   if (check("styles")) {
-    if (!Array.isArray(data.styles) || data.styles.length === 0) errors.styles = "Choose at least one style, or “Other / Not Sure Yet”.";
-    else if (data.styles.some((s) => !STYLE_IDS.has(s)) || new Set(data.styles).size !== data.styles.length)
-      errors.styles = "Choose styles from the list.";
+    if (!Array.isArray(data.styles) || data.styles.length === 0) errors.styles = "required";
+    else if (data.styles.some((s) => !STYLE_SET.has(s)) || new Set(data.styles).size !== data.styles.length) errors.styles = "invalid";
   }
 
-  if (check("placement") && !PLACEMENT_IDS.has(data.placement)) {
-    errors.placement = "Choose where you'd like the tattoo, or “Other / Not Sure Yet”.";
-  }
-
-  if (check("placementNote") && data.placementNote.trim().length > LIMITS.placementNote.max) {
-    errors.placementNote = `Please use at most ${LIMITS.placementNote.max} characters.`;
-  }
-
-  if (check("side") && !SIDE_IDS.has(data.side)) {
-    errors.side = "Choose a side of the body, or “Not Sure”.";
-  }
-
-  if (check("size") && !SIZE_IDS.has(data.size)) errors.size = "Choose a size, or “Not Sure Yet”.";
-  if (check("budget") && !BUDGET_IDS.has(data.budget)) errors.budget = "Choose a budget range, or “I need a consultation first”.";
+  if (check("placement") && !PLACEMENT_SET.has(data.placement)) errors.placement = "required";
+  if (check("placementNote") && data.placementNote.trim().length > LIMITS.placementNote.max) errors.placementNote = "tooLong";
+  if (check("side") && !SIDE_SET.has(data.side)) errors.side = "required";
+  if (check("size") && !SIZE_SET.has(data.size)) errors.size = "required";
+  if (check("budget") && !BUDGET_SET.has(data.budget)) errors.budget = "required";
 
   if (check("preferredDate") && data.preferredDate) {
     const today = todayInWarsaw(now);
-    if (!isValidIsoDate(data.preferredDate)) errors.preferredDate = "Enter a valid date.";
-    else if (data.preferredDate < today) errors.preferredDate = "Choose a date from today onwards.";
-    else if (data.preferredDate > addDays(today, LIMITS.maxDaysAhead)) errors.preferredDate = "Choose a date within the next year.";
+    if (!isValidIsoDate(data.preferredDate)) errors.preferredDate = "invalid";
+    else if (data.preferredDate < today) errors.preferredDate = "past";
+    else if (data.preferredDate > addDays(today, LIMITS.maxDaysAhead)) errors.preferredDate = "tooFar";
   }
 
-  if (check("preferredTime") && !TIME_IDS.has(data.preferredTime)) errors.preferredTime = "Choose a time of day.";
-
-  if (check("privacyAccepted") && data.privacyAccepted !== true) {
-    errors.privacyAccepted = "Please confirm you have read the Privacy Policy.";
-  }
-  if (check("accuracyConfirmed") && data.accuracyConfirmed !== true) {
-    errors.accuracyConfirmed = "Please confirm your details are correct.";
-  }
+  if (check("preferredTime") && !TIME_SET.has(data.preferredTime)) errors.preferredTime = "required";
+  if (check("privacyAccepted") && data.privacyAccepted !== true) errors.privacyAccepted = "required";
+  if (check("accuracyConfirmed") && data.accuracyConfirmed !== true) errors.accuracyConfirmed = "required";
 
   return errors;
 }
@@ -250,6 +244,3 @@ export function normalizeBooking(data: BookingData): BookingData {
     placementNote: data.placementNote.trim(),
   };
 }
-
-export const labelOf = <T extends { id: string; label: string }>(list: readonly T[], id: string): string =>
-  list.find((o) => o.id === id)?.label ?? id;

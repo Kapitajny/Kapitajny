@@ -4,6 +4,7 @@ import { randomBytes } from "node:crypto";
 import { UPLOAD_LIMITS } from "@/config/booking";
 import { siteConfig } from "@/config/site";
 import { IMAGE_EXT, IMAGE_MIME, sniffImage } from "@/lib/booking/files";
+import { isLocale } from "@/i18n/config";
 import { coerceBooking, normalizeBooking, todayInWarsaw, validateBooking } from "@/lib/booking/schema";
 import { deliver, type Attachment } from "./delivery";
 import { getDeliveryConfig, isDeliveryConfigured, type DeliveryConfig } from "./env";
@@ -51,7 +52,11 @@ async function verifyTurnstile(secret: string, token: string, ip: string): Promi
 
 const SPAM_MESSAGE = "We couldn't verify this submission. Please wait a moment and try again, or contact the studio directly.";
 
-/** Obsługa `POST /api/booking` (multipart/form-data: `data`, `meta`, `references[]`). */
+/**
+ * Obsługa `POST /api/booking` (multipart/form-data: `data`, `meta`, `references[]`).
+ * Odpowiedzi błędów zawierają `code` (tłumaczony w interfejsie na język użytkownika) oraz
+ * pomocniczy `message` po angielsku — tylko do logów i diagnostyki.
+ */
 export async function handleBookingRequest(request: Request, config: DeliveryConfig = getDeliveryConfig()): Promise<Response> {
   if (!isDeliveryConfigured(config)) {
     return errorResponse(503, {
@@ -87,7 +92,7 @@ export async function handleBookingRequest(request: Request, config: DeliveryCon
     return errorResponse(400, { code: "bad_request", message: "The form data could not be read. Please try again." });
   }
 
-  let meta: { submissionId?: unknown; startedAt?: unknown; website?: unknown; turnstileToken?: unknown };
+  let meta: { submissionId?: unknown; startedAt?: unknown; website?: unknown; turnstileToken?: unknown; lang?: unknown };
   let rawData: unknown;
   try {
     meta = JSON.parse(String(form.get("meta") ?? "{}"));
@@ -148,6 +153,7 @@ export async function handleBookingRequest(request: Request, config: DeliveryCon
   const { accepted: ok, results } = await deliver(config, {
     reference,
     submittedAt: new Date().toISOString(),
+    locale: typeof meta.lang === "string" && isLocale(meta.lang) ? meta.lang : "pl",
     data,
     attachments,
   });

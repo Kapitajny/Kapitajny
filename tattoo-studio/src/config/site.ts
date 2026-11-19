@@ -3,19 +3,23 @@
  *
  * Puste pola (`""`) nie są nigdzie renderowane jako linki ani przyciski —
  * w ich miejscu strona pokazuje dyskretną informację „do uzupełnienia”.
+ * Teksty interfejsu są w słownikach `src/i18n/dictionaries/`.
  */
 
 export const siteConfig = {
   /**
    * ROBOCZA NAZWA. Brief podaje nazwę jako [NAZWA STUDIA] — „SUMI” (墨, jap. tusz)
-   * to tylko nazwa robocza na czas projektowania. Zmień ją tutaj, a zmieni się w całym serwisie.
+   * to nazwa robocza. Zmień ją tutaj, a zmieni się w całym serwisie (w obu językach).
    */
   name: "SUMI",
-  /** Znak w pieczęci (hanko) i pionowy znak w hero. Dopasuj do nazwy studia albo zostaw 墨 (tusz). */
+  /** Znak w pieczęci (hanko). Dopasuj do nazwy studia albo zostaw 墨 (tusz). */
   seal: "墨",
+  /**
+   * Hasło marki — element identyfikacji, celowo w tej samej (angielskiej) formie w obu wersjach językowych,
+   * oznaczone atrybutem lang="en". Aby używać polskiego hasła w wersji polskiej, zmień `taglineByLocale.pl`.
+   */
   tagline: "JAPANESE TATTOO ART — WARSAW, POLAND.",
-  description:
-    "Studio tatuażu w Warszawie inspirowane japońską sztuką. Autorskie projekty, indywidualne konsultacje i dopracowana kompozycja — od pierwszej rozmowy po pielęgnację.",
+  taglineByLocale: { pl: "", en: "" } as Record<"pl" | "en", string>,
   city: "Warszawa",
 
   /** Adres strony bez końcowego „/”. W produkcji ustaw NEXT_PUBLIC_SITE_URL. */
@@ -30,8 +34,8 @@ export const siteConfig = {
     email: "",
     /** np. „+48 600 000 000” */
     phone: "",
-    /** np. „Wt–Sob, 11:00–19:00 (wyłącznie po umówieniu)” */
-    hours: "",
+    /** Godziny pracy w obu językach, np. pl: „Wt–Sob, 11:00–19:00”, en: „Tue–Sat, 11:00–19:00” */
+    hours: { pl: "", en: "" } as Record<"pl" | "en", string>,
     /** Link do mapy (np. Google Maps) — opcjonalnie. */
     mapUrl: "",
   },
@@ -56,19 +60,16 @@ export const siteConfig = {
   },
 };
 
+/** Sekcje strony głównej w kolejności nawigacji (etykiety w słownikach: `nav.items`). */
 export const NAV_ITEMS = [
-  { id: "top", label: "Start", href: "/#top", icon: "torii" },
-  { id: "gallery", label: "Gallery", href: "/#gallery", icon: "frames" },
-  { id: "about", label: "About Us", href: "/#about", icon: "enso" },
-  { id: "specialties", label: "Specialties", href: "/#specialties", icon: "brush" },
-  { id: "reviews", label: "Reviews", href: "/#reviews", icon: "voice" },
-  { id: "pricing", label: "Pricing", href: "/#pricing", icon: "ruler" },
-  { id: "faq", label: "FAQ", href: "/#faq", icon: "question" },
+  { id: "top", icon: "torii" },
+  { id: "gallery", icon: "frames" },
+  { id: "about", icon: "enso" },
+  { id: "specialties", icon: "brush" },
+  { id: "reviews", icon: "voice" },
+  { id: "pricing", icon: "ruler" },
+  { id: "faq", icon: "question" },
 ] as const;
 
-export type NavIcon = (typeof NAV_ITEMS)[number]["icon"] | "book";
-
-export const LEGAL_LINKS = [
-  { label: "Regulamin", href: "/regulamin" },
-  { label: "Polityka prywatności", href: "/polityka-prywatnosci" },
-] as const;
+export type NavId = (typeof NAV_ITEMS)[number]["id"];
+export type NavIcon = (typeof NAV_ITEMS)[number]["icon"];
