@@ -1,0 +1,263 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" />
+
+<style>
+  /* computerit – logo + menu pod domkiem, czarno-białe */
+  .cit-menu {
+    position: relative;
+    z-index: 100;
+    width: 100%;
+    background: #fff;
+    color: #000;
+    border-bottom: 1px solid #000;
+    font-family: "Outfit", system-ui, sans-serif;
+  }
+
+  .cit-menu *,
+  .cit-menu *::before,
+  .cit-menu *::after {
+    box-sizing: border-box;
+  }
+
+  .cit-menu__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    max-width: 72rem;
+    height: 4.5rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* Logo: znak + nazwa */
+  .cit-menu .cit-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #000;
+    text-decoration: none;
+    box-shadow: none;
+  }
+
+  .cit-logo__mark {
+    width: auto;
+    height: 3rem;
+  }
+
+  .cit-logo__name {
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  /* Przycisk z domkiem */
+  .cit-dropdown {
+    position: relative;
+  }
+
+  .cit-menu .cit-dropdown__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 2.75rem;
+    padding: 0 1rem;
+    border: 1px solid #000;
+    border-radius: 999px;
+    background: #fff;
+    color: #000;
+    font-size: 1.35rem;
+    line-height: 1;
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 200ms ease, color 200ms ease;
+  }
+
+  .cit-menu .cit-dropdown__toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .cit-menu .cit-dropdown__toggle:hover {
+    background: #f0f0f0;
+  }
+
+  .cit-dropdown[open] .cit-dropdown__toggle {
+    background: #000;
+    color: #fff;
+  }
+
+  /* Strzałka obok domku */
+  .cit-dropdown__arrow {
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-top: -0.25rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 200ms ease;
+  }
+
+  .cit-dropdown[open] .cit-dropdown__arrow {
+    margin-top: 0.25rem;
+    transform: rotate(-135deg);
+  }
+
+  /* Rozwijana lista */
+  .cit-dropdown__panel {
+    position: absolute;
+    top: calc(100% + 0.6rem);
+    right: 0;
+    min-width: 15rem;
+    padding: 0.5rem;
+    border: 1px solid #000;
+    border-radius: 0.75rem;
+    background: #fff;
+    box-shadow: 0 16px 32px -16px rgba(0, 0, 0, 0.35);
+    animation: cit-drop 180ms ease;
+  }
+
+  @keyframes cit-drop {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .cit-menu .cit-dropdown__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .cit-menu .cit-dropdown__list li {
+    margin: 0;
+    padding: 0;
+  }
+
+  .cit-menu .cit-dropdown__link {
+    display: block;
+    padding: 0.7rem 0.9rem;
+    border-radius: 0.5rem;
+    color: #000;
+    font-size: 1rem;
+    font-weight: 400;
+    text-decoration: none;
+    box-shadow: none;
+  }
+
+  .cit-menu .cit-dropdown__link:hover,
+  .cit-menu .cit-dropdown__link:focus-visible {
+    background: #000;
+    color: #fff;
+  }
+
+  /* Aktualna podstrona */
+  .cit-menu .cit-dropdown__link[aria-current="page"] {
+    font-weight: 600;
+    box-shadow: inset 3px 0 0 #000;
+  }
+
+  .cit-menu .cit-dropdown__link[aria-current="page"]:hover {
+    box-shadow: none;
+  }
+
+  .cit-menu :focus-visible {
+    outline: 2px solid #000;
+    outline-offset: 3px;
+  }
+
+  .cit-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  /* Telefon */
+  @media (max-width: 480px) {
+    .cit-menu__inner {
+      padding: 0 1rem;
+    }
+    .cit-logo__mark {
+      height: 2.5rem;
+    }
+    .cit-logo__name {
+      font-size: 1.35rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cit-dropdown__panel {
+      animation: none;
+    }
+  }
+</style>
+
+<div class="cit-menu">
+  <div class="cit-menu__inner">
+    <a href="/" class="cit-logo" aria-label="computerit – strona główna">
+      <svg class="cit-logo__mark" viewBox="10 10 415 800" fill="currentColor" aria-hidden="true" focusable="false">
+        <path d="M15 408 68 368V716l-21 5-5 5 5 3 133 28 160-18 80 18-190 46L15 742Z" />
+        <path d="M85 222 119 196 125 15 132 140 138 148V712H85Z" />
+        <path d="M152 293 182 320V709H152Z" />
+        <path d="M200 488 245 525V704H200Z" />
+        <path d="M220 712 325 733 330 737 222 717Z" />
+      </svg>
+      <span class="cit-logo__name">computerit</span>
+    </a>
+
+    <details class="cit-dropdown">
+      <summary class="cit-dropdown__toggle">
+        <span class="cit-dropdown__icon wp-exclude-emoji" aria-hidden="true">🏠</span>
+        <span class="cit-sr">Menu</span>
+        <span class="cit-dropdown__arrow" aria-hidden="true"></span>
+      </summary>
+      <nav class="cit-dropdown__panel" aria-label="Menu główne">
+        <ul class="cit-dropdown__list">
+          <li><a class="cit-dropdown__link" href="/">Strona główna</a></li>
+          <li><a class="cit-dropdown__link" href="/o-mnie/">O mnie</a></li>
+          <li><a class="cit-dropdown__link" href="/cennik/">Cennik</a></li>
+          <li><a class="cit-dropdown__link" href="/portfolio/">Portfolio</a></li>
+          <li><a class="cit-dropdown__link" href="/kontakt/">Kontakt</a></li>
+        </ul>
+      </nav>
+    </details>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var menu = document.querySelector(".cit-dropdown");
+    if (!menu) return;
+    var toggle = menu.querySelector("summary");
+
+    /* Podkreśla podstronę, na której jesteś */
+    function clean(path) {
+      return path.split("/").filter(Boolean).join("/");
+    }
+    var here = clean(location.pathname);
+    menu.querySelectorAll(".cit-dropdown__link").forEach(function (link) {
+      if (clean(new URL(link.href).pathname) === here) link.setAttribute("aria-current", "page");
+    });
+
+    /* Zamyka menu po kliknięciu obok */
+    document.addEventListener("click", function (event) {
+      if (menu.open && !menu.contains(event.target)) menu.open = false;
+    });
+
+    /* Zamyka menu klawiszem Esc */
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && menu.open) {
+        menu.open = false;
+        toggle.focus();
+      }
+    });
+  })();
+</script>
