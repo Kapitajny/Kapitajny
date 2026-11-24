@@ -1,14 +1,9 @@
-/* computerit – proste menu: białe napisy na czarnym tle */
+/* computerit – proste menu: czarne napisy na białym tle */
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
 }
 
 body {
@@ -23,8 +18,9 @@ body {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: #000;
-  color: #fff;
+  background: #fff;
+  color: #000;
+  border-bottom: 1px solid #000;
 }
 
 .menu__inner {
@@ -43,7 +39,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  color: #fff;
+  color: #000;
   text-decoration: none;
 }
 
@@ -62,6 +58,7 @@ body {
 /* Linki */
 .menu__list {
   display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
   margin: 0;
   padding: 0;
@@ -70,8 +67,9 @@ body {
 
 .menu__link {
   position: relative;
+  display: inline-block;
   padding-block: 0.4rem;
-  color: #fff;
+  color: #000;
   font-size: 1rem;
   text-decoration: none;
 }
@@ -82,25 +80,31 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 1px;
-  background: #fff;
+  height: 2px;
+  background: #000;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 250ms ease;
 }
 
 .menu__link:hover::after,
-.menu__link:focus-visible::after {
+.menu__link:focus-visible::after,
+.menu__link[aria-current="page"]::after {
   transform: scaleX(1);
 }
 
+/* Aktualna podstrona */
+.menu__link[aria-current="page"] {
+  font-weight: 600;
+}
+
 .menu :focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid #000;
   outline-offset: 4px;
 }
 
 /* Telefon: linki pod logo */
-@media (max-width: 640px) {
+@media (max-width: 720px) {
   .menu__inner {
     flex-direction: column;
     gap: 0.75rem;
@@ -109,34 +113,38 @@ body {
   }
 
   .menu__list {
-    gap: 1.25rem;
+    justify-content: center;
+    gap: 0.25rem 0.8rem;
   }
 
   .menu__link {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
   }
 }
 
-/* Sekcje strony (miejsce na treść) */
-.section {
+/* Treść podstron */
+.page {
   max-width: 72rem;
-  min-height: 60vh;
   margin-inline: auto;
   padding: 5rem 1.5rem;
-  border-bottom: 1px solid #e5e5e5;
 }
 
-.section h2 {
+.page h1 {
   margin: 0;
-  font-size: 2.5rem;
+  font-size: clamp(2.25rem, 1.5rem + 3vw, 4rem);
   font-weight: 600;
   letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.page p {
+  max-width: 40rem;
+  margin: 1.25rem 0 0;
+  font-size: 1.15rem;
+  line-height: 1.6;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
   .menu__link::after {
     transition: none;
   }
