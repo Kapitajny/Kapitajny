@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 10 415 800" fill="currentColor" role="img" aria-label="computerit">
+  <!-- Lewy budynek przechodzący w podstawę laptopa (litera L) -->
+  <path d="M15 408 68 368V716l-21 5-5 5 5 3 133 28 160-18 80 18-190 46L15 742Z" />
+  <!-- Główna wieża z iglicą -->
+  <path d="M85 222 119 196 125 15 132 140 138 148V712H85Z" />
+  <!-- Wieże po prawej -->
+  <path d="M152 293 182 320V709H152Z" />
+  <path d="M200 488 245 525V704H200Z" />
+  <!-- Krawędź ekranu -->
+  <path d="M220 712 325 733 330 737 222 717Z" />
+</svg>

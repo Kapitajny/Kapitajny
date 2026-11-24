@@ -1,0 +1,143 @@
+/* computerit – proste menu: białe napisy na czarnym tle */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: #000;
+  font-family: "Outfit", system-ui, sans-serif;
+}
+
+/* Pasek menu */
+.menu {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #000;
+  color: #fff;
+}
+
+.menu__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 72rem;
+  height: 4.5rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+/* Logo: znak + nazwa */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+.logo__mark {
+  width: auto;
+  height: 3rem;
+}
+
+.logo__name {
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* Linki */
+.menu__list {
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu__link {
+  position: relative;
+  padding-block: 0.4rem;
+  color: #fff;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.menu__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 250ms ease;
+}
+
+.menu__link:hover::after,
+.menu__link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.menu :focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+/* Telefon: linki pod logo */
+@media (max-width: 640px) {
+  .menu__inner {
+    flex-direction: column;
+    gap: 0.75rem;
+    height: auto;
+    padding-block: 1rem;
+  }
+
+  .menu__list {
+    gap: 1.25rem;
+  }
+
+  .menu__link {
+    font-size: 0.95rem;
+  }
+}
+
+/* Sekcje strony (miejsce na treść) */
+.section {
+  max-width: 72rem;
+  min-height: 60vh;
+  margin-inline: auto;
+  padding: 5rem 1.5rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.section h2 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .menu__link::after {
+    transition: none;
+  }
+}
