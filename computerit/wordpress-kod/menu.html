@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" />
+
+<div class="cit-menu">
+  <div class="cit-menu__inner">
+    <a href="/" class="cit-logo" aria-label="computerit – strona główna">
+      <svg class="cit-logo__mark" viewBox="10 10 415 800" fill="currentColor" aria-hidden="true" focusable="false">
+        <path d="M15 408 68 368V716l-21 5-5 5 5 3 133 28 160-18 80 18-190 46L15 742Z" />
+        <path d="M85 222 119 196 125 15 132 140 138 148V712H85Z" />
+        <path d="M152 293 182 320V709H152Z" />
+        <path d="M200 488 245 525V704H200Z" />
+        <path d="M220 712 325 733 330 737 222 717Z" />
+      </svg>
+      <span class="cit-logo__name">computerit</span>
+    </a>
+
+    <nav aria-label="Menu główne">
+      <ul class="cit-menu__list">
+        <li><a class="cit-menu__link" href="/">Strona główna</a></li>
+        <li><a class="cit-menu__link" href="/o-mnie/">O mnie</a></li>
+        <li><a class="cit-menu__link" href="/cennik/">Cennik</a></li>
+        <li><a class="cit-menu__link" href="/portfolio/">Portfolio</a></li>
+        <li><a class="cit-menu__link" href="/kontakt/">Kontakt</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<script>
+  /* Podkreśla w menu podstronę, na której jesteś */
+  (function () {
+    function clean(path) {
+      return path.split("/").filter(Boolean).join("/");
+    }
+    var here = clean(location.pathname);
+    document.querySelectorAll(".cit-menu__link").forEach(function (link) {
+      if (clean(new URL(link.href).pathname) === here) link.setAttribute("aria-current", "page");
+    });
+  })();
+</script>

@@ -1,0 +1,129 @@
+/* computerit – proste menu: czarne napisy na białym tle */
+
+.cit-menu {
+  width: 100%;
+  background: #fff;
+  color: #000;
+  border-bottom: 1px solid #000;
+  font-family: "Outfit", system-ui, sans-serif;
+}
+
+.cit-menu *,
+.cit-menu *::before,
+.cit-menu *::after {
+  box-sizing: border-box;
+}
+
+.cit-menu__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 72rem;
+  height: 4.5rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Logo: znak + nazwa */
+.cit-menu .cit-logo {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.6rem;
+  color: #000;
+  text-decoration: none;
+  box-shadow: none;
+}
+
+.cit-logo__mark {
+  width: auto;
+  height: 3rem;
+}
+
+.cit-logo__name {
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* Linki */
+.cit-menu .cit-menu__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cit-menu .cit-menu__list li {
+  margin: 0;
+  padding: 0;
+}
+
+.cit-menu .cit-menu__link {
+  position: relative;
+  display: inline-block;
+  padding: 0.4rem 0;
+  color: #000;
+  font-size: 1rem;
+  font-weight: 400;
+  text-decoration: none;
+  box-shadow: none;
+}
+
+.cit-menu .cit-menu__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: #000;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 250ms ease;
+}
+
+.cit-menu .cit-menu__link:hover::after,
+.cit-menu .cit-menu__link:focus-visible::after,
+.cit-menu .cit-menu__link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+/* Aktualna podstrona */
+.cit-menu .cit-menu__link[aria-current="page"] {
+  font-weight: 600;
+}
+
+.cit-menu :focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 4px;
+}
+
+/* Telefon: linki pod logo */
+@media (max-width: 720px) {
+  .cit-menu__inner {
+    flex-direction: column;
+    gap: 0.75rem;
+    height: auto;
+    padding: 1rem 1.5rem;
+  }
+
+  .cit-menu .cit-menu__list {
+    justify-content: center;
+    gap: 0.25rem 0.8rem;
+  }
+
+  .cit-menu .cit-menu__link {
+    font-size: 0.88rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cit-menu .cit-menu__link::after {
+    transition: none;
+  }
+}
