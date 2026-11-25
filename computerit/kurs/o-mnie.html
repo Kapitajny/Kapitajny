@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O mnie – computerit</title>
+  <meta name="description" content="Kto prowadzi kurs tworzenia stron internetowych computerit.">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="przejdz" href="#tresc">Przejdź do treści</a>
+
+  <header class="naglowek">
+    <div class="kontener naglowek__pasek">
+      <a class="logo" href="index.html" aria-label="Kurs stron internetowych computerit – strona główna">
+        <svg class="logo__znak" viewBox="10 10 415 800" fill="currentColor" aria-hidden="true" focusable="false"><path d="M15 408 68 368V716l-21 5-5 5 5 3 133 28 160-18 80 18-190 46L15 742Z" /><path d="M85 222 119 196 125 15 132 140 138 148V712H85Z" /><path d="M152 293 182 320V709H152Z" /><path d="M200 488 245 525V704H200Z" /><path d="M220 712 325 733 330 737 222 717Z" /></svg>
+        <span>
+          <span class="logo__nazwa">computerit</span>
+          <span class="logo__dopisek">Kurs stron www</span>
+        </span>
+      </a>
+
+      <button class="menu__przycisk" type="button" aria-expanded="false" aria-controls="menu">
+        <span class="menu__ikona" aria-hidden="true"></span>
+        Menu
+      </button>
+
+      <nav class="menu" id="menu" aria-label="Menu główne">
+        <ul class="menu__lista">
+            <li><a class="menu__link" href="index.html">Start</a></li>
+            <li><a class="menu__link" href="program.html">Program</a></li>
+            <li><a class="menu__link" href="cennik.html">Cennik</a></li>
+            <li><a class="menu__link" href="o-mnie.html" aria-current="page">O mnie</a></li>
+            <li><a class="menu__link" href="kontakt.html">Kontakt</a></li>
+            <li><a class="przycisk przycisk--maly" href="cennik.html">Zapisz się</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="tresc">
+    <section class="podstrona">
+      <div class="kontener">
+        <p class="nadtytul">O mnie</p>
+        <h1 class="tytul">Kto prowadzi kurs</h1>
+        <p class="wstep">Tworzę strony internetowe dla firm pod marką computerit – i uczę tego innych.</p>
+      </div>
+    </section>
+
+    <section class="sekcja">
+      <div class="kontener autor">
+        <div class="autor__zdjecie">
+          <svg viewBox="10 10 415 800" fill="currentColor" aria-hidden="true" focusable="false"><path d="M15 408 68 368V716l-21 5-5 5 5 3 133 28 160-18 80 18-190 46L15 742Z" /><path d="M85 222 119 196 125 15 132 140 138 148V712H85Z" /><path d="M152 293 182 320V709H152Z" /><path d="M200 488 245 525V704H200Z" /><path d="M220 712 325 733 330 737 222 717Z" /></svg>
+          <span class="ukryte">Miejsce na Twoje zdjęcie</span>
+        </div>
+        <div class="autor__tekst">
+          <h2 class="tytul">Cześć! Jestem twórcą computerit</h2>
+          <p style="margin-top: 1.25rem">Na co dzień projektuję i buduję strony internetowe dla małych firm: wizytówki, strony firmowe i portfolio. Wiem, które umiejętności naprawdę są potrzebne, a które można pominąć na starcie.</p>
+          <p>W kursie pokazuję dokładnie ten sposób pracy, którego używam przy zleceniach: od pierwszego pliku HTML, przez stylowanie i JavaScript, aż po publikację strony i rozmowę z klientem.</p>
+          <p>Moja zasada: mniej teorii, więcej praktyki. Każda lekcja kończy się czymś, co możesz pokazać.</p>
+          <ul class="lista-ok">
+            <li>strony internetowe dla firm pod marką computerit,</li>
+            <li>praca z HTML, CSS, JavaScript i WordPressem,</li>
+            <li>tłumaczę prosto, bez żargonu.</li>
+          </ul>
+          <p style="margin-top: 2rem"><a class="przycisk" href="program.html">Zobacz, czego Cię nauczę</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sekcja">
+      <div class="kontener">
+        <div class="zacheta">
+          <div>
+            <h2>Zbuduj swoją pierwszą stronę w 6 tygodni</h2>
+            <p>Dołącz do kursu i zacznij od pierwszej lekcji jeszcze dziś.</p>
+          </div>
+          <a class="przycisk przycisk--jasny" href="cennik.html">Wybierz pakiet</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="stopka">
+    <div class="kontener stopka__uklad">
+      <a class="logo" href="index.html" aria-label="computerit – strona główna">
+        <svg class="logo__znak" viewBox="10 10 415 800" fill="currentColor" aria-hidden="true" focusable="false"><path d="M15 408 68 368V716l-21 5-5 5 5 3 133 28 160-18 80 18-190 46L15 742Z" /><path d="M85 222 119 196 125 15 132 140 138 148V712H85Z" /><path d="M152 293 182 320V709H152Z" /><path d="M200 488 245 525V704H200Z" /><path d="M220 712 325 733 330 737 222 717Z" /></svg>
+        <span class="logo__nazwa">computerit</span>
+      </a>
+      <ul class="stopka__linki">
+        <li><a href="program.html">Program</a></li>
+        <li><a href="cennik.html">Cennik</a></li>
+        <li><a href="o-mnie.html">O mnie</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+      <p class="stopka__prawa">&copy; <span id="rok">2026</span> computerit. Wszelkie prawa zastrzeżone.</p>
+    </div>
+  </footer>
+</body>
+</html>

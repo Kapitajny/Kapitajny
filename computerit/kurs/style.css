@@ -1,0 +1,1101 @@
+/* =========================================================================
+   Kurs tworzenia stron internetowych – computerit
+   Wspólne style dla wszystkich podstron
+   ========================================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap");
+
+:root {
+  --czarny: #000;
+  --bialy: #fff;
+  --szary-1: #f4f4f4;
+  --szary-2: #e4e4e4;
+  --szary-tekst: #555;
+  --blad: #c1121f;
+  --sukces: #1b7a3d;
+  --promien: 1rem;
+  --szerokosc: 72rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bialy);
+  color: var(--czarny);
+  font-family: "Outfit", system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+p {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.kontener {
+  width: 100%;
+  max-width: var(--szerokosc);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.ukryte {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.przejdz {
+  position: absolute;
+  top: -4rem;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--czarny);
+  color: var(--bialy);
+}
+.przejdz:focus {
+  top: 1rem;
+}
+
+/* -------------------------------------------------------------------------
+   Nagłówek i menu
+   ------------------------------------------------------------------------- */
+.naglowek {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bialy);
+  border-bottom: 1px solid var(--czarny);
+}
+
+.naglowek__pasek {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  height: 4.5rem;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+
+.logo__znak {
+  width: auto;
+  height: 2.6rem;
+}
+
+.logo__nazwa {
+  font-size: 1.45rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.logo__dopisek {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--szary-tekst);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.menu__lista {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu__link {
+  position: relative;
+  padding: 0.4rem 0;
+  text-decoration: none;
+}
+
+.menu__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 250ms ease;
+}
+
+.menu__link:hover::after,
+.menu__link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+.menu__link[aria-current="page"] {
+  font-weight: 600;
+}
+
+.menu__przycisk {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  height: 2.75rem;
+  padding: 0 1rem;
+  border: 1px solid var(--czarny);
+  border-radius: 999px;
+  background: var(--bialy);
+  color: var(--czarny);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.menu__ikona {
+  position: relative;
+  width: 1.1rem;
+  height: 2px;
+  background: currentColor;
+  transition: background-color 200ms ease;
+}
+.menu__ikona::before,
+.menu__ikona::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  transition: transform 200ms ease;
+}
+.menu__ikona::before {
+  top: -6px;
+}
+.menu__ikona::after {
+  top: 6px;
+}
+.menu__przycisk[aria-expanded="true"] .menu__ikona {
+  background: transparent;
+}
+.menu__przycisk[aria-expanded="true"] .menu__ikona::before {
+  transform: translateY(6px) rotate(45deg);
+}
+.menu__przycisk[aria-expanded="true"] .menu__ikona::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* -------------------------------------------------------------------------
+   Przyciski
+   ------------------------------------------------------------------------- */
+.przycisk {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.8rem 1.6rem;
+  border: 1px solid var(--czarny);
+  border-radius: 999px;
+  background: var(--czarny);
+  color: var(--bialy);
+  font: inherit;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+.przycisk:hover {
+  background: var(--bialy);
+  color: var(--czarny);
+}
+
+.przycisk--jasny {
+  background: var(--bialy);
+  color: var(--czarny);
+}
+
+.przycisk--jasny:hover {
+  background: var(--czarny);
+  color: var(--bialy);
+}
+
+.przycisk--obrys-bialy {
+  border-color: var(--bialy);
+  background: transparent;
+  color: var(--bialy);
+}
+
+.przycisk--obrys-bialy:hover {
+  background: var(--bialy);
+  color: var(--czarny);
+}
+
+.przycisk--maly {
+  min-height: 2.5rem;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.92rem;
+}
+
+/* -------------------------------------------------------------------------
+   Sekcje
+   ------------------------------------------------------------------------- */
+.sekcja {
+  padding: clamp(4rem, 9vw, 6.5rem) 0;
+}
+
+.sekcja--szara {
+  background: var(--szary-1);
+}
+
+.sekcja--czarna {
+  background: var(--czarny);
+  color: var(--bialy);
+}
+
+.nadtytul {
+  margin-bottom: 0.9rem;
+  color: var(--szary-tekst);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.sekcja--czarna .nadtytul {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.tytul {
+  max-width: 44rem;
+  font-size: clamp(2rem, 1.4rem + 2.6vw, 3.2rem);
+}
+
+.wstep {
+  max-width: 40rem;
+  margin-top: 1.1rem;
+  color: var(--szary-tekst);
+  font-size: 1.15rem;
+}
+
+.sekcja--czarna .wstep {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* Nagłówek podstrony */
+.podstrona {
+  padding: clamp(3.5rem, 8vw, 5.5rem) 0 clamp(2.5rem, 6vw, 4rem);
+  border-bottom: 1px solid var(--szary-2);
+}
+
+.podstrona .tytul {
+  font-size: clamp(2.4rem, 1.6rem + 3.4vw, 4rem);
+}
+
+/* -------------------------------------------------------------------------
+   Strona główna: hero
+   ------------------------------------------------------------------------- */
+.hero {
+  padding: clamp(4rem, 10vw, 7.5rem) 0;
+  background: var(--czarny);
+  color: var(--bialy);
+}
+
+.hero__uklad {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  gap: 3rem;
+}
+
+.hero__etykieta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  padding: 0.4rem 0.9rem 0.4rem 0.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+.hero__etykieta strong {
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: var(--bialy);
+  color: var(--czarny);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-size: clamp(2.6rem, 1.6rem + 4.2vw, 4.6rem);
+  line-height: 1.02;
+}
+
+.hero__opis {
+  max-width: 34rem;
+  margin-top: 1.4rem;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 1.2rem;
+}
+
+.hero__akcje {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2.2rem;
+}
+
+.hero__fakty {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.5rem;
+  margin: 2.8rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero__fakty strong {
+  display: block;
+  font-size: 1.8rem;
+  line-height: 1.1;
+}
+
+.hero__fakty span {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.92rem;
+}
+
+/* Okno „edytora kodu” w hero */
+.edytor {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--promien);
+  background: #0e0e0e;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+.edytor__pasek {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.edytor__pasek span {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.edytor pre {
+  margin: 0;
+  padding: 1.25rem 1.4rem;
+  overflow-x: auto;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.edytor .k-tag {
+  color: #fff;
+  font-weight: 700;
+}
+
+.edytor .k-atr {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.edytor .k-tekst {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* -------------------------------------------------------------------------
+   Kafelki (korzyści, dla kogo)
+   ------------------------------------------------------------------------- */
+.kafelki {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+.kafelek {
+  padding: 1.75rem;
+  border: 1px solid var(--szary-2);
+  border-radius: var(--promien);
+  background: var(--bialy);
+}
+
+.kafelek__numer {
+  display: block;
+  margin-bottom: 1.25rem;
+  color: var(--szary-tekst);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+
+.kafelek h3 {
+  font-size: 1.3rem;
+}
+
+.kafelek p {
+  margin-top: 0.6rem;
+  color: var(--szary-tekst);
+}
+
+/* Lista z „ptaszkami” */
+.lista-ok {
+  display: grid;
+  gap: 0.8rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lista-ok li {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.lista-ok li::before {
+  content: "";
+  position: absolute;
+  top: 0.35rem;
+  left: 0;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: var(--czarny);
+}
+
+.lista-ok li::after {
+  content: "";
+  position: absolute;
+  top: 0.62rem;
+  left: 0.36rem;
+  width: 0.48rem;
+  height: 0.26rem;
+  border-left: 2px solid var(--bialy);
+  border-bottom: 2px solid var(--bialy);
+  transform: rotate(-45deg);
+}
+
+.sekcja--czarna .lista-ok li::before {
+  background: var(--bialy);
+}
+
+.sekcja--czarna .lista-ok li::after {
+  border-color: var(--czarny);
+}
+
+.dwie-kolumny {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 3rem;
+}
+
+/* -------------------------------------------------------------------------
+   Program kursu (moduły)
+   ------------------------------------------------------------------------- */
+.moduly {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+}
+
+.modul {
+  border: 1px solid var(--szary-2);
+  border-radius: var(--promien);
+  background: var(--bialy);
+}
+
+.modul[open] {
+  border-color: var(--czarny);
+}
+
+.modul summary {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  list-style: none;
+  cursor: pointer;
+}
+
+.modul summary::-webkit-details-marker {
+  display: none;
+}
+
+.modul__nr {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  background: var(--czarny);
+  color: var(--bialy);
+  font-weight: 600;
+}
+
+.modul__tytul {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.modul__info {
+  display: block;
+  margin-top: 0.15rem;
+  color: var(--szary-tekst);
+  font-size: 0.92rem;
+  font-weight: 400;
+}
+
+.modul__strzalka {
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-right: 0.3rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 200ms ease;
+}
+
+.modul[open] .modul__strzalka {
+  transform: rotate(-135deg);
+}
+
+.modul__lekcje {
+  margin: 0;
+  padding: 0 1.5rem 1.4rem 5.35rem;
+  color: var(--szary-tekst);
+}
+
+.modul__lekcje li + li {
+  margin-top: 0.35rem;
+}
+
+/* -------------------------------------------------------------------------
+   Cennik
+   ------------------------------------------------------------------------- */
+.pakiety {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  align-items: stretch;
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+.pakiet {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border: 1px solid var(--szary-2);
+  border-radius: var(--promien);
+  background: var(--bialy);
+}
+
+.pakiet--polecany {
+  border-color: var(--czarny);
+  background: var(--czarny);
+  color: var(--bialy);
+}
+
+.pakiet__odznaka {
+  position: absolute;
+  top: -0.8rem;
+  left: 2rem;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--czarny);
+  border-radius: 999px;
+  background: var(--bialy);
+  color: var(--czarny);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.pakiet h3 {
+  font-size: 1.4rem;
+}
+
+.pakiet__opis {
+  margin-top: 0.4rem;
+  color: var(--szary-tekst);
+}
+
+.pakiet--polecany .pakiet__opis,
+.pakiet--polecany .pakiet__okres {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.pakiet__cena {
+  margin-top: 1.5rem;
+  font-size: 2.8rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.pakiet__okres {
+  margin-top: 0.4rem;
+  color: var(--szary-tekst);
+  font-size: 0.92rem;
+}
+
+.pakiet .lista-ok {
+  flex: 1;
+  margin-bottom: 2rem;
+}
+
+.pakiet--polecany .lista-ok li::before {
+  background: var(--bialy);
+}
+
+.pakiet--polecany .lista-ok li::after {
+  border-color: var(--czarny);
+}
+
+.gwarancja {
+  margin-top: 2rem;
+  color: var(--szary-tekst);
+  text-align: center;
+}
+
+/* -------------------------------------------------------------------------
+   FAQ
+   ------------------------------------------------------------------------- */
+.faq {
+  max-width: 48rem;
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--szary-2);
+}
+
+.faq details {
+  border-bottom: 1px solid var(--szary-2);
+}
+
+.faq summary {
+  position: relative;
+  padding: 1.25rem 3rem 1.25rem 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  list-style: none;
+  cursor: pointer;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::before,
+.faq summary::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0.25rem;
+  width: 1rem;
+  height: 2px;
+  background: currentColor;
+  transition: transform 200ms ease;
+}
+
+.faq summary::after {
+  transform: rotate(90deg);
+}
+
+.faq details[open] summary::after {
+  transform: rotate(0);
+}
+
+.faq details p {
+  padding: 0 3rem 1.4rem 0;
+  color: var(--szary-tekst);
+}
+
+/* -------------------------------------------------------------------------
+   Pasek zachęty (CTA)
+   ------------------------------------------------------------------------- */
+.zacheta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: clamp(2rem, 5vw, 3rem);
+  border-radius: var(--promien);
+  background: var(--czarny);
+  color: var(--bialy);
+}
+
+.zacheta h2 {
+  max-width: 32rem;
+  font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.3rem);
+}
+
+.zacheta p {
+  margin-top: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* -------------------------------------------------------------------------
+   O mnie
+   ------------------------------------------------------------------------- */
+.autor {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  align-items: start;
+  gap: 3rem;
+}
+
+.autor__zdjecie {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--promien);
+  background: var(--czarny);
+  color: var(--bialy);
+}
+
+.autor__zdjecie svg {
+  width: 40%;
+  height: auto;
+}
+
+.autor__tekst p + p {
+  margin-top: 1rem;
+}
+
+.autor__tekst p {
+  color: var(--szary-tekst);
+  font-size: 1.1rem;
+}
+
+/* -------------------------------------------------------------------------
+   Kontakt i formularz
+   ------------------------------------------------------------------------- */
+.kontakt {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  align-items: start;
+  gap: 3rem;
+}
+
+.kontakt__dane {
+  display: grid;
+  gap: 1.25rem;
+  margin: 2rem 0 0;
+}
+
+.kontakt__dane dt {
+  color: var(--szary-tekst);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.kontakt__dane dd {
+  margin: 0.2rem 0 0;
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.formularz {
+  display: grid;
+  gap: 1.25rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border: 1px solid var(--czarny);
+  border-radius: var(--promien);
+}
+
+.pole {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.pole label {
+  font-weight: 600;
+}
+
+.pole__wymagane {
+  color: var(--szary-tekst);
+  font-weight: 400;
+}
+
+.pole input,
+.pole select,
+.pole textarea {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid #9a9a9a;
+  border-radius: 0.6rem;
+  background: var(--bialy);
+  color: var(--czarny);
+  font: inherit;
+}
+
+.pole textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.pole input:focus,
+.pole select:focus,
+.pole textarea:focus {
+  outline: none;
+  border-color: var(--czarny);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+}
+
+.pole--blad input,
+.pole--blad select,
+.pole--blad textarea {
+  border-color: var(--blad);
+}
+
+.pole__blad {
+  min-height: 1.2rem;
+  color: var(--blad);
+  font-size: 0.9rem;
+}
+
+.zgoda {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.zgoda input {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0.2rem 0 0;
+  accent-color: var(--czarny);
+}
+
+.zgoda .pole__blad {
+  grid-column: 2;
+}
+
+.formularz__komunikat {
+  display: none;
+  padding: 1rem 1.25rem;
+  border-radius: 0.6rem;
+  font-weight: 500;
+}
+
+.formularz__komunikat--sukces {
+  display: block;
+  background: #e8f5ec;
+  color: var(--sukces);
+}
+
+.formularz__komunikat--blad {
+  display: block;
+  background: #fdecee;
+  color: var(--blad);
+}
+
+.formularz .przycisk {
+  justify-self: start;
+}
+
+.formularz .przycisk[disabled] {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+/* -------------------------------------------------------------------------
+   Stopka
+   ------------------------------------------------------------------------- */
+.stopka {
+  padding: 3rem 0;
+  border-top: 1px solid var(--czarny);
+}
+
+.stopka__uklad {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.stopka__linki {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stopka__linki a {
+  text-decoration: none;
+}
+
+.stopka__linki a:hover {
+  text-decoration: underline;
+}
+
+.stopka__prawa {
+  color: var(--szary-tekst);
+  font-size: 0.92rem;
+}
+
+/* -------------------------------------------------------------------------
+   Responsywność
+   ------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .hero__uklad,
+  .dwie-kolumny,
+  .autor,
+  .kontakt {
+    grid-template-columns: 1fr;
+  }
+
+  .autor__zdjecie {
+    max-width: 20rem;
+  }
+}
+
+@media (max-width: 820px) {
+  .menu__przycisk {
+    display: inline-flex;
+  }
+
+  .menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 1rem 1.5rem 1.5rem;
+    border-bottom: 1px solid var(--czarny);
+    background: var(--bialy);
+  }
+
+  .menu--otwarte {
+    display: block;
+  }
+
+  .menu__lista {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .menu__lista li + li {
+    border-top: 1px solid var(--szary-2);
+  }
+
+  .menu__link {
+    display: block;
+    padding: 0.9rem 0;
+    font-size: 1.15rem;
+  }
+
+  .menu__link::after {
+    display: none;
+  }
+
+  .menu__lista .przycisk {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .menu__lista li:last-child {
+    border-top: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .kontener {
+    padding: 0 1rem;
+  }
+
+  .logo__dopisek {
+    display: none;
+  }
+
+  .modul summary {
+    gap: 0.9rem;
+    padding: 1.1rem;
+  }
+
+  .modul__lekcje {
+    padding: 0 1.1rem 1.2rem 1.1rem;
+  }
+
+  .faq details p {
+    padding-right: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cennik kursu – computerit</title>
+  <meta name="description" content="Pakiety kursu tworzenia stron: Podstawowy, Standard i Premium.">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="przejdz" href="#tresc">Przejdź do treści</a>
+
+  <header class="naglowek">
+    <div class="kontener naglowek__pasek">
+      <a class="logo" href="index.html" aria-label="Kurs stron internetowych computerit – strona główna">
+        <svg class="logo__znak" viewBox="10 10 415 800" fill="currentColor" aria-hidden="true" focusable="false"><path d="M15 408 68 368V716l-21 5-5 5 5 3 133 28 160-18 80 18-190 46L15 742Z" /><path d="M85 222 119 196 125 15 132 140 138 148V712H85Z" /><path d="M152 293 182 320V709H152Z" /><path d="M200 488 245 525V704H200Z" /><path d="M220 712 325 733 330 737 222 717Z" /></svg>
+        <span>
+          <span class="logo__nazwa">computerit</span>
+          <span class="logo__dopisek">Kurs stron www</span>
+        </span>
+      </a>
+
+      <button class="menu__przycisk" type="button" aria-expanded="false" aria-controls="menu">
+        <span class="menu__ikona" aria-hidden="true"></span>
+        Menu
+      </button>
+
+      <nav class="menu" id="menu" aria-label="Menu główne">
+        <ul class="menu__lista">
+            <li><a class="menu__link" href="index.html">Start</a></li>
+            <li><a class="menu__link" href="program.html">Program</a></li>
+            <li><a class="menu__link" href="cennik.html" aria-current="page">Cennik</a></li>
+            <li><a class="menu__link" href="o-mnie.html">O mnie</a></li>
+            <li><a class="menu__link" href="kontakt.html">Kontakt</a></li>
+            <li><a class="przycisk przycisk--maly" href="cennik.html">Zapisz się</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="tresc">
+    <section class="podstrona">
+      <div class="kontener">
+        <p class="nadtytul">Cennik</p>
+        <h1 class="tytul">Wybierz swój pakiet</h1>
+        <p class="wstep">Jednorazowa płatność, dostęp bez limitu czasu. Ceny brutto.</p>
+      </div>
+    </section>
+
+    <section class="sekcja">
+      <div class="kontener">
+        <div class="pakiety">
+          <article class="pakiet">
+            <h3>Podstawowy</h3>
+            <p class="pakiet__opis">Dla osób, które chcą nauczyć się samodzielnie.</p>
+            <p class="pakiet__cena">299 zł</p>
+            <p class="pakiet__okres">płatność jednorazowa</p>
+            <ul class="lista-ok">
+              <li>wszystkie 36 lekcji wideo</li>
+              <li>kod źródłowy do lekcji</li>
+              <li>zadania po każdym module</li>
+              <li>certyfikat ukończenia</li>
+            </ul>
+            <a class="przycisk" href="kontakt.html?pakiet=podstawowy">Wybieram Podstawowy</a>
+          </article>
+          <article class="pakiet pakiet--polecany">
+            <span class="pakiet__odznaka">Najczęściej wybierany</span>
+            <h3>Standard</h3>
+            <p class="pakiet__opis">Kurs z moim wsparciem i oceną projektów.</p>
+            <p class="pakiet__cena">499 zł</p>
+            <p class="pakiet__okres">płatność jednorazowa</p>
+            <ul class="lista-ok">
+              <li>wszystko z pakietu Podstawowy</li>
+              <li>ocena 6 projektów do portfolio</li>
+              <li>odpowiedzi na pytania mailowo</li>
+              <li>dostęp do zamkniętej grupy</li>
+            </ul>
+            <a class="przycisk przycisk--jasny" href="kontakt.html?pakiet=standard">Wybieram Standard</a>
+          </article>
+          <article class="pakiet">
+            <h3>Premium</h3>
+            <p class="pakiet__opis">Dla osób, które chcą szybko zacząć zarabiać.</p>
+            <p class="pakiet__cena">899 zł</p>
+            <p class="pakiet__okres">płatność jednorazowa</p>
+            <ul class="lista-ok">
+              <li>wszystko z pakietu Standard</li>
+              <li>4 konsultacje 1:1 online (po 45 min)</li>
+              <li>przegląd Twojego portfolio</li>
+              <li>pomoc przy pierwszej wycenie zlecenia</li>
+            </ul>
+            <a class="przycisk" href="kontakt.html?pakiet=premium">Wybieram Premium</a>
+          </article>
+        </div>
+        <p class="gwarancja">14 dni na zwrot pieniędzy bez podawania przyczyny.</p>
+      </div>
+    </section>
+
+    <section class="sekcja sekcja--szara">
+      <div class="kontener">
+        <p class="nadtytul">Płatności</p>
+        <h2 class="tytul">Pytania o zakup</h2>
+        <div class="faq">
+          <details>
+            <summary>Jak mogę zapłacić?</summary>
+            <p>Przelewem tradycyjnym lub BLIK. Dane do płatności wyślemy w odpowiedzi na formularz zapisu.</p>
+          </details>
+          <details>
+            <summary>Czy mogę zmienić pakiet później?</summary>
+            <p>Tak. Płacisz tylko różnicę w cenie między pakietami.</p>
+          </details>
+          <details>
+            <summary>Czy dostanę fakturę?</summary>
+            <p>Tak, wystawiamy faktury dla osób prywatnych i firm.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="stopka">
+    <div class="kontener stopka__uklad">
+      <a class="logo" href="index.html" aria-label="computerit – strona główna">
+        <svg class="logo__znak" viewBox="10 10 415 800" fill="currentColor" aria-hidden="true" focusable="false"><path d="M15 408 68 368V716l-21 5-5 5 5 3 133 28 160-18 80 18-190 46L15 742Z" /><path d="M85 222 119 196 125 15 132 140 138 148V712H85Z" /><path d="M152 293 182 320V709H152Z" /><path d="M200 488 245 525V704H200Z" /><path d="M220 712 325 733 330 737 222 717Z" /></svg>
+        <span class="logo__nazwa">computerit</span>
+      </a>
+      <ul class="stopka__linki">
+        <li><a href="program.html">Program</a></li>
+        <li><a href="cennik.html">Cennik</a></li>
+        <li><a href="o-mnie.html">O mnie</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+      <p class="stopka__prawa">&copy; <span id="rok">2026</span> computerit. Wszelkie prawa zastrzeżone.</p>
+    </div>
+  </footer>
+</body>
+</html>

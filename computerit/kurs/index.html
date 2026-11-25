@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kurs tworzenia stron internetowych od zera – computerit</title>
+  <meta name="description" content="Praktyczny kurs HTML, CSS, JavaScript i WordPressa. Zbuduj własne strony i portfolio.">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="przejdz" href="#tresc">Przejdź do treści</a>
+
+  <header class="naglowek">
+    <div class="kontener naglowek__pasek">
+      <a class="logo" href="index.html" aria-label="Kurs stron internetowych computerit – strona główna">
+        <svg class="logo__znak" viewBox="10 10 415 800" fill="currentColor" aria-hidden="true" focusable="false"><path d="M15 408 68 368V716l-21 5-5 5 5 3 133 28 160-18 80 18-190 46L15 742Z" /><path d="M85 222 119 196 125 15 132 140 138 148V712H85Z" /><path d="M152 293 182 320V709H152Z" /><path d="M200 488 245 525V704H200Z" /><path d="M220 712 325 733 330 737 222 717Z" /></svg>
+        <span>
+          <span class="logo__nazwa">computerit</span>
+          <span class="logo__dopisek">Kurs stron www</span>
+        </span>
+      </a>
+
+      <button class="menu__przycisk" type="button" aria-expanded="false" aria-controls="menu">
+        <span class="menu__ikona" aria-hidden="true"></span>
+        Menu
+      </button>
+
+      <nav class="menu" id="menu" aria-label="Menu główne">
+        <ul class="menu__lista">
+            <li><a class="menu__link" href="index.html" aria-current="page">Start</a></li>
+            <li><a class="menu__link" href="program.html">Program</a></li>
+            <li><a class="menu__link" href="cennik.html">Cennik</a></li>
+            <li><a class="menu__link" href="o-mnie.html">O mnie</a></li>
+            <li><a class="menu__link" href="kontakt.html">Kontakt</a></li>
+            <li><a class="przycisk przycisk--maly" href="cennik.html">Zapisz się</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="tresc">
+    <section class="hero">
+      <div class="kontener hero__uklad">
+        <div>
+          <p class="hero__etykieta"><strong>Nowość</strong> Zapisy na kurs są otwarte</p>
+          <h1>Naucz się tworzyć strony internetowe od zera</h1>
+          <p class="hero__opis">Praktyczny kurs HTML, CSS, JavaScript i WordPressa. Krok po kroku zbudujesz własne strony i przygotujesz portfolio, z którym zdobędziesz pierwszych klientów.</p>
+          <div class="hero__akcje">
+            <a class="przycisk przycisk--jasny" href="cennik.html">Zapisz się na kurs</a>
+            <a class="przycisk przycisk--obrys-bialy" href="program.html">Zobacz program</a>
+          </div>
+          <ul class="hero__fakty">
+            <li><strong>7</strong><span>modułów</span></li>
+            <li><strong>36</strong><span>lekcji wideo</span></li>
+            <li><strong>6</strong><span>projektów do portfolio</span></li>
+          </ul>
+        </div>
+        <div class="edytor" aria-hidden="true">
+          <div class="edytor__pasek"><span></span><span></span><span></span></div>
+<pre><span class="k-tag">&lt;header&gt;</span>
+  <span class="k-tag">&lt;h1&gt;</span><span class="k-tekst">Moja pierwsza strona</span><span class="k-tag">&lt;/h1&gt;</span>
+  <span class="k-tag">&lt;a</span> <span class="k-atr">href="kontakt.html"</span><span class="k-tag">&gt;</span><span class="k-tekst">Kontakt</span><span class="k-tag">&lt;/a&gt;</span>
+<span class="k-tag">&lt;/header&gt;</span>
+
+<span class="k-tag">.przycisk</span> {
+  <span class="k-atr">background:</span> #000;
+  <span class="k-atr">border-radius:</span> 999px;
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="sekcja">
+      <div class="kontener">
+        <p class="nadtytul">Co zyskasz</p>
+        <h2 class="tytul">Kurs, po którym naprawdę umiesz zrobić stronę</h2>
+        <p class="wstep">Zamiast suchej teorii – małe kroki i projekty, które od razu trafiają do Twojego portfolio.</p>
+        <div class="kafelki">
+          <article class="kafelek">
+            <span class="kafelek__numer">01</span>
+            <h3>Nauka przez praktykę</h3>
+            <p>Każdy moduł kończy się zadaniem. Po kursie masz 6 gotowych projektów.</p>
+          </article>
+          <article class="kafelek">
+            <span class="kafelek__numer">02</span>
+            <h3>Od zera, bez stresu</h3>
+            <p>Nie potrzebujesz doświadczenia. Wszystko tłumaczę prostym językiem.</p>
+          </article>
+          <article class="kafelek">
+            <span class="kafelek__numer">03</span>
+            <h3>Strony na telefon</h3>
+            <p>Uczysz się od razu tworzyć strony, które dobrze wyglądają na każdym ekranie.</p>
+          </article>
+          <article class="kafelek">
+            <span class="kafelek__numer">04</span>
+            <h3>Dostęp bez limitu</h3>
+            <p>Uczysz się we własnym tempie, z dostępem do lekcji i aktualizacji.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sekcja sekcja--szara">
+      <div class="kontener dwie-kolumny">
+        <div>
+          <p class="nadtytul">Dla kogo</p>
+          <h2 class="tytul">Ten kurs jest dla Ciebie, jeśli…</h2>
+        </div>
+        <ul class="lista-ok">
+          <li>chcesz zrobić stronę dla siebie lub swojej firmy,</li>
+          <li>myślisz o pracy jako twórca stron internetowych,</li>
+          <li>próbowałeś uczyć się sam, ale gubisz się w tutorialach,</li>
+          <li>chcesz rozumieć kod, a nie tylko klikać w kreatorze,</li>
+          <li>potrzebujesz portfolio, żeby zdobyć pierwszych klientów.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sekcja sekcja--czarna">
+      <div class="kontener">
+        <p class="nadtytul">Program w skrócie</p>
+        <h2 class="tytul">7 modułów – od pierwszego znacznika do pierwszego zlecenia</h2>
+        <ul class="lista-ok">
+          <li><strong>Moduł 1:</strong> Start: jak działa strona internetowa</li>
+          <li><strong>Moduł 2:</strong> HTML od podstaw</li>
+          <li><strong>Moduł 3:</strong> CSS: wygląd strony</li>
+          <li><strong>Moduł 4:</strong> Strony na telefon (RWD)</li>
+          <li><strong>Moduł 5:</strong> JavaScript na start</li>
+          <li><strong>Moduł 6:</strong> WordPress dla twórców stron</li>
+          <li><strong>Moduł 7:</strong> Publikacja i pierwsze zlecenie</li>
+        </ul>
+        <p style="margin-top: 2.5rem"><a class="przycisk przycisk--jasny" href="program.html">Zobacz pełny program</a></p>
+      </div>
+    </section>
+
+    <section class="sekcja">
+      <div class="kontener">
+        <p class="nadtytul">Pytania</p>
+        <h2 class="tytul">Najczęstsze pytania</h2>
+        <div class="faq">
+          <details>
+            <summary>Czy muszę coś umieć przed startem?</summary>
+            <p>Nie. Wystarczy komputer z internetem i chęć do nauki. Zaczynamy od absolutnych podstaw.</p>
+          </details>
+          <details>
+            <summary>Ile czasu trwa kurs?</summary>
+            <p>Przy 3–4 godzinach tygodniowo przejdziesz kurs w około 6 tygodni. Uczysz się we własnym tempie.</p>
+          </details>
+          <details>
+            <summary>Jak długo mam dostęp do lekcji?</summary>
+            <p>Dostęp do materiałów jest bezterminowy, razem z przyszłymi aktualizacjami kursu.</p>
+          </details>
+          <details>
+            <summary>Czy dostanę fakturę?</summary>
+            <p>Tak, do każdego zakupu wystawiamy fakturę – również na firmę.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="sekcja">
+      <div class="kontener">
+        <div class="zacheta">
+          <div>
+            <h2>Zbuduj swoją pierwszą stronę w 6 tygodni</h2>
+            <p>Dołącz do kursu i zacznij od pierwszej lekcji jeszcze dziś.</p>
+          </div>
+          <a class="przycisk przycisk--jasny" href="cennik.html">Wybierz pakiet</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="stopka">
+    <div class="kontener stopka__uklad">
+      <a class="logo" href="index.html" aria-label="computerit – strona główna">
+        <svg class="logo__znak" viewBox="10 10 415 800" fill="currentColor" aria-hidden="true" focusable="false"><path d="M15 408 68 368V716l-21 5-5 5 5 3 133 28 160-18 80 18-190 46L15 742Z" /><path d="M85 222 119 196 125 15 132 140 138 148V712H85Z" /><path d="M152 293 182 320V709H152Z" /><path d="M200 488 245 525V704H200Z" /><path d="M220 712 325 733 330 737 222 717Z" /></svg>
+        <span class="logo__nazwa">computerit</span>
+      </a>
+      <ul class="stopka__linki">
+        <li><a href="program.html">Program</a></li>
+        <li><a href="cennik.html">Cennik</a></li>
+        <li><a href="o-mnie.html">O mnie</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+      <p class="stopka__prawa">&copy; <span id="rok">2026</span> computerit. Wszelkie prawa zastrzeżone.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Program kursu – computerit</title>
+  <meta name="description" content="7 modułów i 36 lekcji: HTML, CSS, RWD, JavaScript, WordPress i publikacja strony.">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="przejdz" href="#tresc">Przejdź do treści</a>
+
+  <header class="naglowek">
+    <div class="kontener naglowek__pasek">
+      <a class="logo" href="index.html" aria-label="Kurs stron internetowych computerit – strona główna">
+        <svg class="logo__znak" viewBox="10 10 415 800" fill="currentColor" aria-hidden="true" focusable="false"><path d="M15 408 68 368V716l-21 5-5 5 5 3 133 28 160-18 80 18-190 46L15 742Z" /><path d="M85 222 119 196 125 15 132 140 138 148V712H85Z" /><path d="M152 293 182 320V709H152Z" /><path d="M200 488 245 525V704H200Z" /><path d="M220 712 325 733 330 737 222 717Z" /></svg>
+        <span>
+          <span class="logo__nazwa">computerit</span>
+          <span class="logo__dopisek">Kurs stron www</span>
+        </span>
+      </a>
+
+      <button class="menu__przycisk" type="button" aria-expanded="false" aria-controls="menu">
+        <span class="menu__ikona" aria-hidden="true"></span>
+        Menu
+      </button>
+
+      <nav class="menu" id="menu" aria-label="Menu główne">
+        <ul class="menu__lista">
+            <li><a class="menu__link" href="index.html">Start</a></li>
+            <li><a class="menu__link" href="program.html" aria-current="page">Program</a></li>
+            <li><a class="menu__link" href="cennik.html">Cennik</a></li>
+            <li><a class="menu__link" href="o-mnie.html">O mnie</a></li>
+            <li><a class="menu__link" href="kontakt.html">Kontakt</a></li>
+            <li><a class="przycisk przycisk--maly" href="cennik.html">Zapisz się</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="tresc">
+    <section class="podstrona">
+      <div class="kontener">
+        <p class="nadtytul">Program kursu</p>
+        <h1 class="tytul">Czego się nauczysz</h1>
+        <p class="wstep">7 modułów i 36 lekcji wideo. Kliknij moduł, aby zobaczyć listę lekcji.</p>
+      </div>
+    </section>
+
+    <section class="sekcja">
+      <div class="kontener">
+        <div class="moduly">
+          <details class="modul" open>
+            <summary>
+              <span class="modul__nr">1</span>
+              <span class="modul__tytul">Start: jak działa strona internetowa<span class="modul__info">Wprowadzenie · 4 lekcje</span></span>
+              <span class="modul__strzalka" aria-hidden="true"></span>
+            </summary>
+            <ol class="modul__lekcje">
+              <li>Przeglądarka, serwer i domena – prosto wyjaśnione</li>
+              <li>Instalacja edytora VS Code i potrzebnych dodatków</li>
+              <li>Twój pierwszy plik index.html</li>
+              <li>Jak korzystać z narzędzi deweloperskich w przeglądarce</li>
+            </ol>
+          </details>
+          <details class="modul">
+            <summary>
+              <span class="modul__nr">2</span>
+              <span class="modul__tytul">HTML od podstaw<span class="modul__info">Struktura strony · 6 lekcji</span></span>
+              <span class="modul__strzalka" aria-hidden="true"></span>
+            </summary>
+            <ol class="modul__lekcje">
+              <li>Nagłówki, akapity, listy i linki</li>
+              <li>Obrazy i dobre opisy alternatywne</li>
+              <li>Semantyczne znaczniki: header, main, section, footer</li>
+              <li>Tabele i formularze</li>
+              <li>Kilka podstron i nawigacja między nimi</li>
+              <li>Zadanie: wizytówka w czystym HTML</li>
+            </ol>
+          </details>
+          <details class="modul">
+            <summary>
+              <span class="modul__nr">3</span>
+              <span class="modul__tytul">CSS: wygląd strony<span class="modul__info">Kolory, czcionki, odstępy · 7 lekcji</span></span>
+              <span class="modul__strzalka" aria-hidden="true"></span>
+            </summary>
+            <ol class="modul__lekcje">
+              <li>Selektory i kaskada bez tajemnic</li>
+              <li>Kolory, czcionki z Google Fonts i typografia</li>
+              <li>Model pudełkowy: margin, padding, border</li>
+              <li>Flexbox w praktyce</li>
+              <li>CSS Grid: siatki kafelków</li>
+              <li>Animacje i przejścia</li>
+              <li>Zadanie: stylowanie wizytówki</li>
+            </ol>
+          </details>
+          <details class="modul">
+            <summary>
+              <span class="modul__nr">4</span>
+              <span class="modul__tytul">Strony na telefon (RWD)<span class="modul__info">Responsywność · 4 lekcje</span></span>
+              <span class="modul__strzalka" aria-hidden="true"></span>
+            </summary>
+            <ol class="modul__lekcje">
+              <li>Viewport i podejście mobile first</li>
+              <li>Media queries krok po kroku</li>
+              <li>Responsywne obrazy</li>
+              <li>Menu mobilne</li>
+            </ol>
+          </details>
+          <details class="modul">
+            <summary>
+              <span class="modul__nr">5</span>
+              <span class="modul__tytul">JavaScript na start<span class="modul__info">Interakcje · 6 lekcji</span></span>
+              <span class="modul__strzalka" aria-hidden="true"></span>
+            </summary>
+            <ol class="modul__lekcje">
+              <li>Zmienne, funkcje i warunki</li>
+              <li>Praca z elementami strony (DOM)</li>
+              <li>Zdarzenia: kliknięcia i klawiatura</li>
+              <li>Menu rozwijane i zakładki</li>
+              <li>Walidacja formularza kontaktowego</li>
+              <li>Zadanie: interaktywna strona firmy</li>
+            </ol>
+          </details>
+          <details class="modul">
+            <summary>
+              <span class="modul__nr">6</span>
+              <span class="modul__tytul">WordPress dla twórców stron<span class="modul__info">Gotowe strony dla klientów · 5 lekcji</span></span>
+              <span class="modul__strzalka" aria-hidden="true"></span>
+            </summary>
+            <ol class="modul__lekcje">
+              <li>Instalacja WordPressa na hostingu</li>
+              <li>Motywy, edytor blokowy i wzorce</li>
+              <li>Własny kod HTML i CSS w WordPressie</li>
+              <li>Wtyczki: SEO, formularze, kopie zapasowe</li>
+              <li>Przekazanie strony klientowi</li>
+            </ol>
+          </details>
+          <details class="modul">
+            <summary>
+              <span class="modul__nr">7</span>
+              <span class="modul__tytul">Publikacja i pierwsze zlecenie<span class="modul__info">Projekt końcowy · 4 lekcje</span></span>
+              <span class="modul__strzalka" aria-hidden="true"></span>
+            </summary>
+            <ol class="modul__lekcje">
+              <li>Domena, hosting i wysyłka plików przez FTP</li>
+              <li>Szybkość strony i podstawy SEO</li>
+              <li>Portfolio, które przyciąga klientów</li>
+              <li>Wycena i umowa – jak zacząć zarabiać</li>
+            </ol>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="sekcja sekcja--szara">
+      <div class="kontener dwie-kolumny">
+        <div>
+          <p class="nadtytul">Jak wygląda nauka</p>
+          <h2 class="tytul">Krótkie lekcje, konkretne zadania</h2>
+        </div>
+        <ul class="lista-ok">
+          <li>lekcje wideo po 10–20 minut,</li>
+          <li>kod źródłowy do każdej lekcji,</li>
+          <li>zadanie na koniec każdego modułu,</li>
+          <li>projekt końcowy do Twojego portfolio,</li>
+          <li>certyfikat ukończenia kursu.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sekcja">
+      <div class="kontener">
+        <div class="zacheta">
+          <div>
+            <h2>Zbuduj swoją pierwszą stronę w 6 tygodni</h2>
+            <p>Dołącz do kursu i zacznij od pierwszej lekcji jeszcze dziś.</p>
+          </div>
+          <a class="przycisk przycisk--jasny" href="cennik.html">Wybierz pakiet</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="stopka">
+    <div class="kontener stopka__uklad">
+      <a class="logo" href="index.html" aria-label="computerit – strona główna">
+        <svg class="logo__znak" viewBox="10 10 415 800" fill="currentColor" aria-hidden="true" focusable="false"><path d="M15 408 68 368V716l-21 5-5 5 5 3 133 28 160-18 80 18-190 46L15 742Z" /><path d="M85 222 119 196 125 15 132 140 138 148V712H85Z" /><path d="M152 293 182 320V709H152Z" /><path d="M200 488 245 525V704H200Z" /><path d="M220 712 325 733 330 737 222 717Z" /></svg>
+        <span class="logo__nazwa">computerit</span>
+      </a>
+      <ul class="stopka__linki">
+        <li><a href="program.html">Program</a></li>
+        <li><a href="cennik.html">Cennik</a></li>
+        <li><a href="o-mnie.html">O mnie</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+      <p class="stopka__prawa">&copy; <span id="rok">2026</span> computerit. Wszelkie prawa zastrzeżone.</p>
+    </div>
+  </footer>
+</body>
+</html>

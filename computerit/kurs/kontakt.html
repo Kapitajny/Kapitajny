@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zapisz się na kurs – computerit</title>
+  <meta name="description" content="Formularz zapisu na kurs tworzenia stron internetowych.">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="przejdz" href="#tresc">Przejdź do treści</a>
+
+  <header class="naglowek">
+    <div class="kontener naglowek__pasek">
+      <a class="logo" href="index.html" aria-label="Kurs stron internetowych computerit – strona główna">
+        <svg class="logo__znak" viewBox="10 10 415 800" fill="currentColor" aria-hidden="true" focusable="false"><path d="M15 408 68 368V716l-21 5-5 5 5 3 133 28 160-18 80 18-190 46L15 742Z" /><path d="M85 222 119 196 125 15 132 140 138 148V712H85Z" /><path d="M152 293 182 320V709H152Z" /><path d="M200 488 245 525V704H200Z" /><path d="M220 712 325 733 330 737 222 717Z" /></svg>
+        <span>
+          <span class="logo__nazwa">computerit</span>
+          <span class="logo__dopisek">Kurs stron www</span>
+        </span>
+      </a>
+
+      <button class="menu__przycisk" type="button" aria-expanded="false" aria-controls="menu">
+        <span class="menu__ikona" aria-hidden="true"></span>
+        Menu
+      </button>
+
+      <nav class="menu" id="menu" aria-label="Menu główne">
+        <ul class="menu__lista">
+            <li><a class="menu__link" href="index.html">Start</a></li>
+            <li><a class="menu__link" href="program.html">Program</a></li>
+            <li><a class="menu__link" href="cennik.html">Cennik</a></li>
+            <li><a class="menu__link" href="o-mnie.html">O mnie</a></li>
+            <li><a class="menu__link" href="kontakt.html" aria-current="page">Kontakt</a></li>
+            <li><a class="przycisk przycisk--maly" href="cennik.html">Zapisz się</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="tresc">
+    <section class="podstrona">
+      <div class="kontener">
+        <p class="nadtytul">Kontakt</p>
+        <h1 class="tytul">Zapisz się na kurs</h1>
+        <p class="wstep">Wypełnij formularz – odpiszę z danymi do płatności i dostępem do kursu.</p>
+      </div>
+    </section>
+
+    <section class="sekcja">
+      <div class="kontener kontakt">
+        <div>
+          <h2 class="tytul" style="font-size: 1.8rem">Masz pytanie przed zakupem?</h2>
+          <p class="wstep">Napisz w formularzu – odpowiadam zwykle w ciągu 24 godzin w dni robocze.</p>
+          <dl class="kontakt__dane">
+            <div>
+              <dt>E-mail</dt>
+              <dd>kontakt@twojadomena.pl</dd>
+            </div>
+            <div>
+              <dt>Godziny odpowiedzi</dt>
+              <dd>pon.–pt. 9:00–17:00</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Aby wiadomości trafiały na Twój e-mail: załóż darmowe konto na formspree.io
+             i zamień TWOJ-ID w adresie poniżej na swój identyfikator formularza. -->
+        <form class="formularz" id="formularz-zapisu" action="https://formspree.io/f/TWOJ-ID" method="POST" novalidate>
+          <div class="pole">
+            <label for="imie">Imię <span class="pole__wymagane">(wymagane)</span></label>
+            <input id="imie" name="imie" type="text" autocomplete="given-name" aria-describedby="blad-imie">
+            <span class="pole__blad" id="blad-imie" aria-live="polite"></span>
+          </div>
+          <div class="pole">
+            <label for="email">E-mail <span class="pole__wymagane">(wymagane)</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" aria-describedby="blad-email">
+            <span class="pole__blad" id="blad-email" aria-live="polite"></span>
+          </div>
+          <div class="pole">
+            <label for="telefon">Telefon <span class="pole__wymagane">(opcjonalnie)</span></label>
+            <input id="telefon" name="telefon" type="tel" autocomplete="tel" aria-describedby="blad-telefon">
+            <span class="pole__blad" id="blad-telefon" aria-live="polite"></span>
+          </div>
+          <div class="pole">
+            <label for="pakiet">Pakiet <span class="pole__wymagane">(wymagane)</span></label>
+            <select id="pakiet" name="pakiet" aria-describedby="blad-pakiet">
+              <option value="">– wybierz pakiet –</option>
+              <option value="podstawowy">Podstawowy – 299 zł</option>
+              <option value="standard">Standard – 499 zł</option>
+              <option value="premium">Premium – 899 zł</option>
+              <option value="pytanie">Mam tylko pytanie</option>
+            </select>
+            <span class="pole__blad" id="blad-pakiet" aria-live="polite"></span>
+          </div>
+          <div class="pole">
+            <label for="wiadomosc">Wiadomość <span class="pole__wymagane">(opcjonalnie)</span></label>
+            <textarea id="wiadomosc" name="wiadomosc" maxlength="1000" aria-describedby="blad-wiadomosc"></textarea>
+            <span class="pole__blad" id="blad-wiadomosc" aria-live="polite"></span>
+          </div>
+          <label class="zgoda">
+            <input type="checkbox" name="zgoda" value="tak" aria-describedby="blad-zgoda">
+            <span>Wyrażam zgodę na przetwarzanie moich danych w celu odpowiedzi na zgłoszenie. <span class="pole__wymagane">(wymagane)</span></span>
+            <span class="pole__blad" id="blad-zgoda" aria-live="polite"></span>
+          </label>
+          <p class="formularz__komunikat" role="status" tabindex="-1"></p>
+          <button class="przycisk" type="submit">Zapisz się na kurs</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="stopka">
+    <div class="kontener stopka__uklad">
+      <a class="logo" href="index.html" aria-label="computerit – strona główna">
+        <svg class="logo__znak" viewBox="10 10 415 800" fill="currentColor" aria-hidden="true" focusable="false"><path d="M15 408 68 368V716l-21 5-5 5 5 3 133 28 160-18 80 18-190 46L15 742Z" /><path d="M85 222 119 196 125 15 132 140 138 148V712H85Z" /><path d="M152 293 182 320V709H152Z" /><path d="M200 488 245 525V704H200Z" /><path d="M220 712 325 733 330 737 222 717Z" /></svg>
+        <span class="logo__nazwa">computerit</span>
+      </a>
+      <ul class="stopka__linki">
+        <li><a href="program.html">Program</a></li>
+        <li><a href="cennik.html">Cennik</a></li>
+        <li><a href="o-mnie.html">O mnie</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+      <p class="stopka__prawa">&copy; <span id="rok">2026</span> computerit. Wszelkie prawa zastrzeżone.</p>
+    </div>
+  </footer>
+</body>
+</html>
