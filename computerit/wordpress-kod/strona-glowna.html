@@ -48,13 +48,46 @@
     width: min(100%, max(20rem, calc(100svh - 4.5rem)));
     aspect-ratio: 1 / 1;
     margin: 0 auto;
-    background: var(--cit-tlo) center / contain no-repeat;
+  }
+  .cit-home .cit-hero__img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    margin: 0;
+    object-fit: contain;
   }
   @media (min-aspect-ratio: 1/1) {
-    .cit-hero__frame {
+    .cit-home .cit-hero__img {
       -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
       mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
     }
+  }
+  /* Komunikat widoczny tylko dla zalogowanego, gdy obrazek się nie wczyta */
+  .cit-home .cit-hero__warn {
+    display: none;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    margin: 0;
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    background: #fff;
+    color: #000;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .logged-in .cit-hero--broken .cit-hero__warn {
+    display: block;
+  }
+  .cit-hero__warn strong {
+    font-weight: 600;
+  }
+  .cit-hero--broken .cit-hero__img {
+    visibility: hidden;
   }
   /* Przycisk na blacie laptopa */
   .cit-home .cit-hero__btn {
@@ -270,11 +303,13 @@
     }
   }
 </style>
-<div class="cit-home" style="--cit-tlo: url('WKLEJ-TUTAJ-ADRES-OBRAZKA')">
+<div class="cit-home">
   <section class="cit-hero">
-    <div class="cit-hero__frame" role="img" aria-label="computerit – Technologia z nowej perspektywy">
+    <div class="cit-hero__frame">
+      <img class="cit-hero__img" src="WKLEJ-TUTAJ-ADRES-OBRAZKA" alt="computerit – Technologia z nowej perspektywy" fetchpriority="high" />
       <h1 class="cit-sr">computerit – Technologia z nowej perspektywy</h1>
       <a class="cit-hero__btn" href="#oferta">Zobacz ofertę <span class="cit-hero__arrow" aria-hidden="true">↓</span></a>
+      <p class="cit-hero__warn"><strong>Brak tła.</strong> W kodzie strony zamień WKLEJ-TUTAJ-ADRES-OBRAZKA na adres obrazka z Mediów (Adres URL pliku). Ten komunikat widzisz tylko Ty, bo jesteś zalogowany.</p>
     </div>
   </section>
   <section id="oferta" class="cit-offer" aria-labelledby="oferta-tytul">
@@ -308,4 +343,25 @@
       </div>
     </div>
   </section>
+  <script>
+    (function () {
+      var hero = document.querySelector(".cit-hero");
+      if (!hero) return;
+      var img = hero.querySelector(".cit-hero__img");
+      /* Rozmyte boki tła z tego samego obrazka */
+      function ok() {
+        hero.style.setProperty("--cit-tlo", 'url("' + img.currentSrc + '")');
+        hero.classList.remove("cit-hero--broken");
+      }
+      function broken() {
+        hero.classList.add("cit-hero--broken");
+      }
+      img.addEventListener("load", ok);
+      img.addEventListener("error", broken);
+      if (img.complete) {
+        if (img.naturalWidth) ok();
+        else broken();
+      }
+    })();
+  </script>
 </div>
