@@ -1,0 +1,293 @@
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap");
+  /* computerit – strona główna: tło + przycisk Oferta + usługi */
+  html:has(.cit-home) {
+    scroll-behavior: smooth;
+  }
+  html:has(.cit-home),
+  body:has(.cit-home) {
+    overflow-x: clip;
+  }
+  .cit-home {
+    width: 100vw;
+    max-width: none;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
+    background: #000;
+    color: #fff;
+    font-family: "Outfit", system-ui, sans-serif;
+    line-height: 1.6;
+  }
+  .cit-home p:not([class]) {
+    display: contents;
+    margin: 0;
+  }
+  .cit-home *,
+  .cit-home *::before,
+  .cit-home *::after {
+    box-sizing: border-box;
+  }
+  /* Tło (grafika computerit) */
+  .cit-hero {
+    position: relative;
+    overflow: hidden;
+    background: #000;
+  }
+  .cit-hero::before {
+    content: "";
+    position: absolute;
+    inset: -60px;
+    background: var(--cit-tlo) center / cover no-repeat;
+    filter: blur(40px) brightness(0.5);
+  }
+  .cit-hero__frame {
+    position: relative;
+    width: min(100%, max(20rem, calc(100vh - 4.5rem)));
+    width: min(100%, max(20rem, calc(100svh - 4.5rem)));
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+    background: var(--cit-tlo) center / contain no-repeat;
+  }
+  @media (min-aspect-ratio: 1/1) {
+    .cit-hero__frame {
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    }
+  }
+  /* Przycisk na blacie laptopa */
+  .cit-home .cit-hero__btn {
+    position: absolute;
+    top: 89%;
+    left: 50%;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 1.7rem;
+    border: 1px solid #fff;
+    border-radius: 999px;
+    background: #fff;
+    color: #000;
+    font-size: clamp(0.85rem, 2.6vw, 1.05rem);
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+    transition: background-color 200ms ease, color 200ms ease;
+  }
+  .cit-home .cit-hero__btn:hover,
+  .cit-home .cit-hero__btn:focus-visible {
+    background: #000;
+    color: #fff;
+  }
+  .cit-hero__arrow {
+    display: inline-block;
+    transition: transform 200ms ease;
+  }
+  .cit-hero__btn:hover .cit-hero__arrow {
+    transform: translateY(3px);
+  }
+  @media (max-width: 480px) {
+    .cit-home .cit-hero__btn {
+      padding: 0.7rem 1.2rem;
+    }
+  }
+  /* Oferta */
+  .cit-offer {
+    scroll-margin-top: 1rem;
+    padding: clamp(4rem, 10vw, 7rem) 1.5rem;
+    background: #000;
+  }
+  .cit-offer__inner {
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+  .cit-home .cit-eyebrow {
+    margin: 0 0 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .cit-home .cit-offer__title {
+    max-width: 40rem;
+    margin: 0;
+    color: #fff;
+    font-family: inherit;
+    font-size: clamp(2rem, 1.4rem + 2.6vw, 3.4rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+  }
+  .cit-home .cit-offer__lead {
+    max-width: 38rem;
+    margin: 1.25rem 0 0;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.1rem;
+  }
+  .cit-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+  .cit-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 1rem;
+    transition: border-color 200ms ease, background-color 200ms ease;
+  }
+  .cit-card:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .cit-home .cit-card__title {
+    margin: 0;
+    color: #fff;
+    font-family: inherit;
+    font-size: 1.45rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .cit-card__num {
+    display: block;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+  }
+  .cit-home .cit-card__text {
+    flex: 1;
+    margin: 0.75rem 0 1.5rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1rem;
+  }
+  .cit-home .cit-card__link {
+    align-self: flex-start;
+    padding-bottom: 0.15rem;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .cit-home .cit-card__link:hover {
+    border-bottom-width: 2px;
+  }
+  /* Pasek z przyciskami do innych sekcji */
+  .cit-cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    background: #fff;
+    color: #000;
+  }
+  .cit-home .cit-cta__text {
+    margin: 0;
+    color: #000;
+    font-size: clamp(1.2rem, 1rem + 1vw, 1.6rem);
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  .cit-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .cit-home .cit-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.85rem 1.5rem;
+    border: 1px solid #000;
+    border-radius: 999px;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    transition: background-color 200ms ease, color 200ms ease;
+  }
+  .cit-home .cit-btn--dark {
+    background: #000;
+    color: #fff;
+  }
+  .cit-home .cit-btn--dark:hover {
+    background: #fff;
+    color: #000;
+  }
+  .cit-home .cit-btn--light {
+    background: #fff;
+    color: #000;
+  }
+  .cit-home .cit-btn--light:hover {
+    background: #000;
+    color: #fff;
+  }
+  .cit-home :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+  .cit-home .cit-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html:has(.cit-home) {
+      scroll-behavior: auto;
+    }
+  }
+</style>
+<div class="cit-home" style="--cit-tlo: url('WKLEJ-TUTAJ-ADRES-OBRAZKA')">
+  <section class="cit-hero">
+    <div class="cit-hero__frame" role="img" aria-label="computerit – Technologia z nowej perspektywy">
+      <h1 class="cit-sr">computerit – Technologia z nowej perspektywy</h1>
+      <a class="cit-hero__btn" href="#oferta">Zobacz ofertę <span class="cit-hero__arrow" aria-hidden="true">↓</span></a>
+    </div>
+  </section>
+  <section id="oferta" class="cit-offer" aria-labelledby="oferta-tytul">
+    <div class="cit-offer__inner">
+      <p class="cit-eyebrow">Oferta</p>
+      <h2 id="oferta-tytul" class="cit-offer__title">Co mogę dla Ciebie zrobić</h2>
+      <p class="cit-offer__lead">Technologia bez stresu: od strony internetowej, przez naprawę komputera, po codzienną pomoc IT.</p>
+      <div class="cit-cards">
+        <article class="cit-card">
+          <h3 class="cit-card__title"><span class="cit-card__num">01</span>Strony internetowe</h3>
+          <p class="cit-card__text">Projektuję i tworzę nowoczesne strony na WordPressie: szybkie, czytelne i wygodne na telefonie.</p>
+          <a class="cit-card__link" href="/portfolio/">Zobacz realizacje →</a>
+        </article>
+        <article class="cit-card">
+          <h3 class="cit-card__title"><span class="cit-card__num">02</span>Serwis komputerowy</h3>
+          <p class="cit-card__text">Diagnoza, naprawa i modernizacja komputerów oraz laptopów. Czyszczenie, wymiana części, instalacja systemu.</p>
+          <a class="cit-card__link" href="/cennik/">Sprawdź ceny →</a>
+        </article>
+        <article class="cit-card">
+          <h3 class="cit-card__title"><span class="cit-card__num">03</span>Pomoc IT</h3>
+          <p class="cit-card__text">Konfiguracja internetu, poczty i programów. Pomoc zdalna albo na miejscu, dla osób prywatnych i firm.</p>
+          <a class="cit-card__link" href="/kontakt/">Umów pomoc →</a>
+        </article>
+      </div>
+      <div class="cit-cta">
+        <p class="cit-cta__text">Masz pytanie albo chcesz wycenę?</p>
+        <div class="cit-cta__actions">
+          <a class="cit-btn cit-btn--dark" href="/kontakt/">Napisz do mnie</a>
+          <a class="cit-btn cit-btn--light" href="/o-mnie/">Poznaj mnie</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
