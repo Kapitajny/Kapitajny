@@ -1,0 +1,426 @@
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap");
+  /* computerit – Portfolio: kafelki z demo stronami + podgląd w okienku */
+  html:has(.cit-pf),
+  body:has(.cit-pf) {
+    overflow-x: clip;
+  }
+  html:has(.cit-pf__dialog[open]) {
+    overflow: hidden;
+  }
+  .cit-pf {
+    box-sizing: border-box;
+    width: 100vw;
+    max-width: none;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
+    padding: clamp(4rem, 9vw, 6.5rem) 1.5rem;
+    background: #000;
+    color: #fff;
+    font-family: "Outfit", system-ui, sans-serif;
+    line-height: 1.6;
+  }
+  .cit-pf p:not([class]) {
+    display: contents;
+    margin: 0;
+  }
+  .cit-pf *,
+  .cit-pf *::before,
+  .cit-pf *::after {
+    box-sizing: border-box;
+  }
+  .cit-pf__inner {
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+  .cit-pf .cit-pf__eyebrow {
+    margin: 0 0 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .cit-pf .cit-pf__title {
+    margin: 0;
+    color: #fff;
+    font-family: inherit;
+    font-size: clamp(2.2rem, 1.5rem + 3vw, 3.8rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  .cit-pf .cit-pf__lead {
+    max-width: 38rem;
+    margin: 1.25rem 0 0;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.1rem;
+  }
+  /* Siatka kafelków */
+  .cit-pf .cit-pf__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+    gap: 1.5rem;
+    margin: 3rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .cit-pf .cit-pf__grid li {
+    margin: 0;
+    padding: 0;
+  }
+  .cit-pf .cit-pf__card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
+    background: #0b0b0b;
+    color: #fff;
+    text-decoration: none;
+    transition: border-color 200ms ease, transform 200ms ease;
+  }
+  .cit-pf .cit-pf__card:hover,
+  .cit-pf .cit-pf__card:focus-visible {
+    border-color: #fff;
+    transform: translateY(-4px);
+  }
+  .cit-pf .cit-pf__card:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
+  /* Miniatura w ramce przeglądarki */
+  .cit-pf__thumb {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    background: linear-gradient(135deg, #1c1c1c, #050505);
+  }
+  .cit-pf__thumb::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1.6rem;
+    background:
+      radial-gradient(circle, rgba(255, 255, 255, 0.45) 0 3px, transparent 3.5px) 0.8rem 50% / 10px 10px no-repeat,
+      radial-gradient(circle, rgba(255, 255, 255, 0.3) 0 3px, transparent 3.5px) 1.5rem 50% / 10px 10px no-repeat,
+      radial-gradient(circle, rgba(255, 255, 255, 0.2) 0 3px, transparent 3.5px) 2.2rem 50% / 10px 10px no-repeat,
+      rgba(20, 20, 20, 0.92);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .cit-pf__ph {
+    position: absolute;
+    inset: 1.6rem 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: clamp(1.4rem, 1rem + 1.5vw, 1.9rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  .cit-pf__ph small {
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+  }
+  .cit-pf .cit-pf__img {
+    position: absolute;
+    inset: 1.6rem 0 0;
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: calc(100% - 1.6rem);
+    margin: 0;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 400ms ease;
+  }
+  .cit-pf__img--brak {
+    visibility: hidden;
+  }
+  .cit-pf__card:hover .cit-pf__img {
+    transform: scale(1.04);
+  }
+  /* Opis pod miniaturą */
+  .cit-pf__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 1.4rem 1.5rem 1.5rem;
+  }
+  .cit-pf__cat {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .cit-pf__name {
+    margin-top: 0.35rem;
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .cit-pf__desc {
+    flex: 1;
+    margin-top: 0.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.97rem;
+  }
+  .cit-pf__more {
+    align-self: flex-start;
+    margin-top: 1.1rem;
+    padding-bottom: 0.15rem;
+    border-bottom: 1px solid #fff;
+    font-weight: 600;
+  }
+  /* Pasek na dole */
+  .cit-pf__cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    background: #fff;
+    color: #000;
+  }
+  .cit-pf .cit-pf__cta-text {
+    margin: 0;
+    color: #000;
+    font-size: clamp(1.2rem, 1rem + 1vw, 1.6rem);
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  .cit-pf .cit-pf__cta-btn {
+    display: inline-flex;
+    padding: 0.85rem 1.5rem;
+    border: 1px solid #000;
+    border-radius: 999px;
+    background: #000;
+    color: #fff;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+  }
+  .cit-pf .cit-pf__cta-btn:hover {
+    background: #fff;
+    color: #000;
+  }
+  /* Okienko z podglądem strony */
+  .cit-pf__dialog {
+    width: min(78rem, 96vw);
+    max-width: none;
+    height: 92vh;
+    height: 92dvh;
+    max-height: none;
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 1rem;
+    background: #111;
+    color: #fff;
+    font-family: "Outfit", system-ui, sans-serif;
+  }
+  .cit-pf__dialog[open] {
+    display: flex;
+    flex-direction: column;
+  }
+  .cit-pf__dialog::backdrop {
+    background: rgba(0, 0, 0, 0.8);
+  }
+  .cit-pf__bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  .cit-pf .cit-pf__dtitle,
+  .cit-pf__dialog .cit-pf__dtitle {
+    margin: 0;
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+  .cit-pf__tools {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .cit-pf__dialog button,
+  .cit-pf__dialog .cit-pf__open {
+    display: inline-flex;
+    align-items: center;
+    height: 2.4rem;
+    margin: 0;
+    padding: 0 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 999px;
+    background: transparent;
+    color: #fff;
+    font: 600 0.9rem/1 "Outfit", system-ui, sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .cit-pf__dialog button:hover,
+  .cit-pf__dialog .cit-pf__open:hover,
+  .cit-pf__dialog .cit-pf__dev[aria-pressed="true"] {
+    border-color: #fff;
+    background: #fff;
+    color: #000;
+  }
+  .cit-pf__dialog .cit-pf__close {
+    width: 2.4rem;
+    justify-content: center;
+    padding: 0;
+    font-size: 1.1rem;
+  }
+  .cit-pf__stage {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    min-height: 0;
+    padding: 1rem;
+    background: #1b1b1b;
+  }
+  .cit-pf__frame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 0.5rem;
+    background: #fff;
+    transition: width 300ms ease;
+  }
+  .cit-pf__stage--mobile .cit-pf__frame {
+    width: 390px;
+    max-width: 100%;
+    border: 10px solid #000;
+    border-radius: 2rem;
+  }
+  @media (max-width: 640px) {
+    .cit-pf__dialog {
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      border: 0;
+      border-radius: 0;
+    }
+    .cit-pf__dialog .cit-pf__dev {
+      display: none;
+    }
+    .cit-pf__stage {
+      padding: 0;
+    }
+    .cit-pf__frame {
+      border-radius: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cit-pf .cit-pf__card,
+    .cit-pf .cit-pf__img,
+    .cit-pf__frame {
+      transition: none;
+    }
+  }
+</style>
+<section class="cit-pf wp-exclude-emoji" aria-labelledby="cit-pf-naglowek">
+  <div class="cit-pf__inner">
+    <p class="cit-pf__eyebrow">Portfolio</p>
+    <h1 id="cit-pf-naglowek" class="cit-pf__title">Moje realizacje</h1>
+    <p class="cit-pf__lead">Przykładowe strony internetowe dla różnych branż. Kliknij w kafelek, aby zobaczyć stronę na żywo.</p>
+    <ul class="cit-pf__grid">
+      <li><a class="cit-pf__card" href="/portfolio/restauracja/" target="_blank" rel="noopener"><span class="cit-pf__thumb"><span class="cit-pf__ph"><small>01</small>Restauracja</span><img class="cit-pf__img" src="WKLEJ-ADRES-ZRZUTU-1" alt="" loading="lazy" /></span><span class="cit-pf__body"><span class="cit-pf__cat">Gastronomia</span><span class="cit-pf__name">Trattoria Verde</span><span class="cit-pf__desc">Strona restauracji z menu, galerią dań i rezerwacją stolika.</span><span class="cit-pf__more">Zobacz stronę →</span></span></a></li>
+      <li><a class="cit-pf__card" href="/portfolio/fryzjer/" target="_blank" rel="noopener"><span class="cit-pf__thumb"><span class="cit-pf__ph"><small>02</small>Salon fryzjerski</span><img class="cit-pf__img" src="WKLEJ-ADRES-ZRZUTU-2" alt="" loading="lazy" /></span><span class="cit-pf__body"><span class="cit-pf__cat">Uroda</span><span class="cit-pf__name">Studio Fryzur Lustro</span><span class="cit-pf__desc">Cennik usług, zespół stylistów i zapisy online na wizytę.</span><span class="cit-pf__more">Zobacz stronę →</span></span></a></li>
+      <li><a class="cit-pf__card" href="/portfolio/warsztat/" target="_blank" rel="noopener"><span class="cit-pf__thumb"><span class="cit-pf__ph"><small>03</small>Warsztat samochodowy</span><img class="cit-pf__img" src="WKLEJ-ADRES-ZRZUTU-3" alt="" loading="lazy" /></span><span class="cit-pf__body"><span class="cit-pf__cat">Motoryzacja</span><span class="cit-pf__name">AutoSerwis Kowal</span><span class="cit-pf__desc">Usługi mechaniki, wymiana opon i szybki formularz kontaktowy.</span><span class="cit-pf__more">Zobacz stronę →</span></span></a></li>
+      <li><a class="cit-pf__card" href="/portfolio/fizjoterapia/" target="_blank" rel="noopener"><span class="cit-pf__thumb"><span class="cit-pf__ph"><small>04</small>Gabinet fizjoterapii</span><img class="cit-pf__img" src="WKLEJ-ADRES-ZRZUTU-4" alt="" loading="lazy" /></span><span class="cit-pf__body"><span class="cit-pf__cat">Zdrowie</span><span class="cit-pf__name">FizjoRuch</span><span class="cit-pf__desc">Opis zabiegów, specjaliści i umawianie terminów.</span><span class="cit-pf__more">Zobacz stronę →</span></span></a></li>
+      <li><a class="cit-pf__card" href="/portfolio/budowlanka/" target="_blank" rel="noopener"><span class="cit-pf__thumb"><span class="cit-pf__ph"><small>05</small>Firma budowlana</span><img class="cit-pf__img" src="WKLEJ-ADRES-ZRZUTU-5" alt="" loading="lazy" /></span><span class="cit-pf__body"><span class="cit-pf__cat">Budownictwo</span><span class="cit-pf__name">BudMax</span><span class="cit-pf__desc">Realizacje, zakres prac i bezpłatna wycena projektu.</span><span class="cit-pf__more">Zobacz stronę →</span></span></a></li>
+      <li><a class="cit-pf__card" href="/portfolio/fotograf/" target="_blank" rel="noopener"><span class="cit-pf__thumb"><span class="cit-pf__ph"><small>06</small>Fotograf</span><img class="cit-pf__img" src="WKLEJ-ADRES-ZRZUTU-6" alt="" loading="lazy" /></span><span class="cit-pf__body"><span class="cit-pf__cat">Fotografia</span><span class="cit-pf__name">Kadr – fotografia ślubna</span><span class="cit-pf__desc">Duże galerie zdjęć, pakiety sesji i sprawdzanie wolnych terminów.</span><span class="cit-pf__more">Zobacz stronę →</span></span></a></li>
+      <li><a class="cit-pf__card" href="/portfolio/biuro-rachunkowe/" target="_blank" rel="noopener"><span class="cit-pf__thumb"><span class="cit-pf__ph"><small>07</small>Biuro rachunkowe</span><img class="cit-pf__img" src="WKLEJ-ADRES-ZRZUTU-7" alt="" loading="lazy" /></span><span class="cit-pf__body"><span class="cit-pf__cat">Usługi dla firm</span><span class="cit-pf__name">Biuro Rachunkowe Bilans</span><span class="cit-pf__desc">Oferta księgowa, cennik pakietów i pliki do pobrania.</span><span class="cit-pf__more">Zobacz stronę →</span></span></a></li>
+    </ul>
+    <div class="cit-pf__cta">
+      <p class="cit-pf__cta-text">Chcesz taką stronę dla swojej firmy?</p>
+      <a class="cit-pf__cta-btn" href="/kontakt/">Napisz do mnie</a>
+    </div>
+  </div>
+  <dialog class="cit-pf__dialog wp-exclude-emoji" aria-labelledby="cit-pf-podglad">
+    <div class="cit-pf__bar">
+      <p id="cit-pf-podglad" class="cit-pf__dtitle">Podgląd</p>
+      <div class="cit-pf__tools">
+        <button type="button" class="cit-pf__dev" data-dev="desktop" aria-pressed="true">Komputer</button>
+        <button type="button" class="cit-pf__dev" data-dev="mobile" aria-pressed="false">Telefon</button>
+        <a class="cit-pf__open" href="/" target="_blank" rel="noopener">Otwórz w nowej karcie</a>
+        <button type="button" class="cit-pf__close" aria-label="Zamknij podgląd">✕</button>
+      </div>
+    </div>
+    <div class="cit-pf__stage">
+      <iframe class="cit-pf__frame" title="Podgląd strony demo" src="about:blank"></iframe>
+    </div>
+  </dialog>
+  <script>
+    (function () {
+      var root = document.querySelector(".cit-pf");
+      if (!root) return;
+      var dialog = root.querySelector(".cit-pf__dialog");
+      var frame = root.querySelector(".cit-pf__frame");
+      var stage = root.querySelector(".cit-pf__stage");
+      var title = root.querySelector(".cit-pf__dtitle");
+      var openLink = root.querySelector(".cit-pf__open");
+      var devButtons = root.querySelectorAll(".cit-pf__dev");
+      /* Brak zrzutu ekranu: pokaż kafelek z nazwą */
+      root.querySelectorAll(".cit-pf__img").forEach(function (img) {
+        function hide() { img.classList.add("cit-pf__img--brak"); }
+        img.addEventListener("error", hide);
+        if (img.complete && !img.naturalWidth) hide();
+      });
+      if (!dialog || typeof dialog.showModal !== "function") return;
+      function setDevice(dev) {
+        stage.classList.toggle("cit-pf__stage--mobile", dev === "mobile");
+        devButtons.forEach(function (b) {
+          b.setAttribute("aria-pressed", b.getAttribute("data-dev") === dev ? "true" : "false");
+        });
+      }
+      /* Kliknięcie w kafelek: podgląd strony w okienku */
+      root.querySelectorAll(".cit-pf__card").forEach(function (card) {
+        card.addEventListener("click", function (event) {
+          if (event.ctrlKey || event.metaKey || event.shiftKey || event.button !== 0) return;
+          event.preventDefault();
+          title.textContent = card.querySelector(".cit-pf__name").textContent;
+          openLink.href = card.href;
+          frame.src = card.href;
+          setDevice("desktop");
+          dialog.showModal();
+        });
+      });
+      devButtons.forEach(function (b) {
+        b.addEventListener("click", function () { setDevice(b.getAttribute("data-dev")); });
+      });
+      root.querySelector(".cit-pf__close").addEventListener("click", function () { dialog.close(); });
+      /* Kliknięcie w ciemne tło zamyka okienko */
+      dialog.addEventListener("click", function (event) {
+        if (event.target === dialog) dialog.close();
+      });
+      dialog.addEventListener("close", function () { frame.src = "about:blank"; });
+    })();
+  </script>
+</section>
