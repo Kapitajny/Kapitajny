@@ -232,6 +232,28 @@
     text-transform: uppercase;
     vertical-align: middle;
   }
+  .cit-home .cit-soon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.5rem 0 0;
+    padding: 0.6rem 1.1rem 0.6rem 0.6rem;
+    border: 1px dashed rgba(255, 255, 255, 0.5);
+    border-radius: 999px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .cit-soon .cit-badge {
+    flex-shrink: 0;
+    margin-left: 0;
+  }
+  @media (max-width: 480px) {
+    .cit-home .cit-soon {
+      border-radius: 0.9rem;
+      font-size: 0.95rem;
+    }
+  }
   /* Pasek z przyciskami do innych sekcji */
   .cit-cta {
     display: flex;
@@ -315,8 +337,9 @@
   <section id="oferta" class="cit-offer" aria-labelledby="oferta-tytul">
     <div class="cit-offer__inner">
       <p class="cit-eyebrow">Oferta</p>
-      <h2 id="oferta-tytul" class="cit-offer__title">Co mogę dla Ciebie zrobić</h2>
-      <p class="cit-offer__lead">Tworzę nowoczesne strony internetowe: szybkie, czytelne i wygodne na telefonie. Wkrótce także sklepy internetowe.</p>
+      <h2 id="oferta-tytul" class="cit-offer__title">Tworzę wyłącznie strony internetowe</h2>
+      <p class="cit-offer__lead">Projektuję i wykonuję nowoczesne strony internetowe: szybkie, czytelne i wygodne na telefonie.</p>
+      <p class="cit-soon"><span class="cit-badge">Wkrótce</span> Sklepy internetowe – już niedługo w ofercie.</p>
       <div class="cit-cards">
         <article class="cit-card">
           <h3 class="cit-card__title"><span class="cit-card__num">01</span>Strona wizytówka</h3>
