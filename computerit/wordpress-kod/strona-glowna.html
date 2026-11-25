@@ -42,12 +42,19 @@
     background: var(--cit-tlo) center / cover no-repeat;
     filter: blur(40px) brightness(0.5);
   }
+  /* Tło na cały ekran (pod menu) */
   .cit-hero__frame {
     position: relative;
-    width: min(100%, max(20rem, calc(100vh - 4.5rem)));
-    width: min(100%, max(20rem, calc(100svh - 4.5rem)));
-    aspect-ratio: 1 / 1;
-    margin: 0 auto;
+    width: 100%;
+    height: calc(100vh - 4.5rem);
+    height: calc(100svh - 4.5rem);
+    min-height: 26rem;
+    overflow: hidden;
+    container-type: size;
+    /* --s: rozmiar grafiki, --off: ile przyciąć od góry.
+       Grafika wypełnia ekran, ale nigdy nie ucina logo ani hasła. */
+    --s: min(max(100cqw, 100cqh), 161cqh, calc(213cqh - 404px));
+    --off: clamp(0px, calc(var(--s) * 0.45 - 50cqh), calc(var(--s) - 100cqh));
   }
   .cit-home .cit-hero__img {
     position: absolute;
@@ -57,12 +64,19 @@
     max-width: none;
     height: 100%;
     margin: 0;
-    object-fit: contain;
+    object-fit: cover;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
   }
-  @media (min-aspect-ratio: 1/1) {
+  @supports (width: 1cqh) {
     .cit-home .cit-hero__img {
-      -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-      mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      inset: auto;
+      top: calc(-1 * var(--off));
+      left: 50%;
+      width: var(--s);
+      height: var(--s);
+      object-fit: contain;
+      transform: translateX(-50%);
     }
   }
   /* Komunikat widoczny tylko dla zalogowanego, gdy obrazek się nie wczyta */
@@ -92,7 +106,7 @@
   /* Przycisk na blacie laptopa */
   .cit-home .cit-hero__btn {
     position: absolute;
-    top: 89%;
+    top: calc(100% - 3.25rem);
     left: 50%;
     display: inline-flex;
     align-items: center;
@@ -110,6 +124,11 @@
     transform: translate(-50%, -50%);
     box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
     transition: background-color 200ms ease, color 200ms ease;
+  }
+  @supports (width: 1cqh) {
+    .cit-home .cit-hero__btn {
+      top: min(calc(var(--s) * 0.89 - var(--off)), calc(100cqh - 3.25rem));
+    }
   }
   .cit-home .cit-hero__btn:hover,
   .cit-home .cit-hero__btn:focus-visible {
