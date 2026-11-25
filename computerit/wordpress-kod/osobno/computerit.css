@@ -1,0 +1,872 @@
+/* computerit – wszystkie style (menu, strona główna, portfolio).
+   Wklej całość w: Wygląd → Dostosuj → Dodatkowy CSS
+   (motyw blokowy: Wygląd → Edytor → Style → ⋮ → Dodatkowy CSS). */
+
+/* ===== Menu z logo i domkiem ===== */
+/* computerit – logo + menu pod domkiem, czarno-białe */
+.cit-menu {
+  position: relative;
+  z-index: 100;
+  width: 100%;
+  background: #fff;
+  color: #000;
+  border-bottom: 1px solid #000;
+  font-family: "Outfit", system-ui, sans-serif;
+}
+.cit-menu p {
+  display: contents;
+  margin: 0;
+}
+.cit-menu *,
+.cit-menu *::before,
+.cit-menu *::after {
+  box-sizing: border-box;
+}
+.cit-menu__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  max-width: 72rem;
+  height: 4.5rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+/* Logo: znak + nazwa */
+.cit-menu .cit-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #000;
+  text-decoration: none;
+  box-shadow: none;
+}
+.cit-logo__mark {
+  width: auto;
+  height: 3rem;
+}
+.cit-logo__name {
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+/* Przycisk z domkiem */
+.cit-dropdown {
+  position: relative;
+}
+.cit-menu .cit-dropdown__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 2.75rem;
+  padding: 0 1rem;
+  border: 1px solid #000;
+  border-radius: 999px;
+  background: #fff;
+  color: #000;
+  font-size: 1.35rem;
+  line-height: 1;
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+.cit-menu .cit-dropdown__toggle::-webkit-details-marker {
+  display: none;
+}
+.cit-menu .cit-dropdown__toggle:hover {
+  background: #f0f0f0;
+}
+.cit-dropdown[open] .cit-dropdown__toggle {
+  background: #000;
+  color: #fff;
+}
+/* Strzałka obok domku */
+.cit-dropdown__arrow {
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: -0.25rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 200ms ease;
+}
+.cit-dropdown[open] .cit-dropdown__arrow {
+  margin-top: 0.25rem;
+  transform: rotate(-135deg);
+}
+/* Rozwijana lista */
+.cit-dropdown__panel {
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  right: 0;
+  min-width: 15rem;
+  padding: 0.5rem;
+  border: 1px solid #000;
+  border-radius: 0.75rem;
+  background: #fff;
+  box-shadow: 0 16px 32px -16px rgba(0, 0, 0, 0.35);
+  animation: cit-drop 180ms ease;
+}
+@keyframes cit-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.cit-menu .cit-dropdown__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cit-menu .cit-dropdown__list li {
+  margin: 0;
+  padding: 0;
+}
+.cit-menu .cit-dropdown__link {
+  display: block;
+  padding: 0.7rem 0.9rem;
+  border-radius: 0.5rem;
+  color: #000;
+  font-size: 1rem;
+  font-weight: 400;
+  text-decoration: none;
+  box-shadow: none;
+}
+.cit-menu .cit-dropdown__link:hover,
+.cit-menu .cit-dropdown__link:focus-visible {
+  background: #000;
+  color: #fff;
+}
+/* Aktualna podstrona */
+.cit-menu .cit-dropdown__link[aria-current="page"] {
+  font-weight: 600;
+  box-shadow: inset 3px 0 0 #000;
+}
+.cit-menu .cit-dropdown__link[aria-current="page"]:hover {
+  box-shadow: none;
+}
+.cit-menu :focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 3px;
+}
+.cit-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+/* Telefon */
+@media (max-width: 480px) {
+  .cit-menu__inner {
+    padding: 0 1rem;
+  }
+  .cit-logo__mark {
+    height: 2.5rem;
+  }
+  .cit-logo__name {
+    font-size: 1.35rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cit-dropdown__panel {
+    animation: none;
+  }
+}
+
+/* ===== Strona główna: tło, przycisk Oferta, usługi ===== */
+/* computerit – strona główna: tło + przycisk Oferta + usługi */
+html:has(.cit-home) {
+  scroll-behavior: smooth;
+}
+html:has(.cit-home),
+body:has(.cit-home) {
+  overflow-x: clip;
+}
+.cit-home {
+  width: 100vw;
+  max-width: none;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+  background: #000;
+  color: #fff;
+  font-family: "Outfit", system-ui, sans-serif;
+  line-height: 1.6;
+}
+.cit-home p:not([class]) {
+  display: contents;
+  margin: 0;
+}
+.cit-home *,
+.cit-home *::before,
+.cit-home *::after {
+  box-sizing: border-box;
+}
+/* Tło (grafika computerit) */
+.cit-hero {
+  position: relative;
+  overflow: hidden;
+  background: #000;
+}
+.cit-hero::before {
+  content: "";
+  position: absolute;
+  inset: -60px;
+  background: var(--cit-tlo) center / cover no-repeat;
+  filter: blur(40px) brightness(0.5);
+}
+/* Tło na cały ekran (pod menu) */
+.cit-hero__frame {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 4.5rem);
+  height: calc(100svh - 4.5rem);
+  min-height: 26rem;
+  overflow: hidden;
+  container-type: size;
+  /* --s: rozmiar grafiki, --off: ile przyciąć od góry.
+     Grafika wypełnia ekran, ale nigdy nie ucina logo ani hasła. */
+  --s: min(max(100cqw, 100cqh), 161cqh, calc(213cqh - 404px));
+  --off: clamp(0px, calc(var(--s) * 0.45 - 50cqh), calc(var(--s) - 100cqh));
+}
+.cit-home .cit-hero__img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  margin: 0;
+  object-fit: cover;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+}
+@supports (width: 1cqh) {
+  .cit-home .cit-hero__img {
+    inset: auto;
+    top: calc(-1 * var(--off));
+    left: 50%;
+    width: var(--s);
+    height: var(--s);
+    object-fit: contain;
+    transform: translateX(-50%);
+  }
+}
+/* Komunikat widoczny tylko dla zalogowanego, gdy obrazek się nie wczyta */
+.cit-home .cit-hero__warn {
+  display: none;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
+  margin: 0;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  background: #fff;
+  color: #000;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.logged-in .cit-hero--broken .cit-hero__warn {
+  display: block;
+}
+.cit-hero__warn strong {
+  font-weight: 600;
+}
+.cit-hero--broken .cit-hero__img {
+  visibility: hidden;
+}
+/* Przycisk na blacie laptopa */
+.cit-home .cit-hero__btn {
+  position: absolute;
+  top: calc(100% - 3.25rem);
+  left: 50%;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.7rem;
+  border: 1px solid #fff;
+  border-radius: 999px;
+  background: #fff;
+  color: #000;
+  font-size: clamp(0.85rem, 2.6vw, 1.05rem);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+  transition: background-color 200ms ease, color 200ms ease;
+}
+@supports (width: 1cqh) {
+  .cit-home .cit-hero__btn {
+    top: min(calc(var(--s) * 0.89 - var(--off)), calc(100cqh - 3.25rem));
+  }
+}
+.cit-home .cit-hero__btn:hover,
+.cit-home .cit-hero__btn:focus-visible {
+  background: #000;
+  color: #fff;
+}
+.cit-hero__arrow {
+  display: inline-block;
+  transition: transform 200ms ease;
+}
+.cit-hero__btn:hover .cit-hero__arrow {
+  transform: translateY(3px);
+}
+@media (max-width: 480px) {
+  .cit-home .cit-hero__btn {
+    padding: 0.7rem 1.2rem;
+  }
+}
+/* Oferta */
+.cit-offer {
+  scroll-margin-top: 1rem;
+  padding: clamp(4rem, 10vw, 7rem) 1.5rem;
+  background: #000;
+}
+.cit-offer__inner {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+.cit-home .cit-eyebrow {
+  margin: 0 0 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.cit-home .cit-offer__title {
+  max-width: 40rem;
+  margin: 0;
+  color: #fff;
+  font-family: inherit;
+  font-size: clamp(2rem, 1.4rem + 2.6vw, 3.4rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+.cit-home .cit-offer__lead {
+  max-width: 38rem;
+  margin: 1.25rem 0 0;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.1rem;
+}
+.cit-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+.cit-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 1rem;
+  transition: border-color 200ms ease, background-color 200ms ease;
+}
+.cit-card:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+.cit-home .cit-card__title {
+  margin: 0;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.45rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.cit-card__num {
+  display: block;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+}
+.cit-home .cit-card__text {
+  flex: 1;
+  margin: 0.75rem 0 1.5rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1rem;
+}
+.cit-home .cit-card__link {
+  align-self: flex-start;
+  padding-bottom: 0.15rem;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+.cit-home .cit-card__link:hover {
+  border-bottom-width: 2px;
+}
+/* Karta „Wkrótce” */
+.cit-card--soon {
+  border-style: dashed;
+}
+.cit-badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: #fff;
+  color: #000;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+.cit-home .cit-soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0 0;
+  padding: 0.6rem 1.1rem 0.6rem 0.6rem;
+  border: 1px dashed rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.cit-soon .cit-badge {
+  flex-shrink: 0;
+  margin-left: 0;
+}
+@media (max-width: 480px) {
+  .cit-home .cit-soon {
+    border-radius: 0.9rem;
+    font-size: 0.95rem;
+  }
+}
+/* Pasek z przyciskami do innych sekcji */
+.cit-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  background: #fff;
+  color: #000;
+}
+.cit-home .cit-cta__text {
+  margin: 0;
+  color: #000;
+  font-size: clamp(1.2rem, 1rem + 1vw, 1.6rem);
+  font-weight: 600;
+  line-height: 1.25;
+}
+.cit-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.cit-home .cit-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 1.5rem;
+  border: 1px solid #000;
+  border-radius: 999px;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+.cit-home .cit-btn--dark {
+  background: #000;
+  color: #fff;
+}
+.cit-home .cit-btn--dark:hover {
+  background: #fff;
+  color: #000;
+}
+.cit-home .cit-btn--light {
+  background: #fff;
+  color: #000;
+}
+.cit-home .cit-btn--light:hover {
+  background: #000;
+  color: #fff;
+}
+.cit-home :focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+.cit-home .cit-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+@media (prefers-reduced-motion: reduce) {
+  html:has(.cit-home) {
+    scroll-behavior: auto;
+  }
+}
+
+/* ===== Portfolio: kafelki demo + podgląd w okienku ===== */
+/* computerit – Portfolio: kafelki z demo stronami + podgląd w okienku */
+html:has(.cit-pf),
+body:has(.cit-pf) {
+  overflow-x: clip;
+}
+html:has(.cit-pf__dialog[open]) {
+  overflow: hidden;
+}
+.cit-pf {
+  box-sizing: border-box;
+  width: 100vw;
+  max-width: none;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+  padding: clamp(4rem, 9vw, 6.5rem) 1.5rem;
+  background: #000;
+  color: #fff;
+  font-family: "Outfit", system-ui, sans-serif;
+  line-height: 1.6;
+}
+.cit-pf p:not([class]) {
+  display: contents;
+  margin: 0;
+}
+.cit-pf *,
+.cit-pf *::before,
+.cit-pf *::after {
+  box-sizing: border-box;
+}
+.cit-pf__inner {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+.cit-pf .cit-pf__eyebrow {
+  margin: 0 0 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.cit-pf .cit-pf__title {
+  margin: 0;
+  color: #fff;
+  font-family: inherit;
+  font-size: clamp(2.2rem, 1.5rem + 3vw, 3.8rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+.cit-pf .cit-pf__lead {
+  max-width: 38rem;
+  margin: 1.25rem 0 0;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.1rem;
+}
+/* Siatka kafelków */
+.cit-pf .cit-pf__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  gap: 1.5rem;
+  margin: 3rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.cit-pf .cit-pf__grid li {
+  margin: 0;
+  padding: 0;
+}
+.cit-pf .cit-pf__card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  background: #0b0b0b;
+  color: #fff;
+  text-decoration: none;
+  transition: border-color 200ms ease, transform 200ms ease;
+}
+.cit-pf .cit-pf__card:hover,
+.cit-pf .cit-pf__card:focus-visible {
+  border-color: #fff;
+  transform: translateY(-4px);
+}
+.cit-pf .cit-pf__card:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+/* Miniatura w ramce przeglądarki */
+.cit-pf__thumb {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(135deg, #1c1c1c, #050505);
+}
+.cit-pf__thumb::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.6rem;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.45) 0 3px, transparent 3.5px) 0.8rem 50% / 10px 10px no-repeat,
+    radial-gradient(circle, rgba(255, 255, 255, 0.3) 0 3px, transparent 3.5px) 1.5rem 50% / 10px 10px no-repeat,
+    radial-gradient(circle, rgba(255, 255, 255, 0.2) 0 3px, transparent 3.5px) 2.2rem 50% / 10px 10px no-repeat,
+    rgba(20, 20, 20, 0.92);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.cit-pf__ph {
+  position: absolute;
+  inset: 1.6rem 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(1.4rem, 1rem + 1.5vw, 1.9rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+.cit-pf__ph small {
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+}
+.cit-pf .cit-pf__img {
+  position: absolute;
+  inset: 1.6rem 0 0;
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: calc(100% - 1.6rem);
+  margin: 0;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 400ms ease;
+}
+.cit-pf__img--brak {
+  visibility: hidden;
+}
+.cit-pf__card:hover .cit-pf__img {
+  transform: scale(1.04);
+}
+/* Opis pod miniaturą */
+.cit-pf__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1.4rem 1.5rem 1.5rem;
+}
+.cit-pf__cat {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.cit-pf__name {
+  margin-top: 0.35rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.cit-pf__desc {
+  flex: 1;
+  margin-top: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.97rem;
+}
+.cit-pf__more {
+  align-self: flex-start;
+  margin-top: 1.1rem;
+  padding-bottom: 0.15rem;
+  border-bottom: 1px solid #fff;
+  font-weight: 600;
+}
+/* Pasek na dole */
+.cit-pf__cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  background: #fff;
+  color: #000;
+}
+.cit-pf .cit-pf__cta-text {
+  margin: 0;
+  color: #000;
+  font-size: clamp(1.2rem, 1rem + 1vw, 1.6rem);
+  font-weight: 600;
+  line-height: 1.25;
+}
+.cit-pf .cit-pf__cta-btn {
+  display: inline-flex;
+  padding: 0.85rem 1.5rem;
+  border: 1px solid #000;
+  border-radius: 999px;
+  background: #000;
+  color: #fff;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+}
+.cit-pf .cit-pf__cta-btn:hover {
+  background: #fff;
+  color: #000;
+}
+/* Okienko z podglądem strony */
+.cit-pf__dialog {
+  width: min(78rem, 96vw);
+  max-width: none;
+  height: 92vh;
+  height: 92dvh;
+  max-height: none;
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 1rem;
+  background: #111;
+  color: #fff;
+  font-family: "Outfit", system-ui, sans-serif;
+}
+.cit-pf__dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+.cit-pf__dialog::backdrop {
+  background: rgba(0, 0, 0, 0.8);
+}
+.cit-pf__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+.cit-pf .cit-pf__dtitle,
+.cit-pf__dialog .cit-pf__dtitle {
+  margin: 0;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+.cit-pf__tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+.cit-pf__dialog button,
+.cit-pf__dialog .cit-pf__open {
+  display: inline-flex;
+  align-items: center;
+  height: 2.4rem;
+  margin: 0;
+  padding: 0 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  font: 600 0.9rem/1 "Outfit", system-ui, sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+}
+.cit-pf__dialog button:hover,
+.cit-pf__dialog .cit-pf__open:hover,
+.cit-pf__dialog .cit-pf__dev[aria-pressed="true"] {
+  border-color: #fff;
+  background: #fff;
+  color: #000;
+}
+.cit-pf__dialog .cit-pf__close {
+  width: 2.4rem;
+  justify-content: center;
+  padding: 0;
+  font-size: 1.1rem;
+}
+.cit-pf__stage {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  min-height: 0;
+  padding: 1rem;
+  background: #1b1b1b;
+}
+.cit-pf__frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0.5rem;
+  background: #fff;
+  transition: width 300ms ease;
+}
+.cit-pf__stage--mobile .cit-pf__frame {
+  width: 390px;
+  max-width: 100%;
+  border: 10px solid #000;
+  border-radius: 2rem;
+}
+@media (max-width: 640px) {
+  .cit-pf__dialog {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    border: 0;
+    border-radius: 0;
+  }
+  .cit-pf__dialog .cit-pf__dev {
+    display: none;
+  }
+  .cit-pf__stage {
+    padding: 0;
+  }
+  .cit-pf__frame {
+    border-radius: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cit-pf .cit-pf__card,
+  .cit-pf .cit-pf__img,
+  .cit-pf__frame {
+    transition: none;
+  }
+}
