@@ -1,0 +1,43 @@
+<!-- wp:template-part {"slug":"header","tagName":"header","className":"mdp-site-header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"mdp-main","layout":{"type":"default"}} -->
+<main class="wp-block-group mdp-main"><!-- wp:group {"align":"full","className":"mdp-page-hero","backgroundColor":"espresso","textColor":"cream","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull mdp-page-hero has-cream-color has-espresso-background-color has-text-color has-background"><!-- wp:paragraph {"className":"is-style-eyebrow"} -->
+<p class="is-style-eyebrow">Journal</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":1,"className":"mdp-page-hero__title"} -->
+<h1 class="wp-block-heading mdp-page-hero__title">Z piekarni</h1>
+<!-- /wp:heading --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"mdp-page-body","layout":{"type":"constrained"}} -->
+<div class="wp-block-group mdp-page-body"><!-- wp:query {"queryId":1,"query":{"perPage":9,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":true},"align":"wide"} -->
+<div class="wp-block-query alignwide"><!-- wp:post-template {"className":"mdp-journal","layout":{"type":"grid","columnCount":3}} -->
+<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"4/5"} /-->
+
+<!-- wp:post-date {"className":"is-style-eyebrow"} /-->
+
+<!-- wp:post-title {"level":3,"isLink":true} /-->
+
+<!-- wp:post-excerpt {"excerptLength":24} /-->
+<!-- /wp:post-template -->
+
+<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"}} -->
+<!-- wp:query-pagination-previous /-->
+
+<!-- wp:query-pagination-numbers /-->
+
+<!-- wp:query-pagination-next /-->
+<!-- /wp:query-pagination -->
+
+<!-- wp:query-no-results -->
+<!-- wp:paragraph -->
+<p>Nic tu jeszcze nie ma — wkrótce pojawią się pierwsze wpisy.</p>
+<!-- /wp:paragraph -->
+<!-- /wp:query-no-results --></div>
+<!-- /wp:query --></div>
+<!-- /wp:group --></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer","className":"mdp-site-footer"} /-->

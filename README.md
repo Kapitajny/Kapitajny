@@ -166,3 +166,9 @@ podwójnym potwierdzeniem zapisu (double opt-in).
 - [ ] Ustawić `NEXT_PUBLIC_SITE_URL`, HTTPS, `NEXT_PUBLIC_INSTAGRAM_URL`, a po uzupełnieniu danych
       `NEXT_PUBLIC_ALLOW_INDEXING=true`.
 - [ ] Podłączyć newsletter (lub usunąć sekcję) i zaktualizować politykę prywatności o dostawców.
+
+## Motyw WordPress: Maison du Pain
+
+W katalogu `wordpress/maison-du-pain/` jest osobny projekt: blokowy motyw WordPress dla piekarni MAISON DU PAIN.
+Gotowa paczka do wgrania przez **Wygląd → Motywy → Dodaj nowy → Wyślij motyw** to `wordpress/maison-du-pain.zip`.
+Instrukcja jest w `wordpress/maison-du-pain/README.md`.

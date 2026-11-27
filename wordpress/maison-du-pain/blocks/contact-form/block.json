@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "maison-du-pain/contact-form",
+	"version": "1.0.0",
+	"title": "Formularz kontaktowy piekarni",
+	"category": "widgets",
+	"icon": "email-alt",
+	"description": "Formularz zamówień i zapytań. Wiadomości trafiają na adres ustawiony w Ustawienia → Ogólne.",
+	"keywords": ["kontakt", "formularz", "zamówienie"],
+	"textdomain": "maison-du-pain",
+	"attributes": {
+		"heading": { "type": "string", "default": "Napisz do nas" },
+		"intro": { "type": "string", "default": "Zamówienia złożone do 14:00 przygotujemy na następny poranek." },
+		"buttonLabel": { "type": "string", "default": "Wyślij wiadomość" }
+	},
+	"supports": {
+		"html": false,
+		"align": ["wide"],
+		"color": { "background": true, "text": true },
+		"spacing": { "padding": true, "margin": true }
+	},
+	"editorScript": "file:./editor.js",
+	"render": "file:./render.php"
+}

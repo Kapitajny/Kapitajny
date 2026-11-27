@@ -1,0 +1,16 @@
+/*
+Theme Name: Maison du Pain
+Theme URI: https://example.com/maison-du-pain
+Author: Maison du Pain
+Description: Elegancki motyw blokowy (Full Site Editing) dla rzemieślniczej piekarni. Ciemna strefa otwierająca, jasna, edytorialna prezentacja wypieków na dużych fotografiach i ciemne zakończenie z kontaktem. Wszystkie sekcje są wzorcami Gutenberga, a wypieki można prowadzić jako osobny typ treści.
+Requires at least: 6.6
+Tested up to: 7.1
+Requires PHP: 7.4
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: maison-du-pain
+Tags: full-site-editing, block-patterns, block-styles, custom-colors, custom-menu, editor-style, one-column, wide-blocks, food-and-drink
+*/
+
+/* Style motywu znajdują się w theme.json oraz assets/css/theme.css. */
