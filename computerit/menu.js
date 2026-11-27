@@ -10,12 +10,13 @@
     return nav.querySelector('.cit-menu a[aria-current="page"]') || links[0];
   }
 
-  // Ustawia biały znacznik dokładnie pod wskazanym linkiem
+  // Ustawia jasny znacznik dokładnie pod wskazanym linkiem i przyciemnia jego tekst
   function moveMarker(link) {
     if (!link) return;
     var offset = list.offsetLeft;
     marker.style.width = link.offsetWidth + "px";
     marker.style.setProperty("--x", offset + link.offsetLeft + "px");
+    links.forEach(function (l) { l.classList.toggle("is-marked", l === link); });
   }
 
   function setActive(link) {

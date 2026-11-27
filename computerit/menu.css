@@ -1,6 +1,7 @@
 /*
-  computerit – pływające menu
+  computerit – pływające, półprzezroczyste menu
   Biel i czerń dzielone skosem, jak pochylona podstawa laptopa w logo.
+  Oba pola są z matowego szkła: przepuszczają rozmytą treść strony.
 */
 
 :root {
@@ -9,9 +10,13 @@
   --mist: #8c8c8c;
   --sky: #ededed;
 
+  /* Szkło: przezroczystość i rozmycie tła */
+  --glass-dark: rgba(0, 0, 0, 0.6);
+  --glass-light: rgba(255, 255, 255, 0.62);
+  --glass-blur: blur(16px) saturate(140%);
+
   --bar-h: 64px;
   --slant: 18px;          /* przesunięcie skosu na wysokości paska */
-  --lean: -15.7deg;       /* ten sam kąt dla znacznika: atan(18 / 64) */
 }
 
 *,
@@ -38,7 +43,6 @@ body {
   transform: translateX(-50%);
   width: max-content;
   max-width: calc(100% - 32px);
-  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.12)) drop-shadow(0 18px 28px rgba(0, 0, 0, 0.22));
   transition: top 0.35s ease;
 }
 
@@ -53,26 +57,23 @@ body {
   height: var(--bar-h);
 }
 
-/* Czarne tło całego paska jako równoległobok */
-.cit-bar::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: var(--ink);
+/* Wspólne dla obu szklanych pól: równoległobok z rozmyciem tła */
+.cit-brand,
+.cit-menu,
+.cit-toggle {
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
   clip-path: polygon(var(--slant) 0, 100% 0, calc(100% - var(--slant)) 100%, 0 100%);
 }
 
-/* ---------- Logo w białej części ---------- */
+/* ---------- Logo w jasnym polu ---------- */
 
 .cit-brand {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-right: -2px; /* domyka szew między bielą a czernią */
   padding: 0 calc(var(--slant) + 22px) 0 calc(var(--slant) + 14px);
-  background: var(--paper);
-  clip-path: polygon(var(--slant) 0, 100% 0, calc(100% - var(--slant)) 100%, 0 100%);
+  background: var(--glass-light);
   text-decoration: none;
   flex-shrink: 0;
 }
@@ -90,23 +91,26 @@ body {
   width: auto;
 }
 
-/* ---------- Linki ---------- */
+/* ---------- Linki w ciemnym polu ---------- */
 
 .cit-menu {
   position: relative;
   display: flex;
   align-items: center;
-  padding: 0 calc(var(--slant) + 12px) 0 14px;
+  /* Ciemne pole zaczyna się dokładnie na skosie jasnego */
+  margin-left: calc(var(--slant) * -1);
+  padding: 0 calc(var(--slant) + 12px) 0 calc(var(--slant) + 14px);
+  background: var(--glass-dark);
 }
 
 .cit-menu ul {
   position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   margin: 0;
   padding: 0;
   list-style: none;
-  isolation: isolate;
 }
 
 .cit-menu a {
@@ -119,23 +123,24 @@ body {
   letter-spacing: 0.005em;
   text-decoration: none;
   white-space: nowrap;
-  transition: color 0.2s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-.cit-menu a:hover {
-  color: var(--paper);
-}
-
-/* Bez JavaScriptu aktywny link po prostu dostaje białe tło */
-.cit:not(.is-ready) .cit-menu a[aria-current="page"] {
-  background: var(--paper);
+/* Link, pod którym stoi znacznik, ma ciemny tekst */
+.cit-menu a.is-marked {
   color: var(--ink);
+  text-shadow: none;
 }
 
-/*
-  Znacznik: biały równoległobok, który przesuwa się pod wskazany link.
-  mix-blend-mode: difference odwraca kolor tekstu, który przykrywa.
-*/
+/* Bez JavaScriptu aktywny link po prostu dostaje jasne tło */
+.cit:not(.is-ready) .cit-menu a[aria-current="page"] {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink);
+  text-shadow: none;
+}
+
+/* Znacznik: jasny równoległobok, który przesuwa się pod wskazany link */
 .cit-marker {
   position: absolute;
   top: 50%;
@@ -143,11 +148,11 @@ body {
   width: 0;
   height: 40px;
   margin-top: -20px;
-  background: var(--paper);
-  mix-blend-mode: difference;
+  background: rgba(255, 255, 255, 0.9);
   pointer-events: none;
   opacity: 0;
-  transform: translateX(var(--x, 0)) skewX(var(--lean));
+  clip-path: polygon(11px 0, 100% 0, calc(100% - 11px) 100%, 0 100%);
+  transform: translateX(var(--x, 0));
   transition:
     transform 0.42s cubic-bezier(0.2, 0.8, 0.2, 1),
     width 0.42s cubic-bezier(0.2, 0.8, 0.2, 1),
@@ -166,8 +171,8 @@ body {
 
 .cit-menu a:focus-visible,
 .cit-toggle:focus-visible {
-  outline: 2px solid var(--mist);
-  outline-offset: 2px;
+  outline: 2px solid var(--paper);
+  outline-offset: -4px;
 }
 
 /* ---------- Przycisk menu (telefon) ---------- */
@@ -175,17 +180,16 @@ body {
 .cit-toggle {
   display: none;
   position: relative;
-  width: calc(var(--bar-h) + var(--slant));
-  padding: 0 var(--slant) 0 0;
+  margin-left: calc(var(--slant) * -1);
   border: 0;
-  background: transparent;
+  background: var(--glass-dark);
   cursor: pointer;
 }
 
 .cit-toggle span {
   position: absolute;
   top: 50%;
-  left: 22px;
+  right: calc(var(--slant) + 20px);
   height: 2px;
   background: var(--paper);
   transition: transform 0.3s ease, width 0.3s ease;
@@ -229,10 +233,6 @@ body {
     top: 10px;
   }
 
-  .cit-bar {
-    justify-content: space-between;
-  }
-
   .cit-brand {
     gap: 10px;
     padding: 0 calc(var(--slant) + 18px) 0 calc(var(--slant) + 8px);
@@ -248,21 +248,22 @@ body {
 
   .cit-toggle {
     display: block;
+    flex: 1;
   }
 
   .cit-marker {
     display: none;
   }
 
-  /* Rozwijany panel pod paskiem, ze ściętym rogiem w tym samym kącie */
+  /* Rozwijany panel pod paskiem, ze skośnym rogiem w tym samym kącie */
   .cit-menu {
     position: absolute;
     top: calc(100% + 8px);
     left: 0;
     right: 0;
     display: block;
+    margin: 0;
     padding: 10px 10px 26px;
-    background: var(--ink);
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--bar-h)), calc(100% - var(--slant)) 100%, 0 100%);
     opacity: 0;
     visibility: hidden;
@@ -283,7 +284,7 @@ body {
   }
 
   .cit-menu li + li {
-    border-top: 1px solid #262626;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
   }
 
   .cit-menu a {
@@ -292,8 +293,9 @@ body {
   }
 
   .cit .cit-menu a[aria-current="page"] {
-    background: var(--paper);
+    background: rgba(255, 255, 255, 0.9);
     color: var(--ink);
+    text-shadow: none;
     clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
     padding-left: 22px;
   }
@@ -306,6 +308,21 @@ body {
 @media (max-width: 360px) {
   .cit-brand__word {
     height: 17px;
+  }
+}
+
+/* Przeglądarki bez rozmycia tła: pola mniej przezroczyste, żeby tekst był czytelny */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root {
+    --glass-dark: rgba(0, 0, 0, 0.85);
+    --glass-light: rgba(255, 255, 255, 0.9);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --glass-dark: #000;
+    --glass-light: #fff;
   }
 }
 
