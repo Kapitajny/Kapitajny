@@ -6,30 +6,37 @@
   <title>computerit – Technologia z nowej perspektywy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Outfit:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="menu.css">
 </head>
 <body>
-  <!-- Pływające menu computerit: logo + nawigacja -->
-  <header class="cit-nav" data-nav>
-    <a class="cit-logo" href="#strona-glowna" aria-label="computerit – strona główna">
-      <img src="logo.png" alt="" width="67" height="128">
-      <span class="cit-logo__text">computerit</span>
-    </a>
+  <!--
+    Pływające menu computerit.
+    Kształt równoległoboku i skos między białą częścią z logo a czarnym paskiem
+    pochodzą z pochylonej podstawy laptopa w znaku firmy.
+  -->
+  <header class="cit" data-nav>
+    <div class="cit-bar">
+      <a class="cit-brand" href="#strona-glowna" aria-label="computerit – strona główna">
+        <img class="cit-brand__mark" src="logo.png" alt="" width="67" height="128">
+        <img class="cit-brand__word" src="wordmark.png" alt="" width="470" height="96">
+      </a>
 
-    <nav class="cit-menu" id="cit-menu" aria-label="Główna nawigacja">
-      <ul>
-        <li><a href="#strona-glowna" aria-current="page">Strona główna</a></li>
-        <li><a href="#uslugi">Usługi</a></li>
-        <li><a href="#portfolio">Portfolio z cennikiem</a></li>
-        <li><a href="#o-mnie">O mnie</a></li>
-        <li><a href="#kontakt">Kontakt</a></li>
-      </ul>
-    </nav>
+      <nav class="cit-menu" id="cit-menu" aria-label="Główna nawigacja">
+        <ul>
+          <li><a href="#strona-glowna" aria-current="page">Strona główna</a></li>
+          <li><a href="#uslugi">Usługi</a></li>
+          <li><a href="#portfolio">Portfolio z cennikiem</a></li>
+          <li><a href="#o-mnie">O mnie</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+        <span class="cit-marker" aria-hidden="true"></span>
+      </nav>
 
-    <button class="cit-toggle" type="button" aria-controls="cit-menu" aria-expanded="false" aria-label="Otwórz menu" data-toggle>
-      <span></span><span></span>
-    </button>
+      <button class="cit-toggle" type="button" aria-controls="cit-menu" aria-expanded="false" aria-label="Otwórz menu" data-toggle>
+        <span></span><span></span>
+      </button>
+    </div>
   </header>
 
   <script src="menu.js"></script>

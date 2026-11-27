@@ -1,11 +1,17 @@
-/* computerit – pływające, czarno-białe menu z logo */
+/*
+  computerit – pływające menu
+  Biel i czerń dzielone skosem, jak pochylona podstawa laptopa w logo.
+*/
 
 :root {
-  --cit-black: #0a0a0a;
-  --cit-white: #ffffff;
-  --cit-gray: #6b6b6b;
-  --cit-line: rgba(10, 10, 10, 0.1);
-  --cit-radius: 999px;
+  --ink: #000;
+  --paper: #fff;
+  --mist: #8c8c8c;
+  --sky: #ededed;
+
+  --bar-h: 64px;
+  --slant: 18px;          /* przesunięcie skosu na wysokości paska */
+  --lean: -15.7deg;       /* ten sam kąt dla znacznika: atan(18 / 64) */
 }
 
 *,
@@ -17,173 +23,295 @@
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: "DM Sans", system-ui, sans-serif;
-  color: var(--cit-black);
-  background: #f2f2f2;
+  background: var(--sky);
+  color: var(--ink);
+  font-family: "Schibsted Grotesk", system-ui, sans-serif;
 }
 
-/* Pasek unosi się nad treścią, oderwany od krawędzi ekranu */
-.cit-nav {
+/* ---------- Pływający obiekt ---------- */
+
+.cit {
   position: fixed;
-  top: 20px;
+  top: 24px;
   left: 50%;
   z-index: 100;
   transform: translateX(-50%);
-  width: min(1100px, calc(100% - 32px));
+  width: max-content;
+  max-width: calc(100% - 32px);
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.12)) drop-shadow(0 18px 28px rgba(0, 0, 0, 0.22));
+  transition: top 0.35s ease;
+}
+
+.cit.is-scrolled {
+  top: 14px;
+}
+
+.cit-bar {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  height: var(--bar-h);
+}
+
+/* Czarne tło całego paska jako równoległobok */
+.cit-bar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--ink);
+  clip-path: polygon(var(--slant) 0, 100% 0, calc(100% - var(--slant)) 100%, 0 100%);
+}
+
+/* ---------- Logo w białej części ---------- */
+
+.cit-brand {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 8px 8px 8px 20px;
-  background: rgba(255, 255, 255, 0.86);
-  border: 1px solid var(--cit-line);
-  border-radius: var(--cit-radius);
-  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.25);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-  transition: top 0.3s ease, box-shadow 0.3s ease;
-}
-
-.cit-nav.is-scrolled {
-  top: 12px;
-  box-shadow: 0 16px 40px -14px rgba(0, 0, 0, 0.35);
-}
-
-/* Logo */
-.cit-logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--cit-black);
+  gap: 12px;
+  margin-right: -2px; /* domyka szew między bielą a czernią */
+  padding: 0 calc(var(--slant) + 22px) 0 calc(var(--slant) + 14px);
+  background: var(--paper);
+  clip-path: polygon(var(--slant) 0, 100% 0, calc(100% - var(--slant)) 100%, 0 100%);
   text-decoration: none;
   flex-shrink: 0;
 }
 
-.cit-logo img {
+.cit-brand__mark {
   display: block;
-  height: 36px;
+  height: 40px;
+  width: auto;
+  margin-top: -4px; /* iglica wieży lekko wyżej, podstawa laptopa na linii tekstu */
+}
+
+.cit-brand__word {
+  display: block;
+  height: 23px;
   width: auto;
 }
 
-.cit-logo__text {
-  font-family: "Outfit", "DM Sans", system-ui, sans-serif;
-  font-weight: 600;
-  font-size: 1.4rem;
-  letter-spacing: -0.02em;
-  line-height: 1;
-}
+/* ---------- Linki ---------- */
 
-/* Linki */
-.cit-menu ul {
+.cit-menu {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 4px;
+  padding: 0 calc(var(--slant) + 12px) 0 14px;
+}
+
+.cit-menu ul {
+  position: relative;
+  display: flex;
+  align-items: center;
   margin: 0;
   padding: 0;
   list-style: none;
+  isolation: isolate;
 }
 
 .cit-menu a {
+  position: relative;
   display: block;
-  padding: 11px 18px;
-  border-radius: var(--cit-radius);
-  color: var(--cit-black);
+  padding: 11px 17px;
+  color: var(--paper);
   font-size: 0.95rem;
   font-weight: 500;
+  letter-spacing: 0.005em;
   text-decoration: none;
   white-space: nowrap;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 .cit-menu a:hover {
-  background: rgba(10, 10, 10, 0.06);
+  color: var(--paper);
 }
 
-.cit-menu a[aria-current="page"] {
-  background: var(--cit-black);
-  color: var(--cit-white);
+/* Bez JavaScriptu aktywny link po prostu dostaje białe tło */
+.cit:not(.is-ready) .cit-menu a[aria-current="page"] {
+  background: var(--paper);
+  color: var(--ink);
 }
 
-.cit-logo:focus-visible,
+/*
+  Znacznik: biały równoległobok, który przesuwa się pod wskazany link.
+  mix-blend-mode: difference odwraca kolor tekstu, który przykrywa.
+*/
+.cit-marker {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 0;
+  height: 40px;
+  margin-top: -20px;
+  background: var(--paper);
+  mix-blend-mode: difference;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(var(--x, 0)) skewX(var(--lean));
+  transition:
+    transform 0.42s cubic-bezier(0.2, 0.8, 0.2, 1),
+    width 0.42s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.2s ease;
+}
+
+.cit.is-ready .cit-marker {
+  opacity: 1;
+}
+
+/* Fokus z klawiatury */
+.cit-brand:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: -6px;
+}
+
 .cit-menu a:focus-visible,
 .cit-toggle:focus-visible {
-  outline: 2px solid var(--cit-black);
-  outline-offset: 3px;
+  outline: 2px solid var(--mist);
+  outline-offset: 2px;
 }
 
-/* Przycisk menu (telefon / tablet) */
+/* ---------- Przycisk menu (telefon) ---------- */
+
 .cit-toggle {
   display: none;
   position: relative;
-  width: 46px;
-  height: 46px;
+  width: calc(var(--bar-h) + var(--slant));
+  padding: 0 var(--slant) 0 0;
   border: 0;
-  border-radius: 50%;
-  background: var(--cit-black);
+  background: transparent;
   cursor: pointer;
 }
 
 .cit-toggle span {
   position: absolute;
-  left: 14px;
-  right: 14px;
+  top: 50%;
+  left: 22px;
   height: 2px;
-  background: var(--cit-white);
-  border-radius: 2px;
-  transition: transform 0.25s ease;
+  background: var(--paper);
+  transition: transform 0.3s ease, width 0.3s ease;
 }
 
-.cit-toggle span:first-child { transform: translateY(-4px); }
-.cit-toggle span:last-child { transform: translateY(4px); }
+/* Dwie kreski różnej długości – jak wieże o różnej wysokości w logo */
+.cit-toggle span:first-child {
+  width: 24px;
+  transform: translateY(-5px);
+}
 
-.cit-nav.is-open .cit-toggle span:first-child { transform: rotate(45deg); }
-.cit-nav.is-open .cit-toggle span:last-child { transform: rotate(-45deg); }
+.cit-toggle span:last-child {
+  width: 15px;
+  transform: translateY(4px);
+}
 
-@media (max-width: 900px) {
-  .cit-nav {
-    flex-wrap: wrap;
-    gap: 0;
-    padding: 8px 8px 8px 16px;
-    border-radius: 28px;
+.cit.is-open .cit-toggle span:first-child {
+  width: 22px;
+  transform: translateY(0) rotate(45deg);
+}
+
+.cit.is-open .cit-toggle span:last-child {
+  width: 22px;
+  transform: translateY(0) rotate(-45deg);
+}
+
+/* ---------- Wąskie ekrany ---------- */
+
+@media (max-width: 920px) {
+  :root {
+    --bar-h: 58px;
+    --slant: 16px;
+  }
+
+  .cit {
+    top: 16px;
+    width: calc(100% - 32px);
+  }
+
+  .cit.is-scrolled {
+    top: 10px;
+  }
+
+  .cit-bar {
+    justify-content: space-between;
+  }
+
+  .cit-brand {
+    gap: 10px;
+    padding: 0 calc(var(--slant) + 18px) 0 calc(var(--slant) + 8px);
+  }
+
+  .cit-brand__mark {
+    height: 34px;
+  }
+
+  .cit-brand__word {
+    height: 20px;
   }
 
   .cit-toggle {
     display: block;
   }
 
+  .cit-marker {
+    display: none;
+  }
+
+  /* Rozwijany panel pod paskiem, ze ściętym rogiem w tym samym kącie */
   .cit-menu {
-    order: 3;
-    width: 100%;
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.3s ease;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    display: block;
+    padding: 10px 10px 26px;
+    background: var(--ink);
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--bar-h)), calc(100% - var(--slant)) 100%, 0 100%);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
+  }
+
+  .cit.is-open .cit-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s;
   }
 
   .cit-menu ul {
-    overflow: hidden;
     flex-direction: column;
     align-items: stretch;
-    gap: 2px;
   }
 
-  .cit-nav.is-open .cit-menu {
-    grid-template-rows: 1fr;
-  }
-
-  .cit-nav.is-open .cit-menu ul {
-    padding: 10px 0 4px;
+  .cit-menu li + li {
+    border-top: 1px solid #262626;
   }
 
   .cit-menu a {
-    padding: 14px 16px;
-    font-size: 1.05rem;
-    border-radius: 18px;
+    padding: 16px 14px;
+    font-size: 1.15rem;
+  }
+
+  .cit .cit-menu a[aria-current="page"] {
+    background: var(--paper);
+    color: var(--ink);
+    clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+    padding-left: 22px;
+  }
+
+  .cit-menu li:has(a[aria-current="page"]) + li {
+    border-top-color: transparent;
+  }
+}
+
+@media (max-width: 360px) {
+  .cit-brand__word {
+    height: 17px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cit-nav,
-  .cit-nav * {
+  .cit,
+  .cit * {
     transition: none !important;
   }
 }
